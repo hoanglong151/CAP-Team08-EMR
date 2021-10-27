@@ -1,0 +1,208 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Degree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Introduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingProcess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkingProcess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecializedTreatment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsShow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Privacy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTown.HomeTown1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nation.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Religion.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Degree)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Introduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainingProcess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkingProcess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecializedTreatment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsShow)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Privacy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeTown.HomeTown1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nation.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Religion.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>DataTable</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách tài khoản
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table1">
+                    <thead>
+                        <tr>
+                            <th>Hình Ảnh</th>
+                            <th>Tên</th>
+                            <th>Show</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img class="avatar" src="@item.Image"/>
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.IsShow</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#table1').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [3],
+                    "orderable": false
+                }]
+            });
+        });
+    </script>    
+}

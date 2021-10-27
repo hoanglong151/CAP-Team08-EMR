@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicMedicalRecords", "ElectronicMedicalRecords\ElectronicMedicalRecords.csproj", "{BC2F7125-0054-48B9-B960-7E8B9218C62E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicMedicalRecords.Tests", "ElectronicMedicalRecords.Tests\ElectronicMedicalRecords.Tests.csproj", "{2733B947-3BEF-40E6-802A-B5728F91F40F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC2F7125-0054-48B9-B960-7E8B9218C62E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2F7125-0054-48B9-B960-7E8B9218C62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2F7125-0054-48B9-B960-7E8B9218C62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2F7125-0054-48B9-B960-7E8B9218C62E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2733B947-3BEF-40E6-802A-B5728F91F40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2733B947-3BEF-40E6-802A-B5728F91F40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2733B947-3BEF-40E6-802A-B5728F91F40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2733B947-3BEF-40E6-802A-B5728F91F40F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BACFB301-AC99-4DB0-BC2C-BCEF1DFC9940}
+	EndGlobalSection
+EndGlobal

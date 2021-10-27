@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1">
+        <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="8" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="2.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="5" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="8" PointY="2.625" />
+        <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="4.75" PointY="8" />
+        <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="6.75" PointY="8" />
+        <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="8.75" PointY="8" />
+        <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="0.75" PointY="11" />
+        <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CP24Team08Model.User" Width="1.5" PointX="13.25" PointY="2.25" />
+        <AssociationConnector Association="CP24Team08Model.FK_User_AspNetUsers" />
+        <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
+        <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
+        <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

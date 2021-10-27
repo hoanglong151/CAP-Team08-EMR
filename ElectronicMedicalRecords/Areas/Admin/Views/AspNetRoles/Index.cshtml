@@ -1,0 +1,241 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.AspNetRole>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    //var Name = ViewBag.User as SelectList;
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+
+
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>DataTable</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách tài khoản
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table2">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    <div class="btn-group me-1 mb-1">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Cấp quyền
+                                            </button>
+                                            <div class="dropdown-menu" style="width:18rem">
+                                                <div class="form-group">
+                                                    <form action="@Url.Action("AddUserRole", "AspNetRoles")" method="post">
+                                                        <input hidden name="Id" value="@item.Id" />
+                                                        <button style="margin-bottom:10px;width:100%" type="submit" class="btn btn-primary">Cấp Quyền</button>
+                                                        <select name="Users" multiple class = "choices form-select multiple-remove">
+                                                            @foreach(var users in ViewBag.User)
+                                                            {
+                                                                <option value="@users.UserID">@users.Name</option>
+                                                            }
+                                                        </select>
+                                                        @Html.ValidationMessage("Users", new { @class = "text-danger" })
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>DataTable</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách Ban Giám Đốc
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table3">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            foreach (var user in item.AspNetUsers)
+                            {
+                                var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
+                                <tr id="@user.Id">
+                                    <td>@userName.Name</td>
+                                    <td>@user.Email</td>
+                                    <td>
+                                        <div class="modal-warning me-1 mb-1 d-inline-block">
+                                            <!-- Button trigger for warning theme modal -->
+                                            <button type="button" class="btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#warning">
+                                                Gỡ Quyền
+                                            </button>
+
+                                            <!--warning theme Modal -->
+                                            <div class="modal fade text-left" id="warning" tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel140"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                     role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-warning">
+                                                            <h5 class="modal-title white" id="myModalLabel140">
+                                                                Bạn có muốn gỡ quyền Giám Đốc của thành viên này?
+                                                            </h5>
+                                                            <button type="button" class="close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body d-flex">
+                                                            <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover"/>
+                                                            <div>
+                                                                <h4>Họ Tên: @userName.Name</h4>
+                                                                <p>Bằng Cấp:@userName.Degree</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                    class="btn btn-light-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                <span class="d-none d-sm-block">Hủy</span>
+                                                            </button>
+                                                            <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                <input name="roleID" value="@item.Id" hidden />
+                                                                <input name="userID" value="@user.Id" hidden />
+                                                                <button type="submit" class="btn btn-warning ml-1">
+                                                                    Xác nhận
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#table2').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [1],
+                    "orderable": false
+                }]
+            });
+
+            $('#table3').DataTable()
+        });
+    </script>
+
+}
