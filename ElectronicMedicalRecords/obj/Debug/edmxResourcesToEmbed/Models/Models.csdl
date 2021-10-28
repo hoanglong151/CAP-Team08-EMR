@@ -42,6 +42,11 @@
       <End Role="Religion" EntitySet="Religions" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
+    <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -215,6 +220,8 @@
     <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
     <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
     <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
+    <Property Name="Gender_ID" Type="Int32" />
+    <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
   </EntityType>
   <Association Name="FK_User_AspNetUsers">
     <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -261,6 +268,26 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="Religion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_User_Gender">
+    <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Gender_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -45,14 +45,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>DataTable</h3>
-                <p class="text-subtitle text-muted">For user to check they list</p>
+                <h3>Quản Lý Tài Khoản</h3>
+                <p class="text-subtitle text-muted">Bạn có thể xem danh sách tài khoản và quyền tại đây</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                        <li class="breadcrumb-item"><a href="index.html">Tài Khoản</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Quyền & Tài Khoản</li>
                     </ol>
                 </nav>
             </div>
@@ -61,7 +61,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Danh sách tài khoản
+                Danh sách quyền
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table2">
@@ -80,19 +80,20 @@
                                 </td>
                                 <td>
                                     <div class="btn-group me-1 mb-1">
-                                        <div class="dropdown">
+                                        <div class="dropdown dropend">
                                             <button type="button" class="btn btn-primary dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">
                                                 Cấp quyền
                                             </button>
-                                            <div class="dropdown-menu" style="width:18rem">
+                                            <div class="dropdown-menu leftdropdown" style="width:18rem">
                                                 <div class="form-group">
                                                     <form action="@Url.Action("AddUserRole", "AspNetRoles")" method="post">
                                                         <input hidden name="Id" value="@item.Id" />
                                                         <button style="margin-bottom:10px;width:100%" type="submit" class="btn btn-primary">Cấp Quyền</button>
-                                                        <select name="Users" multiple class = "choices form-select multiple-remove">
-                                                            @foreach(var users in ViewBag.User)
+                                                        <select name="Users" multiple class="choices form-select multiple-remove" required>
+                                                            <option placeholder>Vui Lòng Chọn Tên</option>
+                                                            @foreach (var users in ViewBag.User)
                                                             {
                                                                 <option value="@users.UserID">@users.Name</option>
                                                             }
@@ -117,22 +118,6 @@
 
 
 <div class="page-heading">
-    <div class="page-title">
-        <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>DataTable</h3>
-                <p class="text-subtitle text-muted">For user to check they list</p>
-            </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -150,65 +135,69 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            foreach (var user in item.AspNetUsers)
+                            if (item.Name == "Giám Đốc")
                             {
-                                var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
-                                <tr id="@user.Id">
-                                    <td>@userName.Name</td>
-                                    <td>@user.Email</td>
-                                    <td>
-                                        <div class="modal-warning me-1 mb-1 d-inline-block">
-                                            <!-- Button trigger for warning theme modal -->
-                                            <button type="button" class="btn btn-primary"
-                                                    data-bs-toggle="modal" data-bs-target="#warning">
-                                                Gỡ Quyền
-                                            </button>
+                                foreach (var user in item.AspNetUsers)
+                                {
+                                    var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
+                                    <tr id="@user.Id">
+                                        <td>@userName.Name</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                <!-- Button trigger for warning theme modal -->
+                                                <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#warning-GD-@userName.ID">
+                                                    Gỡ Quyền
+                                                </button>
 
-                                            <!--warning theme Modal -->
-                                            <div class="modal fade text-left" id="warning" tabindex="-1"
-                                                 role="dialog" aria-labelledby="myModalLabel140"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                     role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-warning">
-                                                            <h5 class="modal-title white" id="myModalLabel140">
-                                                                Bạn có muốn gỡ quyền Giám Đốc của thành viên này?
-                                                            </h5>
-                                                            <button type="button" class="close"
-                                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                                <i data-feather="x"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body d-flex">
-                                                            <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover"/>
-                                                            <div>
-                                                                <h4>Họ Tên: @userName.Name</h4>
-                                                                <p>Bằng Cấp:@userName.Degree</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button"
-                                                                    class="btn btn-light-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                <i class="bx bx-x d-block d-sm-none"></i>
-                                                                <span class="d-none d-sm-block">Hủy</span>
-                                                            </button>
-                                                            <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
-                                                                <input name="roleID" value="@item.Id" hidden />
-                                                                <input name="userID" value="@user.Id" hidden />
-                                                                <button type="submit" class="btn btn-warning ml-1">
-                                                                    Xác nhận
+                                                <!--warning theme Modal -->
+                                                <div class="modal fade text-left" id="warning-GD-@userName.ID" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel140"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                         role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-warning">
+                                                                <h5 class="modal-title white" id="myModalLabel140">
+                                                                    Bạn có muốn gỡ quyền Giám Đốc của thành viên này?
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
                                                                 </button>
-                                                            </form>
+                                                            </div>
+                                                            <div class="modal-body d-flex">
+                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                <div>
+                                                                    <h4>Họ Tên: @userName.Name</h4>
+                                                                    <p>Bằng Cấp:@userName.Degree</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                        class="btn btn-light-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Hủy</span>
+                                                                </button>
+                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                    <input name="roleID" value="@item.Id" hidden />
+                                                                    <input name="userID" value="@user.Id" hidden />
+                                                                    <button type="submit" class="btn btn-warning ml-1">
+                                                                        Xác nhận
+                                                                    </button>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                }
                             }
+
                         }
                     </tbody>
                 </table>
@@ -217,6 +206,363 @@
     </section>
 </div>
 
+<div class="page-heading">
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách Bác Sĩ
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table4">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Name == "Bác Sĩ")
+                            {
+                                foreach (var user in item.AspNetUsers)
+                                {
+                                    var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
+                                    <tr id="@user.Id">
+                                        <td>@userName.Name</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                <!-- Button trigger for warning theme modal -->
+                                                <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#warning-BS-@userName.ID">
+                                                    Gỡ Quyền
+                                                </button>
+
+                                                <!--warning theme Modal -->
+                                                <div class="modal fade text-left" id="warning-BS-@userName.ID" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel140"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                         role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-warning">
+                                                                <h5 class="modal-title white" id="myModalLabel140">
+                                                                    Bạn có muốn gỡ quyền Bác sĩ của thành viên này?
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body d-flex">
+                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                <div>
+                                                                    <h4>Họ Tên: @userName.Name</h4>
+                                                                    <p>Bằng Cấp:@userName.Degree</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                        class="btn btn-light-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Hủy</span>
+                                                                </button>
+                                                                
+                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                    <input name="roleID" value="@item.Id" hidden />
+                                                                    <input name="userID" value="@user.Id" hidden />
+                                                                    <button type="submit" class="btn btn-warning ml-1">
+                                                                        Xác nhận
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="page-heading">
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách Kỹ thuật viên
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table5">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Name == "Kỹ Thuật Viên")
+                            {
+                                foreach (var user in item.AspNetUsers)
+                                {
+                                    var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
+                                    <tr id="@user.Id">
+                                        <td>@userName.Name</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                <!-- Button trigger for warning theme modal -->
+                                                <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#warning-KTV-@userName.ID">
+                                                    Gỡ Quyền
+                                                </button>
+
+                                                <!--warning theme Modal -->
+                                                <div class="modal fade text-left" id="warning-KTV-@userName.ID" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel140"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                         role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-warning">
+                                                                <h5 class="modal-title white" id="myModalLabel140">
+                                                                    Bạn có muốn gỡ quyền Kỹ Thuật viên của thành viên này?
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body d-flex">
+                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                <div>
+                                                                    <h4>Họ Tên: @userName.Name</h4>
+                                                                    <p>Bằng Cấp:@userName.Degree</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                        class="btn btn-light-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Hủy</span>
+                                                                </button>
+                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                    <input name="roleID" value="@item.Id" hidden />
+                                                                    <input name="userID" value="@user.Id" hidden />
+                                                                    <button type="submit" class="btn btn-warning ml-1">
+                                                                        Xác nhận
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="page-heading">
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách Y tá/Điều dưỡng
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table6">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Name == "Y tá/Điều dưỡng")
+                            {
+                                foreach (var user in item.AspNetUsers)
+                                {
+                                    var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
+                                    <tr id="@user.Id">
+                                        <td>@userName.Name</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                <!-- Button trigger for warning theme modal -->
+                                                <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#warning-DD-@userName.ID">
+                                                    Gỡ Quyền
+                                                </button>
+
+                                                <!--warning theme Modal -->
+                                                <div class="modal fade text-left" id="warning-DD-@userName.ID" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel140"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                         role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-warning">
+                                                                <h5 class="modal-title white" id="myModalLabel140">
+                                                                    Bạn có muốn gỡ quyền Y tá/Điều dưỡng của thành viên này?
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body d-flex">
+                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                <div>
+                                                                    <h4>Họ Tên: @userName.Name</h4>
+                                                                    <p>Bằng Cấp:@userName.Degree</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                        class="btn btn-light-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Hủy</span>
+                                                                </button>
+                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                    <input name="roleID" value="@item.Id" hidden />
+                                                                    <input name="userID" value="@user.Id" hidden />
+                                                                    <button type="submit" class="btn btn-warning ml-1">
+                                                                        Xác nhận
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<div class="page-heading">
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách Quản Trị Viên
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table7">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Name == "QTV")
+                            {
+                                foreach (var user in item.AspNetUsers)
+                                {
+                                    var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
+                                    <tr id="@user.Id">
+                                        <td>@userName.Name</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                <!-- Button trigger for warning theme modal -->
+                                                <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#warning-QTV-@userName.ID">
+                                                    Gỡ Quyền
+                                                </button>
+
+                                                <!--warning theme Modal -->
+                                                <div class="modal fade text-left" id="warning-QTV-@userName.ID" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel140"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                         role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-warning">
+                                                                <h5 class="modal-title white" id="myModalLabel140">
+                                                                    Bạn có muốn gỡ quyền Quản Trị Viên của thành viên này?
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body d-flex">
+                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                <div>
+                                                                    <h4>Họ Tên: @userName.Name</h4>
+                                                                    <p>Bằng Cấp:@userName.Degree</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                        class="btn btn-light-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Hủy</span>
+                                                                </button>
+                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                    <input name="roleID" value="@item.Id" hidden />
+                                                                    <input name="userID" value="@user.Id" hidden />
+                                                                    <button type="submit" class="btn btn-warning ml-1">
+                                                                        Xác nhận
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
 @section scripts{
     <script>
         $(document).ready(function () {
@@ -233,9 +579,71 @@
                     "orderable": false
                 }]
             });
-
-            $('#table3').DataTable()
+            $('#table3').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [2],
+                    "orderable": false
+                }]
+            })
+            $('#table4').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [2],
+                    "orderable": false
+                }]
+            })
+            $('#table5').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [2],
+                    "orderable": false
+                }]
+            })
+            $('#table6').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [2],
+                    "orderable": false
+                }]
+            })
+            $('#table7').DataTable({
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                },
+                "columnDefs": [{
+                    "targets": [2],
+                    "orderable": false
+                }]
+            })
         });
     </script>
-
 }

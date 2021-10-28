@@ -38,5 +38,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
     }
 }

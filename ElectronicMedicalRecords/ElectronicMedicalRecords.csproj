@@ -234,6 +234,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -258,6 +259,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DiagnosticsCategory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gender.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeTown.cs">
@@ -2487,6 +2491,11 @@
     <Content Include="Areas\Admin\Views\AspNetRoles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MedicationCategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MedicationCategories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MedicationCategories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MedicationCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MedicationCategories\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

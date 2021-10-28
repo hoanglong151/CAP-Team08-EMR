@@ -31,10 +31,12 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> Phone { get; set; }
         public bool Privacy { get; set; }
         public Nullable<int> Religion_ID { get; set; }
+        public Nullable<int> Gender_ID { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual HomeTown HomeTown { get; set; }
         public virtual Nation Nation { get; set; }
         public virtual Religion Religion { get; set; }
+        public virtual Gender Gender { get; set; }
     }
 }

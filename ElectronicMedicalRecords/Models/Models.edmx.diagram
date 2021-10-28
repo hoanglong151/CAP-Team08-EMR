@@ -25,6 +25,8 @@
         <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
+        <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="CP24Team08Model.FK_User_Gender" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

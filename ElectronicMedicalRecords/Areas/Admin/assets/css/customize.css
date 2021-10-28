@@ -11,3 +11,43 @@
     object-fit: cover;
     border-radius: 50%
 }
+
+.leftdropdown {
+    padding: 0;
+    transform: translate(120px, 0px) !important;
+}
+
+.detailDoctor{
+    display: flex;
+    justify-content: center;
+}
+
+.detailDoctor-img{
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    object-position:center;
+    margin-right: 20px
+}
+
+.modal-content{
+    width: 800px
+}
+
+.modal-doctor {
+    max-width: 800px
+}
+
+.clickbutton {
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    color: #435ebe;
+}
+
+.clickbutton:hover {
+    background-color: #435ebe;
+    color: #fff;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

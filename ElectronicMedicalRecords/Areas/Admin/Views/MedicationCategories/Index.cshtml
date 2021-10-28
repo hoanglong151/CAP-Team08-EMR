@@ -1,0 +1,253 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.MedicationCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>DataTable</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <p>Danh Mục Thuốc</p>
+                @*dropdown Create*@
+                <div class="btn-group me-1 mb-1">
+                    <div class="dropdown">
+                        <div class="btn-group dropdown mb-1">
+                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tạo Danh Mục Thuốc
+                            </button>
+                            <div class="dropdown-menu">
+                                <div class="form-group">
+                                    <label for="NameMedication">Tên Danh Mục Thuốc</label>
+                                    <input type="text" class="form-control"
+                                           id="NameMedication" placeholder="Tên Danh Mục Thuốc" name="Name">
+                                </div>
+                                <button type="button" class="btn btn-primary" id="createMedication">Tạo Mới</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table8">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@*Update Model*@
+<div class="modal-primary me-1 mb-1 d-inline-block">
+    <!--primary theme Modal -->
+    <div class="modal fade text-left" id="ModalUpdate" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel160"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+             role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white" id="myModalLabel160">
+                        Cập nhật danh mục thuốc
+                    </h5>
+                    <button type="button" class="close"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control"
+                           id="IDMedication" name="ID" hidden>
+                    <input type="text" class="form-control"
+                           id="UpdateNameMedication" name="Name">
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-light-secondary"
+                            data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1"
+                            data-bs-dismiss="modal" id="editMedication">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Accept</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table8').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData","MedicationCategories")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var button = "<button class='btn btn-primary' onclick='getMedicationByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'> Edit </button> <button class='btn btn-primary btnDelete' data-id='"
+                                + data.ID + "'> Delete </button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Create Medication Category</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    }
+                }
+            })
+            createMedication();
+            updateMedication();
+            //$('body').on('click', '.btnEdit', function (e) {
+            //    var id = $('.btnEdit').data('id');
+            //    getMedicationByID(id);
+            //})
+        })
+
+
+       /* Get ID Update*/
+        function getMedicationByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit","MedicationCategories")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        $('#UpdateNameMedication').val(res.data.Name);
+                        $('#IDMedication').val(res.data.ID);
+                    }
+                }
+            })
+            $('#ModalUpdate').modal('show')
+        }
+
+        function createMedication() {
+            $('#createMedication').click(function () {
+                var name = $('#NameMedication').val();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    Name: name,
+                    __RequestVerificationToken: token,
+                }
+                $.ajax({
+                    url: "@Url.Action("Create","MedicationCategories")",
+                    type: "POST",
+                    data: model,
+                    success: (res) => {
+                        resetInput();
+                        $('#table8').DataTable().ajax.reload();
+                    }
+                })
+            })
+        }
+
+        function updateMedication() {
+            $('#editMedication').click(function () {
+                var name = $('#UpdateNameMedication').val();
+                var id = $('#IDMedication').val();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    Id: id,
+                    Name: name,
+                    __RequestVerificationToken: token,
+                }
+                $.ajax({
+                    url: '@Url.Action("Edit","MedicationCategories")',
+                    type: 'POST',
+                    data: model,
+                    success: function (res) {
+                        if (res.success) {
+                            resetInput();
+                            $("#table8").DataTable().ajax.reload();
+                        }
+                    }
+                });
+            })
+        }
+
+        function resetInput() {
+            var name = $('#NameMedication').val("");
+        }
+    </script>
+}
