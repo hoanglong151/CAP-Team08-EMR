@@ -6,13 +6,14 @@
     <EntitySet Name="AspNetUserClaims" EntityType="CP24Team08Model.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="CP24Team08Model.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="CP24Team08Model.AspNetUser" />
-    <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
+    <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
     <EntitySet Name="HomeTowns" EntityType="CP24Team08Model.HomeTown" />
-    <EntitySet Name="MedicationCategories" EntityType="CP24Team08Model.MedicationCategory" />
+    <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
     <EntitySet Name="Nations" EntityType="CP24Team08Model.Nation" />
     <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
     <EntitySet Name="Religions" EntityType="CP24Team08Model.Religion" />
     <EntitySet Name="sysdiagrams" EntityType="CP24Team08Model.sysdiagram" />
+    <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -21,13 +22,12 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
     </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
     <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
+      <End Role="Gender" EntitySet="Genders" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_User_HomeTown" Association="CP24Team08Model.FK_User_HomeTown">
@@ -42,11 +42,11 @@
       <End Role="Religion" EntitySet="Religions" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
-    <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
-      <End Role="Gender" EntitySet="Genders" />
-      <End Role="User" EntitySet="Users" />
+    <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -105,15 +105,16 @@
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
     <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
+    <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
   </EntityType>
-  <EntityType Name="DiagnosticsCategory">
+  <EntityType Name="Gender">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
   </EntityType>
   <EntityType Name="HomeTown">
     <Key>
@@ -123,12 +124,15 @@
     <Property Name="HomeTown1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
   </EntityType>
-  <EntityType Name="MedicationCategory">
+  <EntityType Name="Medication">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ActiveIngredientName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="Nation">
     <Key>
@@ -143,7 +147,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Religion">
     <Key>
@@ -162,6 +166,34 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" Nullable="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Nation_ID" Type="Int32" />
+    <Property Name="HomeTown_ID" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Privacy" Type="Boolean" Nullable="false" />
+    <Property Name="Religion_ID" Type="Int32" />
+    <Property Name="Gender_ID" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
+    <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
+    <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
+    <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
+    <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -191,38 +223,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-    <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-  </Association>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IsShow" Type="Boolean" Nullable="false" />
-    <Property Name="BirthDate" Type="DateTime" Precision="0" />
-    <Property Name="Nation_ID" Type="Int32" />
-    <Property Name="HomeTown_ID" Type="Int32" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="Int32" />
-    <Property Name="Privacy" Type="Boolean" Nullable="false" />
-    <Property Name="Religion_ID" Type="Int32" />
-    <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
-    <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
-    <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
-    <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
-    <Property Name="Gender_ID" Type="Int32" />
-    <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
-  </EntityType>
   <Association Name="FK_User_AspNetUsers">
     <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
     <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
@@ -232,6 +232,18 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Gender">
+    <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Gender_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -271,24 +283,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Gender">
+  <Association Name="AspNetUserRoles">
+    <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="DiagnosticsCategory">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NameEnglish" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MDC" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
   </EntityType>
-  <Association Name="FK_User_Gender">
-    <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
-    <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Gender">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="Gender_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

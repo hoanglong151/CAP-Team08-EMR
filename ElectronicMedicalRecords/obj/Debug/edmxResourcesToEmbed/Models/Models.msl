@@ -56,10 +56,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DiagnosticsCategories">
-      <EntityTypeMapping TypeName="CP24Team08Model.DiagnosticsCategory">
-        <MappingFragment StoreEntitySet="DiagnosticsCategory">
-          <ScalarProperty Name="Name" ColumnName="Name" />
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="CP24Team08Model.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="Gender1" ColumnName="Gender" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -72,9 +72,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MedicationCategories">
-      <EntityTypeMapping TypeName="CP24Team08Model.MedicationCategory">
-        <MappingFragment StoreEntitySet="MedicationCategory">
+    <EntitySetMapping Name="Medications">
+      <EntityTypeMapping TypeName="CP24Team08Model.Medication">
+        <MappingFragment StoreEntitySet="Medication">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="ActiveIngredientName" ColumnName="ActiveIngredientName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -115,14 +118,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="CP24Team08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetUser">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
-      </EndProperty>
-      <EndProperty Name="AspNetRole">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="CP24Team08Model.User">
         <MappingFragment StoreEntitySet="User">
@@ -147,10 +142,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Genders">
-      <EntityTypeMapping TypeName="CP24Team08Model.Gender">
-        <MappingFragment StoreEntitySet="Gender">
-          <ScalarProperty Name="Gender1" ColumnName="Gender" />
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="CP24Team08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="DiagnosticsCategories">
+      <EntityTypeMapping TypeName="CP24Team08Model.DiagnosticsCategory">
+        <MappingFragment StoreEntitySet="DiagnosticsCategory">
+          <ScalarProperty Name="MDC" ColumnName="MDC" />
+          <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

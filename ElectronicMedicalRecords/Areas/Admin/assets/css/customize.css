@@ -30,7 +30,7 @@
     margin-right: 20px
 }
 
-.modal-content{
+.modal-user {
     width: 800px
 }
 
@@ -50,4 +50,24 @@
     color: #fff;
     border-radius: 0.25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.w80{
+    width: 80px;
+}
+
+.btnHover {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: #000;
+    padding: 4px
+}
+
+.btnHover:hover i {
+    color: #435ebe;
+}
+
+.page-link{
+    border: unset;
 }

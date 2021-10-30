@@ -74,3 +74,14 @@ C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Te
 C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\Microsoft.Extensions.Primitives.xml
 C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\Microsoft.Extensions.WebEncoders.xml
 C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\ExcelDataReader.dll
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\ExcelDataReader.pdb
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\ExcelDataReader.xml
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\ExcelDataReader.DataSet.xml
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\EPPlus.dll
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\EPPlus.xml
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords.Tests\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml

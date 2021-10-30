@@ -17,12 +17,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/MedicationCategories
         public ActionResult Index()
         {
-            return View(db.MedicationCategories.ToList());
+            return View(db.Medications.ToList());
         }
 
         public ActionResult GetData()
         {
-            var medication = db.MedicationCategories.ToList();
+            var medication = db.Medications.ToList();
             return Json(new { data = medication }, JsonRequestBehavior.AllowGet);
         }
 
@@ -33,7 +33,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
+            Medication medicationCategory = db.Medications.Find(id);
             if (medicationCategory == null)
             {
                 return HttpNotFound();
@@ -52,11 +52,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(MedicationCategory medicationCategory)
+        public ActionResult Create(Medication medicationCategory)
         {
             if (ModelState.IsValid)
             {
-                db.MedicationCategories.Add(medicationCategory);
+                db.Medications.Add(medicationCategory);
                 db.SaveChanges();
                 return Json(new { success = true });
             }
@@ -70,7 +70,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
+            Medication medicationCategory = db.Medications.Find(id);
             if (medicationCategory == null)
             {
                 return HttpNotFound();
@@ -84,7 +84,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MedicationCategory medicationCategory)
+        public ActionResult Edit(Medication medicationCategory)
         {
             if (ModelState.IsValid)
             {
@@ -103,12 +103,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
+            Medication medicationCategory = db.Medications.Find(id);
             if (medicationCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(medicationCategory);
+            return Json(new { data = medicationCategory }, JsonRequestBehavior.AllowGet);
+            //return View(medicationCategory);
         }
 
         // POST: Admin/MedicationCategories/Delete/5
@@ -116,10 +117,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
-            db.MedicationCategories.Remove(medicationCategory);
+            Medication medicationCategory = db.Medications.Find(id);
+            db.Medications.Remove(medicationCategory);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return Json(new { success = true });
         }
 
         protected override void Dispose(bool disposing)

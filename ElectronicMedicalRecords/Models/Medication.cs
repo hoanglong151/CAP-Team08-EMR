@@ -12,9 +12,12 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MedicationCategory
+    public partial class Medication
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string ActiveIngredientName { get; set; }
+        public string Unit { get; set; }
+        public double Price { get; set; }
     }
 }

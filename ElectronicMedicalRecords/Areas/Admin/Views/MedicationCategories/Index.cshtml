@@ -1,38 +1,9 @@
-﻿@model IEnumerable<ElectronicMedicalRecords.Models.MedicationCategory>
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Medication>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
 {
@@ -100,7 +71,7 @@
     </section>
 </div>
 
-@*Update Model*@
+@*Update Medication*@
 <div class="modal-primary me-1 mb-1 d-inline-block">
     <!--primary theme Modal -->
     <div class="modal fade text-left" id="ModalUpdate" tabindex="-1"
@@ -159,8 +130,7 @@
                         "data": null,
                         "render": function (data, type, row) {
                             var button = "<button class='btn btn-primary' onclick='getMedicationByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'> Edit </button> <button class='btn btn-primary btnDelete' data-id='"
-                                + data.ID + "'> Delete </button>";
+                                + data.ID + "'> Edit </button> <button id='text' class='btn btn-primary' onclick='deleteMedication(" + data.ID + ")'>Delete</button>";
                             return button;
                         },
                         "targets": 0,
@@ -177,10 +147,7 @@
             })
             createMedication();
             updateMedication();
-            //$('body').on('click', '.btnEdit', function (e) {
-            //    var id = $('.btnEdit').data('id');
-            //    getMedicationByID(id);
-            //})
+            deleteMedication();
         })
 
 
@@ -243,6 +210,53 @@
                         }
                     }
                 });
+            })
+        }
+
+        /*Get Delete Medication*/
+        function deleteMedication(id) {
+            $.ajax({
+                url: '@Url.Action("Delete","MedicationCategories")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        Swal.fire({
+                            title: 'Bạn muốn xóa?',
+                            text: res.data.Name,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#777',
+                            confirmButtonText: 'Xác nhận',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var form = $('#__AjaxAntiForgeryForm');
+                                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                var model = {
+                                    Id: id,
+                                    __RequestVerificationToken: token,
+                                }
+                                $.ajax({
+                                    url: '@Url.Action("Delete","MedicationCategories")',
+                                    type: 'POST',
+                                    data: model,
+                                    success: function (res) {
+                                        if (res.success) {
+                                            Swal.fire(
+                                                'Deleted!',
+                                                'Your file has been deleted.',
+                                                'success'
+                                            )
+                                            $("#table8").DataTable().ajax.reload();
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
             })
         }
 

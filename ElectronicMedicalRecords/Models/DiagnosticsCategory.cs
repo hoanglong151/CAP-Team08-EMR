@@ -15,6 +15,9 @@ namespace ElectronicMedicalRecords.Models
     public partial class DiagnosticsCategory
     {
         public int ID { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
+        public string NameEnglish { get; set; }
+        public string MDC { get; set; }
     }
 }

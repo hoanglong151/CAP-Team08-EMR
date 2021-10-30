@@ -1,0 +1,460 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.DiagnosticsCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Quản Lý Chẩn Đoán</h3>
+                <p class="text-subtitle text-muted">Bạn có thể xem danh sách chẩn đoán tại đây</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Danh sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Chẩn Đoán</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <fieldset>
+                @using (Html.BeginForm("ImportExcel", "DiagnosticsCategories", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="input-group">
+                        <input type="file" name="uploads" class="form-control" multiple id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <input id="inputGroupFileAddon04" type="submit" value="Upload" class="btn btn-primary" />
+                    </div>
+                }
+            </fieldset>
+            <div class="buttons">
+                @using (Html.BeginForm("Export", "DiagnosticsCategories"))
+                {
+                    <input class="btn btn-primary" type="submit" name="Export" value="Export to Excel" />
+                }
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách chẩn đoán
+                <br />
+                <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                        data-bs-target="#diagnostic">
+                    Tạo Chẩn Đoán
+                </button>
+                <div class="card-body">
+                    <table class="table table-striped" id="tableDiagnostic">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Tên</th>
+                                <th>Tên Tiếng Anh</th>
+                                <th>MDC</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- Create Basic Modal -->
+<div class="modal fade text-left" id="diagnostic" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel1">Thêm danh mục chẩn đoán</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-createDiagnostic" class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Mã</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Code" type="text" class="form-control"
+                                               placeholder="Mã" id="first-name-icon">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Tên</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control"
+                                               placeholder="Tên" id="first-name-icon">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Tên Tiếng Anh</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="NameEnglish" type="text" class="form-control"
+                                               placeholder="Tên Tiếng Anh">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-phone"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>MDC</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="MDC" type="text" class="form-control"
+                                               placeholder="MDC">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+                <button type="button" onclick="createDiagnostic()" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Accept</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Basic Modal -->
+<div class="modal fade text-left" id="Updatediagnostic" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Cập nhật danh mục chẩn đoán</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-updateDiagnostic" class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <input type="text" id="diagnosticID" name="ID" hidden/>
+                            <div class="col-md-4">
+                                <label>Mã</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Code" type="text" class="form-control"
+                                               placeholder="Mã" id="diagnosticCode">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Tên</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control"
+                                               placeholder="Tên" id="diagnosticName">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Tên Tiếng Anh</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="NameEnglish" type="text" class="form-control"
+                                               placeholder="Tên Tiếng Anh" id="diagnosticNameEnglish">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-phone"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>MDC</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="MDC" type="text" class="form-control"
+                                               placeholder="MDC" id="diagnosticMDC">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+                <button type="button" onclick="updateDiagnostic()" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Accept</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tableDiagnostic').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData", "DiagnosticsCategories")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "Code",
+                    },
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": "NameEnglish",
+                    },
+                    {
+                        "data": "MDC",
+                    },
+                    {
+                        "className": "w80",
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var button = "<button class='btn btnHover' onclick='getDiagnosticByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'> <i class='fas fa-user-edit'></i> </button> <button id='text' class='btn btnHover' onclick='deleteDiagnostic(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Tạo Chẩn Đoán</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    }
+                }
+            })
+        })
+
+        function getDiagnosticByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit", "DiagnosticsCategories")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        console.log(res.data)
+                        $('#diagnosticName').val(res.data.Name);
+                        $('#diagnosticID').val(res.data.ID);
+                        $('#diagnosticNameEnglish').val(res.data.NameEnglish);
+                        $('#diagnosticMDC').val(res.data.MDC);
+                        $('#diagnosticCode').val(res.data.Code);
+                    }
+                }
+            })
+            $('#Updatediagnostic').modal('show')
+        }
+
+        function updateDiagnostic() {
+            var dataDiagnostic = $('#form-updateDiagnostic').serialize();
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            var model = {
+                validata: dataDiagnostic,
+            }
+            console.log(model)
+            $.ajax({
+                url: "@Url.Action("Edit", "DiagnosticsCategories")",
+                type: "POST",
+                data: model.validata + "&__RequestVerificationToken=" + token,
+                success: () => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bạn đã cập nhật thành công',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    resetInput();
+                    $('#tableDiagnostic').DataTable().ajax.reload();
+                }
+            })
+        }
+
+        function createDiagnostic() {
+            var dataDiagnostic = $('#form-createDiagnostic').serialize();
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            var model = {
+                validata: dataDiagnostic,
+            }
+            $.ajax({
+                url: "@Url.Action("Create", "DiagnosticsCategories")",
+                type: "POST",
+                data: model.validata + "&__RequestVerificationToken=" + token,
+                success: () => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bạn đã tạo thành công',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    resetInput();
+                    $('#tableDiagnostic').DataTable().ajax.reload();
+                }
+            })
+        }
+
+        /*Get & Post Delete Diagnostic*/
+        function deleteDiagnostic(id) {
+            $.ajax({
+                url: '@Url.Action("Delete", "DiagnosticsCategories")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        Swal.fire({
+                            title: 'Bạn muốn xóa danh mục chẩn đoán này?',
+                            html:
+                                '<b> Mã:</b> <span>' + res.data.Code +'</span> <br/>' +
+                                '<b>Tên:</b> <span>' + res.data.Name + '</span> <br/>' +
+                                '<b>Tên Tiếng Anh:</b> <span>' + res.data.NameEnglish + '</span> <br/>' +
+                                '<b>MDC:</b> <span>' + res.data.MDC + '</span>',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#777',
+                            confirmButtonText: 'Xác nhận',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var form = $('#__AjaxAntiForgeryForm');
+                                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                $.ajax({
+                                    url: '@Url.Action("Delete", "DiagnosticsCategories")',
+                                    type: 'POST',
+                                    data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
+                                    success: function (res) {
+                                        if (res.success) {
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Xóa thành công',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $("#tableDiagnostic").DataTable().ajax.reload();
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            })
+        }
+
+        function resetInput() {
+            $('#form-createDiagnostic').get(0).reset();
+        }
+    </script>
+}

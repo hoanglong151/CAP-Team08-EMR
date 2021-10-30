@@ -66,7 +66,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NameEnglish" Type="varchar(max)" Nullable="false" />
+    <Property Name="MDC" Type="varchar" MaxLength="3" Nullable="false" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
@@ -82,12 +85,15 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HomeTown" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="MedicationCategory">
+  <EntityType Name="Medication">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActiveIngredientName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Nation">
     <Key>
@@ -101,7 +107,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Religion">
     <Key>
@@ -269,7 +275,7 @@
     <EntitySet Name="DiagnosticsCategory" EntityType="Self.DiagnosticsCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeTown" EntityType="Self.HomeTown" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="MedicationCategory" EntityType="Self.MedicationCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Nation" EntityType="Self.Nation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientStatus" EntityType="Self.PatientStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
