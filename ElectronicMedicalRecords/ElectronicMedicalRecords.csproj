@@ -254,6 +254,7 @@
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2521,6 +2522,11 @@
     <Content Include="Areas\Admin\Views\DiagnosticsCategories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DiagnosticsCategories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DiagnosticsCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

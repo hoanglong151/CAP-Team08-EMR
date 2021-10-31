@@ -72,17 +72,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Medications">
-      <EntityTypeMapping TypeName="CP24Team08Model.Medication">
-        <MappingFragment StoreEntitySet="Medication">
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Unit" ColumnName="Unit" />
-          <ScalarProperty Name="ActiveIngredientName" ColumnName="ActiveIngredientName" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Nations">
       <EntityTypeMapping TypeName="CP24Team08Model.Nation">
         <MappingFragment StoreEntitySet="Nation">
@@ -157,6 +146,17 @@
           <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medications">
+      <EntityTypeMapping TypeName="CP24Team08Model.Medication">
+        <MappingFragment StoreEntitySet="Medication">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="ActiveIngredientName" ColumnName="ActiveIngredientName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

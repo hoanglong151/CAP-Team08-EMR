@@ -18,6 +18,6 @@ namespace ElectronicMedicalRecords.Models
         public string Name { get; set; }
         public string ActiveIngredientName { get; set; }
         public string Unit { get; set; }
-        public double Price { get; set; }
+        public int Price { get; set; }
     }
 }

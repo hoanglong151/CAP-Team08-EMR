@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="3" PointY="9.75" />
         <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="3" PointY="1.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="7.75" PointY="3.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="3" PointY="12.125" />
         <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="7.75" PointY="6.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="3" PointY="14.375" />
@@ -27,6 +26,7 @@
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="7.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

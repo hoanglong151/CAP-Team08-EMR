@@ -32,12 +32,12 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
-        public virtual DbSet<Medication> Medications { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
+        public virtual DbSet<Medication> Medications { get; set; }
     }
 }

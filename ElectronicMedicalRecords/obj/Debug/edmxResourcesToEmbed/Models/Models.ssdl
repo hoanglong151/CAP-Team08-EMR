@@ -93,7 +93,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ActiveIngredientName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Nation">
     <Key>

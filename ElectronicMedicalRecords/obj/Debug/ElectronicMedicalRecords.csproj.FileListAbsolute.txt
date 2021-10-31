@@ -135,3 +135,4 @@ C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords\ob
 C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords\obj\Debug\ElectronicMedicalRecords.csproj.CopyComplete
 C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords\obj\Debug\ElectronicMedicalRecords.dll
 C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords\obj\Debug\ElectronicMedicalRecords.pdb
+C:\Users\nguye\source\repos\ElectronicMedicalRecords\ElectronicMedicalRecords\obj\Debug\ElectronicMedicalRecords.csproj.AssemblyReference.cache

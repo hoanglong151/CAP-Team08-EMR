@@ -8,7 +8,6 @@
     <EntitySet Name="AspNetUsers" EntityType="CP24Team08Model.AspNetUser" />
     <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
     <EntitySet Name="HomeTowns" EntityType="CP24Team08Model.HomeTown" />
-    <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
     <EntitySet Name="Nations" EntityType="CP24Team08Model.Nation" />
     <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
     <EntitySet Name="Religions" EntityType="CP24Team08Model.Religion" />
@@ -47,6 +46,7 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
     <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
+    <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -123,16 +123,6 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="HomeTown1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
-  </EntityType>
-  <EntityType Name="Medication">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ActiveIngredientName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Price" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="Nation">
     <Key>
@@ -296,5 +286,15 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="NameEnglish" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="MDC" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Medication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ActiveIngredientName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>
