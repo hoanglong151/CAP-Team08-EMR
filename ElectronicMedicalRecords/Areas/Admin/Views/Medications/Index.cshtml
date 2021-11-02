@@ -142,7 +142,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="ActiveIngredientName" type="text" class="form-control"
-                                               placeholder="Tên Hoạt Chất" id="first-name-icon">
+                                               placeholder="Tên Hoạt Chất" id="first-name-icon" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -156,7 +156,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên Thuốc" id="first-name-icon">
+                                               placeholder="Tên Thuốc" id="first-name-icon" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -170,7 +170,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Unit" type="text" class="form-control"
-                                               placeholder="Đơn Vị Tính">
+                                               placeholder="Đơn Vị Tính" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-phone"></i>
                                         </div>
@@ -184,7 +184,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Price" type="text" class="form-control"
-                                               placeholder="Giá">
+                                               placeholder="Giá" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
                                         </div>
@@ -200,7 +200,7 @@
                     <i class="bx bx-x d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">Close</span>
                 </button>
-                <button type="button" onclick="createMedication()" class="btn btn-primary ml-1"
+                <button type="button" onsubmit="createMedication()" class="btn btn-primary ml-1"
                         data-bs-dismiss="modal">
                     <i class="bx bx-check d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">Accept</span>
@@ -234,7 +234,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="ActiveIngredientName" type="text" class="form-control"
-                                               id="MedicationActiveIngredientName">
+                                               id="MedicationActiveIngredientName" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -248,7 +248,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên" id="MedicationName">
+                                               placeholder="Tên" id="MedicationName" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -262,7 +262,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Unit" type="text" class="form-control"
-                                               placeholder="Tên Tiếng Anh" id="MedicationUnit">
+                                               placeholder="Tên Tiếng Anh" id="MedicationUnit" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-phone"></i>
                                         </div>
@@ -276,7 +276,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Price" type="text" class="form-control"
-                                               placeholder="Giá" id="MedicationPrice">
+                                               placeholder="Giá" id="MedicationPrice" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
                                         </div>
@@ -415,7 +415,7 @@
                         timer: 1500
                     })
                     $('#tableMedication').DataTable().ajax.reload();
-                    resetInput();
+                    resetInputCreate();
                 }
             })
         }
@@ -460,12 +460,11 @@
                         timer: 1500
                     })
                     $('#tableMedication').DataTable().ajax.reload();
-                    resetInput();
                 }
             })
         }
 
-        function resetInput() {
+        function resetInputCreate() {
             $('#form-createMedication').get(0).reset();
         }
     </script>

@@ -24,13 +24,18 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="@Url.Content("~/Areas/Admin/assets/images/logo/logo.png")" alt="Logo" srcset=""></a>
+                            <a href="@Url.Action("Index", "AspNetRoles")"><img src="@Url.Content("~/Areas/Admin/assets/images/logo/logo.png")" alt="Logo" srcset=""></a>
                         </div>
+
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
+                @{ 
+                    Html.RenderAction("RenderUser", "Users");
+                }
+                <hr/>
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
@@ -56,10 +61,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="@Url.Action("Index", "MedicationCategories")">Danh Mục Thuốc</a>
+                                    <a href="@Url.Action("Index", "Medications")">Danh Mục Thuốc</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Danh Mục Chẩn Đoán</a>
+                                    <a href="@Url.Action("Index", "DiagnosticsCategories")">Danh Mục Chẩn Đoán</a>
                                 </li>
                             </ul>
                         </li>
@@ -94,6 +99,8 @@
     <script>
         $(document).ready(function () {
             $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');
+            $('.submenu-item.active').closest('.sidebar-item').addClass('active');
+            $('.submenu-item.active').closest('.submenu').addClass('active');
         });
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>

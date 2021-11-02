@@ -1,0 +1,32 @@
+﻿@model ElectronicMedicalRecords.Models.User
+<div class="sidebar-menu">
+    <ul class="menu p-0 m-0">
+        <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <div style="width:3rem;height:3rem" class="avatar avatar-lg">
+                    <img src="@Model.Image" alt="Face 1">
+                </div>
+                <div class="ms-3 name">
+                    <p class="font-bold" style="margin-bottom:0">Xin Chào</p>
+                    <p class="text-muted mb-0">@Model.Name</p>
+                </div>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item ">
+                    <a href="@Url.Action("Edit","Users", new { id = Model.ID})">Cập nhật thông tin cá nhân</a>
+                </li>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", new { Area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li class="submenu-item ">
+                            <a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
+

@@ -11,6 +11,8 @@ using System.Web.Mvc;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using ElectronicMedicalRecords.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
@@ -48,6 +50,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Religion_ID = new SelectList(db.Religions, "ID", "Name");
             ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1");
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult RenderUser()
+        {
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(id => id.UserID == UserID);
+            return PartialView("_AdminUser", userID);
         }
 
         // POST: Admin/Users/Create
