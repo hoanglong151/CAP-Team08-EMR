@@ -95,10 +95,17 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ActiveIngredientName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="float" />
+          <Property Name="MedicationCategory_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicationCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Nation">
           <Key>
@@ -210,6 +217,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Medication_MedicationCategory">
+          <End Role="MedicationCategory" Type="Self.MedicationCategory" Multiplicity="1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicationCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Medication">
+              <PropertyRef Name="MedicationCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -281,6 +300,7 @@
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HomeTown" EntityType="Self.HomeTown" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicationCategory" EntityType="Self.MedicationCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nation" EntityType="Self.Nation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientStatus" EntityType="Self.PatientStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
@@ -301,6 +321,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medication_MedicationCategory" Association="Self.FK_Medication_MedicationCategory">
+            <End Role="MedicationCategory" EntitySet="MedicationCategory" />
+            <End Role="Medication" EntitySet="Medication" />
           </AssociationSet>
           <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -333,8 +357,11 @@
           <EntitySet Name="AspNetUserClaims" EntityType="CP24Team08Model.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="CP24Team08Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="CP24Team08Model.AspNetUser" />
+          <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
           <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
           <EntitySet Name="HomeTowns" EntityType="CP24Team08Model.HomeTown" />
+          <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
+          <EntitySet Name="MedicationCategories" EntityType="CP24Team08Model.MedicationCategory" />
           <EntitySet Name="Nations" EntityType="CP24Team08Model.Nation" />
           <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
           <EntitySet Name="Religions" EntityType="CP24Team08Model.Religion" />
@@ -360,6 +387,10 @@
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
+            <End Role="MedicationCategory" EntitySet="MedicationCategories" />
+            <End Role="Medication" EntitySet="Medications" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Nation" Association="CP24Team08Model.FK_User_Nation">
             <End Role="Nation" EntitySet="Nations" />
             <End Role="User" EntitySet="Users" />
@@ -372,8 +403,6 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
-          <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -435,6 +464,16 @@
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
           <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
+        <EntityType Name="DiagnosticsCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameEnglish" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MDC" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="ID" />
@@ -450,6 +489,25 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HomeTown1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="MedicationCategory_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicationCategory" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="Medication" ToRole="MedicationCategory" />
+        </EntityType>
+        <EntityType Name="MedicationCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Medications" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="MedicationCategory" ToRole="Medication" />
         </EntityType>
         <EntityType Name="Nation">
           <Key>
@@ -576,6 +634,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Medication_MedicationCategory">
+          <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
+          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicationCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Medication">
+              <PropertyRef Name="MedicationCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Nation">
           <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
           <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
@@ -604,26 +674,6 @@
           <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="DiagnosticsCategory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NameEnglish" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="MDC" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Medication">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ActiveIngredientName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -685,6 +735,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DiagnosticsCategories">
+            <EntityTypeMapping TypeName="CP24Team08Model.DiagnosticsCategory">
+              <MappingFragment StoreEntitySet="DiagnosticsCategory">
+                <ScalarProperty Name="MDC" ColumnName="MDC" />
+                <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Genders">
             <EntityTypeMapping TypeName="CP24Team08Model.Gender">
               <MappingFragment StoreEntitySet="Gender">
@@ -697,6 +758,25 @@
             <EntityTypeMapping TypeName="CP24Team08Model.HomeTown">
               <MappingFragment StoreEntitySet="HomeTown">
                 <ScalarProperty Name="HomeTown1" ColumnName="HomeTown" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medications">
+            <EntityTypeMapping TypeName="CP24Team08Model.Medication">
+              <MappingFragment StoreEntitySet="Medication">
+                <ScalarProperty Name="MedicationCategory_ID" ColumnName="MedicationCategory_ID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicationCategories">
+            <EntityTypeMapping TypeName="CP24Team08Model.MedicationCategory">
+              <MappingFragment StoreEntitySet="MedicationCategory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -768,28 +848,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="DiagnosticsCategories">
-            <EntityTypeMapping TypeName="CP24Team08Model.DiagnosticsCategory">
-              <MappingFragment StoreEntitySet="DiagnosticsCategory">
-                <ScalarProperty Name="MDC" ColumnName="MDC" />
-                <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Medications">
-            <EntityTypeMapping TypeName="CP24Team08Model.Medication">
-              <MappingFragment StoreEntitySet="Medication">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="ActiveIngredientName" ColumnName="ActiveIngredientName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

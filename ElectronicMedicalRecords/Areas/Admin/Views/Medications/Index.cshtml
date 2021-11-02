@@ -16,38 +16,39 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ActiveIngredientName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Unit)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicationCategory.Name)
+            </th>
             <th></th>
         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActiveIngredientName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Unit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicationCategory.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
     </table>*@
 
@@ -55,6 +56,12 @@
 {
     @Html.AntiForgeryToken()
 }
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -69,24 +76,6 @@
                         <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                     </ol>
                 </nav>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between">
-            <fieldset>
-                @using (Html.BeginForm("ImportExcel", "Medications", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="input-group">
-                        <input type="file" name="uploads" class="form-control" multiple id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        <input id="inputGroupFileAddon04" type="submit" value="Upload" class="btn btn-primary" />
-                    </div>
-                }
-            </fieldset>
-            <div class="buttons">
-                @using (Html.BeginForm("Export", "Medications"))
-                {
-                    <input class="btn btn-primary" type="submit" name="Export" value="Export to Excel" />
-                }
             </div>
         </div>
     </div>
@@ -104,9 +93,9 @@
                 <table class="table table-striped" id="tableMedication">
                     <thead>
                         <tr>
-                            <th>Tên Hoạt Chất</th>
                             <th>Tên Thuốc</th>
-                            <th>ĐVT</th>
+                            <th>Tên Hoạt Chất</th>
+                            <th>Đơn Vị</th>
                             <th>Giá</th>
                             <th>Hoạt Động</th>
                         </tr>
@@ -115,7 +104,6 @@
                 </table>
             </div>
         </div>
-
     </section>
 </div>
 
@@ -135,56 +123,68 @@
                 <form id="form-createMedication" class="form form-horizontal">
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label>Tên Hoạt Chất</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input name="ActiveIngredientName" type="text" class="form-control"
-                                               placeholder="Tên Hoạt Chất" id="first-name-icon">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 pt-2">
                                 <label>Tên Thuốc</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên Thuốc" id="first-name-icon">
+                                               placeholder="Tên Thuốc" id="first-name-icon" required>
                                         <div class="form-control-icon">
-                                            <i class="bi bi-envelope"></i>
+                                            <i class="bi bi-person"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>ĐVT</label>
+                            <div class="col-md-4 pt-2">
+                                <label>Tên Hoạt Chất</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="Unit" type="text" class="form-control"
-                                               placeholder="Đơn Vị Tính">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-phone"></i>
-                                        </div>
+                                        <select name="MedicationCategory_ID" class="choices form-select" required>
+                                            <option placeholder>Vui Lòng Tên Hoạt Chất</option>
+                                            @foreach (var item in ViewBag.NameHC)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                        @Html.ValidationMessage("Medications", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 pt-2">
+                                <label>Đơn Vị Tính</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="Unit" class="choices m-0 form-select" required>
+                                            <option placeholder>Vui Lòng Chọn Đơn Vị</option>
+                                            <option value="Lọ">Lọ</option>
+                                            <option value="Viên">Viên</option>
+                                            <option value="Chai">Chai</option>
+                                            <option value="Gói">Gói</option>
+                                            <option value="Bình">Bình</option>
+                                            <option value="Ống">Ống</option>
+                                            <option value="TUBE">TUBE</option>
+                                            <option value="Viên/Sủi">Viên/Sủi</option>
+                                        </select>
+                                        @*<div class="form-control-icon">
+                                                <i class="bi bi-phone"></i>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-2">
                                 <label>Giá</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Price" type="text" class="form-control"
-                                               placeholder="Giá">
+                                               placeholder="Giá" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
                                         </div>
@@ -210,6 +210,7 @@
     </div>
 </div>
 
+
 <!-- Update Basic Modal -->
 <div class="modal fade text-left" id="Updatemedication" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -226,21 +227,7 @@
                 <form id="form-updateMedication" class="form form-horizontal">
                     <div class="form-body">
                         <div class="row">
-                            <input type="text" id="MedicationID" name="ID" hidden />
-                            <div class="col-md-4">
-                                <label for="MedicationActiveIngredientName">Tên Hoạt Chất</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input name="ActiveIngredientName" type="text" class="form-control"
-                                               id="MedicationActiveIngredientName">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="text" id="UpdateMedicationID" name="ID" hidden />
                             <div class="col-md-4">
                                 <label for="MedicationName">Tên Thuốc</label>
                             </div>
@@ -248,10 +235,26 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên" id="MedicationName">
+                                               placeholder="Tên" id="UpdateMedicationName" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="UpdateMedicationCategory_ID">Tên Hoạt Chất</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select id="UpdateMedicationCategory_ID" name="MedicationCategory_ID" class="choices form-select">
+                                            @foreach (var item in ViewBag.NameHC)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                        @Html.ValidationMessage("Medications", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
@@ -261,11 +264,19 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="Unit" type="text" class="form-control"
-                                               placeholder="Tên Tiếng Anh" id="MedicationUnit">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-phone"></i>
-                                        </div>
+                                        <select name="Unit" id="UpdateMedicationUnit" class="choices form-select">
+                                            <option value="Lọ">Lọ</option>
+                                            <option value="Viên">Viên</option>
+                                            <option value="Chai">Chai</option>
+                                            <option value="Gói">Gói</option>
+                                            <option value="Bình">Bình</option>
+                                            <option value="Ống">Ống</option>
+                                            <option value="TUBE">TUBE</option>
+                                            <option value="Viên/Sủi">Viên/Sủi</option>
+                                        </select>
+                                        @*<div class="form-control-icon">
+                    <i class="bi bi-phone"></i>
+                </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +287,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Price" type="text" class="form-control"
-                                               placeholder="Giá" id="MedicationPrice">
+                                               placeholder="Giá" id="UpdateMedicationPrice" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
                                         </div>
@@ -301,21 +312,25 @@
         </div>
     </div>
 </div>
+
+
+
 @section scripts{
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
+
             $('#tableMedication').DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetData", "Medications")",
                     "type": "GET",
-                    "datatype": "json",
+                    "datatype": "json"
                 },
                 "columns": [
                     {
-                        "data": "ActiveIngredientName",
+                        "data": "Name",
                     },
                     {
-                        "data": "Name",
+                        "data": "Medication_ID",
                     },
                     {
                         "data": "Unit",
@@ -346,6 +361,78 @@
         })
 
 
+        function createMedication() {
+            var dataMedication = $('#form-createMedication').serialize();
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            var model = {
+                validata: dataMedication,
+            }
+            $.ajax({
+                url: "@Url.Action("Create", "Medications")",
+                type: "POST",
+                data: model.validata + "&__RequestVerificationToken=" + token,
+                success: () => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bạn đã tạo thành công',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    $('#tableMedication').DataTable().ajax.reload();
+                    resetInputCreate();
+                }
+            })
+        }
+
+        /*get ID Update*/
+        function getMedicationByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit", "Medications")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    console.log(res.data)
+                    if (res.data != null) {
+                        $('#UpdateMedicationName').val(res.data.Name);
+                        $('#UpdateMedicationID').val(res.data.ID);
+                        $('#UpdateMedicationCategory_ID ~ .choices__list--single > .choices__item--selectable').text(res.data.Medication_Name);
+                        $('#UpdateMedicationCategory_ID option').attr("value", res.data.Medication_ID);
+                        $('#UpdateMedicationPrice').val(res.data.Price);
+                        $('#UpdateMedicationUnit ~ .choices__list--single > .choices__item--selectable').text(res.data.Unit);
+                        $('#UpdateMedicationUnit option').attr("value", res.data.Unit);
+                    }
+                }
+            })
+            $('#Updatemedication').modal('show')
+        }
+
+        /*update*/
+        function updateMedication() {
+            var dataMedication = $('#form-updateMedication').serialize();
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            var model = {
+                validata: dataMedication,
+            }
+            $.ajax({
+                url: "@Url.Action("Edit", "Medications")",
+                type: "POST",
+                data: model.validata + "&__RequestVerificationToken=" + token,
+                success: () => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bạn đã cập nhật thành công',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    $('#tableMedication').DataTable().ajax.reload();
+                }
+            })
+        }
+
         /*Get & Post Delete Medication*/
         function deleteMedication(id) {
             $.ajax({
@@ -358,7 +445,7 @@
                             title: 'Bạn muốn xóa thuốc này?',
                             html:
                                 '<b>Tên Thuốc:</b> <span>' + res.data.Name +'</span> <br/>' +
-                                '<b>Tên Hoạt Chất:</b> <span>' + res.data.ActiveIngredientName + '</span> <br/>' +
+                                '<b>Tên Hoạt Chất:</b> <span>' + res.data.Medication_Name + '</span> <br/>' +
                                 '<b>Đơn vị:</b> <span>' + res.data.Unit + '</span> <br/>' +
                                 '<b>Giá:</b> <span>' + res.data.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "<b> VNĐ</b>" + '</span>',
                             icon: 'warning',
@@ -395,77 +482,7 @@
             })
         }
 
-        function createMedication() {
-            var dataMedication = $('#form-createMedication').serialize();
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            var model = {
-                validata: dataMedication,
-            }
-            $.ajax({
-                url: "@Url.Action("Create", "Medications")",
-                type: "POST",
-                data: model.validata + "&__RequestVerificationToken=" + token,
-                success: () => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Bạn đã tạo thành công',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    $('#tableMedication').DataTable().ajax.reload();
-                    resetInput();
-                }
-            })
-        }
-
-        /*get ID Update*/
-        function getMedicationByID(id) {
-            $.ajax({
-                url: '@Url.Action("Edit", "Medications")',
-                type: 'GET',
-                data: { id: id },
-                success: function (res) {
-                    if (res.data != null) {
-                        $('#MedicationName').val(res.data.Name);
-                        $('#MedicationID').val(res.data.ID);
-                        $('#MedicationActiveIngredientName').val(res.data.ActiveIngredientName);
-                        $('#MedicationPrice').val(res.data.Price);
-                        $('#MedicationUnit').val(res.data.Unit);
-                    }
-                }
-            })
-            $('#Updatemedication').modal('show')
-        }
-
-        /*update*/
-        function updateMedication() {
-            var dataMedication = $('#form-updateMedication').serialize();
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            var model = {
-                validata: dataMedication,
-            }
-            $.ajax({
-                url: "@Url.Action("Edit", "Medications")",
-                type: "POST",
-                data: model.validata + "&__RequestVerificationToken=" + token,
-                success: () => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Bạn đã cập nhật thành công',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    $('#tableMedication').DataTable().ajax.reload();
-                    resetInput();
-                }
-            })
-        }
-
-        function resetInput() {
+        function resetInputCreate() {
             $('#form-createMedication').get(0).reset();
         }
     </script>

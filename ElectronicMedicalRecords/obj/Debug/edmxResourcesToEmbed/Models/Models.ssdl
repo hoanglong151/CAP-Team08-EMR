@@ -90,10 +90,17 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ActiveIngredientName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="255" />
+    <Property Name="Price" Type="float" />
+    <Property Name="MedicationCategory_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicationCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Nation">
     <Key>
@@ -205,6 +212,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Medication_MedicationCategory">
+    <End Role="MedicationCategory" Type="Self.MedicationCategory" Multiplicity="1" />
+    <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicationCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Medication">
+        <PropertyRef Name="MedicationCategory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -276,6 +295,7 @@
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeTown" EntityType="Self.HomeTown" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicationCategory" EntityType="Self.MedicationCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Nation" EntityType="Self.Nation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientStatus" EntityType="Self.PatientStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
@@ -296,6 +316,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Medication_MedicationCategory" Association="Self.FK_Medication_MedicationCategory">
+      <End Role="MedicationCategory" EntitySet="MedicationCategory" />
+      <End Role="Medication" EntitySet="Medication" />
     </AssociationSet>
     <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

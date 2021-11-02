@@ -253,7 +253,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -290,6 +289,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medication.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedicationCategory.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Models.Context.cs">
@@ -2398,12 +2400,6 @@
     <Content Include="Areas\Admin\assets\vendors\sweetalert2\sweetalert2.min.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.js" />
-    <Content Include="Areas\Admin\Views\Shared\component-dropdown.html" />
-    <Content Include="Areas\Admin\Views\Shared\component-modal.html" />
-    <Content Include="Areas\Admin\Views\Shared\extra-component-sweetalert.html" />
-    <Content Include="Areas\Admin\Views\Shared\form-element-select.html" />
-    <Content Include="Areas\Admin\Views\Shared\form-layout.html" />
-    <Content Include="Areas\Admin\Views\Shared\table-datatable.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2497,8 +2493,6 @@
     <Content Include="Areas\Admin\assets\vendors\summernote\summernote.js.map" />
     <Content Include="Areas\Admin\assets\vendors\summernote\summernote.min.js.map" />
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\assets\DataTables\Bootstrap-5-5.0.1\css\bootstrap.css.map" />
@@ -2507,25 +2501,9 @@
     <Content Include="Areas\Admin\assets\DataTables\Bootstrap-5-5.0.1\js\bootstrap.bundle.min.js.map" />
     <Content Include="Areas\Admin\assets\DataTables\Buttons-2.0.1\css\common.scss" />
     <Content Include="Areas\Admin\assets\DataTables\Buttons-2.0.1\css\mixins.scss" />
-    <Content Include="Areas\Admin\Views\AspNetRoles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AspNetRoles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\AspNetRoles\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\AspNetRoles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoles\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicationCategories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicationCategories\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicationCategories\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicationCategories\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicationCategories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\DiagnosticsCategories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\DiagnosticsCategories\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\DiagnosticsCategories\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\DiagnosticsCategories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DiagnosticsCategories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Medications\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Medications\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Medications\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Medications\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminUser.cshtml" />
     <Content Include="Areas\Admin\Views\Medications\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
