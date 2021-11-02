@@ -291,6 +291,9 @@
     <Compile Include="Models\Medication.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MedicationCategory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2397,12 +2400,6 @@
     <Content Include="Areas\Admin\assets\vendors\sweetalert2\sweetalert2.min.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.js" />
-    <Content Include="Areas\Admin\Views\Shared\component-dropdown.html" />
-    <Content Include="Areas\Admin\Views\Shared\component-modal.html" />
-    <Content Include="Areas\Admin\Views\Shared\extra-component-sweetalert.html" />
-    <Content Include="Areas\Admin\Views\Shared\form-element-select.html" />
-    <Content Include="Areas\Admin\Views\Shared\form-layout.html" />
-    <Content Include="Areas\Admin\Views\Shared\table-datatable.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2506,8 +2503,8 @@
     <Content Include="Areas\Admin\assets\DataTables\Buttons-2.0.1\css\mixins.scss" />
     <Content Include="Areas\Admin\Views\AspNetRoles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DiagnosticsCategories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Medications\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

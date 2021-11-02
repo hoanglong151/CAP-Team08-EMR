@@ -12,14 +12,18 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Medication
+    public partial class MedicationCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MedicationCategory()
+        {
+            this.Medications = new HashSet<Medication>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Unit { get; set; }
-        public Nullable<double> Price { get; set; }
-        public int MedicationCategory_ID { get; set; }
     
-        public virtual MedicationCategory MedicationCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medication> Medications { get; set; }
     }
 }

@@ -71,3 +71,11 @@
 .page-link{
     border: unset;
 }
+
+.choices__inner{
+    background-color: #fff
+}
+
+.choices{
+    margin-bottom: 0
+}
