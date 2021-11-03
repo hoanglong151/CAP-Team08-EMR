@@ -2,10 +2,43 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
+
+<section>
+    @*<div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>*@
+    <div class="box">
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+        <div class="container">
+            <div class="form">
+                <h2>Login Form</h2>
+                <h3>Hãy trở lại công việc nào !</h3>
+                @*<form>
+                    <div class="inputBox">
+                        <input type="text" placeholder="Username">
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Login">
+                    </div>
+                </form>*@
+                <div class="d-grid gap-2">              
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*<div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -44,10 +77,10 @@
                 <p>
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
+                 Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                    </p>
             }
         </section>
     </div>
@@ -60,4 +93,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
+
