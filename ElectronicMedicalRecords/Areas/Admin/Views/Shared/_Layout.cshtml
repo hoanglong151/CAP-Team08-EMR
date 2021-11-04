@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/bootstrap-icons/bootstrap-icons.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/app.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
     <link rel="shortcut icon" href="@Url.Content("~/Areas/Admin/assets/images/favicon.svg")" type="image/x-icon">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
 </head>
 <body>
     <div id="app">
@@ -32,10 +32,10 @@
                         </div>
                     </div>
                 </div>
-                @{ 
+                @{
                     Html.RenderAction("RenderUser", "Users");
                 }
-                <hr/>
+                <hr />
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
@@ -54,15 +54,19 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "Medications")" class='sidebar-link'>
+                                <i class="fas fa-capsules"></i>
+                                <span>Thuốc</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>Danh Mục</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="@Url.Action("Index", "Medications")">Danh Mục Thuốc</a>
-                                </li>
                                 <li class="submenu-item ">
                                     <a href="@Url.Action("Index", "DiagnosticsCategories")">Danh Mục Chẩn Đoán</a>
                                 </li>
@@ -96,6 +100,7 @@
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/choices.js/choices.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/sweetalert2.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.all.min.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');

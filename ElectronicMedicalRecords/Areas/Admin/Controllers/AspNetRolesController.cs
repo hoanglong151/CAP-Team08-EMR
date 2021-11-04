@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize]
     public class AspNetRolesController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();

@@ -79,3 +79,46 @@
 .choices{
     margin-bottom: 0
 }
+
+.choices[data-type*="select-one"] select.choices__input {
+    display: block !important;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.invalidLB {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+.form-group label.invalidLB {
+    color: red;
+    font-size: 12px;
+}
+
+.choices__inner > .invalidLB::after{
+    content:"";
+    display: block;
+    position: relative;
+    margin-bottom: 20px
+}
+
+.invalidLB ~ .form-control-icon{
+    top: 45% !important;
+}
+
+.mb-25 {
+    margin-bottom: 25px
+}
+
+.has-icon-left .pd-form {
+    padding: 10px 12px 10px 40px;
+}
+
+.icon-Medication {
+    top: 45% !important
+}
