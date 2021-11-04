@@ -4,54 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Unit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MedicationCategory.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Unit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MedicationCategory.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
 {
     @Html.AntiForgeryToken()
@@ -66,14 +18,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>DataTable</h3>
-                <p class="text-subtitle text-muted">For user to check they list</p>
+                <h3>Quản lý thuốc</h3>
+                <p class="text-subtitle text-muted">Danh sách thuốc trên hệ thống</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Medication")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thuốc</li>
                     </ol>
                 </nav>
             </div>
@@ -82,10 +34,10 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Simple Datatable
+                Danh sách thuốc
                 <br />
                 <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#createMedication">
+                        data-bs-target="#createMedicationModal">
                     Thêm Thuốc
                 </button>
             </div>
@@ -108,7 +60,7 @@
 </div>
 
 <!-- Create Basic Modal -->
-<div class="modal fade text-left" id="createMedication" tabindex="-1" role="dialog"
+<div class="modal fade text-left" id="createMedicationModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -120,48 +72,49 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-createMedication" class="form form-horizontal">
+                <form id="form-createMedication" class="form form-horizontal needs-validation" novalidate>
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-4 pt-2">
+                            <div class="col-md-4">
                                 <label>Tên Thuốc</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên Thuốc" id="first-name-icon" required>
-                                        <div class="form-control-icon">
+                                        <input name="Name" type="text" class="form-control pd-form"
+                                               placeholder="Tên Thuốc" id="first-name-icon MedicationNameCreate" required>
+                                        <div class="form-control-icon icon-Medication">
                                             <i class="bi bi-person"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 pt-2">
+                            <div class="col-md-4">
                                 <label>Tên Hoạt Chất</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <select name="MedicationCategory_ID" class="choices form-select" required>
-                                            <option placeholder>Vui Lòng Tên Hoạt Chất</option>
+                                        <select name="MedicationCategory_ID" id="MedicationCategory_ID" class="choices form-select" required>
+                                            <option value="">Vui Lòng Chọn Hoạt Chất</option>
                                             @foreach (var item in ViewBag.NameHC)
                                             {
                                                 <option value="@item.ID">@item.Name</option>
                                             }
                                         </select>
-                                        @Html.ValidationMessage("Medications", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessage("Medications", new { @class = "text-danger" })*@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 pt-2">
+
+                            <div class="col-md-4">
                                 <label>Đơn Vị Tính</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <select name="Unit" class="choices m-0 form-select" required>
-                                            <option placeholder>Vui Lòng Chọn Đơn Vị</option>
+                                        <select name="Unit" class="choices form-select" id="UnitCreateMedication" required>
+                                            <option value="" placeholder>Vui Lòng Chọn Đơn Vị</option>
                                             <option value="Lọ">Lọ</option>
                                             <option value="Viên">Viên</option>
                                             <option value="Chai">Chai</option>
@@ -177,15 +130,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 pt-2">
+                            <div class="col-md-4">
                                 <label>Giá</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="Price" type="text" class="form-control"
+                                        <input name="Price" type="number" class="form-control pd-form"
                                                placeholder="Giá" required>
-                                        <div class="form-control-icon">
+                                        <div class="form-control-icon icon-Medication">
                                             <i class="bi bi-lock"></i>
                                         </div>
                                     </div>
@@ -193,18 +146,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Hủy</span>
+                        </button>
+                        <button type="submit" id="createMedication" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tạo</span>
+                        </button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                </button>
-                <button type="button" onclick="createMedication()" class="btn btn-primary ml-1"
-                        data-bs-dismiss="modal">
-                    <i class="bx bx-check d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Accept</span>
-                </button>
             </div>
         </div>
     </div>
@@ -275,8 +227,8 @@
                                             <option value="Viên/Sủi">Viên/Sủi</option>
                                         </select>
                                         @*<div class="form-control-icon">
-                    <i class="bi bi-phone"></i>
-                </div>*@
+                            <i class="bi bi-phone"></i>
+                        </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +238,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="Price" type="text" class="form-control"
+                                        <input name="Price" type="number" class="form-control"
                                                placeholder="Giá" id="UpdateMedicationPrice" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
@@ -295,30 +247,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="updateMedication" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cập nhật</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                </button>
-                <button type="button" onclick="updateMedication()" class="btn btn-primary ml-1"
-                        data-bs-dismiss="modal">
-                    <i class="bx bx-check d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Accept</span>
-                </button>
             </div>
         </div>
     </div>
 </div>
 
-
-
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-
             $('#tableMedication').DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetData", "Medications")",
@@ -358,31 +306,38 @@
                     }
                 }
             })
+            createMedication()
+            updateMedication()
         })
 
-
+        /*Create Medication*/
         function createMedication() {
-            var dataMedication = $('#form-createMedication').serialize();
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            var model = {
-                validata: dataMedication,
-            }
-            $.ajax({
-                url: "@Url.Action("Create", "Medications")",
-                type: "POST",
-                data: model.validata + "&__RequestVerificationToken=" + token,
-                success: () => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Bạn đã tạo thành công',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    $('#tableMedication').DataTable().ajax.reload();
-                    resetInputCreate();
+            $('#form-createMedication').submit(function (e) {
+                var dataMedication = $('#form-createMedication').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataMedication,
                 }
+                $.ajax({
+                    url: "@Url.Action("Create", "Medications")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: () => {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Bạn đã tạo thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#createMedicationModal').modal('hide');
+                        $('.modal-backdrop').remove('.modal-backdrop');
+                        $('#tableMedication').DataTable().ajax.reload();
+                        resetInputCreate();
+                    }
+                })
+            e.preventDefault();
             })
         }
 
@@ -410,26 +365,31 @@
 
         /*update*/
         function updateMedication() {
-            var dataMedication = $('#form-updateMedication').serialize();
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            var model = {
-                validata: dataMedication,
-            }
-            $.ajax({
-                url: "@Url.Action("Edit", "Medications")",
-                type: "POST",
-                data: model.validata + "&__RequestVerificationToken=" + token,
-                success: () => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Bạn đã cập nhật thành công',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    $('#tableMedication').DataTable().ajax.reload();
+            $('#form-updateMedication').submit(function (e) {
+                var dataMedication = $('#form-updateMedication').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataMedication,
                 }
+                $.ajax({
+                    url: "@Url.Action("Edit", "Medications")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: () => {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Bạn đã cập nhật thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#Updatemedication').modal('hide');
+                        $('.modal-backdrop').remove('.modal-backdrop');
+                        $('#tableMedication').DataTable().ajax.reload();
+                    }
+                })
+                e.preventDefault();
             })
         }
 
@@ -482,8 +442,106 @@
             })
         }
 
+        /*Reset Input Create Form*/
         function resetInputCreate() {
             $('#form-createMedication').get(0).reset();
         }
+
+        /*Validate Form Create Medication*/
+        $(function () {
+            $("#form-createMedication").validate({
+                rules: {
+                    Name: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    Price: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    }
+                },
+                messages: {
+                    Name: {
+                        required: "Vui lòng không để trống",
+                    },
+                    Price: {
+                        required: "Vui lòng không để trống",
+                    },
+                    MedicationCategory_ID: {
+                        required: "Vui lòng chọn Hoạt Chất"
+                    },
+                    Unit: {
+                        required: "Vui lòng chọn Đơn vị",
+                    }
+                },
+                errorClass: 'invalidLB',
+                validClass: 'validLB',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").addClass('mb-25')
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").removeClass('mb-25')
+                }
+            });
+        });
+
+        /*Validate Create Dropdown*/
+        $('#UnitCreateMedication').on("change", function (e) {
+            if ($('#UnitCreateMedication').find(":selected").val() !== '') {
+                $('#UnitCreateMedication ~ #UnitCreateMedication-error').text("");
+            } else {
+                $('#UnitCreateMedication ~ #UnitCreateMedication-error').text("Vui lòng chọn Đơn vị");
+            }
+        })
+
+        $('#MedicationCategory_ID').on("change", function (e) {
+            if ($('#MedicationCategory_ID').find(":selected").val() !== '') {
+                $('#MedicationCategory_ID ~ #MedicationCategory_ID-error').text("");
+            } else {
+                $('#MedicationCategory_ID ~ #MedicationCategory_ID-error').text("Vui lòng chọn Hoạt Chất");
+            }
+        })
+
+
+        /*Validate Form Update Medication*/
+        $(function () {
+            $("#form-updateMedication").validate({
+                rules: {
+                    Name: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    Price: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    }
+                },
+                messages: {
+                    Name: {
+                        required: "Vui lòng không để trống",
+                    },
+                    Price: {
+                        required: "Vui lòng không để trống",
+                    }
+                },
+                errorClass: 'invalidLB',
+                validClass: 'validLB',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").addClass('mb-25')
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").removeClass('mb-25')
+                }
+            });
+        });
+
     </script>
 }

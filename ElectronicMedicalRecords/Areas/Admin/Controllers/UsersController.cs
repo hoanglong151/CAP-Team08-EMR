@@ -16,10 +16,10 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-
         // GET: Admin/Users
         public ActionResult Index()
         {
