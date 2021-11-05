@@ -11,10 +11,12 @@ namespace ElectronicMedicalRecords.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Degree { get; set; }
         public string Introduction { get; set; }

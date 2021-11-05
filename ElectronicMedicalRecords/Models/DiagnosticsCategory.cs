@@ -11,13 +11,18 @@ namespace ElectronicMedicalRecords.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DiagnosticsCategory
     {
         public int ID { get; set; }
+        [Required]
         public string Code { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string NameEnglish { get; set; }
+        [Required]
         public string MDC { get; set; }
     }
 }

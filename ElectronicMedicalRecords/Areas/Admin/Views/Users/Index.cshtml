@@ -4,127 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Degree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Introduction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingProcess)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkingProcess)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpecializedTreatment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsShow)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Privacy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTown.HomeTown1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nation.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Religion.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Degree)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Introduction)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TrainingProcess)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkingProcess)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpecializedTreatment)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsShow)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Privacy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTown.HomeTown1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nation.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Religion.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
@@ -134,14 +13,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>DataTable</h3>
-                <p class="text-subtitle text-muted">For user to check they list</p>
+                <h3>Quản lý tài khoản</h3>
+                <p class="text-subtitle text-muted">Bạn có thể xem danh sách tài khoản tại đây</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Users")">Danh sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tài Khoản</li>
                     </ol>
                 </nav>
             </div>
@@ -183,19 +62,20 @@
                                 </td>
                             }
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "clickbutton" }) |
-                            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                            <a href="@Url.Action("Edit", "Users", new { id = item.ID })" class="btnHover btn btn-primary">
+                                <i class='fas fa-user-edit'></i>    
+                            </a> |
                             <!-- Button trigger for BorderLess Modal -->
-                            <button type="button" class="clickbutton btn btn-outline-primary block"
+                            <button type="button" class="btnHover btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#border-less-@item.ID">
-                                Chi Tiết
+                                <i class="fas fa-info"></i>
                             </button>
                             |
                             <!--BorderLess Modal Modal -->
                             <div class="modal fade text-left modal-borderless" id="border-less-@item.ID"
                                  tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                  aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable modal-doctor" role="document">
+                                <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
                                     <div class="modal-content modal-user">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
@@ -206,7 +86,7 @@
                                         </div>
                                         <div class="modal-body detailDoctor">
                                             <img class="detailDoctor-img" src="@item.Image" style="border-radius:4px" />
-                                            <div class="content">
+                                            <div class="content content-doctor">
                                                 <h5>@item.Degree. @item.Name</h5>
                                                 <p>@Html.Raw(item.Introduction)</p>
                                                 <div class="training">
@@ -236,9 +116,9 @@
                             @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "clickbutton" })*@
                             <div class="modal-warning me-1 mb-1 d-inline-block">
                                 <!-- Button trigger for warning theme modal -->
-                                <button type="button" class="clickbutton"
+                                <button type="button" class="btnHover btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#warning-BS-@item.ID">
-                                    Xóa
+                                    <i class='fas fa-trash'></i>
                                 </button>
 
                                 <!--warning theme Modal -->
