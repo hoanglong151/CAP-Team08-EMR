@@ -56,7 +56,6 @@ section {
 
     .box .square {
         position: absolute;
-        ;
         backdrop-filter: blur(5px);
         box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.5);
@@ -64,17 +63,21 @@ section {
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
-        animation: animate 10s, linear infinite;
+        animation: animate 10s linear infinite;
         animation-delay: calc(-1s * var(--i));
     }
 
 @keyframes animate {
     0% {
-        transform: translateY(-40px);
+        transform: translateY(-20px);
     }
 
     50% {
-        transform: translateY(40px);
+        transform: translateY(20px);
+    }
+
+    100% {
+        transform: translateY(-20px);
     }
 }
 

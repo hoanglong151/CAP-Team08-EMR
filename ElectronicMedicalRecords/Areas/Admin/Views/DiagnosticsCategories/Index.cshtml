@@ -4,36 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
 {
     @Html.AntiForgeryToken()
@@ -92,7 +62,7 @@
 <!-- Create Basic Modal -->
 <div class="modal fade text-left" id="diagnostic" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel1">Thêm danh mục chẩn đoán</h5>
@@ -126,7 +96,7 @@
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên" id="first-name-icon" required>
+                                               placeholder="Tên" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -153,7 +123,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="MDC" type="text" class="form-control"
+                                        <input name="MDC" type="number" class="form-control"
                                                placeholder="MDC" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
@@ -162,19 +132,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="createDiagnostic" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Tạo</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                </button>
-                <button type="button" onclick="createDiagnostic()" class="btn btn-primary ml-1"
-                        data-bs-dismiss="modal">
-                    <i class="bx bx-check d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Accept</span>
-                </button>
             </div>
         </div>
     </div>
@@ -196,7 +165,7 @@
                 <form id="form-updateDiagnostic" class="form form-horizontal">
                     <div class="form-body">
                         <div class="row">
-                            <input type="text" id="diagnosticID" name="ID" hidden/>
+                            <input type="text" id="diagnosticID" name="ID" hidden />
                             <div class="col-md-4">
                                 <label>Mã</label>
                             </div>
@@ -254,19 +223,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="updateDiagnostic" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cập Nhật</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                </button>
-                <button type="button" onclick="updateDiagnostic()" class="btn btn-primary ml-1"
-                        data-bs-dismiss="modal">
-                    <i class="bx bx-check d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Accept</span>
-                </button>
             </div>
         </div>
     </div>
@@ -298,8 +266,8 @@
                         "className": "w80",
                         "data": null,
                         "render": function (data, type, row) {
-                            var button = "<button class='btn btnHover' onclick='getDiagnosticByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'> <i class='fas fa-user-edit'></i> </button> <button id='text' class='btn btnHover' onclick='deleteDiagnostic(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            var button = "<button class='btn btn-primary btnHover' onclick='getDiagnosticByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'> <i class='fas fa-user-edit'></i> </button> <button id='text' class='btn btn-primary btnHover' onclick='deleteDiagnostic(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                             return button;
                         },
                         "targets": 0,
@@ -314,6 +282,8 @@
                     }
                 }
             })
+            createDiagnostic()
+            updateDiagnostic()
         })
 
         function getDiagnosticByID(id) {
@@ -335,52 +305,87 @@
         }
 
         function updateDiagnostic() {
-            var dataDiagnostic = $('#form-updateDiagnostic').serialize();
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            var model = {
-                validata: dataDiagnostic,
-            }
-            $.ajax({
-                url: "@Url.Action("Edit", "DiagnosticsCategories")",
-                type: "POST",
-                data: model.validata + "&__RequestVerificationToken=" + token,
-                success: () => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Bạn đã cập nhật thành công',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    resetInput();
-                    $('#tableDiagnostic').DataTable().ajax.reload();
+            $('#form-updateDiagnostic').submit((e) => {
+                var dataDiagnostic = $('#form-updateDiagnostic').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataDiagnostic,
                 }
+                $.ajax({
+                    url: "@Url.Action("Edit", "DiagnosticsCategories")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            $('#Updatediagnostic').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').remove();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã cập nhật thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tableDiagnostic').DataTable().ajax.reload();
+                        }
+                        else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1500,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                e.preventDefault();
             })
         }
 
         function createDiagnostic() {
-            var dataDiagnostic = $('#form-createDiagnostic').serialize();
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            var model = {
-                validata: dataDiagnostic,
-            }
-            $.ajax({
-                url: "@Url.Action("Create", "DiagnosticsCategories")",
-                type: "POST",
-                data: model.validata + "&__RequestVerificationToken=" + token,
-                success: () => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Bạn đã tạo thành công',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    resetInput();
-                    $('#tableDiagnostic').DataTable().ajax.reload();
+            $('#form-createDiagnostic').submit((e) => {
+                var dataDiagnostic = $('#form-createDiagnostic').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataDiagnostic,
                 }
+                $.ajax({
+                    url: "@Url.Action("Create", "DiagnosticsCategories")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            resetInput();
+                            $('#diagnostic').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').remove();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã tạo thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tableDiagnostic').DataTable().ajax.reload();
+                        }
+                        else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1500,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                e.preventDefault();
             })
         }
 
@@ -436,5 +441,125 @@
         function resetInput() {
             $('#form-createDiagnostic').get(0).reset();
         }
+
+        /*Validate Form Create Diagnostic*/
+        $(function () {
+            $("#form-createDiagnostic").validate({
+                rules: {
+                    Code: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                        maxlength: 10
+                    },
+                    Name: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                    },
+                    NameEnglish: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                    },
+                    MDC: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                        number: true,
+                        maxlength: 3
+                    },
+                },
+                messages: {
+                    Code: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        maxlength: "Nhập tối đa 10 ký tự"
+                    },
+                    Name: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                    },
+                    NameEnglish: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                    },
+                    MDC: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        number: "Vui lòng nhập đúng định dạng",
+                        maxlength: "Nhập tối đa 3 ký tự"
+                    }
+                },
+                errorClass: 'invalidLB',
+                validClass: 'validLB',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").addClass('mb-25')
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").removeClass('mb-25')
+                }
+            });
+        });
+
+        /*Validate Form Update Diagnostic*/
+        $(function () {
+            $("form-updateDiagnostic").validate({
+                rules: {
+                    Code: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                        maxlength: 10
+                    },
+                    Name: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                    },
+                    NameEnglish: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                    },
+                    MDC: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        },
+                        number: true,
+                        maxlength: 3
+                    },
+                },
+                messages: {
+                    Code: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        maxlength: "Nhập tối đa 10 ký tự"
+                    },
+                    Name: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                    },
+                    NameEnglish: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                    },
+                    MDC: {
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        number: "Vui lòng nhập đúng định dạng",
+                        maxlength: "Nhập tối đa 3 ký tự"
+                    }
+                },
+                errorClass: 'invalidLB',
+                validClass: 'validLB',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").addClass('mb-25')
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest(".position-relative").removeClass('mb-25')
+                }
+            });
+        });
     </script>
 }
