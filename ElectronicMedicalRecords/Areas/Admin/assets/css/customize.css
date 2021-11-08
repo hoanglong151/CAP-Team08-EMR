@@ -134,3 +134,7 @@ table.dataTable > thead .sorting:before, table.dataTable > thead .sorting_asc:be
 table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:after {
     content: "↓";
 }
+
+.text-danger ~ .form-control-icon{
+    top: 18px !important; 
+}

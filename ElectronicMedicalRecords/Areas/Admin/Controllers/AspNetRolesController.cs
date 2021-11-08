@@ -22,7 +22,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             ViewBag.User = db.Users.ToList();
             ViewBag.CountUserExist = TempData["CountUserExist"];
-            return View(db.AspNetRoles.ToList());
+            var roles = db.AspNetRoles.ToList();
+            return View(roles);
         }
 
         public ActionResult AddUserRole(List<string> Users, AspNetRole role)
@@ -114,7 +115,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
+        public ActionResult Edit(AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {

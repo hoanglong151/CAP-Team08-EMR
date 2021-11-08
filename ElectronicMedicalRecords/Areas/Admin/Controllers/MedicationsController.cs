@@ -32,30 +32,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Medication_ID = s.MedicationCategory.Name,
                 Unit = s.Unit,
                 Price = s.Price
-            });
+            }).ToList();
             return Json(new { data = listMedication }, JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: Admin/Medications/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Medication medication = db.Medications.Find(id);
-            if (medication == null)
-            {
-                return HttpNotFound();
-            }
-            return View(medication);
-        }
-
-        // GET: Admin/Medications/Create
-        public ActionResult Create()
-        {
-            ViewBag.MedicationCategory_ID = new SelectList(db.MedicationCategories, "ID", "Name");
-            return View();
         }
 
         // POST: Admin/Medications/Create
@@ -103,12 +81,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Medications/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Medication medication = db.Medications.Find(id);
             if (medication == null)
             {
@@ -125,7 +99,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Price = medication.Price
             };
             return Json(new { data = listMedication }, JsonRequestBehavior.AllowGet);
-            //return View(medication);
         }
 
         // POST: Admin/Medications/Edit/5
@@ -153,12 +126,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Medications/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Medication medication = db.Medications.Find(id);
             if (medication == null)
             {
@@ -174,7 +143,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Price = medication.Price
             };
             return Json(new { data = newMedication }, JsonRequestBehavior.AllowGet);
-            //return View(medication);
         }
 
         // POST: Admin/Medications/Delete/5
@@ -186,7 +154,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             db.Medications.Remove(medication);
             db.SaveChanges();
             return Json(new { success = true });
-            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

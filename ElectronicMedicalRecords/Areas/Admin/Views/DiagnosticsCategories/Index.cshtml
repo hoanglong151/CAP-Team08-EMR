@@ -214,7 +214,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input name="MDC" type="text" class="form-control"
+                                        <input name="MDC" type="number" class="form-control"
                                                placeholder="MDC" id="diagnosticMDC" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
@@ -420,6 +420,9 @@
                                     data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
                                     success: function (res) {
                                         if (res.success) {
+                                            $('#diagnostic').modal('hide');
+                                            $(document.body).removeClass('modal-open').attr("style", "none");
+                                            $('.modal-backdrop').remove();
                                             Swal.fire({
                                                 position: 'center',
                                                 icon: 'success',
@@ -442,124 +445,66 @@
             $('#form-createDiagnostic').get(0).reset();
         }
 
-        /*Validate Form Create Diagnostic*/
-        $(function () {
-            $("#form-createDiagnostic").validate({
-                rules: {
-                    Code: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
-                        },
-                        maxlength: 10
-                    },
-                    Name: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
-                        },
-                    },
-                    NameEnglish: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
-                        },
-                    },
-                    MDC: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
-                        },
-                        number: true,
-                        maxlength: 3
-                    },
-                },
-                messages: {
-                    Code: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                        maxlength: "Nhập tối đa 10 ký tự"
-                    },
-                    Name: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                    },
-                    NameEnglish: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                    },
-                    MDC: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                        number: "Vui lòng nhập đúng định dạng",
-                        maxlength: "Nhập tối đa 3 ký tự"
-                    }
-                },
-                errorClass: 'invalidLB',
-                validClass: 'validLB',
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest(".position-relative").addClass('mb-25')
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest(".position-relative").removeClass('mb-25')
-                }
-            });
-        });
-
         /*Validate Form Update Diagnostic*/
-        $(function () {
-            $("form-updateDiagnostic").validate({
-                rules: {
-                    Code: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
+        $('form').each((i, obj) => {
+            $(function () {
+                $(obj).validate({
+                    rules: {
+                        Code: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            },
+                            maxlength: 10
                         },
-                        maxlength: 10
-                    },
-                    Name: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
+                        Name: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            },
+                        },
+                        NameEnglish: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            },
+                        },
+                        MDC: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            },
+                            number: true,
+                            maxlength: 3
                         },
                     },
-                    NameEnglish: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
+                    messages: {
+                        Code: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                            maxlength: "Nhập tối đa 10 ký tự"
                         },
-                    },
-                    MDC: {
-                        required: true,
-                        normalizer: function (value) {
-                            return $.trim(value);
+                        Name: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
                         },
-                        number: true,
-                        maxlength: 3
+                        NameEnglish: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        },
+                        MDC: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                            number: "Vui lòng nhập đúng định dạng",
+                            maxlength: "Nhập tối đa 3 ký tự"
+                        }
                     },
-                },
-                messages: {
-                    Code: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                        maxlength: "Nhập tối đa 10 ký tự"
+                    errorClass: 'invalidLB',
+                    validClass: 'validLB',
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").addClass('mb-25')
                     },
-                    Name: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                    },
-                    NameEnglish: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                    },
-                    MDC: {
-                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
-                        number: "Vui lòng nhập đúng định dạng",
-                        maxlength: "Nhập tối đa 3 ký tự"
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").removeClass('mb-25')
                     }
-                },
-                errorClass: 'invalidLB',
-                validClass: 'validLB',
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest(".position-relative").addClass('mb-25')
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest(".position-relative").removeClass('mb-25')
-                }
+                });
             });
-        });
+        })
     </script>
 }

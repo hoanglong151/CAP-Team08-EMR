@@ -23,33 +23,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Users
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.HomeTown).Include(u => u.Nation).Include(u => u.Religion).Include(g => g.Gender);
-            return View(users.ToList());
-        }
-
-        // GET: Admin/Users/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // GET: Admin/Users/Create
-        public ActionResult Create()
-        {
-            ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1");
-            ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name");
-            ViewBag.Religion_ID = new SelectList(db.Religions, "ID", "Name");
-            ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1");
-            return View();
+            var users = db.Users.Include(u => u.HomeTown).Include(u => u.Nation).Include(u => u.Religion).Include(g => g.Gender).ToList();
+            return View(users);
         }
 
         [ChildActionOnly]
@@ -60,34 +35,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_AdminUser", userID);
         }
 
-        // POST: Admin/Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", user.HomeTown_ID);
-            ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", user.Nation_ID);
-            ViewBag.Religion_ID = new SelectList(db.Religions, "ID", "Name", user.Religion_ID);
-            ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", user.Gender_ID);
-            return View(user);
-        }
-
         // GET: Admin/Users/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             User user = db.Users.Find(id);
             if (user == null)
             {
@@ -143,22 +93,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", user.Gender_ID);
             return View(user);
         }
-
-        // GET: Admin/Users/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
         // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -172,7 +106,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 AspNetRole roleid = db.AspNetRoles.Find(aspNetRole[i].Id);
                 roleid.AspNetUsers.Remove(aspNetUser);
             }
-            db.Users.Remove(user);
+            user.ActiveAccount = false;
+            db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

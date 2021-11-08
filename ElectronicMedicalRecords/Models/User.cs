@@ -11,12 +11,10 @@ namespace ElectronicMedicalRecords.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         public int ID { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Degree { get; set; }
         public string Introduction { get; set; }
@@ -34,6 +32,7 @@ namespace ElectronicMedicalRecords.Models
         public bool Privacy { get; set; }
         public Nullable<int> Religion_ID { get; set; }
         public Nullable<int> Gender_ID { get; set; }
+        public bool ActiveAccount { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Gender Gender { get; set; }
