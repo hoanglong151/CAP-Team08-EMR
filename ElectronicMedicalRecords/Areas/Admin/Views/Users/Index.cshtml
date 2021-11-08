@@ -37,7 +37,8 @@
                         <tr>
                             <th>Hình Ảnh</th>
                             <th>Tên</th>
-                            <th>Show</th>
+                            <th>Hiển Thị</th>
+                            <th>Kích Hoạt</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -61,110 +62,122 @@
                                     <span class="badge bg-success">Active</span>
                                 </td>
                             }
-                        <td>
-                            <a href="@Url.Action("Edit", "Users", new { id = item.ID })" class="btnHover btn btn-primary">
-                                <i class='fas fa-user-edit'></i>    
-                            </a> |
-                            <!-- Button trigger for BorderLess Modal -->
-                            <button type="button" class="btnHover btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#border-less-@item.ID">
-                                <i class="fas fa-info"></i>
-                            </button>
-                            |
-                            <!--BorderLess Modal Modal -->
-                            <div class="modal fade text-left modal-borderless" id="border-less-@item.ID"
-                                 tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                 aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
-                                    <div class="modal-content modal-user">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
-                                            <button type="button" class="close rounded-pill"
-                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                <i data-feather="x"></i>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body detailDoctor">
-                                            <img class="detailDoctor-img" src="@item.Image" style="border-radius:4px" />
-                                            <div class="content content-doctor">
-                                                <h5>@item.Degree. @item.Name</h5>
-                                                <p>@Html.Raw(item.Introduction)</p>
-                                                <div class="training">
-                                                    <h6>Quá trình đào tạo</h6>
-                                                    <p>@Html.Raw(item.TrainingProcess)</p>
-                                                </div>
-                                                <div class="working">
-                                                    <h6>Quá trình công tác</h6>
-                                                    <p>@Html.Raw(item.WorkingProcess)</p>
-                                                </div>
-                                                <div class="treatment">
-                                                    <h6>Các mặt bệnh hay điều trị</h6>
-                                                    <p>@Html.Raw(item.SpecializedTreatment)</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary ml-1"
-                                                    data-bs-dismiss="modal">
-                                                <i class="bx bx-check d-block d-sm-none"></i>
-                                                <span class="d-none d-sm-block">Close</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "clickbutton" })*@
-                            <div class="modal-warning me-1 mb-1 d-inline-block">
-                                <!-- Button trigger for warning theme modal -->
+                            @if (item.ActiveAccount == false)
+                            {
+                                <td>
+                                    <span class="badge bg-danger">Disable</span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            }
+                            <td>
+                                <a href="@Url.Action("Edit", "Users", new { id = item.ID })" class="btnHover btn btn-primary">
+                                    <i class='fas fa-user-edit'></i>
+                                </a> |
+                                <!-- Button trigger for BorderLess Modal -->
                                 <button type="button" class="btnHover btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#warning-BS-@item.ID">
-                                    <i class='fas fa-trash'></i>
+                                        data-bs-toggle="modal" data-bs-target="#border-less-@item.ID">
+                                    <i class="fas fa-info"></i>
                                 </button>
-
-                                <!--warning theme Modal -->
-                                <div class="modal fade text-left" id="warning-BS-@item.ID" tabindex="-1"
-                                     role="dialog" aria-labelledby="myModalLabel140"
+                                |
+                                <!--BorderLess Modal Modal -->
+                                <div class="modal fade text-left modal-borderless" id="border-less-@item.ID"
+                                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                      aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                         role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-warning">
-                                                <h5 class="modal-title white" id="myModalLabel140">
-                                                    Bạn có muốn gỡ tài khoản này?
-                                                </h5>
-                                                <button type="button" class="close"
+                                    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
+                                        <div class="modal-content modal-user">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
+                                                <button type="button" class="close rounded-pill"
                                                         data-bs-dismiss="modal" aria-label="Close">
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <div class="modal-body d-flex">
-                                                <img src="@item.Image" style="width:6rem;height:6rem;object-fit:cover" />
-                                                <div>
-                                                    <h4>Họ Tên: @item.Name</h4>
-                                                    <p>Bằng Cấp:@item.Degree</p>
+                                            <div class="modal-body detailDoctor">
+                                                <img class="detailDoctor-img" src="@item.Image" style="border-radius:4px" />
+                                                <div class="content content-doctor">
+                                                    <h5>@item.Degree. @item.Name</h5>
+                                                    <p>@Html.Raw(item.Introduction)</p>
+                                                    <div class="training">
+                                                        <h6>Quá trình đào tạo</h6>
+                                                        <p>@Html.Raw(item.TrainingProcess)</p>
+                                                    </div>
+                                                    <div class="working">
+                                                        <h6>Quá trình công tác</h6>
+                                                        <p>@Html.Raw(item.WorkingProcess)</p>
+                                                    </div>
+                                                    <div class="treatment">
+                                                        <h6>Các mặt bệnh hay điều trị</h6>
+                                                        <p>@Html.Raw(item.SpecializedTreatment)</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button"
-                                                        class="btn btn-light-secondary"
+                                                <button type="button" class="btn btn-primary ml-1"
                                                         data-bs-dismiss="modal">
-                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Hủy</span>
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">Close</span>
                                                 </button>
-
-                                                <form action="@Url.Action("Delete", "Users")" method="post">
-                                                    @Html.AntiForgeryToken()
-                                                    <input name="ID" value="@item.ID" hidden />
-                                                    <button type="submit" class="btn btn-warning ml-1">
-                                                        Xác nhận
-                                                    </button>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "clickbutton" })*@
+                                <div class="modal-warning me-1 mb-1 d-inline-block">
+                                    <!-- Button trigger for warning theme modal -->
+                                    <button type="button" class="btnHover btn btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#warning-BS-@item.ID">
+                                        <i class='fas fa-trash'></i>
+                                    </button>
+
+                                    <!--warning theme Modal -->
+                                    <div class="modal fade text-left" id="warning-BS-@item.ID" tabindex="-1"
+                                         role="dialog" aria-labelledby="myModalLabel140"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                             role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-warning">
+                                                    <h5 class="modal-title white" id="myModalLabel140">
+                                                        Bạn có muốn vô hiệu hóa tài khoản này?
+                                                    </h5>
+                                                    <button type="button" class="close"
+                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body d-flex">
+                                                    <img src="@item.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                    <div>
+                                                        <h4>Họ Tên: @item.Name</h4>
+                                                        <p>Bằng Cấp:@item.Degree</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button"
+                                                            class="btn btn-light-secondary"
+                                                            data-bs-dismiss="modal">
+                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Hủy</span>
+                                                    </button>
+
+                                                    <form action="@Url.Action("Delete", "Users")" method="post">
+                                                        @Html.AntiForgeryToken()
+                                                        <input name="ID" value="@item.ID" hidden />
+                                                        <button type="submit" class="btn btn-warning ml-1">
+                                                            Xác nhận
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         }
 
@@ -186,6 +199,9 @@
                         sNext: '<i class="fa fa-chevron-right"></i>',
                         sPrevious: '<i class="fa fa-chevron-left"></i>',
                     },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ phần tử",
+                    "search": "Tìm kiếm:",
                 },
                 "columnDefs": [{
                     "targets": [3],

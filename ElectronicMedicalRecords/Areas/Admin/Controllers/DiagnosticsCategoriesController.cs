@@ -23,35 +23,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/DiagnosticsCategories
         public ActionResult Index()
         {
-            return View(db.DiagnosticsCategories.ToList());
+            var diagnostics = db.DiagnosticsCategories.ToList();
+            return View(diagnostics);
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
             var diagnostic = db.DiagnosticsCategories.ToList();
-            return Json(new { data = diagnostic }, JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: Admin/DiagnosticsCategories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DiagnosticsCategory diagnosticsCategory = db.DiagnosticsCategories.Find(id);
-            if (diagnosticsCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(diagnosticsCategory);
-        }
-
-        // GET: Admin/DiagnosticsCategories/Create
-        public ActionResult Create()
-        {
-            return View();
+            return Json(new { data = diagnostic}, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/DiagnosticsCategories/Create
@@ -62,7 +42,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Create(DiagnosticsCategory diagnosticsCategory)
         {
             var text = ValidateForm(diagnosticsCategory);
-            if(text == "")
+            if (text == "")
             {
                 if (ModelState.IsValid)
                 {
@@ -98,12 +78,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/DiagnosticsCategories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             DiagnosticsCategory diagnosticsCategory = db.DiagnosticsCategories.Find(id);
             if (diagnosticsCategory == null)
             {
@@ -135,19 +111,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/DiagnosticsCategories/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             DiagnosticsCategory diagnosticsCategory = db.DiagnosticsCategories.Find(id);
             if (diagnosticsCategory == null)
             {
                 return HttpNotFound();
             }
             return Json(new { data = diagnosticsCategory }, JsonRequestBehavior.AllowGet);
-            //return View(diagnosticsCategory);
         }
 
         // POST: Admin/DiagnosticsCategories/Delete/5
@@ -159,7 +130,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             db.DiagnosticsCategories.Remove(diagnosticsCategory);
             db.SaveChanges();
             return Json(new { success = true });
-            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

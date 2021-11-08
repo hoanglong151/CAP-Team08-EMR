@@ -33,9 +33,16 @@
                                 </div>
                                 <div class="col-md-7 d-flex align-items-end">
                                     <div class="position-relative">
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3 form-group">
                                             <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-upload"></i></label>
-                                            <input type="file" name="Image1" value="@Model.Image" class="form-control" id="image">
+                                            @if (Model.Image != null)
+                                            {
+                                                <input style="color: transparent; border: unset" type="file" name="Image1" class="form-control" id="image" accept="image/gif, image/jpeg, image/png">
+                                            }
+                                            else
+                                            {
+                                                <input type="file" name="Image1" class="form-control" id="image" accept="image/gif, image/jpeg, image/png" required>
+                                            }
                                             <input type="text" name="Image" value="@Model.Image" hidden />
                                         </div>
                                     </div>
@@ -147,7 +154,14 @@
                                 <div class="col-md-10">
                                     <div class="form-group has-icon-left">
                                         <div class="position-relative">
-                                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @Value="0" + Model.Phone } })
+                                            @if (Model.Phone == null)
+                                            {
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required" } })
+                                            }
+                                            else
+                                            {
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @Value = "0" + Model.Phone } })
+                                            }
                                             @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                                             <div class="form-control-icon">
                                                 <i class="bi bi-telephone"></i>
@@ -211,6 +225,16 @@
                                     <div class="form-group col-md-12">
                                         <div class='form-check'>
                                             <div class="checkbox">
+                                                @Html.EditorFor(model => model.ActiveAccount, new { htmlAttributes = new { @class = "form-check-input form-check-primary form-check-glow", id = "password-id-icon" } })
+                                                <label for="password-id-icon">Kích Hoạt</label>
+                                                @Html.ValidationMessageFor(model => model.ActiveAccount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class='form-check'>
+                                            <div class="checkbox">
                                                 @Html.EditorFor(model => model.IsShow, new { htmlAttributes = new { @class = "form-check-input form-check-primary form-check-glow", id = "password-id-icon" } })
                                                 <label for="password-id-icon">Hiển Thị</label>
                                                 @Html.ValidationMessageFor(model => model.IsShow, "", new { @class = "text-danger" })
@@ -218,10 +242,10 @@
                                         </div>
                                     </div>
                                 }
-                                <div class="form-group col-md-12">
-                                    <div class='form-check'>
-                                        <div class="checkbox">
-                                            @Html.EditorFor(model => model.Privacy, new { htmlAttributes = new { @class = "form-check-input form-check-primary form-check-glow", id = "password-id-icon", @data_val = "true", @required = "required" } })
+                                <div class="col-md-12">
+                                    <div class='form-check form-group'>
+                                        <div class="checkbox position-relative">
+                                            @Html.EditorFor(model => model.Privacy, new { htmlAttributes = new { @class = "form-group form-check-input form-check-primary form-check-glow", id = "password-id-icon", @data_val = "true", @required = "required" } })
                                             <label for="password-id-icon">Bạn phải chịu trách nhiệm với những gì bạn khai báo và đảm báo nó chính xác</label>
                                             @Html.ValidationMessageFor(model => model.Privacy, "", new { @class = "text-danger" })
                                         </div>
@@ -248,18 +272,19 @@
 @section Scripts {
 
     <script>
-        const editors = document.querySelectorAll('.editor');
-        editors.forEach(item => {
-            ClassicEditor
-                .create(item, {
-                    toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList']
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+        $(document).ready(function () {
+            const editors = document.querySelectorAll('.editor');
+            editors.forEach(item => {
+                ClassicEditor
+                    .create(item, {
+                        toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList']
+                    })
+                    .catch(error => {
+                        console.error("Toang" + error);
+                    });
+            })
         })
-
-        /*Validate Form Create Medication*/
+        /*Validate Form Edit User*/
         $(function () {
             $("#FormEdit").validate({
                 rules: {
@@ -267,13 +292,15 @@
                         required: true,
                         normalizer: function (value) {
                             return $.trim(value);
-                        }
+                        },
+                        maxlength: 50
                     },
                     Degree: {
                         required: true,
                         normalizer: function (value) {
                             return $.trim(value);
                         },
+                        maxlength: 50
                     },
                     Nation_ID: {
                         required: true,
@@ -293,14 +320,22 @@
                     },
                     Address: {
                         required: true,
-                    }
+                    },
+                    Privacy: {
+                        required: true
+                    },
+                    BirthDate: {
+                        required: true
+                    },
                 },
                 messages: {
                     Name: {
                         required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        maxlength: "Tên không dài quá 50 ký tự"
                     },
                     Degree: {
                         required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        maxlength: "Tên không dài quá 50 ký tự"
                     },
                     Nation_ID: {
                         required: "Vui lòng không để trống trường này"
@@ -321,6 +356,15 @@
                     Address: {
                         required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng"
                     },
+                    Privacy: {
+                        required: "Nếu bạn đồng ý với điều khoản vui lòng tick chọn"
+                    },
+                    BirthDate: {
+                        required: "Vui lòng chọn ngày sinh của bạn"
+                    },
+                    Image1: {
+                        required: "Vui lòng chọn hình",
+                    }
                 },
                 errorClass: 'invalidLB',
                 validClass: 'validLB',
