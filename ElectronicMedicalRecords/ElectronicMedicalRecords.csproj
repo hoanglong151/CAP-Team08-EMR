@@ -2367,6 +2367,8 @@
     <Content Include="Areas\Admin\Views\Shared\component-alert.html" />
     <Content Include="Areas\Admin\Views\Shared\extra-component-toastify.html" />
     <Content Include="Areas\Admin\Views\Shared\form-element-select.html" />
+    <Content Include="asset\021.jpg" />
+    <Content Include="asset\bg-login.jpg" />
     <Content Include="asset\bg.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

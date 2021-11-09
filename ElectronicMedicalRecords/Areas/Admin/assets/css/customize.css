@@ -1,4 +1,10 @@
-﻿.ctLabel{
+﻿.nav-bg {
+    background-size: cover;
+    background-image: linear-gradient(193deg, rgba(33,127,255,0.02594541234462533) 0%, rgba(0,53,255,0.3676821070224965) 56%), url('../../../../asset/021.jpg');
+}
+
+
+.ctLabel{
     margin-bottom: 0.7rem;
     align-self: center;
 }
@@ -138,6 +144,35 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
 .text-danger ~ .form-control-icon{
     top: 18px !important; 
 }
+
+.underline{
+    position:relative;
+}
+
+.underline::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .underline:hover::before {
+        left: 0;
+        right: auto;
+        width: 100%;
+    }
+}
+
+
+.m-icon {
+    position: relative;
+    top: 1px;
+    left: -2px;
 
 .imagePreview {
     width: 250px;
