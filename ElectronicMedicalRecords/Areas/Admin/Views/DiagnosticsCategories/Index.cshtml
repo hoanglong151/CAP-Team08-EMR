@@ -152,7 +152,7 @@
 <!-- Update Basic Modal -->
 <div class="modal fade text-left" id="Updatediagnostic" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Cập nhật danh mục chẩn đoán</h5>
@@ -431,6 +431,13 @@
                                                 timer: 1500
                                             })
                                             $("#tableDiagnostic").DataTable().ajax.reload();
+                                        }
+                                        else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Thất Bại',
+                                                text: res.responseText,
+                                            })
                                         }
                                     }
                                 });

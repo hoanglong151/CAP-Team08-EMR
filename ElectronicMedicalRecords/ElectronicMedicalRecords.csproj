@@ -247,7 +247,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2459,7 +2461,6 @@
     <Content Include="Areas\Admin\assets\vendors\summernote\summernote-lite.min.js.map" />
     <Content Include="Areas\Admin\assets\vendors\summernote\summernote.js.map" />
     <Content Include="Areas\Admin\assets\vendors\summernote\summernote.min.js.map" />
-    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoles\Index.cshtml" />
@@ -2480,6 +2481,8 @@
     <Content Include="Areas\Admin\assets\DataTables\Bootstrap-5-5.0.1\js\bootstrap.bundle.min.js.map" />
     <Content Include="Areas\Admin\assets\DataTables\Buttons-2.0.1\css\common.scss" />
     <Content Include="Areas\Admin\assets\DataTables\Buttons-2.0.1\css\mixins.scss" />
+    <Content Include="Areas\Admin\Views\PatientStatus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MedicationCategories\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

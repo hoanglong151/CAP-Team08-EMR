@@ -361,7 +361,6 @@
                 type: 'GET',
                 data: { id: id },
                 success: function (res) {
-                    console.log(res.data)
                     if (res.data != null) {
                         $('#UpdateMedicationName').val(res.data.Name);
                         $('#UpdateMedicationID').val(res.data.ID);
@@ -401,8 +400,6 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            $('#Updatemedication').modal('hide');
-                            $('.modal-backdrop').remove('.modal-backdrop');
                             $('#tableMedication').DataTable().ajax.reload();
                         } else {
                             Toastify({
@@ -459,6 +456,13 @@
                                                 timer: 1500
                                             })
                                             $("#tableMedication").DataTable().ajax.reload();
+                                        }
+                                        else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Thất Bại',
+                                                text: res.responseText,
+                                            })
                                         }
                                     }
                                 });
