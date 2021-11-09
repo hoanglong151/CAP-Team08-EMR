@@ -1,11 +1,10 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -14,41 +13,53 @@ body {
 
 section {
     display: flex;
+    flex-direction:column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* background: linear-gradient(to bottom, #f1f4f9, #dff1ff);*/
-    background-image: url('../asset/bg.jpg');
-    background-size: contain;
+    background-image: linear-gradient(rgba(238, 118, 33, 0.3), rgba(0, 0, 0, 0.5)), url('../asset/bg-login.jpg');
+    background-size: cover;
 }
 
-    section .color {
-        position: absolute;
-        filter: blur(150px);
-    }
+.header-login {
+    text-transform: uppercase;
+    color: #fff;
+    text-align:center;
+}
 
-        section .color:nth-child(1) {
-            top: -350px;
-            width: 600px;
-            height: 600px;
-            background: #ff359b;
-        }
+.header-login span {
+    font-size: 26px;
+    color: #ff0018;
+    font-weight: 600;
+}
 
-        section .color:nth-child(2) {
-            bottom: -150px;
-            left: 100px;
-            width: 500px;
-            height: 500px;
-            background: #fffd87;
-        }
+section .color {
+    position: absolute;
+    filter: blur(150px);
+}
 
-        section .color:nth-child(3) {
-            bottom: 50px;
-            right: 100px;
-            width: 300px;
-            height: 300px;
-            background: #00d2ff;
-        }
+section .color:nth-child(1) {
+    top: -350px;
+    width: 600px;
+    height: 600px;
+    background: #ff359b;
+}
+
+section .color:nth-child(2) {
+    bottom: -150px;
+    left: 100px;
+    width: 500px;
+    height: 500px;
+    background: #fffd87;
+}
+
+section .color:nth-child(3) {
+    bottom: 50px;
+    right: 100px;
+    width: 300px;
+    height: 300px;
+    background: #00d2ff;
+}
 
 .box {
     position: relative;
@@ -106,23 +117,24 @@ section {
 }
 
 .box .square:nth-child(4) {
-    bottom: -80px;
+    bottom: -90px;
     left: 100px;
     width: 50px;
     height: 50px;
 }
 
 .box .square:nth-child(5) {
-    top: -80px;
-    left: 140px;
+    top: -20px;
+    left: -34px;
     width: 60px;
     height: 60px;
+    z-index: 2;
 }
 
 .container {
     position: relative;
     width: 400px;
-    min-height: 400px;
+    /*min-height: 400px;*/
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     display: flex;
@@ -139,10 +151,10 @@ section {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 40px;
+    padding: 25px;
 }
 
-.form h2 {
+.form h4 {
         position: relative;
         color: #fff;
         font-size: 24px;
@@ -157,7 +169,7 @@ section {
     margin-bottom: 40px;
 }
 
-.form h2::before {
+.form h4::before {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -201,23 +213,17 @@ section {
     font-weight: 600;
 }
 
-.forget {
-    margin-top: 5px;
-    color: #fff;
-}
-
-.forget a {
-    color: #fff;
-    font-weight: 600;
+.footer-login span{
+    font-size: 14px;
+    color: #FFF;
 }
 
 .btn-hover {
-    width: 200px;
+    width: 100%;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
     cursor: pointer;
-    margin: 20px;
     height: 55px;
     text-align: center;
     border: none;

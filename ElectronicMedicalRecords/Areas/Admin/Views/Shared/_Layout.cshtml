@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
+            <div class="sidebar-wrapper active nav-bg">
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
@@ -40,37 +40,36 @@
                 <hr />
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
+                        <li class="sidebar-title text-white">Menu</li>
 
                         <li class="sidebar-item">
-                            <a href="@Url.Action("Index", "Users")" class='sidebar-link'>
-                                <i class="bi bi-person-badge-fill"></i>
+                            <a href="@Url.Action("Index", "Users")" class='sidebar-link underline'>
+                                <i class="text-white bi bi-person-badge-fill"></i>
                                 <span>Tài Khoản</span>
                             </a>
                         </li>
-
                         <li class="sidebar-item">
-                            <a href="@Url.Action("Index", "AspNetRoles")" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                            <a href="@Url.Action("Index", "AspNetRoles")" class='sidebar-link underline'>
+                                <i class="text-white bi bi-grid-fill"></i>
                                 <span>Quyền</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="@Url.Action("Index", "Medications")" class='sidebar-link'>
-                                <i class="fas fa-capsules"></i>
+                            <a href="@Url.Action("Index", "Medications")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-capsules"></i>
                                 <span>Thuốc</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                            <a href="#" class='sidebar-link underline'>
+                                <i class="text-white bi bi-stack"></i>
                                 <span>Danh Mục</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="@Url.Action("Index", "DiagnosticsCategories")">Danh Mục Chẩn Đoán</a>
+                                <li class="submenu-item">
+                                    <a class="text-white" href="@Url.Action("Index", "DiagnosticsCategories")">Danh Mục Chẩn Đoán</a>
                                 </li>
                             </ul>
                         </li>
