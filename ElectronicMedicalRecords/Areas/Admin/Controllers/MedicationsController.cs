@@ -151,9 +151,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Medication medication = db.Medications.Find(id);
-            db.Medications.Remove(medication);
-            db.SaveChanges();
-            return Json(new { success = true });
+            try
+            {
+                db.Medications.Remove(medication);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, responseText = "Thuốc này đang được sử dụng trong toa thuốc" });
+            }
         }
 
         protected override void Dispose(bool disposing)

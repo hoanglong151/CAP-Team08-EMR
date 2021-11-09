@@ -1,0 +1,379 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.PatientStatu>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Quản lý tình trạng bệnh nhân</h3>
+                <p class="text-subtitle text-muted">Danh sách tình trạng bệnh nhân</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "PatientStatus")">Danh Sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tình Trạng</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách tình trạng bệnh nhân
+                <br />
+                <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                        data-bs-target="#createPatientStatusModal">
+                    Thêm Tình Trạng
+                </button>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="tablePatientStatus">
+                    <thead>
+                        <tr>
+                            <th>Tên Tình Trạng</th>
+                            <th>Hoạt Động</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Create Basic Modal -->
+<div class="modal fade text-left" id="createPatientStatusModal" data-backdrop="true" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel1">Thêm Tình Trạng</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-createPatientStatus" class="form form-horizontal needs-validation" novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Tên Tình Trạng</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control pd-form"
+                                               placeholder="Tên Tình Trạng" id="first-name-icon PatientStatusNameCreate" required>
+                                        <div class="form-control-icon icon-Medication">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Hủy</span>
+                        </button>
+                        <button type="submit" id="createPatientStatus" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tạo</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Basic Modal -->
+<div class="modal fade text-left" id="UpdatePatientStatus" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Cập nhật tình trạng</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-updatePatientStatus" class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <input type="text" id="UpdatePatientStatusID" name="ID" hidden />
+                            <div class="col-md-4">
+                                <label for="UpdatePatientStatusName">Tên Tình Trạng</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control"
+                                               placeholder="Tên" id="UpdatePatientStatusName" required>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="updatePatientStatus" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cập nhật</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tablePatientStatus').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData", "PatientStatus")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var button = "<button class='btn btn-primary btnHover' onclick='getPatientStatusByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover' onclick='deletePatientStatus(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Tạo Tình Trạng Bệnh Nhân</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ phần tử",
+                    "search": "Tìm kiếm:",
+                }
+            })
+        })
+        createPatientStatus()
+        updatePatientStatus()
+        /*Create Patient Status*/
+        function createPatientStatus() {
+            $('#form-createPatientStatus').submit(function (e) {
+                var dataPatientStatus = $('#form-createPatientStatus').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataPatientStatus,
+                }
+                $.ajax({
+                    url: "@Url.Action("Create", "PatientStatus")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            resetInputCreate();
+                            $('#createPatientStatusModal').modal('hide');
+                         /*   $(document.body).removeClass('modal-open').attr("style", "none");*/
+                            $('.modal-backdrop').toggle();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã tạo thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tablePatientStatus').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1500,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+            e.preventDefault();
+            })
+        }
+
+        /*get ID Update*/
+        function getPatientStatusByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit", "PatientStatus")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        $('#UpdatePatientStatusName').val(res.data.Name);
+                        $('#UpdatePatientStatusID').val(res.data.ID);
+                    }
+                }
+            })
+            $('#UpdatePatientStatus').modal('show')
+        }
+
+        /*update*/
+        function updatePatientStatus() {
+            $('#form-updatePatientStatus').submit(function (e) {
+                var dataPatientStatus = $('#form-updatePatientStatus').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataPatientStatus,
+                }
+                $.ajax({
+                    url: "@Url.Action("Edit", "PatientStatus")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            $('#UpdatePatientStatus').modal('hide');
+                            /*$(document.body).removeClass('modal-open').attr("style", "none");*/
+                    /*        $('.modal-backdrop').remove();*/
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã cập nhật thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tablePatientStatus').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 3000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                e.preventDefault();
+            })
+        }
+
+        /*Get & Post Delete Patient Status*/
+        function deletePatientStatus(id) {
+            $.ajax({
+                url: '@Url.Action("Delete", "PatientStatus")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        Swal.fire({
+                            title: 'Bạn muốn xóa tình trạng này?',
+                            html:
+                                '<b>Tình Trạng:</b> <span>' + res.data.Name +'</span>',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#777',
+                            confirmButtonText: 'Xác nhận',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var form = $('#__AjaxAntiForgeryForm');
+                                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                $.ajax({
+                                    url: '@Url.Action("Delete", "PatientStatus")',
+                                    type: 'POST',
+                                    data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
+                                    success: function (res) {
+                                        if (res.success) {
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Xóa thành công',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $("#tablePatientStatus").DataTable().ajax.reload();
+                                        }
+                                        else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Thất Bại',
+                                                text: res.responseText,
+                                            })
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            })
+        }
+
+        /*Reset Input Create Form*/
+        function resetInputCreate() {
+            $('#form-createPatientStatus').get(0).reset();
+        }
+
+        /*Validate Form*/
+        $('form').each((i, obj) => {
+            $(function () {
+                $(obj).validate({
+                    rules: {
+                        Name: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            },
+                            maxlength: 50
+                        }
+                    },
+                    messages: {
+                        Name: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                            maxlength: "Vui lòng không nhập quá 50 ký tự"
+                        }
+                    },
+                    errorClass: 'invalidLB',
+                    validClass: 'validLB',
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").addClass('mb-25')
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").removeClass('mb-25')
+                    }
+                });
+            });
+        })
+    </script>
+}
