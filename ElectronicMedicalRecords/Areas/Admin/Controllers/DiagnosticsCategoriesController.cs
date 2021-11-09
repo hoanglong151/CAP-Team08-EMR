@@ -127,9 +127,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             DiagnosticsCategory diagnosticsCategory = db.DiagnosticsCategories.Find(id);
-            db.DiagnosticsCategories.Remove(diagnosticsCategory);
-            db.SaveChanges();
-            return Json(new { success = true });
+            try
+            {
+                db.DiagnosticsCategories.Remove(diagnosticsCategory);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, responseText = "Danh mục chẩn đoán này đang được sử dụng" });
+            }
         }
 
         protected override void Dispose(bool disposing)

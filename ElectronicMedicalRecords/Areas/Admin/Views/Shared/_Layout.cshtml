@@ -63,6 +63,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "DiagnosticsCategories")" class='sidebar-link'>
+                                <i class="fas fa-capsules"></i>
+                                <span>Danh Mục Chẩn Đoán</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
@@ -70,7 +77,11 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="@Url.Action("Index", "DiagnosticsCategories")">Danh Mục Chẩn Đoán</a>
+                                    <a href="@Url.Action("Index", "PatientStatus")">Tình Trạng Bệnh Nhân</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a href="@Url.Action("Index", "MedicationCategories")">Danh Mục Thuốc</a>
                                 </li>
                             </ul>
                         </li>
