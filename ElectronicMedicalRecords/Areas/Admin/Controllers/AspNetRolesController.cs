@@ -21,26 +21,29 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.User = db.Users.ToList();
+            ViewBag.CountUserExist = TempData["CountUserExist"];
             return View(db.AspNetRoles.ToList());
         }
 
         public ActionResult AddUserRole(List<string> Users, AspNetRole role)
         {
+            var countExist = 0;
             for(int i = 0; i < Users.Count; i++)
             {
                 var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var userID = Users[i];
-                var roleID = db.AspNetRoles.FirstOrDefault(id => id.Id == role.Id);
-                var check = db.AspNetUsers.FirstOrDefault(id => id.Id == userID);
-                if(check != null)
+                var roleID = db.AspNetRoles.Find(role.Id);
+                var user = UserManager.FindById(userID);
+                if(UserManager.IsInRole(user.Id, roleID.Name))
                 {
-                    UserManager.AddToRole(check.Id, roleID.Name);
+                    countExist += 1;
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    UserManager.AddToRole(user.Id, roleID.Name);
                 }
             }
+            TempData["CountUserExist"] = countExist;
             return RedirectToAction("Index");
         }
 

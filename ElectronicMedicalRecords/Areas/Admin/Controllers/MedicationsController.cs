@@ -65,16 +65,41 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Medication medication)
         {
-            if (ModelState.IsValid)
+            var text = Validation(medication);
+            if(text == "")
             {
-                db.Medications.Add(medication);
-                db.SaveChanges();
-                return Json(new { success = true });
-                //return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Medications.Add(medication);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(medication);
             }
-
             ViewBag.MedicationCategory_ID = new SelectList(db.MedicationCategories, "ID", "Name", medication.MedicationCategory_ID);
-            return View(medication);
+            return Json(new { success = false, responseText = text });
+        }
+
+        public string Validation(Medication medcation)
+        {
+            string text = "";
+            var checkExist = db.Medications.FirstOrDefault(e => e.Name == medcation.Name);
+            if(checkExist != null && medcation.Name != null && medcation.MedicationCategory_ID != 0 && medcation.Price != null && medcation.Unit != null)
+            {
+                text = "Tên thuốc đã có trong danh sách";
+            }
+            return text;
+        }
+
+        public string ValidationUpdate(Medication medcation)
+        {
+            string text = "";
+            var checkExist = db.Medications.FirstOrDefault(e => e.Name == medcation.Name);
+            if (checkExist != null && checkExist.ID != medcation.ID && medcation.Name != null && medcation.MedicationCategory_ID != 0 && medcation.Price != null && medcation.Unit != null)
+            {
+                text = "Tên thuốc đã có trong danh sách";
+            }
+            return text;
         }
 
         // GET: Admin/Medications/Edit/5
@@ -110,14 +135,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Medication medication)
         {
-            if (ModelState.IsValid)
+            var text = ValidationUpdate(medication);
+            if(text == "")
             {
-                db.Entry(medication).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var existData = db.DiagnosticsCategories.Find(medication.ID);
+                    db.Entry(existData).CurrentValues.SetValues(medication);
+                    //db.Entry(medication).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(medication);
             }
             ViewBag.MedicationCategory_ID = new SelectList(db.MedicationCategories, "ID", "Name", medication.MedicationCategory_ID);
-            return View(medication);
+            return Json(new { success = false, responseText = text });
         }
 
         // GET: Admin/Medications/Delete/5

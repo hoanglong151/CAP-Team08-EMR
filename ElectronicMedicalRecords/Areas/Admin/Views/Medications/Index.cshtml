@@ -24,7 +24,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Medication")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Medication")">Danh Sách</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Thuốc</li>
                     </ol>
                 </nav>
@@ -58,11 +58,10 @@
         </div>
     </section>
 </div>
-
 <!-- Create Basic Modal -->
 <div class="modal fade text-left" id="createMedicationModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel1">Thêm Thuốc</h5>
@@ -166,7 +165,7 @@
 <!-- Update Basic Modal -->
 <div class="modal fade text-left" id="Updatemedication" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Cập nhật thuốc</h5>
@@ -227,8 +226,8 @@
                                             <option value="Viên/Sủi">Viên/Sủi</option>
                                         </select>
                                         @*<div class="form-control-icon">
-                            <i class="bi bi-phone"></i>
-                        </div>*@
+                                                <i class="bi bi-phone"></i>
+                                            </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -290,8 +289,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            var button = "<button class='btn btn-primary' onclick='getMedicationByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary' onclick='deleteMedication(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            var button = "<button class='btn btn-primary btnHover' onclick='getMedicationByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover' onclick='deleteMedication(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                             return button;
                         },
                         "targets": 0,
@@ -306,10 +305,9 @@
                     }
                 }
             })
-            createMedication()
-            updateMedication()
         })
-
+        createMedication()
+        updateMedication()
         /*Create Medication*/
         function createMedication() {
             $('#form-createMedication').submit(function (e) {
@@ -323,18 +321,32 @@
                     url: "@Url.Action("Create", "Medications")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
-                    success: () => {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Bạn đã tạo thành công',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('#createMedicationModal').modal('hide');
-                        $('.modal-backdrop').remove('.modal-backdrop');
-                        $('#tableMedication').DataTable().ajax.reload();
-                        resetInputCreate();
+                    success: (res) => {
+                        if (res.success) {
+                            resetInputCreate();
+                            $('#createMedicationModal').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').remove();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã tạo thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tableMedication').DataTable().ajax.reload();
+
+
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1500,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
                     }
                 })
             e.preventDefault();
@@ -376,17 +388,31 @@
                     url: "@Url.Action("Edit", "Medications")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
-                    success: () => {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Bạn đã cập nhật thành công',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('#Updatemedication').modal('hide');
-                        $('.modal-backdrop').remove('.modal-backdrop');
-                        $('#tableMedication').DataTable().ajax.reload();
+                    success: (res) => {
+                        if (res.success) {
+                            $('#Updatemedication').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').remove();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã cập nhật thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#Updatemedication').modal('hide');
+                            $('.modal-backdrop').remove('.modal-backdrop');
+                            $('#tableMedication').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 3000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        } 
                     }
                 })
                 e.preventDefault();
@@ -461,15 +487,17 @@
                         required: true,
                         normalizer: function (value) {
                             return $.trim(value);
-                        }
+                        },
+                        number: true
                     }
                 },
                 messages: {
                     Name: {
-                        required: "Vui lòng không để trống",
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
                     },
                     Price: {
-                        required: "Vui lòng không để trống",
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        number: "Vui lòng nhập đúng định dạng"
                     },
                     MedicationCategory_ID: {
                         required: "Vui lòng chọn Hoạt Chất"
@@ -521,15 +549,17 @@
                         required: true,
                         normalizer: function (value) {
                             return $.trim(value);
-                        }
+                        },
+                        number: true
                     }
                 },
                 messages: {
                     Name: {
-                        required: "Vui lòng không để trống",
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
                     },
                     Price: {
-                        required: "Vui lòng không để trống",
+                        required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng",
+                        number: "Vui lòng nhập đúng định dạng"
                     }
                 },
                 errorClass: 'invalidLB',
@@ -542,6 +572,5 @@
                 }
             });
         });
-
     </script>
 }

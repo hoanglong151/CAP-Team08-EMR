@@ -3,38 +3,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
-
-
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
@@ -50,7 +18,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Tài Khoản</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "AspNetRoles")">Danh Sách</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Quyền & Tài Khoản</li>
                     </ol>
                 </nav>
@@ -62,6 +30,14 @@
             <div class="card-header">
                 Danh sách quyền
             </div>
+            @if (ViewBag.CountUserExist > 0)
+            {
+                <div class="alert alert-danger alert-dismissible show fade">
+                    Có @ViewBag.CountUserExist thành viên đã tồn tại trong quyền này
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                </div>
+            }
             <div class="card-body">
                 <table class="table table-striped" id="table2">
                     <thead>
@@ -87,16 +63,17 @@
                                             </button>
                                             <div class="dropdown-menu leftdropdown" style="width:18rem">
                                                 <div class="form-group">
-                                                    <form action="@Url.Action("AddUserRole", "AspNetRoles")" method="post">
+                                                    <form action="@Url.Action("AddUserRole", "AspNetRoles")" method="post" class="AddUserRoles">
                                                         <input hidden name="Id" value="@item.Id" />
-                                                        <button style="margin-bottom:10px;width:100%" type="submit" class="btn btn-primary">Cấp Quyền</button>
-                                                        <select name="Users" multiple class="choices form-select multiple-remove" required>
+                                                        <button style="margin-bottom:10px;width:100%" type="submit" class="btn btn-primary" id="AddRoles">Cấp Quyền</button>
+                                                        <select id="AddUsersToRole" name="Users" multiple class="choices form-select multiple-remove">
                                                             <option placeholder>Vui Lòng Chọn Tên</option>
                                                             @foreach (var users in ViewBag.User)
                                                             {
                                                                 <option value="@users.UserID">@users.Name</option>
                                                             }
                                                         </select>
+                                                        <span id="AddUsersToRole-error"></span>
                                                         @Html.ValidationMessage("Users", new { @class = "text-danger" })
                                                     </form>
                                                 </div>
@@ -471,7 +448,6 @@
     </section>
 </div>
 
-
 <div class="page-heading">
     <section class="section">
         <div class="card">
@@ -561,7 +537,7 @@
     </section>
 </div>
 @section scripts{
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#table2').DataTable({
                 "language": {
@@ -640,6 +616,29 @@
                     "targets": [2],
                     "orderable": false
                 }]
+            })
+
+            var loopStyle = $('.choices__input--cloned');
+            loopStyle.each((index, obj) => {
+                $(obj).css("width", "100%")
+                $(obj).css("background-color", "#fff")
+            })
+
+            var loopForm = $('.AddUserRoles');
+            loopForm.each((i, obj) => {
+                $(obj).submit((e) => {
+                    if ($(obj, '#AddUsersToRole').find(":selected").val() == undefined) {
+                        Toastify({
+                            text: "Vui lòng chọn tài khoản để cấp quyền",
+                            className: "info",
+                            duration: 1500,
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }
+                        }).showToast();
+                        e.preventDefault();
+                    }
+                })
             })
         });
     </script>

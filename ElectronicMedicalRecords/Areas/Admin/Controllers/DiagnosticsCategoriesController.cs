@@ -61,14 +61,40 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DiagnosticsCategory diagnosticsCategory)
         {
-            if (ModelState.IsValid)
+            var text = ValidateForm(diagnosticsCategory);
+            if(text == "")
             {
-                db.DiagnosticsCategories.Add(diagnosticsCategory);
-                db.SaveChanges();
-                return Json(new { success = true });
-                //return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.DiagnosticsCategories.Add(diagnosticsCategory);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(diagnosticsCategory);
             }
-            return View(diagnosticsCategory);
+            return Json(new { success = false, responseText = text });
+        }
+
+        public string ValidateForm(DiagnosticsCategory diagnosticsCategory)
+        {
+            string text = "";
+            var checkExist = db.DiagnosticsCategories.FirstOrDefault(e => e.Code == diagnosticsCategory.Code);
+            if (checkExist != null && diagnosticsCategory.Name != null && diagnosticsCategory.MDC != null && diagnosticsCategory.NameEnglish != null)
+            {
+                text = "Chẩn đoán đã có trong danh sách";
+            }
+            return text;
+        }
+
+        public string ValidateFormUpdate(DiagnosticsCategory diagnosticsCategory)
+        {
+            string text = "";
+            var checkExist = db.DiagnosticsCategories.FirstOrDefault(e => e.Code == diagnosticsCategory.Code);
+            if (checkExist != null && checkExist.ID != diagnosticsCategory.ID && diagnosticsCategory.Name != null && diagnosticsCategory.MDC != null && diagnosticsCategory.NameEnglish != null)
+            {
+                text = "Chẩn đoán đã có trong danh sách";
+            }
+            return text;
         }
 
         // GET: Admin/DiagnosticsCategories/Edit/5
@@ -84,7 +110,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return Json(new { data = diagnosticsCategory }, JsonRequestBehavior.AllowGet);
-            //return View(diagnosticsCategory);
         }
 
         // POST: Admin/DiagnosticsCategories/Edit/5
@@ -94,14 +119,19 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(DiagnosticsCategory diagnosticsCategory)
         {
-            if (ModelState.IsValid)
+            var text = ValidateFormUpdate(diagnosticsCategory);
+            if(text == "")
             {
-                db.Entry(diagnosticsCategory).State = EntityState.Modified;
-                db.SaveChanges();
-                return Json(new { success = true });
-                //return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var existData = db.DiagnosticsCategories.Find(diagnosticsCategory.ID);
+                    db.Entry(existData).CurrentValues.SetValues(diagnosticsCategory);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(diagnosticsCategory);
             }
-            return View(diagnosticsCategory);
+            return Json(new { success = false, responseText = text });
         }
 
         // GET: Admin/DiagnosticsCategories/Delete/5
