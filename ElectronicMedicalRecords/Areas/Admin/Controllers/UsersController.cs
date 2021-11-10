@@ -35,6 +35,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_AdminUser", userID);
         }
 
+        public ActionResult HomePage()
+        {
+            return View();
+        }
+
         // GET: Admin/Users/Edit/5
         public ActionResult Edit(int id)
         {
@@ -85,7 +90,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("HomePage");
             }
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", user.HomeTown_ID);
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", user.Nation_ID);

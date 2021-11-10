@@ -32,6 +32,13 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         }
 
         [TestMethod]
+        public void HomePage()
+        {
+            var view = controller.HomePage() as ViewResult;
+            Assert.IsNotNull(view);
+        }
+
+        [TestMethod]
         public void TestEditG()
         {
             var result = controller.Edit(0) as HttpNotFoundResult;

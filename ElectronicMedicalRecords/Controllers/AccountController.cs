@@ -357,7 +357,7 @@ namespace ElectronicMedicalRecords.Controllers
                     }
                     else
                     {
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("HomePage", "Users", new { Area = "Admin"});
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
