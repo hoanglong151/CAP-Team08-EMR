@@ -170,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AspNetRolesControllerTest.cs" />
+    <Compile Include="Controllers\MedicationCategoriesControllerTest.cs" />
+    <Compile Include="Controllers\PatientStatusControllerTest.cs" />
     <Compile Include="Controllers\UsersControllerTest.cs" />
     <Compile Include="Controllers\MedicationsControllerTest.cs" />
     <Compile Include="Controllers\DiagnosticsCategoriesControllerTest.cs" />

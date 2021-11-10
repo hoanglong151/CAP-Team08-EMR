@@ -2364,9 +2364,7 @@
     <Content Include="Areas\Admin\assets\vendors\sweetalert2\sweetalert2.min.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.js" />
-    <Content Include="Areas\Admin\Views\Shared\component-alert.html" />
-    <Content Include="Areas\Admin\Views\Shared\extra-component-toastify.html" />
-    <Content Include="Areas\Admin\Views\Shared\form-element-select.html" />
+    <Content Include="Areas\Admin\assets\videos\Pexels Videos 2098988.mp4" />
     <Content Include="asset\021.jpg" />
     <Content Include="asset\bg-login.jpg" />
     <Content Include="asset\bg.jpg" />
@@ -2483,6 +2481,7 @@
     <Content Include="Areas\Admin\assets\DataTables\Buttons-2.0.1\css\mixins.scss" />
     <Content Include="Areas\Admin\Views\PatientStatus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MedicationCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\HomePage.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

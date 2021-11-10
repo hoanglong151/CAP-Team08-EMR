@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        overflow: hidden
+    }
+    video{
+        width:114%;
+        height:100%;
+    }
+    .overlay{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0
+    }
+    footer{
+        display:none
+    }
+</style>
+
+<div class="overlay">
+    <video autoplay muted loop id="videoHomePage">
+        <source src="@Url.Content("~/Areas/Admin/assets/videos/Pexels%20Videos%202098988.mp4")" type="video/mp4" />
+    </video>
+</div>
