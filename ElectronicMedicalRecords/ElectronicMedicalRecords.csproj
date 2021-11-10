@@ -2364,7 +2364,7 @@
     <Content Include="Areas\Admin\assets\vendors\sweetalert2\sweetalert2.min.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.js" />
-    <Content Include="Areas\Admin\assets\videos\Pexels Videos 2098988.mp4" />
+    <Content Include="Areas\Admin\assets\videos\videoHomePage.mp4" />
     <Content Include="asset\021.jpg" />
     <Content Include="asset\bg-login.jpg" />
     <Content Include="asset\bg.jpg" />

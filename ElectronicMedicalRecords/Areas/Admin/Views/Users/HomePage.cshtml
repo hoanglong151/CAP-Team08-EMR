@@ -6,16 +6,25 @@
     body {
         overflow: hidden
     }
-    video{
-        width:114%;
-        height:100%;
-    }
     .overlay{
-        position:absolute;
+        position:relative;
         top:0;
         bottom:0;
         left:0;
         right:0
+    }
+    .overlay video {
+        width: 100%;
+        display: block;
+    }
+    .overlay:before {
+        content: '';
+        position: absolute;
+        background: rgba(0, 0, 0, 0.2);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
     footer{
         display:none
@@ -23,7 +32,7 @@
 </style>
 
 <div class="overlay">
-    <video autoplay muted loop id="videoHomePage">
-        <source src="@Url.Content("~/Areas/Admin/assets/videos/Pexels%20Videos%202098988.mp4")" type="video/mp4" />
+    <video autoplay muted loop>
+        <source src="~/Areas/Admin/assets/videos/videoHomePage.mp4" type="video/mp4" />
     </video>
 </div>
