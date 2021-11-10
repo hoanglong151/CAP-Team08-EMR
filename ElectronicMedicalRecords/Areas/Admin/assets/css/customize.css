@@ -173,6 +173,7 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
     position: relative;
     top: 1px;
     left: -2px;
+}
 
 .imagePreview {
     width: 250px;
