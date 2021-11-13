@@ -12,21 +12,23 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DiagnosticsCategory
+    public partial class Prescription
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DiagnosticsCategory()
+        public Prescription()
         {
             this.Diagnostics = new HashSet<Diagnostic>();
+            this.Prescription_Detail = new HashSet<Prescription_Detail>();
         }
     
         public int ID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public string NameEnglish { get; set; }
-        public string MDC { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> InformationExamination_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Diagnostic> Diagnostics { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
     }
 }

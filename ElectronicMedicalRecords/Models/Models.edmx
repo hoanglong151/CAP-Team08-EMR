@@ -66,6 +66,65 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Assort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Assort" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Clinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Circles" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Circles" Type="int" />
+          <Property Name="Respiration" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Respiration" Type="int" />
+          <Property Name="Digestion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Digestion" Type="int" />
+          <Property Name="KidneyUrology" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_KidneyUrology" Type="int" />
+          <Property Name="MuscleBoneJoint" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_MuscleBoneJoint" Type="int" />
+          <Property Name="Nerve" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Nerve" Type="int" />
+          <Property Name="Mental" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Mental" Type="int" />
+          <Property Name="Surgery" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Surgery" Type="int" />
+          <Property Name="ObstetricsAndGynecology" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_ObstetricsAndGynecology" Type="int" />
+          <Property Name="RightEyesNoGlasses" Type="float" />
+          <Property Name="LeftEyesNoGlasses" Type="float" />
+          <Property Name="RightEyesGlasses" Type="float" />
+          <Property Name="LeftEyesGlasses" Type="float" />
+          <Property Name="EyesExamination" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_Eyes" Type="int" />
+          <Property Name="LeftEarSay" Type="float" />
+          <Property Name="LeftEarWhisper" Type="float" />
+          <Property Name="RightEarSay" Type="float" />
+          <Property Name="RightEarWhisper" Type="float" />
+          <Property Name="EarNoseThroatExamination" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_EarNoseThroat" Type="int" />
+          <Property Name="UpperJaw" Type="nvarchar" MaxLength="50" />
+          <Property Name="LowerJaw" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeethJawFaceExamination" Type="nvarchar" MaxLength="50" />
+          <Property Name="Assort_TeethJawFace" Type="int" />
+          <Property Name="Dermatology" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bill" Type="int" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="InformationExamination_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Diagnostic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiagnosticCategory_ID" Type="int" />
+          <Property Name="Prescription_ID" Type="int" />
+        </EntityType>
         <EntityType Name="DiagnosticsCategory">
           <Key>
             <PropertyRef Name="ID" />
@@ -89,6 +148,31 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HomeTown" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InformationExamination">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateExamine" Type="date" />
+          <Property Name="DateEnd" Type="date" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="HeartBeat" Type="int" />
+          <Property Name="Breathing" Type="int" />
+          <Property Name="BloodPressure" Type="int" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="PatientStatus_ID" Type="int" />
+          <Property Name="Patient_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="MedicalTestsPrescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+          <Property Name="InformationExamination_ID" Type="int" />
         </EntityType>
         <EntityType Name="Medication">
           <Key>
@@ -114,6 +198,30 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Nation1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender_ID" Type="int" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="HomeTown_ID" Type="int" />
+          <Property Name="Nation_ID" Type="int" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="InsuranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MedicalHistory" Type="nvarchar(max)" />
+          <Property Name="HistoryDisease" Type="nvarchar(max)" />
+          <Property Name="Nation1_ID" Type="int" />
+        </EntityType>
         <EntityType Name="PatientStatus">
           <Key>
             <PropertyRef Name="ID" />
@@ -121,12 +229,52 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="InformationExamination_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Prescription_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumMedication" Type="int" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Medication_ID" Type="int" />
+          <Property Name="Precription__ID" Type="int" />
+        </EntityType>
         <EntityType Name="Religion">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Subclinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumRedBloodCells" Type="float" />
+          <Property Name="NumWhiteBloodCells" Type="float" />
+          <Property Name="NumPlatelet" Type="float" />
+          <Property Name="BloodSugar" Type="float" />
+          <Property Name="URE" Type="float" />
+          <Property Name="Creatinin" Type="float" />
+          <Property Name="ASAT" Type="float" />
+          <Property Name="ALAT" Type="float" />
+          <Property Name="OtherBlood" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sugar" Type="float" />
+          <Property Name="Protein" Type="float" />
+          <Property Name="OtherUrine" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageDiagnostic" Type="nvarchar(max)" />
+          <Property Name="Bill" Type="int" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="InformationExamination_ID" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -162,6 +310,174 @@
           <Property Name="Gender_ID" Type="int" />
           <Property Name="ActiveAccount" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Clinical_Assort">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Circles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort1">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Respiration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort10">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_EarNoseThroat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort11">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_TeethJawFace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort2">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Digestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort3">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_KidneyUrology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort4">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_MuscleBoneJoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort5">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Nerve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort6">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Mental" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort7">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Surgery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort8">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_ObstetricsAndGynecology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort9">
+          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Eyes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -218,6 +534,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Diagnostic_DiagnosticsCategory">
+          <End Role="DiagnosticsCategory" Type="Self.DiagnosticsCategory" Multiplicity="0..1" />
+          <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiagnosticsCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Diagnostic">
+              <PropertyRef Name="DiagnosticCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diagnostic_Prescription">
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+          <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Diagnostic">
+              <PropertyRef Name="Prescription_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_PatientStatus">
+          <End Role="PatientStatus" Type="Self.PatientStatus" Multiplicity="0..1" />
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="PatientStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalTestsPrescription_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="MedicalTestsPrescription" Type="Self.MedicalTestsPrescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MedicalTestsPrescription">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Medication_MedicationCategory">
           <End Role="MedicationCategory" Type="Self.MedicationCategory" Multiplicity="1" />
           <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
@@ -227,6 +615,114 @@
             </Principal>
             <Dependent Role="Medication">
               <PropertyRef Name="MedicationCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Gender_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_HomeTown">
+          <End Role="HomeTown" Type="Self.HomeTown" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Nation">
+          <End Role="Nation" Type="Self.Nation" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Nation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Nation1">
+          <End Role="Nation1" Type="Self.Nation1" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nation1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Nation1_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Detail_Medication">
+          <End Role="Medication" Type="Self.Medication" Multiplicity="0..1" />
+          <End Role="Prescription_Detail" Type="Self.Prescription_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription_Detail">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Detail_Prescription">
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+          <End Role="Prescription_Detail" Type="Self.Prescription_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription_Detail">
+              <PropertyRef Name="Precription__ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subclinical_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Subclinical" Type="Self.Subclinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subclinical">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subclinical_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Subclinical" Type="Self.Subclinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subclinical">
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -297,16 +793,82 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assort" EntityType="Self.Assort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clinical" EntityType="Self.Clinical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnostic" EntityType="Self.Diagnostic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiagnosticsCategory" EntityType="Self.DiagnosticsCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HomeTown" EntityType="Self.HomeTown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationExamination" EntityType="Self.InformationExamination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalTestsPrescription" EntityType="Self.MedicalTestsPrescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicationCategory" EntityType="Self.MedicationCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nation" EntityType="Self.Nation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nation1" EntityType="Self.Nation1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientStatus" EntityType="Self.PatientStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription_Detail" EntityType="Self.Prescription_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subclinical" EntityType="Self.Subclinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Clinical_Assort" Association="Self.FK_Clinical_Assort">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort1" Association="Self.FK_Clinical_Assort1">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort10" Association="Self.FK_Clinical_Assort10">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort11" Association="Self.FK_Clinical_Assort11">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort2" Association="Self.FK_Clinical_Assort2">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort3" Association="Self.FK_Clinical_Assort3">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort4" Association="Self.FK_Clinical_Assort4">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort5" Association="Self.FK_Clinical_Assort5">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort6" Association="Self.FK_Clinical_Assort6">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort7" Association="Self.FK_Clinical_Assort7">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort8" Association="Self.FK_Clinical_Assort8">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort9" Association="Self.FK_Clinical_Assort9">
+            <End Role="Assort" EntitySet="Assort" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_InformationExamination" Association="Self.FK_Clinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_User" Association="Self.FK_Clinical_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Clinical" EntitySet="Clinical" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -323,9 +885,69 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Diagnostic_DiagnosticsCategory" Association="Self.FK_Diagnostic_DiagnosticsCategory">
+            <End Role="DiagnosticsCategory" EntitySet="DiagnosticsCategory" />
+            <End Role="Diagnostic" EntitySet="Diagnostic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diagnostic_Prescription" Association="Self.FK_Diagnostic_Prescription">
+            <End Role="Prescription" EntitySet="Prescription" />
+            <End Role="Diagnostic" EntitySet="Diagnostic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_Patient" Association="Self.FK_InformationExamination_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_PatientStatus" Association="Self.FK_InformationExamination_PatientStatus">
+            <End Role="PatientStatus" EntitySet="PatientStatus" />
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_User" Association="Self.FK_InformationExamination_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalTestsPrescription_InformationExamination" Association="Self.FK_MedicalTestsPrescription_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="MedicalTestsPrescription" EntitySet="MedicalTestsPrescription" />
+          </AssociationSet>
           <AssociationSet Name="FK_Medication_MedicationCategory" Association="Self.FK_Medication_MedicationCategory">
             <End Role="MedicationCategory" EntitySet="MedicationCategory" />
             <End Role="Medication" EntitySet="Medication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Gender" Association="Self.FK_Patient_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_HomeTown" Association="Self.FK_Patient_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTown" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Nation" Association="Self.FK_Patient_Nation">
+            <End Role="Nation" EntitySet="Nation" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Nation1" Association="Self.FK_Patient_Nation1">
+            <End Role="Nation1" EntitySet="Nation1" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Detail_Medication" Association="Self.FK_Prescription_Detail_Medication">
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Detail_Prescription" Association="Self.FK_Prescription_Detail_Prescription">
+            <End Role="Prescription" EntitySet="Prescription" />
+            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_InformationExamination" Association="Self.FK_Prescription_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subclinical_InformationExamination" Association="Self.FK_Subclinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Subclinical" EntitySet="Subclinical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subclinical_User" Association="Self.FK_Subclinical_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Subclinical" EntitySet="Subclinical" />
           </AssociationSet>
           <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -358,15 +980,26 @@
           <EntitySet Name="AspNetUserClaims" EntityType="CP24Team08Model.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="CP24Team08Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="CP24Team08Model.AspNetUser" />
+          <EntitySet Name="Assorts" EntityType="CP24Team08Model.Assort" />
+          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
+          <EntitySet Name="Diagnostics" EntityType="CP24Team08Model.Diagnostic" />
           <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
           <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
           <EntitySet Name="HomeTowns" EntityType="CP24Team08Model.HomeTown" />
+          <EntitySet Name="InformationExaminations" EntityType="CP24Team08Model.InformationExamination" />
+          <EntitySet Name="MedicalTestsPrescriptions" EntityType="CP24Team08Model.MedicalTestsPrescription" />
           <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
           <EntitySet Name="MedicationCategories" EntityType="CP24Team08Model.MedicationCategory" />
           <EntitySet Name="Nations" EntityType="CP24Team08Model.Nation" />
+          <EntitySet Name="Nation1" EntityType="CP24Team08Model.Nation1" />
+          <EntitySet Name="Patients" EntityType="CP24Team08Model.Patient" />
           <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
+          <EntitySet Name="Prescriptions" EntityType="CP24Team08Model.Prescription" />
+          <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
           <EntitySet Name="Religions" EntityType="CP24Team08Model.Religion" />
+          <EntitySet Name="Subclinicals" EntityType="CP24Team08Model.Subclinical" />
           <EntitySet Name="sysdiagrams" EntityType="CP24Team08Model.sysdiagram" />
+          <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -375,34 +1008,149 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
-            <End Role="MedicationCategory" EntitySet="MedicationCategories" />
-            <End Role="Medication" EntitySet="Medications" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
           <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort" Association="CP24Team08Model.FK_Clinical_Assort">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort1" Association="CP24Team08Model.FK_Clinical_Assort1">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort10" Association="CP24Team08Model.FK_Clinical_Assort10">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort11" Association="CP24Team08Model.FK_Clinical_Assort11">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort2" Association="CP24Team08Model.FK_Clinical_Assort2">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort3" Association="CP24Team08Model.FK_Clinical_Assort3">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort4" Association="CP24Team08Model.FK_Clinical_Assort4">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort5" Association="CP24Team08Model.FK_Clinical_Assort5">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort6" Association="CP24Team08Model.FK_Clinical_Assort6">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort7" Association="CP24Team08Model.FK_Clinical_Assort7">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort8" Association="CP24Team08Model.FK_Clinical_Assort8">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_Assort9" Association="CP24Team08Model.FK_Clinical_Assort9">
+            <End Role="Assort" EntitySet="Assorts" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diagnostic_DiagnosticsCategory" Association="CP24Team08Model.FK_Diagnostic_DiagnosticsCategory">
+            <End Role="DiagnosticsCategory" EntitySet="DiagnosticsCategories" />
+            <End Role="Diagnostic" EntitySet="Diagnostics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diagnostic_Prescription" Association="CP24Team08Model.FK_Diagnostic_Prescription">
+            <End Role="Prescription" EntitySet="Prescriptions" />
+            <End Role="Diagnostic" EntitySet="Diagnostics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Gender" Association="CP24Team08Model.FK_Patient_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
             <End Role="Gender" EntitySet="Genders" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Patient_HomeTown" Association="CP24Team08Model.FK_Patient_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_HomeTown" Association="CP24Team08Model.FK_User_HomeTown">
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_Patient" Association="CP24Team08Model.FK_InformationExamination_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_PatientStatus" Association="CP24Team08Model.FK_InformationExamination_PatientStatus">
+            <End Role="PatientStatu" EntitySet="PatientStatus" />
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_User" Association="CP24Team08Model.FK_InformationExamination_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalTestsPrescription_InformationExamination" Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="MedicalTestsPrescription" EntitySet="MedicalTestsPrescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_InformationExamination" Association="CP24Team08Model.FK_Prescription_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subclinical_InformationExamination" Association="CP24Team08Model.FK_Subclinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Subclinical" EntitySet="Subclinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
+            <End Role="MedicationCategory" EntitySet="MedicationCategories" />
+            <End Role="Medication" EntitySet="Medications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
+            <End Role="Medication" EntitySet="Medications" />
+            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Nation" Association="CP24Team08Model.FK_Patient_Nation">
+            <End Role="Nation" EntitySet="Nations" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Nation" Association="CP24Team08Model.FK_User_Nation">
             <End Role="Nation" EntitySet="Nations" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Patient_Nation1" Association="CP24Team08Model.FK_Patient_Nation1">
+            <End Role="Nation1" EntitySet="Nation1" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Detail_Prescription" Association="CP24Team08Model.FK_Prescription_Detail_Prescription">
+            <End Role="Prescription" EntitySet="Prescriptions" />
+            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Religion" Association="CP24Team08Model.FK_User_Religion">
             <End Role="Religion" EntitySet="Religions" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subclinical_User" Association="CP24Team08Model.FK_Subclinical_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Subclinical" EntitySet="Subclinicals" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -462,8 +1210,95 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Assort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Assort1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_Assort" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals1" Relationship="CP24Team08Model.FK_Clinical_Assort1" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals2" Relationship="CP24Team08Model.FK_Clinical_Assort10" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals3" Relationship="CP24Team08Model.FK_Clinical_Assort11" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals4" Relationship="CP24Team08Model.FK_Clinical_Assort2" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals5" Relationship="CP24Team08Model.FK_Clinical_Assort3" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals6" Relationship="CP24Team08Model.FK_Clinical_Assort4" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals7" Relationship="CP24Team08Model.FK_Clinical_Assort5" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals8" Relationship="CP24Team08Model.FK_Clinical_Assort6" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals9" Relationship="CP24Team08Model.FK_Clinical_Assort7" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals10" Relationship="CP24Team08Model.FK_Clinical_Assort8" FromRole="Assort" ToRole="Clinical" />
+          <NavigationProperty Name="Clinicals11" Relationship="CP24Team08Model.FK_Clinical_Assort9" FromRole="Assort" ToRole="Clinical" />
+        </EntityType>
+        <EntityType Name="Clinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Circles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Circles" Type="Int32" />
+          <Property Name="Respiration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Respiration" Type="Int32" />
+          <Property Name="Digestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Digestion" Type="Int32" />
+          <Property Name="KidneyUrology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_KidneyUrology" Type="Int32" />
+          <Property Name="MuscleBoneJoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_MuscleBoneJoint" Type="Int32" />
+          <Property Name="Nerve" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Nerve" Type="Int32" />
+          <Property Name="Mental" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Mental" Type="Int32" />
+          <Property Name="Surgery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Surgery" Type="Int32" />
+          <Property Name="ObstetricsAndGynecology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_ObstetricsAndGynecology" Type="Int32" />
+          <Property Name="RightEyesNoGlasses" Type="Double" />
+          <Property Name="LeftEyesNoGlasses" Type="Double" />
+          <Property Name="RightEyesGlasses" Type="Double" />
+          <Property Name="LeftEyesGlasses" Type="Double" />
+          <Property Name="EyesExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_Eyes" Type="Int32" />
+          <Property Name="LeftEarSay" Type="Double" />
+          <Property Name="LeftEarWhisper" Type="Double" />
+          <Property Name="RightEarSay" Type="Double" />
+          <Property Name="RightEarWhisper" Type="Double" />
+          <Property Name="EarNoseThroatExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_EarNoseThroat" Type="Int32" />
+          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeethJawFaceExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Assort_TeethJawFace" Type="Int32" />
+          <Property Name="Dermatology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bill" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="Assort" Relationship="CP24Team08Model.FK_Clinical_Assort" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort1" Relationship="CP24Team08Model.FK_Clinical_Assort1" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort2" Relationship="CP24Team08Model.FK_Clinical_Assort10" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort3" Relationship="CP24Team08Model.FK_Clinical_Assort11" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort4" Relationship="CP24Team08Model.FK_Clinical_Assort2" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort5" Relationship="CP24Team08Model.FK_Clinical_Assort3" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort6" Relationship="CP24Team08Model.FK_Clinical_Assort4" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort7" Relationship="CP24Team08Model.FK_Clinical_Assort5" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort8" Relationship="CP24Team08Model.FK_Clinical_Assort6" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort9" Relationship="CP24Team08Model.FK_Clinical_Assort7" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort10" Relationship="CP24Team08Model.FK_Clinical_Assort8" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="Assort11" Relationship="CP24Team08Model.FK_Clinical_Assort9" FromRole="Clinical" ToRole="Assort" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Diagnostic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiagnosticCategory_ID" Type="Int32" />
+          <Property Name="Prescription_ID" Type="Int32" />
+          <NavigationProperty Name="DiagnosticsCategory" Relationship="CP24Team08Model.FK_Diagnostic_DiagnosticsCategory" FromRole="Diagnostic" ToRole="DiagnosticsCategory" />
+          <NavigationProperty Name="Prescription" Relationship="CP24Team08Model.FK_Diagnostic_Prescription" FromRole="Diagnostic" ToRole="Prescription" />
         </EntityType>
         <EntityType Name="DiagnosticsCategory">
           <Key>
@@ -474,6 +1309,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NameEnglish" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MDC" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Diagnostics" Relationship="CP24Team08Model.FK_Diagnostic_DiagnosticsCategory" FromRole="DiagnosticsCategory" ToRole="Diagnostic" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -481,6 +1317,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="HomeTown">
@@ -489,7 +1326,41 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HomeTown1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="HomeTown" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
+        </EntityType>
+        <EntityType Name="InformationExamination">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateExamine" Type="DateTime" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Precision="0" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="HeartBeat" Type="Int32" />
+          <Property Name="Breathing" Type="Int32" />
+          <Property Name="BloodPressure" Type="Int32" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="PatientStatus_ID" Type="Int32" />
+          <Property Name="Patient_ID" Type="Int32" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
+          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_InformationExamination_Patient" FromRole="InformationExamination" ToRole="Patient" />
+          <NavigationProperty Name="PatientStatu" Relationship="CP24Team08Model.FK_InformationExamination_PatientStatus" FromRole="InformationExamination" ToRole="PatientStatu" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="InformationExamination" ToRole="User" />
+          <NavigationProperty Name="MedicalTestsPrescriptions" Relationship="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" FromRole="InformationExamination" ToRole="MedicalTestsPrescription" />
+          <NavigationProperty Name="Prescriptions" Relationship="CP24Team08Model.FK_Prescription_InformationExamination" FromRole="InformationExamination" ToRole="Prescription" />
+          <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_InformationExamination" FromRole="InformationExamination" ToRole="Subclinical" />
+        </EntityType>
+        <EntityType Name="MedicalTestsPrescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" FromRole="MedicalTestsPrescription" ToRole="InformationExamination" />
         </EntityType>
         <EntityType Name="Medication">
           <Key>
@@ -501,6 +1372,7 @@
           <Property Name="Price" Type="Double" />
           <Property Name="MedicationCategory_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MedicationCategory" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="Medication" ToRole="MedicationCategory" />
+          <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Medication" ToRole="Prescription_Detail" />
         </EntityType>
         <EntityType Name="MedicationCategory">
           <Key>
@@ -516,7 +1388,38 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Nation" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Nation" FromRole="Nation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Nation1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Nation1" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender_ID" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <Property Name="Nation_ID" Type="Int32" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="InsuranceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MedicalHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HistoryDisease" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nation1_ID" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="Patient" ToRole="HomeTown" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_Patient" FromRole="Patient" ToRole="InformationExamination" />
+          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Patient" ToRole="Nation" />
+          <NavigationProperty Name="Nation1" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Patient" ToRole="Nation1" />
         </EntityType>
         <EntityType Name="PatientStatu">
           <Key>
@@ -524,6 +1427,30 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_PatientStatus" FromRole="PatientStatu" ToRole="InformationExamination" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="Diagnostics" Relationship="CP24Team08Model.FK_Diagnostic_Prescription" FromRole="Prescription" ToRole="Diagnostic" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Prescription_InformationExamination" FromRole="Prescription" ToRole="InformationExamination" />
+          <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_Prescription" FromRole="Prescription" ToRole="Prescription_Detail" />
+        </EntityType>
+        <EntityType Name="Prescription_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumMedication" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Medication_ID" Type="Int32" />
+          <Property Name="Precription__ID" Type="Int32" />
+          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
+          <NavigationProperty Name="Prescription" Relationship="CP24Team08Model.FK_Prescription_Detail_Prescription" FromRole="Prescription_Detail" ToRole="Prescription" />
         </EntityType>
         <EntityType Name="Religion">
           <Key>
@@ -532,6 +1459,30 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Religion" FromRole="Religion" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Subclinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumRedBloodCells" Type="Double" />
+          <Property Name="NumWhiteBloodCells" Type="Double" />
+          <Property Name="NumPlatelet" Type="Double" />
+          <Property Name="BloodSugar" Type="Double" />
+          <Property Name="URE" Type="Double" />
+          <Property Name="Creatinin" Type="Double" />
+          <Property Name="ASAT" Type="Double" />
+          <Property Name="ALAT" Type="Double" />
+          <Property Name="OtherBlood" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sugar" Type="Double" />
+          <Property Name="Protein" Type="Double" />
+          <Property Name="OtherUrine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageDiagnostic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bill" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Subclinical_InformationExamination" FromRole="Subclinical" ToRole="InformationExamination" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Subclinical_User" FromRole="Subclinical" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -542,6 +1493,38 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Nation_ID" Type="Int32" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="Privacy" Type="Boolean" Nullable="false" />
+          <Property Name="Religion_ID" Type="Int32" />
+          <Property Name="Gender_ID" Type="Int32" />
+          <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
+          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
+          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
+          <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
+          <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_User" FromRole="User" ToRole="Subclinical" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -571,51 +1554,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Medication_MedicationCategory">
-          <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
-          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MedicationCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Medication">
-              <PropertyRef Name="MedicationCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsShow" Type="Boolean" Nullable="false" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="Nation_ID" Type="Int32" />
-          <Property Name="HomeTown_ID" Type="Int32" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="Int32" />
-          <Property Name="Privacy" Type="Boolean" Nullable="false" />
-          <Property Name="Religion_ID" Type="Int32" />
-          <Property Name="Gender_ID" Type="Int32" />
-          <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
-          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
-          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
-          <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
-        </EntityType>
         <Association Name="FK_User_AspNetUsers">
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
@@ -625,6 +1563,210 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Circles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort1">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Respiration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort10">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_EarNoseThroat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort11">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_TeethJawFace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort2">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Digestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort3">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_KidneyUrology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort4">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_MuscleBoneJoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort5">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Nerve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort6">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Mental" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort7">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Surgery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort8">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_ObstetricsAndGynecology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_Assort9">
+          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="Assort_Eyes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diagnostic_DiagnosticsCategory">
+          <End Type="CP24Team08Model.DiagnosticsCategory" Role="DiagnosticsCategory" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Diagnostic" Role="Diagnostic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiagnosticsCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Diagnostic">
+              <PropertyRef Name="DiagnosticCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diagnostic_Prescription">
+          <End Type="CP24Team08Model.Prescription" Role="Prescription" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Diagnostic" Role="Diagnostic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Diagnostic">
+              <PropertyRef Name="Prescription_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Gender">
+          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Gender_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -640,6 +1782,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Patient_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_HomeTown">
           <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
           <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
@@ -649,6 +1803,114 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_Patient">
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_PatientStatus">
+          <End Type="CP24Team08Model.PatientStatu" Role="PatientStatu" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientStatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="PatientStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalTestsPrescription_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.MedicalTestsPrescription" Role="MedicalTestsPrescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MedicalTestsPrescription">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Prescription" Role="Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subclinical_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Subclinical" Role="Subclinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subclinical">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medication_MedicationCategory">
+          <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
+          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicationCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Medication">
+              <PropertyRef Name="MedicationCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Detail_Medication">
+          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription_Detail">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Nation">
+          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Nation_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -664,6 +1926,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Patient_Nation1">
+          <End Type="CP24Team08Model.Nation1" Role="Nation1" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nation1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Nation1_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Detail_Prescription">
+          <End Type="CP24Team08Model.Prescription" Role="Prescription" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription_Detail">
+              <PropertyRef Name="Precription__ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Religion">
           <End Type="CP24Team08Model.Religion" Role="Religion" Multiplicity="0..1" />
           <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
@@ -675,6 +1961,22 @@
               <PropertyRef Name="Religion_ID" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subclinical_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Subclinical" Role="Subclinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subclinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -737,6 +2039,68 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Assorts">
+            <EntityTypeMapping TypeName="CP24Team08Model.Assort">
+              <MappingFragment StoreEntitySet="Assort">
+                <ScalarProperty Name="Assort1" ColumnName="Assort" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clinicals">
+            <EntityTypeMapping TypeName="CP24Team08Model.Clinical">
+              <MappingFragment StoreEntitySet="Clinical">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Bill" ColumnName="Bill" />
+                <ScalarProperty Name="Dermatology" ColumnName="Dermatology" />
+                <ScalarProperty Name="Assort_TeethJawFace" ColumnName="Assort_TeethJawFace" />
+                <ScalarProperty Name="TeethJawFaceExamination" ColumnName="TeethJawFaceExamination" />
+                <ScalarProperty Name="LowerJaw" ColumnName="LowerJaw" />
+                <ScalarProperty Name="UpperJaw" ColumnName="UpperJaw" />
+                <ScalarProperty Name="Assort_EarNoseThroat" ColumnName="Assort_EarNoseThroat" />
+                <ScalarProperty Name="EarNoseThroatExamination" ColumnName="EarNoseThroatExamination" />
+                <ScalarProperty Name="RightEarWhisper" ColumnName="RightEarWhisper" />
+                <ScalarProperty Name="RightEarSay" ColumnName="RightEarSay" />
+                <ScalarProperty Name="LeftEarWhisper" ColumnName="LeftEarWhisper" />
+                <ScalarProperty Name="LeftEarSay" ColumnName="LeftEarSay" />
+                <ScalarProperty Name="Assort_Eyes" ColumnName="Assort_Eyes" />
+                <ScalarProperty Name="EyesExamination" ColumnName="EyesExamination" />
+                <ScalarProperty Name="LeftEyesGlasses" ColumnName="LeftEyesGlasses" />
+                <ScalarProperty Name="RightEyesGlasses" ColumnName="RightEyesGlasses" />
+                <ScalarProperty Name="LeftEyesNoGlasses" ColumnName="LeftEyesNoGlasses" />
+                <ScalarProperty Name="RightEyesNoGlasses" ColumnName="RightEyesNoGlasses" />
+                <ScalarProperty Name="Assort_ObstetricsAndGynecology" ColumnName="Assort_ObstetricsAndGynecology" />
+                <ScalarProperty Name="ObstetricsAndGynecology" ColumnName="ObstetricsAndGynecology" />
+                <ScalarProperty Name="Assort_Surgery" ColumnName="Assort_Surgery" />
+                <ScalarProperty Name="Surgery" ColumnName="Surgery" />
+                <ScalarProperty Name="Assort_Mental" ColumnName="Assort_Mental" />
+                <ScalarProperty Name="Mental" ColumnName="Mental" />
+                <ScalarProperty Name="Assort_Nerve" ColumnName="Assort_Nerve" />
+                <ScalarProperty Name="Nerve" ColumnName="Nerve" />
+                <ScalarProperty Name="Assort_MuscleBoneJoint" ColumnName="Assort_MuscleBoneJoint" />
+                <ScalarProperty Name="MuscleBoneJoint" ColumnName="MuscleBoneJoint" />
+                <ScalarProperty Name="Assort_KidneyUrology" ColumnName="Assort_KidneyUrology" />
+                <ScalarProperty Name="KidneyUrology" ColumnName="KidneyUrology" />
+                <ScalarProperty Name="Assort_Digestion" ColumnName="Assort_Digestion" />
+                <ScalarProperty Name="Digestion" ColumnName="Digestion" />
+                <ScalarProperty Name="Assort_Respiration" ColumnName="Assort_Respiration" />
+                <ScalarProperty Name="Respiration" ColumnName="Respiration" />
+                <ScalarProperty Name="Assort_Circles" ColumnName="Assort_Circles" />
+                <ScalarProperty Name="Circles" ColumnName="Circles" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnostics">
+            <EntityTypeMapping TypeName="CP24Team08Model.Diagnostic">
+              <MappingFragment StoreEntitySet="Diagnostic">
+                <ScalarProperty Name="Prescription_ID" ColumnName="Prescription_ID" />
+                <ScalarProperty Name="DiagnosticCategory_ID" ColumnName="DiagnosticCategory_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DiagnosticsCategories">
             <EntityTypeMapping TypeName="CP24Team08Model.DiagnosticsCategory">
               <MappingFragment StoreEntitySet="DiagnosticsCategory">
@@ -760,6 +2124,33 @@
             <EntityTypeMapping TypeName="CP24Team08Model.HomeTown">
               <MappingFragment StoreEntitySet="HomeTown">
                 <ScalarProperty Name="HomeTown1" ColumnName="HomeTown" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationExaminations">
+            <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
+              <MappingFragment StoreEntitySet="InformationExamination">
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+                <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
+                <ScalarProperty Name="Breathing" ColumnName="Breathing" />
+                <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateExamine" ColumnName="DateExamine" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalTestsPrescriptions">
+            <EntityTypeMapping TypeName="CP24Team08Model.MedicalTestsPrescription">
+              <MappingFragment StoreEntitySet="MedicalTestsPrescription">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -791,6 +2182,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Nation1">
+            <EntityTypeMapping TypeName="CP24Team08Model.Nation1">
+              <MappingFragment StoreEntitySet="Nation1">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="CP24Team08Model.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Nation1_ID" ColumnName="Nation1_ID" />
+                <ScalarProperty Name="HistoryDisease" ColumnName="HistoryDisease" />
+                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="InsuranceCode" ColumnName="InsuranceCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PatientStatus">
             <EntityTypeMapping TypeName="CP24Team08Model.PatientStatu">
               <MappingFragment StoreEntitySet="PatientStatus">
@@ -799,10 +2216,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Prescriptions">
+            <EntityTypeMapping TypeName="CP24Team08Model.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescription_Detail">
+            <EntityTypeMapping TypeName="CP24Team08Model.Prescription_Detail">
+              <MappingFragment StoreEntitySet="Prescription_Detail">
+                <ScalarProperty Name="Precription__ID" ColumnName="Precription__ID" />
+                <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="NumMedication" ColumnName="NumMedication" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Religions">
             <EntityTypeMapping TypeName="CP24Team08Model.Religion">
               <MappingFragment StoreEntitySet="Religion">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subclinicals">
+            <EntityTypeMapping TypeName="CP24Team08Model.Subclinical">
+              <MappingFragment StoreEntitySet="Subclinical">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Bill" ColumnName="Bill" />
+                <ScalarProperty Name="ImageDiagnostic" ColumnName="ImageDiagnostic" />
+                <ScalarProperty Name="OtherUrine" ColumnName="OtherUrine" />
+                <ScalarProperty Name="Protein" ColumnName="Protein" />
+                <ScalarProperty Name="Sugar" ColumnName="Sugar" />
+                <ScalarProperty Name="OtherBlood" ColumnName="OtherBlood" />
+                <ScalarProperty Name="ALAT" ColumnName="ALAT" />
+                <ScalarProperty Name="ASAT" ColumnName="ASAT" />
+                <ScalarProperty Name="Creatinin" ColumnName="Creatinin" />
+                <ScalarProperty Name="URE" ColumnName="URE" />
+                <ScalarProperty Name="BloodSugar" ColumnName="BloodSugar" />
+                <ScalarProperty Name="NumPlatelet" ColumnName="NumPlatelet" />
+                <ScalarProperty Name="NumWhiteBloodCells" ColumnName="NumWhiteBloodCells" />
+                <ScalarProperty Name="NumRedBloodCells" ColumnName="NumRedBloodCells" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -818,14 +2278,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CP24Team08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CP24Team08Model.User">
               <MappingFragment StoreEntitySet="User">
@@ -851,6 +2303,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CP24Team08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

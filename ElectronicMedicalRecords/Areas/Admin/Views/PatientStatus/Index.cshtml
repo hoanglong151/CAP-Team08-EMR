@@ -196,7 +196,9 @@
                 var model = {
                     validata: dataPatientStatus,
                 }
-                $.ajax({
+                var isvalidCreate = $("#form-createPatientStatus").valid();
+                if (isvalidCreate) {
+                    $.ajax({
                     url: "@Url.Action("Create", "PatientStatus")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
@@ -226,6 +228,7 @@
                         }
                     }
                 })
+                }
             e.preventDefault();
             })
         }
@@ -255,6 +258,8 @@
                 var model = {
                     validata: dataPatientStatus,
                 }
+                var isvalidUpdate = $("#form-updatePatientStatus").valid();
+                if (isvalidUpdate) {
                 $.ajax({
                     url: "@Url.Action("Edit", "PatientStatus")",
                     type: "POST",
@@ -284,6 +289,7 @@
                         }
                     }
                 })
+                }
                 e.preventDefault();
             })
         }

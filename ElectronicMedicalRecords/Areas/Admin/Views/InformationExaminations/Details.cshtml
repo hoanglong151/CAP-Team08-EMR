@@ -1,0 +1,98 @@
+﻿@model ElectronicMedicalRecords.Models.InformationExamination
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InformationExamination</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateExamine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateExamine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeartBeat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeartBeat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breathing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breathing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodPressure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodPressure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientStatu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientStatu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
