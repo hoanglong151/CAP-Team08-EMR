@@ -197,7 +197,9 @@
                 var model = {
                     validata: dataMedicationCategory,
                 }
-                $.ajax({
+                var isvalidCreate = $("#form-createMedicationCategories").valid();
+                if (isvalidCreate) {
+                    $.ajax({
                     url: "@Url.Action("Create", "MedicationCategories")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
@@ -227,6 +229,7 @@
                         }
                     }
                 })
+                }
             e.preventDefault();
             })
         }
@@ -256,7 +259,9 @@
                 var model = {
                     validata: dataMedicationCategories,
                 }
-                $.ajax({
+                var isvalidUpdate = $("#form-updateMedicationCategory").valid();
+                if (isvalidUpdate) {
+                    $.ajax({
                     url: "@Url.Action("Edit", "MedicationCategories")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
@@ -283,6 +288,7 @@
                         }
                     }
                 })
+                }
                 e.preventDefault();
             })
         }

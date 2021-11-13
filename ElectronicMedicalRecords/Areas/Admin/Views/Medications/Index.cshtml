@@ -321,7 +321,9 @@
                 var model = {
                     validata: dataMedication,
                 }
-                $.ajax({
+                var isvalidCreate = $("#form-createMedication").valid();
+                if (isvalidCreate) {
+                    $.ajax({
                     url: "@Url.Action("Create", "Medications")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
@@ -353,6 +355,7 @@
                         }
                     }
                 })
+                }
             e.preventDefault();
             })
         }
@@ -387,7 +390,9 @@
                 var model = {
                     validata: dataMedication,
                 }
-                $.ajax({
+                var isvalidUpdate = $("#form-updateMedication").valid();
+                if (isvalidUpdate) {
+                                    $.ajax({
                     url: "@Url.Action("Edit", "Medications")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
@@ -413,9 +418,10 @@
                                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                                 }
                             }).showToast();
-                        } 
+                        }
                     }
                 })
+                }
                 e.preventDefault();
             })
         }

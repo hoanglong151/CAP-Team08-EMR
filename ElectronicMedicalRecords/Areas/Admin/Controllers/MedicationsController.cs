@@ -113,7 +113,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var existData = db.DiagnosticsCategories.Find(medication.ID);
+                    var existData = db.Medications.Find(medication.ID);
                     db.Entry(existData).CurrentValues.SetValues(medication);
                     //db.Entry(medication).State = EntityState.Modified;
                     db.SaveChanges();

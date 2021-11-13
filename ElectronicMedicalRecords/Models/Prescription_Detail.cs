@@ -12,18 +12,15 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientStatu
+    public partial class Prescription_Detail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PatientStatu()
-        {
-            this.InformationExaminations = new HashSet<InformationExamination>();
-        }
-    
         public int ID { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> NumMedication { get; set; }
+        public string Note { get; set; }
+        public Nullable<int> Medication_ID { get; set; }
+        public Nullable<int> Precription__ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
+        public virtual Medication Medication { get; set; }
+        public virtual Prescription Prescription { get; set; }
     }
 }

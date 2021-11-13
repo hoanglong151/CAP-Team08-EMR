@@ -316,7 +316,9 @@
                 var model = {
                     validata: dataDiagnostic,
                 }
-                $.ajax({
+                var isvalidUpdate = $("#form-updateDiagnostic").valid();
+                if (isvalidUpdate) {
+                    $.ajax({
                     url: "@Url.Action("Edit", "DiagnosticsCategories")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
@@ -346,6 +348,7 @@
                         }
                     }
                 })
+                }
                 e.preventDefault();
             })
         }
@@ -358,6 +361,8 @@
                 var model = {
                     validata: dataDiagnostic,
                 }
+                var isvalidCreate = $("#form-createDiagnostic").valid();
+                if (isvalidCreate) {
                 $.ajax({
                     url: "@Url.Action("Create", "DiagnosticsCategories")",
                     type: "POST",
@@ -389,6 +394,7 @@
                         }
                     }
                 })
+                }
                 e.preventDefault();
             })
         }
@@ -458,6 +464,9 @@
 
         /*Validate Form Update Diagnostic*/
         $('form').each((i, obj) => {
+            $.validator.addMethod('checkNameEnglish', function (value, element) {
+                return this.optional(element) || /^[A-Za-z][A-Za-z0-9]*$/.test(value);
+            }, "Vui lòng nhập đúng định dạng tiếng anh");;
             $(function () {
                 $(obj).validate({
                     rules: {
@@ -479,6 +488,7 @@
                             normalizer: function (value) {
                                 return $.trim(value);
                             },
+                            checkNameEnglish: true
                         },
                         MDC: {
                             required: true,

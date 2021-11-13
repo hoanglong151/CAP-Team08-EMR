@@ -23,6 +23,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult GetData()
         {
+            db.Configuration.ProxyCreationEnabled = false;
             var patientStatus = db.PatientStatus.ToList();
             return Json(new { data = patientStatus }, JsonRequestBehavior.AllowGet);
         }

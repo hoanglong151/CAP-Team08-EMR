@@ -63,6 +63,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [Obsolete]
         public ActionResult Edit(HttpPostedFileBase Image1, User user)
         {
+            var check = db.Users.Find(user.ID);
             if (ModelState.IsValid)
             {
                 if (Image1 != null)
@@ -88,8 +89,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     var uploadResult = _cloudinary.Upload(uploadParams);
                     user.Image = uploadResult.SecureUri.AbsoluteUri;
                 }
-                db.Entry(user).State = EntityState.Modified;
+                var existData = db.Users.Find(user.ID);
+                db.Entry(existData).CurrentValues.SetValues(user);
                 db.SaveChanges();
+                if(check.Privacy == true)
+                {
+                    return RedirectToAction("Index");
+                }
+                if(check.ActiveAccount == false)
+                {
+
+                }
                 return RedirectToAction("HomePage");
             }
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", user.HomeTown_ID);
@@ -97,6 +107,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Religion_ID = new SelectList(db.Religions, "ID", "Name", user.Religion_ID);
             ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", user.Gender_ID);
             return View(user);
+        }
+
+        public ActionResult DenyAccount()
+        {
+            return View();
         }
         // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]

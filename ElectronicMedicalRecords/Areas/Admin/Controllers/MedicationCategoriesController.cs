@@ -35,6 +35,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MedicationCategory medicationCategory)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             var text = ValidateForm(medicationCategory);
             if (text == "")
             {
@@ -52,6 +53,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/MedicationCategories/Edit/5
         public ActionResult Edit(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
             if (medicationCategory == null)
             {
@@ -67,6 +69,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(MedicationCategory medicationCategory)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             var text = ValidateFormUpdate(medicationCategory);
             if(text == "")
             {
@@ -85,6 +88,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/MedicationCategories/Delete/5
         public ActionResult Delete(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
             if (medicationCategory == null)
             {
@@ -98,6 +102,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             MedicationCategory medicationCategory = db.MedicationCategories.Find(id);
             try
             {
@@ -107,7 +112,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             catch(Exception ex)
             {
-                return Json(new { success = false, responseText = "Danh mục thuốc này đang được sử dụng" });
+                return Json(new { success = false, responseText = "Danh mục này đã được sử dụng cho thuốc. Bạn không thể xóa nó!" });
             }
         }
 

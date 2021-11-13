@@ -5,30 +5,69 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="0.75" PointY="5.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="4.5" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="13.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="3" PointY="4.625" />
-        <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="6" PointY="16.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="6" PointY="1.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="13" PointY="0.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="10.75" PointY="1.25" />
-        <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="6" PointY="7.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="6" PointY="10.125" />
-        <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="1.5" PointY="54.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3.75" PointY="49.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="3.75" PointY="52" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="1.5" PointY="49.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Assort" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Diagnostic" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="3" PointY="59.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="1.5" PointY="36.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="1.5" PointY="39" />
+        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="0.75" PointY="19.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.MedicalTestsPrescription" Width="1.5" PointX="3" PointY="19.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="3" PointY="63.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="64.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="1.5" PointY="33.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.Nation1" Width="1.5" PointX="1.5" PointY="25.625" />
+        <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="1.5" PointY="28" />
+        <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="1.5" PointY="14.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription" Width="1.5" PointX="3" PointY="21.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="1.5" PointY="57.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Subclinical" Width="1.5" PointX="3.75" PointY="31.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.User" Width="1.5" PointX="1.5" PointY="41.625" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
-        <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
-        <EntityTypeShape EntityType="CP24Team08Model.User" Width="1.5" PointX="8.25" PointY="6.875" />
         <AssociationConnector Association="CP24Team08Model.FK_User_AspNetUsers" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort1" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort10" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort11" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort2" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort3" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort4" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort5" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort6" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort7" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort8" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort9" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
+        <AssociationConnector Association="CP24Team08Model.FK_Diagnostic_DiagnosticsCategory" />
+        <AssociationConnector Association="CP24Team08Model.FK_Diagnostic_Prescription" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Gender" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
+        <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Subclinical_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Prescription" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
+        <AssociationConnector Association="CP24Team08Model.FK_Subclinical_User" />
+        <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
