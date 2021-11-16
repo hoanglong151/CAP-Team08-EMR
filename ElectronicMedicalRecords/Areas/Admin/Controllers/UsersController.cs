@@ -92,13 +92,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var existData = db.Users.Find(user.ID);
                 db.Entry(existData).CurrentValues.SetValues(user);
                 db.SaveChanges();
-                if(check.Privacy == true)
+                if(check.Privacy == true && check.ActiveAccount == true)
                 {
                     return RedirectToAction("Index");
                 }
                 if(check.ActiveAccount == false)
                 {
-
+                    return RedirectToAction("DenyAccount");
                 }
                 return RedirectToAction("HomePage");
             }

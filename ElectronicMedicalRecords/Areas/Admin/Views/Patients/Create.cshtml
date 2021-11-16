@@ -3,6 +3,23 @@
     ViewBag.Title = "Create";
 }
 <style>
+    .choices{
+        width: 100%
+    }
+    .choices[data-type*=select-one]:after {
+        margin-top: -5px;
+    }
+    .choices__input--cloned {
+        min-width: 100% !important;
+    }
+    .choices__inner {
+        border: unset;
+        padding: 0;
+        width: 100%;
+    }
+    hr {
+        color: #435ebe
+    }
     .bootstrap-tagsinput {
         width: 100%;
         padding: 0.375rem 0.75rem;
@@ -191,7 +208,7 @@
                                         </div>
                                         <div class="card-content">
                                             <div class="card-body">
-                                                @using (Html.BeginForm())
+                                                @using (Html.BeginForm("Create", "Patients", FormMethod.Post))
                                                 {
                                                     @Html.AntiForgeryToken()
                                                 <div class="row">
@@ -294,7 +311,7 @@
                                                     <div class="col-md-4 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Ngày Đến</label>
-                                                            <input name="InformationExamination.DateExamine" type="date" value="@ViewBag.DateExamination" class="form-control" readonly />
+                                                            <input name="InformationExamination.DateExamine" type="datetime" value="@ViewBag.DateExamination" class="form-control" readonly />
                                                             @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
@@ -362,36 +379,80 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <button type="button" class="btn btn-primary" onclick="insRow()">Tạo</button>
-                                                        @*<table style="width:100%" id="TableTest" class="table-bordered">
+                                                        <table id="TableTest" style="width:100%" border="1" class="table-bordered">
                                                             <tr>
                                                                 <th>Yêu cầu xét nghiệm</th>
                                                                 <th>Kết quả xét nghiệm</th>
                                                                 <th>Chức năng</th>
                                                             </tr>
                                                             <tr>
-                                                                <td><input type='text' class='form-control' /></td>
-                                                                <td><input type='text' class='form-control' /></td>
-                                                                <td></td>
+                                                                <td>
+                                                                    <input type="text" id="latbox" name="MedicalTestsPrescription[0].Name" class='form-control' />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" id="lngbox" name="MedicalTestsPrescription[0].Result" class='form-control' />
+                                                                </td>
+                                                                <td><input class="btn btn-primary" type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)" /></td>
                                                             </tr>
-                                                        </table>*@
-                                                    <table id="TableTest" style="width:100%" border="1" class="table-bordered">
-                                                        <tr>
-                                                            <th>Yêu cầu xét nghiệm</th>
-                                                            <th>Kết quả xét nghiệm</th>
-                                                            <th>Chức năng</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><input type="text" id="latbox" class='form-control' /></td>
-                                                            <td><input type="text" id="lngbox" class='form-control' /></td>
-                                                            <td><input class="btn btn-primary" type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)" /></td>
-                                                        </tr>
-                                                    </table>
+                                                        </table>
                                                     </div>
-                                                    
-                                                    <div class="col-12 d-flex justify-content-end">
+                                                    <div class="card-header" style="padding-bottom:0px">
+                                                        <h4 class="card-title">Thông Tin Toa Thuốc</h4>
+                                                        <hr />
+                                                    </div>
+                                                    <div class="col-md-8 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Tên Thuốc</label>
+                                                            <select id="NameMedication" name="Medication.Name" class="choices form-select">
+                                                                <option placeholder>Vui Lòng Chọn Tên Thuốc</option>
+                                                                @foreach (var medication in ViewBag.NameMedication)
+                                                                {
+                                                                    <option value="@medication.ID">@medication.Name</option>
+                                                                }
+                                                            </select>
+                                                            @*@Html.TextBoxFor(model => model.Medication.Name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                            @Html.ValidationMessageFor(model => model.Medication.Name, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Liều lượng</label>
+                                                            <div class="input-group mb-3">
+                                                                <input type="number" id="UnitMedication" name="Prescription_Detail.NumMedication" class="form-control">
+                                                                <span class="input-group-text" id="DVT"></span>
+                                                            </div>
+                                                            @*@Html.TextBoxFor(model => model.Prescription_Detail.NumMedication, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                            @Html.ValidationMessageFor(model => model.Prescription_Detail.NumMedication, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8 col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-column">Ghi Chú</label>
+                                                            <input id="NoteMedication" type="text" name="Prescription_Detail.Note" class="form-control">
+                                                            @*@Html.TextBoxFor(model => model.Patient.MedicalHistory, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                            @Html.ValidationMessageFor(model => model.Prescription_Detail.Note, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4" style="position: relative;top:23px">
+                                                        <button type="button" class="btn btn-primary" onclick="insRowMedication()">Thêm Thuốc</button>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table id="TableMedication" style="width:100%" border="1" class="table-bordered">
+                                                            <tr>
+                                                                <th>Tên Thuốc</th>
+                                                                <th>Liều Lượng</th>
+                                                                <th>Ghi Chú</th>
+                                                                <th>Gỡ Bỏ</th>
+                                                            </tr>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-end pt-4">
                                                         <button type="submit"
                                                                 class="btn btn-primary me-1 mb-1">
-                                                            Submit
+                                                            Tạo Hồ Sơ
                                                         </button>
                                                         <button type="reset"
                                                                 class="btn btn-light-secondary me-1 mb-1">
@@ -451,6 +512,8 @@
 
 @section scripts{
 <script type="text/javascript">
+    var j = 1;
+    var k = 1;
     function deleteRow(row) {
         var i = row.parentNode.parentNode.rowIndex;
         if (document.getElementById("TableTest").rows.length === 2) {
@@ -464,11 +527,49 @@
         var new_row = x.rows[1].cloneNode(true);
         var inp0 = new_row.cells[0].getElementsByTagName('input')[0];
         inp0.value = '';
+        inp0.setAttribute("name", "MedicalTestsPrescription" + "[" + j + "]" + ".Name");
         var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
         inp1.value = '';
+        inp1.setAttribute("name", "MedicalTestsPrescription" + "[" + j + "]" + ".Result");
         var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
         inp2.vale = 'Delete';
         x.appendChild(new_row);
+        j++;
+    }
+
+    var formatCss = document.querySelector('.choices__list--single');
+    formatCss.classList.add('form-control');
+
+    var select = document.querySelector('#NameMedication');
+    select.addEventListener('change', (e) => {
+        var id = parseInt(e.target.value);
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("FindMedication", "Medications")",
+            data: { id: id},
+            success: (res) => {
+                document.querySelector('#DVT').innerHTML = res.data
+            }
+        })
+    })
+
+    function insRowMedication() {
+        var IDMedication = $('#NameMedication').val();
+        var NameMedication = $('#NameMedication').text();
+        var UnitMedication = $('#UnitMedication').val();
+        var NoteMedication = $('#NoteMedication').val();
+        console.log(NameMedication, UnitMedication, NoteMedication, IDMedication)
+        var medication = document.getElementById('TableMedication');
+        var row = medication.insertRow(k);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        cell0.innerHTML = NameMedication;
+        cell1.innerHTML = UnitMedication;
+        cell2.innerHTML = NoteMedication;
+        cell3.innerHTML = "<button class='btn btn-primary' type='button' onClick='changeRec('.$num.')'>Delete</button>"
+        k++;
     }
 </script>
 }

@@ -35,6 +35,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var userID = Users[i];
                 var roleID = db.AspNetRoles.Find(role.Id);
                 var user = UserManager.FindById(userID);
+                var activeAccount = db.Users.FirstOrDefault(c => c.UserID == userID);
                 if(UserManager.IsInRole(user.Id, roleID.Name))
                 {
                     countExist += 1;
@@ -42,6 +43,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 else
                 {
                     UserManager.AddToRole(user.Id, roleID.Name);
+                    activeAccount.ActiveAccount = true;
+                    db.Entry(activeAccount).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
             }
             TempData["CountUserExist"] = countExist;

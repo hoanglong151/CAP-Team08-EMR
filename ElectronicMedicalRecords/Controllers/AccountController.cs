@@ -357,7 +357,11 @@ namespace ElectronicMedicalRecords.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("HomePage", "Users", new { Area = "Admin"});
+                        if(check.ActiveAccount == true)
+                        {
+                            return RedirectToAction("HomePage", "Users", new { Area = "Admin"});
+                        }
+                        return RedirectToAction("DenyAccount", "Users", new { Area = "Admin" });
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -417,7 +421,7 @@ namespace ElectronicMedicalRecords.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
