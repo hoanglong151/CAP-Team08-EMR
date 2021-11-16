@@ -21,6 +21,57 @@
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
 </head>
 <body>
+    <style type="text/css">
+        /*Added css for design notification area, you can design by your self*/
+        /* COPY css content from youtube video description*/
+        .noti-content {
+            position: fixed;
+            border-radius: 4px;
+            top: 70px;
+            width: 250px;
+            display: none;
+            left: 18%
+        }
+
+        ul#notiContent {
+            max-height: 200px;
+            overflow: auto;
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            flex-grow: 1; 
+        }
+
+            ul#notiContent li {
+                padding: 6px;
+                background: #fff;
+            }
+
+        .noti-top-arrow {
+            border-style: solid;
+            border-width: 12px;
+            border-color: transparent #000 transparent transparent;
+            width: 24px;
+            height: 24px;
+        }
+
+        span.noti {
+            color: #000;
+            position: fixed;
+            font-size: 18px;
+            cursor: pointer;
+            left: 16%;
+            top: 10%;
+            background-color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        span.count {
+            position: absolute;
+            font-size: 10px
+        }
+    </style>
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active nav-bg">
@@ -34,6 +85,11 @@
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
+                </div>
+                <span class="noti fas fa-bell"><span class="count">&nbsp;</span></span>
+                <div class="noti-content">
+                    <div class="noti-top-arrow"></div>
+                    <ul id="notiContent"></ul>
                 </div>
                 @{
                     Html.RenderAction("RenderUser", "Users");
@@ -117,12 +173,70 @@
     <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/toastify.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap-tagsinput.js")"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.signalR-2.4.2.min.js")"></script>
+    <script src="@Url.Content("~/signalr/hubs")"></script>
     <script>
         $(document).ready(function () {
             $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');
             $('.submenu-item.active').closest('.sidebar-item').addClass('active');
             $('.submenu-item.active').closest('.submenu').addClass('active');
         });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('span.noti').click((e) => {
+                e.stopPropagation();
+                $('.noti-content').show().css("display","flex");
+                var count = 0;
+                count = parseInt($('span.count').html()) || 0;
+                if (count > 0) {
+                    updateNotification();
+                }
+                $('span.count', this).html("&nbsp;");
+            })
+            $('html').click(function () {
+                $('.noti-content').hide();
+            })
+            updateNotification();
+            function updateNotification() {
+                $('#notiContent').empty();
+                $('#notiContent').append($('<li>Loading...</li>'));
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetNotification", "InformationExaminations")",
+                    success: function (res) {
+                        $('#notiContent').empty();
+                        if (res.length == 0) {
+                            $('#notiContent').append($('<li>No data available</li>'));
+                        }
+                        $.each(res.userName, function (index, value) {
+                            $('#notiContent').append($('<li><a href="@Url.Action("Index", "Patients")">Bệnh nhân: ' + value.Name + '</a></li>'));
+                        })
+                        $('span.count').html(res.data.length);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            }
+
+            //function updateNotificationCount() {
+            //    var count = 0;
+            //    count = parseInt($('span.count').html()) || 0;
+            //    count++;
+            //    $('span.count').html(count);
+            //}
+            var notificationHub = $.connection.notificationHub;
+            $.connection.hub.start().done(function () {
+                console.log("Notification hub started");
+            });
+            notificationHub.client.notify = function (message) {
+                if (message && message.toLowerCase() == "added") {
+                    updateNotification();
+                }
+            }
+        })
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)

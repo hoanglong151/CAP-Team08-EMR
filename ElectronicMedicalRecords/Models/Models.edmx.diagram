@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="1.5" PointY="54.75" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3.75" PointY="49.375" />
@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="3" PointY="59.875" />
         <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="1.5" PointY="36.5" />
         <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="1.5" PointY="39" />
-        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="0.75" PointY="19.375" />
         <EntityTypeShape EntityType="CP24Team08Model.MedicalTestsPrescription" Width="1.5" PointX="3" PointY="19.125" />
         <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="3" PointY="63.75" />
         <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="64.125" />
@@ -45,7 +44,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort7" />
         <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort8" />
         <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort9" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
         <AssociationConnector Association="CP24Team08Model.FK_Diagnostic_DiagnosticsCategory" />
         <AssociationConnector Association="CP24Team08Model.FK_Diagnostic_Prescription" />
@@ -53,12 +51,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_User_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
-        <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Subclinical_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
@@ -68,6 +60,14 @@
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.FK_Subclinical_User" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="3.75" PointY="25.75" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
+        <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Subclinical_InformationExamination" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

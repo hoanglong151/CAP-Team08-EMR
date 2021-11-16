@@ -23,6 +23,33 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExaminations.ToList());
         }
 
+        public JsonResult GetNotification()
+        {
+            db.Configuration.ProxyCreationEnabled = true;
+            //db.Configuration.LazyLoadingEnabled = false;
+            NotificationComponent NC = new NotificationComponent();
+            var list = NC.GetInformationExamination();
+            //var list = db.MedicalTestsPrescriptions.Where(p => p.Result == null).ToList();
+            List<InformationExamination> informationPatient = new List<InformationExamination>();
+            List<Patient> patient = new List<Patient>();
+            foreach (var item in list)
+            {
+                var information = db.InformationExaminations.FirstOrDefault(p => p.ID == item.InformationExamination_ID);
+                informationPatient.Add(information);
+            }
+            foreach(var item1 in informationPatient)
+            {
+                var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
+                patient.Add(patientUser);
+            }
+            var listpatient = patient.Select(s => new
+            {
+                ID = s.ID,
+                Name = s.Name,
+            }).ToList();
+            return Json(new { data = list, userName = listpatient }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/InformationExaminations/Details/5
         public ActionResult Details(int? id)
         {
@@ -52,14 +79,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InformationExamination informationExamination, int PatientID)
+        public ActionResult Create(InformationExamination informationExamination, int PatientID, List<MedicalTestsPrescription> medicalTestsPrescription)
         {
+            MedicalTestsPrescriptionsController medicalTestsPrescriptionsController = new MedicalTestsPrescriptionsController();
             if (ModelState.IsValid)
             {
                 informationExamination.Patient_ID = PatientID;
                 informationExamination.DateEnd = DateTime.Now;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
+                medicalTestsPrescriptionsController.Create(medicalTestsPrescription, informationExamination.ID);
                 return View("Create", db.Patients);
             }
 

@@ -10,5 +10,8 @@ namespace ElectronicMedicalRecords.Models
     {
         public InformationExamination InformationExamination { get; set; }
         public Patient Patient { get; set; }
+        public List<MedicalTestsPrescription> MedicalTestsPrescription { get; set; }
+        public Medication Medication { get; set; }
+        public Prescription_Detail Prescription_Detail { get; set; }
     }
 }

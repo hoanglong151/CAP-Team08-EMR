@@ -51,7 +51,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name");
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
-            ViewBag.DateExamination = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.NameMedication = db.Medications.ToList();
+            ViewBag.DateExamination = DateTime.Now;
             return View();
         }
 
@@ -60,14 +61,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Patient patient, InformationExamination informationExamination)
+        public ActionResult Create(Patient patient, InformationExamination informationExamination, List<MedicalTestsPrescription> medicalTestsPrescription)
         {
-            InformationExaminationsController controller = new InformationExaminationsController();
+            InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
             if (ModelState.IsValid)
             {
                 db.Patients.Add(patient);
                 db.SaveChanges();
-                controller.Create(informationExamination, patient.ID);
+                informationExaminationsController.Create(informationExamination, patient.ID, medicalTestsPrescription);
                 return RedirectToAction("Index");
             }
 

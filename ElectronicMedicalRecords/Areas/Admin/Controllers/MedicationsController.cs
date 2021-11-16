@@ -35,6 +35,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }).ToList();
             return Json(new { data = listMedication }, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult FindMedication(int? id)
+        {
+            var medication = db.Medications.FirstOrDefault(p => p.ID == id);
+            return Json(new { data = medication.Unit }, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: Admin/Medications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

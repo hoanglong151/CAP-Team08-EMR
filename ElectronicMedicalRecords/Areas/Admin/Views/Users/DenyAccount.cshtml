@@ -2,6 +2,46 @@
     Layout = null;
 }
 
-<div style="background-image: url('../../assets/images/Deny.png'); ">
-    a
-</div>
+<style>
+    body{
+        margin:0;
+        padding:0
+    }
+    .bg-deny {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: linear-gradient(rgba(104, 57, 10, 0.3), rgba(0, 0, 0, 0.5)),url('../../../../asset/Deny.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center
+    }
+    .form {
+        width: 25rem;
+        background-color: #fff;
+        border-radius: 4px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    img{
+        width: 20%;
+    }
+    h3 {
+        text-align: center
+    }
+    h2 {
+        color: red
+    }
+</style>
+
+<section class="bg-deny">
+    <div class="form">
+        <img src="@Url.Content("~/asset/VL.png")" />
+        <h3>Tài khoản của bạn chưa được cấp quyền truy cập vào hệ thống</h3>
+        <h2>Vui lòng chờ xét duyệt!</h2>
+    </div>
+</section>
