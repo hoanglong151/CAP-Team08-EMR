@@ -42,6 +42,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = medication.Unit }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Create()
+        {
+            ViewBag.NameMedication = db.Medications.ToList();
+            return PartialView("_Create");
+        }
+
         // POST: Admin/Medications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

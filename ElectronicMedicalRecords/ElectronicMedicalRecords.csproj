@@ -258,6 +258,7 @@
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MultipleModelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
@@ -2566,6 +2567,11 @@
     <Content Include="Areas\Admin\Views\CTMaus\Details.cshtml" />
     <Content Include="Areas\Admin\Views\CTMaus\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CTMaus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Medications\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationExaminations\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CTMaus\_Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

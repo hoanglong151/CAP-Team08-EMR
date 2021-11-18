@@ -42,11 +42,11 @@
         box-shadow: unset
     }
 
-    .bootstrap-tagsinput .label-info {
-        background-color: #435ebe;
-        border-radius: 4px;
-        padding: 4px
-    }
+        .bootstrap-tagsinput .label-info {
+            background-color: #435ebe;
+            border-radius: 4px;
+            padding: 4px
+        }
 
     tr {
         /*display:flex;*/
@@ -81,9 +81,10 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("Create", "Patients", FormMethod.Post))
+@using (Html.BeginForm("Create", "MultipleModels", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
@@ -116,257 +117,235 @@
                                             <div class="card-content">
                                                 <div class="card-body">
                                                     @*@using (Html.BeginForm("Create", "Patients", FormMethod.Post))
-                                                    {
-                                                        @Html.AntiForgeryToken()*@
-                                                        <div class="row">
-                                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="first-name-column">Họ Và Tên</label>
-                                                                    @Html.EditorFor(model => model.Patient.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ Và Tên" } })
-                                                                    @Html.ValidationMessageFor(model => model.Patient.Name, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="last-name-column">Giới Tính</label>
-                                                                    <div class="position-relative ml-5px">
-                                                                        @Html.DropDownList("Patient.Gender_ID", null, htmlAttributes: new { @class = "form-select" })
-                                                                        @Html.ValidationMessageFor(model => model.Patient.Gender_ID, "", new { @class = "text-danger" })
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="city-column">Ngày Sinh</label>
-                                                                    <input class="form-control" type="date" name="Patient.BirthDate" id="birthdate" required />
-                                                                    @Html.ValidationMessageFor(model => model.Patient.BirthDate, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="country-floating">Dân Tộc</label>
-                                                                    @Html.DropDownList("Patient.Nation1_ID", null, htmlAttributes: new { @class = "form-select" })
-                                                                    @Html.ValidationMessageFor(model => model.Patient.Nation1_ID, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="company-column">Địa Chỉ</label>
-                                                                    @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ" } })
-                                                                    @Html.ValidationMessageFor(model => model.Patient.Address, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Quê Quán</label>
-                                                                    @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @name = "Long" })
-                                                                    @*<select name="Patient.HomeTown_ID">
-                                                                            @for(int i = 0; i < ViewBag.HomeTown_ID.length; i++)
-                                                                            {
-                                                                                <option value="@i">aa</option>
-                                                                            }
-                                                                        </select>*@
-                                                                    @Html.ValidationMessageFor(model => model.Patient.HomeTown_ID, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Quốc Gia</label>
-                                                                    @Html.DropDownList("Patient.Nation_ID", null, htmlAttributes: new { @class = "form-select" })
-                                                                    @Html.ValidationMessageFor(model => model.Patient.Nation_ID, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Điện Thoại</label>
-                                                                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.Patient.Phone, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Số BHYT</label>
-                                                                    @Html.EditorFor(model => model.Patient.InsuranceCode, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.Patient.InsuranceCode, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-header" style="padding-bottom:0px">
-                                                                <h4 class="card-title">Thông Tin Bệnh Án</h4>
-                                                                <hr />
-                                                            </div>
-                                                            <div class="col-md-12 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Tiền Sử</label>
-                                                                    <input type="text" data-role="tagsinput" name="Patient.MedicalHistory" class="form-control">
-                                                                    @*@Html.TextBoxFor(model => model.Patient.MedicalHistory, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                    @Html.ValidationMessageFor(model => model.Patient.MedicalHistory, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Bệnh Sử</label>
-                                                                    <input type="text" data-role="tagsinput" name="Patient.HistoryDisease" class="form-control">
-                                                                    @*@Html.EditorFor(model => model.Patient.HistoryDisease, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                    @Html.ValidationMessageFor(model => model.Patient.HistoryDisease, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-header" style="padding-bottom:0px">
-                                                                <h4 class="card-title">Thông Tin Khám bệnh</h4>
-                                                                <hr />
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Ngày Đến</label>
-                                                                    <input name="InformationExamination.DateExamine" type="datetime" value="@ViewBag.DateExamination" class="form-control" readonly />
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Ngày Đi</label>
-                                                                    <input name="InformationExamination.DateEnd" type="date" class="form-control" />
-                                                                    @*@Html.EditorFor(model => model.InformationExamination.DateEnd, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Bác Sĩ</label>
-                                                                    @Html.HiddenFor(model => model.InformationExamination.User_ID, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.UserByID } })
-                                                                    <input value="@ViewBag.UserName" class="form-control" readonly />
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Nhịp Tim</label>
-                                                                    @Html.EditorFor(model => model.InformationExamination.HeartBeat, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.HeartBeat, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Nhịp Thở</label>
-                                                                    @Html.EditorFor(model => model.InformationExamination.Breathing, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.Breathing, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Huyết Áp</label>
-                                                                    @Html.EditorFor(model => model.InformationExamination.BloodPressure, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.BloodPressure, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Cân Nặng</label>
-                                                                    @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Chiều Cao</label>
-                                                                    @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Tình Trạng</label>
-                                                                    @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select" })
-                                                                    @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            @*<div class="card-header" style="padding-bottom:0px">
-                                                                    <h4 class="card-title">Thông Tin Xét Nghiệm</h4>
-                                                                    <hr />
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <button type="button" class="btn btn-primary" onclick="insRow()">Tạo</button>
-                                                                    <table id="TableTest" style="width:100%" border="1" class="table-bordered">
-                                                                        <tr>
-                                                                            <th>Yêu cầu xét nghiệm</th>
-                                                                            <th>Kết quả xét nghiệm</th>
-                                                                            <th>Chức năng</th>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <input type="text" id="latbox" name="MedicalTestsPrescription[0].Name" class='form-control' />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" id="lngbox" name="MedicalTestsPrescription[0].Result" class='form-control' />
-                                                                            </td>
-                                                                            <td><input class="btn btn-primary" type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)" /></td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>*@
-                                                            <div class="card-header" style="padding-bottom:0px">
-                                                                <h4 class="card-title">Thông Tin Toa Thuốc</h4>
-                                                                <hr />
-                                                            </div>
-                                                            <div class="col-md-8 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Tên Thuốc</label>
-                                                                    <select id="NameMedication" name="Medication.Name" class="choices form-select">
-                                                                        <option placeholder>Vui Lòng Chọn Tên Thuốc</option>
-                                                                        @foreach (var medication in ViewBag.NameMedication)
-                                                                        {
-                                                                            <option value="@medication.ID">@medication.Name</option>
-                                                                        }
-                                                                    </select>
-                                                                    @*@Html.TextBoxFor(model => model.Medication.Name, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                    @Html.ValidationMessageFor(model => model.Medication.Name, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Liều lượng</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="number" id="UnitMedication" name="Prescription_Detail.NumMedication" class="form-control">
-                                                                        <span class="input-group-text" id="DVT"></span>
-                                                                    </div>
-                                                                    @*@Html.TextBoxFor(model => model.Prescription_Detail.NumMedication, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                    @Html.ValidationMessageFor(model => model.Prescription_Detail.NumMedication, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="email-id-column">Ghi Chú</label>
-                                                                    <input id="NoteMedication" type="text" name="Prescription_Detail.Note" class="form-control">
-                                                                    @*@Html.TextBoxFor(model => model.Patient.MedicalHistory, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                    @Html.ValidationMessageFor(model => model.Prescription_Detail.Note, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4" style="position: relative;top:23px">
-                                                                <button type="button" class="btn btn-primary" onclick="insRowMedication()">Thêm Thuốc</button>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <table id="TableMedication" style="width:100%" border="1" class="table-bordered">
-                                                                    <tr>
-                                                                        <th>Tên Thuốc</th>
-                                                                        <th>Liều Lượng</th>
-                                                                        <th>Ghi Chú</th>
-                                                                        <th>Gỡ Bỏ</th>
-                                                                    </tr>
-                                                                </table>
-                                                            </div>
+                {
+                    @Html.AntiForgeryToken()*@
+                                                    <div class="row">
 
-                                                            <div class="col-12 d-flex justify-content-end pt-4">
-                                                                <button type="submit"
-                                                                        class="btn btn-primary me-1 mb-1">
-                                                                    Tạo Hồ Sơ
-                                                                </button>
-                                                                <button type="reset"
-                                                                        class="btn btn-light-secondary me-1 mb-1">
-                                                                    Reset
-                                                                </button>
+                                                        <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="first-name-column">Họ Và Tên</label>
+                            @Html.EditorFor(model => model.Patient.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ Và Tên" } })
+                            @Html.ValidationMessageFor(model => model.Patient.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="last-name-column">Giới Tính</label>
+                            <div class="position-relative ml-5px">
+                                @Html.DropDownList("Patient.Gender_ID", null, htmlAttributes: new { @class = "form-select" })
+                                @Html.ValidationMessageFor(model => model.Patient.Gender_ID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="city-column">Ngày Sinh</label>
+                            <input class="form-control" type="date" name="Patient.BirthDate" id="birthdate" required />
+                            @Html.ValidationMessageFor(model => model.Patient.BirthDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="country-floating">Dân Tộc</label>
+                            @Html.DropDownList("Patient.Nation1_ID", null, htmlAttributes: new { @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.Patient.Nation1_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="company-column">Địa Chỉ</label>
+                            @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ" } })
+                            @Html.ValidationMessageFor(model => model.Patient.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="email-id-column">Quê Quán</label>
+                            @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @name = "Long" })
+                            @Html.ValidationMessageFor(model => model.Patient.HomeTown_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="email-id-column">Quốc Gia</label>
+                            @Html.DropDownList("Patient.Nation_ID", null, htmlAttributes: new { @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.Patient.Nation_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="email-id-column">Điện Thoại</label>
+                            @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Patient.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label for="email-id-column">Số BHYT</label>
+                            @Html.EditorFor(model => model.Patient.InsuranceCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Patient.InsuranceCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                                                        <div class="card-header" style="padding-bottom:0px">
+                        <h4 class="card-title">Thông Tin Bệnh Án</h4>
+                        <hr />
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="email-id-column">Tiền Sử</label>
+                            <input type="text" data-role="tagsinput" name="Patient.MedicalHistory" class="form-control">
+                            @Html.ValidationMessageFor(model => model.Patient.MedicalHistory, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="email-id-column">Bệnh Sử</label>
+                            <input type="text" data-role="tagsinput" name="Patient.HistoryDisease" class="form-control">
+                            @Html.ValidationMessageFor(model => model.Patient.HistoryDisease, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                                                        <div class="card-header" style="padding-bottom:0px">
+                                                            <h4 class="card-title">Thông Tin Khám bệnh</h4>
+                                                            <hr />
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Ngày Đến</label>
+                                                                <input name="InformationExamination.DateExamine" type="datetime" value="@ViewBag.DateExamination" class="form-control" readonly />
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Ngày Đi</label>
+                                                                <input name="InformationExamination.DateEnd" type="date" class="form-control" />
+                                                                @*@Html.EditorFor(model => model.InformationExamination.DateEnd, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Bác Sĩ</label>
+                                                                @Html.HiddenFor(model => model.InformationExamination.User_ID, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.UserByID } })
+                                                                <input value="@ViewBag.UserName" class="form-control" readonly />
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Nhịp Tim</label>
+                                                                @Html.EditorFor(model => model.InformationExamination.HeartBeat, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.HeartBeat, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Nhịp Thở</label>
+                                                                @Html.EditorFor(model => model.InformationExamination.Breathing, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.Breathing, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Huyết Áp</label>
+                                                                @Html.EditorFor(model => model.InformationExamination.BloodPressure, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.BloodPressure, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Cân Nặng</label>
+                                                                @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Chiều Cao</label>
+                                                                @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Tình Trạng</label>
+                                                                @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select" })
+                                                                @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-header" style="padding-bottom:0px">
+                                                            <h4 class="card-title">Thông Tin Toa Thuốc</h4>
+                                                            <hr />
+                                                        </div>
+                                                        <div class="col-md-8 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Tên Thuốc</label>
+                                                                <select id="NameMedication" name="Medication.Name" class="choices form-select">
+                                                                    <option placeholder>Vui Lòng Chọn Tên Thuốc</option>
+                                                                    @foreach (var medication in ViewBag.NameMedication)
+                                                                    {
+                                                                        <option value="@medication.ID">@medication.Name</option>
+                                                                    }
+                                                                </select>
+                                                                @Html.ValidationMessageFor(model => model.Medication.Name, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Liều lượng</label>
+                                                                <div class="input-group mb-3">
+                                                                    <input type="number" id="UnitMedication" name="Prescription_Detail.NumMedication" class="form-control">
+                                                                    <span class="input-group-text" id="DVT"></span>
+                                                                </div>
+                                                                @Html.ValidationMessageFor(model => model.Prescription_Detail.NumMedication, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8 col-12">
+                                                            <div class="form-group">
+                                                                <label for="email-id-column">Ghi Chú</label>
+                                                                <input id="NoteMedication" type="text" name="Prescription_Detail.Note" class="form-control">
+                                                                @Html.ValidationMessageFor(model => model.Prescription_Detail.Note, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4" style="position: relative;top:23px">
+                                                            <button type="button" class="btn btn-primary" onclick="insRowMedication()">Thêm Thuốc</button>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <table id="TableMedication" style="width:100%" border="1" class="table-bordered">
+                                                                <tr>
+                                                                    <th>Tên Thuốc</th>
+                                                                    <th>Liều Lượng</th>
+                                                                    <th>Ghi Chú</th>
+                                                                    <th>Gỡ Bỏ</th>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="col-12 d-flex justify-content-end pt-4">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary me-1 mb-1">
+                                                                Tạo Hồ Sơ
+                                                            </button>
+                                                            <button type="reset"
+                                                                    class="btn btn-light-secondary me-1 mb-1">
+                                                                Reset
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                     @*}*@
                                                 </div>
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-end pt-4">
+                                                <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">
+                                                    Tạo Hồ Sơ
+                                                </button>
+                                                <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">
+                                                    Reset
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -444,7 +423,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for(int i = 0; i < ViewBag.CTMau.Count; i++)
+                                                @for (int i = 0; i < ViewBag.CTMau.Count; i++)
                                                 {
                                                     <tr>
                                                         <td hidden>

@@ -1,0 +1,78 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+    
+<div class="card-header" style="padding-bottom:0px">
+    <h4 class="card-title">Thông Tin Khám bệnh</h4>
+    <hr />
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Ngày Đến</label>
+                    <input name="InformationExamination.DateExamine" type="datetime" value="@ViewBag.DateExamination" class="form-control" readonly />
+                    @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Ngày Đi</label>
+                    <input name="InformationExamination.DateEnd" type="date" class="form-control" />
+                    @*@Html.EditorFor(model => model.InformationExamination.DateEnd, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Bác Sĩ</label>
+                    @*@Html.HiddenFor(model => model.InformationExamination.User_ID, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.UserByID } })*@
+                    <input value="@ViewBag.UserByID" name="InformationExamination.User_ID" hidden/>
+                    <input value="@ViewBag.UserName" class="form-control" readonly />
+                    @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Nhịp Tim</label>
+                    @Html.EditorFor(model => model.InformationExamination.HeartBeat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InformationExamination.HeartBeat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Nhịp Thở</label>
+                    @Html.EditorFor(model => model.InformationExamination.Breathing, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InformationExamination.Breathing, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Huyết Áp</label>
+                    @Html.EditorFor(model => model.InformationExamination.BloodPressure, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InformationExamination.BloodPressure, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Cân Nặng</label>
+                    @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Chiều Cao</label>
+                    @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Tình Trạng</label>
+                    @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
