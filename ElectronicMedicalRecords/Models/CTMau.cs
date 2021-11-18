@@ -12,23 +12,23 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Prescription
+    public partial class CTMau
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Prescription()
+        public CTMau()
         {
-            this.Diagnostics = new HashSet<Diagnostic>();
-            this.Prescription_Detail = new HashSet<Prescription_Detail>();
+            this.Detail_CTMau = new HashSet<Detail_CTMau>();
         }
     
         public int ID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> InformationExamination_ID { get; set; }
+        public bool ChiDinh { get; set; }
+        public string NameTest { get; set; }
+        public Nullable<double> Result { get; set; }
+        public string CSBT { get; set; }
+        public string Unit { get; set; }
+        public string MayXN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnostic> Diagnostics { get; set; }
-        public virtual InformationExamination InformationExamination { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
+        public virtual ICollection<Detail_CTMau> Detail_CTMau { get; set; }
     }
 }

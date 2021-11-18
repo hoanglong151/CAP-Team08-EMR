@@ -96,10 +96,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                if(check.ActiveAccount == false)
-                {
-                    return RedirectToAction("DenyAccount");
-                }
                 return RedirectToAction("HomePage");
             }
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", user.HomeTown_ID);

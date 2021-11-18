@@ -79,16 +79,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InformationExamination informationExamination, int PatientID, List<MedicalTestsPrescription> medicalTestsPrescription)
+        public ActionResult Create(InformationExamination informationExamination, int PatientID, List<CTMau> cTMaus)
         {
-            MedicalTestsPrescriptionsController medicalTestsPrescriptionsController = new MedicalTestsPrescriptionsController();
+            Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
             if (ModelState.IsValid)
             {
                 informationExamination.Patient_ID = PatientID;
                 informationExamination.DateEnd = DateTime.Now;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
-                medicalTestsPrescriptionsController.Create(medicalTestsPrescription, informationExamination.ID);
+                detail_CTMauController.Create(cTMaus, informationExamination.ID);
                 return View("Create", db.Patients);
             }
 

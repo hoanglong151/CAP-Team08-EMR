@@ -252,9 +252,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MedicalTestsPrescriptionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
@@ -285,13 +286,22 @@
     <Compile Include="Models\Clinical.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CTMau.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_CTMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Diagnostic.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DiagnosticsCategory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DongMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gender.cs">
@@ -358,6 +368,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\XetNghiemMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationComponent.cs" />
@@ -886,6 +899,8 @@
     <Content Include="Areas\Admin\assets\DataTables\Select-1.3.3\js\select.semanticui.js" />
     <Content Include="Areas\Admin\assets\DataTables\Select-1.3.3\js\select.semanticui.min.js" />
     <Content Include="Areas\Admin\assets\images\bg\4853433.jpg" />
+    <Content Include="Areas\Admin\Views\Shared\component-modal.html" />
+    <Content Include="Areas\Admin\Views\Shared\table-datatable.html" />
     <Content Include="asset\Deny.png" />
     <Content Include="Areas\Admin\assets\images\faces\1.jpg" />
     <Content Include="Areas\Admin\assets\images\faces\2.jpg" />
@@ -2541,11 +2556,16 @@
     <Content Include="Areas\Admin\Views\InformationExaminations\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\DenyAccount.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicalTestsPrescriptions\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicalTestsPrescriptions\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicalTestsPrescriptions\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicalTestsPrescriptions\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\MedicalTestsPrescriptions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CTMaus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CTMaus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CTMaus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CTMaus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CTMaus\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

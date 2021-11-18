@@ -211,7 +211,9 @@
                             $('#notiContent').append($('<li>No data available</li>'));
                         }
                         $.each(res.userName, function (index, value) {
-                            $('#notiContent').append($('<li><a href="@Url.Action("Index", "Patients")">Bệnh nhân: ' + value.Name + '</a></li>'));
+                            console.log(value.ID)
+                            var href = "/Admin/Patients/Edit/" + value.ID;
+                            $('#notiContent').append($('<li><a href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '</a></li>'));
                         })
                         $('span.count').html(res.data.length);
                     },
