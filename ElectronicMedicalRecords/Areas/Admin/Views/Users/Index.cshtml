@@ -77,11 +77,11 @@
                                         </td>
                                     }
                                     <td>
-                                        <a href="@Url.Action("Edit", "Users", new { id = item.ID })" class="btnHover btn btn-primary">
+                                        <a href="@Url.Action("Edit", "Users", new { id = item.ID })" class="btnHover edit btn btn-primary">
                                             <i class='fas fa-user-edit'></i>
                                         </a> |
                                         <!-- Button trigger for BorderLess Modal -->
-                                        <button type="button" class="btnHover btn btn-primary"
+                                        <button type="button" class="btnHover info btn btn-primary"
                                                 data-bs-toggle="modal" data-bs-target="#border-less-@item.ID">
                                             <i class="fas fa-info"></i>
                                         </button>
@@ -131,7 +131,7 @@
                                         @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "clickbutton" })*@
                                         <div class="modal-warning me-1 mb-1 d-inline-block">
                                             <!-- Button trigger for warning theme modal -->
-                                            <button type="button" class="btnHover btn btn-primary"
+                                            <button type="button" class="btnHover trash btn btn-primary"
                                                     data-bs-toggle="modal" data-bs-target="#warning-BS-@item.ID">
                                                 <i class='fas fa-trash'></i>
                                             </button>

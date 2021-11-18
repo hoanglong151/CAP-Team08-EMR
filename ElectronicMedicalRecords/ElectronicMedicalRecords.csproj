@@ -2431,6 +2431,11 @@
     <Content Include="asset\021.jpg" />
     <Content Include="asset\bg-login.jpg" />
     <Content Include="asset\bg.jpg" />
+    <Content Include="asset\nav-bg1.jpg" />
+    <Content Include="asset\nav-bg2.jpg" />
+    <Content Include="asset\nav-bg3-rs.jpg" />
+    <Content Include="asset\nav-bg3.jpg" />
+    <Content Include="asset\nav-bg4.jpg" />
     <Content Include="asset\VL.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

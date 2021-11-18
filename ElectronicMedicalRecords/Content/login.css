@@ -13,11 +13,11 @@ body {
 
 section {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(238, 118, 33, 0.3), rgba(0, 0, 0, 0.5)), url('../asset/bg-login.jpg');
+    background-image: linear-gradient(90deg, rgba(7,7,8,0.6001751042213761) 0%, rgba(0,0,0,0.6001751042213761) 100%), url('../asset/bg-login.jpg');
     background-size: cover;
 }
 

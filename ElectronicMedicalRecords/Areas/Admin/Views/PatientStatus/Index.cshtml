@@ -165,8 +165,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            var button = "<button class='btn btn-primary btnHover' onclick='getPatientStatusByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover' onclick='deletePatientStatus(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            var button = "<button class='btn btn-primary btnHover edit' onclick='getPatientStatusByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deletePatientStatus(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                             return button;
                         },
                         "targets": 0,

@@ -1,6 +1,7 @@
 ﻿.nav-bg {
     background-size: cover;
-    background-image: linear-gradient(0deg, rgba(0,57,255,0.32566530029980745) 0%, rgba(0,57,255,0.12958686892725846) 100%), url('../../../../asset/021.jpg');
+    background-position: center;
+    background-image: linear-gradient(90deg, rgba(187,210,197,0.5021358885351015) 0%, rgba(83,105,118,0.49933476808692223) 100%), url('../../../../asset/nav-bg4.jpg');
 }
 
 
@@ -62,17 +63,30 @@
     width: 80px;
 }
 
+
+
+
 .btnHover {
     background-color: transparent;
     border: none;
     padding: 0;
     color: #000;
     padding: 3px 6px;
-    background-color: #435ebe;
+    background-color: #00766c;
+    transition: .4s ease-in-out;
 }
 
-.btnHover:hover i {
-    background-color: #3b4f96;
+.btnHover.edit:hover {
+    background: #ddb41e;
+   
+}
+
+.btnHover.trash:hover{
+    background: red;
+}
+
+.btnHover.info:hover {
+    background: #26c9d1;
 }
 
 .page-link{
