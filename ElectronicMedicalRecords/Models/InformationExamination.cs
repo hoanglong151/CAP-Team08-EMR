@@ -21,6 +21,7 @@ namespace ElectronicMedicalRecords.Models
             this.MedicalTestsPrescriptions = new HashSet<MedicalTestsPrescription>();
             this.Prescriptions = new HashSet<Prescription>();
             this.Subclinicals = new HashSet<Subclinical>();
+            this.Detail_CTMau = new HashSet<Detail_CTMau>();
         }
     
         public int ID { get; set; }
@@ -46,5 +47,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Prescription> Prescriptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subclinical> Subclinicals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_CTMau> Detail_CTMau { get; set; }
     }
 }

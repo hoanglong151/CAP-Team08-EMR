@@ -1,4 +1,4 @@
-﻿@model ElectronicMedicalRecords.Models.MedicalTestsPrescription
+﻿@model ElectronicMedicalRecords.Models.Detail_CTMau
 
 @{
     ViewBag.Title = "Details";
@@ -7,23 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>MedicalTestsPrescription</h4>
+    <h4>Detail_CTMau</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.CTMau.NameTest)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Result)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Result)
+            @Html.DisplayFor(model => model.CTMau.NameTest)
         </dd>
 
         <dt>

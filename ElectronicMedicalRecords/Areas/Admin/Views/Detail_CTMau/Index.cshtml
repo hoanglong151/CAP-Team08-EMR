@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ElectronicMedicalRecords.Models.MedicalTestsPrescription>
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Detail_CTMau>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Result)
+            @Html.DisplayNameFor(model => model.CTMau.NameTest)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.InformationExamination.ID)
@@ -26,10 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Result)
+            @Html.DisplayFor(modelItem => item.CTMau.NameTest)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InformationExamination.ID)

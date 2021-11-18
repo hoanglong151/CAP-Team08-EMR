@@ -52,8 +52,26 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
             ViewBag.NameMedication = db.Medications.ToList();
+            ViewBag.CTMau = db.CTMaus.ToList();
             ViewBag.DateExamination = DateTime.Now;
             return View();
+        }
+
+        public ActionResult LoadDetailBloods(int[] arr)
+        {
+            List<CTMau> listNewBloods = new List<CTMau>();
+            if(arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var blood = db.CTMaus.FirstOrDefault(p => p.ID == id);
+                    blood.ChiDinh = true;
+                    listNewBloods.Add(blood);
+                }
+                return Json(new { data = listNewBloods }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Patients/Create
@@ -61,14 +79,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Patient patient, InformationExamination informationExamination, List<MedicalTestsPrescription> medicalTestsPrescription)
+        public ActionResult Create(Patient patient, InformationExamination informationExamination, List<CTMau> CTMau)
         {
             InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
             if (ModelState.IsValid)
             {
                 db.Patients.Add(patient);
                 db.SaveChanges();
-                informationExaminationsController.Create(informationExamination, patient.ID, medicalTestsPrescription);
+                informationExaminationsController.Create(informationExamination, patient.ID, CTMau);
                 return RedirectToAction("Index");
             }
 
