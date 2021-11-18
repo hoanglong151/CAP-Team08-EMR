@@ -38,7 +38,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/CTMaus/Create
         public ActionResult Create()
         {
-            return View();
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.CTMau = db.CTMaus.ToList();
+            return PartialView("_Create", multiplesModel);
         }
 
         // POST: Admin/CTMaus/Create

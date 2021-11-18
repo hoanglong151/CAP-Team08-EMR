@@ -54,7 +54,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_CTMau detail_CTMau = new Detail_CTMau();
             foreach(var item in cTMaus)
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && item.ChiDinh == true)
                 {
                     detail_CTMau.CTMau_ID = item.ID;
                     detail_CTMau.InformationExamination_ID = id;
@@ -67,7 +67,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
             //return View(detail_CTMau);
-            return RedirectToAction("Index");
+            return RedirectToAction("Create", "MultipleModels");
         }
 
         // GET: Admin/Detail_CTMau/Edit/5

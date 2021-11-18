@@ -19,8 +19,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Patients
         public ActionResult Index()
         {
-            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1);
-            return View(patients.ToList());
+            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).ToList();
+            return View(patients);
         }
 
         // GET: Admin/Patients/Details/5
@@ -41,37 +41,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Patients/Create
         public ActionResult Create()
         {
-            InformationExaminationsController controller = new InformationExaminationsController();
-            var UserID = User.Identity.GetUserId();
-            var userID = db.Users.FirstOrDefault(id => id.UserID == UserID);
             ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1");
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1");
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name");
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name");
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name");
-            ViewBag.UserByID = userID.ID;
-            ViewBag.UserName = userID.Name;
-            ViewBag.NameMedication = db.Medications.ToList();
-            ViewBag.CTMau = db.CTMaus.ToList();
-            ViewBag.DateExamination = DateTime.Now;
-            return View();
-        }
-
-        public ActionResult LoadDetailBloods(int[] arr)
-        {
-            List<CTMau> listNewBloods = new List<CTMau>();
-            if(arr != null)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    var id = arr[i];
-                    var blood = db.CTMaus.FirstOrDefault(p => p.ID == id);
-                    blood.ChiDinh = true;
-                    listNewBloods.Add(blood);
-                }
-                return Json(new { data = listNewBloods }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+            return PartialView("_Create");
         }
 
         // POST: Admin/Patients/Create
@@ -79,15 +53,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Patient patient, InformationExamination informationExamination, List<CTMau> CTMau)
+        public ActionResult Create(Patient patient)
         {
-            InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
             if (ModelState.IsValid)
             {
                 db.Patients.Add(patient);
                 db.SaveChanges();
-                informationExaminationsController.Create(informationExamination, patient.ID, CTMau);
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "MultipleModels");
             }
 
             ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);

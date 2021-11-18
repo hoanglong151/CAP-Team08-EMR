@@ -29,5 +29,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual MedicationCategory MedicationCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
+        public virtual Prescription_Detail Prescription_Details { get; set; }
     }
 }

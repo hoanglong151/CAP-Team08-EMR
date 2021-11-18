@@ -66,30 +66,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/InformationExaminations/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name");
-        //    ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "Name");
-        //    ViewBag.User_ID = new SelectList(db.Users, "ID", "Name");
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(id => id.UserID == UserID);
+            ViewBag.UserByID = userID.ID;
+            ViewBag.UserName = userID.Name;
+            ViewBag.DateExamination = DateTime.Now;
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name");
+            return PartialView("_Create");
+        }
 
         // POST: Admin/InformationExaminations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InformationExamination informationExamination, int PatientID, List<CTMau> cTMaus)
+        public ActionResult Create(InformationExamination informationExamination, int patientID)
         {
-            Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
             if (ModelState.IsValid)
             {
-                informationExamination.Patient_ID = PatientID;
+                informationExamination.Patient_ID = patientID;
                 informationExamination.DateEnd = DateTime.Now;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
-                detail_CTMauController.Create(cTMaus, informationExamination.ID);
-                return View("Create", db.Patients);
+                return RedirectToAction("Create", "MultipleModels");
             }
 
             ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);
