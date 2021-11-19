@@ -139,6 +139,26 @@
           <Property Name="ChiDinh" Type="bit" Nullable="false" />
           <Property Name="Result" Type="float" />
         </EntityType>
+        <EntityType Name="Detail_SinhHoaMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinhHoaMau_ID" Type="int" />
+          <Property Name="InformationExamination_ID" Type="int" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Result" Type="float" />
+        </EntityType>
+        <EntityType Name="Detail_Urine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InfomationExamination_ID" Type="int" />
+          <Property Name="Urine_ID" Type="int" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Result" Type="float" />
+        </EntityType>
         <EntityType Name="Diagnostic">
           <Key>
             <PropertyRef Name="ID" />
@@ -327,6 +347,17 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Urine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="float" />
+          <Property Name="CSBT" Type="varchar" MaxLength="50" />
+          <Property Name="Unit" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -608,6 +639,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_SinhHoaMau_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Detail_SinhHoaMau" Type="Self.Detail_SinhHoaMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_SinhHoaMau">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_SinhHoaMau_SinhHoaMau">
+          <End Role="SinhHoaMau" Type="Self.SinhHoaMau" Multiplicity="0..1" />
+          <End Role="Detail_SinhHoaMau" Type="Self.Detail_SinhHoaMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhHoaMau">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_SinhHoaMau">
+              <PropertyRef Name="SinhHoaMau_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Urine_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Detail_Urine" Type="Self.Detail_Urine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Urine">
+              <PropertyRef Name="InfomationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Urine_Urine">
+          <End Role="Urine" Type="Self.Urine" Multiplicity="0..1" />
+          <End Role="Detail_Urine" Type="Self.Detail_Urine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Urine">
+              <PropertyRef Name="Urine_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Diagnostic_DiagnosticsCategory">
           <End Role="DiagnosticsCategory" Type="Self.DiagnosticsCategory" Multiplicity="0..1" />
           <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
@@ -871,6 +950,8 @@
           <EntitySet Name="Clinical" EntityType="Self.Clinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTMau" EntityType="Self.CTMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_CTMau" EntityType="Self.Detail_CTMau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_SinhHoaMau" EntityType="Self.Detail_SinhHoaMau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Urine" EntityType="Self.Detail_Urine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Diagnostic" EntityType="Self.Diagnostic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiagnosticsCategory" EntityType="Self.DiagnosticsCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DongMau" EntityType="Self.DongMau" Schema="dbo" store:Type="Tables" />
@@ -890,6 +971,7 @@
           <EntitySet Name="SinhHoaMau" EntityType="Self.SinhHoaMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subclinical" EntityType="Self.Subclinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urine" EntityType="Self.Urine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="XetNghiemMau" EntityType="Self.XetNghiemMau" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Clinical_Assort" Association="Self.FK_Clinical_Assort">
@@ -971,6 +1053,22 @@
           <AssociationSet Name="FK_Detail_CTMau_InformationExamination" Association="Self.FK_Detail_CTMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExamination" />
             <End Role="Detail_CTMau" EntitySet="Detail_CTMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_SinhHoaMau_InformationExamination" Association="Self.FK_Detail_SinhHoaMau_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_SinhHoaMau_SinhHoaMau" Association="Self.FK_Detail_SinhHoaMau_SinhHoaMau">
+            <End Role="SinhHoaMau" EntitySet="SinhHoaMau" />
+            <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Urine_InformationExamination" Association="Self.FK_Detail_Urine_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Detail_Urine" EntitySet="Detail_Urine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Urine_Urine" Association="Self.FK_Detail_Urine_Urine">
+            <End Role="Urine" EntitySet="Urine" />
+            <End Role="Detail_Urine" EntitySet="Detail_Urine" />
           </AssociationSet>
           <AssociationSet Name="FK_Diagnostic_DiagnosticsCategory" Association="Self.FK_Diagnostic_DiagnosticsCategory">
             <End Role="DiagnosticsCategory" EntitySet="DiagnosticsCategory" />
@@ -1252,6 +1350,25 @@
             <End Role="Detail_CTMau" EntitySet="Detail_CTMau" />
           </AssociationSet>
           <EntitySet Name="SinhHoaMaus" EntityType="CP24Team08Model.SinhHoaMau" />
+          <EntitySet Name="Detail_SinhHoaMau" EntityType="CP24Team08Model.Detail_SinhHoaMau" />
+          <EntitySet Name="Detail_Urine" EntityType="CP24Team08Model.Detail_Urine" />
+          <EntitySet Name="Urines" EntityType="CP24Team08Model.Urine" />
+          <AssociationSet Name="FK_Detail_SinhHoaMau_InformationExamination" Association="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_SinhHoaMau_SinhHoaMau" Association="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau">
+            <End Role="SinhHoaMau" EntitySet="SinhHoaMaus" />
+            <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Urine_InformationExamination" Association="CP24Team08Model.FK_Detail_Urine_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_Urine" EntitySet="Detail_Urine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Urine_Urine" Association="CP24Team08Model.FK_Detail_Urine_Urine">
+            <End Role="Urine" EntitySet="Urines" />
+            <End Role="Detail_Urine" EntitySet="Detail_Urine" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1462,6 +1579,8 @@
           <NavigationProperty Name="Prescriptions" Relationship="CP24Team08Model.FK_Prescription_InformationExamination" FromRole="InformationExamination" ToRole="Prescription" />
           <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_InformationExamination" FromRole="InformationExamination" ToRole="Subclinical" />
           <NavigationProperty Name="Detail_CTMau" Relationship="CP24Team08Model.FK_Detail_CTMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_CTMau" />
+          <NavigationProperty Name="Detail_SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_SinhHoaMau" />
+          <NavigationProperty Name="Detail_Urine" Relationship="CP24Team08Model.FK_Detail_Urine_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Urine" />
         </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
@@ -2155,7 +2274,92 @@
           <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CSBT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Result" Type="Double" />
+          <NavigationProperty Name="Detail_SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" FromRole="SinhHoaMau" ToRole="Detail_SinhHoaMau" />
         </EntityType>
+        <EntityType Name="Detail_SinhHoaMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinhHoaMau_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Result" Type="Double" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination" FromRole="Detail_SinhHoaMau" ToRole="InformationExamination" />
+          <NavigationProperty Name="SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" FromRole="Detail_SinhHoaMau" ToRole="SinhHoaMau" />
+        </EntityType>
+        <EntityType Name="Detail_Urine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InfomationExamination_ID" Type="Int32" />
+          <Property Name="Urine_ID" Type="Int32" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Result" Type="Double" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Urine_InformationExamination" FromRole="Detail_Urine" ToRole="InformationExamination" />
+          <NavigationProperty Name="Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Detail_Urine" ToRole="Urine" />
+        </EntityType>
+        <EntityType Name="Urine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Double" />
+          <Property Name="CSBT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Detail_Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Urine" ToRole="Detail_Urine" />
+        </EntityType>
+        <Association Name="FK_Detail_SinhHoaMau_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_SinhHoaMau" Role="Detail_SinhHoaMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_SinhHoaMau">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_SinhHoaMau_SinhHoaMau">
+          <End Type="CP24Team08Model.SinhHoaMau" Role="SinhHoaMau" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_SinhHoaMau" Role="Detail_SinhHoaMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhHoaMau">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_SinhHoaMau">
+              <PropertyRef Name="SinhHoaMau_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Urine_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Urine" Role="Detail_Urine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Urine">
+              <PropertyRef Name="InfomationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Urine_Urine">
+          <End Type="CP24Team08Model.Urine" Role="Urine" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Urine" Role="Detail_Urine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Urine">
+              <PropertyRef Name="Urine_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2539,6 +2743,40 @@
                 <ScalarProperty Name="Result" ColumnName="Result" />
                 <ScalarProperty Name="CSBT" ColumnName="CSBT" />
                 <ScalarProperty Name="NameTest" ColumnName="NameTest" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_SinhHoaMau">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_SinhHoaMau">
+              <MappingFragment StoreEntitySet="Detail_SinhHoaMau">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="SinhHoaMau_ID" ColumnName="SinhHoaMau_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Urine">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_Urine">
+              <MappingFragment StoreEntitySet="Detail_Urine">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Urine_ID" ColumnName="Urine_ID" />
+                <ScalarProperty Name="InfomationExamination_ID" ColumnName="InfomationExamination_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urines">
+            <EntityTypeMapping TypeName="CP24Team08Model.Urine">
+              <MappingFragment StoreEntitySet="Urine">
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="CSBT" ColumnName="CSBT" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

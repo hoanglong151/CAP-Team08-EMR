@@ -12,21 +12,22 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SinhHoaMau
+    public partial class Urine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SinhHoaMau()
+        public Urine()
         {
-            this.Detail_SinhHoaMau = new HashSet<Detail_SinhHoaMau>();
+            this.Detail_Urine = new HashSet<Detail_Urine>();
         }
     
         public int ID { get; set; }
         public bool ChiDinh { get; set; }
-        public string NameTest { get; set; }
-        public string CSBT { get; set; }
+        public string Name { get; set; }
         public Nullable<double> Result { get; set; }
+        public string CSBT { get; set; }
+        public string Unit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
+        public virtual ICollection<Detail_Urine> Detail_Urine { get; set; }
     }
 }

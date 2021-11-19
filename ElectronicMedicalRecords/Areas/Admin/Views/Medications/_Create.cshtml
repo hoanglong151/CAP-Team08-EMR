@@ -1,4 +1,4 @@
-﻿@model ElectronicMedicalRecords.Models.Medication
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 
 <div class="card-header" style="padding-bottom:0px">
     <h4 class="card-title">Thông Tin Toa Thuốc</h4>
@@ -18,7 +18,7 @@
                             <option value="@medication.ID">@medication.Name</option>
                         }
                     </select>
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Medication.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
@@ -28,14 +28,14 @@
                         <input type="number" id="UnitMedication" name="Prescription_Detail.NumMedication" class="form-control">
                         <span class="input-group-text" id="DVT"></span>
                     </div>
-                    @Html.ValidationMessageFor(model => model.Prescription_Details.NumMedication, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Prescription_Detail.NumMedication, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-8 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ghi Chú</label>
                     <input id="NoteMedication" type="text" name="Prescription_Detail.Note" class="form-control">
-                    @Html.ValidationMessageFor(model => model.Prescription_Details.Note, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Prescription_Detail.Note, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4" style="position: relative;top:23px">

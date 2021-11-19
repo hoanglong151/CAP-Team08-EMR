@@ -15,5 +15,6 @@ namespace ElectronicMedicalRecords.Models
         public Detail_CTMau Detail_CTMau { get; set; }
         public List<CTMau> CTMau { get; set; }
         public List<Detail_CTMau> Detail_CTMaus { get; set; }
+        public List<SinhHoaMau> SinhHoaMau { get; set; }
     }
 }
