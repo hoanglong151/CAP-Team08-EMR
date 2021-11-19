@@ -261,6 +261,7 @@
     <Compile Include="Areas\Admin\Controllers\MultipleModelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -360,6 +361,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Religion.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SinhHoaMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subclinical.cs">
@@ -2551,7 +2555,6 @@
     <Content Include="Areas\Admin\Views\PatientStatus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MedicationCategories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\HomePage.cshtml" />
-    <Content Include="Areas\Admin\Views\Patients\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Patients\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Patients\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Patients\Edit.cshtml" />
@@ -2577,6 +2580,15 @@
     <Content Include="Areas\Admin\Views\Medications\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\CTMaus\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationExaminations\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SinhHoaMaus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SinhHoaMaus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SinhHoaMaus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SinhHoaMaus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SinhHoaMaus\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

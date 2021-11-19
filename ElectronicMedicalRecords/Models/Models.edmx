@@ -286,6 +286,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="SinhHoaMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="NameTest" Type="nvarchar" MaxLength="50" />
+          <Property Name="CSBT" Type="nvarchar(max)" />
+          <Property Name="Result" Type="float" />
+        </EntityType>
         <EntityType Name="Subclinical">
           <Key>
             <PropertyRef Name="ID" />
@@ -877,6 +887,7 @@
           <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prescription_Detail" EntityType="Self.Prescription_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinhHoaMau" EntityType="Self.SinhHoaMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subclinical" EntityType="Self.Subclinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -1240,6 +1251,7 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_CTMau" EntitySet="Detail_CTMau" />
           </AssociationSet>
+          <EntitySet Name="SinhHoaMaus" EntityType="CP24Team08Model.SinhHoaMau" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -2134,6 +2146,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SinhHoaMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CSBT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Double" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2507,6 +2529,17 @@
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="CTMau_ID" ColumnName="CTMau_ID" />
                 <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinhHoaMaus">
+            <EntityTypeMapping TypeName="CP24Team08Model.SinhHoaMau">
+              <MappingFragment StoreEntitySet="SinhHoaMau">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="CSBT" ColumnName="CSBT" />
+                <ScalarProperty Name="NameTest" ColumnName="NameTest" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

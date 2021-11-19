@@ -15,7 +15,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     public class InformationExaminationsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-
+        MultiplesModel multiplesModel = new MultiplesModel();
         // GET: Admin/InformationExaminations
         public ActionResult Index()
         {
@@ -100,21 +100,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/InformationExaminations/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = db.InformationExaminations.Find(id);
             if (informationExamination == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);
-            ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", informationExamination.User_ID);
-            return View(informationExamination);
+            
+            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            ViewBag.UserName = UserName.Name;
+            multiplesModel.InformationExamination = informationExamination;
+            return PartialView("_Edit",multiplesModel);
         }
 
         // POST: Admin/InformationExaminations/Edit/5
@@ -122,13 +121,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,DateExamine,DateEnd,User_ID,HeartBeat,Breathing,BloodPressure,Weight,Height,PatientStatus_ID,Patient_ID")] InformationExamination informationExamination)
+        public ActionResult Edit(InformationExamination informationExamination)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(informationExamination).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "MultipleModels");
             }
             ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);
             ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);

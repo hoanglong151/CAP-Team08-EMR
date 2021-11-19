@@ -13,7 +13,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     public class Detail_CTMauController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-
         // GET: Admin/Detail_CTMau
         public ActionResult Index()
         {
@@ -71,20 +70,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Detail_CTMau/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            List<Detail_CTMau> detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == id).ToList();
+            List<CTMau> cTMaus = new List<CTMau>();
+            for(int i = 0; i < detail_CTMaus.Count; i++)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var CTMau_ID = detail_CTMaus[i].CTMau_ID;
+                var MauCD = db.CTMaus.FirstOrDefault(p => p.ID == CTMau_ID);
+                MauCD.ChiDinh = detail_CTMaus[i].ChiDinh;
+                MauCD.Result = detail_CTMaus[i].Result;
+                detail_CTMaus[i].InformationExamination_ID = id;
+                cTMaus.Add(MauCD);
             }
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            if (detail_CTMau == null)
+            if (detail_CTMaus == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
-            return View(detail_CTMau);
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.CTMau = cTMaus;
+            multiplesModel.Detail_CTMaus = detail_CTMaus;
+            return PartialView("_Edit", multiplesModel);
         }
 
         // POST: Admin/Detail_CTMau/Edit/5
@@ -92,17 +101,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,InformationExamination_ID,CTMau_ID")] Detail_CTMau detail_CTMau)
+        public ActionResult Edit(List<Detail_CTMau> detail_CTMaus)
         {
-            if (ModelState.IsValid)
+            foreach(var detail_CTMau in detail_CTMaus)
             {
-                db.Entry(detail_CTMau).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(detail_CTMau).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
-            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
-            return View(detail_CTMau);
+            return RedirectToAction("Index", "Patients");
         }
 
         // GET: Admin/Detail_CTMau/Delete/5

@@ -14,7 +14,7 @@
             Chi Tiết
         </button>
         <div class="d-flex align-items-center" style="margin-left:8px">
-            <input class="form-check-input form-check-primary" id="checkAll" type="checkbox" onchange="checkAllMau(event)" />
+            <input class="form-check-input form-check-primary" id="checkAll" type="checkbox" onclick="checkAllMau()" />
             <label style="padding-left:1rem;padding-top:1px" class="form-check-label" for="checkAll">Tổng phân tích tế báo máu ngoại vi</label>
         </div>
         <!-- Vertically Centered modal Modal -->
@@ -82,7 +82,7 @@
                     </td>
                     <td>
                         @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
-                        <input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@Model.CTMau[i].ID" onchange="updateCountTests(@Model.CTMau[i].ID, event)">
+                        <input type="checkbox" value="false" class="form-check-input form-check-primary" data-id="@Model.CTMau[i].ID" name="CTMau[@i].ChiDinh" id="customColorCheck-@Model.CTMau[i].ID" onchange="updateCountTests(@Model.CTMau[i].ID, event)">
                     </td>
                     <td>
                         <input value="@Model.CTMau[i].NameTest" type="text" name="CTMau[@i].NameTest" hidden />
@@ -109,19 +109,3 @@
         </tbody>
     </table>
 </div>
-
-<script>
-    function checkAllMau(e) {
-        var list = $('#tableCTMaus tbody td *input[type="checkbox"]');
-        if (e.target.checked == true) {
-            list.each((index, value) => {
-                value.setAttribute("checked", true);
-            })
-        } else {
-            list.each((index, value) => {
-                value.setAttribute("value", false);
-                value.removeAttribute("checked")
-            })
-        }
-    }
-</script>

@@ -70,33 +70,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return View();
             }
         }
-
-        [HttpPost]
-        public ActionResult SearchPatient(DateTime? DateStart, DateTime? DateEnd, string Name, int? Code)
-        {
-            var formatDateStart = DateTime.Parse(DateStart.Value.ToString("MM/dd/yyyy"));
-            var formatDateEnd = DateTime.ParseExact(DateEnd.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            var find = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == Code);
-            var check = find.DateExamine <= formatDateEnd;
-            var findDate = db.InformationExaminations.Where(p => p.DateExamine <= formatDateEnd && p.DateEnd >= formatDateStart && p.Patient.Name == Name && p.Patient.ID == Code).ToList();
-            return RedirectToAction("Index","Patients",findDate);
-        }
-
         // GET: Admin/MultipleModels/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var inforamtionExamination = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == id);
+            var patient = db.Patients.Find(id);
+            multiplesModel.InformationExamination = inforamtionExamination;
+            multiplesModel.Patient = patient;
+            return View(multiplesModel);
         }
 
         // POST: Admin/MultipleModels/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(MultiplesModel multiplesModel)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                PatientsController patientsController = new PatientsController();
+                InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
+                patientsController.Edit(multiplesModel.Patient);
+                informationExaminationsController.Edit(multiplesModel.InformationExamination);
+                detail_CTMauController.Edit(multiplesModel.Detail_CTMaus);
+                return RedirectToAction("Index", "Patients");
             }
             catch
             {

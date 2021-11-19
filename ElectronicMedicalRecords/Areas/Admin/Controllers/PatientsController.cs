@@ -15,13 +15,51 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     public class PatientsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-
+        MultiplesModel multiplesModel = new MultiplesModel();
         // GET: Admin/Patients
         public ActionResult Index()
         {
+            ViewBag.Error = TempData["Error"];
             var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).ToList();
             return View(patients);
         }
+
+        [HttpPost]
+        public ActionResult SearchPatient(DateTime? DateStart, DateTime? DateEnd, string Name, int? Code)
+        {
+            PatientsController patientsController = new PatientsController();
+            if (DateStart == null && DateEnd == null && Name == "" && Code == null)
+            {
+                TempData["Error"] = "Vui lòng nhập ít nhất 1 trường";
+                return RedirectToAction("Index", "Patients");
+            }
+            //var findDate = new List<InformationExamination>();
+            var informationExaminations = db.InformationExaminations.ToList();
+            var patients = new List<Patient>();
+            if (Name != "")
+            {
+                informationExaminations = informationExaminations.Where(p => p.Patient.Name.Contains(Name)).ToList();
+            }
+            if (DateStart.HasValue)
+            {
+                informationExaminations = informationExaminations.Where(p => p.DateExamine >= DateStart.Value).ToList();
+            }
+            if (DateEnd.HasValue)
+            {
+                informationExaminations = informationExaminations.Where(p => p.DateEnd <= DateEnd.Value).ToList();
+            }
+            if (informationExaminations.Count > 0)
+            {
+                for (int i = 0; i < informationExaminations.Count; i++)
+                {
+                    var patient_ID = informationExaminations[i].Patient_ID;
+                    var patient = db.Patients.FirstOrDefault(p => p.ID == patient_ID);
+                    patients.Add(patient);
+                }
+            }
+            return View("Index", patients);
+        }
+
 
         // GET: Admin/Patients/Details/5
         public ActionResult Details(int? id)
@@ -70,22 +108,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Patients/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            MultiplesModel multiplesModel = new MultiplesModel();
             Patient patient = db.Patients.Find(id);
             if (patient == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
-            ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
-            ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
-            ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
-            return View(patient);
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1");
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1");
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name");
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name");
+            multiplesModel.Patient = patient;
+            return PartialView("_Edit", multiplesModel);
         }
 
         // POST: Admin/Patients/Edit/5
@@ -93,13 +129,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Gender_ID,BirthDate,Religion_ID,Address,HomeTown_ID,Nation_ID,Phone,InsuranceCode,MedicalHistory,HistoryDisease")] Patient patient)
+        public ActionResult Edit(Patient patient)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "MultipleModels");
             }
             ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
