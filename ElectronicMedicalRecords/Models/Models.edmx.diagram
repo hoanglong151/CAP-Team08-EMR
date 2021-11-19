@@ -75,6 +75,13 @@
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_CTMau" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_InformationExamination" />
         <EntityTypeShape EntityType="CP24Team08Model.SinhHoaMau" Width="1.5" PointX="8.375" PointY="7.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_SinhHoaMau" Width="1.5" PointX="10.625" PointY="16" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_Urine" Width="1.5" PointX="6" PointY="20.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.Urine" Width="1.5" PointX="3.75" PointY="36.875" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_Urine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

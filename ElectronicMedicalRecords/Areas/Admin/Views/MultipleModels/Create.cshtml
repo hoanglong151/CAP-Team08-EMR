@@ -88,6 +88,10 @@
                            role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#SinhHoaMau"
+                           role="tab" aria-controls="contact" aria-selected="false">Sinh Hóa Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
                            role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                     </li>
@@ -103,7 +107,7 @@
                                             @{
                                                 Html.RenderAction("Create", "Patients");
                                                 Html.RenderAction("Create", "InformationExaminations");
-                                                //Html.RenderAction("Create", "Medications");
+                                                Html.RenderAction("Create", "Medications");
                                             }
                                         </div>
                                     </div>
@@ -126,8 +130,20 @@
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
-                                    @{ 
+                                    @{
                                         Html.RenderAction("Create", "CTMaus");
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Create", "SinhHoaMaus");
                                     }
                                 </div>
                             </section>
@@ -153,12 +169,61 @@
     </div>
 }
 
-
 @section scripts{
     <script>
         var k = 1;
-        var count = 0;
+        var count = [0, 0];
         var arrTests = [];
+        var arrSinhHoaMau = [];
+        /*Load CD Sinh hoa Mau*/
+        function loadDetailTestsSHM() {
+            $('#tableNewSinhHoaMau').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("LoadDetailSHM", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrSinhHoaMau
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "Chỉ Định",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='SinhHoaMau.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 1 + ',' + '"SHM-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "NameTest",
+                        "name": "Tên Xét Nghiệm",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
+                            return label;
+                        }
+                    },
+                    {
+                        "data": "Result",
+                        "name": "Kết Quả"
+                    },
+                    {
+                        "data": "CSBT",
+                        "name": "Chỉ Số Bình Thường"
+                    },
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
         /*Load Detail Test*/
         function loadDetailTests() {
             $('#tableNewBloods').DataTable({
@@ -174,7 +239,7 @@
                             "data": "ChiDinh",
                             "name": "Chỉ Định",
                             "render": (data, type, row) => {
-                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='CTMau.ChiDinh' id='customColorCheckNew-" + row.ID + "' onchange='updateNewCountTests(" + row.ID + ")'>"
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='CTMau.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 0 + ',' + '"CTMau-"' +")'>"
                                 return checkbox;
                             },
                         },
@@ -215,61 +280,36 @@
                     },
                 })
             }
+        var tableNewCD = $('*.tableNewChiDinh');
+        var destroyTable = $('*#destroytable');
+        tableNewCD.each((index, table) => {
+            destroyTable[index].addEventListener('click', (e) => {
+                var tableID = table.getAttribute("id")
+                var tableCD = $('#' + tableID).DataTable();
+                tableCD.destroy();
+            })
+        })
 
-        function destroytable() {
-            var table = $('#tableNewBloods').DataTable();
-            table.destroy();
+        function updateNewCountTests(id, numTable, row) {
+            switch (numTable) {
+                case 0:
+                    var exist = arrTests.indexOf("" + id);
+                    console.log(id, exist, arrTests)
+                    arrTests.splice(exist, 1);
+                    break;
+                case 1:
+                    var exist = arrSinhHoaMau.indexOf("" + id);
+                    arrSinhHoaMau.splice(exist, 1);
+                    break;
+                }
+            count[numTable]--;
+            CountTests[numTable].innerHTML = count[numTable];
+            var GetTable = tableNewCD[numTable].getAttribute("id");
+            console.log($("#" + row + id))
+            $("#" + row + id).attr("value", false);
+            $("#" + row + id).attr("checked", false);
+            $('#' + GetTable).DataTable().ajax.reload();
         }
-        function updateCountTests(id, e) {
-            if (e.target.checked == true) {
-                $('#customColorCheck-' + id).attr("value", true);
-                $('#customColorCheck-' + id).attr("checked", true);
-                count++;
-                arrTests.push(id);
-            } else {
-                count--;
-                $('#customColorCheck-' + id).attr("value", false);
-                $('#customColorCheck-' + id).attr("checked", false);
-                const index = arrTests.indexOf(id);
-                arrTests.splice(index, 1);
-            }
-            if (count > 0) {
-                $('#DetailTestCount').css("display", "block")
-            } else {
-                $('#DetailTestCount').css("display", "none")
-            }
-            document.querySelector('#countTests').innerHTML = count;
-        }
-
-        function checkAllMau() {
-            var list = $('#tableCTMaus tbody td *input[type="checkbox"]');
-            if (event.target.checked == true) {
-                count = 0;
-                list.each((index, value) => {
-                    var id = value.getAttribute("data-id");
-                    updateCountTests(id, event)
-                    value.checked = true;
-                })
-            } else {
-                count = list.length;
-                list.each((index, value) => {
-                    var id = value.getAttribute("data-id");
-                    updateCountTests(id, event)
-                    value.checked = false;
-                })
-            }
-        }
-
-        function updateNewCountTests(id) {
-            var exist = arrTests.indexOf(id);
-            arrTests.splice(exist, 1);
-            count--;
-            document.querySelector('#countTests').innerHTML = count;
-            $('#customColorCheck-' + id).attr("value", false);
-            $('#customColorCheck-' + id).attr("checked", false);
-            $('#tableNewBloods').DataTable().ajax.reload();
-        }
-
         var formatCss = document.querySelector('.choices__list--single');
         formatCss.classList.add('form-control');
 
@@ -308,19 +348,100 @@
             index.parent().parent().remove();
             k--;
         }
-
-        $('#tableCTMaus').DataTable({
-            "pageLength": 25,
-            "language": {
-                "emptyTable": "No data available",
-                "oPaginate": {
-                    sNext: '<i class="fa fa-chevron-right"></i>',
-                    sPrevious: '<i class="fa fa-chevron-left"></i>',
+        var listTable = $('*.tableLoad');
+        listTable.each((index, table) => {
+            $('#' + table.id).DataTable({
+                "pageLength": 50,
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                    "search": "Tìm kiếm:",
                 },
-                "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
-                "search": "Tìm kiếm:",
-            },
-        });
-</script>
+            });
+        })
+
+        var checkAllTable = $('*#checkAll');
+        checkAllTable.each((index1, table) => {
+            table.addEventListener('click', function (event) {
+                var list = $('#' + listTable[index1].id + ' tbody td *input[type="checkbox"]');
+                if (event.target.checked == true) {
+                    count[index1] = 0;
+                    list.each((index, value) => {
+                        var id = value.getAttribute("data-id");
+                        updateCountTests(id, event, value, index1)
+                        value.checked = true;
+                    })
+                } else {
+                    count[index1] = list.length;
+                    list.each((index, value) => {
+                        var id = value.getAttribute("data-id");
+                        updateCountTests(id, event, value, index1)
+                        value.checked = false;
+                    })
+                }
+            })
+        })
+
+        checkAllTable.each((index1, table) => {
+            var list = $('#' + listTable[index1].id + ' tbody td *input[type="checkbox"]');
+            list.each((index, value) => {
+                value.addEventListener('click', (e) => {
+                    if (e.target.checked) {
+                        var id = value.getAttribute("data-id");
+                        updateCountTests(id, event, value, index1)
+                        value.checked = true;
+                    }
+                    else {
+                        var id = value.getAttribute("data-id");
+                        updateCountTests(id, event, value, index1)
+                        value.checked = false;
+                    }
+                })
+            })
+        })
+        var CountTests = $('*.countTests');
+        var DetailTests = $('*#DetailTestCount');
+        function updateCountTests(id, e, value, indextable) {
+            if (e.target.checked == true) {
+            value.setAttribute("value", true);
+            value.setAttribute("checked", true);
+                count[indextable]++;
+                switch (indextable) {
+                    case 0:
+                        arrTests.push(id);
+                        break;
+                    case 1:
+                        arrSinhHoaMau.push(id);
+                        break;
+                }
+
+            } else {
+                count[indextable]--;
+                value.setAttribute("value", false);
+                value.setAttribute("checked", false);
+                const index = arrTests.indexOf(id);
+                arrTests.splice(index, 1);
+                switch (indextable) {
+                    case 0:
+                        arrTests.splice(index, 1);
+                        break;
+                    case 1:
+                        arrSinhHoaMau.splice(index, 1);
+                        break;
+                }
+            }
+            if (count[indextable] > 0) {
+                DetailTests[indextable].style.display = "block"
+            } else {
+                DetailTests[indextable].style.display = "none"
+            }
+            CountTests[indextable].innerHTML = count[indextable];
+        }
+
+    </script>
 }

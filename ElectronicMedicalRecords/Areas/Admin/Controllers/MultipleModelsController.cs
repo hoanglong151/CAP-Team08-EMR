@@ -42,6 +42,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LoadDetailSHM(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<SinhHoaMau> sinhHoaMaus = new List<SinhHoaMau>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var SHM = db.SinhHoaMaus.FirstOrDefault(p => p.ID == id);
+                    SHM.ChiDinh = true;
+                    sinhHoaMaus.Add(SHM);
+                }
+                return Json(new { data = sinhHoaMaus }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: Admin/MultipleModels/Create
         public ActionResult Create()
@@ -50,7 +68,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // POST: Admin/MultipleModels/Create
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(MultiplesModel multiplesModel)
         {
             PatientsController patientsController = new PatientsController();
