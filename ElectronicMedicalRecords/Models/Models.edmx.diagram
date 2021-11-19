@@ -74,6 +74,7 @@
         <EntityTypeShape EntityType="CP24Team08Model.Detail_CTMau" Width="1.5" PointX="10.625" PointY="12.875" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_CTMau" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_InformationExamination" />
+        <EntityTypeShape EntityType="CP24Team08Model.SinhHoaMau" Width="1.5" PointX="8.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

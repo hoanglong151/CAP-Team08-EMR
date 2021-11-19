@@ -54,5 +54,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<XetNghiemMau> XetNghiemMaus { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
         public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
+        public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
     }
 }

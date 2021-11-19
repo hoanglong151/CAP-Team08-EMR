@@ -1,15 +1,15 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 <style>
     .name-Medication .choices {
         width: 100%
     }
 
-    .name-Medication .choices[data-type*=select-one]:after {
-        margin-top: -5px;
-    }
+        .name-Medication .choices[data-type*=select-one]:after {
+            margin-top: -5px;
+        }
 
     .name-Medication .choices__input--cloned {
         min-width: 100% !important;
@@ -42,11 +42,11 @@
         box-shadow: unset
     }
 
-    .patient-taginpust .bootstrap-tagsinput .label-info {
-        background-color: #435ebe;
-        border-radius: 4px;
-        padding: 4px
-    }
+        .patient-taginpust .bootstrap-tagsinput .label-info {
+            background-color: #435ebe;
+            border-radius: 4px;
+            padding: 4px
+        }
 
     .table-bordered tr:first-child {
         background-color: #435ebe;
@@ -72,7 +72,7 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("Create", "MultipleModels", FormMethod.Post))
+@using (Html.BeginForm("Edit", "MultipleModels", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -101,8 +101,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("Create", "Patients");
-                                                Html.RenderAction("Create", "InformationExaminations");
+                                                Html.RenderAction("Edit", "Patients", new { id = Model.Patient.ID});
+                                                Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID});
                                                 //Html.RenderAction("Create", "Medications");
                                             }
                                         </div>
@@ -110,7 +110,7 @@
                                     <div class="col-12 d-flex justify-content-end pt-4">
                                         <button type="submit"
                                                 class="btn btn-primary me-1 mb-1">
-                                            Tạo Hồ Sơ
+                                            Cập Nhât Hồ Sơ
                                         </button>
                                         <button type="reset"
                                                 class="btn btn-light-secondary me-1 mb-1">
@@ -126,8 +126,8 @@
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
-                                    @{ 
-                                        Html.RenderAction("Create", "CTMaus");
+                                    @{
+                                        Html.RenderAction("Edit", "Detail_CTMau", new { id = Model.InformationExamination.ID});
                                     }
                                 </div>
                             </section>
@@ -152,10 +152,8 @@
         </div>
     </div>
 }
-
-
 @section scripts{
-    <script>
+    <script type="text/javascript">
         var k = 1;
         var count = 0;
         var arrTests = [];
@@ -270,10 +268,7 @@
             $('#tableNewBloods').DataTable().ajax.reload();
         }
 
-        var formatCss = document.querySelector('.choices__list--single');
-        formatCss.classList.add('form-control');
-
-        var select = document.querySelector('#NameMedication');
+        @*var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
             $.ajax({
@@ -301,13 +296,13 @@
             cell2.innerHTML = NoteMedication;
             cell3.innerHTML = "<button class='btn btn-primary' id='Medication-"+ k +"' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
-        }
+        }*@
 
-        function deleteRow(btn) {
-            var index = $("#Medication-" + btn);
-            index.parent().parent().remove();
-            k--;
-        }
+        //function deleteRow(btn) {
+        //    var index = $("#Medication-" + btn);
+        //    index.parent().parent().remove();
+        //    k--;
+        //}
 
         $('#tableCTMaus').DataTable({
             "pageLength": 25,
@@ -322,5 +317,5 @@
                 "search": "Tìm kiếm:",
             },
         });
-</script>
+    </script>
 }

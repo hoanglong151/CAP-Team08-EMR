@@ -1,0 +1,50 @@
+﻿@model ElectronicMedicalRecords.Models.SinhHoaMau
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SinhHoaMau</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ChiDinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiDinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameTest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameTest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSBT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSBT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Result)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

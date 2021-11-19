@@ -1,87 +1,5 @@
 ﻿@model IEnumerable<ElectronicMedicalRecords.Models.Patient>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InsuranceCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MedicalHistory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HistoryDisease)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender.Gender1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTown.HomeTown1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nation.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InsuranceCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MedicalHistory)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HistoryDisease)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender.Gender1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTown.HomeTown1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nation.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
@@ -110,7 +28,15 @@
                 Danh Sách Bệnh Nhân
             </div>
             <div class="card-body">
-                <form action="@Url.Action("SearchPatient","MultipleModels")" method="post">
+                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-primary">Tạo Hồ Sơ Bệnh Nhân</a>
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger alert-dismissible show fade">
+                        @ViewBag.Error
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form action="@Url.Action("SearchPatient","Patients")" method="post">
                     <div class="row">
                         <div class="col-md-2">
                             <label>Từ ngày</label>
@@ -134,7 +60,7 @@
                             </button>
                         </div>
                     </div>
-                </form>                    
+                </form>
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
