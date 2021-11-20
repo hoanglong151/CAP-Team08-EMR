@@ -92,6 +92,14 @@
                            role="tab" aria-controls="contact" aria-selected="false">Sinh Hóa Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#DongMau"
+                           role="tab" aria-controls="contact" aria-selected="false">Đông Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#NhomMau"
+                           role="tab" aria-controls="contact" aria-selected="false">Nhóm Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
                            role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                     </li>
@@ -149,6 +157,30 @@
                             </section>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="DongMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Create", "DongMaus");
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="NhomMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Create", "NhomMaus");
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel"
                          aria-labelledby="contact-tab">
                         <p class="mt-2">
@@ -172,9 +204,11 @@
 @section scripts{
     <script>
         var k = 1;
-        var count = [0, 0];
+        var count = [0, 0, 0, 0];
         var arrTests = [];
         var arrSinhHoaMau = [];
+        var arrDongMau = [];
+        var arrNhomMau = [];
         /*Load CD Sinh hoa Mau*/
         function loadDetailTestsSHM() {
             $('#tableNewSinhHoaMau').DataTable({
@@ -201,10 +235,6 @@
                             var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
                             return label;
                         }
-                    },
-                    {
-                        "data": "Result",
-                        "name": "Kết Quả"
                     },
                     {
                         "data": "CSBT",
@@ -252,10 +282,6 @@
                             }
                         },
                         {
-                            "data": "Result",
-                            "name": "Kết Quả"
-                        },
-                        {
                             "data": "CSBT",
                             "name": "Chỉ Số Bình Thường"
                         },
@@ -266,6 +292,96 @@
                         {
                             "data": "MayXN",
                             "name": "Máy XN"
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        /*Load Detail Test DM*/
+        function loadDetailTestsDM() {
+            $('#tableNewDM').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("LoadDetailDM", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrDongMau
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "Chỉ Định",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='DongMau.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 2 + ',' + '"DongMau-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "NameTest",
+                            "name": "Tên Xét Nghiệm",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
+                                return label;
+                            }
+                        },
+                        {
+                            "data": "CSBT",
+                            "name": "Chỉ Số Bình Thường"
+                        },
+                        {
+                            "data": "Unit",
+                            "name": "Đơn Vị"
+                        },
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        /*Load Detail Test Nhóm Máu*/
+        function loadDetailTestsNM() {
+            $('#tableNewNM').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("LoadDetailNM", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrNhomMau
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "Chỉ Định",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='NhomMau.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 3 + ',' + '"NhomMau-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "NameTest",
+                            "name": "Tên Xét Nghiệm",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
+                                return label;
+                            }
                         }
                     ],
                     "language": {
@@ -293,19 +409,27 @@
         function updateNewCountTests(id, numTable, row) {
             switch (numTable) {
                 case 0:
-                    var exist = arrTests.indexOf("" + id);
-                    console.log(id, exist, arrTests)
-                    arrTests.splice(exist, 1);
+                    var existTests = arrTests.indexOf("" + id);
+                    arrTests.splice(existTests, 1);
                     break;
                 case 1:
-                    var exist = arrSinhHoaMau.indexOf("" + id);
-                    arrSinhHoaMau.splice(exist, 1);
+                    var existSHM = arrSinhHoaMau.indexOf("" + id);
+                    arrSinhHoaMau.splice(existSHM, 1);
+                    break;
+                case 2:
+                    var existDM = arrDongMau.indexOf("" + id);
+                    arrDongMau.splice(existDM, 1);
+                    break;
+                case 3:
+                    var existNM = arrNhomMau.indexOf("" + id);
+                    arrNhomMau.splice(existNM, 1);
                     break;
                 }
             count[numTable]--;
             CountTests[numTable].innerHTML = count[numTable];
             var GetTable = tableNewCD[numTable].getAttribute("id");
             console.log($("#" + row + id))
+            console.log(GetTable)
             $("#" + row + id).attr("value", false);
             $("#" + row + id).attr("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
@@ -371,6 +495,20 @@
                 var list = $('#' + listTable[index1].id + ' tbody td *input[type="checkbox"]');
                 if (event.target.checked == true) {
                     count[index1] = 0;
+                    switch (index1) {
+                        case 0:
+                            arrTests = [];
+                            break;
+                        case 1:
+                            arrSinhHoaMau = [];
+                            break;
+                        case 2:
+                            arrDongMau = [];
+                            break;
+                        case 3:
+                            arrNhomMau = [];
+                            break;
+                    }
                     list.each((index, value) => {
                         var id = value.getAttribute("data-id");
                         updateCountTests(id, event, value, index1)
@@ -418,20 +556,33 @@
                     case 1:
                         arrSinhHoaMau.push(id);
                         break;
+                    case 2:
+                        arrDongMau.push(id);
+                        break;
+                    case 3:
+                        arrNhomMau.push(id);
+                        break;
                 }
-
             } else {
                 count[indextable]--;
                 value.setAttribute("value", false);
                 value.setAttribute("checked", false);
-                const index = arrTests.indexOf(id);
-                arrTests.splice(index, 1);
                 switch (indextable) {
                     case 0:
-                        arrTests.splice(index, 1);
+                        const indexArrTests = arrTests.indexOf("" + id);
+                        arrTests.splice(indexArrTests, 1);
                         break;
                     case 1:
-                        arrSinhHoaMau.splice(index, 1);
+                        const indexArrSHM = arrSinhHoaMau.indexOf("" + id);
+                        arrSinhHoaMau.splice(indexArrSHM, 1);
+                        break;
+                    case 2:
+                        const indexDM = arrDongMau.indexOf("" + id);
+                        arrDongMau.splice(indexDM, 1);
+                        break;
+                    case 3:
+                        const indexNM = arrNhomMau.indexOf("" + id);
+                        arrNhomMau.splice(indexNM, 1);
                         break;
                 }
             }

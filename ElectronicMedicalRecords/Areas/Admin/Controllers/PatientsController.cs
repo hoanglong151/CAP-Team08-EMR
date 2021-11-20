@@ -116,10 +116,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1");
-            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1");
-            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name");
-            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name");
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
             multiplesModel.Patient = patient;
             return PartialView("_Edit", multiplesModel);
         }

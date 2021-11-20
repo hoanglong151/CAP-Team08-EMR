@@ -12,22 +12,20 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DongMau
+    public partial class NhomMau
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DongMau()
+        public NhomMau()
         {
-            this.Detail_DongMau = new HashSet<Detail_DongMau>();
+            this.Detail_NhomMau = new HashSet<Detail_NhomMau>();
         }
     
         public int ID { get; set; }
         public bool ChiDinh { get; set; }
         public string NameTest { get; set; }
-        public Nullable<double> Result { get; set; }
-        public string CSBT { get; set; }
-        public string Unit { get; set; }
+        public string Result { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_DongMau> Detail_DongMau { get; set; }
+        public virtual ICollection<Detail_NhomMau> Detail_NhomMau { get; set; }
     }
 }

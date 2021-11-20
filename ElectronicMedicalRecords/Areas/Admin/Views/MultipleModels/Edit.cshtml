@@ -88,6 +88,18 @@
                            role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
                            role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                     </li>
@@ -101,8 +113,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("Edit", "Patients", new { id = Model.Patient.ID});
-                                                Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID});
+                                                Html.RenderAction("Edit", "Patients", new { id = Model.Patient.ID });
+                                                Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID });
                                                 //Html.RenderAction("Create", "Medications");
                                             }
                                         </div>
@@ -127,7 +139,43 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Edit", "Detail_CTMau", new { id = Model.InformationExamination.ID});
+                                        Html.RenderAction("Edit", "Detail_CTMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Edit", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="DongMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Edit", "Detail_DongMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="NhomMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Edit", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -153,122 +201,12 @@
     </div>
 }
 @section scripts{
-    <script type="text/javascript">
+    <script>
         var k = 1;
-        var count = 0;
-        var arrTests = [];
-        /*Load Detail Test*/
-        function loadDetailTests() {
-            $('#tableNewBloods').DataTable({
-                    "ajax": {
-                        "url": "@Url.Action("LoadDetailBloods", "MultipleModels")",
-                        "type": "POST",
-                        "data": function (d) {
-                            d.arr = arrTests
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "ChiDinh",
-                            "name": "Chỉ Định",
-                            "render": (data, type, row) => {
-                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='CTMau.ChiDinh' id='customColorCheckNew-" + row.ID + "' onchange='updateNewCountTests(" + row.ID + ")'>"
-                                return checkbox;
-                            },
-                        },
-                        {
-                            "data": "NameTest",
-                            "name": "Tên Xét Nghiệm",
-                            "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
-                                return label;
-                            }
-                        },
-                        {
-                            "data": "Result",
-                            "name": "Kết Quả"
-                        },
-                        {
-                            "data": "CSBT",
-                            "name": "Chỉ Số Bình Thường"
-                        },
-                        {
-                            "data": "Unit",
-                            "name": "Đơn Vị"
-                        },
-                        {
-                            "data": "MayXN",
-                            "name": "Máy XN"
-                        }
-                    ],
-                    "language": {
-                        "emptyTable": "No data available",
-                        "oPaginate": {
-                            sNext: '<i class="fa fa-chevron-right"></i>',
-                            sPrevious: '<i class="fa fa-chevron-left"></i>',
-                        },
-                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                        "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
-                        "search": "Tìm kiếm:",
-                    },
-                })
-            }
+        @*var formatCss = document.querySelector('.choices__list--single');
+        formatCss.classList.add('form-control');
 
-        function destroytable() {
-            var table = $('#tableNewBloods').DataTable();
-            table.destroy();
-        }
-        function updateCountTests(id, e) {
-            if (e.target.checked == true) {
-                $('#customColorCheck-' + id).attr("value", true);
-                $('#customColorCheck-' + id).attr("checked", true);
-                count++;
-                arrTests.push(id);
-            } else {
-                count--;
-                $('#customColorCheck-' + id).attr("value", false);
-                $('#customColorCheck-' + id).attr("checked", false);
-                const index = arrTests.indexOf(id);
-                arrTests.splice(index, 1);
-            }
-            if (count > 0) {
-                $('#DetailTestCount').css("display", "block")
-            } else {
-                $('#DetailTestCount').css("display", "none")
-            }
-            document.querySelector('#countTests').innerHTML = count;
-        }
-
-        function checkAllMau() {
-            var list = $('#tableCTMaus tbody td *input[type="checkbox"]');
-            if (event.target.checked == true) {
-                count = 0;
-                list.each((index, value) => {
-                    var id = value.getAttribute("data-id");
-                    updateCountTests(id, event)
-                    value.checked = true;
-                })
-            } else {
-                count = list.length;
-                list.each((index, value) => {
-                    var id = value.getAttribute("data-id");
-                    updateCountTests(id, event)
-                    value.checked = false;
-                })
-            }
-        }
-
-        function updateNewCountTests(id) {
-            var exist = arrTests.indexOf(id);
-            arrTests.splice(exist, 1);
-            count--;
-            document.querySelector('#countTests').innerHTML = count;
-            $('#customColorCheck-' + id).attr("value", false);
-            $('#customColorCheck-' + id).attr("checked", false);
-            $('#tableNewBloods').DataTable().ajax.reload();
-        }
-
-        @*var select = document.querySelector('#NameMedication');
+        var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
             $.ajax({
@@ -296,26 +234,29 @@
             cell2.innerHTML = NoteMedication;
             cell3.innerHTML = "<button class='btn btn-primary' id='Medication-"+ k +"' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
+        }
+
+        function deleteRow(btn) {
+            var index = $("#Medication-" + btn);
+            index.parent().parent().remove();
+            k--;
         }*@
-
-        //function deleteRow(btn) {
-        //    var index = $("#Medication-" + btn);
-        //    index.parent().parent().remove();
-        //    k--;
-        //}
-
-        $('#tableCTMaus').DataTable({
-            "pageLength": 25,
-            "language": {
-                "emptyTable": "No data available",
-                "oPaginate": {
-                    sNext: '<i class="fa fa-chevron-right"></i>',
-                    sPrevious: '<i class="fa fa-chevron-left"></i>',
+        var listTable = $('*.tableLoad');
+        listTable.each((index, table) => {
+            $('#' + table.id).DataTable({
+                "pageLength": 50,
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                    "search": "Tìm kiếm:",
                 },
-                "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
-                "search": "Tìm kiếm:",
-            },
-        });
+            });
+        })
+
     </script>
 }

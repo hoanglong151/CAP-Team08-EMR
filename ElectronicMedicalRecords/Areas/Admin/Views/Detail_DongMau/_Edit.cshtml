@@ -1,0 +1,49 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-body">
+    <table class="table table-striped tableLoad" id="tableDongMaus" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Tên Xét Nghiệm</th>
+                <th>Kết Quả</th>
+                <th>Chỉ Số Cân Bằng</th>
+                <th>Đơn Vị</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.DongMau.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_DongMaus[i].InformationExamination_ID" type="text" name="Detail_DongMaus[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_DongMaus[i].DongMau_ID" type="text" name="Detail_DongMaus[@i].DongMau_ID" hidden />
+                    </td>
+                    <td hidden>
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Detail_DongMaus[i].ID" type="text" name="Detail_DongMaus[@i].ID" hidden />
+                    </td>
+                    <td>
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_DongMaus[i].ID" name="Detail_DongMaus[@i].ChiDinh">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.DongMau[i].NameTest</label>
+                    </td>
+                    <td>
+                        <input value="@Model.Detail_DongMaus[i].Result" type="text" name="Detail_DongMaus[@i].Result" class="form-control" />
+                    </td>
+                    <td>
+                        @Model.DongMau[i].CSBT
+                    </td>
+                    <td>
+                        @Model.DongMau[i].Unit
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

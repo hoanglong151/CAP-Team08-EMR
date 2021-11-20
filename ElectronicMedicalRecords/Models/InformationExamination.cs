@@ -18,12 +18,14 @@ namespace ElectronicMedicalRecords.Models
         public InformationExamination()
         {
             this.Clinicals = new HashSet<Clinical>();
-            this.MedicalTestsPrescriptions = new HashSet<MedicalTestsPrescription>();
-            this.Prescriptions = new HashSet<Prescription>();
-            this.Subclinicals = new HashSet<Subclinical>();
             this.Detail_CTMau = new HashSet<Detail_CTMau>();
             this.Detail_SinhHoaMau = new HashSet<Detail_SinhHoaMau>();
             this.Detail_Urine = new HashSet<Detail_Urine>();
+            this.MedicalTestsPrescriptions = new HashSet<MedicalTestsPrescription>();
+            this.Prescriptions = new HashSet<Prescription>();
+            this.Subclinicals = new HashSet<Subclinical>();
+            this.Detail_DongMau = new HashSet<Detail_DongMau>();
+            this.Detail_NhomMau = new HashSet<Detail_NhomMau>();
         }
     
         public int ID { get; set; }
@@ -40,6 +42,12 @@ namespace ElectronicMedicalRecords.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clinical> Clinicals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_CTMau> Detail_CTMau { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_Urine> Detail_Urine { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual User User { get; set; }
@@ -50,10 +58,8 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subclinical> Subclinicals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_CTMau> Detail_CTMau { get; set; }
+        public virtual ICollection<Detail_DongMau> Detail_DongMau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_Urine> Detail_Urine { get; set; }
+        public virtual ICollection<Detail_NhomMau> Detail_NhomMau { get; set; }
     }
 }

@@ -1,0 +1,76 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-body">
+    <table class="table table-striped tableLoad" id="tableNhomMaus" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Tên Xét Nghiệm</th>
+                <th>Kết Quả</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.NhomMau.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_NhomMaus[i].InformationExamination_ID" type="text" name="Detail_NhomMaus[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_NhomMaus[i].NhomMau_ID" type="text" name="Detail_NhomMaus[@i].NhomMau_ID" hidden />
+                    </td>
+                    <td hidden>
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Detail_NhomMaus[i].ID" type="text" name="Detail_NhomMaus[@i].ID" hidden />
+                    </td>
+                    <td>
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_NhomMaus[i].ID" name="Detail_NhomMaus[@i].ChiDinh">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.NhomMau[i].NameTest</label>
+                    </td>
+                    <td>
+                        @if (i == 0)
+                        {
+                            @*<input value="@Model.Detail_DongMaus[i].Result" type="text" name="Detail_DongMaus[@i].Result" class="form-control" />*@
+                            <select value="@Model.Detail_NhomMaus[i].Result" name="Detail_NhomMaus[@i].Result" id="NhomMauBTH" class="form-select">
+                                <option value="" disabled selected>Vui Lòng Chọn Nhóm Máu</option>
+                                <option value="Nhóm Máu A">NHÓM MÁU A</option>
+                                <option value="Nhóm Máu O">NHÓM MÁU O</option>
+                                <option value="Nhóm Máu B">NHÓM MÁU B</option>
+                                <option value="Nhóm Máu AB">NHÓM MÁU AB</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="Detail_NhomMaus[@i].Result" class="form-select" id="NhomMauRh">
+                                <option value="" disabled selected>Vui Lòng Chọn Kết Quả</option>
+                                <option value="Dương Tính">DƯƠNG TÍNH</option>
+                                <option value="Âm Tính">ÂM TÍNH</option>
+                            </select>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var selectedNhomMauBth = document.querySelector('#NhomMauBTH').getAttribute("value");
+    var optionSelectedBth = document.querySelectorAll("#NhomMauBTH option");
+    optionSelectedBth.forEach((value, index) => {
+        if (value.getAttribute("value") == selectedNhomMauBth) {
+            value.setAttribute("selected", "selected")
+        }
+    })
+    var selectedNhomMauRh = document.querySelector('#NhomMauRh').getAttribute("value");
+    var optionSelectedRh = document.querySelectorAll("#NhomMauRh option");
+    optionSelectedRh.forEach((value, index) => {
+        if (value.getAttribute("value") == selectedNhomMauRh) {
+            value.setAttribute("selected", "selected")
+        }
+    })
+</script>    

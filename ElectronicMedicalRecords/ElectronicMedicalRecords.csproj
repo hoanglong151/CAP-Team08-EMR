@@ -254,11 +254,16 @@
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_DongMauController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_NhomMauController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_SinhHoaMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DongMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MultipleModelsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhomMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
@@ -295,6 +300,12 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_CTMau.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_DongMau.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_NhomMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_SinhHoaMau.cs">
@@ -354,6 +365,9 @@
     <Compile Include="Models\Nation1.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NhomMau.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Patient.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -382,9 +396,6 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\XetNghiemMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationComponent.cs" />
@@ -2599,6 +2610,36 @@
     <Content Include="Areas\Admin\Views\SinhHoaMaus\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SinhHoaMaus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SinhHoaMaus\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DongMaus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DongMaus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DongMaus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DongMaus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DongMaus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DongMaus\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomMaus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomMaus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomMaus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomMaus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomMaus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomMaus\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\_Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
