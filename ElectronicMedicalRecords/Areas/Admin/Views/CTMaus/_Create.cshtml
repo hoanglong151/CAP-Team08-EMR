@@ -38,7 +38,7 @@
                                 <tr>
                                     <th>Chỉ Định</th>
                                     <th>Tên Xét Nghiệm</th>
-                                    <th>Kết Quả</th>
+                                    <th hidden></th>
                                     <th>Chỉ Số Bình Thường</th>
                                     <th>Đơn Vị</th>
                                     <th>Máy XN</th>
@@ -66,7 +66,7 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th>Kết Quả</th>
+                <th hidden></th>
                 <th>Chỉ Số Cân Bằng</th>
                 <th>Đơn Vị</th>
                 <th>Máy XN</th>
@@ -88,9 +88,8 @@
                         <input value="@Model.CTMau[i].NameTest" type="text" name="CTMau[@i].NameTest" hidden />
                         <label class="form-check-label" for="CTMau-@Model.CTMau[i].ID">@Model.CTMau[i].NameTest</label>
                     </td>
-                    <td>
+                    <td hidden>
                         <input value="@Model.CTMau[i].Result" type="text" name="CTMau[@i].Result" hidden />
-                        @Model.CTMau[i].Result
                     </td>
                     <td>
                         <input value="@Model.CTMau[i].CSBT" type="text" name="CTMau[@i].CSBT" hidden />

@@ -10,132 +10,133 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    public class Detail_CTMauController : Controller
+    public class Detail_DongMauController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-        // GET: Admin/Detail_CTMau
+
+        // GET: Admin/Detail_DongMau
         public ActionResult Index()
         {
-            var detail_CTMau = db.Detail_CTMau.Include(d => d.CTMau).Include(d => d.InformationExamination);
-            return View(detail_CTMau.ToList());
+            var detail_DongMau = db.Detail_DongMau.Include(d => d.DongMau).Include(d => d.InformationExamination);
+            return View(detail_DongMau.ToList());
         }
 
-        // GET: Admin/Detail_CTMau/Details/5
+        // GET: Admin/Detail_DongMau/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            if (detail_CTMau == null)
+            Detail_DongMau detail_DongMau = db.Detail_DongMau.Find(id);
+            if (detail_DongMau == null)
             {
                 return HttpNotFound();
             }
-            return View(detail_CTMau);
+            return View(detail_DongMau);
         }
 
-        // GET: Admin/Detail_CTMau/Create
+        // GET: Admin/Detail_DongMau/Create
         public ActionResult Create()
         {
-            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest");
+            ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest");
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
             return View();
         }
 
-        // POST: Admin/Detail_CTMau/Create
+        // POST: Admin/Detail_DongMau/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<CTMau> cTMaus, int informationID)
+        public ActionResult Create(List<DongMau> dongMaus, int informationID)
         {
-            Detail_CTMau detail_CTMau = new Detail_CTMau();
-            foreach(var item in cTMaus)
+            Detail_DongMau detail_DongMau = new Detail_DongMau();
+            foreach(var item in dongMaus)
             {
                 if (ModelState.IsValid && item.ChiDinh == true)
                 {
-                    detail_CTMau.CTMau_ID = item.ID;
-                    detail_CTMau.InformationExamination_ID = informationID;
-                    detail_CTMau.ChiDinh = item.ChiDinh;
-                    detail_CTMau.Result = item.Result;
-                    db.Detail_CTMau.Add(detail_CTMau);
+                    detail_DongMau.DongMau_ID = item.ID;
+                    detail_DongMau.InformationExamination_ID = informationID;
+                    detail_DongMau.Result = item.Result;
+                    detail_DongMau.ChiDinh = item.ChiDinh;
+                    db.Detail_DongMau.Add(detail_DongMau);
                     db.SaveChanges();
                 }
             }
-            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
-            //return View(detail_CTMau);
+            ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest", detail_DongMau.DongMau_ID);
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_DongMau.InformationExamination_ID);
+            //return View(detail_DongMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
-        // GET: Admin/Detail_CTMau/Edit/5
+        // GET: Admin/Detail_DongMau/Edit/5
         public ActionResult Edit(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
-            List<Detail_CTMau> detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<CTMau> cTMaus = new List<CTMau>();
-            for(int i = 0; i < detail_CTMaus.Count; i++)
+            List<Detail_DongMau> detail_DongMaus = db.Detail_DongMau.Where(p => p.InformationExamination_ID == id).ToList();
+            List<DongMau> dongMaus = new List<DongMau>();
+            for (int i = 0; i < detail_DongMaus.Count; i++)
             {
-                var CTMau_ID = detail_CTMaus[i].CTMau_ID;
-                var MauCD = db.CTMaus.FirstOrDefault(p => p.ID == CTMau_ID);
-                MauCD.ChiDinh = detail_CTMaus[i].ChiDinh;
-                MauCD.Result = detail_CTMaus[i].Result;
-                detail_CTMaus[i].InformationExamination_ID = id;
-                cTMaus.Add(MauCD);
+                var DongMau_ID = detail_DongMaus[i].DongMau_ID;
+                var DongMauCD = db.DongMaus.FirstOrDefault(p => p.ID == DongMau_ID);
+                DongMauCD.ChiDinh = detail_DongMaus[i].ChiDinh;
+                DongMauCD.Result = detail_DongMaus[i].Result;
+                detail_DongMaus[i].InformationExamination_ID = id;
+                dongMaus.Add(DongMauCD);
             }
-            if (detail_CTMaus == null)
+            if (detail_DongMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.CTMau = cTMaus;
-            multiplesModel.Detail_CTMaus = detail_CTMaus;
+            multiplesModel.DongMau = dongMaus;
+            multiplesModel.Detail_DongMaus = detail_DongMaus;
             return PartialView("_Edit", multiplesModel);
         }
 
-        // POST: Admin/Detail_CTMau/Edit/5
+        // POST: Admin/Detail_DongMau/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(List<Detail_CTMau> detail_CTMaus)
+        public ActionResult Edit(List<Detail_DongMau> detail_DongMaus)
         {
-            foreach(var detail_CTMau in detail_CTMaus)
+            foreach(var detail_DongMau in detail_DongMaus)
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(detail_CTMau).State = EntityState.Modified;
+                    db.Entry(detail_DongMau).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-            }
+            }    
             return RedirectToAction("Edit", "MultipleModels");
         }
 
-        // GET: Admin/Detail_CTMau/Delete/5
+        // GET: Admin/Detail_DongMau/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            if (detail_CTMau == null)
+            Detail_DongMau detail_DongMau = db.Detail_DongMau.Find(id);
+            if (detail_DongMau == null)
             {
                 return HttpNotFound();
             }
-            return View(detail_CTMau);
+            return View(detail_DongMau);
         }
 
-        // POST: Admin/Detail_CTMau/Delete/5
+        // POST: Admin/Detail_DongMau/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            db.Detail_CTMau.Remove(detail_CTMau);
+            Detail_DongMau detail_DongMau = db.Detail_DongMau.Find(id);
+            db.Detail_DongMau.Remove(detail_DongMau);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

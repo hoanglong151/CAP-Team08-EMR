@@ -12,10 +12,15 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class XetNghiemMau
+    public partial class Detail_DongMau
     {
         public int ID { get; set; }
-        public string XetNghiem { get; set; }
-        public string KetQua { get; set; }
+        public Nullable<int> InformationExamination_ID { get; set; }
+        public Nullable<int> DongMau_ID { get; set; }
+        public bool ChiDinh { get; set; }
+        public Nullable<double> Result { get; set; }
+    
+        public virtual DongMau DongMau { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
     }
 }

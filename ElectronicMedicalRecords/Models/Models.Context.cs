@@ -32,6 +32,10 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Assort> Assorts { get; set; }
         public virtual DbSet<Clinical> Clinicals { get; set; }
+        public virtual DbSet<CTMau> CTMaus { get; set; }
+        public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
+        public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
+        public virtual DbSet<Detail_Urine> Detail_Urine { get; set; }
         public virtual DbSet<Diagnostic> Diagnostics { get; set; }
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
         public virtual DbSet<DongMau> DongMaus { get; set; }
@@ -48,15 +52,13 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
+        public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
         public virtual DbSet<Subclinical> Subclinicals { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<XetNghiemMau> XetNghiemMaus { get; set; }
-        public virtual DbSet<CTMau> CTMaus { get; set; }
-        public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
-        public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
-        public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
-        public virtual DbSet<Detail_Urine> Detail_Urine { get; set; }
         public virtual DbSet<Urine> Urines { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
+        public virtual DbSet<NhomMau> NhomMaus { get; set; }
+        public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
     }
 }
