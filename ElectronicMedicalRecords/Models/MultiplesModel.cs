@@ -21,5 +21,7 @@ namespace ElectronicMedicalRecords.Models
         public List<Detail_DongMau> Detail_DongMaus { get; set; }
         public List<NhomMau> NhomMau { get; set; }
         public List<Detail_NhomMau> Detail_NhomMaus { get; set; }
+        public List<Urine> Urine { get; set; }
+        public List<Detail_Urine> Detail_Urines { get; set; }
     }
 }

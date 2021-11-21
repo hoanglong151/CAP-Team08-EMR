@@ -104,14 +104,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(List<Detail_DongMau> detail_DongMaus)
         {
-            foreach(var detail_DongMau in detail_DongMaus)
+            if (detail_DongMaus != null)
             {
-                if (ModelState.IsValid)
+                foreach (var detail_DongMau in detail_DongMaus)
                 {
-                    db.Entry(detail_DongMau).State = EntityState.Modified;
-                    db.SaveChanges();
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(detail_DongMau).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
-            }    
+                return RedirectToAction("Edit", "MultipleModels");
+            }
             return RedirectToAction("Edit", "MultipleModels");
         }
 

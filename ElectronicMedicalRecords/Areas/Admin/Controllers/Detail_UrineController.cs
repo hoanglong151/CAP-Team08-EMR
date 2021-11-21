@@ -10,106 +10,107 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    public class Detail_CTMauController : Controller
+    public class Detail_UrineController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-        // GET: Admin/Detail_CTMau
+
+        // GET: Admin/Detail_Urine
         public ActionResult Index()
         {
-            var detail_CTMau = db.Detail_CTMau.Include(d => d.CTMau).Include(d => d.InformationExamination);
-            return View(detail_CTMau.ToList());
+            var detail_Urine = db.Detail_Urine.Include(d => d.InformationExamination).Include(d => d.Urine);
+            return View(detail_Urine.ToList());
         }
 
-        // GET: Admin/Detail_CTMau/Details/5
+        // GET: Admin/Detail_Urine/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            if (detail_CTMau == null)
+            Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
+            if (detail_Urine == null)
             {
                 return HttpNotFound();
             }
-            return View(detail_CTMau);
+            return View(detail_Urine);
         }
 
-        // GET: Admin/Detail_CTMau/Create
+        // GET: Admin/Detail_Urine/Create
         public ActionResult Create()
         {
-            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest");
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
+            ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
+            ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name");
             return View();
         }
 
-        // POST: Admin/Detail_CTMau/Create
+        // POST: Admin/Detail_Urine/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<CTMau> cTMaus, int informationID)
+        public ActionResult Create(List<Urine> Urines, int informationID)
         {
-            Detail_CTMau detail_CTMau = new Detail_CTMau();
-            foreach(var item in cTMaus)
+            Detail_Urine detail_Urine = new Detail_Urine();
+            foreach (var item in Urines)
             {
                 if (ModelState.IsValid && item.ChiDinh == true)
                 {
-                    detail_CTMau.CTMau_ID = item.ID;
-                    detail_CTMau.InformationExamination_ID = informationID;
-                    detail_CTMau.ChiDinh = item.ChiDinh;
-                    detail_CTMau.Result = item.Result;
-                    db.Detail_CTMau.Add(detail_CTMau);
+                    detail_Urine.Urine_ID = item.ID;
+                    detail_Urine.InfomationExamination_ID = informationID;
+                    detail_Urine.ChiDinh = item.ChiDinh;
+                    detail_Urine.Result = item.Result;
+                    db.Detail_Urine.Add(detail_Urine);
                     db.SaveChanges();
                 }
+
             }
-            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
-            //return View(detail_CTMau);
+            ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Urine.InfomationExamination_ID);
+            ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name", detail_Urine.Urine_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
 
-        // GET: Admin/Detail_CTMau/Edit/5
+        // GET: Admin/Detail_Urine/Edit/5
         public ActionResult Edit(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
-            List<Detail_CTMau> detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<CTMau> cTMaus = new List<CTMau>();
-            for(int i = 0; i < detail_CTMaus.Count; i++)
+            List<Detail_Urine> detail_Urines = db.Detail_Urine.Where(p => p.InfomationExamination_ID == id).ToList();
+            List<Urine> Urines = new List<Urine>();
+            for (int i = 0; i < detail_Urines.Count; i++)
             {
-                var CTMau_ID = detail_CTMaus[i].CTMau_ID;
-                var MauCD = db.CTMaus.FirstOrDefault(p => p.ID == CTMau_ID);
-                MauCD.ChiDinh = detail_CTMaus[i].ChiDinh;
-                MauCD.Result = detail_CTMaus[i].Result;
-                detail_CTMaus[i].InformationExamination_ID = id;
-                cTMaus.Add(MauCD);
+                var Urine_ID = detail_Urines[i].Urine_ID;
+                var UrineCD = db.Urines.FirstOrDefault(p => p.ID == Urine_ID);
+                UrineCD.ChiDinh = detail_Urines[i].ChiDinh;
+                UrineCD.Result = detail_Urines[i].Result;
+                detail_Urines[i].InfomationExamination_ID = id;
+                Urines.Add(UrineCD);
             }
-            if (detail_CTMaus == null)
+            if (detail_Urines == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.CTMau = cTMaus;
-            multiplesModel.Detail_CTMaus = detail_CTMaus;
+            multiplesModel.Urine = Urines;
+            multiplesModel.Detail_Urines = detail_Urines;
             return PartialView("_Edit", multiplesModel);
         }
 
-        // POST: Admin/Detail_CTMau/Edit/5
+        // POST: Admin/Detail_Urine/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(List<Detail_CTMau> detail_CTMaus)
+        public ActionResult Edit(List<Detail_Urine> detail_Urines)
         {
-            if(detail_CTMaus != null)
+            if (detail_Urines != null)
             {
-                foreach(var detail_CTMau in detail_CTMaus)
+                foreach (var detail_Urine in detail_Urines)
                 {
                     if (ModelState.IsValid)
                     {
-                        db.Entry(detail_CTMau).State = EntityState.Modified;
+                        db.Entry(detail_Urine).State = EntityState.Modified;
                         db.SaveChanges();
                     }
                 }
@@ -118,28 +119,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("Edit", "MultipleModels");
         }
 
-        // GET: Admin/Detail_CTMau/Delete/5
+        // GET: Admin/Detail_Urine/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            if (detail_CTMau == null)
+            Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
+            if (detail_Urine == null)
             {
                 return HttpNotFound();
             }
-            return View(detail_CTMau);
+            return View(detail_Urine);
         }
 
-        // POST: Admin/Detail_CTMau/Delete/5
+        // POST: Admin/Detail_Urine/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-            db.Detail_CTMau.Remove(detail_CTMau);
+            Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
+            db.Detail_Urine.Remove(detail_Urine);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -9,16 +9,16 @@
         <button class="btn btn-primary">Giao Diện In</button>
     </div>
     <!-- button trigger for  Vertically Centered modal -->
-    <button style="display:none;margin-left:10px" onclick="loadDetailTestsSHM()" id="DetailTestCount" type="button" class="btn btn-outline-primary block"
-            data-bs-toggle="modal" data-bs-target="#DetailTestCountSHM">
+    <button style="display:none;margin-left:10px" onclick="loadDetailUrines()" id="DetailTestCount" type="button" class="btn btn-outline-primary block"
+            data-bs-toggle="modal" data-bs-target="#table-urine">
         Chi Tiết
     </button>
     <div class="d-flex align-items-center" style="margin-left:8px">
         <input class="form-check-input form-check-primary" id="checkAll" type="checkbox" />
-        <label style="padding-left:1rem;padding-top:1px" class="form-check-label" for="checkAll">Xét nghiệm tổng</label>
+        <label style="padding-left:1rem;padding-top:1px" class="form-check-label" for="checkAll">Tổng phân tích tế báo máu ngoại vi</label>
     </div>
     <!-- Vertically Centered modal Modal -->
-    <div class="modal fade" id="DetailTestCountSHM" tabindex="-1" role="dialog"
+    <div class="modal fade" id="table-urine" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div style="max-width:900px" class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
              role="document">
@@ -33,13 +33,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-striped tableNewChiDinh" id="tableNewSinhHoaMau" style="width: 100%">
+                    <table class="table table-striped tableNewChiDinh" id="tableNewUrines" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>Chỉ Định</th>
                                 <th>Tên Xét Nghiệm</th>
                                 <th hidden></th>
-                                <th>Chỉ Số Bình Thường</th>
+                                <th>Chỉ Số Bình Thường</th>                     
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -58,7 +58,7 @@
 </div>
 
 <div class="card-body">
-    <table class="table table-striped tableLoad" id="tableSinhHoaMau" style="width:100%">
+    <table class="table table-striped tableLoad" id="tableUrines" style="width:100%">
         <thead>
             <tr>
                 <th hidden></th>
@@ -66,30 +66,36 @@
                 <th>Tên Xét Nghiệm</th>
                 <th hidden></th>
                 <th>Chỉ Số Cân Bằng</th>
+                <th>Đơn Vị</th>
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < Model.SinhHoaMau.Count(); i++)
+            @for (int i = 0; i < Model.Urine.Count(); i++)
             {
                 <tr>
                     <td hidden>
-                        <input value="@Model.SinhHoaMau[i].ID" type="text" name="SinhHoaMau[@i].ID" hidden />
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Urine[i].ID" type="text" name="Urine[@i].ID" hidden />
                     </td>
                     <td>
-                        <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountTests" data-id="@Model.SinhHoaMau[i].ID" name="SinhHoaMau[@i].ChiDinh" id="SHM-@Model.SinhHoaMau[i].ID">
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountTests" data-id="@Model.Urine[i].ID" name="Urine[@i].ChiDinh" id="Urine-@Model.Urine[i].ID">
                     </td>
                     <td>
-                        <input value="@Model.SinhHoaMau[i].NameTest" type="text" name="SinhHoaMau[@i].NameTest" hidden />
-                        <label class="form-check-label" for="customColorCheck-@Model.SinhHoaMau[i].ID">@Model.SinhHoaMau[i].NameTest</label>
+                        <input value="@Model.Urine[i].Name" type="text" name="Urine[@i].Name" hidden />
+                        <label class="form-check-label" for="CTMau-@Model.Urine[i].ID">@Model.Urine[i].Name</label>
                     </td>
                     <td hidden>
-                        <input value="@Model.SinhHoaMau[i].Result" type="text" name="SinhHoaMau[@i].Result" hidden />
+                        <input value="@Model.Urine[i].Result" type="text" name="Urine[@i].Result" hidden />
                     </td>
                     <td>
-                        <input value="@Model.SinhHoaMau[i].CSBT" type="text" name="SinhHoaMau[@i].CSBT" hidden />
-                        @*@Model.SinhHoaMau[i].CSBT*@
-                        @Html.Raw(Model.SinhHoaMau[i].CSBT)
+                        <input value="@Model.Urine[i].CSBT" type="text" name="Urine[@i].CSBT" hidden />
+                        @Model.Urine[i].CSBT
                     </td>
+                    <td>
+                        <input value="@Model.Urine[i].Unit" type="text" name="Urine[@i].Unit" hidden />
+                        @Model.Urine[i].Unit
+                    </td>                
                 </tr>
             }
         </tbody>

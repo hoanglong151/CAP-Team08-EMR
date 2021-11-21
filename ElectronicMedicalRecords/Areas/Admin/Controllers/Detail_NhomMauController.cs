@@ -103,13 +103,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(List<Detail_NhomMau> detail_NhomMaus)
         {
-            foreach (var detail_NhomMau in detail_NhomMaus)
+            if (detail_NhomMaus != null)
             {
-                if (ModelState.IsValid)
+                foreach (var detail_NhomMau in detail_NhomMaus)
                 {
-                    db.Entry(detail_NhomMau).State = EntityState.Modified;
-                    db.SaveChanges();
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(detail_NhomMau).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
+                return RedirectToAction("Edit", "MultipleModels");
             }
             return RedirectToAction("Edit", "MultipleModels");
         }
