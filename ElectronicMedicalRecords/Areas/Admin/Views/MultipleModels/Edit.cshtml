@@ -100,6 +100,10 @@
                            role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
+                           role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
                            role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                     </li>
@@ -176,6 +180,18 @@
                                 <div class="card">
                                     @{
                                         Html.RenderAction("Edit", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="urine" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Edit", "Detail_Urine", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>

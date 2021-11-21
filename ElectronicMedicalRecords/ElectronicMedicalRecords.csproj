@@ -257,6 +257,7 @@
     <Compile Include="Areas\Admin\Controllers\Detail_DongMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_NhomMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_SinhHoaMauController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_UrineController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DongMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UrinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2640,6 +2642,18 @@
     <Content Include="Areas\Admin\Views\Detail_NhomMau\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NhomMaus\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_NhomMau\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Urines\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Urines\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Urines\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Urines\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Urines\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Urines\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\_Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

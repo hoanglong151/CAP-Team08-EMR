@@ -100,6 +100,10 @@
                            role="tab" aria-controls="contact" aria-selected="false">Nhóm Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#urine"
+                           role="tab" aria-controls="contact" aria-selected="false">Nước Tiểu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
                            role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                     </li>
@@ -181,6 +185,20 @@
                             </section>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="urine" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Create", "Urines");
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
                     <div class="tab-pane fade" id="contact" role="tabpanel"
                          aria-labelledby="contact-tab">
                         <p class="mt-2">
@@ -204,11 +222,12 @@
 @section scripts{
     <script>
         var k = 1;
-        var count = [0, 0, 0, 0];
+        var count = [0, 0, 0, 0, 0];
         var arrTests = [];
         var arrSinhHoaMau = [];
         var arrDongMau = [];
         var arrNhomMau = [];
+        var arrUrine = [];
         /*Load CD Sinh hoa Mau*/
         function loadDetailTestsSHM() {
             $('#tableNewSinhHoaMau').DataTable({
@@ -233,6 +252,50 @@
                         "name": "Tên Xét Nghiệm",
                         "render": (data, type, row) => {
                             var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
+                            return label;
+                        }
+                    },
+                    {
+                        "data": "CSBT",
+                        "name": "Chỉ Số Bình Thường"
+                    },
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+        /*Load CD Urines*/
+        function loadDetailUrines() {
+            $('#tableNewUrines').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("LoadDetailUrines", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrUrine
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "Chỉ Định",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Urine.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 4 + ',' + '"Urine-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Tên Xét Nghiệm",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
                             return label;
                         }
                     },
@@ -424,6 +487,10 @@
                     var existNM = arrNhomMau.indexOf("" + id);
                     arrNhomMau.splice(existNM, 1);
                     break;
+                case 4:
+                    var existUrine = arrUrine.indexOf("" + id);
+                    arrUrine.splice(existUrine, 1);
+                    break;
                 }
             count[numTable]--;
             CountTests[numTable].innerHTML = count[numTable];
@@ -508,6 +575,9 @@
                         case 3:
                             arrNhomMau = [];
                             break;
+                        case 4:
+                            arrUrine = [];
+                            break;
                     }
                     list.each((index, value) => {
                         var id = value.getAttribute("data-id");
@@ -562,6 +632,9 @@
                     case 3:
                         arrNhomMau.push(id);
                         break;
+                    case 4:
+                        arrUrine.push(id);
+                        break;
                 }
             } else {
                 count[indextable]--;
@@ -583,6 +656,10 @@
                     case 3:
                         const indexNM = arrNhomMau.indexOf("" + id);
                         arrNhomMau.splice(indexNM, 1);
+                        break;
+                    case 4:
+                        const indexUrine = arrUrine.indexOf("" + id);
+                        arrUrine.splice(indexUrine, 1);
                         break;
                 }
             }
