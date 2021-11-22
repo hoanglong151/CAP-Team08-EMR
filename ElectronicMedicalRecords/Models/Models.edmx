@@ -149,6 +149,16 @@
           <Property Name="ChiDinh" Type="bit" Nullable="false" />
           <Property Name="Result" Type="float" />
         </EntityType>
+        <EntityType Name="Detail_Immune">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InformationExamination_ID" Type="int" />
+          <Property Name="Immue_ID" Type="int" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Result" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Detail_NhomMau">
           <Key>
             <PropertyRef Name="ID" />
@@ -221,6 +231,17 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HomeTown" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Immune">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="NameTest" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="nvarchar(max)" />
+          <Property Name="CSBT" Type="nvarchar(max)" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="InformationExamination">
           <Key>
@@ -685,6 +706,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_Immune_Immune">
+          <End Role="Immune" Type="Self.Immune" Multiplicity="0..1" />
+          <End Role="Detail_Immune" Type="Self.Detail_Immune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Immune">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Immune">
+              <PropertyRef Name="Immue_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Immune_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Detail_Immune" Type="Self.Detail_Immune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Immune">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_NhomMau_InformationExamination">
           <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
           <End Role="Detail_NhomMau" Type="Self.Detail_NhomMau" Multiplicity="*" />
@@ -1021,6 +1066,7 @@
           <EntitySet Name="CTMau" EntityType="Self.CTMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_CTMau" EntityType="Self.Detail_CTMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_DongMau" EntityType="Self.Detail_DongMau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Immune" EntityType="Self.Detail_Immune" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_NhomMau" EntityType="Self.Detail_NhomMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_SinhHoaMau" EntityType="Self.Detail_SinhHoaMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_Urine" EntityType="Self.Detail_Urine" Schema="dbo" store:Type="Tables" />
@@ -1029,6 +1075,7 @@
           <EntitySet Name="DongMau" EntityType="Self.DongMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HomeTown" EntityType="Self.HomeTown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Immune" EntityType="Self.Immune" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InformationExamination" EntityType="Self.InformationExamination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalTestsPrescription" EntityType="Self.MedicalTestsPrescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
@@ -1133,6 +1180,14 @@
           <AssociationSet Name="FK_Detail_DongMau_InformationExamination" Association="Self.FK_Detail_DongMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExamination" />
             <End Role="Detail_DongMau" EntitySet="Detail_DongMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Immune_Immune" Association="Self.FK_Detail_Immune_Immune">
+            <End Role="Immune" EntitySet="Immune" />
+            <End Role="Detail_Immune" EntitySet="Detail_Immune" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Immune_InformationExamination" Association="Self.FK_Detail_Immune_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Detail_Immune" EntitySet="Detail_Immune" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_NhomMau_InformationExamination" Association="Self.FK_Detail_NhomMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExamination" />
@@ -1475,6 +1530,16 @@
             <End Role="NhomMau" EntitySet="NhomMaus" />
             <End Role="Detail_NhomMau" EntitySet="Detail_NhomMau" />
           </AssociationSet>
+          <EntitySet Name="Detail_Immune" EntityType="CP24Team08Model.Detail_Immune" />
+          <EntitySet Name="Immunes" EntityType="CP24Team08Model.Immune" />
+          <AssociationSet Name="FK_Detail_Immune_Immune" Association="CP24Team08Model.FK_Detail_Immune_Immune">
+            <End Role="Immune" EntitySet="Immunes" />
+            <End Role="Detail_Immune" EntitySet="Detail_Immune" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Immune_InformationExamination" Association="CP24Team08Model.FK_Detail_Immune_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_Immune" EntitySet="Detail_Immune" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1740,6 +1805,7 @@
           <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_InformationExamination" FromRole="InformationExamination" ToRole="Subclinical" />
           <NavigationProperty Name="Detail_DongMau" Relationship="CP24Team08Model.FK_Detail_DongMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DongMau" />
           <NavigationProperty Name="Detail_NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_NhomMau" />
+          <NavigationProperty Name="Detail_Immune" Relationship="CP24Team08Model.FK_Detail_Immune_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Immune" />
         </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
@@ -2544,6 +2610,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Detail_Immune">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="Immue_ID" Type="Int32" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Immune" Relationship="CP24Team08Model.FK_Detail_Immune_Immune" FromRole="Detail_Immune" ToRole="Immune" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Immune_InformationExamination" FromRole="Detail_Immune" ToRole="InformationExamination" />
+        </EntityType>
+        <EntityType Name="Immune">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CSBT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Detail_Immune" Relationship="CP24Team08Model.FK_Detail_Immune_Immune" FromRole="Immune" ToRole="Detail_Immune" />
+        </EntityType>
+        <Association Name="FK_Detail_Immune_Immune">
+          <End Type="CP24Team08Model.Immune" Role="Immune" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Immune" Role="Detail_Immune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Immune">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Immune">
+              <PropertyRef Name="Immue_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Immune_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Immune" Role="Detail_Immune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Immune">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2986,6 +3100,29 @@
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="NhomMau_ID" ColumnName="NhomMau_ID" />
                 <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Immune">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_Immune">
+              <MappingFragment StoreEntitySet="Detail_Immune">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Immue_ID" ColumnName="Immue_ID" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Immunes">
+            <EntityTypeMapping TypeName="CP24Team08Model.Immune">
+              <MappingFragment StoreEntitySet="Immune">
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="CSBT" ColumnName="CSBT" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="NameTest" ColumnName="NameTest" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
