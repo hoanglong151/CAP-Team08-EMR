@@ -92,6 +92,10 @@
         <EntityTypeShape EntityType="CP24Team08Model.Immune" Width="1.5" PointX="3.75" PointY="46.5" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Immune_Immune" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Immune_InformationExamination" />
+        <EntityTypeShape EntityType="CP24Team08Model.Amniocente" Width="2.125" PointX="8.75" PointY="29.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_Amniocente" Width="2.125" PointX="11" PointY="21.75" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

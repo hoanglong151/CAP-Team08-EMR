@@ -78,6 +78,23 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LoadDetailAmniocente(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<Amniocente> aMniocentes = new List<Amniocente>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var amniocente = db.Amniocentes.FirstOrDefault(p => p.ID == id);
+                    amniocente.ChiDinh = true;
+                    aMniocentes.Add(amniocente);
+                }
+                return Json(new { data = aMniocentes }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult LoadDetailSHM(int[] arr)
         {
@@ -152,6 +169,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_NhomMauController detail_NhomMauController = new Detail_NhomMauController();
             Detail_UrineController detail_UrineController = new Detail_UrineController();
             Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
+            Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
             try
             {
                 // TODO: Add insert logic here
@@ -164,6 +182,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID);
                 detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID);
                 detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID);
+                detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -197,6 +216,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_NhomMauController detail_NhomMauController = new Detail_NhomMauController();
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
+                Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
                 patientsController.Edit(multiplesModel.Patient);
                 informationExaminationsController.Edit(multiplesModel.InformationExamination);
                 detail_CTMauController.Edit(multiplesModel.Detail_CTMaus);
@@ -205,6 +225,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_NhomMauController.Edit(multiplesModel.Detail_NhomMaus);
                 detail_UrineController.Edit(multiplesModel.Detail_Urines);
                 detail_ImmuneController.Edit(multiplesModel.Detail_Immunes);
+                detail_AmniocenteController.Edit(multiplesModel.Detail_Amniocentes);
                 return RedirectToAction("Index", "Patients");
             }
             catch

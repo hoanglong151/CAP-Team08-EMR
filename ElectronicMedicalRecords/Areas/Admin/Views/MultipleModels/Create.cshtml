@@ -108,6 +108,10 @@
                            role="tab" aria-controls="contact" aria-selected="false">Miễn Dịch</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#amniocente"
+                           role="tab" aria-controls="contact" aria-selected="false">Dịch Chọc Dò</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
                            role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                     </li>
@@ -216,6 +220,19 @@
                         </div>
                     </div>
 
+                    <div class="tab-pane fade" id="amniocente" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Create", "Amniocentes");
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
                     <div class="tab-pane fade" id="contact" role="tabpanel"
                          aria-labelledby="contact-tab">
                         <p class="mt-2">
@@ -239,13 +256,14 @@
 @section scripts{
     <script>
         var k = 1;
-        var count = [0, 0, 0, 0, 0, 0];
+        var count = [0, 0, 0, 0, 0, 0, 0];
         var arrTests = [];
         var arrSinhHoaMau = [];
         var arrDongMau = [];
         var arrNhomMau = [];
         var arrUrine = [];
         var arrImmune = [];
+        var arrAmniocente = [];
         /*Load CD Sinh hoa Mau*/
         function loadDetailTestsSHM() {
             $('#tableNewSinhHoaMau').DataTable({
@@ -262,6 +280,50 @@
                         "name": "Chỉ Định",
                         "render": (data, type, row) => {
                             var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='SinhHoaMau.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 1 + ',' + '"SHM-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "NameTest",
+                        "name": "Tên Xét Nghiệm",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
+                            return label;
+                        }
+                    },
+                    {
+                        "data": "CSBT",
+                        "name": "Chỉ Số Bình Thường"
+                    },
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+        /*Load CD Dich Choc Do*/
+        function loadDetailAmniocentes() {
+            $('#tableNewAmniocentes').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("LoadDetailAmniocente", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrAmniocente
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "Chỉ Định",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Amniocente.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 6 + ',' + '"Amniocente-"' +")'>"
                             return checkbox;
                         },
                     },
@@ -557,7 +619,11 @@
                     var existImmune = arrImmune.indexOf("" + id);
                     arrImmune.splice(existImmune, 1);
                     break;
-                }
+                case 6:
+                    var existAmniocente = arrAmniocente.indexOf("" + id);
+                    arrAmniocente.splice(existAmniocente, 1);
+                    break;
+            }
             count[numTable]--;
             CountTests[numTable].innerHTML = count[numTable];
             var GetTable = tableNewCD[numTable].getAttribute("id");
@@ -647,6 +713,9 @@
                         case 5:
                             arrImmune = [];
                             break;
+                        case 6:
+                            arrAmniocente = [];
+                            break;
                     }
                     list.each((index, value) => {
                         var id = value.getAttribute("data-id");
@@ -707,6 +776,9 @@
                     case 5:
                         arrImmune.push(id);
                         break;
+                    case 6:
+                        arrAmniocente.push(id);
+                        break;
                 }
             } else {
                 count[indextable]--;
@@ -736,6 +808,10 @@
                     case 5:
                         const indexImmune = arrImmune.indexOf("" + id);
                         arrImmune.splice(indexImmune, 1);
+                        break;
+                    case 6:
+                        const indexAmniocente = arrAmniocente.indexOf("" + id);
+                        arrAmniocente.splice(indexAmniocente, 1);
                         break;
                 }
             }

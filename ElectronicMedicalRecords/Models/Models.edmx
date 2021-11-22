@@ -15,6 +15,17 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Amniocente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="NameTest" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+          <Property Name="CSBT" Type="nvarchar(max)" />
+          <Property Name="Unit" Type="varchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -128,6 +139,16 @@
           <Property Name="CSBT" Type="varchar" MaxLength="20" />
           <Property Name="Unit" Type="varchar" MaxLength="5" />
           <Property Name="MayXN" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Detail_Amniocente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InformationExamination_ID" Type="int" />
+          <Property Name="Amniocente_ID" Type="int" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Detail_CTMau">
           <Key>
@@ -258,6 +279,7 @@
           <Property Name="Height" Type="float" />
           <Property Name="PatientStatus_ID" Type="int" />
           <Property Name="Patient_ID" Type="int" />
+          <Property Name="TestCD" Type="bit" />
         </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
@@ -655,6 +677,30 @@
             </Principal>
             <Dependent Role="AspNetUserRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Amniocente_Amniocente">
+          <End Role="Amniocente" Type="Self.Amniocente" Multiplicity="0..1" />
+          <End Role="Detail_Amniocente" Type="Self.Detail_Amniocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amniocente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Amniocente">
+              <PropertyRef Name="Amniocente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Amniocente_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="Detail_Amniocente" Type="Self.Detail_Amniocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Amniocente">
+              <PropertyRef Name="InformationExamination_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1056,6 +1102,7 @@
         </Association>
         <EntityContainer Name="CP24Team08ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Amniocente" EntityType="Self.Amniocente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -1064,6 +1111,7 @@
           <EntitySet Name="Assort" EntityType="Self.Assort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clinical" EntityType="Self.Clinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTMau" EntityType="Self.CTMau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Amniocente" EntityType="Self.Detail_Amniocente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_CTMau" EntityType="Self.Detail_CTMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_DongMau" EntityType="Self.Detail_DongMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_Immune" EntityType="Self.Detail_Immune" Schema="dbo" store:Type="Tables" />
@@ -1164,6 +1212,14 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Amniocente_Amniocente" Association="Self.FK_Detail_Amniocente_Amniocente">
+            <End Role="Amniocente" EntitySet="Amniocente" />
+            <End Role="Detail_Amniocente" EntitySet="Detail_Amniocente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Amniocente_InformationExamination" Association="Self.FK_Detail_Amniocente_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="Detail_Amniocente" EntitySet="Detail_Amniocente" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_CTMau_CTMau" Association="Self.FK_Detail_CTMau_CTMau">
             <End Role="CTMau" EntitySet="CTMau" />
@@ -1540,7 +1596,17 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_Immune" EntitySet="Detail_Immune" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Amniocentes" EntityType="CP24Team08Model.Amniocente" />
+          <EntitySet Name="Detail_Amniocente" EntityType="CP24Team08Model.Detail_Amniocente" />
+          <AssociationSet Name="FK_Detail_Amniocente_Amniocente" Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente">
+            <End Role="Amniocente" EntitySet="Amniocentes" />
+            <End Role="Detail_Amniocente" EntitySet="Detail_Amniocente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Amniocente_InformationExamination" Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_Amniocente" EntitySet="Detail_Amniocente" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1806,7 +1872,9 @@
           <NavigationProperty Name="Detail_DongMau" Relationship="CP24Team08Model.FK_Detail_DongMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DongMau" />
           <NavigationProperty Name="Detail_NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_NhomMau" />
           <NavigationProperty Name="Detail_Immune" Relationship="CP24Team08Model.FK_Detail_Immune_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Immune" />
-        </EntityType>
+          <Property Name="TestCD" Type="Boolean" />
+          <NavigationProperty Name="Detail_Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Amniocente" />
+          </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
             <PropertyRef Name="ID" />
@@ -2658,6 +2726,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Amniocente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CSBT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Detail_Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_Amniocente" FromRole="Amniocente" ToRole="Detail_Amniocente" />
+        </EntityType>
+        <EntityType Name="Detail_Amniocente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="Amniocente_ID" Type="Int32" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_Amniocente" FromRole="Detail_Amniocente" ToRole="Amniocente" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" FromRole="Detail_Amniocente" ToRole="InformationExamination" />
+        </EntityType>
+        <Association Name="FK_Detail_Amniocente_Amniocente">
+          <End Type="CP24Team08Model.Amniocente" Role="Amniocente" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Amniocente" Role="Detail_Amniocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amniocente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Amniocente">
+              <PropertyRef Name="Amniocente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Amniocente_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Amniocente" Role="Detail_Amniocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Amniocente">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2869,6 +2985,7 @@
           <EntitySetMapping Name="InformationExaminations">
             <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
               <MappingFragment StoreEntitySet="InformationExamination">
+                <ScalarProperty Name="TestCD" ColumnName="TestCD" />
                 <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
                 <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
@@ -3123,6 +3240,29 @@
                 <ScalarProperty Name="Result" ColumnName="Result" />
                 <ScalarProperty Name="NameTest" ColumnName="NameTest" />
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Amniocentes">
+            <EntityTypeMapping TypeName="CP24Team08Model.Amniocente">
+              <MappingFragment StoreEntitySet="Amniocente">
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="CSBT" ColumnName="CSBT" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="NameTest" ColumnName="NameTest" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Amniocente">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_Amniocente">
+              <MappingFragment StoreEntitySet="Detail_Amniocente">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Amniocente_ID" ColumnName="Amniocente_ID" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
