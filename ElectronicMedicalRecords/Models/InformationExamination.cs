@@ -26,6 +26,7 @@ namespace ElectronicMedicalRecords.Models
             this.Subclinicals = new HashSet<Subclinical>();
             this.Detail_DongMau = new HashSet<Detail_DongMau>();
             this.Detail_NhomMau = new HashSet<Detail_NhomMau>();
+            this.Detail_Immune = new HashSet<Detail_Immune>();
         }
     
         public int ID { get; set; }
@@ -61,5 +62,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_DongMau> Detail_DongMau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_NhomMau> Detail_NhomMau { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_Immune> Detail_Immune { get; set; }
     }
 }

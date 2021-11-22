@@ -60,5 +60,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
         public virtual DbSet<NhomMau> NhomMaus { get; set; }
         public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
+        public virtual DbSet<Detail_Immune> Detail_Immune { get; set; }
+        public virtual DbSet<Immune> Immunes { get; set; }
     }
 }

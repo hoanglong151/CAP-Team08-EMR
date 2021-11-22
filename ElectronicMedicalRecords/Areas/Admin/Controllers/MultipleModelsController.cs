@@ -60,6 +60,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LoadDetailImmune(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<Immune> listNewImmunes = new List<Immune>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var immune = db.Immunes.FirstOrDefault(p => p.ID == id);
+                    immune.ChiDinh = true;
+                    listNewImmunes.Add(immune);
+                }
+                return Json(new { data = listNewImmunes }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult LoadDetailSHM(int[] arr)
         {
@@ -133,6 +151,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
             Detail_NhomMauController detail_NhomMauController = new Detail_NhomMauController();
             Detail_UrineController detail_UrineController = new Detail_UrineController();
+            Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
             try
             {
                 // TODO: Add insert logic here
@@ -144,6 +163,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_DongMauController.Create(multiplesModel.DongMau, multiplesModel.InformationExamination.ID);
                 detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID);
                 detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID);
+                detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -176,6 +196,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
                 Detail_NhomMauController detail_NhomMauController = new Detail_NhomMauController();
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
+                Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 patientsController.Edit(multiplesModel.Patient);
                 informationExaminationsController.Edit(multiplesModel.InformationExamination);
                 detail_CTMauController.Edit(multiplesModel.Detail_CTMaus);
@@ -183,6 +204,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_DongMauController.Edit(multiplesModel.Detail_DongMaus);
                 detail_NhomMauController.Edit(multiplesModel.Detail_NhomMaus);
                 detail_UrineController.Edit(multiplesModel.Detail_Urines);
+                detail_ImmuneController.Edit(multiplesModel.Detail_Immunes);
                 return RedirectToAction("Index", "Patients");
             }
             catch

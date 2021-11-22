@@ -255,11 +255,13 @@
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_DongMauController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_ImmuneController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_NhomMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_SinhHoaMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_UrineController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DongMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImmunesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
@@ -307,6 +309,9 @@
     <Compile Include="Models\Detail_DongMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Detail_Immune.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Detail_NhomMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -332,6 +337,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Immune.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\InformationExamination.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -2654,6 +2662,18 @@
     <Content Include="Areas\Admin\Views\Detail_Urine\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Urine\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Urine\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Immunes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Immunes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Immunes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Immunes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Immunes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Immunes\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\_Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
