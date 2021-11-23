@@ -251,8 +251,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AmniocentesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_AmniocenteController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_DongMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_ImmuneController.cs" />
@@ -279,6 +281,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Amniocente.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -301,6 +306,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_Amniocente.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_CTMau.cs">
@@ -2674,6 +2682,18 @@
     <Content Include="Areas\Admin\Views\Detail_Immune\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Immune\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Immune\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Amniocentes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Amniocentes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Amniocentes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Amniocentes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Amniocentes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Amniocentes\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\_Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

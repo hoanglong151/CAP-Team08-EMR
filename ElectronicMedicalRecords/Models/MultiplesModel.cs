@@ -25,5 +25,7 @@ namespace ElectronicMedicalRecords.Models
         public List<Detail_Urine> Detail_Urines { get; set; }
         public List<Immune> Immune { get; set; }
         public List<Detail_Immune> Detail_Immunes { get; set; }
+        public List<Amniocente> Amniocente { get; set; }
+        public List<Detail_Amniocente> Detail_Amniocentes { get; set; }
     }
 }
