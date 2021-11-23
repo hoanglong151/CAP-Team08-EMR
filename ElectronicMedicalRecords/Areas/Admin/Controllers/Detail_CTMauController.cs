@@ -48,7 +48,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<CTMau> cTMaus, int informationID)
+        public ActionResult Create(List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_CTMau detail_CTMau = new Detail_CTMau();
             foreach(var item in cTMaus)
@@ -59,6 +59,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_CTMau.InformationExamination_ID = informationID;
                     detail_CTMau.ChiDinh = item.ChiDinh;
                     detail_CTMau.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_CTMau.Add(detail_CTMau);
                     db.SaveChanges();
                 }
@@ -67,6 +69,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
             //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
+        }
+
+        public ActionResult DetailIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            List<Detail_CTMau> detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == id).ToList();
+            List<CTMau> cTMaus = new List<CTMau>();
+            for (int i = 0; i < detail_CTMaus.Count; i++)
+            {
+                var CTMau_ID = detail_CTMaus[i].CTMau_ID;
+                var MauCD = db.CTMaus.FirstOrDefault(p => p.ID == CTMau_ID);
+                MauCD.ChiDinh = detail_CTMaus[i].ChiDinh;
+                MauCD.Result = detail_CTMaus[i].Result;
+                detail_CTMaus[i].InformationExamination_ID = id;
+                cTMaus.Add(MauCD);
+            }
+            if (detail_CTMaus == null)
+            {
+                return HttpNotFound();
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.CTMau = cTMaus;
+            multiplesModel.Detail_CTMaus = detail_CTMaus;
+            return PartialView("_DetailIE", multiplesModel);
         }
 
         // GET: Admin/Detail_CTMau/Edit/5
@@ -116,6 +144,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return RedirectToAction("Edit", "MultipleModels");
             }
             return RedirectToAction("Edit", "MultipleModels");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            Detail_CTMau detail_CTMau = new Detail_CTMau();
+            foreach (var item in multiplesModel.CTMau)
+            {
+                if (ModelState.IsValid && item.ChiDinh == true)
+                {
+                    detail_CTMau.CTMau_ID = item.ID;
+                    detail_CTMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_CTMau.ChiDinh = item.ChiDinh;
+                    detail_CTMau.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.Detail_CTMau.Add(detail_CTMau);
+                    db.SaveChanges();
+                }
+            }
+            ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
+            //return View(detail_CTMau);
+            return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
 
         // GET: Admin/Detail_CTMau/Delete/5

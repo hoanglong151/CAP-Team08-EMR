@@ -1,0 +1,103 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-header pd-0px">
+    <div class="d-flex justify-content-between align-items-center">
+        <h6 style="margin: 1rem 0.5rem">
+            Số lượng xét nghiệm :
+            <span class="countTests">0</span>
+        </h6>
+        <button class="btn btn-primary">Giao Diện In</button>
+    </div>
+    <!-- button trigger for  Vertically Centered modal -->
+    <button style="display:none;margin-left:10px" onclick="loadDetailTestsImmune()" id="DetailTestCount" type="button" class="btn btn-outline-primary block"
+            data-bs-toggle="modal" data-bs-target="#table-immune">
+        Chi Tiết
+    </button>
+    <div class="d-flex align-items-center" style="margin-left:8px">
+        <input class="form-check-input form-check-primary" id="checkAll" type="checkbox" />
+        <label style="padding-left:1rem;padding-top:1px" class="form-check-label" for="checkAll">Tổng phân tích tế báo máu ngoại vi</label>
+    </div>
+    <!-- Vertically Centered modal Modal -->
+    <div class="modal fade" id="table-immune" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div style="max-width:900px" class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+             role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">
+                        Chỉ định xét nghiệm
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped tableNewChiDinh" id="tableNewImmunes" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Chỉ Định</th>
+                                <th>Tên Xét Nghiệm</th>
+                                <th hidden></th>
+                                <th>Chỉ Số Bình Thường</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="destroytable" type="button" class="btn btn-primary ml-1"
+                            data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Tắt</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body">
+    <table class="table table-striped tableLoad" id="tableImmunes" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Tên Xét Nghiệm</th>
+                <th hidden></th>
+                <th>Chỉ Số Cân Bằng</th>
+                <th>Đơn Vị</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Immune.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Immune[i].ID" type="text" name="Immune[@i].ID" hidden />
+                    </td>
+                    <td>
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountTests" data-id="@Model.Immune[i].ID" name="Immune[@i].ChiDinh" id="Immune-@Model.Immune[i].ID">
+                    </td>
+                    <td>
+                        <input value="@Model.Immune[i].NameTest" type="text" name="Immune[@i].NameTest" hidden />
+                        <label class="form-check-label" for="Immune-@Model.Immune[i].ID">@Model.Immune[i].NameTest</label>
+                    </td>
+                    <td hidden>
+                        <input value="@Model.Immune[i].Result" type="text" name="Immune[@i].Result" hidden />
+                    </td>
+                    <td>
+                        <input value="@Model.Immune[i].CSBT" type="text" name="Immune[@i].CSBT" hidden />
+                        @Html.Raw(Model.Immune[i].CSBT)
+                    </td>
+                    <td>
+                        <input value="@Model.Immune[i].Unit" type="text" name="Immune[@i].Unit" hidden />
+                        @Model.Immune[i].Unit
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

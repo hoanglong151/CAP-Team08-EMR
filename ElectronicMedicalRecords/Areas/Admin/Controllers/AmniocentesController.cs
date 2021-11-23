@@ -35,6 +35,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(amniocente);
         }
 
+        // GET: Admin/Amniocentes/CreateOldPatient
+        public ActionResult CreateOldPatient()
+        {
+
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.Amniocente = db.Amniocentes.ToList();
+            return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
         // GET: Admin/Amniocentes/Create
         public ActionResult Create()
         {

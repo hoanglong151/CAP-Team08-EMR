@@ -32,6 +32,7 @@ namespace ElectronicMedicalRecords.Models
         public string MedicalHistory { get; set; }
         public string HistoryDisease { get; set; }
         public Nullable<int> Nation1_ID { get; set; }
+        public string MaBN { get; set; }
     
         public virtual Gender Gender { get; set; }
         public virtual HomeTown HomeTown { get; set; }

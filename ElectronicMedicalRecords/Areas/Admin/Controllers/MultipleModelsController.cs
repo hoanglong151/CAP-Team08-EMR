@@ -176,13 +176,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;
                 informationExaminationsController.Create(multiplesModel.InformationExamination, PatientID);
-                detail_CTMauController.Create(multiplesModel.CTMau, multiplesModel.InformationExamination.ID);
-                detail_SinhHoaMauController.Create(multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID);
-                detail_DongMauController.Create(multiplesModel.DongMau, multiplesModel.InformationExamination.ID);
-                detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID);
-                detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID);
-                detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID);
-                detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID);
+                detail_CTMauController.Create(multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                detail_SinhHoaMauController.Create(multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                detail_DongMauController.Create(multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel);
+                detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
+                detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -190,13 +190,72 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        // GET: Admin/MultipleModels/CreateOldPatient/5
+        public ActionResult CreateOldPatient(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var inforamtionExaminationList = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var inforamtionExamination = inforamtionExaminationList.LastOrDefault();
+            var patient = db.Patients.Find(id);
+            multiplesModel.InformationExamination = inforamtionExamination;
+            multiplesModel.Patient = patient;
+            return View(multiplesModel);
+        }
+
+        // POST: Admin/MultipleModels/CreateOldPatient/5
+        [HttpPost, ValidateInput(false)]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                PatientsController patientsController = new PatientsController();
+                InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
+                Detail_SinhHoaMauController detail_SinhHoaMauController = new Detail_SinhHoaMauController();
+                Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
+                Detail_NhomMauController detail_NhomMauController = new Detail_NhomMauController();
+                Detail_UrineController detail_UrineController = new Detail_UrineController();
+                Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
+                Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+                patientsController.CreateOldPatient(multiplesModel.Patient);
+                informationExaminationsController.CreateOldPatient(multiplesModel.InformationExamination);
+                detail_CTMauController.CreateOldPatient(multiplesModel);
+                detail_SinhHoaMauController.CreateOldPatient(multiplesModel);
+                detail_DongMauController.CreateOldPatient(multiplesModel);
+                detail_NhomMauController.CreateOldPatient(multiplesModel);
+                detail_UrineController.CreateOldPatient(multiplesModel);
+                detail_ImmuneController.CreateOldPatient(multiplesModel);
+                detail_AmniocenteController.CreateOldPatient(multiplesModel);
+                return RedirectToAction("Index", "Patients");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+
         // GET: Admin/MultipleModels/Edit/5
         public ActionResult Edit(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
-            var inforamtionExamination = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == id);
+            var inforamtionExaminationList = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var inforamtionExamination = inforamtionExaminationList.LastOrDefault();
             var patient = db.Patients.Find(id);
             multiplesModel.InformationExamination = inforamtionExamination;
+            multiplesModel.Patient = patient;
+            return View(multiplesModel);
+        }
+
+        public ActionResult DetailsIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var InformationExamination = db.InformationExaminations.Find(id);
+            var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
+            multiplesModel.InformationExamination = InformationExamination;
             multiplesModel.Patient = patient;
             return View(multiplesModel);
         }

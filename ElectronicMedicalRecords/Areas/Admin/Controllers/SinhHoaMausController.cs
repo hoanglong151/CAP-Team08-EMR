@@ -35,6 +35,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(sinhHoaMau);
         }
 
+        // GET: Admin/SinhHoaMaus/CreateOldPatient
+        public ActionResult CreateOldPatient()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.SinhHoaMau = db.SinhHoaMaus.ToList();
+            return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
         // GET: Admin/SinhHoaMaus/Create
         public ActionResult Create()
         {

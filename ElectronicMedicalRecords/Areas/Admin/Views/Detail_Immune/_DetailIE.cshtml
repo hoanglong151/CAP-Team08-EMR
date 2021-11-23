@@ -1,0 +1,50 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-body">
+    <table class="table table-striped tableLoad" id="tableImmunes" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Tên Xét Nghiệm</th>
+                <th>Kết Quả</th>
+                <th>Chỉ Số Cân Bằng</th>
+                <th>Đơn Vị</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Immune.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_Immunes[i].InformationExamination_ID" type="text" name="Detail_Immunes[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_Immunes[i].Immue_ID" type="text" name="Detail_Immunes[@i].Immue_ID" hidden />
+                    </td>
+                    <td hidden>
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Detail_Immunes[i].ID" type="text" name="Detail_Immunes[@i].ID" hidden />
+                    </td>
+                    <td>
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Immune[i].ID" name="Detail_Immunes[@i].ChiDinh">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.Immune[i].NameTest</label>
+                    </td>
+                    <td>
+                        @Model.Immune[i].Result
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Immune[i].CSBT)
+                    </td>
+                    <td>
+                        @Model.Immune[i].Unit
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

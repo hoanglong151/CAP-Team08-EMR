@@ -49,7 +49,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<NhomMau> nhomMaus, int informationID)
+        public ActionResult Create(List<NhomMau> nhomMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
             foreach(var item in nhomMaus)
@@ -60,6 +60,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_NhomMau.InformationExamination_ID = informationID;
                     detail_NhomMau.ChiDinh = item.ChiDinh;
                     detail_NhomMau.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_NhomMau.Add(detail_NhomMau);
                     db.SaveChanges();
                 }
@@ -67,6 +69,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_NhomMau.InformationExamination_ID);
             ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest", detail_NhomMau.NhomMau_ID);
             return RedirectToAction("Create", "MultipleModels");
+        }
+
+        public ActionResult DetailIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            List<Detail_NhomMau> detail_NhomMaus = db.Detail_NhomMau.Where(p => p.InformationExamination_ID == id).ToList();
+            List<NhomMau> nhomMaus = new List<NhomMau>();
+            for (int i = 0; i < detail_NhomMaus.Count; i++)
+            {
+                var NhomMau_ID = detail_NhomMaus[i].NhomMau_ID;
+                var NhomMauCD = db.NhomMaus.FirstOrDefault(p => p.ID == NhomMau_ID);
+                NhomMauCD.ChiDinh = detail_NhomMaus[i].ChiDinh;
+                NhomMauCD.Result = detail_NhomMaus[i].Result;
+                detail_NhomMaus[i].InformationExamination_ID = id;
+                nhomMaus.Add(NhomMauCD);
+            }
+            if (detail_NhomMaus == null)
+            {
+                return HttpNotFound();
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.NhomMau = nhomMaus;
+            multiplesModel.Detail_NhomMaus = detail_NhomMaus;
+            return PartialView("_DetailIE", multiplesModel);
         }
 
         // GET: Admin/Detail_NhomMau/Edit/5
@@ -116,6 +144,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return RedirectToAction("Edit", "MultipleModels");
             }
             return RedirectToAction("Edit", "MultipleModels");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
+            foreach (var item in multiplesModel.NhomMau)
+            {
+                if (ModelState.IsValid && item.ChiDinh == true)
+                {
+                    detail_NhomMau.NhomMau_ID = item.ID;
+                    detail_NhomMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_NhomMau.ChiDinh = item.ChiDinh;
+                    detail_NhomMau.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.Detail_NhomMau.Add(detail_NhomMau);
+                    db.SaveChanges();
+                }
+            }
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_NhomMau.InformationExamination_ID);
+            ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest", detail_NhomMau.NhomMau_ID);
+            return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
 
         // GET: Admin/Detail_NhomMau/Delete/5

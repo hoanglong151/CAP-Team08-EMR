@@ -24,8 +24,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(patients);
         }
 
+        public ActionResult DetailIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            multiplesModel.Patient = patient;
+            return PartialView("_DetailIE", multiplesModel);
+        }
+
         [HttpPost]
-        public ActionResult SearchPatient(DateTime? DateStart, DateTime? DateEnd, string Name, int? Code)
+        public ActionResult SearchPatient(DateTime? DateStart, DateTime? DateEnd, string Name, string Code)
         {
             PatientsController patientsController = new PatientsController();
             if (DateStart == null && DateEnd == null && Name == "" && Code == null)
@@ -48,32 +64,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 informationExaminations = informationExaminations.Where(p => p.DateEnd <= DateEnd.Value).ToList();
             }
+            if( Code != "")
+            {
+                informationExaminations = informationExaminations.Where(p => p.Patient.MaBN.Contains(Code)).ToList();
+            }
             if (informationExaminations.Count > 0)
             {
                 for (int i = 0; i < informationExaminations.Count; i++)
                 {
-                    var patient_ID = informationExaminations[i].Patient_ID;
-                    var patient = db.Patients.FirstOrDefault(p => p.ID == patient_ID);
-                    patients.Add(patient);
+                    var checkexist = patients.FirstOrDefault(p => p.MaBN == informationExaminations[i].Patient.MaBN);
+                    if(checkexist == null)
+                    {
+                        var patient_ID = informationExaminations[i].Patient_ID;
+                        var patient = db.Patients.FirstOrDefault(p => p.ID == patient_ID);
+                        patients.Add(patient);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
             }
             return View("Index", patients);
-        }
-
-
-        // GET: Admin/Patients/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            return View(patient);
         }
 
         // GET: Admin/Patients/Create
@@ -95,6 +107,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                patient.MaBN = "BN" + DateTime.Now.Year + 000001;
                 db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");
@@ -105,6 +118,40 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
             return View(patient);
+        }
+
+        // GET: Admin/Patients/CreateOldPatient/5
+        public ActionResult CreateOldPatient(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            multiplesModel.Patient = patient;
+            return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(Patient patient)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(patient).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("CreateOldPatient", "MultipleModels");
+            }
+            ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
+            ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
+            ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
+            ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
 
         // GET: Admin/Patients/Edit/5

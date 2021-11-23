@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-3">
                             <label>Mã Bệnh Nhân</label>
-                            <input name="Code" type="number" class="form-control" placeholder="Mã Bệnh Nhân" />
+                            <input name="Code" type="text" class="form-control" placeholder="Mã Bệnh Nhân" />
                         </div>
                         <div class="col-md-1 align-self-end">
                             <button type="submit" class="btn btn-primary">
@@ -76,16 +76,19 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.ID</td>
+                                <td>@item.MaBN</td>
                                 <td>@item.Name</td>
                                 <td>@item.BirthDate.Value.ToString("yyyy")</td>
                                 <td>@item.Address</td>
                                 <td>@item.Gender.Gender1</td>
                                 <td>
+                                    <a class="btn btn-primary btnHover" href="@Url.Action("CreateOldPatient","MultipleModels", new { id = item.ID})">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
                                     <a class="btn btn-primary btnHover" href="@Url.Action("Edit","MultipleModels", new { id = item.ID})">
                                         <i class='fas fa-user-edit'></i>
                                     </a>
-                                    <a class="btn btn-primary btnHover" href="@Url.Action("Details","MultipleModels", new { id = item.ID})">
+                                    <a class="btn btn-primary btnHover" href="@Url.Action("Details","InformationExaminations", new { id = item.ID})">
                                         <i class="fas fa-info"></i>
                                     </a>
                                 </td>

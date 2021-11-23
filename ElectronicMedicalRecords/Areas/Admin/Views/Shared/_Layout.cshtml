@@ -70,9 +70,13 @@
 
         span.count {
             position: absolute;
-            font-size: 10px;
-            top: -.1rem;
-            left:1.6rem;
+            font-size: 14px;
+            top: -0.1rem;
+            left: 2rem;
+        }
+
+        .dropdown-toggle:after{
+            display: none
         }
     </style>
     <div id="app">
@@ -88,11 +92,6 @@
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
-                </div>
-                <span class="noti fas fa-bell"><span class="count">&nbsp;</span></span>
-                <div class="noti-content">
-                    <div class="noti-top-arrow"></div>
-                    <ul id="notiContent"></ul>
                 </div>
                 @{
                     Html.RenderAction("RenderUser", "Users");
@@ -157,15 +156,42 @@
             </div>
         </div>
         <div id="main">
+            <nav class="navbar navbar-expand navbar-light " style="padding:0;height:0">
+                <div class="container-fluid">
+                    <a href="#" class="burger-btn d-block">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown me-3">
+                                <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell" style="font-size:25px"></i>
+                                    <span class="count">&nbsp;</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" id="notiContent" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <h6 class="dropdown-header">Notifications</h6>
+                                    </li>
+                                    <li><a class="dropdown-item">No notification available</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
             @RenderBody()
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>2021 &copy; Khoa Y Dược ĐH Văn Lang</p>
                     </div>
                     <div class="float-end">
                         <p>
-                            Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a>
+                            Create By Team<span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">Stay-Cool</a>
                         </p>
                     </div>
                 </div>
@@ -233,12 +259,6 @@
                 })
             }
 
-            //function updateNotificationCount() {
-            //    var count = 0;
-            //    count = parseInt($('span.count').html()) || 0;
-            //    count++;
-            //    $('span.count').html(count);
-            //}
             var notificationHub = $.connection.notificationHub;
             $.connection.hub.start().done(function () {
                 console.log("Notification hub started");

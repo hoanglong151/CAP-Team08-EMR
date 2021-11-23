@@ -51,7 +51,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Urine> Detail_Urine { get; set; }
-        public virtual Patient Patient { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -68,5 +67,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_Immune> Detail_Immune { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Amniocente> Detail_Amniocente { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }
