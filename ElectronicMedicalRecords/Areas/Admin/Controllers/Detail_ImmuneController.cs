@@ -49,7 +49,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<Immune> iMmunes, int informationID)
+        public ActionResult Create(List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
         {
             Detail_Immune detail_Immune = new Detail_Immune();
             foreach (var item in iMmunes)
@@ -60,6 +60,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Immune.InformationExamination_ID = informationID;
                     detail_Immune.ChiDinh = item.ChiDinh;
                     detail_Immune.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Immune.Add(detail_Immune);
                     db.SaveChanges();
                 }
@@ -68,6 +70,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
             //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
+        }
+
+        public ActionResult DetailIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            List<Detail_Immune> detail_Immunes = db.Detail_Immune.Where(p => p.InformationExamination_ID == id).ToList();
+            List<Immune> iMmunes = new List<Immune>();
+            for (int i = 0; i < detail_Immunes.Count; i++)
+            {
+                var Immune_ID = detail_Immunes[i].Immue_ID;
+                var ImmuneCD = db.Immunes.FirstOrDefault(p => p.ID == Immune_ID);
+                ImmuneCD.ChiDinh = detail_Immunes[i].ChiDinh;
+                ImmuneCD.Result = detail_Immunes[i].Result;
+                detail_Immunes[i].InformationExamination_ID = id;
+                iMmunes.Add(ImmuneCD);
+            }
+            if (detail_Immunes == null)
+            {
+                return HttpNotFound();
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.Immune = iMmunes;
+            multiplesModel.Detail_Immunes = detail_Immunes;
+            return PartialView("_DetailIE", multiplesModel);
         }
 
         // GET: Admin/Detail_Immune/Edit/5
@@ -117,6 +145,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return RedirectToAction("Edit", "MultipleModels");
             }
             return RedirectToAction("Edit", "MultipleModels");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            Detail_Immune detail_Immune = new Detail_Immune();
+            foreach (var item in multiplesModel.Immune)
+            {
+                if (ModelState.IsValid && item.ChiDinh == true)
+                {
+                    detail_Immune.Immue_ID = item.ID;
+                    detail_Immune.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_Immune.ChiDinh = item.ChiDinh;
+                    detail_Immune.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.Detail_Immune.Add(detail_Immune);
+                    db.SaveChanges();
+                }
+            }
+            ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
+            //return View(detail_CTMau);
+            return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
 
         // GET: Admin/Detail_Immune/Delete/5

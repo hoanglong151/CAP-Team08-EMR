@@ -1,7 +1,5 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
-@{
-    ViewBag.Title = "Create";
-}
+
 <style>
     .name-Medication .choices {
         width: 100%
@@ -66,8 +64,8 @@
     .pd-0px {
         padding: 0 1rem;
     }
-    .navbar-nav{
-        display:none
+    .navbar-nav {
+        display: none
     }
 </style>
 <header class="mb-3">
@@ -75,7 +73,7 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("Create", "MultipleModels", FormMethod.Post))
+@using (Html.BeginForm("CreateOldPatient", "MultipleModels", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -91,28 +89,28 @@
                            role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#SinhHoaMau"
-                           role="tab" aria-controls="contact" aria-selected="false">Sinh Hóa Máu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#DongMau"
-                           role="tab" aria-controls="contact" aria-selected="false">Đông Máu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#NhomMau"
-                           role="tab" aria-controls="contact" aria-selected="false">Nhóm Máu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#urine"
-                           role="tab" aria-controls="contact" aria-selected="false">Nước Tiểu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
+                           role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#immune"
-                           role="tab" aria-controls="contact" aria-selected="false">Miễn Dịch</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
+                           role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#amniocente"
-                           role="tab" aria-controls="contact" aria-selected="false">Dịch Chọc Dò</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
+                           role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
@@ -128,9 +126,9 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("Create", "Patients");
-                                                Html.RenderAction("Create", "InformationExaminations");
-                                                Html.RenderAction("Create", "Medications");
+                                                Html.RenderAction("CreateOldPatient", "Patients", new { id = Model.Patient.ID });
+                                                Html.RenderAction("CreateOldPatient", "InformationExaminations", new { id = Model.InformationExamination.ID });
+                                                //Html.RenderAction("Create", "Medications");
                                             }
                                         </div>
                                     </div>
@@ -154,7 +152,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "CTMaus");
+                                        Html.RenderAction("CreateOldPatient", "CTMaus");
                                     }
                                 </div>
                             </section>
@@ -166,7 +164,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "SinhHoaMaus");
+                                        Html.RenderAction("CreateOldPatient", "SinhHoaMaus");
                                     }
                                 </div>
                             </section>
@@ -178,7 +176,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "DongMaus");
+                                        Html.RenderAction("CreateOldPatient", "DongMaus");
                                     }
                                 </div>
                             </section>
@@ -190,52 +188,48 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "NhomMaus");
+                                        Html.RenderAction("CreateOldPatient", "NhomMaus");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="urine" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Urines");
+                                        Html.RenderAction("CreateOldPatient", "Urines");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="immune" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Immunes");
+                                        Html.RenderAction("CreateOldPatient", "Immunes");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="amniocente" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Amniocentes");
+                                        Html.RenderAction("CreateOldPatient", "Amniocentes");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="contact" role="tabpanel"
                          aria-labelledby="contact-tab">
                         <p class="mt-2">
@@ -255,7 +249,6 @@
         </div>
     </div>
 }
-
 @section scripts{
     <script>
         var k = 1;
@@ -636,10 +629,10 @@
             $("#" + row + id).attr("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
         }
-        var formatCss = document.querySelector('.choices__list--single');
-        formatCss.classList.add('form-control');
+        //var formatCss = document.querySelector('.choices__list--single');
+        //formatCss.classList.add('form-control');
 
-        var select = document.querySelector('#NameMedication');
+        @*var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
             $.ajax({
@@ -673,7 +666,7 @@
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
             k--;
-        }
+        }*@
         var listTable = $('*.tableLoad');
         listTable.each((index, table) => {
             $('#' + table.id).DataTable({

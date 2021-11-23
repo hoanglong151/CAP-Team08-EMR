@@ -35,6 +35,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(immune);
         }
 
+        // GET: Admin/Immunes/CreateOldPatient
+        public ActionResult CreateOldPatient()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.Immune = db.Immunes.ToList();
+            return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
         // GET: Admin/Immunes/Create
         public ActionResult Create()
         {

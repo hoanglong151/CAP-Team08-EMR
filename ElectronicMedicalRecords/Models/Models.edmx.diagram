@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="67">
+      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="1.5" PointY="42.125" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3.75" PointY="40.625" />
@@ -27,7 +27,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="64.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="1.5" PointY="58.125" />
         <EntityTypeShape EntityType="CP24Team08Model.Nation1" Width="1.5" PointX="1.5" PointY="44.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="1.5" PointY="47.125" />
         <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="1.5" PointY="14.125" />
         <EntityTypeShape EntityType="CP24Team08Model.Prescription" Width="1.5" PointX="3" PointY="23.5" />
         <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="25.375" />
@@ -62,11 +61,8 @@
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_Urine" />
         <AssociationConnector Association="CP24Team08Model.FK_Diagnostic_DiagnosticsCategory" />
         <AssociationConnector Association="CP24Team08Model.FK_Diagnostic_Prescription" />
-        <AssociationConnector Association="CP24Team08Model.FK_Patient_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Gender" />
-        <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
         <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
@@ -74,9 +70,7 @@
         <AssociationConnector Association="CP24Team08Model.FK_Subclinical_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
-        <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
-        <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Prescription" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.FK_Subclinical_User" />
@@ -96,6 +90,12 @@
         <EntityTypeShape EntityType="CP24Team08Model.Detail_Amniocente" Width="2.125" PointX="11" PointY="21.75" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
+        <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="3.75" PointY="50.125" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Gender" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

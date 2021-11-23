@@ -47,7 +47,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
         public virtual DbSet<Nation1> Nation1 { get; set; }
-        public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
@@ -64,5 +63,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Immune> Immunes { get; set; }
         public virtual DbSet<Amniocente> Amniocentes { get; set; }
         public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
+        public virtual DbSet<Patient> Patients { get; set; }
     }
 }

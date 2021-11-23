@@ -47,12 +47,12 @@ namespace ElectronicMedicalRecords
             }
         }
 
-        public List<MedicalTestsPrescription> GetInformationExamination()
+        public List<InformationExamination> GetInformationExamination()
         {
             using (CP24Team08Entities db = new CP24Team08Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.MedicalTestsPrescriptions.Where(a => a.Result == null).OrderByDescending(a => a.InformationExamination_ID).ToList();
+                return db.InformationExaminations.Where(a => a.TestCD == false).OrderByDescending(a => a.DateExamine).ToList();
             }
         }
     }

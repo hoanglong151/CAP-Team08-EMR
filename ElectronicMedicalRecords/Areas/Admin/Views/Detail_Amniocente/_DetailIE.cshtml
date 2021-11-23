@@ -1,0 +1,49 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-body">
+    <table class="table table-striped tableLoad" id="tableAmniocentes" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Tên Xét Nghiệm</th>
+                <th>Kết Quả</th>
+                <th>Chỉ Số Cân Bằng</th>
+                <th>Đơn Vị</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Amniocente.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_Amniocentes[i].InformationExamination_ID" type="text" name="Detail_Amniocentes[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_Amniocentes[i].Amniocente_ID" type="text" name="Detail_Amniocentes[@i].Amniocente_ID" hidden />
+                    </td>
+                    <td hidden>
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Detail_Amniocentes[i].ID" type="text" name="Detail_Amniocentes[@i].ID" hidden />
+                    </td>
+                    <td>
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Amniocente[i].ID" name="Detail_Amniocentes[@i].ChiDinh">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.Amniocente[i].NameTest</label>
+                    </td>
+                    <td>
+                        @Model.Amniocente[i].Result
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Amniocente[i].CSBT)
+                    </td>
+                    <td>
+                        @Model.Amniocente[i].Unit
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -49,7 +49,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<Amniocente> aMniocentes, int informationID)
+        public ActionResult Create(List<Amniocente> aMniocentes, int informationID, MultiplesModel multiplesModel)
         {
             Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
             foreach (var item in aMniocentes)
@@ -60,6 +60,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Amniocente.InformationExamination_ID = informationID;
                     detail_Amniocente.ChiDinh = item.ChiDinh;
                     detail_Amniocente.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Amniocente.Add(detail_Amniocente);
                     db.SaveChanges();
                 }
@@ -68,6 +70,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);
             //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
+        }
+
+        public ActionResult DetailIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == id).ToList();
+            List<Amniocente> aMniocentes = new List<Amniocente>();
+            for (int i = 0; i < detail_Amniocentes.Count; i++)
+            {
+                var Amniocente_ID = detail_Amniocentes[i].Amniocente_ID;
+                var AmniocenteCD = db.Amniocentes.FirstOrDefault(p => p.ID == Amniocente_ID);
+                AmniocenteCD.ChiDinh = detail_Amniocentes[i].ChiDinh;
+                AmniocenteCD.Result = detail_Amniocentes[i].Result;
+                detail_Amniocentes[i].InformationExamination_ID = id;
+                aMniocentes.Add(AmniocenteCD);
+            }
+            if (detail_Amniocentes == null)
+            {
+                return HttpNotFound();
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.Amniocente = aMniocentes;
+            multiplesModel.Detail_Amniocentes = detail_Amniocentes;
+            return PartialView("_DetailIE", multiplesModel);
         }
 
         // GET: Admin/Detail_Amniocente/Edit/5
@@ -117,6 +145,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return RedirectToAction("Edit", "MultipleModels");
             }
             return RedirectToAction("Edit", "MultipleModels");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
+            foreach (var item in multiplesModel.Amniocente)
+            {
+                if (ModelState.IsValid && item.ChiDinh == true)
+                {
+                    detail_Amniocente.Amniocente_ID = item.ID;
+                    detail_Amniocente.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_Amniocente.ChiDinh = item.ChiDinh;
+                    detail_Amniocente.Result = item.Result;
+                    multiplesModel.InformationExamination.TestCD = false;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.Detail_Amniocente.Add(detail_Amniocente);
+                    db.SaveChanges();
+                }
+            }
+            ViewBag.Amniocent_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_Amniocente.Amniocente_ID);
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);
+            //return View(detail_CTMau);
+            return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
 
         // GET: Admin/Detail_Amniocente/Delete/5
