@@ -170,6 +170,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_UrineController detail_UrineController = new Detail_UrineController();
             Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
             Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+            CayMausController cayMausController = new CayMausController();
             try
             {
                 // TODO: Add insert logic here
@@ -183,6 +184,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
+                cayMausController.Create(multiplesModel);
                 return RedirectToAction("Index", "Patients");
             }
             catch

@@ -107,7 +107,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                patient.MaBN = "BN" + DateTime.Now.Year + 000001;
+                var listPatient = db.Patients.ToList().LastOrDefault();
+                var numPatient =  listPatient.MaBN.Substring(5);
+                patient.MaBN = "BN" + DateTime.Now.Year + "00000" +1;
                 db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");

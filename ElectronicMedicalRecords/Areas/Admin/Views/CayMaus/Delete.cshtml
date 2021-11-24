@@ -1,0 +1,73 @@
+﻿@model ElectronicMedicalRecords.Models.CayMau
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CayMau</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ResultNuoiCay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResultNuoiCay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageNuoiCay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageNuoiCay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResultDinhDanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResultDinhDanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageDinhDanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageDinhDanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NongDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NongDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InformationExamination.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InformationExamination.ID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
