@@ -253,6 +253,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AmniocentesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CayMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_AmniocenteController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
@@ -297,6 +298,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Assort.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CayMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clinical.cs">
@@ -2713,6 +2717,12 @@
     <Content Include="Areas\Admin\Views\Detail_Urine\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Immune\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Amniocente\_DetailIE.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\_Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

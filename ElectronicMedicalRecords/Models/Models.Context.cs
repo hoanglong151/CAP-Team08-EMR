@@ -64,5 +64,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Amniocente> Amniocentes { get; set; }
         public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
+        public virtual DbSet<CayMau> CayMaus { get; set; }
     }
 }

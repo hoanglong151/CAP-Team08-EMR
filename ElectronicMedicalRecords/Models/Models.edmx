@@ -84,6 +84,18 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Assort" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="CayMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResultNuoiCay" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageNuoiCay" Type="varchar(max)" />
+          <Property Name="ResultDinhDanh" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageDinhDanh" Type="varchar(max)" />
+          <Property Name="NongDo" Type="nvarchar" MaxLength="50" />
+          <Property Name="InformationExamination_ID" Type="int" />
+        </EntityType>
         <EntityType Name="Clinical">
           <Key>
             <PropertyRef Name="ID" />
@@ -457,6 +469,18 @@
           <Property Name="Gender_ID" Type="int" />
           <Property Name="ActiveAccount" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CayMau_InformationExamination">
+          <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
+          <End Role="CayMau" Type="Self.CayMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CayMau">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Clinical_Assort">
           <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
           <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
@@ -1110,6 +1134,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Assort" EntityType="Self.Assort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CayMau" EntityType="Self.CayMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clinical" EntityType="Self.Clinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTMau" EntityType="Self.CTMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail_Amniocente" EntityType="Self.Detail_Amniocente" Schema="dbo" store:Type="Tables" />
@@ -1142,6 +1167,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Urine" EntityType="Self.Urine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CayMau_InformationExamination" Association="Self.FK_CayMau_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExamination" />
+            <End Role="CayMau" EntitySet="CayMau" />
+          </AssociationSet>
           <AssociationSet Name="FK_Clinical_Assort" Association="Self.FK_Clinical_Assort">
             <End Role="Assort" EntitySet="Assort" />
             <End Role="Clinical" EntitySet="Clinical" />
@@ -1607,6 +1636,11 @@
             <End Role="Nation1" EntitySet="Nation1" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
+          <EntitySet Name="CayMaus" EntityType="CP24Team08Model.CayMau" />
+          <AssociationSet Name="FK_CayMau_InformationExamination" Association="CP24Team08Model.FK_CayMau_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="CayMau" EntitySet="CayMaus" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1875,6 +1909,7 @@
           <Property Name="TestCD" Type="Boolean" />
           <NavigationProperty Name="Detail_Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Amniocente" />
           <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_InformationExamination_Patient" FromRole="InformationExamination" ToRole="Patient" />
+          <NavigationProperty Name="CayMaus" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="InformationExamination" ToRole="CayMau" />
           </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
@@ -2776,6 +2811,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CayMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResultNuoiCay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageNuoiCay" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ResultDinhDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageDinhDanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NongDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="CayMau" ToRole="InformationExamination" />
+        </EntityType>
+        <Association Name="FK_CayMau_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.CayMau" Role="CayMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CayMau">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3266,6 +3326,19 @@
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CayMaus">
+            <EntityTypeMapping TypeName="CP24Team08Model.CayMau">
+              <MappingFragment StoreEntitySet="CayMau">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="NongDo" ColumnName="NongDo" />
+                <ScalarProperty Name="ImageDinhDanh" ColumnName="ImageDinhDanh" />
+                <ScalarProperty Name="ResultDinhDanh" ColumnName="ResultDinhDanh" />
+                <ScalarProperty Name="ImageNuoiCay" ColumnName="ImageNuoiCay" />
+                <ScalarProperty Name="ResultNuoiCay" ColumnName="ResultNuoiCay" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

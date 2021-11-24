@@ -1,0 +1,67 @@
+﻿@model ElectronicMedicalRecords.Models.CayMau
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CayMau</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ResultNuoiCay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResultNuoiCay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageNuoiCay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageNuoiCay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResultDinhDanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResultDinhDanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageDinhDanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageDinhDanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NongDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NongDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InformationExamination.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InformationExamination.ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
