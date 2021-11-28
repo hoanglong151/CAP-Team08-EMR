@@ -22,8 +22,14 @@ namespace ElectronicMedicalRecords.Models
         public string ImageDinhDanh { get; set; }
         public string NongDo { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
-    
-        public virtual InformationExamination InformationExamination { get; set; }
+        public bool ChiDinh { get; set; }
         public HttpPostedFileBase[] ImageNuoiCayFiles { get; set; }
+        public HttpPostedFileBase[] ImageDinhDanhFiles { get; set; }
+
+        public string[] ExistImageNC { get; set; }
+        public string[] ExistImageDD { get; set; }
+
+
+        public virtual InformationExamination InformationExamination { get; set; }
     }
 }

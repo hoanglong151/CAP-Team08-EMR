@@ -95,6 +95,7 @@
           <Property Name="ImageDinhDanh" Type="varchar(max)" />
           <Property Name="NongDo" Type="nvarchar" MaxLength="50" />
           <Property Name="InformationExamination_ID" Type="int" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Clinical">
           <Key>
@@ -2822,6 +2823,7 @@
           <Property Name="ImageDinhDanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NongDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="CayMau" ToRole="InformationExamination" />
         </EntityType>
         <Association Name="FK_CayMau_InformationExamination">
@@ -3333,6 +3335,7 @@
           <EntitySetMapping Name="CayMaus">
             <EntityTypeMapping TypeName="CP24Team08Model.CayMau">
               <MappingFragment StoreEntitySet="CayMau">
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
                 <ScalarProperty Name="NongDo" ColumnName="NongDo" />
                 <ScalarProperty Name="ImageDinhDanh" ColumnName="ImageDinhDanh" />

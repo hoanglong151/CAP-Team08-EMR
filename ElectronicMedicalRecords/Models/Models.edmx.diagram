@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="48">
+      <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="59">
         <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="1.5" PointY="42.125" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3.75" PointY="40.625" />
@@ -96,7 +96,7 @@
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
-        <EntityTypeShape EntityType="CP24Team08Model.CayMau" Width="1.5" PointX="3" PointY="67.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.CayMau" Width="1.5" PointX="3" PointY="67.625" />
         <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
       </Diagram>
     </edmx:Diagrams>

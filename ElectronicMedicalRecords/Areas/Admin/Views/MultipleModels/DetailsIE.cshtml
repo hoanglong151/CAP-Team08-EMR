@@ -69,6 +69,60 @@
     .navbar-nav {
         display: none
     }
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .imagePreview {
+        width: 100%;
+        height: 250px;
+        background-position: center center;
+        background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+        background-color: #fff;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: inline-block;
+        box-shadow: 0px -3px 6px 2px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary {
+        display: block;
+        border-radius: 0px;
+        box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.2);
+        margin-top: -5px;
+    }
+
+    .imgUp {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .del {
+        position: absolute;
+        top: 0px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        background-color: rgba(255,255,255,0.6);
+        cursor: pointer;
+    }
+
+    .imgAdd {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #4bd7ef;
+        color: #fff;
+        box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.2);
+        text-align: center;
+        line-height: 30px;
+        margin-top: 0px;
+        cursor: pointer;
+        font-size: 15px;
+        padding: 0;
+    }
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -81,44 +135,48 @@
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
-                        role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
+                       role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
-                        role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
-                        role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
-                        role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
-                        role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
-                        role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
-                        role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
-                        role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
+                       role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#visinh"
+                       role="tab" aria-controls="contact" aria-selected="false">Vi Sinh</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
-                        role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
+                       role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel"
-                        aria-labelledby="home-tab">
+                     aria-labelledby="home-tab">
                     <p class='my-2'>
                         <section id="multiple-column-form">
                             <div class="row match-height">
@@ -146,7 +204,7 @@
                     </p>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -158,7 +216,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -170,7 +228,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="DongMau" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -182,7 +240,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="NhomMau" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -194,7 +252,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="urine" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -206,7 +264,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="immune" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -218,7 +276,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="amniocente" role="tabpanel"
-                        aria-labelledby="profile-tab">
+                     aria-labelledby="profile-tab">
                     <div class="page-heading">
                         <section class="section">
                             <div class="card">
@@ -229,8 +287,20 @@
                         </section>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="visinh" role="tabpanel"
+                     aria-labelledby="profile-tab">
+                    <div class="page-heading">
+                        <section class="section">
+                            <div class="card">
+                                @{
+                                    Html.RenderAction("DetailIE", "CayMaus", new { id = Model.InformationExamination.ID });
+                                }
+                            </div>
+                        </section>
+                    </div>
+                </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel"
-                        aria-labelledby="contact-tab">
+                     aria-labelledby="contact-tab">
                     <p class="mt-2">
                         Duis ultrices purus non eros fermentum hendrerit. Aenean
                         ornare interdum

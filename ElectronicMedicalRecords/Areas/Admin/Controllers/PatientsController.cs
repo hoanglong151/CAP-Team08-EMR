@@ -108,8 +108,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var listPatient = db.Patients.ToList().LastOrDefault();
-                var numPatient =  listPatient.MaBN.Substring(5);
-                patient.MaBN = "BN" + DateTime.Now.Year + "00000" +1;
+                var numPatient =  Convert.ToInt32(listPatient.MaBN.Substring(6));
+                if (numPatient < 10)
+                {
+                    patient.MaBN = "BN" + DateTime.Now.Year + "00000" + (++numPatient);
+                }
+                else if (numPatient < 100)
+                {
+                    patient.MaBN = "BN" + DateTime.Now.Year + "0000" + (++numPatient);
+                }
+                else if (numPatient < 1000)
+                {
+                    patient.MaBN = "BN" + DateTime.Now.Year + "000" + (++numPatient);
+                }
+                else if (numPatient < 10000)
+                {
+                    patient.MaBN = "BN" + DateTime.Now.Year + "00" + (++numPatient);
+                }
+                else if (numPatient < 100000)
+                {
+                    patient.MaBN = "BN" + DateTime.Now.Year + "0" + (++numPatient);
+                }
+                else
+                {
+                    patient.MaBN = "BN" + DateTime.Now.Year + (++numPatient);
+                }
                 db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");
