@@ -7,9 +7,9 @@
         width: 100%
     }
 
-        .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -5px;
-        }
+    .name-Medication .choices[data-type*=select-one]:after {
+        margin-top: -5px;
+    }
 
     .name-Medication .choices__input--cloned {
         min-width: 100% !important;
@@ -77,7 +77,7 @@
 
     .imagePreview {
         width: 100%;
-        height: 180px;
+        height: 250px;
         background-position: center center;
         background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
         background-color: #fff;
@@ -95,6 +95,7 @@
     }
 
     .imgUp {
+        position: relative;
         margin-bottom: 15px;
     }
 
@@ -329,7 +330,6 @@
 }
 
 @section scripts{
-    <script src="@Url.Content("~/Areas/Admin/assets/vendors/ckeditor/ckeditor.js")"></script>
     <script>
         var k = 1;
         var count = [0, 0, 0, 0, 0, 0, 0];
@@ -900,7 +900,8 @@
         }
 
         $(".imgAdd").click(function () {
-            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" name="CayMau.ImageNuoiCayFiles" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+            var nameInput = $(this).closest(".row").find("input[type='file']").attr("name");
+            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" name="' + nameInput + '" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
         });
         $(document).on("click", "i.del", function () {
             $(this).parent().remove();

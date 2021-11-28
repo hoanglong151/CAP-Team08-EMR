@@ -2723,6 +2723,9 @@
     <Content Include="Areas\Admin\Views\CayMaus\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CayMaus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CayMaus\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\_DetailIE.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CayMaus\_CreateOldPatient.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

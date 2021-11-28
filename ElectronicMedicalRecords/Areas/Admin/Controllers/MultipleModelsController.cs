@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -159,6 +160,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         // POST: Admin/MultipleModels/Create
         [HttpPost, ValidateInput(false)]
+        [Obsolete]
         public ActionResult Create(MultiplesModel multiplesModel)
          {
             PatientsController patientsController = new PatientsController();
@@ -184,7 +186,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
-                cayMausController.Create(multiplesModel);
+                cayMausController.Create(multiplesModel, Server);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -221,6 +223,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+                CayMausController cayMausController = new CayMausController();
                 patientsController.CreateOldPatient(multiplesModel.Patient);
                 informationExaminationsController.CreateOldPatient(multiplesModel.InformationExamination);
                 detail_CTMauController.CreateOldPatient(multiplesModel);
@@ -230,6 +233,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_UrineController.CreateOldPatient(multiplesModel);
                 detail_ImmuneController.CreateOldPatient(multiplesModel);
                 detail_AmniocenteController.CreateOldPatient(multiplesModel);
+                //cayMausController.CreateOldPatient(multiplesModel);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -278,6 +282,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+                CayMausController cayMausController = new CayMausController();
                 patientsController.Edit(multiplesModel.Patient);
                 informationExaminationsController.Edit(multiplesModel.InformationExamination);
                 detail_CTMauController.Edit(multiplesModel.Detail_CTMaus);
@@ -287,6 +292,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_UrineController.Edit(multiplesModel.Detail_Urines);
                 detail_ImmuneController.Edit(multiplesModel.Detail_Immunes);
                 detail_AmniocenteController.Edit(multiplesModel.Detail_Amniocentes);
+                cayMausController.Edit(multiplesModel.CayMau, Server);
                 return RedirectToAction("Index", "Patients");
             }
             catch
