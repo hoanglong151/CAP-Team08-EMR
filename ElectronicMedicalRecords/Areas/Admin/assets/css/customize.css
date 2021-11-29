@@ -1,7 +1,7 @@
 ﻿.nav-bg {
     background-size: cover;
     background-position: center;
-    background-image: linear-gradient(90deg, rgba(187,210,197,0.5021358885351015) 0%, rgba(83,105,118,0.49933476808692223) 100%), url('../../../../asset/nav-bg4.jpg');
+    background-image: linear-gradient(90deg, #000000a1 0%, #0e0e0f52 100%), url(../../../../asset/nav-bg4.jpg)
 }
 
 
@@ -62,9 +62,6 @@
 .w80{
     width: 80px;
 }
-
-
-
 
 .btnHover {
     background-color: transparent;
@@ -182,7 +179,9 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
     }
 }
 
-
+.pdlLeft{
+    padding-left:30px
+}
 .m-icon {
     position: relative;
     top: 1px;

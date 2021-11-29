@@ -32,10 +32,16 @@
     .navbar-nav {
         display: none
     }
+    .navbar.navbar-expand.navbar-light{
+        display: none
+    }
+    #main{
+        padding: 0rem;
+    }
 </style>
 
 <div class="overlay">
-    <video autoplay muted loop>
-        <source src="~/Areas/Admin/assets/videos/videoHomePage.mp4" type="video/mp4" />
+    <video autoplay muted loop style="height:100vh;background-color:#000">
+        <source src="@Url.Content("~/Areas/Admin/assets/videos/videoHomePageVL.mp4")" type="video/mp4" />
     </video>
 </div>

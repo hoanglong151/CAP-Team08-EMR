@@ -10,7 +10,7 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class MedicationsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();

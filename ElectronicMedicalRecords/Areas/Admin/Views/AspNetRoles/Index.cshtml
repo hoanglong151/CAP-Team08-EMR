@@ -11,7 +11,7 @@
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
                 <h3>Quản Lý Phân Quyền</h3>
                 <p class="text-subtitle text-muted">Bạn có thể xem danh sách tài khoản và quyền tại đây</p>
             </div>
@@ -43,16 +43,21 @@
                     <thead>
                         <tr>
                             <th>Tên</th>
-                            <th>Chức Năng</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
                                 <td>
                                     <div class="btn-group me-1 mb-1">
                                         <div class="dropdown dropend">
@@ -81,13 +86,13 @@
                                         </div>
                                     </div>
                                 </td>
+                            }
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
         </div>
-
     </section>
 </div>
 
@@ -103,7 +108,10 @@
                         <tr>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Chức Năng</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -114,9 +122,11 @@
                                 foreach (var user in item.AspNetUsers)
                                 {
                                     var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
-                                    <tr id="@user.Id">
-                                        <td>@userName.Name</td>
-                                        <td>@user.Email</td>
+                                <tr id="@user.Id">
+                                    <td>@userName.Name</td>
+                                    <td>@user.Email</td>
+                                    @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                    {
                                         <td>
                                             <div class="modal-warning me-1 mb-1 d-inline-block">
                                                 <!-- Button trigger for warning theme modal -->
@@ -168,10 +178,10 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
+                                    }
+                                </tr>
                                 }
                             }
-
                         }
                     </tbody>
                 </table>
@@ -192,8 +202,11 @@
                         <tr>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Chức Năng</th>
-                        </tr>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                            </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
@@ -203,9 +216,11 @@
                                 foreach (var user in item.AspNetUsers)
                                 {
                                     var userName = user.Users.FirstOrDefault(n => n.UserID == user.Id);
-                                    <tr id="@user.Id">
-                                        <td>@userName.Name</td>
-                                        <td>@user.Email</td>
+                                <tr id="@user.Id">
+                                    <td>@userName.Name</td>
+                                    <td>@user.Email</td>
+                                    @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                    {
                                         <td>
                                             <div class="modal-warning me-1 mb-1 d-inline-block">
                                                 <!-- Button trigger for warning theme modal -->
@@ -244,7 +259,7 @@
                                                                     <i class="bx bx-x d-block d-sm-none"></i>
                                                                     <span class="d-none d-sm-block">Hủy</span>
                                                                 </button>
-                                                                
+
                                                                 <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
                                                                     <input name="roleID" value="@item.Id" hidden />
                                                                     <input name="userID" value="@user.Id" hidden />
@@ -258,10 +273,10 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        }
                                     </tr>
                                 }
                             }
-
                         }
                     </tbody>
                 </table>
@@ -282,8 +297,11 @@
                         <tr>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Chức Năng</th>
-                        </tr>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                            </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
@@ -296,57 +314,60 @@
                                     <tr id="@user.Id">
                                         <td>@userName.Name</td>
                                         <td>@user.Email</td>
-                                        <td>
-                                            <div class="modal-warning me-1 mb-1 d-inline-block">
-                                                <!-- Button trigger for warning theme modal -->
-                                                <button type="button" class="btn btn-primary"
-                                                        data-bs-toggle="modal" data-bs-target="#warning-KTV-@userName.ID">
-                                                    Gỡ Quyền
-                                                </button>
+                                        @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                        {
+                                            <td>
+                                                <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                    <!-- Button trigger for warning theme modal -->
+                                                    <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#warning-KTV-@userName.ID">
+                                                        Gỡ Quyền
+                                                    </button>
 
-                                                <!--warning theme Modal -->
-                                                <div class="modal fade text-left" id="warning-KTV-@userName.ID" tabindex="-1"
-                                                     role="dialog" aria-labelledby="myModalLabel140"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                         role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-warning">
-                                                                <h5 class="modal-title white" id="myModalLabel140">
-                                                                    Bạn có muốn gỡ quyền Kỹ Thuật viên của thành viên này?
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                    <i data-feather="x"></i>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body d-flex">
-                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
-                                                                <div>
-                                                                    <h4>Họ Tên: @userName.Name</h4>
-                                                                    <p>Bằng Cấp:@userName.Degree</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                        class="btn btn-light-secondary"
-                                                                        data-bs-dismiss="modal">
-                                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">Hủy</span>
-                                                                </button>
-                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
-                                                                    <input name="roleID" value="@item.Id" hidden />
-                                                                    <input name="userID" value="@user.Id" hidden />
-                                                                    <button type="submit" class="btn btn-warning ml-1">
-                                                                        Xác nhận
+                                                    <!--warning theme Modal -->
+                                                    <div class="modal fade text-left" id="warning-KTV-@userName.ID" tabindex="-1"
+                                                         role="dialog" aria-labelledby="myModalLabel140"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                             role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-warning">
+                                                                    <h5 class="modal-title white" id="myModalLabel140">
+                                                                        Bạn có muốn gỡ quyền Kỹ Thuật viên của thành viên này?
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                        <i data-feather="x"></i>
                                                                     </button>
-                                                                </form>
+                                                                </div>
+                                                                <div class="modal-body d-flex">
+                                                                    <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                    <div>
+                                                                        <h4>Họ Tên: @userName.Name</h4>
+                                                                        <p>Bằng Cấp:@userName.Degree</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-light-secondary"
+                                                                            data-bs-dismiss="modal">
+                                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                                        <span class="d-none d-sm-block">Hủy</span>
+                                                                    </button>
+                                                                    <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                        <input name="roleID" value="@item.Id" hidden />
+                                                                        <input name="userID" value="@user.Id" hidden />
+                                                                        <button type="submit" class="btn btn-warning ml-1">
+                                                                            Xác nhận
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             }
@@ -371,8 +392,11 @@
                         <tr>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Chức Năng</th>
-                        </tr>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                            </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
@@ -385,61 +409,63 @@
                                     <tr id="@user.Id">
                                         <td>@userName.Name</td>
                                         <td>@user.Email</td>
-                                        <td>
-                                            <div class="modal-warning me-1 mb-1 d-inline-block">
-                                                <!-- Button trigger for warning theme modal -->
-                                                <button type="button" class="btn btn-primary"
-                                                        data-bs-toggle="modal" data-bs-target="#warning-DD-@userName.ID">
-                                                    Gỡ Quyền
-                                                </button>
+                                        @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                        {
+                                            <td>
+                                                <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                    <!-- Button trigger for warning theme modal -->
+                                                    <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#warning-DD-@userName.ID">
+                                                        Gỡ Quyền
+                                                    </button>
 
-                                                <!--warning theme Modal -->
-                                                <div class="modal fade text-left" id="warning-DD-@userName.ID" tabindex="-1"
-                                                     role="dialog" aria-labelledby="myModalLabel140"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                         role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-warning">
-                                                                <h5 class="modal-title white" id="myModalLabel140">
-                                                                    Bạn có muốn gỡ quyền Y tá/Điều dưỡng của thành viên này?
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                    <i data-feather="x"></i>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body d-flex">
-                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
-                                                                <div>
-                                                                    <h4>Họ Tên: @userName.Name</h4>
-                                                                    <p>Bằng Cấp:@userName.Degree</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                        class="btn btn-light-secondary"
-                                                                        data-bs-dismiss="modal">
-                                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">Hủy</span>
-                                                                </button>
-                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
-                                                                    <input name="roleID" value="@item.Id" hidden />
-                                                                    <input name="userID" value="@user.Id" hidden />
-                                                                    <button type="submit" class="btn btn-warning ml-1">
-                                                                        Xác nhận
+                                                    <!--warning theme Modal -->
+                                                    <div class="modal fade text-left" id="warning-DD-@userName.ID" tabindex="-1"
+                                                         role="dialog" aria-labelledby="myModalLabel140"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                             role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-warning">
+                                                                    <h5 class="modal-title white" id="myModalLabel140">
+                                                                        Bạn có muốn gỡ quyền Y tá/Điều dưỡng của thành viên này?
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                        <i data-feather="x"></i>
                                                                     </button>
-                                                                </form>
+                                                                </div>
+                                                                <div class="modal-body d-flex">
+                                                                    <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                    <div>
+                                                                        <h4>Họ Tên: @userName.Name</h4>
+                                                                        <p>Bằng Cấp:@userName.Degree</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-light-secondary"
+                                                                            data-bs-dismiss="modal">
+                                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                                        <span class="d-none d-sm-block">Hủy</span>
+                                                                    </button>
+                                                                    <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                        <input name="roleID" value="@item.Id" hidden />
+                                                                        <input name="userID" value="@user.Id" hidden />
+                                                                        <button type="submit" class="btn btn-warning ml-1">
+                                                                            Xác nhận
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             }
-
                         }
                     </tbody>
                 </table>
@@ -460,8 +486,11 @@
                         <tr>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Chức Năng</th>
-                        </tr>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                            </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
@@ -474,61 +503,63 @@
                                     <tr id="@user.Id">
                                         <td>@userName.Name</td>
                                         <td>@user.Email</td>
-                                        <td>
-                                            <div class="modal-warning me-1 mb-1 d-inline-block">
-                                                <!-- Button trigger for warning theme modal -->
-                                                <button type="button" class="btn btn-primary"
-                                                        data-bs-toggle="modal" data-bs-target="#warning-QTV-@userName.ID">
-                                                    Gỡ Quyền
-                                                </button>
+                                        @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                        {
+                                            <td>
+                                                <div class="modal-warning me-1 mb-1 d-inline-block">
+                                                    <!-- Button trigger for warning theme modal -->
+                                                    <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#warning-QTV-@userName.ID">
+                                                        Gỡ Quyền
+                                                    </button>
 
-                                                <!--warning theme Modal -->
-                                                <div class="modal fade text-left" id="warning-QTV-@userName.ID" tabindex="-1"
-                                                     role="dialog" aria-labelledby="myModalLabel140"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                         role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-warning">
-                                                                <h5 class="modal-title white" id="myModalLabel140">
-                                                                    Bạn có muốn gỡ quyền Quản Trị Viên của thành viên này?
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                    <i data-feather="x"></i>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body d-flex">
-                                                                <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
-                                                                <div>
-                                                                    <h4>Họ Tên: @userName.Name</h4>
-                                                                    <p>Bằng Cấp:@userName.Degree</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                        class="btn btn-light-secondary"
-                                                                        data-bs-dismiss="modal">
-                                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">Hủy</span>
-                                                                </button>
-                                                                <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
-                                                                    <input name="roleID" value="@item.Id" hidden />
-                                                                    <input name="userID" value="@user.Id" hidden />
-                                                                    <button type="submit" class="btn btn-warning ml-1">
-                                                                        Xác nhận
+                                                    <!--warning theme Modal -->
+                                                    <div class="modal fade text-left" id="warning-QTV-@userName.ID" tabindex="-1"
+                                                         role="dialog" aria-labelledby="myModalLabel140"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                             role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-warning">
+                                                                    <h5 class="modal-title white" id="myModalLabel140">
+                                                                        Bạn có muốn gỡ quyền Quản Trị Viên của thành viên này?
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                        <i data-feather="x"></i>
                                                                     </button>
-                                                                </form>
+                                                                </div>
+                                                                <div class="modal-body d-flex">
+                                                                    <img src="@userName.Image" style="width:6rem;height:6rem;object-fit:cover" />
+                                                                    <div>
+                                                                        <h4>Họ Tên: @userName.Name</h4>
+                                                                        <p>Bằng Cấp:@userName.Degree</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-light-secondary"
+                                                                            data-bs-dismiss="modal">
+                                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                                        <span class="d-none d-sm-block">Hủy</span>
+                                                                    </button>
+                                                                    <form action="@Url.Action("DeleteUserRole", "AspNetRoles")" method="post">
+                                                                        <input name="roleID" value="@item.Id" hidden />
+                                                                        <input name="userID" value="@user.Id" hidden />
+                                                                        <button type="submit" class="btn btn-warning ml-1">
+                                                                            Xác nhận
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             }
-
                         }
                     </tbody>
                 </table>

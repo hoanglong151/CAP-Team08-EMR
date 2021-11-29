@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class PatientsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();

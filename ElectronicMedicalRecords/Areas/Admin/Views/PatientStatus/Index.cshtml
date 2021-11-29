@@ -12,7 +12,7 @@
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
                 <h3>Quản lý tình trạng bệnh nhân</h3>
                 <p class="text-subtitle text-muted">Danh sách tình trạng bệnh nhân</p>
             </div>
@@ -30,19 +30,25 @@
         <div class="card">
             <div class="card-header">
                 Danh sách tình trạng bệnh nhân
-                <br />
-                <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#createPatientStatusModal">
-                    <i class="m-icon bi bi-plus-circle"></i>
-                    Thêm Tình Trạng
-                </button>
-            </div>
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                {
+                    <br />
+                    <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                            data-bs-target="#createPatientStatusModal">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Thêm Tình Trạng
+                    </button>
+                }
+                </div>
             <div class="card-body">
                 <table class="table table-striped" id="tablePatientStatus">
                     <thead>
                         <tr>
                             <th>Tên Tình Trạng</th>
-                            <th>Chức Năng</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -152,6 +158,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
             $('#tablePatientStatus').DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetData", "PatientStatus")",
@@ -182,7 +189,13 @@
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
                     "lengthMenu": "Hiển thị _MENU_ loại tình trạng",
                     "search": "Tìm kiếm:",
-                }
+                },
+                "columnDefs": [
+                    {
+                        "targets": [1], //second column
+                        "visible": RoleCheck
+                    }
+                ]
             })
         })
         createPatientStatus()
@@ -240,6 +253,7 @@
                 type: 'GET',
                 data: { id: id },
                 success: function (res) {
+                    console.log(res)
                     if (res.data != null) {
                         $('#UpdatePatientStatusName').val(res.data.Name);
                         $('#UpdatePatientStatusID').val(res.data.ID);

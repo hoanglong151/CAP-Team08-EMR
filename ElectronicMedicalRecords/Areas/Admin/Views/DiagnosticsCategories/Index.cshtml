@@ -16,14 +16,14 @@
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
                 <h3>Quản Lý Chẩn Đoán</h3>
                 <p class="text-subtitle text-muted">Bạn có thể xem danh sách chẩn đoán tại đây</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Danh sách</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "DiagnosticsCategories")">Danh sách</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Chẩn Đoán</li>
                     </ol>
                 </nav>
@@ -34,26 +34,32 @@
         <div class="card">
             <div class="card-header">
                 Danh sách chẩn đoán
-                <br />
-                <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#diagnostic">
-                    <i class="m-icon bi bi-plus-circle"></i>
-                    Tạo Chẩn Đoán
-                </button>
-                <div class="card-body">
-                    <table class="table table-striped" id="tableDiagnostic">
-                        <thead>
-                            <tr>
-                                <th>Mã</th>
-                                <th>Tên</th>
-                                <th>Tên Tiếng Anh</th>
-                                <th>MDC</th>
-                                <th>Chức Năng</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                {
+                    <br />
+                    <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                            data-bs-target="#diagnostic">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Tạo Chẩn Đoán
+                    </button>
+                }
                 </div>
+            <div class="card-body">
+                <table class="table table-striped" id="tableDiagnostic">
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên</th>
+                            <th>Tên Tiếng Anh</th>
+                            <th>MDC</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                            </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -244,6 +250,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
             $('#tableDiagnostic').DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetData", "DiagnosticsCategories")",
@@ -284,7 +291,13 @@
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
                     "lengthMenu": "Hiển thị _MENU_ loại chuẩn đoán",
                     "search": "Tìm kiếm:",
-                }
+                },
+                "columnDefs": [
+                    {
+                        "targets": [4], //four column
+                        "visible": RoleCheck
+                    }
+                ]
             })
             createDiagnostic()
             updateDiagnostic()
