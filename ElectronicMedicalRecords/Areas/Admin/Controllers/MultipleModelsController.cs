@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class MultipleModelsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();

@@ -13,7 +13,7 @@
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
                 <h3>Quản lý danh mục thuốc</h3>
                 <p class="text-subtitle text-muted">Danh sách danh mục thuốc</p>
             </div>
@@ -31,19 +31,25 @@
         <div class="card">
             <div class="card-header">
                 Danh sách danh mục thuốc
-                <br />
-                <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#createMedicationCategoriesModal">
-                    <i class="m-icon bi bi-plus-circle"></i>
-                    Thêm Danh Mục Thuốc
-                </button>
-            </div>
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                {
+                    <br />
+                    <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                            data-bs-target="#createMedicationCategoriesModal">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Thêm Danh Mục Thuốc
+                    </button>
+                }
+                </div>
             <div class="card-body">
                 <table class="table table-striped" id="tableMedicationCategories">
                     <thead>
                         <tr>
                             <th>Danh Mục Thuốc</th>
-                            <th>Chức Năng</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -153,6 +159,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
             $('#tableMedicationCategories').DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetData", "MedicationCategories")",
@@ -183,7 +190,13 @@
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
                     "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                     "search": "Tìm kiếm:",
-                }
+                },
+                "columnDefs": [
+                    {
+                        "targets": [1], //second column
+                        "visible": RoleCheck
+                    }
+                ]
             })
         })
         createMedicationCategories()

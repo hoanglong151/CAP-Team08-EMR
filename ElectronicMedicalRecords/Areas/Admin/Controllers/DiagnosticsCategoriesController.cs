@@ -15,7 +15,7 @@ using OfficeOpenXml;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class DiagnosticsCategoriesController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
@@ -38,6 +38,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(DiagnosticsCategory diagnosticsCategory)
         {
@@ -77,6 +78,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return text;
         }
 
+        [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên")]
         // GET: Admin/DiagnosticsCategories/Edit/5
         public ActionResult Edit(int id)
         {
@@ -92,6 +94,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(DiagnosticsCategory diagnosticsCategory)
         {
@@ -109,7 +112,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             return Json(new { success = false, responseText = text });
         }
-
+        [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên")]
         // GET: Admin/DiagnosticsCategories/Delete/5
         public ActionResult Delete(int id)
         {
@@ -123,6 +126,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         // POST: Admin/DiagnosticsCategories/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

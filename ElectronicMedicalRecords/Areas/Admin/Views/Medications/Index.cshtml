@@ -17,14 +17,14 @@
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
                 <h3>Quản lý thuốc</h3>
                 <p class="text-subtitle text-muted">Danh sách thuốc trên hệ thống</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Medication")">Danh Sách</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Medications")">Danh Sách</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Thuốc</li>
                     </ol>
                 </nav>
@@ -35,13 +35,16 @@
         <div class="card">
             <div class="card-header">
                 Danh sách thuốc
-                <br />
-                <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#createMedicationModal">
-                    <i class="m-icon bi bi-plus-circle"></i>
-                    Thêm Thuốc
-                </button>
-            </div>
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                {
+                    <br />
+                    <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                            data-bs-target="#createMedicationModal">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Thêm Thuốc
+                    </button>
+                }
+                </div>
             <div class="card-body">
                 <table class="table table-striped" id="tableMedication">
                     <thead>
@@ -50,8 +53,11 @@
                             <th>Tên Hoạt Chất</th>
                             <th>Đơn Vị</th>
                             <th>Giá</th>
-                            <th>Chức Năng</th>
-                        </tr>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                            </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -267,6 +273,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
             $('#tableMedication').DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetData", "Medications")",
@@ -307,7 +314,13 @@
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
                     "lengthMenu": "Hiển thị _MENU_ loại thuốc",
                     "search": "Tìm kiếm:",
-                }
+                },
+                "columnDefs": [
+                    {
+                        "targets": [4], //four column
+                        "visible": RoleCheck
+                    }
+                ]
             })
         })
         createMedication()

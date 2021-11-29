@@ -10,6 +10,7 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class PatientStatusController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
@@ -57,7 +58,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(new { data = patientStatu }, JsonRequestBehavior.AllowGet);
+            var patientStatus = new { patientStatu.Name, patientStatu.ID };
+            return Json(new { data = patientStatus }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/PatientStatus/Edit/5

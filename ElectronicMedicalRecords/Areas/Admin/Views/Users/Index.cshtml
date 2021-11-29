@@ -12,7 +12,7 @@
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
                 <h3>Quản lý tài khoản</h3>
                 <p class="text-subtitle text-muted">Bạn có thể xem danh sách tài khoản tại đây</p>
             </div>
@@ -76,66 +76,20 @@
                                             <span class="badge bg-success">Active</span>
                                         </td>
                                     }
-                                    <td>
+                                <td>
+                                    @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                    {
                                         <a href="@Url.Action("Edit", "Users", new { id = item.ID })" class="btnHover edit btn btn-primary">
                                             <i class='fas fa-user-edit'></i>
-                                        </a> |
-                                        <!-- Button trigger for BorderLess Modal -->
-                                        <button type="button" class="btnHover info btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#border-less-@item.ID">
-                                            <i class="fas fa-info"></i>
-                                        </button>
-                                        |
-                                        <!--BorderLess Modal Modal -->
-                                        <div class="modal fade text-left modal-borderless" id="border-less-@item.ID"
-                                             tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
-                                                <div class="modal-content modal-user">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
-                                                        <button type="button" class="close rounded-pill"
-                                                                data-bs-dismiss="modal" aria-label="Close">
-                                                            <i data-feather="x"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body detailDoctor">
-                                                        <img class="detailDoctor-img" src="@item.Image" style="border-radius:4px" />
-                                                        <div class="content content-doctor">
-                                                            <h5>@item.Degree. @item.Name</h5>
-                                                            <p>@Html.Raw(item.Introduction)</p>
-                                                            <div class="training">
-                                                                <h6>Quá trình đào tạo</h6>
-                                                                <p>@Html.Raw(item.TrainingProcess)</p>
-                                                            </div>
-                                                            <div class="working">
-                                                                <h6>Quá trình công tác</h6>
-                                                                <p>@Html.Raw(item.WorkingProcess)</p>
-                                                            </div>
-                                                            <div class="treatment">
-                                                                <h6>Các mặt bệnh hay điều trị</h6>
-                                                                <p>@Html.Raw(item.SpecializedTreatment)</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary ml-1"
-                                                                data-bs-dismiss="modal">
-                                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                                            <span class="d-none d-sm-block">Close</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </a>
+                                        <span>|</span>
                                         @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "clickbutton" })*@
-                                        <div class="modal-warning me-1 mb-1 d-inline-block">
+                                        <div class="modal-warning mb-1 d-inline-block">
                                             <!-- Button trigger for warning theme modal -->
                                             <button type="button" class="btnHover trash btn btn-primary"
                                                     data-bs-toggle="modal" data-bs-target="#warning-BS-@item.ID">
                                                 <i class='fas fa-trash'></i>
                                             </button>
-
                                             <!--warning theme Modal -->
                                             <div class="modal fade text-left" id="warning-BS-@item.ID" tabindex="-1"
                                                  role="dialog" aria-labelledby="myModalLabel140"
@@ -179,7 +133,56 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
+                                        <span>|</span>
+                                    }
+                                    <!-- Button trigger for BorderLess Modal -->
+                                    <button type="button" class="btnHover info btn btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#border-less-@item.ID">
+                                        <i class="fas fa-info"></i>
+                                    </button>
+                                    <!--BorderLess Modal Modal -->
+                                    <div class="modal fade text-left modal-borderless" id="border-less-@item.ID"
+                                         tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
+                                            <div class="modal-content modal-user">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
+                                                    <button type="button" class="close rounded-pill"
+                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body detailDoctor">
+                                                    <img class="detailDoctor-img" src="@item.Image" style="border-radius:4px" />
+                                                    <div class="content content-doctor">
+                                                        <h5>@item.Degree. @item.Name</h5>
+                                                        <p>@Html.Raw(item.Introduction)</p>
+                                                        <div class="training">
+                                                            <h6>Quá trình đào tạo</h6>
+                                                            <p>@Html.Raw(item.TrainingProcess)</p>
+                                                        </div>
+                                                        <div class="working">
+                                                            <h6>Quá trình công tác</h6>
+                                                            <p>@Html.Raw(item.WorkingProcess)</p>
+                                                        </div>
+                                                        <div class="treatment">
+                                                            <h6>Các mặt bệnh hay điều trị</h6>
+                                                            <p>@Html.Raw(item.SpecializedTreatment)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary ml-1"
+                                                            data-bs-dismiss="modal">
+                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Close</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 </tr>
                             }
 

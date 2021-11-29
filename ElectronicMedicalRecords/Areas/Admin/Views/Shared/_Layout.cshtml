@@ -23,8 +23,6 @@
 </head>
 <body>
     <style type="text/css">
-        /*Added css for design notification area, you can design by your self*/
-        /* COPY css content from youtube video description*/
         .noti-content {
             position: fixed;
             border-radius: 4px;
@@ -78,6 +76,13 @@
         .dropdown-toggle:after {
             display: none
         }
+        .logo{
+            width:100%
+        }
+        .sidebar-wrapper .sidebar-header img{
+            width:100%;
+            height:6.5rem;
+        }
     </style>
     <div id="app">
         <div id="sidebar" class="active">
@@ -85,7 +90,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="@Url.Action("Index", "AspNetRoles")"><img src="@Url.Content("~/Areas/Admin/assets/images/logo/logo.png")" alt="Logo" srcset=""></a>
+                            <a href="@Url.Action("HomePage", "Users")"><img src="@Url.Content("~/Areas/Admin/assets/images/logo/logoVL.png")" alt="Logo" srcset=""></a>
                         </div>
 
                         <div class="toggler">

@@ -16,7 +16,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class UsersController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
