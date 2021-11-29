@@ -27,17 +27,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public JsonResult GetNotification()
         {
             db.Configuration.ProxyCreationEnabled = true;
-            //db.Configuration.LazyLoadingEnabled = false;
             NotificationComponent NC = new NotificationComponent();
             var list = NC.GetInformationExamination();
-            //var list = db.MedicalTestsPrescriptions.Where(p => p.Result == null).ToList();
-            //List<InformationExamination> informationPatient = new List<InformationExamination>();
             List<Patient> patient = new List<Patient>();
-            //foreach (var item in list)
-            //{
-            //    var information = db.InformationExaminations.FirstOrDefault(p => p.ID == item.InformationExamination_ID);
-            //    informationPatient.Add(information);
-            //}
             foreach(var item1 in list)
             {
                 var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
@@ -50,6 +42,56 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }).ToList();
             return Json(new { data = list, userName = listpatient }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetNotificationBS()
+        {
+            db.Configuration.ProxyCreationEnabled = true;
+            NotificationComponent NC = new NotificationComponent();
+            var list = NC.ReturnResultTest();
+            List<object> Noti = new List<object>();
+            var count = 0;
+            foreach (var item1 in list)
+            {
+                var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
+                if(item1.ResultCTMau == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultSHM == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultDMau == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultNhomMau == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultNuocTieu == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultMienDich == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultDichChocDo == true)
+                {
+                    count += 1;
+                }
+                if(item1.ResultViSinh == true)
+                {
+                    count += 1;
+                }
+                var NotiResult = new { patientUser.Name, count, item1.ID };
+                Noti.Add(NotiResult);
+                count = 0;
+            }
+            return Json(new { data = Noti }, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: Admin/InformationExaminations/Details/5
         public ActionResult Details(int id)

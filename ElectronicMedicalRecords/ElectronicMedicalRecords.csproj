@@ -333,6 +333,9 @@
     <Compile Include="Models\Detail_Urine.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Detail_ViSinh.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Diagnostic.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -418,6 +421,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViSinh.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationComponent.cs" />
@@ -946,6 +952,10 @@
     <Content Include="Areas\Admin\assets\DataTables\Select-1.3.3\js\select.semanticui.js" />
     <Content Include="Areas\Admin\assets\DataTables\Select-1.3.3\js\select.semanticui.min.js" />
     <Content Include="Areas\Admin\assets\images\bg\4853433.jpg" />
+    <Content Include="Areas\Admin\assets\images\img\bg.png" />
+    <Content Include="Areas\Admin\assets\images\img\total-stripe-firebrick.png" />
+    <Content Include="Areas\Admin\assets\images\img\total-stripe-gold.png" />
+    <Content Include="Areas\Admin\assets\images\img\total-stripe-turquoise.png" />
     <Content Include="Areas\Admin\assets\images\logo\logoVL.png" />
     <Content Include="Areas\Admin\assets\videos\videoHomePageVL.mp4" />
     <Content Include="Areas\Admin\Views\Shared\component-modal.html" />

@@ -28,8 +28,6 @@ namespace ElectronicMedicalRecords.Models
 
         public string[] ExistImageNC { get; set; }
         public string[] ExistImageDD { get; set; }
-
-
         public virtual InformationExamination InformationExamination { get; set; }
     }
 }
