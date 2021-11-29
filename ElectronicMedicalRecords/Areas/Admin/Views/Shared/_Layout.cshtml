@@ -41,10 +41,9 @@
             flex-grow: 1;
         }
 
-            ul#notiContent li {
-                padding: 6px;
-                background: #fff;
-            }
+        ul#notiContent li {
+            padding: 6px;
+        }
 
         .noti-top-arrow {
             border-style: solid;
@@ -82,6 +81,26 @@
         .sidebar-wrapper .sidebar-header img{
             width:100%;
             height:6.5rem;
+        }
+        .Notify {
+            padding: 5px 10px;
+            overflow: hidden;
+        }
+        .Notify:hover {
+            background-color: #c3eaf2;
+            transition: 0.25s linear;
+        }
+        .Notify:hover a {
+            color: black;
+            transition: 0.25s linear;
+        }
+        .ul-noti {
+            border-left: 5px solid #009688;
+            overflow:hidden
+        }
+        .href-noti{
+            display:block;
+            color: black
         }
     </style>
     <div id="app">
@@ -162,31 +181,62 @@
         </div>
         <div id="main">
             <nav class="navbar navbar-expand navbar-light " style="padding:0;height:0">
-                <div class="container-fluid">
-                    <a href="#" class="burger-btn d-block">
-                        <i class="bi bi-justify fs-3"></i>
-                    </a>
+                @if (User.IsInRole("Kỹ Thuật Viên"))
+                {
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown me-3">
-                                <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-bell" style="font-size:25px"></i>
-                                    <span class="count">&nbsp;</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" id="notiContent" aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                        <h6 class="dropdown-header">Notifications</h6>
-                                    </li>
-                                    <li><a class="dropdown-item">No notification available</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown me-3">
+                                    <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell" style="font-size:25px"></i>
+                                        <span class="count">&nbsp;</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContent" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <h6 class="dropdown-header">Notifications</h6>
+                                        </li>
+                                        <li><a class="dropdown-item">No notification available</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                }
+                @if (User.IsInRole("Bác Sĩ"))
+                {
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown me-3">
+                                    <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell" style="font-size:25px"></i>
+                                        <span class="count">&nbsp;</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
+                                        <li>
+                                            <h6 class="dropdown-header">Notifications</h6>
+                                        </li>
+                                        <li><a class="dropdown-item">No notification available</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
             </nav>
             @RenderBody()
             <footer>
@@ -226,19 +276,18 @@
     </script>
     <script type="text/javascript">
         $(function () {
-            $('span.noti').click((e) => {
-                e.stopPropagation();
-                $('.noti-content').show().css("display","flex");
+            var RoleCheckKTV = @(User.IsInRole("Kỹ Thuật Viên") ? "true" : "false");
+            if (RoleCheckKTV) {
                 var count = 0;
-                count = parseInt($('span.count').html()) || 0;
-                if (count > 0) {
-                    updateNotification();
-                }
-                $('span.count', this).html("&nbsp;");
-            })
+            count = parseInt($('span.count').html()) || 0;
+            if (count > 0) {
+                updateNotification();
+            }
+            $('span.count', this).html("&nbsp;");
             $('html').click(function () {
                 $('.noti-content').hide();
             })
+
             updateNotification();
             function updateNotification() {
                 $('#notiContent').empty();
@@ -255,7 +304,54 @@
                         $.each(res.userName, function (index, value) {
                             console.log(value.ID)
                             var href = "/Admin/Patients/Edit/" + value.ID;
-                            $('#notiContent').append($('<li><a href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '</a></li>'));
+                            $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '</a></li>'));
+                        })
+                        $('span.count').html(res.data.length);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+                }
+                var notificationHub = $.connection.notificationHub;
+                $.connection.hub.start().done(function () {
+                    console.log("Notification hub started");
+                });
+                notificationHub.client.notify = function (message) {
+                    if (message && message.toLowerCase() == "added") {
+                        updateNotification();
+                    }
+                }
+            }
+            var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
+            if (RoleCheckBS) {
+                 var count = 0;
+            count = parseInt($('span.count').html()) || 0;
+            if (count > 0) {
+                updateNotification();
+            }
+            $('span.count', this).html("&nbsp;");
+            $('html').click(function () {
+                $('.noti-content').hide();
+            })
+
+            updateNotificationBS();
+            function updateNotificationBS() {
+                $('#notiContentBS').empty();
+                $('#notiContentBS').append($('<li>Loading...</li>'));
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
+                    success: function (res) {
+                        $('#notiContentBS').empty();
+                        console.log(res)
+                        if (res.length == 0) {
+                            $('#notiContentBS').append($('<li>No data available</li>'));
+                        }
+                        $.each(res.data, function (index, value) {
+                            var href = "/Admin/MultipleModels/DetailsIE/" + value.ID;
+                            $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                         })
                         $('span.count').html(res.data.length);
                     },
@@ -264,16 +360,19 @@
                     }
                 })
             }
-
-            var notificationHub = $.connection.notificationHub;
-            $.connection.hub.start().done(function () {
-                console.log("Notification hub started");
-            });
-            notificationHub.client.notify = function (message) {
-                if (message && message.toLowerCase() == "added") {
-                    updateNotification();
+                var notificationHub = $.connection.notificationHub;
+                $.connection.hub.start().done(function () {
+                    console.log("Notification hub started");
+                });
+                notificationHub.client.notify = function (message) {
+                    if (message && message.toLowerCase() == "added") {
+                        updateNotificationBS();
+                    }
                 }
             }
+
+
+
         })
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>

@@ -55,5 +55,14 @@ namespace ElectronicMedicalRecords
                 return db.InformationExaminations.Where(a => a.TestCD == false).OrderByDescending(a => a.DateExamine).ToList();
             }
         }
+
+        public List<InformationExamination> ReturnResultTest()
+        {
+            using (CP24Team08Entities db = new CP24Team08Entities())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                return db.InformationExaminations.Where(a => a.ResultCTMau == true || a.ResultSHM == true || a.ResultDMau == true || a.ResultNhomMau == true || a.ResultNuocTieu == true || a.ResultMienDich == true || a.ResultDichChocDo == true || a.ResultViSinh == true).OrderByDescending(a => a.DateExamine).ToList();
+            }
+        }
     }
 }

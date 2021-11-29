@@ -12,15 +12,23 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Detail_NhomMau
+    public partial class ViSinh
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ViSinh()
+        {
+            this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
+        }
+    
         public int ID { get; set; }
-        public Nullable<int> InformationExamination_ID { get; set; }
-        public Nullable<int> NhomMau_ID { get; set; }
+        public string NameTest { get; set; }
         public bool ChiDinh { get; set; }
         public string Result { get; set; }
+        public string ResultNC { get; set; }
+        public string ResultDD { get; set; }
+        public string NongDo { get; set; }
     
-        public virtual NhomMau NhomMau { get; set; }
-        public virtual InformationExamination InformationExamination { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_ViSinh> Detail_ViSinh { get; set; }
     }
 }

@@ -66,7 +66,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual Assort Assort9 { get; set; }
         public virtual Assort Assort10 { get; set; }
         public virtual Assort Assort11 { get; set; }
-        public virtual InformationExamination InformationExamination { get; set; }
         public virtual User User { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
     }
 }

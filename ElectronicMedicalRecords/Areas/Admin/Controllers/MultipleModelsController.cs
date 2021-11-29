@@ -26,6 +26,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Print()
+        {
+            return View();
+        }
+
         public ActionResult LoadDetailBloods(int[] arr)
         {
             db.Configuration.LazyLoadingEnabled = false;

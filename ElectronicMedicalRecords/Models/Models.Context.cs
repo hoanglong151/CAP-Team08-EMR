@@ -41,7 +41,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<DongMau> DongMaus { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<MedicalTestsPrescription> MedicalTestsPrescriptions { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
         public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
@@ -65,5 +64,8 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<CayMau> CayMaus { get; set; }
+        public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
+        public virtual DbSet<ViSinh> ViSinhs { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
     }
 }

@@ -12,15 +12,18 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Detail_NhomMau
+    public partial class Detail_ViSinh
     {
         public int ID { get; set; }
-        public Nullable<int> InformationExamination_ID { get; set; }
-        public Nullable<int> NhomMau_ID { get; set; }
+        public Nullable<int> ViSinh_ID { get; set; }
         public bool ChiDinh { get; set; }
         public string Result { get; set; }
+        public string ResultNC { get; set; }
+        public string ResultDD { get; set; }
+        public string MatDo { get; set; }
+        public Nullable<int> InformationExamination_ID { get; set; }
     
-        public virtual NhomMau NhomMau { get; set; }
+        public virtual ViSinh ViSinh { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
     }
 }
