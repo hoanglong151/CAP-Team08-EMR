@@ -314,19 +314,37 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // POST: Admin/MultipleModels/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
+            var InfoExamination = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            if(InfoExamination.Count == 1)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                var checkInfoExam = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == id);
+                if (checkInfoExam.HeartBeat != null || checkInfoExam.Breathing != null
+                    || checkInfoExam.BloodPressure != null || checkInfoExam.Weight != null
+                    || checkInfoExam.Height != null || checkInfoExam.ResultCTMau != null
+                    || checkInfoExam.ResultSHM != null || checkInfoExam.ResultDMau != null
+                    || checkInfoExam.ResultNhomMau != null || checkInfoExam.ResultNuocTieu != null
+                    || checkInfoExam.ResultMienDich != null || checkInfoExam.ResultDichChocDo != null
+                    || checkInfoExam.ResultViSinh != null)
+                {
+                    return Json(new { success = false });
+                }
+                else
+                {
+                    var patient = db.Patients.Find(id);
+                    db.InformationExaminations.Remove(checkInfoExam);
+                    db.Patients.Remove(patient);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
             }
-            catch
+            else
             {
-                return View();
-            }
+                return Json(new { success = false });
+            }            
         }
     }
 }

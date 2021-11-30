@@ -120,7 +120,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.CayMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
                 //multiplesModel.CayMau.ImageNuoiCay.Remove(multiplesModel.CayMau.ImageNuoiCay.Length - 1);
                 //multiplesModel.CayMau.ImageDinhDanh.Remove(multiplesModel.CayMau.ImageDinhDanh.Length - 1);
-                multiplesModel.InformationExamination.TestCD = false;
+                multiplesModel.InformationExamination.ResultViSinh = false;
                 db.CayMaus.Add(multiplesModel.CayMau);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels"); 

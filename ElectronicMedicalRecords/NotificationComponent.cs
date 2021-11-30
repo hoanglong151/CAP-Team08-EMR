@@ -52,7 +52,7 @@ namespace ElectronicMedicalRecords
             using (CP24Team08Entities db = new CP24Team08Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.InformationExaminations.Where(a => a.TestCD == false).OrderByDescending(a => a.DateExamine).ToList();
+                return db.InformationExaminations.Where(a => a.ResultCTMau == false || a.ResultSHM == false || a.ResultDMau == false || a.ResultNhomMau == false || a.ResultNuocTieu == false || a.ResultMienDich == false || a.ResultDichChocDo == false || a.ResultViSinh == false).OrderByDescending(a => a.DateExamine).ToList();
             }
         }
 

@@ -43,15 +43,14 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<double> Height { get; set; }
         public Nullable<int> PatientStatus_ID { get; set; }
         public Nullable<int> Patient_ID { get; set; }
-        public Nullable<bool> TestCD { get; set; }
-        public bool ResultCTMau { get; set; }
-        public bool ResultSHM { get; set; }
-        public bool ResultDMau { get; set; }
-        public bool ResultNhomMau { get; set; }
-        public bool ResultNuocTieu { get; set; }
-        public bool ResultMienDich { get; set; }
-        public bool ResultDichChocDo { get; set; }
-        public bool ResultViSinh { get; set; }
+        public Nullable<bool> ResultCTMau { get; set; }
+        public Nullable<bool> ResultSHM { get; set; }
+        public Nullable<bool> ResultDMau { get; set; }
+        public Nullable<bool> ResultNhomMau { get; set; }
+        public Nullable<bool> ResultNuocTieu { get; set; }
+        public Nullable<bool> ResultMienDich { get; set; }
+        public Nullable<bool> ResultDichChocDo { get; set; }
+        public Nullable<bool> ResultViSinh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CayMau> CayMaus { get; set; }
