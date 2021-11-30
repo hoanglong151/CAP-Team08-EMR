@@ -61,7 +61,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Immune.InformationExamination_ID = informationID;
                     detail_Immune.ChiDinh = item.ChiDinh;
                     detail_Immune.Result = item.Result;
-                    multiplesModel.InformationExamination.TestCD = false;
+                    multiplesModel.InformationExamination.ResultMienDich = false;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Immune.Add(detail_Immune);
                     db.SaveChanges();
@@ -161,7 +161,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Immune.InformationExamination_ID = multiplesModel.InformationExamination.ID;
                     detail_Immune.ChiDinh = item.ChiDinh;
                     detail_Immune.Result = item.Result;
-                    multiplesModel.InformationExamination.TestCD = false;
+                    multiplesModel.InformationExamination.ResultMienDich = false;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Immune.Add(detail_Immune);
                     db.SaveChanges();

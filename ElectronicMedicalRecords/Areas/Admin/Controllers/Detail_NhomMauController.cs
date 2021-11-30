@@ -61,7 +61,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_NhomMau.InformationExamination_ID = informationID;
                     detail_NhomMau.ChiDinh = item.ChiDinh;
                     detail_NhomMau.Result = item.Result;
-                    multiplesModel.InformationExamination.TestCD = false;
+                    multiplesModel.InformationExamination.ResultNhomMau = false;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_NhomMau.Add(detail_NhomMau);
                     db.SaveChanges();
@@ -160,7 +160,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_NhomMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
                     detail_NhomMau.ChiDinh = item.ChiDinh;
                     detail_NhomMau.Result = item.Result;
-                    multiplesModel.InformationExamination.TestCD = false;
+                    multiplesModel.InformationExamination.ResultNhomMau = false;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_NhomMau.Add(detail_NhomMau);
                     db.SaveChanges();

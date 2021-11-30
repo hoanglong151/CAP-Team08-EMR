@@ -305,15 +305,14 @@
           <Property Name="Height" Type="float" />
           <Property Name="PatientStatus_ID" Type="int" />
           <Property Name="Patient_ID" Type="int" />
-          <Property Name="TestCD" Type="bit" />
-          <Property Name="ResultCTMau" Type="bit" Nullable="false" />
-          <Property Name="ResultSHM" Type="bit" Nullable="false" />
-          <Property Name="ResultDMau" Type="bit" Nullable="false" />
-          <Property Name="ResultNhomMau" Type="bit" Nullable="false" />
-          <Property Name="ResultNuocTieu" Type="bit" Nullable="false" />
-          <Property Name="ResultMienDich" Type="bit" Nullable="false" />
-          <Property Name="ResultDichChocDo" Type="bit" Nullable="false" />
-          <Property Name="ResultViSinh" Type="bit" Nullable="false" />
+          <Property Name="ResultCTMau" Type="bit" />
+          <Property Name="ResultSHM" Type="bit" />
+          <Property Name="ResultDMau" Type="bit" />
+          <Property Name="ResultNhomMau" Type="bit" />
+          <Property Name="ResultNuocTieu" Type="bit" />
+          <Property Name="ResultMienDich" Type="bit" />
+          <Property Name="ResultDichChocDo" Type="bit" />
+          <Property Name="ResultViSinh" Type="bit" />
         </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
@@ -2758,15 +2757,14 @@
           <Property Name="Height" Type="Double" />
           <Property Name="PatientStatus_ID" Type="Int32" />
           <Property Name="Patient_ID" Type="Int32" />
-          <Property Name="TestCD" Type="Boolean" />
-          <Property Name="ResultCTMau" Type="Boolean" Nullable="false" />
-          <Property Name="ResultSHM" Type="Boolean" Nullable="false" />
-          <Property Name="ResultDMau" Type="Boolean" Nullable="false" />
-          <Property Name="ResultNhomMau" Type="Boolean" Nullable="false" />
-          <Property Name="ResultNuocTieu" Type="Boolean" Nullable="false" />
-          <Property Name="ResultMienDich" Type="Boolean" Nullable="false" />
-          <Property Name="ResultDichChocDo" Type="Boolean" Nullable="false" />
-          <Property Name="ResultViSinh" Type="Boolean" Nullable="false" />
+          <Property Name="ResultCTMau" Type="Boolean" />
+          <Property Name="ResultSHM" Type="Boolean" />
+          <Property Name="ResultDMau" Type="Boolean" />
+          <Property Name="ResultNhomMau" Type="Boolean" />
+          <Property Name="ResultNuocTieu" Type="Boolean" />
+          <Property Name="ResultMienDich" Type="Boolean" />
+          <Property Name="ResultDichChocDo" Type="Boolean" />
+          <Property Name="ResultViSinh" Type="Boolean" />
           <NavigationProperty Name="CayMaus" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="InformationExamination" ToRole="CayMau" />
           <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
           <NavigationProperty Name="Detail_Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Amniocente" />
@@ -3504,7 +3502,6 @@
                 <ScalarProperty Name="ResultDMau" ColumnName="ResultDMau" />
                 <ScalarProperty Name="ResultSHM" ColumnName="ResultSHM" />
                 <ScalarProperty Name="ResultCTMau" ColumnName="ResultCTMau" />
-                <ScalarProperty Name="TestCD" ColumnName="TestCD" />
                 <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
                 <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
                 <ScalarProperty Name="Height" ColumnName="Height" />

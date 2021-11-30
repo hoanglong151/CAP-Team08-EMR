@@ -405,7 +405,7 @@
                 }
                 var isvalidUpdate = $("#form-updateMedication").valid();
                 if (isvalidUpdate) {
-                                    $.ajax({
+                    $.ajax({
                     url: "@Url.Action("Edit", "Medications")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
