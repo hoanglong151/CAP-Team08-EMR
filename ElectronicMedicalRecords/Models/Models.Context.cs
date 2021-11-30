@@ -30,8 +30,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Assort> Assorts { get; set; }
-        public virtual DbSet<Clinical> Clinicals { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
         public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
         public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
@@ -67,5 +65,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
         public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
+        public virtual DbSet<Clinical> Clinicals { get; set; }
     }
 }

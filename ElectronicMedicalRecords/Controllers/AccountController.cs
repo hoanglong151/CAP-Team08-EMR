@@ -337,18 +337,14 @@ namespace ElectronicMedicalRecords.Controllers
                     CP24Team08Entities db = new CP24Team08Entities();
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     var check = db.Users.FirstOrDefault(c => c.UserID == userId);
-                     if (check == null)
+                     if (ModelState.IsValid && check == null)
                     {
-                        if (ModelState.IsValid)
-                        {
-                            user.UserID = userId;
-                            user.IsShow = false;
-                            user.Privacy = false;
-                            user.ActiveAccount = false;
-                            db.Users.Add(user);
-                            db.SaveChanges();
-                            return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
-                        }
+                        user.UserID = userId;
+                        user.IsShow = false;
+                        user.Privacy = false;
+                        user.ActiveAccount = false;
+                        db.Users.Add(user);
+                        db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
                     }
                     else if (check != null && check.Address == null || check.BirthDate == null || check.Degree == null || check.HomeTown_ID == null || check.Image == null || check.Name == null || check.Nation_ID == null || check.Phone == null || check.Privacy == false || check.Religion_ID == null)

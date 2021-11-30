@@ -1,0 +1,227 @@
+﻿@model ElectronicMedicalRecords.Models.Clinical
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Clinical</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Circles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Circles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Respiration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Respiration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Digestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Digestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KidneyUrology)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KidneyUrology)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MuscleBoneJoint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MuscleBoneJoint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nerve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nerve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mental)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mental)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surgery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surgery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ObstetricsAndGynecology)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ObstetricsAndGynecology)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RightEyesNoGlasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RightEyesNoGlasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeftEyesNoGlasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeftEyesNoGlasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RightEyesGlasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RightEyesGlasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeftEyesGlasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeftEyesGlasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EyesExamination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EyesExamination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeftEarSay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeftEarSay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeftEarWhisper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeftEarWhisper)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RightEarSay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RightEarSay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RightEarWhisper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RightEarWhisper)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EarNoseThroatExamination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EarNoseThroatExamination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpperJaw)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpperJaw)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowerJaw)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowerJaw)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeethJawFaceExamination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeethJawFaceExamination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dermatology)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dermatology)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bill)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InformationExamination.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InformationExamination.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -42,11 +42,11 @@
         box-shadow: unset
     }
 
-        .patient-taginpust .bootstrap-tagsinput .label-info {
-            background-color: #435ebe;
-            border-radius: 4px;
-            padding: 4px
-        }
+    .patient-taginpust .bootstrap-tagsinput .label-info {
+        background-color: #435ebe;
+        border-radius: 4px;
+        padding: 4px
+    }
 
     .table-bordered tr:first-child {
         background-color: #435ebe;
@@ -143,6 +143,10 @@
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#LamSang"
+                           role="tab" aria-controls="profile" aria-selected="false">Lâm Sàng</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
                            role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                     </li>
@@ -207,6 +211,18 @@
                                 </div>
                             </section>
                         </p>
+                    </div>
+                    <div class="tab-pane fade" id="LamSang" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("Create", "Clinicals");
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel"
                          aria-labelledby="profile-tab">
@@ -307,21 +323,6 @@
                                 </div>
                             </section>
                         </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="contact" role="tabpanel"
-                         aria-labelledby="contact-tab">
-                        <p class="mt-2">
-                            Duis ultrices purus non eros fermentum hendrerit. Aenean
-                            ornare interdum
-                            viverra. Sed ut odio velit. Aenean eu diam
-                            dictum nibh rhoncus mattis quis ac risus. Vivamus eu congue ipsum.
-                            Maecenas id
-                            sollicitudin ex. Cras in ex vestibulum,
-                            posuere orci at, sollicitudin purus. Morbi mollis elementum enim, in
-                            cursus sem
-                            placerat ut.
-                        </p>
                     </div>
                 </div>
             </div>

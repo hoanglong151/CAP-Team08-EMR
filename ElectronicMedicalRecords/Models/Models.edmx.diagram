@@ -10,8 +10,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3.75" PointY="40.625" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="3.75" PointY="43.375" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="1.5" PointY="36.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.Assort" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="3" PointY="1.375" />
         <EntityTypeShape EntityType="CP24Team08Model.CTMau" Width="1.5" PointX="0.75" PointY="10.25" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_CTMau" Width="1.5" PointX="3" PointY="19.375" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_SinhHoaMau" Width="1.5" PointX="6" PointY="17.375" />
@@ -38,19 +36,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CP24Team08Model.FK_User_AspNetUsers" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort1" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort10" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort11" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort2" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort3" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort4" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort5" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort6" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort7" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort8" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_Assort9" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_CTMau" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_Urine" />
@@ -87,7 +72,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_ViSinh" />
         <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="11" PointY="33.5" />
         <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DongMau_InformationExamination" />
@@ -102,6 +86,9 @@
         <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Subclinical_InformationExamination" />
+        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="13.25" PointY="30.625" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

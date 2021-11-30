@@ -4,7 +4,10 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
@@ -55,6 +58,9 @@
                                     <a class="btn btn-primary btnHover" href="@Url.Action("DetailsIE","MultipleModels", new { id = item.ID})">
                                         <i class="fas fa-info"></i>
                                     </a>
+                                    <button class="btn btn-primary btnHover" onclick="deleteInformationExamination(@item.ID)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         }
@@ -81,5 +87,47 @@
             },
             searching: false,
         })
+        function deleteInformationExamination(id) {
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            Swal.fire({
+                title: 'Bạn Muốn Xóa Thông Tin Khám Bệnh Này?',
+                text: "Bạn sẽ không thể xóa nếu thông tin khám bệnh đã có thông tin!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xác Nhận',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete","InformationExaminations")',
+                        type: 'POST',
+                        data: "id=" + id + "&__RequestVerificationToken=" + token,
+                        success: function (res) {
+                            if (res.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thành công!',
+                                    text: 'Bạn đã xóa thông tin khám bệnh thành công.',
+                                    confirmButtonText: 'Xác Nhận'
+                                }).then(() => {
+                                    location.reload();
+                                })
+                            }
+                            else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thất Bại!',
+                                    text: 'Bạn không thể xóa thông tin khám bệnh này.',
+                                    confirmButtonText: 'Xác Nhận'
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        }
     </script>
 }

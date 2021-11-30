@@ -55,14 +55,20 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Cân Nặng</label>
-                    @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">kg</span>
+                    </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Chiều Cao</label>
-                    @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">cm</span>
+                    </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
                 </div>
             </div>

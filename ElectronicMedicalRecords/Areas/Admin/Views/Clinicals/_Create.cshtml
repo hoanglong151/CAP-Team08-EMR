@@ -1,0 +1,256 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+<div class="card-header" style="padding-bottom:0px">
+    <h4 class="card-title">Khám Lâm Sàng</h4>
+    <hr />
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <h5>1. Nội Khoa</h5>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tuần Hoàn</label>
+                    @Html.EditorFor(model => model.Clinical.Circles, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Circles, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Hô Hấp</label>
+                    @Html.EditorFor(model => model.Clinical.Respiration, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Respiration, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tiêu Hóa</label>
+                    @Html.EditorFor(model => model.Clinical.Digestion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Digestion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Thận-Tiết niệu</label>
+                    @Html.EditorFor(model => model.Clinical.KidneyUrology, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.KidneyUrology, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Cơ-xương-khớp</label>
+                    @Html.EditorFor(model => model.Clinical.MuscleBoneJoint, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.MuscleBoneJoint, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Thần Kinh</label>
+                    @Html.EditorFor(model => model.Clinical.Nerve, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Nerve, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Tâm Thần</label>
+                    @Html.EditorFor(model => model.Clinical.Mental, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Mental, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <h5>2. Ngoại Khoa</h5>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Ngoại khoa</label>
+                    @Html.EditorFor(model => model.Clinical.Surgery, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Surgery, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <h5>3. Sản Phụ Khoa</h5>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Sản phụ khoa</label>
+                    @Html.EditorFor(model => model.Clinical.ObstetricsAndGynecology, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.ObstetricsAndGynecology, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <h5>4. Mắt</h5>
+            <p>- Kết quả khám thị lực:</p>
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Không kính:</label>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt phải:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEyesNoGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEyesNoGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt trái:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEyesNoGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEyesNoGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Có kính:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt phải:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEyesGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEyesGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt trái:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEyesGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEyesGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Các bệnh về mắt (nếu có):</label>
+                    @Html.EditorFor(model => model.Clinical.EyesExamination, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.EyesExamination, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <h5>5. Tai-Mũi-Họng</h5>
+            <p>- Kết quả khám thính lực:</p>
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Tai trái:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:120px">Nói thường:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEarSay, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEarSay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Nói thầm:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEarWhisper, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEarWhisper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Tai phải:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:120px">Nói thường:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEarSay, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEarSay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Nói thầm:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEarWhisper, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEarWhisper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Các bệnh về tai mũi họng (nếu có):</label>
+                    @Html.EditorFor(model => model.Clinical.EarNoseThroatExamination, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.EarNoseThroatExamination, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <h5>6. Răng-Hàm-Mặt</h5>
+            <p>- Kết quả khám:</p>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Hàm trên:</label>
+                    @Html.EditorFor(model => model.Clinical.UpperJaw, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.UpperJaw, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Hàm dưới:</label>
+                    @Html.EditorFor(model => model.Clinical.LowerJaw, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.LowerJaw, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Các bệnh về Răng-Hàm-Mặt (nếu có):</label>
+                    @Html.EditorFor(model => model.Clinical.TeethJawFaceExamination, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.TeethJawFaceExamination, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <h5>7. Da liễu</h5>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Da liễu:</label>
+                    @Html.EditorFor(model => model.Clinical.Dermatology, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Dermatology, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" hidden>
+                @Html.LabelFor(model => model.Clinical.Bill, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Clinical.Bill, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.Bill, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

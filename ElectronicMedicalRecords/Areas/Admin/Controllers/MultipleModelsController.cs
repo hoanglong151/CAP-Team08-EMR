@@ -178,6 +178,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_UrineController detail_UrineController = new Detail_UrineController();
             Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
             Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+            ClinicalsController clinicalsController = new ClinicalsController();
             CayMausController cayMausController = new CayMausController();
             try
             {
@@ -192,6 +193,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
+                clinicalsController.Create(multiplesModel);
                 cayMausController.Create(multiplesModel, Server);
                 return RedirectToAction("Index", "Patients");
             }
@@ -246,9 +248,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return View();
             }
-
         }
-
 
         // GET: Admin/MultipleModels/Edit/5
         public ActionResult Edit(int id)

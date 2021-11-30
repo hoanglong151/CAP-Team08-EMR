@@ -16,10 +16,10 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class UsersController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
+        [Authorize]
         // GET: Admin/Users
         public ActionResult Index()
         {
@@ -34,7 +34,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var userID = db.Users.FirstOrDefault(id => id.UserID == UserID);
             return PartialView("_AdminUser", userID);
         }
-
+        [Authorize]
         public ActionResult HomePage()
         {
             return View();
@@ -110,6 +110,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
         // POST: Admin/Users/Delete/5
+        [Authorize(Roles = "Giám Đốc,QTV")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

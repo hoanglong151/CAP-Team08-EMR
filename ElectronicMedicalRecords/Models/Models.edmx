@@ -77,13 +77,6 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="Assort">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Assort" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="CayMau">
           <Key>
             <PropertyRef Name="ID" />
@@ -103,39 +96,27 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Circles" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Circles" Type="int" />
           <Property Name="Respiration" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Respiration" Type="int" />
           <Property Name="Digestion" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Digestion" Type="int" />
           <Property Name="KidneyUrology" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_KidneyUrology" Type="int" />
           <Property Name="MuscleBoneJoint" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_MuscleBoneJoint" Type="int" />
           <Property Name="Nerve" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Nerve" Type="int" />
           <Property Name="Mental" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Mental" Type="int" />
           <Property Name="Surgery" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Surgery" Type="int" />
           <Property Name="ObstetricsAndGynecology" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_ObstetricsAndGynecology" Type="int" />
           <Property Name="RightEyesNoGlasses" Type="float" />
           <Property Name="LeftEyesNoGlasses" Type="float" />
           <Property Name="RightEyesGlasses" Type="float" />
           <Property Name="LeftEyesGlasses" Type="float" />
           <Property Name="EyesExamination" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_Eyes" Type="int" />
           <Property Name="LeftEarSay" Type="float" />
           <Property Name="LeftEarWhisper" Type="float" />
           <Property Name="RightEarSay" Type="float" />
           <Property Name="RightEarWhisper" Type="float" />
           <Property Name="EarNoseThroatExamination" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_EarNoseThroat" Type="int" />
           <Property Name="UpperJaw" Type="nvarchar" MaxLength="50" />
           <Property Name="LowerJaw" Type="nvarchar" MaxLength="50" />
           <Property Name="TeethJawFaceExamination" Type="nvarchar" MaxLength="50" />
-          <Property Name="Assort_TeethJawFace" Type="int" />
           <Property Name="Dermatology" Type="nvarchar" MaxLength="50" />
           <Property Name="Bill" Type="int" />
           <Property Name="User_ID" Type="int" />
@@ -511,150 +492,6 @@
             </Principal>
             <Dependent Role="CayMau">
               <PropertyRef Name="InformationExamination_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Circles" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort1">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Respiration" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort10">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_EarNoseThroat" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort11">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_TeethJawFace" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort2">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Digestion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort3">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_KidneyUrology" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort4">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_MuscleBoneJoint" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort5">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Nerve" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort6">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Mental" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort7">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Surgery" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort8">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_ObstetricsAndGynecology" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort9">
-          <End Role="Assort" Type="Self.Assort" Multiplicity="0..1" />
-          <End Role="Clinical" Type="Self.Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Eyes" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1190,7 +1027,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Assort" EntityType="Self.Assort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CayMau" EntityType="Self.CayMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clinical" EntityType="Self.Clinical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTMau" EntityType="Self.CTMau" Schema="dbo" store:Type="Tables" />
@@ -1229,54 +1065,6 @@
           <AssociationSet Name="FK_CayMau_InformationExamination" Association="Self.FK_CayMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExamination" />
             <End Role="CayMau" EntitySet="CayMau" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort" Association="Self.FK_Clinical_Assort">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort1" Association="Self.FK_Clinical_Assort1">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort10" Association="Self.FK_Clinical_Assort10">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort11" Association="Self.FK_Clinical_Assort11">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort2" Association="Self.FK_Clinical_Assort2">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort3" Association="Self.FK_Clinical_Assort3">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort4" Association="Self.FK_Clinical_Assort4">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort5" Association="Self.FK_Clinical_Assort5">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort6" Association="Self.FK_Clinical_Assort6">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort7" Association="Self.FK_Clinical_Assort7">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort8" Association="Self.FK_Clinical_Assort8">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort9" Association="Self.FK_Clinical_Assort9">
-            <End Role="Assort" EntitySet="Assort" />
-            <End Role="Clinical" EntitySet="Clinical" />
           </AssociationSet>
           <AssociationSet Name="FK_Clinical_InformationExamination" Association="Self.FK_Clinical_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExamination" />
@@ -1461,8 +1249,6 @@
           <EntitySet Name="AspNetUserClaims" EntityType="CP24Team08Model.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="CP24Team08Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="CP24Team08Model.AspNetUser" />
-          <EntitySet Name="Assorts" EntityType="CP24Team08Model.Assort" />
-          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
           <EntitySet Name="CTMaus" EntityType="CP24Team08Model.CTMau" />
           <EntitySet Name="Detail_CTMau" EntityType="CP24Team08Model.Detail_CTMau" />
           <EntitySet Name="Detail_SinhHoaMau" EntityType="CP24Team08Model.Detail_SinhHoaMau" />
@@ -1497,58 +1283,6 @@
           <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort" Association="CP24Team08Model.FK_Clinical_Assort">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort1" Association="CP24Team08Model.FK_Clinical_Assort1">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort10" Association="CP24Team08Model.FK_Clinical_Assort10">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort11" Association="CP24Team08Model.FK_Clinical_Assort11">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort2" Association="CP24Team08Model.FK_Clinical_Assort2">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort3" Association="CP24Team08Model.FK_Clinical_Assort3">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort4" Association="CP24Team08Model.FK_Clinical_Assort4">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort5" Association="CP24Team08Model.FK_Clinical_Assort5">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort6" Association="CP24Team08Model.FK_Clinical_Assort6">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort7" Association="CP24Team08Model.FK_Clinical_Assort7">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort8" Association="CP24Team08Model.FK_Clinical_Assort8">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_Assort9" Association="CP24Team08Model.FK_Clinical_Assort9">
-            <End Role="Assort" EntitySet="Assorts" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Clinical" EntitySet="Clinicals" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_CTMau_CTMau" Association="CP24Team08Model.FK_Detail_CTMau_CTMau">
             <End Role="CTMau" EntitySet="CTMaus" />
@@ -1658,10 +1392,6 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="CayMau" EntitySet="CayMaus" />
           </AssociationSet>
-          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
           <AssociationSet Name="FK_Detail_Amniocente_InformationExamination" Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_Amniocente" EntitySet="Detail_Amniocente" />
@@ -1717,6 +1447,15 @@
           <AssociationSet Name="FK_Subclinical_InformationExamination" Association="CP24Team08Model.FK_Subclinical_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Subclinical" EntitySet="Subclinicals" />
+          </AssociationSet>
+          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
+          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Clinical" EntitySet="Clinicals" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1778,83 +1517,6 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
           <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-        </EntityType>
-        <EntityType Name="Assort">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Assort1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_Assort" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals1" Relationship="CP24Team08Model.FK_Clinical_Assort1" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals2" Relationship="CP24Team08Model.FK_Clinical_Assort10" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals3" Relationship="CP24Team08Model.FK_Clinical_Assort11" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals4" Relationship="CP24Team08Model.FK_Clinical_Assort2" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals5" Relationship="CP24Team08Model.FK_Clinical_Assort3" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals6" Relationship="CP24Team08Model.FK_Clinical_Assort4" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals7" Relationship="CP24Team08Model.FK_Clinical_Assort5" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals8" Relationship="CP24Team08Model.FK_Clinical_Assort6" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals9" Relationship="CP24Team08Model.FK_Clinical_Assort7" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals10" Relationship="CP24Team08Model.FK_Clinical_Assort8" FromRole="Assort" ToRole="Clinical" />
-          <NavigationProperty Name="Clinicals11" Relationship="CP24Team08Model.FK_Clinical_Assort9" FromRole="Assort" ToRole="Clinical" />
-        </EntityType>
-        <EntityType Name="Clinical">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Circles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Circles" Type="Int32" />
-          <Property Name="Respiration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Respiration" Type="Int32" />
-          <Property Name="Digestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Digestion" Type="Int32" />
-          <Property Name="KidneyUrology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_KidneyUrology" Type="Int32" />
-          <Property Name="MuscleBoneJoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_MuscleBoneJoint" Type="Int32" />
-          <Property Name="Nerve" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Nerve" Type="Int32" />
-          <Property Name="Mental" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Mental" Type="Int32" />
-          <Property Name="Surgery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Surgery" Type="Int32" />
-          <Property Name="ObstetricsAndGynecology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_ObstetricsAndGynecology" Type="Int32" />
-          <Property Name="RightEyesNoGlasses" Type="Double" />
-          <Property Name="LeftEyesNoGlasses" Type="Double" />
-          <Property Name="RightEyesGlasses" Type="Double" />
-          <Property Name="LeftEyesGlasses" Type="Double" />
-          <Property Name="EyesExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_Eyes" Type="Int32" />
-          <Property Name="LeftEarSay" Type="Double" />
-          <Property Name="LeftEarWhisper" Type="Double" />
-          <Property Name="RightEarSay" Type="Double" />
-          <Property Name="RightEarWhisper" Type="Double" />
-          <Property Name="EarNoseThroatExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_EarNoseThroat" Type="Int32" />
-          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TeethJawFaceExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Assort_TeethJawFace" Type="Int32" />
-          <Property Name="Dermatology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Bill" Type="Int32" />
-          <Property Name="User_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <NavigationProperty Name="Assort" Relationship="CP24Team08Model.FK_Clinical_Assort" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort1" Relationship="CP24Team08Model.FK_Clinical_Assort1" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort2" Relationship="CP24Team08Model.FK_Clinical_Assort10" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort3" Relationship="CP24Team08Model.FK_Clinical_Assort11" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort4" Relationship="CP24Team08Model.FK_Clinical_Assort2" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort5" Relationship="CP24Team08Model.FK_Clinical_Assort3" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort6" Relationship="CP24Team08Model.FK_Clinical_Assort4" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort7" Relationship="CP24Team08Model.FK_Clinical_Assort5" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort8" Relationship="CP24Team08Model.FK_Clinical_Assort6" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort9" Relationship="CP24Team08Model.FK_Clinical_Assort7" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort10" Relationship="CP24Team08Model.FK_Clinical_Assort8" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="Assort11" Relationship="CP24Team08Model.FK_Clinical_Assort9" FromRole="Clinical" ToRole="Assort" />
-          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
         </EntityType>
         <EntityType Name="CTMau">
           <Key>
@@ -2123,13 +1785,13 @@
           <Property Name="Gender_ID" Type="Int32" />
           <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
-          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
           <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
           <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
           <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
           <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_User" FromRole="User" ToRole="Subclinical" />
           <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -2168,162 +1830,6 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Circles" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort1">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Respiration" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort10">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_EarNoseThroat" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort11">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_TeethJawFace" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort2">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Digestion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort3">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_KidneyUrology" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort4">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_MuscleBoneJoint" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort5">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Nerve" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort6">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Mental" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort7">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Surgery" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort8">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_ObstetricsAndGynecology" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_Assort9">
-          <End Type="CP24Team08Model.Assort" Role="Assort" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assort">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="Assort_Eyes" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_User">
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2766,7 +2272,6 @@
           <Property Name="ResultDichChocDo" Type="Boolean" />
           <Property Name="ResultViSinh" Type="Boolean" />
           <NavigationProperty Name="CayMaus" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="InformationExamination" ToRole="CayMau" />
-          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
           <NavigationProperty Name="Detail_Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Amniocente" />
           <NavigationProperty Name="Detail_CTMau" Relationship="CP24Team08Model.FK_Detail_CTMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_CTMau" />
           <NavigationProperty Name="Detail_DongMau" Relationship="CP24Team08Model.FK_Detail_DongMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DongMau" />
@@ -2781,6 +2286,7 @@
           <NavigationProperty Name="MedicalTestsPrescriptions" Relationship="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" FromRole="InformationExamination" ToRole="MedicalTestsPrescription" />
           <NavigationProperty Name="Prescriptions" Relationship="CP24Team08Model.FK_Prescription_InformationExamination" FromRole="InformationExamination" ToRole="Prescription" />
           <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_InformationExamination" FromRole="InformationExamination" ToRole="Subclinical" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
         </EntityType>
         <Association Name="FK_CayMau_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
@@ -2790,18 +2296,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CayMau">
-              <PropertyRef Name="InformationExamination_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_InformationExamination">
-          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InformationExamination">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
               <PropertyRef Name="InformationExamination_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2974,6 +2468,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Clinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Circles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Respiration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Digestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KidneyUrology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MuscleBoneJoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nerve" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mental" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surgery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObstetricsAndGynecology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RightEyesNoGlasses" Type="Double" />
+          <Property Name="LeftEyesNoGlasses" Type="Double" />
+          <Property Name="RightEyesGlasses" Type="Double" />
+          <Property Name="LeftEyesGlasses" Type="Double" />
+          <Property Name="EyesExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeftEarSay" Type="Double" />
+          <Property Name="LeftEarWhisper" Type="Double" />
+          <Property Name="RightEarSay" Type="Double" />
+          <Property Name="RightEarWhisper" Type="Double" />
+          <Property Name="EarNoseThroatExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeethJawFaceExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dermatology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bill" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Clinical_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3032,59 +2584,6 @@
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Assorts">
-            <EntityTypeMapping TypeName="CP24Team08Model.Assort">
-              <MappingFragment StoreEntitySet="Assort">
-                <ScalarProperty Name="Assort1" ColumnName="Assort" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clinicals">
-            <EntityTypeMapping TypeName="CP24Team08Model.Clinical">
-              <MappingFragment StoreEntitySet="Clinical">
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="Bill" ColumnName="Bill" />
-                <ScalarProperty Name="Dermatology" ColumnName="Dermatology" />
-                <ScalarProperty Name="Assort_TeethJawFace" ColumnName="Assort_TeethJawFace" />
-                <ScalarProperty Name="TeethJawFaceExamination" ColumnName="TeethJawFaceExamination" />
-                <ScalarProperty Name="LowerJaw" ColumnName="LowerJaw" />
-                <ScalarProperty Name="UpperJaw" ColumnName="UpperJaw" />
-                <ScalarProperty Name="Assort_EarNoseThroat" ColumnName="Assort_EarNoseThroat" />
-                <ScalarProperty Name="EarNoseThroatExamination" ColumnName="EarNoseThroatExamination" />
-                <ScalarProperty Name="RightEarWhisper" ColumnName="RightEarWhisper" />
-                <ScalarProperty Name="RightEarSay" ColumnName="RightEarSay" />
-                <ScalarProperty Name="LeftEarWhisper" ColumnName="LeftEarWhisper" />
-                <ScalarProperty Name="LeftEarSay" ColumnName="LeftEarSay" />
-                <ScalarProperty Name="Assort_Eyes" ColumnName="Assort_Eyes" />
-                <ScalarProperty Name="EyesExamination" ColumnName="EyesExamination" />
-                <ScalarProperty Name="LeftEyesGlasses" ColumnName="LeftEyesGlasses" />
-                <ScalarProperty Name="RightEyesGlasses" ColumnName="RightEyesGlasses" />
-                <ScalarProperty Name="LeftEyesNoGlasses" ColumnName="LeftEyesNoGlasses" />
-                <ScalarProperty Name="RightEyesNoGlasses" ColumnName="RightEyesNoGlasses" />
-                <ScalarProperty Name="Assort_ObstetricsAndGynecology" ColumnName="Assort_ObstetricsAndGynecology" />
-                <ScalarProperty Name="ObstetricsAndGynecology" ColumnName="ObstetricsAndGynecology" />
-                <ScalarProperty Name="Assort_Surgery" ColumnName="Assort_Surgery" />
-                <ScalarProperty Name="Surgery" ColumnName="Surgery" />
-                <ScalarProperty Name="Assort_Mental" ColumnName="Assort_Mental" />
-                <ScalarProperty Name="Mental" ColumnName="Mental" />
-                <ScalarProperty Name="Assort_Nerve" ColumnName="Assort_Nerve" />
-                <ScalarProperty Name="Nerve" ColumnName="Nerve" />
-                <ScalarProperty Name="Assort_MuscleBoneJoint" ColumnName="Assort_MuscleBoneJoint" />
-                <ScalarProperty Name="MuscleBoneJoint" ColumnName="MuscleBoneJoint" />
-                <ScalarProperty Name="Assort_KidneyUrology" ColumnName="Assort_KidneyUrology" />
-                <ScalarProperty Name="KidneyUrology" ColumnName="KidneyUrology" />
-                <ScalarProperty Name="Assort_Digestion" ColumnName="Assort_Digestion" />
-                <ScalarProperty Name="Digestion" ColumnName="Digestion" />
-                <ScalarProperty Name="Assort_Respiration" ColumnName="Assort_Respiration" />
-                <ScalarProperty Name="Respiration" ColumnName="Respiration" />
-                <ScalarProperty Name="Assort_Circles" ColumnName="Assort_Circles" />
-                <ScalarProperty Name="Circles" ColumnName="Circles" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3512,6 +3011,39 @@
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
                 <ScalarProperty Name="DateExamine" ColumnName="DateExamine" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clinicals">
+            <EntityTypeMapping TypeName="CP24Team08Model.Clinical">
+              <MappingFragment StoreEntitySet="Clinical">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Bill" ColumnName="Bill" />
+                <ScalarProperty Name="Dermatology" ColumnName="Dermatology" />
+                <ScalarProperty Name="TeethJawFaceExamination" ColumnName="TeethJawFaceExamination" />
+                <ScalarProperty Name="LowerJaw" ColumnName="LowerJaw" />
+                <ScalarProperty Name="UpperJaw" ColumnName="UpperJaw" />
+                <ScalarProperty Name="EarNoseThroatExamination" ColumnName="EarNoseThroatExamination" />
+                <ScalarProperty Name="RightEarWhisper" ColumnName="RightEarWhisper" />
+                <ScalarProperty Name="RightEarSay" ColumnName="RightEarSay" />
+                <ScalarProperty Name="LeftEarWhisper" ColumnName="LeftEarWhisper" />
+                <ScalarProperty Name="LeftEarSay" ColumnName="LeftEarSay" />
+                <ScalarProperty Name="EyesExamination" ColumnName="EyesExamination" />
+                <ScalarProperty Name="LeftEyesGlasses" ColumnName="LeftEyesGlasses" />
+                <ScalarProperty Name="RightEyesGlasses" ColumnName="RightEyesGlasses" />
+                <ScalarProperty Name="LeftEyesNoGlasses" ColumnName="LeftEyesNoGlasses" />
+                <ScalarProperty Name="RightEyesNoGlasses" ColumnName="RightEyesNoGlasses" />
+                <ScalarProperty Name="ObstetricsAndGynecology" ColumnName="ObstetricsAndGynecology" />
+                <ScalarProperty Name="Surgery" ColumnName="Surgery" />
+                <ScalarProperty Name="Mental" ColumnName="Mental" />
+                <ScalarProperty Name="Nerve" ColumnName="Nerve" />
+                <ScalarProperty Name="MuscleBoneJoint" ColumnName="MuscleBoneJoint" />
+                <ScalarProperty Name="KidneyUrology" ColumnName="KidneyUrology" />
+                <ScalarProperty Name="Digestion" ColumnName="Digestion" />
+                <ScalarProperty Name="Respiration" ColumnName="Respiration" />
+                <ScalarProperty Name="Circles" ColumnName="Circles" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
