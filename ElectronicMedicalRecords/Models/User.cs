@@ -17,9 +17,9 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Clinicals = new HashSet<Clinical>();
             this.Subclinicals = new HashSet<Subclinical>();
             this.InformationExaminations = new HashSet<InformationExamination>();
+            this.Clinicals = new HashSet<Clinical>();
         }
     
         public int ID { get; set; }
@@ -43,8 +43,6 @@ namespace ElectronicMedicalRecords.Models
         public bool ActiveAccount { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clinical> Clinicals { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual HomeTown HomeTown { get; set; }
         public virtual Nation Nation { get; set; }
@@ -53,5 +51,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Subclinical> Subclinicals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Clinical> Clinicals { get; set; }
     }
 }

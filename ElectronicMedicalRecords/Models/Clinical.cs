@@ -16,57 +16,33 @@ namespace ElectronicMedicalRecords.Models
     {
         public int ID { get; set; }
         public string Circles { get; set; }
-        public Nullable<int> Assort_Circles { get; set; }
         public string Respiration { get; set; }
-        public Nullable<int> Assort_Respiration { get; set; }
         public string Digestion { get; set; }
-        public Nullable<int> Assort_Digestion { get; set; }
         public string KidneyUrology { get; set; }
-        public Nullable<int> Assort_KidneyUrology { get; set; }
         public string MuscleBoneJoint { get; set; }
-        public Nullable<int> Assort_MuscleBoneJoint { get; set; }
         public string Nerve { get; set; }
-        public Nullable<int> Assort_Nerve { get; set; }
         public string Mental { get; set; }
-        public Nullable<int> Assort_Mental { get; set; }
         public string Surgery { get; set; }
-        public Nullable<int> Assort_Surgery { get; set; }
         public string ObstetricsAndGynecology { get; set; }
-        public Nullable<int> Assort_ObstetricsAndGynecology { get; set; }
         public Nullable<double> RightEyesNoGlasses { get; set; }
         public Nullable<double> LeftEyesNoGlasses { get; set; }
         public Nullable<double> RightEyesGlasses { get; set; }
         public Nullable<double> LeftEyesGlasses { get; set; }
         public string EyesExamination { get; set; }
-        public Nullable<int> Assort_Eyes { get; set; }
         public Nullable<double> LeftEarSay { get; set; }
         public Nullable<double> LeftEarWhisper { get; set; }
         public Nullable<double> RightEarSay { get; set; }
         public Nullable<double> RightEarWhisper { get; set; }
         public string EarNoseThroatExamination { get; set; }
-        public Nullable<int> Assort_EarNoseThroat { get; set; }
         public string UpperJaw { get; set; }
         public string LowerJaw { get; set; }
         public string TeethJawFaceExamination { get; set; }
-        public Nullable<int> Assort_TeethJawFace { get; set; }
         public string Dermatology { get; set; }
         public Nullable<int> Bill { get; set; }
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
     
-        public virtual Assort Assort { get; set; }
-        public virtual Assort Assort1 { get; set; }
-        public virtual Assort Assort2 { get; set; }
-        public virtual Assort Assort3 { get; set; }
-        public virtual Assort Assort4 { get; set; }
-        public virtual Assort Assort5 { get; set; }
-        public virtual Assort Assort6 { get; set; }
-        public virtual Assort Assort7 { get; set; }
-        public virtual Assort Assort8 { get; set; }
-        public virtual Assort Assort9 { get; set; }
-        public virtual Assort Assort10 { get; set; }
-        public virtual Assort Assort11 { get; set; }
-        public virtual User User { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
+        public virtual User User { get; set; }
     }
 }

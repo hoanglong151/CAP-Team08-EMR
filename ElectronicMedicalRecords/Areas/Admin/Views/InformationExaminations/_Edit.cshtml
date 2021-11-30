@@ -20,14 +20,12 @@
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đi</label>
                     <input name="InformationExamination.DateEnd" type="date" value="@Model.InformationExamination.DateEnd.Value.ToString("yyyy-MM-dd")" class="form-control" />
-                    @*@Html.EditorFor(model => model.InformationExamination.DateEnd, new { htmlAttributes = new { @class = "form-control" } })*@
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Bác Sĩ</label>
-                    @*@Html.HiddenFor(model => model.InformationExamination.User_ID, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.UserByID } })*@
                     <input value="@Model.InformationExamination.User_ID" name="InformationExamination.User_ID" hidden />
                     <input value="@ViewBag.UserName" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
@@ -57,14 +55,20 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Cân Nặng</label>
-                    @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">kg</span>
+                    </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Chiều Cao</label>
-                    @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-text">cm</span>
+                    </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
                 </div>
             </div>

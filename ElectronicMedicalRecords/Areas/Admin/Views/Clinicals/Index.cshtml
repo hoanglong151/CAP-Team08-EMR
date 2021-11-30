@@ -1,0 +1,184 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Clinical>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Circles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respiration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Digestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KidneyUrology)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MuscleBoneJoint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nerve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surgery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObstetricsAndGynecology)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RightEyesNoGlasses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeftEyesNoGlasses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RightEyesGlasses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeftEyesGlasses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EyesExamination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeftEarSay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeftEarWhisper)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RightEarSay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RightEarWhisper)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EarNoseThroatExamination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpperJaw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LowerJaw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeethJawFaceExamination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dermatology)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InformationExamination.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Circles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respiration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Digestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KidneyUrology)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MuscleBoneJoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nerve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mental)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surgery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObstetricsAndGynecology)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RightEyesNoGlasses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeftEyesNoGlasses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RightEyesGlasses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeftEyesGlasses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EyesExamination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeftEarSay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeftEarWhisper)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RightEarSay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RightEarWhisper)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EarNoseThroatExamination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpperJaw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LowerJaw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeethJawFaceExamination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dermatology)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InformationExamination.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

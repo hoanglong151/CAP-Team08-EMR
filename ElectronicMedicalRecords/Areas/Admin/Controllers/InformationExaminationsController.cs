@@ -225,30 +225,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExamination);
         }
 
-        // GET: Admin/InformationExaminations/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            if (informationExamination == null)
-            {
-                return HttpNotFound();
-            }
-            return View(informationExamination);
-        }
-
         // POST: Admin/InformationExaminations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            db.InformationExaminations.Remove(informationExamination);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            InformationExamination checkInfoExam = db.InformationExaminations.Find(id);
+            if (checkInfoExam.HeartBeat != null || checkInfoExam.Breathing != null
+                    || checkInfoExam.BloodPressure != null || checkInfoExam.Weight != null
+                    || checkInfoExam.Height != null || checkInfoExam.ResultCTMau != null
+                    || checkInfoExam.ResultSHM != null || checkInfoExam.ResultDMau != null
+                    || checkInfoExam.ResultNhomMau != null || checkInfoExam.ResultNuocTieu != null
+                    || checkInfoExam.ResultMienDich != null || checkInfoExam.ResultDichChocDo != null
+                    || checkInfoExam.ResultViSinh != null)
+            {
+                return Json(new { success = false });
+            }
+            else
+            {
+                db.InformationExaminations.Remove(checkInfoExam);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
         }
 
         protected override void Dispose(bool disposing)
