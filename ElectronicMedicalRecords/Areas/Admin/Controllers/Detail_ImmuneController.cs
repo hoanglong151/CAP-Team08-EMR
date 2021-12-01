@@ -131,17 +131,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(List<Detail_Immune> detail_Immunes)
+        public ActionResult Edit(MultiplesModel multiplesModel)
         {
-            if (detail_Immunes != null)
+            if (multiplesModel.Detail_Immunes != null)
             {
-                foreach (var detail_Immune in detail_Immunes)
+                foreach (var detail_Immune in multiplesModel.Detail_Immunes)
                 {
                     if (ModelState.IsValid)
                     {
                         db.Entry(detail_Immune).State = EntityState.Modified;
                         db.SaveChanges();
                     }
+                }
+                var checkResult = multiplesModel.Detail_Immunes.All(p => p.Result != null);
+                if (checkResult == true)
+                {
+                    multiplesModel.InformationExamination.ResultMienDich = true;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }

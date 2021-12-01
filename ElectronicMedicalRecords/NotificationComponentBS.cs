@@ -9,16 +9,16 @@ using System.Web;
 
 namespace ElectronicMedicalRecords
 {
-    public class NotificationComponent
+    public class NotificationComponentBS
     {
         public void RegisterNotification(DateTime currentTime)
         {
-            string conStr = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
-            string sqlCommand = @"SELECT [ID],[Patient_ID] from [dbo].[InformationExamination] where DateExamine > @DateExamine";
+            string conStr = ConfigurationManager.ConnectionStrings["sqlConStringBS"].ConnectionString;
+            string sqlCommand = @"SELECT [ID],[Patient_ID] from [dbo].[InformationExamination] where DateEnd > @DateEnd";
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 SqlCommand cmd = new SqlCommand(sqlCommand, con);
-                cmd.Parameters.AddWithValue("@DateExamine", currentTime);
+                cmd.Parameters.AddWithValue("@DateEnd", currentTime);
                 if (con.State != System.Data.ConnectionState.Open)
                 {
                     con.Open();
@@ -40,19 +40,19 @@ namespace ElectronicMedicalRecords
                 SqlDependency sqlDep = sender as SqlDependency;
                 sqlDep.OnChange -= sqlDep_OnChange;
 
-                var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
-                notificationHub.Clients.All.notify("added");
+                var notificationHubBS = GlobalHost.ConnectionManager.GetHubContext<NotificationHubBS>();
+                notificationHubBS.Clients.All.notify("added1");
 
                 RegisterNotification(DateTime.Now);
             }
         }
 
-        public List<InformationExamination> GetInformationExamination()
+        public List<InformationExamination> ReturnResultTest()
         {
             using (CP24Team08Entities db = new CP24Team08Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.InformationExaminations.Where(a => a.ResultCTMau == false || a.ResultSHM == false || a.ResultDMau == false || a.ResultNhomMau == false || a.ResultNuocTieu == false || a.ResultMienDich == false || a.ResultDichChocDo == false || a.ResultViSinh == false).OrderByDescending(a => a.DateExamine).ToList();
+                return db.InformationExaminations.Where(a => a.ResultCTMau == true || a.ResultSHM == true || a.ResultDMau == true || a.ResultNhomMau == true || a.ResultNuocTieu == true || a.ResultMienDich == true || a.ResultDichChocDo == true || a.ResultViSinh == true).OrderByDescending(a => a.DateExamine).ToList();
             }
         }
     }

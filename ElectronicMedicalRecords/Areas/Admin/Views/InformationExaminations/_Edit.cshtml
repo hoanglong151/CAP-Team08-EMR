@@ -9,6 +9,14 @@
         <div class="row">
             @Html.HiddenFor(model => model.InformationExamination.ID)
             @Html.HiddenFor(model => model.InformationExamination.Patient_ID)
+            @Html.HiddenFor(model => model.InformationExamination.ResultCTMau)
+            @Html.HiddenFor(model => model.InformationExamination.ResultDMau)
+            @Html.HiddenFor(model => model.InformationExamination.ResultNhomMau)
+            @Html.HiddenFor(model => model.InformationExamination.ResultNuocTieu)
+            @Html.HiddenFor(model => model.InformationExamination.ResultMienDich)
+            @Html.HiddenFor(model => model.InformationExamination.ResultDichChocDo)
+            @Html.HiddenFor(model => model.InformationExamination.ResultViSinh)
+            @Html.HiddenFor(model => model.InformationExamination.ResultSHM)
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
@@ -19,7 +27,7 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đi</label>
-                    <input name="InformationExamination.DateEnd" type="date" value="@Model.InformationExamination.DateEnd.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                    <input name="InformationExamination.DateEnd" type="datetime" value="@Model.InformationExamination.DateEnd" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
                 </div>
             </div>

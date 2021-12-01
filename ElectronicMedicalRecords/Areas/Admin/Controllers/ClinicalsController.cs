@@ -36,6 +36,46 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(clinical);
         }
 
+        public ActionResult DetailIE(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            if (clinical == null)
+            {
+                return HttpNotFound();
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.Clinical = clinical;
+            return PartialView("_DetailIE", multiplesModel);
+        }
+
+        public ActionResult CreateOldPatient()
+        {
+            ViewData["Clinical.User_ID"] = new SelectList(db.Users, "ID", "Name");
+            ViewData["Clinical.InformationExamination_ID"] = new SelectList(db.InformationExaminations, "ID", "ID");
+            return PartialView("_CreateOldPatient");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            if (ModelState.IsValid)
+            {
+                multiplesModel.Clinical.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                multiplesModel.Clinical.User_ID = multiplesModel.InformationExamination.User_ID;
+                db.Clinicals.Add(multiplesModel.Clinical);
+                db.SaveChanges();
+                return RedirectToAction("Create", "MultipleModels");
+            }
+
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", multiplesModel.Clinical.InformationExamination_ID);
+            ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", multiplesModel.Clinical.User_ID);
+            return View(multiplesModel.Clinical);
+        }
+
         // GET: Admin/Clinicals/Create
         public ActionResult Create()
         {
@@ -59,7 +99,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");
             }
-
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", multiplesModel.Clinical.InformationExamination_ID);
             ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", multiplesModel.Clinical.User_ID);
             return View(multiplesModel.Clinical);
@@ -69,7 +108,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
-            Clinical clinical = db.Clinicals.Find(id);
+            Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
             if (clinical == null)
             {
                 return HttpNotFound();
@@ -85,17 +124,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Circles,Respiration,Digestion,KidneyUrology,MuscleBoneJoint,Nerve,Mental,Surgery,ObstetricsAndGynecology,RightEyesNoGlasses,LeftEyesNoGlasses,RightEyesGlasses,LeftEyesGlasses,EyesExamination,LeftEarSay,LeftEarWhisper,RightEarSay,RightEarWhisper,EarNoseThroatExamination,UpperJaw,LowerJaw,TeethJawFaceExamination,Dermatology,Bill,User_ID,InformationExamination_ID")] Clinical clinical)
+        public ActionResult Edit(MultiplesModel multiplesModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clinical).State = EntityState.Modified;
+                db.Entry(multiplesModel.Clinical).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "MultipleModels");
             }
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", clinical.InformationExamination_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", clinical.User_ID);
-            return View(clinical);
+            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", multiplesModel.Clinical.InformationExamination_ID);
+            ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", multiplesModel.Clinical.User_ID);
+            return View(multiplesModel.Clinical);
         }
 
         // GET: Admin/Clinicals/Delete/5

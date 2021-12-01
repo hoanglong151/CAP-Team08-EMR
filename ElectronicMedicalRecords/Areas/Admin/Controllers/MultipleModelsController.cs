@@ -157,7 +157,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult checkExistPatient(Patient patient)
+        {
+            var checkExist = db.Patients.FirstOrDefault(p => p.Name == patient.Name && p.Address == patient.Address && p.BirthDate == patient.BirthDate);
+            if (checkExist != null)
+            {
+                return Json(new { success = false, responseText = "Bệnh Nhân Đã Tồn Tại. Vui Lòng Kiểm Tra Lại" });
+            }
+            else
+            {
+                return Json(new { success = true });
+            }
+        }
 
+        [HttpGet]
         // GET: Admin/MultipleModels/Create
         public ActionResult Create()
         {
@@ -179,7 +193,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
             Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
             ClinicalsController clinicalsController = new ClinicalsController();
-            CayMausController cayMausController = new CayMausController();
+            //CayMausController cayMausController = new CayMausController();
             try
             {
                 // TODO: Add insert logic here
@@ -194,7 +208,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
                 detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
                 clinicalsController.Create(multiplesModel);
-                cayMausController.Create(multiplesModel, Server);
+                //cayMausController.Create(multiplesModel, Server);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -231,7 +245,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
-                CayMausController cayMausController = new CayMausController();
+                ClinicalsController clinicalsController = new ClinicalsController();
+                //CayMausController cayMausController = new CayMausController();
                 patientsController.CreateOldPatient(multiplesModel.Patient);
                 informationExaminationsController.CreateOldPatient(multiplesModel.InformationExamination);
                 detail_CTMauController.CreateOldPatient(multiplesModel);
@@ -241,6 +256,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_UrineController.CreateOldPatient(multiplesModel);
                 detail_ImmuneController.CreateOldPatient(multiplesModel);
                 detail_AmniocenteController.CreateOldPatient(multiplesModel);
+                clinicalsController.CreateOldPatient(multiplesModel);
                 //cayMausController.CreateOldPatient(multiplesModel);
                 return RedirectToAction("Index", "Patients");
             }
@@ -288,17 +304,19 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
-                CayMausController cayMausController = new CayMausController();
+                ClinicalsController clinicalsController = new ClinicalsController();
+                //CayMausController cayMausController = new CayMausController();
                 patientsController.Edit(multiplesModel.Patient);
                 informationExaminationsController.Edit(multiplesModel.InformationExamination);
-                detail_CTMauController.Edit(multiplesModel.Detail_CTMaus);
-                detail_SinhHoaMauController.Edit(multiplesModel.Detail_SinhHoaMaus);
-                detail_DongMauController.Edit(multiplesModel.Detail_DongMaus);
-                detail_NhomMauController.Edit(multiplesModel.Detail_NhomMaus);
-                detail_UrineController.Edit(multiplesModel.Detail_Urines);
-                detail_ImmuneController.Edit(multiplesModel.Detail_Immunes);
-                detail_AmniocenteController.Edit(multiplesModel.Detail_Amniocentes);
-                cayMausController.Edit(multiplesModel.CayMau, Server);
+                detail_CTMauController.Edit(multiplesModel);
+                detail_SinhHoaMauController.Edit(multiplesModel);
+                detail_DongMauController.Edit(multiplesModel);
+                detail_NhomMauController.Edit(multiplesModel);
+                detail_UrineController.Edit(multiplesModel);
+                detail_ImmuneController.Edit(multiplesModel);
+                detail_AmniocenteController.Edit(multiplesModel);
+                clinicalsController.Edit(multiplesModel);
+                //cayMausController.Edit(multiplesModel.CayMau, Server);
                 return RedirectToAction("Index", "Patients");
             }
             catch
@@ -334,11 +352,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var patient = db.Patients.Find(id);
-                    db.InformationExaminations.Remove(checkInfoExam);
-                    db.Patients.Remove(patient);
-                    db.SaveChanges();
-                    return Json(new { success = true });
+                    var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == checkInfoExam.ID);
+                    if(clinical.KidneyUrology != null
+                        || clinical.Circles != null || clinical.Respiration != null || clinical.KidneyUrology != null
+                        || clinical.Digestion != null || clinical.MuscleBoneJoint != null || clinical.Nerve != null
+                        || clinical.Mental != null || clinical.Surgery != null || clinical.ObstetricsAndGynecology != null
+                        || clinical.RightEyesNoGlasses != null || clinical.LeftEyesNoGlasses != null || clinical.RightEyesGlasses != null
+                        || clinical.LeftEyesGlasses != null || clinical.EyesExamination != null || clinical.LeftEarSay != null
+                        || clinical.LeftEarWhisper != null || clinical.RightEarSay != null || clinical.RightEarWhisper != null
+                        || clinical.EarNoseThroatExamination != null || clinical.UpperJaw != null || clinical.LowerJaw != null
+                        || clinical.TeethJawFaceExamination != null || clinical.Dermatology != null)
+                    {
+                        return Json(new { success = false });
+                    }
+                    else
+                    {
+                        var patient = db.Patients.Find(id);
+                        db.InformationExaminations.Remove(checkInfoExam);
+                        db.Patients.Remove(patient);
+                        db.Clinicals.Remove(clinical);
+                        db.SaveChanges();
+                        return Json(new { success = true });
+                    }
                 }
             }
             else

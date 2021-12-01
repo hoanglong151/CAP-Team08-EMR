@@ -96,7 +96,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                return RedirectToAction("HomePage");
+                return RedirectToAction("DenyAccount");
             }
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", user.HomeTown_ID);
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", user.Nation_ID);

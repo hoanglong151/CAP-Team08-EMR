@@ -41,9 +41,9 @@
             flex-grow: 1;
         }
 
-        ul#notiContent li {
-            padding: 6px;
-        }
+            ul#notiContent li {
+                padding: 6px;
+            }
 
         .noti-top-arrow {
             border-style: solid;
@@ -75,31 +75,38 @@
         .dropdown-toggle:after {
             display: none
         }
-        .logo{
-            width:100%
+
+        .logo {
+            width: 100%
         }
-        .sidebar-wrapper .sidebar-header img{
-            width:100%;
-            height:6.5rem;
+
+        .sidebar-wrapper .sidebar-header img {
+            width: 100%;
+            height: 6.5rem;
         }
+
         .Notify {
             padding: 5px 10px;
             overflow: hidden;
         }
-        .Notify:hover {
-            background-color: #c3eaf2;
-            transition: 0.25s linear;
-        }
-        .Notify:hover a {
-            color: black;
-            transition: 0.25s linear;
-        }
+
+            .Notify:hover {
+                background-color: #c3eaf2;
+                transition: 0.25s linear;
+            }
+
+                .Notify:hover a {
+                    color: black;
+                    transition: 0.25s linear;
+                }
+
         .ul-noti {
             border-left: 5px solid #009688;
-            overflow:hidden
+            overflow: hidden
         }
-        .href-noti{
-            display:block;
+
+        .href-noti {
+            display: block;
             color: black
         }
     </style>
@@ -224,7 +231,7 @@
                                 <li class="nav-item dropdown me-3">
                                     <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-bell" style="font-size:25px"></i>
-                                        <span class="count">&nbsp;</span>
+                                        <span class="countBS">&nbsp;</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
                                         <li>
@@ -276,9 +283,60 @@
     </script>
     <script type="text/javascript">
         $(function () {
+        var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
+            if (RoleCheckBS) {
+            var count = 0;
+            count = parseInt($('span.countBS').html()) || 0;
+            if (count > 0) {
+                updateNotification();
+            }
+            $('span.countBS', this).html("&nbsp;");
+            $('html').click(function () {
+                $('.noti-content').hide();
+            })
+
+            updateNotificationBS();
+            function updateNotificationBS() {
+                $('#notiContentBS').empty();
+                $('#notiContentBS').append($('<li>Loading...</li>'));
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
+                    success: function (res) {
+                        $('#notiContentBS').empty();
+                        console.log(res)
+                        if (res.length == 0) {
+                            $('#notiContentBS').append($('<li>No data available</li>'));
+                        }
+                        $.each(res.data, function (index, value) {
+                            var href = "/Admin/MultipleModels/DetailsIE/" + value.ID;
+                            $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                        })
+                        $('span.countBS').html(res.data.length);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            }
+                var notificationHubBS = $.connection.notificationHubBS;
+                $.connection.hub.start().done(function () {
+                    console.log("Notification hub started Bác Sĩ");
+                });
+                notificationHubBS.client.notify = function (message) {
+                    if (message && message.toLowerCase() == "added1") {
+                        updateNotificationBS();
+                    }
+                }
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $(function () {
             var RoleCheckKTV = @(User.IsInRole("Kỹ Thuật Viên") ? "true" : "false");
             if (RoleCheckKTV) {
-                var count = 0;
+            var count = 0;
             count = parseInt($('span.count').html()) || 0;
             if (count > 0) {
                 updateNotification();
@@ -302,7 +360,6 @@
                             $('#notiContent').append($('<li>No data available</li>'));
                         }
                         $.each(res.userName, function (index, value) {
-                            console.log(value.ID)
                             var href = "/Admin/Patients/Edit/" + value.ID;
                             $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '</a></li>'));
                         })
@@ -315,7 +372,7 @@
                 }
                 var notificationHub = $.connection.notificationHub;
                 $.connection.hub.start().done(function () {
-                    console.log("Notification hub started");
+                    console.log("Notification hub started KTV");
                 });
                 notificationHub.client.notify = function (message) {
                     if (message && message.toLowerCase() == "added") {
@@ -323,56 +380,14 @@
                     }
                 }
             }
-            var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
-            if (RoleCheckBS) {
-                 var count = 0;
-            count = parseInt($('span.count').html()) || 0;
-            if (count > 0) {
-                updateNotification();
-            }
-            $('span.count', this).html("&nbsp;");
-            $('html').click(function () {
-                $('.noti-content').hide();
-            })
-
-            updateNotificationBS();
-            function updateNotificationBS() {
-                $('#notiContentBS').empty();
-                $('#notiContentBS').append($('<li>Loading...</li>'));
-
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
-                    success: function (res) {
-                        $('#notiContentBS').empty();
-                        console.log(res)
-                        if (res.length == 0) {
-                            $('#notiContentBS').append($('<li>No data available</li>'));
-                        }
-                        $.each(res.data, function (index, value) {
-                            var href = "/Admin/MultipleModels/DetailsIE/" + value.ID;
-                            $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
-                        })
-                        $('span.count').html(res.data.length);
-                    },
-                    error: function (error) {
-                        console.log(error)
-                    }
-                })
-            }
-                var notificationHub = $.connection.notificationHub;
-                $.connection.hub.start().done(function () {
-                    console.log("Notification hub started");
-                });
-                notificationHub.client.notify = function (message) {
-                    if (message && message.toLowerCase() == "added") {
-                        updateNotificationBS();
-                    }
+        })
+        var NumberInput = document.querySelectorAll('.numberInput');
+        NumberInput.forEach((item, index) => {
+            item.addEventListener("keypress", function (evt) {
+                if (evt.which != 8 && evt.which != 0 && evt.which < 46 || evt.which == 47 || evt.which > 57) {
+                    evt.preventDefault();
                 }
-            }
-
-
-
+            })
         })
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>

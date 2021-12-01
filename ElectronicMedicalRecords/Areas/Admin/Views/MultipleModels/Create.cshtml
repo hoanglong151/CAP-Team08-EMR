@@ -2,14 +2,15 @@
 @{
     ViewBag.Title = "Create";
 }
+
 <style>
     .name-Medication .choices {
         width: 100%
     }
 
-    .name-Medication .choices[data-type*=select-one]:after {
-        margin-top: -5px;
-    }
+        .name-Medication .choices[data-type*=select-one]:after {
+            margin-top: -5px;
+        }
 
     .name-Medication .choices__input--cloned {
         min-width: 100% !important;
@@ -42,11 +43,11 @@
         box-shadow: unset
     }
 
-    .patient-taginpust .bootstrap-tagsinput .label-info {
-        background-color: #435ebe;
-        border-radius: 4px;
-        padding: 4px
-    }
+        .patient-taginpust .bootstrap-tagsinput .label-info {
+            background-color: #435ebe;
+            border-radius: 4px;
+            padding: 4px
+        }
 
     .table-bordered tr:first-child {
         background-color: #435ebe;
@@ -118,10 +119,12 @@
         font-size: 15px;
         padding: 0;
     }
-    .form-group{
+
+    .form-group {
         position: relative
     }
-    label.invalidForm{
+
+    label.invalidForm {
         color: red;
         font-size: 13px
     }
@@ -131,7 +134,7 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("Create", "MultipleModels", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormEdit" }))
+@using (Html.BeginForm("Create", "MultipleModels", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormCreate" }))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -178,10 +181,6 @@
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#visinh"
                            role="tab" aria-controls="contact" aria-selected="false">Vi Sinh</a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
-                           role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
-                    </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel"
@@ -199,8 +198,8 @@
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end pt-4">
-                                        <button type="submit"
-                                                class="btn btn-primary me-1 mb-1">
+                                        <button type="button"
+                                                class="btn btn-primary me-1 mb-1" id="submitForm">
                                             Tạo Hồ Sơ
                                         </button>
                                         <button type="reset"
@@ -939,7 +938,10 @@
         $('form').each((i, obj) => {
             $.validator.addMethod('checkPhoneNumber', function (value, element) {
                 return this.optional(element) || /(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(value);
-            }, "Vui lòng nhập đúng định dạng");;
+            }, "Vui lòng nhập đúng định dạng");
+            $.validator.addMethod('notallownumber', function (value, element) {
+                return this.optional(element) || /^([^0-9]*)$/.test(value);
+            }, "Vui lòng tên không nhập số")
             $(function () {
                 $(obj).validate({
                     rules: {
@@ -947,13 +949,17 @@
                             required: true,
                             normalizer: function (value) {
                                 return $.trim(value);
-                            }
+                            },
+                            notallownumber: true
                         },
                         "Patient.BirthDate": {
                             required: true,
                         },
                         "Patient.Address": {
                             required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
                         },
                         "Patient.Phone": {
                             required: true,
@@ -961,6 +967,9 @@
                         },
                         "Patient.InsuranceCode": {
                             required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
                         }
                     },
                     messages: {
@@ -978,13 +987,39 @@
                             matches: "Nhập đúng định dạng"
                         },
                         "Patient.InsuranceCode": {
-                            required: "Trường này bắt buộc nhập",
+                            required: "Trường này bắt buộc nhập"
                         }
                     },
                     errorClass: 'invalidForm',
                     validClass: 'validForm',
-                });
-            });
+                })
+            })
         })
+        checkExistPatient();
+        function checkExistPatient() {
+            $('#submitForm').click(function (e) {
+                var existPatient = $('#FormCreate').serialize();
+                var model = {
+                    validata: existPatient,
+                }
+                $.ajax({
+                url: "@Url.Action("checkExistPatient", "MultipleModels")",
+                type: "POST",
+                data: model.validata,
+                success: (res) => {
+                if (res.success) {
+                    $('#FormCreate').submit();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thất Bại!',
+                        text: res.responseText,
+                        confirmButtonText: 'Xác Nhận'
+                    })
+                }
+                }
+            })
+        })
+    }
     </script>
 }
