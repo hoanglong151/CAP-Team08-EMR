@@ -17,7 +17,7 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đi</label>
-                    <input name="InformationExamination.DateEnd" type="date" value="@Model.InformationExamination.DateEnd.Value.ToString("yyyy-MM-dd")" class="form-control" disabled />
+                    <input name="InformationExamination.DateEnd" type="datetime" value="@Model.InformationExamination.DateEnd" class="form-control" disabled />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -26,7 +26,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public JsonResult GetNotification()
         {
-            db.Configuration.ProxyCreationEnabled = true;
             NotificationComponent NC = new NotificationComponent();
             var list = NC.GetInformationExamination();
             List<Patient> patient = new List<Patient>();
@@ -45,43 +44,42 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public JsonResult GetNotificationBS()
         {
-            db.Configuration.ProxyCreationEnabled = true;
-            NotificationComponent NC = new NotificationComponent();
+            NotificationComponentBS NC = new NotificationComponentBS();
             var list = NC.ReturnResultTest();
             List<object> Noti = new List<object>();
             var count = 0;
             foreach (var item1 in list)
             {
                 var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
-                if(item1.ResultCTMau == true)
+                if (item1.ResultCTMau == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultSHM == true)
+                if (item1.ResultSHM == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultDMau == true)
+                if (item1.ResultDMau == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultNhomMau == true)
+                if (item1.ResultNhomMau == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultNuocTieu == true)
+                if (item1.ResultNuocTieu == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultMienDich == true)
+                if (item1.ResultMienDich == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultDichChocDo == true)
+                if (item1.ResultDichChocDo == true)
                 {
                     count += 1;
                 }
-                if(item1.ResultViSinh == true)
+                if (item1.ResultViSinh == true)
                 {
                     count += 1;
                 }
@@ -165,10 +163,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-
             var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
             ViewBag.UserName = UserName.Name;
+            ViewBag.DateExamination = DateTime.Now;
             multiplesModel.InformationExamination = informationExamination;
             return PartialView("_CreateOldPatient", multiplesModel);
         }
@@ -179,6 +177,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                informationExamination.DateEnd = DateTime.Now;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("CreateOldPatient", "MultipleModels");
@@ -215,6 +214,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                informationExamination.DateEnd = DateTime.Now;
                 db.Entry(informationExamination).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "MultipleModels");

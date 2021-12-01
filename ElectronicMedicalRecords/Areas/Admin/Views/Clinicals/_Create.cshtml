@@ -89,7 +89,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:90px">Mắt phải:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.RightEyesNoGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.RightEyesNoGlasses, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">/10</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.RightEyesNoGlasses, "", new { @class = "text-danger" })
@@ -100,7 +100,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:90px">Mắt trái:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.LeftEyesNoGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.LeftEyesNoGlasses, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">/10</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.LeftEyesNoGlasses, "", new { @class = "text-danger" })
@@ -117,7 +117,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:90px">Mắt phải:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.RightEyesGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.RightEyesGlasses, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">/10</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.RightEyesGlasses, "", new { @class = "text-danger" })
@@ -128,7 +128,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:90px">Mắt trái:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.LeftEyesGlasses, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.LeftEyesGlasses, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">/10</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.LeftEyesGlasses, "", new { @class = "text-danger" })
@@ -155,7 +155,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:120px">Nói thường:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.LeftEarSay, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.LeftEarSay, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">m</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.LeftEarSay, "", new { @class = "text-danger" })
@@ -166,7 +166,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:90px">Nói thầm:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.LeftEarWhisper, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.LeftEarWhisper, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">m</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.LeftEarWhisper, "", new { @class = "text-danger" })
@@ -183,7 +183,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:120px">Nói thường:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.RightEarSay, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.RightEarSay, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">m</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.RightEarSay, "", new { @class = "text-danger" })
@@ -194,7 +194,7 @@
                 <div class="form-group d-flex align-items-center">
                     <label style="width:90px">Nói thầm:</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.Clinical.RightEarWhisper, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Clinical.RightEarWhisper, new { htmlAttributes = new { @class = "form-control numberInput", @type = "number" } })
                         <span class="input-group-text">m</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.Clinical.RightEarWhisper, "", new { @class = "text-danger" })

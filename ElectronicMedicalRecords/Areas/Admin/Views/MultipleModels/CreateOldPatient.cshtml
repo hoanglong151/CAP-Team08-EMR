@@ -85,6 +85,10 @@
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
+                           role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
                            role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                     </li>
@@ -116,10 +120,6 @@
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#visinh"
                            role="tab" aria-controls="profile" aria-selected="false">Vi Sinh</a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
-                           role="tab" aria-controls="contact" aria-selected="false">Lâm Sàng</a>
-                    </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel"
@@ -149,6 +149,18 @@
                                 </div>
                             </section>
                         </p>
+                    </div>
+                    <div class="tab-pane fade" id="LamSang" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("CreateOldPatient", "Clinicals");
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel"
                          aria-labelledby="profile-tab">
@@ -820,31 +832,31 @@
             }
             CountTests[indextable].innerHTML = count[indextable];
         }
-        $(".imgAdd").click(function () {
-            var nameInput = $(this).closest(".row").find("input[type='file']").attr("name");
-            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" name="' + nameInput + '" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
-        });
-        $(document).on("click", "i.del", function () {
-            $(this).parent().remove();
-        });
-        $(function () {
-            $(document).on("change", ".uploadFile", function () {
-                var uploadFile = $(this);
-                var files = !!this.files ? this.files : [];
-                if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        //$(".imgAdd").click(function () {
+        //    var nameInput = $(this).closest(".row").find("input[type='file']").attr("name");
+        //    $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" name="' + nameInput + '" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+        //});
+        //$(document).on("click", "i.del", function () {
+        //    $(this).parent().remove();
+        //});
+        //$(function () {
+        //    $(document).on("change", ".uploadFile", function () {
+        //        var uploadFile = $(this);
+        //        var files = !!this.files ? this.files : [];
+        //        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 
-                if (/^image/.test(files[0].type)) { // only image file
-                    var reader = new FileReader(); // instance of the FileReader
-                    reader.readAsDataURL(files[0]); // read the local file
+        //        if (/^image/.test(files[0].type)) { // only image file
+        //            var reader = new FileReader(); // instance of the FileReader
+        //            reader.readAsDataURL(files[0]); // read the local file
 
-                    reader.onloadend = function () { // set image data as background of div
-                        //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                        uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
-                    }
-                }
+        //            reader.onloadend = function () { // set image data as background of div
+        //                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+        //                uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+        //            }
+        //        }
 
-            });
-        });
+        //    });
+        //});
         const editors = document.querySelectorAll('.editor');
         editors.forEach(item => {
             ClassicEditor
@@ -854,6 +866,63 @@
                 .catch(error => {
                     console.error("Toang" + error);
                 });
+        })
+        /*Validate Form*/
+        $('form').each((i, obj) => {
+            $.validator.addMethod('checkPhoneNumber', function (value, element) {
+                return this.optional(element) || /(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(value);
+            }, "Vui lòng nhập đúng định dạng");;
+            $(function () {
+                $(obj).validate({
+                    rules: {
+                        "Patient.Name": {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                        "Patient.BirthDate": {
+                            required: true,
+                        },
+                        "Patient.Address": {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                        "Patient.Phone": {
+                            required: true,
+                            checkPhoneNumber: true
+                        },
+                        "Patient.InsuranceCode": {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        }
+                    },
+                    messages: {
+                        "Patient.Name": {
+                            required: "Trường này bắt buộc nhập"
+                        },
+                        "Patient.BirthDate": {
+                            required: "Trường này bắt buộc nhập"
+                        },
+                        "Patient.Address": {
+                            required: "Trường này bắt buộc nhập"
+                        },
+                        "Patient.Phone": {
+                            required: "Trường này bắt buộc nhập",
+                            matches: "Nhập đúng định dạng"
+                        },
+                        "Patient.InsuranceCode": {
+                            required: "Trường này bắt buộc nhập",
+                        }
+                    },
+                    errorClass: 'invalidForm',
+                    validClass: 'validForm',
+                });
+            });
         })
     </script>
 }

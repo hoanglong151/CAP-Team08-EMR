@@ -109,7 +109,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var listPatient = db.Patients.ToList().LastOrDefault();
-                if(listPatient != null)
+                if (listPatient != null)
                 {
                     var numPatient = Convert.ToInt32(listPatient.MaBN.Substring(6));
                     if (numPatient < 10)
@@ -144,8 +144,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");
-            }
-
+            }            
             ViewBag.Gender_ID = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);

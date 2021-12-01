@@ -12,14 +12,14 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
-                    <input name="InformationExamination.DateExamine" type="datetime" value="@Model.InformationExamination.DateExamine" class="form-control" readonly />
+                    <input name="InformationExamination.DateExamine" type="datetime" value="@ViewBag.DateExamination" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đi</label>
-                    <input name="InformationExamination.DateEnd" type="date" value="@Model.InformationExamination.DateEnd.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                    <input name="InformationExamination.DateEnd" type="datetime" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
                 </div>
             </div>

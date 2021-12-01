@@ -95,7 +95,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(aspNetRole);
         }
 

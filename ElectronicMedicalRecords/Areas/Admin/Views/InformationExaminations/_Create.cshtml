@@ -17,8 +17,7 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đi</label>
-                    <input name="InformationExamination.DateEnd" type="date" class="form-control" />
-                    @*@Html.EditorFor(model => model.InformationExamination.DateEnd, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <input name="InformationExamination.DateEnd" type="datetime" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
                 </div>
             </div>

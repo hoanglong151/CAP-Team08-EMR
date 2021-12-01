@@ -125,6 +125,7 @@
         })
 
         function deletePatient(id) {
+            console.log(id)
             var form = $('#__AjaxAntiForgeryForm');
             var token = $('input[name="__RequestVerificationToken"]', form).val();
             Swal.fire({
