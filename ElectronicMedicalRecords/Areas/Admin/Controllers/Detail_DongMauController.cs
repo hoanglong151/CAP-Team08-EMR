@@ -137,7 +137,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MultiplesModel multiplesModel)
+        public async Task<ActionResult> Edit(MultiplesModel multiplesModel)
         {
             if (multiplesModel.Detail_DongMaus != null)
             {
@@ -146,7 +146,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     if (ModelState.IsValid)
                     {
                         db.Entry(detail_DongMau).State = EntityState.Modified;
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
                     }
                 }
                 var checkResult = multiplesModel.Detail_DongMaus.All(p => p.Result != null);
@@ -154,7 +154,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     multiplesModel.InformationExamination.ResultDMau = true;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -163,27 +163,33 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(List<DongMau> dongMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_DongMau detail_DongMau = new Detail_DongMau();
-            foreach (var item in multiplesModel.DongMau)
+            foreach (var item in dongMaus)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_DongMau.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
                     detail_DongMau.DongMau_ID = item.ID;
-                    detail_DongMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_DongMau.InformationExamination_ID = informationID;
                     detail_DongMau.Result = item.Result;
                     detail_DongMau.ChiDinh = item.ChiDinh;
-                    multiplesModel.InformationExamination.ResultDMau = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_DongMau.Add(detail_DongMau);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_DongMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultDMau = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest", detail_DongMau.DongMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_DongMau.InformationExamination_ID);
             //return View(detail_DongMau);
-            return RedirectToAction("CreateOldPatient", "MultipleModels");
+            return RedirectToAction("Create", "MultipleModels");
         }
 
         // GET: Admin/Detail_DongMau/Delete/5

@@ -136,7 +136,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MultiplesModel multiplesModel)
+        public async Task<ActionResult> Edit(MultiplesModel multiplesModel)
         {
             if (multiplesModel.Detail_Urines != null)
             {
@@ -145,7 +145,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     if (ModelState.IsValid)
                     {
                         db.Entry(detail_Urine).State = EntityState.Modified;
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
                     }
                 }
                 var checkResult = multiplesModel.Detail_Urines.All(p => p.Result != null);
@@ -153,7 +153,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     multiplesModel.InformationExamination.ResultNuocTieu = true;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -162,27 +162,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(List<Urine> Urines, int informationID, MultiplesModel multiplesModel)
         {
             Detail_Urine detail_Urine = new Detail_Urine();
-            foreach (var item in multiplesModel.Urine)
+            foreach (var item in Urines)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_Urine.Where(p => p.InfomationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
                     detail_Urine.Urine_ID = item.ID;
-                    detail_Urine.InfomationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_Urine.InfomationExamination_ID = informationID;
                     detail_Urine.ChiDinh = item.ChiDinh;
                     detail_Urine.Result = item.Result;
-                    multiplesModel.InformationExamination.ResultNuocTieu = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Urine.Add(detail_Urine);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
-
+            }
+            var check = db.Detail_Urine.AsNoTracking().FirstOrDefault(p => p.InfomationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultNuocTieu = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Urine.InfomationExamination_ID);
             ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name", detail_Urine.Urine_ID);
-            return RedirectToAction("CreateOldPatient", "MultipleModels");
+            return RedirectToAction("Create", "MultipleModels");
         }
 
         // GET: Admin/Detail_Urine/Delete/5
