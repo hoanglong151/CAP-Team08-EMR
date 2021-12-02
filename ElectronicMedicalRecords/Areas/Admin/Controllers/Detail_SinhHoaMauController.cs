@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -50,7 +51,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<SinhHoaMau> sinhHoaMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(List<SinhHoaMau> sinhHoaMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
             foreach(var item in sinhHoaMaus)
@@ -61,11 +62,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_SinhHoaMau.InformationExamination_ID = informationID;
                     detail_SinhHoaMau.Result = item.Result;
                     detail_SinhHoaMau.ChiDinh = item.ChiDinh;
-                    multiplesModel.InformationExamination.ResultSHM = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_SinhHoaMau.Add(detail_SinhHoaMau);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_SinhHoaMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if(check != null)
+            {
+                multiplesModel.InformationExamination.ResultSHM = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_SinhHoaMau.InformationExamination_ID);
             ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest", detail_SinhHoaMau.SinhHoaMau_ID);

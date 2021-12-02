@@ -12,7 +12,8 @@ namespace ElectronicMedicalRecords
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        string con = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
+        string conString = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
+        //string conbs = ConfigurationManager.ConnectionStrings["sqlConStringBS"].ConnectionString;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -20,20 +21,33 @@ namespace ElectronicMedicalRecords
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            SqlDependency.Start(con);
+            SqlDependency.Start(conString);
+            SqlDependency.Start(conString);
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            NotificationComponent NC = new NotificationComponent();
-            var currentTime = DateTime.Now;
-            HttpContext.Current.Session["LastUpdated"] = currentTime;
-            NC.RegisterNotification(currentTime);
+            NotificationComponentKTV NCktv = new NotificationComponentKTV();
+            NotificationComponentBS NCbs = new NotificationComponentBS();
+            //var currentTimebs = DateTime.Now;
+            //var currentTimektv = DateTime.Now;
+            //HttpContext.Current.Session["LastUpdated"] = currentTimektv;
+            NCktv.RegisterNotificationKTV();
+            NCbs.RegisterNotificationBS();
         }
+
+        //protected void Session_Startbs(object sender, EventArgs e)
+        //{
+        //    NotificationComponentBS NCbs = new NotificationComponentBS();
+        //    var currentTimebs = DateTime.Now;
+        //    HttpContext.Current.Session["LastUpdated"] = currentTimebs;
+        //    NCbs.RegisterNotificationBS(currentTimebs);
+        //}
 
         protected void Application_End()
         {
-            SqlDependency.Stop(con);
+            SqlDependency.Stop(conString);
+            SqlDependency.Stop(conString);
         }
     }
 }

@@ -9,23 +9,23 @@ using System.Web;
 
 namespace ElectronicMedicalRecords
 {
-    public class NotificationComponent
+    public class NotificationComponentKTV
     {
-        public void RegisterNotification(DateTime currentTime)
+        public void RegisterNotificationKTV()
         {
             string conStr = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
-            string sqlCommand = @"SELECT [ID],[Patient_ID] from [dbo].[InformationExamination] where DateExamine > @DateExamine";
+            string sqlCommand = @"SELECT [ResultCTMau],[ResultSHM],[ResultDMau],[ResultNhomMau],[ResultNuocTieu],[ResultMienDich],[ResultDichChocDo],[ResultViSinh] from [dbo].[InformationExamination]";
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                SqlCommand cmd = new SqlCommand(sqlCommand, con);
-                cmd.Parameters.AddWithValue("@DateExamine", currentTime);
                 if (con.State != System.Data.ConnectionState.Open)
                 {
                     con.Open();
                 }
+                SqlCommand cmd = new SqlCommand(sqlCommand, con);
+                //cmd.Parameters.AddWithValue("@DateExamine", currentTime);
                 cmd.Notification = null;
                 SqlDependency sqlDep = new SqlDependency(cmd);
-                sqlDep.OnChange += sqlDep_OnChange;
+                sqlDep.OnChange += sqlDep_OnChangeKTV;
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     // nothing need to add here now
@@ -33,17 +33,17 @@ namespace ElectronicMedicalRecords
             }
         }
 
-        void sqlDep_OnChange(object sender, SqlNotificationEventArgs e)
+        void sqlDep_OnChangeKTV(object sender, SqlNotificationEventArgs e)
         {
             if (e.Type == SqlNotificationType.Change)
             {
                 SqlDependency sqlDep = sender as SqlDependency;
-                sqlDep.OnChange -= sqlDep_OnChange;
+                sqlDep.OnChange -= sqlDep_OnChangeKTV;
 
                 var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
                 notificationHub.Clients.All.notify("added");
 
-                RegisterNotification(DateTime.Now);
+                RegisterNotificationKTV();
             }
         }
 

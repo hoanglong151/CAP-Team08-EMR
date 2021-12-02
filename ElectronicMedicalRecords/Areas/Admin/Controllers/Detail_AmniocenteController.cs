@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -50,7 +51,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<Amniocente> aMniocentes, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(List<Amniocente> aMniocentes, int informationID, MultiplesModel multiplesModel)
         {
             Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
             foreach (var item in aMniocentes)
@@ -61,11 +62,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Amniocente.InformationExamination_ID = informationID;
                     detail_Amniocente.ChiDinh = item.ChiDinh;
                     detail_Amniocente.Result = item.Result;
-                    multiplesModel.InformationExamination.ResultDichChocDo = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Amniocente.Add(detail_Amniocente);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_Amniocente.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultDichChocDo = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.Amniocent_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_Amniocente.Amniocente_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);

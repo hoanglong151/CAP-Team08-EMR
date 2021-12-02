@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -50,7 +51,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<DongMau> dongMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(List<DongMau> dongMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_DongMau detail_DongMau = new Detail_DongMau();
             foreach(var item in dongMaus)
@@ -61,11 +62,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_DongMau.InformationExamination_ID = informationID;
                     detail_DongMau.Result = item.Result;
                     detail_DongMau.ChiDinh = item.ChiDinh;
-                    multiplesModel.InformationExamination.ResultDMau = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_DongMau.Add(detail_DongMau);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_DongMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultDMau = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest", detail_DongMau.DongMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_DongMau.InformationExamination_ID);

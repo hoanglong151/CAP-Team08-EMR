@@ -181,7 +181,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // POST: Admin/MultipleModels/Create
         [HttpPost, ValidateInput(false)]
         [Obsolete]
-        public ActionResult Create(MultiplesModel multiplesModel)
+        public async Task<RedirectToRouteResult> Create(MultiplesModel multiplesModel)
          {
             PatientsController patientsController = new PatientsController();
             InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
@@ -200,20 +200,23 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;
                 informationExaminationsController.Create(multiplesModel.InformationExamination, PatientID);
-                detail_CTMauController.Create(multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel);
-                detail_SinhHoaMauController.Create(multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel);
-                detail_DongMauController.Create(multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel);
-                detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel);
-                detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel);
-                detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
-                detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
-                clinicalsController.Create(multiplesModel);
+                var CongThucMau = Task.Run(() => detail_CTMauController.Create(multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var SinhHoaMau = Task.Run(() => detail_SinhHoaMauController.Create(multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var DongMau = Task.Run(() => detail_DongMauController.Create(multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var NhomMau =  Task.Run(() => detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var Urine =  Task.Run(() => detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
+                var Immune =  Task.Run(() => detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
+                var Amniocente =  Task.Run(() => detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
                 //cayMausController.Create(multiplesModel, Server);
-                return RedirectToAction("Index", "Patients");
+                var Result = await Task.WhenAll(CongThucMau, SinhHoaMau, DongMau, NhomMau, Urine, Immune, Amniocente);
+                var Clinical = clinicalsController.Create(multiplesModel);
+                return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                //return View();
+                var error = ex;
+                return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
         }
 

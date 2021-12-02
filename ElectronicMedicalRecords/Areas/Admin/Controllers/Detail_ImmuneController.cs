@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -50,7 +51,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
         {
             Detail_Immune detail_Immune = new Detail_Immune();
             foreach (var item in iMmunes)
@@ -61,11 +62,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Immune.InformationExamination_ID = informationID;
                     detail_Immune.ChiDinh = item.ChiDinh;
                     detail_Immune.Result = item.Result;
-                    multiplesModel.InformationExamination.ResultMienDich = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Immune.Add(detail_Immune);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_Immune.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultMienDich = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
