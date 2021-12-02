@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -49,7 +50,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_CTMau detail_CTMau = new Detail_CTMau();
             foreach(var item in cTMaus)
@@ -60,11 +61,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_CTMau.InformationExamination_ID = informationID;
                     detail_CTMau.ChiDinh = item.ChiDinh;
                     detail_CTMau.Result = item.Result;
-                    multiplesModel.InformationExamination.ResultCTMau = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_CTMau.Add(detail_CTMau);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_CTMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if(check != null)
+            {
+                multiplesModel.InformationExamination.ResultCTMau = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);

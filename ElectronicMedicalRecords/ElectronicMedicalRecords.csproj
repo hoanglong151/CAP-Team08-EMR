@@ -425,7 +425,7 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationComponentBS.cs" />
-    <Compile Include="NotificationComponent.cs" />
+    <Compile Include="NotificationComponentKTV.cs" />
     <Compile Include="NotificationHubBS.cs" />
     <Compile Include="NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

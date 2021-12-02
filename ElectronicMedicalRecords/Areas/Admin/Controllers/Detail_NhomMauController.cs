@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -50,7 +51,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(List<NhomMau> nhomMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(List<NhomMau> nhomMaus, int informationID, MultiplesModel multiplesModel)
         {
             Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
             foreach(var item in nhomMaus)
@@ -61,11 +62,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_NhomMau.InformationExamination_ID = informationID;
                     detail_NhomMau.ChiDinh = item.ChiDinh;
                     detail_NhomMau.Result = item.Result;
-                    multiplesModel.InformationExamination.ResultNhomMau = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_NhomMau.Add(detail_NhomMau);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
+            }
+            var check = db.Detail_NhomMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultNhomMau = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_NhomMau.InformationExamination_ID);
             ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest", detail_NhomMau.NhomMau_ID);

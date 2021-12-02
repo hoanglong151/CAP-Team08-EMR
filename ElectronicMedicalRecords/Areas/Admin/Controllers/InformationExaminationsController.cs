@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -24,25 +25,56 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExaminations.ToList());
         }
 
-        public JsonResult GetNotification()
+        public async Task<ActionResult> GetNotification()
         {
-            NotificationComponent NC = new NotificationComponent();
-            var list = NC.GetInformationExamination();
-            List<Patient> patient = new List<Patient>();
-            foreach(var item1 in list)
+            db.Configuration.ProxyCreationEnabled = true;
+            NotificationComponentKTV NCNoti = new NotificationComponentKTV();
+            var listNotify = NCNoti.GetInformationExamination();
+            var countresult = 0;
+            List<object> patient = new List<object>();
+            foreach(var item in listNotify)
             {
-                var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
-                patient.Add(patientUser);
+                var patientUserFalse = db.Patients.FirstOrDefault(p => p.ID == item.Patient_ID);
+                if (item.ResultCTMau == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultSHM == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultDMau == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultNhomMau == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultNuocTieu == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultMienDich == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultDichChocDo == false)
+                {
+                    countresult += 1;
+                }
+                if (item.ResultViSinh == false)
+                {
+                    countresult += 1;
+                }
+                var NotiResultFalse = new { patientUserFalse.Name, countresult, patientUserFalse.ID };
+                patient.Add(NotiResultFalse);
+                countresult = 0;
             }
-            var listpatient = patient.Select(s => new
-            {
-                ID = s.ID,
-                Name = s.Name,
-            }).ToList();
-            return Json(new { data = list, userName = listpatient }, JsonRequestBehavior.AllowGet);
+            return await Task.Run(() => Json(new { data = patient }, JsonRequestBehavior.AllowGet));
         }
 
-        public JsonResult GetNotificationBS()
+        public async Task<ActionResult> GetNotificationBS()
         {
             NotificationComponentBS NC = new NotificationComponentBS();
             var list = NC.ReturnResultTest();
@@ -87,9 +119,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Noti.Add(NotiResult);
                 count = 0;
             }
-            return Json(new { data = Noti }, JsonRequestBehavior.AllowGet);
+            return await Task.Run(() => Json(new { data = Noti }, JsonRequestBehavior.AllowGet));
         }
-
 
         // GET: Admin/InformationExaminations/Details/5
         public ActionResult Details(int id)
