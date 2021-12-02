@@ -67,12 +67,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     countresult += 1;
                 }
-                var NotiResultFalse = new { patientUserFalse.Name, countresult, patientUserFalse.ID };
+                var NotiResultFalse = new { patientUserFalse.Name, countresult, item.ID };
                 patient.Add(NotiResultFalse);
                 countresult = 0;
             }
             return await Task.Run(() => Json(new { data = patient }, JsonRequestBehavior.AllowGet));
-        }
+         }
 
         public async Task<ActionResult> GetNotificationBS()
         {
