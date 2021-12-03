@@ -51,12 +51,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(Detail_Immune detail_Immune, List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_Immune detail_Immune = new Detail_Immune();
             foreach (var item in iMmunes)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_Immune.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
                     detail_Immune.Immue_ID = item.ID;
                     detail_Immune.InformationExamination_ID = informationID;
@@ -143,9 +143,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach (var detail_Immune in multiplesModel.Detail_Immunes)
                 {
+                    var DetailImmune = db.Detail_Immune.AsNoTracking().FirstOrDefault(p => p.Immue_ID == detail_Immune.Immue_ID && p.InformationExamination_ID == detail_Immune.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
-                        db.Entry(detail_Immune).State = EntityState.Modified;
+                        DetailImmune.Result = detail_Immune.Result;
+                        db.Entry(DetailImmune).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
                 }
