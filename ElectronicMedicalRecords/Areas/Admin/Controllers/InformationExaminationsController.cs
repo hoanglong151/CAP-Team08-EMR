@@ -122,6 +122,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return await Task.Run(() => Json(new { data = Noti }, JsonRequestBehavior.AllowGet));
         }
 
+        public async Task<ActionResult> GetNotificationBS1()
+        {
+            NotificationComponentBS1 NCBS = new NotificationComponentBS1();
+            var list = NCBS.ReturnResultTestBS1();
+            List<object> NotiBS = new List<object>();
+            foreach (var item1 in list)
+            {
+                var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
+                var date = item1.DateExamine.Value.ToString("dd/mm/yyyy hh:mm:ss");
+                var NotiResult = new { patientUser.Name, date, item1.ID };
+                NotiBS.Add(NotiResult);
+            }
+            return await Task.Run(() => Json(new { data = NotiBS }, JsonRequestBehavior.AllowGet));
+        }
+
         // GET: Admin/InformationExaminations/Details/5
         public ActionResult Details(int id)
         {
@@ -135,15 +150,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SearchPatientDetail(DateTime? DateStartDetail, DateTime? DateEndDetail, int? id)
+        public ActionResult SearchPatientDetail(DateTime? DateStartDetail, DateTime? DateEndDetail, int id)
         {
             PatientsController patientsController = new PatientsController();
             var checkID = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
             if (DateStartDetail == null && DateEndDetail == null)
             {
                 ViewBag.ErrorInfo = "Vui lòng nhập ít nhất 1 trường";
-                return View("Details", checkID);
+                return RedirectToAction("Details","InformationExaminations", new { id = id});
             }
+            if(DateStartDetail.HasValue)
             {
                 checkID = checkID.Where(p => p.DateExamine >= DateStartDetail.Value).ToList();
             }
@@ -166,7 +182,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
             var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
-            ViewBag.UserName = UserName.Name;
+            if(UserName != null)
+            {
+                ViewBag.UserName = UserName.Name;
+            }
             multiplesModel.InformationExamination = informationExamination;
             return PartialView("_DetailsIE", multiplesModel);
         }
@@ -189,12 +208,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InformationExamination informationExamination, int patientID)
+        public ActionResult Create(int patientID)
         {
+            InformationExamination informationExamination = new InformationExamination();
             if (ModelState.IsValid)
             {
                 informationExamination.Patient_ID = patientID;
+                informationExamination.DateExamine = DateTime.Now;
                 informationExamination.DateEnd = DateTime.Now;
+                informationExamination.New = false;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");
@@ -211,28 +233,51 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = db.InformationExaminations.Find(id);
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
+            ViewBag.UserByID = userID.ID;
+            ViewBag.UserName = userID.Name;
             if (informationExamination == null)
             {
                 return HttpNotFound();
             }
             var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
-            ViewBag.UserName = UserName.Name;
-            ViewBag.DateExamination = DateTime.Now;
             multiplesModel.InformationExamination = informationExamination;
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(InformationExamination informationExamination)
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            InformationExamination informationExamination = new InformationExamination();
+            if (ModelState.IsValid)
+            {
+                informationExamination.Patient_ID = multiplesModel.Patient.ID;
+                informationExamination.DateExamine = DateTime.Now;
+                informationExamination.DateEnd = DateTime.Now;
+                informationExamination.New = false;
+                db.InformationExaminations.Add(informationExamination);
+                db.SaveChanges();
+                return RedirectToAction("CreateOldPatient", "MultipleModels");
+            }
+            ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);
+            ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", informationExamination.User_ID);
+            return View(informationExamination);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateTest(InformationExamination informationExamination)
         {
             if (ModelState.IsValid)
             {
                 informationExamination.DateEnd = DateTime.Now;
-                db.InformationExaminations.Add(informationExamination);
+                db.Entry(informationExamination).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("CreateOldPatient", "MultipleModels");
+                return RedirectToAction("Index", "MultipleModels");
             }
             ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);
             ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
@@ -249,10 +294,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            
-            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
+            ViewBag.UserByID = userID.ID;
+            ViewBag.UserName = userID.Name;
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
-            ViewBag.UserName = UserName.Name;
             multiplesModel.InformationExamination = informationExamination;
             return PartialView("_Edit",multiplesModel);
         }

@@ -70,8 +70,11 @@
         <EntityTypeShape EntityType="CP24Team08Model.Detail_ViSinh" Width="1.5" PointX="11" PointY="25.625" />
         <EntityTypeShape EntityType="CP24Team08Model.ViSinh" Width="1.5" PointX="8.75" PointY="33.75" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_ViSinh" />
-        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="11" PointY="33.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="13.25" PointY="30.625" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
+        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="11" PointY="33.375" />
         <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DongMau_InformationExamination" />
@@ -86,9 +89,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Subclinical_InformationExamination" />
-        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="13.25" PointY="30.625" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

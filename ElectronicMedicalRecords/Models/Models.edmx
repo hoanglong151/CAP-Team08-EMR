@@ -294,6 +294,7 @@
           <Property Name="ResultMienDich" Type="bit" />
           <Property Name="ResultDichChocDo" Type="bit" />
           <Property Name="ResultViSinh" Type="bit" />
+          <Property Name="New" Type="bit" />
         </EntityType>
         <EntityType Name="MedicalTestsPrescription">
           <Key>
@@ -1387,10 +1388,19 @@
             <End Role="ViSinh" EntitySet="ViSinhs" />
             <End Role="Detail_ViSinh" EntitySet="Detail_ViSinh" />
           </AssociationSet>
+          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
+          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
           <EntitySet Name="InformationExaminations" EntityType="CP24Team08Model.InformationExamination" />
           <AssociationSet Name="FK_CayMau_InformationExamination" Association="CP24Team08Model.FK_CayMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="CayMau" EntitySet="CayMaus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Clinical" EntitySet="Clinicals" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_Amniocente_InformationExamination" Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
@@ -1447,15 +1457,6 @@
           <AssociationSet Name="FK_Subclinical_InformationExamination" Association="CP24Team08Model.FK_Subclinical_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Subclinical" EntitySet="Subclinicals" />
-          </AssociationSet>
-          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
-          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Clinical" EntitySet="Clinicals" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1790,8 +1791,8 @@
           <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
           <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
           <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_User" FromRole="User" ToRole="Subclinical" />
-          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
           <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -2248,6 +2249,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Clinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Circles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Respiration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Digestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KidneyUrology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MuscleBoneJoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nerve" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mental" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surgery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObstetricsAndGynecology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RightEyesNoGlasses" Type="Double" />
+          <Property Name="LeftEyesNoGlasses" Type="Double" />
+          <Property Name="RightEyesGlasses" Type="Double" />
+          <Property Name="LeftEyesGlasses" Type="Double" />
+          <Property Name="EyesExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeftEarSay" Type="Double" />
+          <Property Name="LeftEarWhisper" Type="Double" />
+          <Property Name="RightEarSay" Type="Double" />
+          <Property Name="RightEarWhisper" Type="Double" />
+          <Property Name="EarNoseThroatExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeethJawFaceExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dermatology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bill" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
+        </EntityType>
+        <Association Name="FK_Clinical_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="InformationExamination">
           <Key>
             <PropertyRef Name="ID" />
@@ -2271,7 +2318,9 @@
           <Property Name="ResultMienDich" Type="Boolean" />
           <Property Name="ResultDichChocDo" Type="Boolean" />
           <Property Name="ResultViSinh" Type="Boolean" />
+          <Property Name="New" Type="Boolean" />
           <NavigationProperty Name="CayMaus" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="InformationExamination" ToRole="CayMau" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
           <NavigationProperty Name="Detail_Amniocente" Relationship="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Amniocente" />
           <NavigationProperty Name="Detail_CTMau" Relationship="CP24Team08Model.FK_Detail_CTMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_CTMau" />
           <NavigationProperty Name="Detail_DongMau" Relationship="CP24Team08Model.FK_Detail_DongMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DongMau" />
@@ -2286,7 +2335,6 @@
           <NavigationProperty Name="MedicalTestsPrescriptions" Relationship="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" FromRole="InformationExamination" ToRole="MedicalTestsPrescription" />
           <NavigationProperty Name="Prescriptions" Relationship="CP24Team08Model.FK_Prescription_InformationExamination" FromRole="InformationExamination" ToRole="Prescription" />
           <NavigationProperty Name="Subclinicals" Relationship="CP24Team08Model.FK_Subclinical_InformationExamination" FromRole="InformationExamination" ToRole="Subclinical" />
-          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
         </EntityType>
         <Association Name="FK_CayMau_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
@@ -2296,6 +2344,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CayMau">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
               <PropertyRef Name="InformationExamination_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2465,64 +2525,6 @@
             </Principal>
             <Dependent Role="Subclinical">
               <PropertyRef Name="InformationExamination_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Clinical">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Circles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Respiration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Digestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="KidneyUrology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MuscleBoneJoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nerve" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mental" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surgery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ObstetricsAndGynecology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RightEyesNoGlasses" Type="Double" />
-          <Property Name="LeftEyesNoGlasses" Type="Double" />
-          <Property Name="RightEyesGlasses" Type="Double" />
-          <Property Name="LeftEyesGlasses" Type="Double" />
-          <Property Name="EyesExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LeftEarSay" Type="Double" />
-          <Property Name="LeftEarWhisper" Type="Double" />
-          <Property Name="RightEarSay" Type="Double" />
-          <Property Name="RightEarWhisper" Type="Double" />
-          <Property Name="EarNoseThroatExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TeethJawFaceExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dermatology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Bill" Type="Int32" />
-          <Property Name="User_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
-          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_Clinical_InformationExamination">
-          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InformationExamination">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="InformationExamination_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_User">
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2990,31 +2992,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InformationExaminations">
-            <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
-              <MappingFragment StoreEntitySet="InformationExamination">
-                <ScalarProperty Name="ResultViSinh" ColumnName="ResultViSinh" />
-                <ScalarProperty Name="ResultDichChocDo" ColumnName="ResultDichChocDo" />
-                <ScalarProperty Name="ResultMienDich" ColumnName="ResultMienDich" />
-                <ScalarProperty Name="ResultNuocTieu" ColumnName="ResultNuocTieu" />
-                <ScalarProperty Name="ResultNhomMau" ColumnName="ResultNhomMau" />
-                <ScalarProperty Name="ResultDMau" ColumnName="ResultDMau" />
-                <ScalarProperty Name="ResultSHM" ColumnName="ResultSHM" />
-                <ScalarProperty Name="ResultCTMau" ColumnName="ResultCTMau" />
-                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
-                <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
-                <ScalarProperty Name="Breathing" ColumnName="Breathing" />
-                <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="DateExamine" ColumnName="DateExamine" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Clinicals">
             <EntityTypeMapping TypeName="CP24Team08Model.Clinical">
               <MappingFragment StoreEntitySet="Clinical">
@@ -3044,6 +3021,32 @@
                 <ScalarProperty Name="Digestion" ColumnName="Digestion" />
                 <ScalarProperty Name="Respiration" ColumnName="Respiration" />
                 <ScalarProperty Name="Circles" ColumnName="Circles" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationExaminations">
+            <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
+              <MappingFragment StoreEntitySet="InformationExamination">
+                <ScalarProperty Name="New" ColumnName="New" />
+                <ScalarProperty Name="ResultViSinh" ColumnName="ResultViSinh" />
+                <ScalarProperty Name="ResultDichChocDo" ColumnName="ResultDichChocDo" />
+                <ScalarProperty Name="ResultMienDich" ColumnName="ResultMienDich" />
+                <ScalarProperty Name="ResultNuocTieu" ColumnName="ResultNuocTieu" />
+                <ScalarProperty Name="ResultNhomMau" ColumnName="ResultNhomMau" />
+                <ScalarProperty Name="ResultDMau" ColumnName="ResultDMau" />
+                <ScalarProperty Name="ResultSHM" ColumnName="ResultSHM" />
+                <ScalarProperty Name="ResultCTMau" ColumnName="ResultCTMau" />
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+                <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
+                <ScalarProperty Name="Breathing" ColumnName="Breathing" />
+                <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateExamine" ColumnName="DateExamine" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

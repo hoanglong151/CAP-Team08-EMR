@@ -32,7 +32,7 @@
             left: 18%
         }
 
-        ul#notiContent, ul#notiContentBS {
+        ul#notiContent, ul#notiContentBS, ul#notiContentBS1 {
             max-height: 200px;
             overflow: auto;
             padding: 0px;
@@ -52,19 +52,23 @@
             width: 24px;
             height: 24px;
         }
+
         .ul-noti::-webkit-scrollbar {
             width: 4px;
             border-radius: 4px;
         }
+
         .ul-noti::-webkit-scrollbar-thumb {
             border-radius: 4px;
             background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
         }
+
         .ul-noti::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             background-color: #F5F5F5;
             border-radius: 4px;
         }
+
         span.noti {
             color: #eee;
             position: fixed;
@@ -77,7 +81,7 @@
             border-radius: 4px;
         }
 
-        span.count, span.countBS {
+        span.count, span.countBS, span.countBS1 {
             position: absolute;
             font-size: 14px;
             top: -0.1rem;
@@ -230,31 +234,53 @@
                 }
                 @if (User.IsInRole("Bác Sĩ"))
                 {
-                    <div class="container-fluid">
-                        <a href="#" class="burger-btn d-block">
-                            <i class="bi bi-justify fs-3"></i>
-                        </a>
+            <div class="container-fluid">
+                <a href="#" class="burger-btn d-block">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown me-3">
-                                    <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-bell" style="font-size:25px"></i>
-                                        <span class="countBS">&nbsp;</span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
-                                        <li>
-                                            <h6 class="dropdown-header">Notifications</h6>
-                                        </li>
-                                        <li><a class="dropdown-item">No notification available</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="d-flex">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown me-3">
+                                <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell" style="font-size:25px"></i>
+                                    <span class="countBS">&nbsp;</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
+                                    <li>
+                                        <h6 class="dropdown-header">Notifications</h6>
+                                    </li>
+                                    <li><a class="dropdown-item">No notification available</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown me-3">
+                                <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell" style="font-size:25px"></i>
+                                    <span class="countBS1">&nbsp;</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
+                                    <li>
+                                        <h6 class="dropdown-header">Notifications</h6>
+                                    </li>
+                                    <li><a class="dropdown-item">No notification available</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
                 }
             </nav>
             @RenderBody()
@@ -405,6 +431,63 @@
                     evt.preventDefault();
                 }
             })
+        })
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var RoleCheckBS1 = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
+            if (RoleCheckBS1) {
+            var count = 0;
+            count = parseInt($('span.countBS1').html()) || 0;
+            if (count > 0) {
+                updateNotificationBS1();
+            }
+            $('span.countBS1', this).html("&nbsp;");
+            $('html').click(function () {
+                $('.noti-contentBS1').hide();
+            })
+
+                updateNotificationBS1();
+                function updateNotificationBS1() {
+                $('#notiContentBS1').empty();
+                $('#notiContentBS1').append($('<li>Loading...</li>'));
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetNotificationBS1", "InformationExaminations")",
+                    success: function (res) {
+
+                        $('#notiContentBS1').empty();
+                        if (res.length == 0) {
+                            $('#notiContentBS1').append($('<li>No data available</li>'));
+                        }
+                        $.each(res.data, function (index, value) {
+                            console.log(value)
+                            var href = "@Url.Action("CreateTest", "MultipleModels")" +"/" + value.ID;
+                            $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        })
+                        $('span.countBS1').html(res.data.length);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+                }
+
+                var notificationHubBS1 = $.connection.notificationHubBS1;
+
+                notificationHubBS1.client.notifyResultBS1 = function (message) {
+                    if (message && message.toLowerCase() == "added") {
+                        updateNotificationBS1();
+                    }
+                }
+
+                $.connection.hub.start().done(function () {
+                    updateNotificationBS1();
+                    console.log("Notification hub started Bac Si 1");
+                }).fail((e) => {
+                    alert(e)
+                });
+            }
         })
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>

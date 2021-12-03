@@ -25,7 +25,14 @@
                 <div class="form-group">
                     <label for="email-id-column">Bác Sĩ</label>
                     <input value="@Model.InformationExamination.User_ID" name="InformationExamination.User_ID" hidden />
-                    <input value="@ViewBag.UserName" class="form-control" disabled />
+                    @if (ViewBag.UserName != null)
+                    {
+                        <input value="@ViewBag.UserName" class="form-control" disabled />
+                    }
+                    else
+                    {
+                        <input value="" class="form-control" disabled />
+                    }
                     @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
                 </div>
             </div>

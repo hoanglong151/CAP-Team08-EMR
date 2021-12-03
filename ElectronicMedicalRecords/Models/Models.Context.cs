@@ -64,7 +64,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<CayMau> CayMaus { get; set; }
         public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<Clinical> Clinicals { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
     }
 }

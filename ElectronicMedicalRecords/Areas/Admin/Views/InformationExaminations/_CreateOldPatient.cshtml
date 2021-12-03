@@ -12,7 +12,7 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
-                    <input name="InformationExamination.DateExamine" type="datetime" value="@ViewBag.DateExamination" class="form-control" readonly />
+                    <input name="InformationExamination.DateExamine" type="datetime" value="@Model.InformationExamination.DateExamine" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Bác Sĩ</label>
-                    <input value="@Model.InformationExamination.User_ID" name="InformationExamination.User_ID" hidden />
+                    <input value="@ViewBag.UserByID" name="InformationExamination.User_ID" hidden />
                     <input value="@ViewBag.UserName" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
                 </div>
