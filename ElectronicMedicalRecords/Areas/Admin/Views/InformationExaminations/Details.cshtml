@@ -18,7 +18,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
-                <h3>Lịch sử khám bệnh</h3>
+                <h3>Lịch Sử Khám Bệnh</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -80,10 +80,10 @@
                                 <td>@item.Patient.Name</td>
                                 <td>@item.Patient.BirthDate.Value.ToString("yyyy")</td>
                                 <td>
-                                    <a class="btn btn-primary btnHover" href="@Url.Action("DetailsIE","MultipleModels", new { id = item.ID})">
+                                    <a class="btn btn-primary btnHover info" href="@Url.Action("DetailsIE","MultipleModels", new { id = item.ID})">
                                         <i class="fas fa-info"></i>
                                     </a>
-                                    <button class="btn btn-primary btnHover" onclick="deleteInformationExamination(@item.ID)">
+                                    <button class="btn btn-primary btnHover trash" onclick="deleteInformationExamination(@item.ID)">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>

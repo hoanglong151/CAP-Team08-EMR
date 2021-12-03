@@ -21,16 +21,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Print()
+        {
+            return View();
+        }
+
         // GET: Admin/MultipleModels/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        public ActionResult Print()
-        {
-            return View();
-        }
 
         public ActionResult LoadDetailBloods(int[] arr)
         {
