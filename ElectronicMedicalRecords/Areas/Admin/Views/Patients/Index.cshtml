@@ -88,13 +88,13 @@
                                     <a class="btn btn-primary btnHover" href="@Url.Action("CreateOldPatient","MultipleModels", new { id = item.ID})">
                                         <i class="fas fa-plus"></i>
                                     </a>
-                                    <a class="btn btn-primary btnHover" href="@Url.Action("Edit","MultipleModels", new { id = item.ID})">
+                                    <a class="btn btn-primary btnHover edit" href="@Url.Action("Edit","MultipleModels", new { id = item.ID})">
                                         <i class='fas fa-user-edit'></i>
                                     </a>
-                                    <a class="btn btn-primary btnHover" href="@Url.Action("Details","InformationExaminations", new { id = item.ID})">
+                                    <a class="btn btn-primary btnHover info" href="@Url.Action("Details","InformationExaminations", new { id = item.ID})">
                                         <i class="fas fa-info"></i>
                                     </a>
-                                    <button class="btn btn-primary btnHover" onclick="deletePatient(@item.ID)">
+                                    <button class="btn btn-primary btnHover trash" onclick="deletePatient(@item.ID)">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
