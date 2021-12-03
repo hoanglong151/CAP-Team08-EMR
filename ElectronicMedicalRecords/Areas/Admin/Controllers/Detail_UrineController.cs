@@ -19,8 +19,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Detail_Urine
         public ActionResult Index()
         {
-            var detail_Urine = db.Detail_Urine.Include(d => d.InformationExamination).Include(d => d.Urine);
-            return View(detail_Urine.ToList());
+            var detail_UrineIndex = db.Detail_Urine.Include(d => d.InformationExamination).Include(d => d.Urine);
+            return View(detail_UrineIndex.ToList());
         }
 
         // GET: Admin/Detail_Urine/Details/5
@@ -30,12 +30,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
-            if (detail_Urine == null)
+            Detail_Urine detail_UrineDetails = db.Detail_Urine.Find(id);
+            if (detail_UrineDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(detail_Urine);
+            return View(detail_UrineDetails);
         }
 
         // GET: Admin/Detail_Urine/Create
@@ -51,18 +51,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(List<Urine> Urines, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(Detail_Urine detail_UrineCreateP, List<Urine> Urines, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_Urine detail_Urine = new Detail_Urine();
             foreach (var item in Urines)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_Urine.Where(p => p.InfomationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
-                    detail_Urine.Urine_ID = item.ID;
-                    detail_Urine.InfomationExamination_ID = informationID;
-                    detail_Urine.ChiDinh = item.ChiDinh;
-                    detail_Urine.Result = item.Result;
-                    db.Detail_Urine.Add(detail_Urine);
+                    detail_UrineCreateP.Urine_ID = item.ID;
+                    detail_UrineCreateP.InfomationExamination_ID = informationID;
+                    detail_UrineCreateP.ChiDinh = item.ChiDinh;
+                    detail_UrineCreateP.Result = item.Result;
+                    db.Detail_Urine.Add(detail_UrineCreateP);
                     await db.SaveChangesAsync();
                 }
             }
@@ -73,8 +73,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                 await db.SaveChangesAsync();
             }
-            ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Urine.InfomationExamination_ID);
-            ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name", detail_Urine.Urine_ID);
+            ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_UrineCreateP.InfomationExamination_ID);
+            ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name", detail_UrineCreateP.Urine_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
 
@@ -136,16 +136,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MultiplesModel multiplesModel)
+        public async Task<ActionResult> Edit(MultiplesModel multiplesModel)
         {
             if (multiplesModel.Detail_Urines != null)
             {
                 foreach (var detail_Urine in multiplesModel.Detail_Urines)
                 {
+                    var DetailUrine = db.Detail_Urine.AsNoTracking().FirstOrDefault(p => p.Urine_ID == detail_Urine.Urine_ID && p.InfomationExamination_ID == detail_Urine.InfomationExamination_ID);
                     if (ModelState.IsValid)
                     {
-                        db.Entry(detail_Urine).State = EntityState.Modified;
-                        db.SaveChanges();
+                        DetailUrine.Result = detail_Urine.Result;
+                        db.Entry(DetailUrine).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
                     }
                 }
                 var checkResult = multiplesModel.Detail_Urines.All(p => p.Result != null);
@@ -153,7 +155,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     multiplesModel.InformationExamination.ResultNuocTieu = true;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -162,27 +164,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(List<Urine> Urines, int informationID, MultiplesModel multiplesModel)
         {
             Detail_Urine detail_Urine = new Detail_Urine();
-            foreach (var item in multiplesModel.Urine)
+            foreach (var item in Urines)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_Urine.AsNoTracking().Where(p => p.InfomationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
                     detail_Urine.Urine_ID = item.ID;
-                    detail_Urine.InfomationExamination_ID = multiplesModel.InformationExamination.ID;
+                    detail_Urine.InfomationExamination_ID = informationID;
                     detail_Urine.ChiDinh = item.ChiDinh;
                     detail_Urine.Result = item.Result;
-                    multiplesModel.InformationExamination.ResultNuocTieu = false;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                     db.Detail_Urine.Add(detail_Urine);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
-
+            }
+            var check = db.Detail_Urine.AsNoTracking().FirstOrDefault(p => p.InfomationExamination_ID == informationID);
+            if (check != null)
+            {
+                multiplesModel.InformationExamination.ResultNuocTieu = false;
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
             ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Urine.InfomationExamination_ID);
             ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name", detail_Urine.Urine_ID);
-            return RedirectToAction("CreateOldPatient", "MultipleModels");
+            return RedirectToAction("Create", "MultipleModels");
         }
 
         // GET: Admin/Detail_Urine/Delete/5

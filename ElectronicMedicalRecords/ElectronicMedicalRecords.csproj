@@ -2749,6 +2749,7 @@
     <Content Include="Areas\Admin\Views\Clinicals\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Clinicals\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\Print.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\EditByID.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -321,8 +321,7 @@
                                 $('#notiContentBS').append($('<li>No data available</li>'));
                             }
                             $.each(res.data, function (index, value) {
-                                console.log(value)
-                                var href = "/Admin/MultipleModels/DetailsIE/" + value.ID;
+                                var href = "@Url.Action("DetailsIE","MultipleModels")" + "/" + value.ID;
                                 $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                             })
                             $('span.countBS').html(res.data.length);
@@ -372,7 +371,7 @@
                             $('#notiContent').append($('<li>No data available</li>'));
                         }
                         $.each(res.data, function (index, value) {
-                            var href = "/Admin/MultipleModels/Edit/" + value.ID;
+                            var href = "@Url.Action("EditByID", "MultipleModels")" +"/" + value.ID;
                             $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
                         })
                         $('span.count').html(res.data.length);
