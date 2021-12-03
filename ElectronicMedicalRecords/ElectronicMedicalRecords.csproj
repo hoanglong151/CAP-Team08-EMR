@@ -441,6 +441,7 @@
     <Content Include="Areas\Admin\assets\css\pages\dripicons.css" />
     <Content Include="Areas\Admin\assets\css\pages\email.css" />
     <Content Include="Areas\Admin\assets\css\pages\error.css" />
+    <Content Include="Areas\Admin\assets\css\template.css" />
     <Content Include="Areas\Admin\assets\css\widgets\chat.css" />
     <Content Include="Areas\Admin\assets\css\widgets\todo.css" />
     <Content Include="Areas\Admin\assets\DataTables\AutoFill-2.3.7\css\autoFill.bootstrap.css" />
@@ -2493,6 +2494,7 @@
     <Content Include="asset\nav-bg3-rs.jpg" />
     <Content Include="asset\nav-bg3.jpg" />
     <Content Include="asset\nav-bg4.jpg" />
+    <Content Include="asset\vl-logo.png" />
     <Content Include="asset\VL.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -2746,6 +2748,7 @@
     <Content Include="Areas\Admin\Views\Clinicals\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Clinicals\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Clinicals\_DetailIE.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\Print.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\EditByID.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
