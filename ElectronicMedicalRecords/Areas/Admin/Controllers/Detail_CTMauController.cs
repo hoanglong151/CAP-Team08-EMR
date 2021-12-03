@@ -65,13 +65,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     await db.SaveChangesAsync();
                 }
             }
-            var check = db.Detail_CTMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if(check != null)
-            {
-                multiplesModel.InformationExamination.ResultCTMau = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-            }
             ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);
             //return View(detail_CTMau);
@@ -142,20 +135,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach(var detail_CTMau in multiplesModel.Detail_CTMaus)
                 {
-                    var DetailCTMau = db.Detail_CTMau.AsNoTracking().FirstOrDefault(p => p.CTMau_ID == detail_CTMau.CTMau_ID && p.InformationExamination_ID == detail_CTMau.InformationExamination_ID);
+                    var DetailCTMau = db.Detail_CTMau.FirstOrDefault(p => p.CTMau_ID == detail_CTMau.CTMau_ID && p.InformationExamination_ID == detail_CTMau.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
                         DetailCTMau.Result = detail_CTMau.Result;
                         db.Entry(DetailCTMau).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
-                }
-                var checkResult = multiplesModel.Detail_CTMaus.All(p => p.Result != null);
-                if (checkResult == true)
-                {
-                    multiplesModel.InformationExamination.ResultCTMau = true;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -164,9 +150,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateOldPatient(List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(Detail_CTMau detail_CTMau, List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_CTMau detail_CTMau = new Detail_CTMau();
             foreach (var item in cTMaus)
             {
                 var checkexist = db.Detail_CTMau.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
@@ -179,13 +164,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_CTMau.Add(detail_CTMau);
                     await db.SaveChangesAsync();
                 }
-            }
-            var checkExistCTMau = db.Detail_CTMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (checkExistCTMau != null)
-            {
-                multiplesModel.InformationExamination.ResultCTMau = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
             }
             ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest", detail_CTMau.CTMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_CTMau.InformationExamination_ID);

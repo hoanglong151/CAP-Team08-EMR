@@ -18,6 +18,7 @@ namespace ElectronicMedicalRecords.Models
         public InformationExamination()
         {
             this.CayMaus = new HashSet<CayMau>();
+            this.Clinicals = new HashSet<Clinical>();
             this.Detail_Amniocente = new HashSet<Detail_Amniocente>();
             this.Detail_CTMau = new HashSet<Detail_CTMau>();
             this.Detail_DongMau = new HashSet<Detail_DongMau>();
@@ -29,7 +30,6 @@ namespace ElectronicMedicalRecords.Models
             this.MedicalTestsPrescriptions = new HashSet<MedicalTestsPrescription>();
             this.Prescriptions = new HashSet<Prescription>();
             this.Subclinicals = new HashSet<Subclinical>();
-            this.Clinicals = new HashSet<Clinical>();
         }
     
         public int ID { get; set; }
@@ -51,9 +51,12 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<bool> ResultMienDich { get; set; }
         public Nullable<bool> ResultDichChocDo { get; set; }
         public Nullable<bool> ResultViSinh { get; set; }
+        public Nullable<bool> New { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CayMau> CayMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Clinical> Clinicals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Amniocente> Detail_Amniocente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -79,7 +82,5 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Prescription> Prescriptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subclinical> Subclinicals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clinical> Clinicals { get; set; }
     }
 }

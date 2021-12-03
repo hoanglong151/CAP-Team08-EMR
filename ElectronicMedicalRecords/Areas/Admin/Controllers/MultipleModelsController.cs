@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -184,39 +185,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
          {
             PatientsController patientsController = new PatientsController();
             InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
-            Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
-            Detail_SinhHoaMauController detail_SinhHoaMauController = new Detail_SinhHoaMauController();
-            Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
-            Detail_NhomMauController detail_NhomMauController = new Detail_NhomMauController();
-            Detail_UrineController detail_UrineController = new Detail_UrineController();
-            Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
-            Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
-            ClinicalsController clinicalsController = new ClinicalsController();
-
-            Detail_CTMau detail_CTMau = new Detail_CTMau();
-            Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
-            Detail_DongMau detail_DongMau = new Detail_DongMau();
-            Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
-            Detail_Urine detail_Urine = new Detail_Urine();
-            Detail_Immune detail_Immune = new Detail_Immune();
-            Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
-            //CayMausController cayMausController = new CayMausController();
             try
             {
                 // TODO: Add insert logic here
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;
-                informationExaminationsController.Create(multiplesModel.InformationExamination, PatientID);
-                var CongThucMau = Task.Run(() => detail_CTMauController.Create(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var SinhHoaMau = Task.Run(() => detail_SinhHoaMauController.Create(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var DongMau = Task.Run(() => detail_DongMauController.Create(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var NhomMau =  Task.Run(() => detail_NhomMauController.Create(detail_NhomMau, multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var Urine =  Task.Run(() => detail_UrineController.Create(detail_Urine, multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
-                var Immune =  Task.Run(() => detail_ImmuneController.Create(detail_Immune, multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
-                var Amniocente =  Task.Run(() => detail_AmniocenteController.Create(detail_Amniocente, multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
-                //cayMausController.Create(multiplesModel, Server);
-                var Result = await Task.WhenAll(CongThucMau, SinhHoaMau, DongMau, NhomMau, Urine, Immune, Amniocente);
-                var Clinical = clinicalsController.Create(multiplesModel);
+                informationExaminationsController.Create(PatientID);
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
             catch(Exception ex)
@@ -248,6 +222,37 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 // TODO: Add update logic here
                 PatientsController patientsController = new PatientsController();
                 InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                patientsController.CreateOldPatient(multiplesModel.Patient);
+                informationExaminationsController.CreateOldPatient(multiplesModel);
+                return await Task.Run(() => RedirectToAction("Index", "Patients"));
+            }
+            catch(Exception ex1)
+            {
+                var error = ex1;
+                return await Task.Run(() => RedirectToAction("Index", "Patients"));
+            }
+        }
+
+        // GET: Admin/MultipleModels/CreateOldPatient/5
+        public ActionResult CreateTest(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var inforamtionExamination = db.InformationExaminations.Find(id);
+            var patient = db.Patients.FirstOrDefault(p => p.ID == inforamtionExamination.Patient_ID);
+            multiplesModel.InformationExamination = inforamtionExamination;
+            multiplesModel.Patient = patient;
+            return View(multiplesModel);
+        }
+
+        // POST: Admin/MultipleModels/CreateOldPatient/5
+        [HttpPost, ValidateInput(false)]
+        public async Task<RedirectToRouteResult> CreateTest(MultiplesModel multiplesModel)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                PatientsController patientsController = new PatientsController();
+                InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
                 Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
                 Detail_SinhHoaMauController detail_SinhHoaMauController = new Detail_SinhHoaMauController();
                 Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
@@ -258,21 +263,74 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 ClinicalsController clinicalsController = new ClinicalsController();
                 //CayMausController cayMausController = new CayMausController();
 
+                Detail_CTMau detail_CTMau = new Detail_CTMau();
+                Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
+                Detail_DongMau detail_DongMau = new Detail_DongMau();
+                Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
+                Detail_Urine detail_Urine = new Detail_Urine();
+                Detail_Immune detail_Immune = new Detail_Immune();
+                Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
+
                 patientsController.CreateOldPatient(multiplesModel.Patient);
-                informationExaminationsController.CreateOldPatient(multiplesModel.InformationExamination);
-                var CongThucMauNew = Task.Run(() => detail_CTMauController.CreateOldPatient(multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var SinhHoaMauNew = Task.Run(() => detail_SinhHoaMauController.CreateOldPatient(multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var DongMauNew = Task.Run(() => detail_DongMauController.CreateOldPatient(multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var NhomMauNew = Task.Run(() => detail_NhomMauController.CreateOldPatient(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var UrineNew = Task.Run(() => detail_UrineController.CreateOldPatient(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
-                var ImmuneNew = Task.Run(() => detail_ImmuneController.CreateOldPatient(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
-                var AmniocenteNew = Task.Run(() => detail_AmniocenteController.CreateOldPatient(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
-                var ResultNew = await Task.WhenAll(CongThucMauNew, SinhHoaMauNew, DongMauNew, NhomMauNew, UrineNew, ImmuneNew, AmniocenteNew);
+                informationExaminationsController.CreateTest(multiplesModel.InformationExamination);
+                var CongThucMauCD = Task.Run(() => detail_CTMauController.CreateOldPatient(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var SinhHoaMauCD = Task.Run(() => detail_SinhHoaMauController.CreateOldPatient(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var DongMauCD = Task.Run(() => detail_DongMauController.CreateOldPatient(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var NhomMauCD = Task.Run(() => detail_NhomMauController.CreateOldPatient(detail_NhomMau, multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var UrineCD = Task.Run(() => detail_UrineController.CreateOldPatient(detail_Urine, multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
+                var ImmuneCD = Task.Run(() => detail_ImmuneController.CreateOldPatient(detail_Immune, multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
+                var AmniocenteCD = Task.Run(() => detail_AmniocenteController.CreateOldPatient(detail_Amniocente, multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
+                var ResultNew = await Task.WhenAll(CongThucMauCD, SinhHoaMauCD, DongMauCD, NhomMauCD, UrineCD, ImmuneCD, AmniocenteCD);
                 clinicalsController.CreateOldPatient(multiplesModel);
                 //cayMausController.CreateOldPatient(multiplesModel);
+
+                var checkCongThucMauCD = db.Detail_CTMau.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkCongThucMauCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultCTMau = false;
+                }
+                var checkSinhHoaMauCD = db.Detail_SinhHoaMau.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID); ;
+                if (checkSinhHoaMauCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultSHM = false;
+                }
+                var checkDongMauCD = db.Detail_DongMau.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkDongMauCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultDMau = false;
+                }
+                var checkNhomMauCD = db.Detail_NhomMau.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkNhomMauCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultNhomMau = false;
+                }
+                var checkUrineCD = db.Detail_Urine.FirstOrDefault(p => p.InfomationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkUrineCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultNuocTieu = false;
+                }
+                var checkImmuneCD = db.Detail_Immune.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkImmuneCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultMienDich = false;
+                }
+                var checkAmniocenteCD = db.Detail_Amniocente.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkAmniocenteCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultDichChocDo = false;
+                }
+                if(multiplesModel.InformationExamination.Breathing != null || multiplesModel.InformationExamination.HeartBeat != null
+                    || multiplesModel.InformationExamination.BloodPressure != null || multiplesModel.InformationExamination.Weight != null 
+                    || multiplesModel.InformationExamination.Height != null || checkCongThucMauCD != null || checkSinhHoaMauCD != null
+                    || checkDongMauCD != null || checkNhomMauCD != null || checkUrineCD != null || checkImmuneCD != null || checkAmniocenteCD != null)
+                {
+                    multiplesModel.InformationExamination.New = true;
+                }
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                db.SaveChanges();
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
-            catch(Exception ex1)
+            catch (Exception ex1)
             {
                 var error = ex1;
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
@@ -340,6 +398,43 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var AmniocenteEdit = Task.Run(() => detail_AmniocenteController.Edit(multiplesModel));
                 var ResultEdit = await Task.WhenAll(CongThucMauEdit, SinhHoaMauEdit, DongMauEdit, NhomMauEdit, UrineEdit, ImmuneEdit, AmniocenteEdit);
                 clinicalsController.Edit(multiplesModel);
+                var checkResultCTMau = multiplesModel.Detail_CTMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultCTMau == true)
+                {
+                    multiplesModel.InformationExamination.ResultCTMau = true;
+                }
+                var checkResultSHM = multiplesModel.Detail_SinhHoaMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultSHM == true)
+                {
+                    multiplesModel.InformationExamination.ResultSHM = true;
+                }
+                var checkResultDMau = multiplesModel.Detail_DongMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultDMau == true)
+                {
+                    multiplesModel.InformationExamination.ResultDMau = true;
+                }
+                var checkResultNMau = multiplesModel.Detail_NhomMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultNMau == true)
+                {
+                    multiplesModel.InformationExamination.ResultNhomMau = true;
+                }
+                var checkResultNuocTieu = multiplesModel.Detail_Urines.All(p => p.Result != null && p.InfomationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultNuocTieu == true)
+                {
+                    multiplesModel.InformationExamination.ResultNuocTieu = true;
+                }
+                var checkResultImmune = multiplesModel.Detail_Immunes.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultImmune == true)
+                {
+                    multiplesModel.InformationExamination.ResultMienDich = true;
+                }
+                var checkResultAmniocente = multiplesModel.Detail_Amniocentes.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkResultAmniocente == true)
+                {
+                    multiplesModel.InformationExamination.ResultDichChocDo = true;
+                }
+                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                db.SaveChanges();
                 //cayMausController.Edit(multiplesModel.CayMau, Server);
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
@@ -377,28 +472,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == checkInfoExam.ID);
-                    if(clinical.KidneyUrology != null
-                        || clinical.Circles != null || clinical.Respiration != null || clinical.KidneyUrology != null
-                        || clinical.Digestion != null || clinical.MuscleBoneJoint != null || clinical.Nerve != null
-                        || clinical.Mental != null || clinical.Surgery != null || clinical.ObstetricsAndGynecology != null
-                        || clinical.RightEyesNoGlasses != null || clinical.LeftEyesNoGlasses != null || clinical.RightEyesGlasses != null
-                        || clinical.LeftEyesGlasses != null || clinical.EyesExamination != null || clinical.LeftEarSay != null
-                        || clinical.LeftEarWhisper != null || clinical.RightEarSay != null || clinical.RightEarWhisper != null
-                        || clinical.EarNoseThroatExamination != null || clinical.UpperJaw != null || clinical.LowerJaw != null
-                        || clinical.TeethJawFaceExamination != null || clinical.Dermatology != null)
-                    {
-                        return Json(new { success = false });
-                    }
-                    else
-                    {
-                        var patient = db.Patients.Find(id);
-                        db.InformationExaminations.Remove(checkInfoExam);
-                        db.Patients.Remove(patient);
-                        db.Clinicals.Remove(clinical);
-                        db.SaveChanges();
-                        return Json(new { success = true });
-                    }
+                    var patient = db.Patients.Find(id);
+                    db.InformationExaminations.Remove(checkInfoExam);
+                    db.Patients.Remove(patient);
+                    db.SaveChanges();
+                    return Json(new { success = true });
                 }
             }
             else

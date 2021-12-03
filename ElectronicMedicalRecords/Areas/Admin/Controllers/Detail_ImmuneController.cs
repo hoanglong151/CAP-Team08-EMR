@@ -66,13 +66,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     await db.SaveChangesAsync();
                 }
             }
-            var check = db.Detail_Immune.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultMienDich = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-            }
             ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
             //return View(detail_CTMau);
@@ -143,20 +136,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach (var detail_Immune in multiplesModel.Detail_Immunes)
                 {
-                    var DetailImmune = db.Detail_Immune.AsNoTracking().FirstOrDefault(p => p.Immue_ID == detail_Immune.Immue_ID && p.InformationExamination_ID == detail_Immune.InformationExamination_ID);
+                    var DetailImmune = db.Detail_Immune.FirstOrDefault(p => p.Immue_ID == detail_Immune.Immue_ID && p.InformationExamination_ID == detail_Immune.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
                         DetailImmune.Result = detail_Immune.Result;
                         db.Entry(DetailImmune).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
-                }
-                var checkResult = multiplesModel.Detail_Immunes.All(p => p.Result != null);
-                if (checkResult == true)
-                {
-                    multiplesModel.InformationExamination.ResultMienDich = true;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -165,9 +151,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateOldPatient(List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(Detail_Immune detail_Immune, List<Immune> iMmunes, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_Immune detail_Immune = new Detail_Immune();
             foreach (var item in iMmunes)
             {
                 var checkexist = db.Detail_Immune.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
@@ -180,13 +165,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_Immune.Add(detail_Immune);
                     await db.SaveChangesAsync();
                 }
-            }
-            var check = db.Detail_Immune.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultMienDich = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
             }
             ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);

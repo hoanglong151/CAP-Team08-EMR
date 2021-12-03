@@ -84,7 +84,7 @@
                         <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    @*<li class="nav-item" role="presentation">
                         <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
                            role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
                     </li>
@@ -119,9 +119,9 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#visinh"
                            role="tab" aria-controls="profile" aria-selected="false">Vi Sinh</a>
-                    </li>
+                    </li>*@
                 </ul>
-                <div class="col-12 d-flex justify-content-start pt-4">
+                <div class="ms-4 col-12 d-flex justify-content-start pt-4">
                     <button type="submit"
                             class="btn btn-primary me-1 mb-1">
                         Tạo Hồ Sơ
@@ -141,7 +141,7 @@
                                         <div class="card">
                                             @{
                                                 Html.RenderAction("CreateOldPatient", "Patients", new { id = Model.Patient.ID });
-                                                Html.RenderAction("CreateOldPatient", "InformationExaminations", new { id = Model.InformationExamination.ID });
+                                                //Html.RenderAction("CreateOldPatient", "InformationExaminations", new { id = Model.InformationExamination.ID });
                                                 //Html.RenderAction("Create", "Medications");
                                             }
                                         </div>
@@ -150,7 +150,7 @@
                             </section>
                         </p>
                     </div>
-                    <div class="tab-pane fade" id="LamSang" role="tabpanel"
+                    @*<div class="tab-pane fade" id="LamSang" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
@@ -257,7 +257,7 @@
                                 </div>
                             </section>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -639,8 +639,8 @@
             var GetTable = tableNewCD[numTable].getAttribute("id");
             console.log($("#" + row + id))
             console.log(GetTable)
-            $("#" + row + id).attr("value", false);
-            $("#" + row + id).attr("checked", false);
+            $("#" + row + id).prop("value", false);
+            $("#" + row + id).prop("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
         }
         //var formatCss = document.querySelector('.choices__list--single');

@@ -424,8 +424,10 @@
     <Compile Include="Models\ViSinh.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="NotificationComponentBS1.cs" />
     <Compile Include="NotificationComponentBS.cs" />
     <Compile Include="NotificationComponentKTV.cs" />
+    <Compile Include="NotificationHubBS1.cs" />
     <Compile Include="NotificationHubBS.cs" />
     <Compile Include="NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2747,6 +2749,7 @@
     <Content Include="Areas\Admin\Views\Clinicals\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Clinicals\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\EditByID.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\CreateTest.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -1,7 +1,4 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
-@{
-    ViewBag.Title = "Create";
-}
 
 <style>
     .name-Medication .choices {
@@ -71,70 +68,13 @@
     .navbar-nav {
         display: none
     }
-
-    body {
-        background-color: #f5f5f5;
-    }
-
-    .imagePreview {
-        width: 100%;
-        height: 250px;
-        background-position: center center;
-        background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
-        background-color: #fff;
-        background-size: cover;
-        background-repeat: no-repeat;
-        display: inline-block;
-        box-shadow: 0px -3px 6px 2px rgba(0,0,0,0.2);
-    }
-
-    .imgUp {
-        position: relative;
-        margin-bottom: 15px;
-    }
-
-    .del {
-        position: absolute;
-        top: 0px;
-        right: 15px;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        background-color: rgba(255,255,255,0.6);
-        cursor: pointer;
-    }
-
-    .imgAdd {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #4bd7ef;
-        color: #fff;
-        box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.2);
-        text-align: center;
-        line-height: 30px;
-        margin-top: 0px;
-        cursor: pointer;
-        font-size: 15px;
-        padding: 0;
-    }
-
-    .form-group {
-        position: relative
-    }
-
-    label.invalidForm {
-        color: red;
-        font-size: 13px
-    }
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("Create", "MultipleModels", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormCreate" }))
+@using (Html.BeginForm("CreateTest", "MultipleModels", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -145,46 +85,46 @@
                         <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
-                    @*<li class="nav-item" role="presentation">
-                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#LamSang"
-                           role="tab" aria-controls="profile" aria-selected="false">Lâm Sàng</a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
+                           role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
                            role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#SinhHoaMau"
-                           role="tab" aria-controls="contact" aria-selected="false">Sinh Hóa Máu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#DongMau"
-                           role="tab" aria-controls="contact" aria-selected="false">Đông Máu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#NhomMau"
-                           role="tab" aria-controls="contact" aria-selected="false">Nhóm Máu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#urine"
-                           role="tab" aria-controls="contact" aria-selected="false">Nước Tiểu</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
+                           role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#immune"
-                           role="tab" aria-controls="contact" aria-selected="false">Miễn Dịch</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
+                           role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#amniocente"
-                           role="tab" aria-controls="contact" aria-selected="false">Dịch Chọc Dò</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
+                           role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#visinh"
-                           role="tab" aria-controls="contact" aria-selected="false">Vi Sinh</a>
-                    </li>*@
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#visinh"
+                           role="tab" aria-controls="profile" aria-selected="false">Vi Sinh</a>
+                    </li>
                 </ul>
                 <div class="ms-4 col-12 d-flex justify-content-start pt-4">
-                    <button type="button"
-                            class="btn btn-primary me-1 mb-1" id="submitForm">
+                    <button type="submit"
+                            class="btn btn-primary me-1 mb-1">
                         Tạo Hồ Sơ
                     </button>
                     <button type="reset"
@@ -201,8 +141,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("Create", "Patients");
-                                                //Html.RenderAction("Create", "InformationExaminations");
+                                                Html.RenderAction("CreateOldPatient", "Patients", new { id = Model.Patient.ID });
+                                                Html.RenderAction("CreateOldPatient", "InformationExaminations", new { id = Model.InformationExamination.ID });
                                                 //Html.RenderAction("Create", "Medications");
                                             }
                                         </div>
@@ -211,13 +151,13 @@
                             </section>
                         </p>
                     </div>
-                    @*<div class="tab-pane fade" id="LamSang" role="tabpanel"
+                    <div class="tab-pane fade" id="LamSang" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Clinicals");
+                                        Html.RenderAction("CreateOldPatient", "Clinicals");
                                     }
                                 </div>
                             </section>
@@ -229,7 +169,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "CTMaus");
+                                        Html.RenderAction("CreateOldPatient", "CTMaus");
                                     }
                                 </div>
                             </section>
@@ -241,7 +181,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "SinhHoaMaus");
+                                        Html.RenderAction("CreateOldPatient", "SinhHoaMaus");
                                     }
                                 </div>
                             </section>
@@ -253,7 +193,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "DongMaus");
+                                        Html.RenderAction("CreateOldPatient", "DongMaus");
                                     }
                                 </div>
                             </section>
@@ -265,73 +205,68 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "NhomMaus");
+                                        Html.RenderAction("CreateOldPatient", "NhomMaus");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="urine" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Urines");
+                                        Html.RenderAction("CreateOldPatient", "Urines");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="immune" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Immunes");
+                                        Html.RenderAction("CreateOldPatient", "Immunes");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="amniocente" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "Amniocentes");
+                                        Html.RenderAction("CreateOldPatient", "Amniocentes");
                                     }
                                 </div>
                             </section>
                         </div>
                     </div>
-
                     <div class="tab-pane fade" id="visinh" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("Create", "CayMaus");
+                                        Html.RenderAction("CreateOldPatient", "CayMaus");
                                     }
                                 </div>
                             </section>
                         </div>
-                    </div>*@
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 }
-
 @section scripts{
     <script>
-        @*var k = 1;
+        var k = 1;
         var count = [0, 0, 0, 0, 0, 0, 0];
         var arrTests = [];
         var arrSinhHoaMau = [];
@@ -382,7 +317,6 @@
                     "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                     "search": "Tìm kiếm:",
                 },
-                "autoWidth": false,
             })
         }
         /*Load CD Dich Choc Do*/
@@ -427,7 +361,6 @@
                     "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                     "search": "Tìm kiếm:",
                 },
-                "autoWidth": false,
             })
         }
         /*Load CD Mien Dich*/
@@ -472,7 +405,6 @@
                     "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                     "search": "Tìm kiếm:",
                 },
-                "autoWidth": false,
             })
         }
         /*Load CD Urines*/
@@ -517,7 +449,6 @@
                     "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                     "search": "Tìm kiếm:",
                 },
-                "autoWidth": false,
             })
         }
 
@@ -571,7 +502,6 @@
                         "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                         "search": "Tìm kiếm:",
                     },
-                    "autoWidth": false,
                 })
         }
 
@@ -609,7 +539,7 @@
                         {
                             "data": "Unit",
                             "name": "Đơn Vị"
-                        }
+                        },
                     ],
                     "language": {
                         "emptyTable": "No data available",
@@ -621,9 +551,9 @@
                         "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                         "search": "Tìm kiếm:",
                     },
-                    "autoWidth": false,
                 })
         }
+
         /*Load Detail Test Nhóm Máu*/
         function loadDetailTestsNM() {
             $('#tableNewNM').DataTable({
@@ -662,7 +592,6 @@
                         "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
                         "search": "Tìm kiếm:",
                     },
-                    "autoWidth": false,
                 })
             }
         var tableNewCD = $('*.tableNewChiDinh');
@@ -709,14 +638,16 @@
             count[numTable]--;
             CountTests[numTable].innerHTML = count[numTable];
             var GetTable = tableNewCD[numTable].getAttribute("id");
+            console.log($("#" + row + id))
+            console.log(GetTable)
             $("#" + row + id).prop("value", false);
             $("#" + row + id).prop("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
         }
-        var formatCss = document.querySelector('.choices__list--single');
-        formatCss.classList.add('form-control');
+        //var formatCss = document.querySelector('.choices__list--single');
+        //formatCss.classList.add('form-control');
 
-        var select = document.querySelector('#NameMedication');
+        @*var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
             $.ajax({
@@ -750,7 +681,7 @@
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
             k--;
-        }
+        }*@
         var listTable = $('*.tableLoad');
         listTable.each((index, table) => {
             $('#' + table.id).DataTable({
@@ -902,32 +833,31 @@
             }
             CountTests[indextable].innerHTML = count[indextable];
         }
+        //$(".imgAdd").click(function () {
+        //    var nameInput = $(this).closest(".row").find("input[type='file']").attr("name");
+        //    $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" name="' + nameInput + '" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+        //});
+        //$(document).on("click", "i.del", function () {
+        //    $(this).parent().remove();
+        //});
+        //$(function () {
+        //    $(document).on("change", ".uploadFile", function () {
+        //        var uploadFile = $(this);
+        //        var files = !!this.files ? this.files : [];
+        //        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 
-        $(".imgAdd").click(function () {
-            var nameInput = $(this).closest(".row").find("input[type='file']").attr("name");
-            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" name="' + nameInput + '" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
-        });
-        $(document).on("click", "i.del", function () {
-            $(this).parent().remove();
-        });
-        $(function () {
-            $(document).on("change", ".uploadFile", function () {
-                var uploadFile = $(this);
-                var files = !!this.files ? this.files : [];
-                if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        //        if (/^image/.test(files[0].type)) { // only image file
+        //            var reader = new FileReader(); // instance of the FileReader
+        //            reader.readAsDataURL(files[0]); // read the local file
 
-                if (/^image/.test(files[0].type)) { // only image file
-                    var reader = new FileReader(); // instance of the FileReader
-                    reader.readAsDataURL(files[0]); // read the local file
+        //            reader.onloadend = function () { // set image data as background of div
+        //                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+        //                uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+        //            }
+        //        }
 
-                    reader.onloadend = function () { // set image data as background of div
-                        //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                        uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
-                    }
-                }
-
-            });
-        });
+        //    });
+        //});
         const editors = document.querySelectorAll('.editor');
         editors.forEach(item => {
             ClassicEditor
@@ -937,15 +867,12 @@
                 .catch(error => {
                     console.error("Toang" + error);
                 });
-        })*@
+        })
         /*Validate Form*/
         $('form').each((i, obj) => {
             $.validator.addMethod('checkPhoneNumber', function (value, element) {
                 return this.optional(element) || /(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(value);
-            }, "Vui lòng nhập đúng định dạng");
-            $.validator.addMethod('notallownumber', function (value, element) {
-                return this.optional(element) || /^([^0-9]*)$/.test(value);
-            }, "Vui lòng tên không nhập số")
+            }, "Vui lòng nhập đúng định dạng");;
             $(function () {
                 $(obj).validate({
                     rules: {
@@ -953,8 +880,7 @@
                             required: true,
                             normalizer: function (value) {
                                 return $.trim(value);
-                            },
-                            notallownumber: true
+                            }
                         },
                         "Patient.BirthDate": {
                             required: true,
@@ -991,39 +917,13 @@
                             matches: "Nhập đúng định dạng"
                         },
                         "Patient.InsuranceCode": {
-                            required: "Trường này bắt buộc nhập"
+                            required: "Trường này bắt buộc nhập",
                         }
                     },
                     errorClass: 'invalidForm',
                     validClass: 'validForm',
-                })
-            })
+                });
+            });
         })
-        checkExistPatient();
-        function checkExistPatient() {
-            $('#submitForm').click(function (e) {
-                var existPatient = $('#FormCreate').serialize();
-                var model = {
-                    validata: existPatient,
-                }
-                $.ajax({
-                url: "@Url.Action("checkExistPatient", "MultipleModels")",
-                type: "POST",
-                data: model.validata,
-                success: (res) => {
-                if (res.success) {
-                    $('#FormCreate').submit();
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Thất Bại!',
-                        text: res.responseText,
-                        confirmButtonText: 'Xác Nhận'
-                    })
-                }
-                }
-            })
-        })
-    }
     </script>
 }

@@ -22,18 +22,19 @@ namespace ElectronicMedicalRecords
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             SqlDependency.Start(conString);
-            SqlDependency.Start(conString);
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
             NotificationComponentKTV NCktv = new NotificationComponentKTV();
             NotificationComponentBS NCbs = new NotificationComponentBS();
+            NotificationComponentBS1 NCyta = new NotificationComponentBS1();
             //var currentTimebs = DateTime.Now;
             //var currentTimektv = DateTime.Now;
             //HttpContext.Current.Session["LastUpdated"] = currentTimektv;
             NCktv.RegisterNotificationKTV();
             NCbs.RegisterNotificationBS();
+            NCyta.RegisterNotificationBS1();
         }
 
         //protected void Session_Startbs(object sender, EventArgs e)
@@ -46,7 +47,6 @@ namespace ElectronicMedicalRecords
 
         protected void Application_End()
         {
-            SqlDependency.Stop(conString);
             SqlDependency.Stop(conString);
         }
     }

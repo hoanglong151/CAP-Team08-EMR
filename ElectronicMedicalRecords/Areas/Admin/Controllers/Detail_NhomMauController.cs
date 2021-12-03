@@ -66,13 +66,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     await db.SaveChangesAsync();
                 }
             }
-            var check = db.Detail_NhomMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultNhomMau = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-            }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_NhomMau.InformationExamination_ID);
             ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest", detail_NhomMau.NhomMau_ID);
             return RedirectToAction("Create", "MultipleModels");
@@ -142,20 +135,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach (var detail_NhomMau in multiplesModel.Detail_NhomMaus)
                 {
-                    var DetailNM = db.Detail_NhomMau.AsNoTracking().FirstOrDefault(p => p.NhomMau_ID == detail_NhomMau.NhomMau_ID && p.InformationExamination_ID == detail_NhomMau.InformationExamination_ID);
+                    var DetailNM = db.Detail_NhomMau.FirstOrDefault(p => p.NhomMau_ID == detail_NhomMau.NhomMau_ID && p.InformationExamination_ID == detail_NhomMau.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
                         DetailNM.Result = detail_NhomMau.Result;
                         db.Entry(DetailNM).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
-                }
-                var checkResult = multiplesModel.Detail_NhomMaus.All(p => p.Result != null);
-                if (checkResult == true)
-                {
-                    multiplesModel.InformationExamination.ResultNhomMau = true;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -164,9 +150,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateOldPatient(List<NhomMau> nhomMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(Detail_NhomMau detail_NhomMau, List<NhomMau> nhomMaus, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
             foreach (var item in nhomMaus)
             {
                 var checkexist = db.Detail_NhomMau.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
@@ -179,13 +164,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_NhomMau.Add(detail_NhomMau);
                     await db.SaveChangesAsync();
                 }
-            }
-            var check = db.Detail_NhomMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultNhomMau = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
             }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_NhomMau.InformationExamination_ID);
             ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest", detail_NhomMau.NhomMau_ID);

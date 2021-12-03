@@ -66,13 +66,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     await db.SaveChangesAsync();
                 }
             }
-            var check = db.Detail_Amniocente.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultDichChocDo = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-            }
             ViewBag.Amniocent_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_Amniocente.Amniocente_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);
             //return View(detail_CTMau);
@@ -143,20 +136,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach (var detail_Amniocente in multiplesModel.Detail_Amniocentes)
                 {
-                    var DetailAmniocente = db.Detail_Amniocente.AsNoTracking().FirstOrDefault(p => p.Amniocente_ID == detail_Amniocente.Amniocente_ID && p.InformationExamination_ID == detail_Amniocente.InformationExamination_ID);
+                    var DetailAmniocente = db.Detail_Amniocente.FirstOrDefault(p => p.Amniocente_ID == detail_Amniocente.Amniocente_ID && p.InformationExamination_ID == detail_Amniocente.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
                         DetailAmniocente.Result = detail_Amniocente.Result;
                         db.Entry(DetailAmniocente).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
-                }
-                var checkResult = multiplesModel.Detail_Amniocentes.All(p => p.Result != null);
-                if(checkResult == true)
-                {
-                    multiplesModel.InformationExamination.ResultDichChocDo = true;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -165,13 +151,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateOldPatient(List<Amniocente> aMniocentes, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(Detail_Amniocente detail_Amniocente, List<Amniocente> aMniocentes, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
             foreach (var item in aMniocentes)
             {
-                var checkexist = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
-                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
+                var checkexistOld = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexistOld == null)
                 {
                     detail_Amniocente.Amniocente_ID = item.ID;
                     detail_Amniocente.InformationExamination_ID = informationID;
@@ -180,13 +165,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_Amniocente.Add(detail_Amniocente);
                     await db.SaveChangesAsync();
                 }
-            }
-            var check = db.Detail_Amniocente.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultDichChocDo = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
             }
             ViewBag.Amniocent_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_Amniocente.Amniocente_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);

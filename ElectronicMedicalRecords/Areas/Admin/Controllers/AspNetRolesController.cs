@@ -56,7 +56,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             AspNetUser aspNetUser = db.AspNetUsers.Find(userID);
             AspNetRole aspNetRole = db.AspNetRoles.Find(roleID);
+            var aspNetRoleList = db.AspNetRoles.ToList();
+            User user = db.Users.FirstOrDefault(p => p.UserID == userID);
             aspNetRole.AspNetUsers.Remove(aspNetUser);
+            var count = 0;
+            for (int i = 0; i < aspNetRoleList.Count; i++)
+            {
+                AspNetRole roleid = db.AspNetRoles.Find(aspNetRoleList[i].Id);
+                var checkexistUser = roleid.AspNetUsers.FirstOrDefault(c => c.Id == aspNetUser.Id);
+                if(checkexistUser != null)
+                {
+                    count += 1;
+                }
+            }
+            if(count == 0)
+            {
+                user.ActiveAccount = false;
+                db.Entry(user).State = EntityState.Modified;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -66,13 +66,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     await db.SaveChangesAsync();
                 }
             }
-            var check = db.Detail_SinhHoaMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if(check != null)
-            {
-                multiplesModel.InformationExamination.ResultSHM = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-            }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_SinhHoaMau.InformationExamination_ID);
             ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest", detail_SinhHoaMau.SinhHoaMau_ID);
             //return View(detail_SinhHoaMau);
@@ -145,20 +138,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach (var detail_SinhHoaMau in multiplesModel.Detail_SinhHoaMaus)
                 {
-                    var DetailSHM = db.Detail_SinhHoaMau.AsNoTracking().FirstOrDefault(p => p.SinhHoaMau_ID == detail_SinhHoaMau.SinhHoaMau_ID && p.InformationExamination_ID == detail_SinhHoaMau.InformationExamination_ID);
+                    var DetailSHM = db.Detail_SinhHoaMau.FirstOrDefault(p => p.SinhHoaMau_ID == detail_SinhHoaMau.SinhHoaMau_ID && p.InformationExamination_ID == detail_SinhHoaMau.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
                         DetailSHM.Result = detail_SinhHoaMau.Result;
                         db.Entry(DetailSHM).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
-                }
-                var checkResult = multiplesModel.Detail_SinhHoaMaus.All(p => p.Result != null);
-                if (checkResult == true)
-                {
-                    multiplesModel.InformationExamination.ResultSHM = true;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Edit", "MultipleModels");
             }
@@ -170,9 +156,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateOldPatient(List<SinhHoaMau> sinhHoaMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> CreateOldPatient(Detail_SinhHoaMau detail_SinhHoaMau, List<SinhHoaMau> sinhHoaMaus, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
             foreach (var item in sinhHoaMaus)
             {
                 var checkexist = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
@@ -185,13 +170,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_SinhHoaMau.Add(detail_SinhHoaMau);
                     await db.SaveChangesAsync();
                 }
-            }
-            var check = db.Detail_SinhHoaMau.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == informationID);
-            if (check != null)
-            {
-                multiplesModel.InformationExamination.ResultSHM = false;
-                db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                await db.SaveChangesAsync();
             }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_SinhHoaMau.InformationExamination_ID);
             ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest", detail_SinhHoaMau.SinhHoaMau_ID);

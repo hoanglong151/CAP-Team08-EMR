@@ -18,8 +18,8 @@ namespace ElectronicMedicalRecords.Models
         public User()
         {
             this.Subclinicals = new HashSet<Subclinical>();
-            this.InformationExaminations = new HashSet<InformationExamination>();
             this.Clinicals = new HashSet<Clinical>();
+            this.InformationExaminations = new HashSet<InformationExamination>();
         }
     
         public int ID { get; set; }
@@ -50,8 +50,8 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subclinical> Subclinicals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clinical> Clinicals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
     }
 }
