@@ -192,6 +192,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
             Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
             ClinicalsController clinicalsController = new ClinicalsController();
+
+            Detail_CTMau detail_CTMau = new Detail_CTMau();
+            Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
+            Detail_DongMau detail_DongMau = new Detail_DongMau();
+            Detail_NhomMau detail_NhomMau = new Detail_NhomMau();
+            Detail_Urine detail_Urine = new Detail_Urine();
+            Detail_Immune detail_Immune = new Detail_Immune();
+            Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
             //CayMausController cayMausController = new CayMausController();
             try
             {
@@ -199,13 +207,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;
                 informationExaminationsController.Create(multiplesModel.InformationExamination, PatientID);
-                var CongThucMau = Task.Run(() => detail_CTMauController.Create(multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var SinhHoaMau = Task.Run(() => detail_SinhHoaMauController.Create(multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var DongMau = Task.Run(() => detail_DongMauController.Create(multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var NhomMau =  Task.Run(() => detail_NhomMauController.Create(multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var Urine =  Task.Run(() => detail_UrineController.Create(multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
-                var Immune =  Task.Run(() => detail_ImmuneController.Create(multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
-                var Amniocente =  Task.Run(() => detail_AmniocenteController.Create(multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
+                var CongThucMau = Task.Run(() => detail_CTMauController.Create(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var SinhHoaMau = Task.Run(() => detail_SinhHoaMauController.Create(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var DongMau = Task.Run(() => detail_DongMauController.Create(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var NhomMau =  Task.Run(() => detail_NhomMauController.Create(detail_NhomMau, multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
+                var Urine =  Task.Run(() => detail_UrineController.Create(detail_Urine, multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
+                var Immune =  Task.Run(() => detail_ImmuneController.Create(detail_Immune, multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
+                var Amniocente =  Task.Run(() => detail_AmniocenteController.Create(detail_Amniocente, multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
                 //cayMausController.Create(multiplesModel, Server);
                 var Result = await Task.WhenAll(CongThucMau, SinhHoaMau, DongMau, NhomMau, Urine, Immune, Amniocente);
                 var Clinical = clinicalsController.Create(multiplesModel);
@@ -305,7 +313,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         // POST: Admin/MultipleModels/Edit/5
         [HttpPost, ValidateInput(false)]
-        public async Task<ActionResult> Edit(MultiplesModel multiplesModel)
+        public async Task<RedirectToRouteResult> Edit(MultiplesModel multiplesModel)
         {
             try
             {

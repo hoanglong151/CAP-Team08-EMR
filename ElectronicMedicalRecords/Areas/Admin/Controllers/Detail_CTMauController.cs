@@ -50,12 +50,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(Detail_CTMau detail_CTMau, List<CTMau> cTMaus, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_CTMau detail_CTMau = new Detail_CTMau();
             foreach(var item in cTMaus)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_CTMau.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
                     detail_CTMau.CTMau_ID = item.ID;
                     detail_CTMau.InformationExamination_ID = informationID;
@@ -142,9 +142,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach(var detail_CTMau in multiplesModel.Detail_CTMaus)
                 {
+                    var DetailCTMau = db.Detail_CTMau.AsNoTracking().FirstOrDefault(p => p.CTMau_ID == detail_CTMau.CTMau_ID && p.InformationExamination_ID == detail_CTMau.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
-                        db.Entry(detail_CTMau).State = EntityState.Modified;
+                        DetailCTMau.Result = detail_CTMau.Result;
+                        db.Entry(DetailCTMau).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
                 }

@@ -126,11 +126,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             var informationExaminations = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            ViewBag.id = id;
             if (informationExaminations == null)
             {
                 return HttpNotFound();
             }
             return View(informationExaminations);
+        }
+
+        [HttpPost]
+        public ActionResult SearchPatientDetail(DateTime? DateStartDetail, DateTime? DateEndDetail, int? id)
+        {
+            PatientsController patientsController = new PatientsController();
+            var checkID = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            if (DateStartDetail == null && DateEndDetail == null)
+            {
+                ViewBag.ErrorInfo = "Vui lòng nhập ít nhất 1 trường";
+                return View("Details", checkID);
+            }
+            {
+                checkID = checkID.Where(p => p.DateExamine >= DateStartDetail.Value).ToList();
+            }
+            if (DateEndDetail.HasValue)
+            {
+                checkID = checkID.Where(p => p.DateEnd <= DateEndDetail.Value).ToList();
+            }
+            return View("Details", checkID);
         }
 
         // GET: Admin/InformationExaminations/Edit/5

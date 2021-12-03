@@ -51,12 +51,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(List<SinhHoaMau> sinhHoaMaus, int informationID, MultiplesModel multiplesModel)
+        public async Task<ActionResult> Create(Detail_SinhHoaMau detail_SinhHoaMau, List<SinhHoaMau> sinhHoaMaus, int informationID, MultiplesModel multiplesModel)
         {
-            Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
             foreach(var item in sinhHoaMaus)
             {
-                if (ModelState.IsValid && item.ChiDinh == true)
+                var checkexist = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == informationID).FirstOrDefault(c => c.ID == item.ID);
+                if (ModelState.IsValid && item.ChiDinh == true && checkexist == null)
                 {
                     detail_SinhHoaMau.SinhHoaMau_ID = item.ID;
                     detail_SinhHoaMau.InformationExamination_ID = informationID;
@@ -145,9 +145,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 foreach (var detail_SinhHoaMau in multiplesModel.Detail_SinhHoaMaus)
                 {
+                    var DetailSHM = db.Detail_SinhHoaMau.AsNoTracking().FirstOrDefault(p => p.SinhHoaMau_ID == detail_SinhHoaMau.SinhHoaMau_ID && p.InformationExamination_ID == detail_SinhHoaMau.InformationExamination_ID);
                     if (ModelState.IsValid)
                     {
-                        db.Entry(detail_SinhHoaMau).State = EntityState.Modified;
+                        DetailSHM.Result = detail_SinhHoaMau.Result;
+                        db.Entry(DetailSHM).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
                 }

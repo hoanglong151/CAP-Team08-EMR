@@ -36,6 +36,31 @@
                 Thông Tin Khám Bệnh
             </div>
             <div class="card-body">
+                @if (ViewBag.ErrorInfo != null)
+                {
+                    <div class="alert alert-danger alert-dismissible show fade">
+                        @ViewBag.ErrorInfo
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form action="@Url.Action("SearchPatientDetail","InformationExaminations")" method="post">
+                    <div class="row">
+                        <input name="id" value="@ViewBag.id" hidden />
+                        <div class="col-md-5">
+                            <label>Từ ngày</label>
+                            <input name="DateStartDetail" type="date" class="form-control" />
+                        </div>
+                        <div class="col-md-5">
+                            <label>Đến ngày</label>
+                            <input name="DateEndDetail" type="date" class="form-control" />
+                        </div>
+                        <div class="col-md-2 align-self-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
