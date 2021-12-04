@@ -92,7 +92,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(new { data = patientStatu }, JsonRequestBehavior.AllowGet);
+            var patientStatusDel = new { patientStatu.Name, patientStatu.ID };
+            return Json(new { data = patientStatusDel }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/PatientStatus/Delete/5

@@ -11,7 +11,7 @@
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="first-name-column">Họ Và Tên</label>
-                    @Html.EditorFor(model => model.Patient.Name, new { htmlAttributes = new { @class = "form-control TextInput", @placeholder = "Họ Và Tên", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.Patient.Name, new { htmlAttributes = new { @class = "form-control TextInput", @placeholder = "Họ Và Tên" } })
                     @Html.ValidationMessageFor(model => model.Patient.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <label for="last-name-column">Giới Tính</label>
                     <div class="position-relative ml-5px">
-                        @Html.DropDownList("Patient.Gender_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                        @Html.DropDownList("Patient.Gender_ID", null, htmlAttributes: new { @class = "form-select" })
                         <input value="@Model.Patient.Gender_ID" name="Patient.Gender_ID" hidden />
                         @Html.ValidationMessageFor(model => model.Patient.Gender_ID, "", new { @class = "text-danger" })
                     </div>
@@ -28,14 +28,14 @@
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="city-column">Ngày Sinh</label>
-                    <input class="form-control" type="date" name="Patient.BirthDate" value="@Model.Patient.BirthDate.Value.ToString("yyyy-MM-dd")" id="birthdate" required readonly />
+                    <input class="form-control" type="date" name="Patient.BirthDate" value="@Model.Patient.BirthDate.Value.ToString("yyyy-MM-dd")" id="birthdate" required />
                     @Html.ValidationMessageFor(model => model.Patient.BirthDate, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="country-floating">Dân Tộc</label>
-                    @Html.DropDownList("Patient.Nation1_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("Patient.Nation1_ID", null, htmlAttributes: new { @class = "form-select" })
                     <input value="@Model.Patient.Nation1_ID" name="Patient.Nation1_ID" hidden />
                     @Html.ValidationMessageFor(model => model.Patient.Nation1_ID, "", new { @class = "text-danger" })
                 </div>
@@ -43,14 +43,14 @@
             <div class="col-md-12 col-12">
                 <div class="form-group">
                     <label for="company-column">Địa Chỉ</label>
-                    @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ" } })
                     @Html.ValidationMessageFor(model => model.Patient.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Quê Quán</label>
-                    @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select" })
                     <input value="@Model.Patient.HomeTown_ID" name="Patient.HomeTown_ID" hidden />
                     @Html.ValidationMessageFor(model => model.Patient.HomeTown_ID, "", new { @class = "text-danger" })
                 </div>
@@ -58,7 +58,7 @@
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Quốc Gia</label>
-                    @Html.DropDownList("Patient.Nation_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("Patient.Nation_ID", null, htmlAttributes: new { @class = "form-select" })
                     <input value="@Model.Patient.Nation_ID" name="Patient.Nation_ID" hidden />
                     @Html.ValidationMessageFor(model => model.Patient.Nation_ID, "", new { @class = "text-danger" })
                 </div>
@@ -66,14 +66,14 @@
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Điện Thoại</label>
-                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control", @Value= "0" + Model.Patient.Phone, @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control", @Value= "0" + Model.Patient.Phone } })
                     @Html.ValidationMessageFor(model => model.Patient.Phone, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Số BHYT</label>
-                    @Html.EditorFor(model => model.Patient.InsuranceCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.Patient.InsuranceCode, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Patient.InsuranceCode, "", new { @class = "text-danger" })
                 </div>
             </div>

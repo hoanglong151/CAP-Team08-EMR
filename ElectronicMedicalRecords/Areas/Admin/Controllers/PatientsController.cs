@@ -59,10 +59,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             if (DateStart.HasValue)
             {
+                TimeSpan timeStart = new TimeSpan(1, 0, 01);
+                DateStart = DateStart + timeStart;
                 informationExaminations = informationExaminations.Where(p => p.DateExamine >= DateStart.Value).ToList();
             }
             if (DateEnd.HasValue)
             {
+                TimeSpan timeEnd = new TimeSpan(23, 59, 59);
+                DateEnd = DateEnd + timeEnd;
                 informationExaminations = informationExaminations.Where(p => p.DateEnd <= DateEnd.Value).ToList();
             }
             if( Code != "")

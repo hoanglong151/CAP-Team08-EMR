@@ -150,7 +150,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SearchPatientDetail(DateTime? DateStartDetail, DateTime? DateEndDetail, int id)
+        public ActionResult SearchPatientDetail(DateTime? DateStartDetail, DateTime? DateEndDetail, int? id)
         {
             PatientsController patientsController = new PatientsController();
             var checkID = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
@@ -161,12 +161,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             if(DateStartDetail.HasValue)
             {
+                TimeSpan timeStart = new TimeSpan(1, 0, 01);
+                DateStartDetail = DateStartDetail + timeStart;
                 checkID = checkID.Where(p => p.DateExamine >= DateStartDetail.Value).ToList();
             }
             if (DateEndDetail.HasValue)
             {
+                TimeSpan timeEnd = new TimeSpan(23, 59, 59);
+                DateEndDetail = DateEndDetail + timeEnd;
                 checkID = checkID.Where(p => p.DateEnd <= DateEndDetail.Value).ToList();
             }
+            ViewBag.id = id;
             return View("Details", checkID);
         }
 
@@ -341,9 +346,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             else
             {
-                db.InformationExaminations.Remove(checkInfoExam);
-                db.SaveChanges();
-                return Json(new { success = true });
+                var patientCheck = db.Patients.Where(p => p.ID == checkInfoExam.Patient_ID).ToList();
+                if(patientCheck.Count > 1)
+                {
+                    db.InformationExaminations.Remove(checkInfoExam);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, TextResponse = "Vui lòng xóa thông tin bệnh nhân nếu chỉ có 1 hồ sơ bệnh án" });
+                }
             }
         }
 

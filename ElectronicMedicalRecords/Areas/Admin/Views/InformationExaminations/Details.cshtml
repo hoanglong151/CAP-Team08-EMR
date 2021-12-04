@@ -145,7 +145,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Thất Bại!',
-                                    text: 'Bạn không thể xóa thông tin khám bệnh này.',
+                                    text: res.TextResponse ? res.TextResponse : "Bạn không thể xóa thông tin bệnh án này",
                                     confirmButtonText: 'Xác Nhận'
                                 })
                             }

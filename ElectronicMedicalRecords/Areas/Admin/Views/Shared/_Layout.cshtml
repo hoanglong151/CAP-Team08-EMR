@@ -154,13 +154,15 @@
                                 <span>Tài Khoản</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="@Url.Action("Index", "AspNetRoles")" class='sidebar-link underline'>
-                                <i class="text-white fas fa-user-tag"></i>
-                                <span>Quyền</span>
-                            </a>
-                        </li>
-
+                        @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Index", "AspNetRoles")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-user-tag"></i>
+                                    <span>Quyền</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item">
                             <a href="@Url.Action("Index", "Medications")" class='sidebar-link underline'>
                                 <i class="text-white fas fa-capsules"></i>

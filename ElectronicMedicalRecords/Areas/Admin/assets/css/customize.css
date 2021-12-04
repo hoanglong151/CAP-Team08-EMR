@@ -16,7 +16,8 @@
     width: 4rem;
     height: 4rem;
     object-fit: cover;
-    border-radius: 50%
+    border-radius: 50%;
+    object-position: top;
 }
 
 .avatar-edit {
@@ -236,4 +237,17 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
 .ml-5px {
     margin-left: 5px
 }
+
+.ml-25px {
+    margin-left: 25px
+}
+
+.img-avatarDoctor {
+    width: 8rem;
+    height: 9rem;
+    object-fit: cover;
+    border-radius: 4px;
+    object-position: top;
+}
+
 
