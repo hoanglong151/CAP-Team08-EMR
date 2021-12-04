@@ -46,7 +46,7 @@
                 }
                 </div>
             <div class="card-body">
-                <table class="table table-striped" id="tableMedication">
+                <table class="table table-striped" id="tableMedication" style="width:100%">
                     <thead>
                         <tr>
                             <th>Tên Thuốc</th>
@@ -296,11 +296,11 @@
                     },
                     {
                         "data": null,
-                        "render": function (data, type, row) {
-                            var button = "<button class='btn btn-primary btnHover edit ' onclick='getMedicationByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteMedication(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
-                            return button;
-                        },
+                        "render": function(data, type, row) {
+                                var button = "<button class='btn btn-primary btnHover edit ' onclick='getMedicationByID(" + data.ID + ")' data-id='"
+                                    + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteMedication(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                                return button;
+                            },
                         "targets": 0,
                         "orderable": false
                     }

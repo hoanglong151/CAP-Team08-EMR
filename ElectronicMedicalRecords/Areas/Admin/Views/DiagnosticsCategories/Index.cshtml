@@ -45,7 +45,7 @@
                 }
                 </div>
             <div class="card-body">
-                <table class="table table-striped" id="tableDiagnostic">
+                <table class="table table-striped" id="tableDiagnostic" style="width:100%">
                     <thead>
                         <tr>
                             <th>Mã</th>
@@ -478,7 +478,7 @@
         /*Validate Form Update Diagnostic*/
         $('form').each((i, obj) => {
             $.validator.addMethod('checkNameEnglish', function (value, element) {
-                return this.optional(element) || /^[A-Za-z][A-Za-z0-9]*$/.test(value);
+                return this.optional(element) || /^[a-zA-Z0-9,.!?*()[/\] ]*$/g.test(value);
             }, "Vui lòng nhập đúng định dạng tiếng anh");;
             $(function () {
                 $(obj).validate({
