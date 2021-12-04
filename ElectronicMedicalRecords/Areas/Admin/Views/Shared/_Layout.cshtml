@@ -269,8 +269,8 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown me-3">
                                 <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-bell" style="font-size:25px"></i>
-                                    <span class="countBS1">&nbsp;</span>
+                                    <i class="fas fa-address-card" style="font-size:25px"></i>
+                                    <span style="left:2.5rem" class="countBS1">&nbsp;</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
                                     <li>
@@ -349,6 +349,7 @@
                                 $('#notiContentBS').append($('<li>No data available</li>'));
                             }
                             $.each(res.data, function (index, value) {
+                                $('span.countBS').parent().children('i').addClass('bell');
                                 var href = "@Url.Action("DetailsIE","MultipleModels")" + "/" + value.ID;
                                 $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                             })
@@ -399,6 +400,7 @@
                             $('#notiContent').append($('<li>No data available</li>'));
                         }
                         $.each(res.data, function (index, value) {
+                            $('span.count').parent().children('i').addClass('bell');
                             var href = "@Url.Action("EditByID", "MultipleModels")" +"/" + value.ID;
                             $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
                         })
@@ -463,7 +465,7 @@
                             $('#notiContentBS1').append($('<li>No data available</li>'));
                         }
                         $.each(res.data, function (index, value) {
-                            console.log(value)
+                            $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
                             var href = "@Url.Action("CreateTest", "MultipleModels")" +"/" + value.ID;
                             $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
                         })

@@ -399,40 +399,61 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var AmniocenteEdit = Task.Run(() => detail_AmniocenteController.Edit(multiplesModel));
                 var ResultEdit = await Task.WhenAll(CongThucMauEdit, SinhHoaMauEdit, DongMauEdit, NhomMauEdit, UrineEdit, ImmuneEdit, AmniocenteEdit);
                 clinicalsController.Edit(multiplesModel);
-                var checkResultCTMau = multiplesModel.Detail_CTMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultCTMau == true)
+                if(multiplesModel.Detail_CTMaus != null)
                 {
-                    multiplesModel.InformationExamination.ResultCTMau = true;
+                    var checkResultCTMau = multiplesModel.Detail_CTMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultCTMau == true)
+                    {
+                        multiplesModel.InformationExamination.ResultCTMau = true;
+                    }
                 }
-                var checkResultSHM = multiplesModel.Detail_SinhHoaMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultSHM == true)
+                if(multiplesModel.Detail_SinhHoaMaus != null)
                 {
-                    multiplesModel.InformationExamination.ResultSHM = true;
+                    var checkResultSHM = multiplesModel.Detail_SinhHoaMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultSHM == true)
+                    {
+                        multiplesModel.InformationExamination.ResultSHM = true;
+                    }
                 }
-                var checkResultDMau = multiplesModel.Detail_DongMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultDMau == true)
+                if(multiplesModel.Detail_DongMaus != null)
                 {
-                    multiplesModel.InformationExamination.ResultDMau = true;
+                    var checkResultDMau = multiplesModel.Detail_DongMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultDMau == true)
+                    {
+                        multiplesModel.InformationExamination.ResultDMau = true;
+                    }
                 }
-                var checkResultNMau = multiplesModel.Detail_NhomMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultNMau == true)
+                if(multiplesModel.Detail_NhomMaus != null)
                 {
-                    multiplesModel.InformationExamination.ResultNhomMau = true;
+                    var checkResultNMau = multiplesModel.Detail_NhomMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultNMau == true)
+                    {
+                        multiplesModel.InformationExamination.ResultNhomMau = true;
+                    }
                 }
-                var checkResultNuocTieu = multiplesModel.Detail_Urines.All(p => p.Result != null && p.InfomationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultNuocTieu == true)
+                if(multiplesModel.Detail_Urines != null)
                 {
-                    multiplesModel.InformationExamination.ResultNuocTieu = true;
+                    var checkResultNuocTieu = multiplesModel.Detail_Urines.All(p => p.Result != null && p.InfomationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultNuocTieu == true)
+                    {
+                        multiplesModel.InformationExamination.ResultNuocTieu = true;
+                    }
                 }
-                var checkResultImmune = multiplesModel.Detail_Immunes.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultImmune == true)
+                if(multiplesModel.Detail_Immunes != null)
                 {
-                    multiplesModel.InformationExamination.ResultMienDich = true;
+                    var checkResultImmune = multiplesModel.Detail_Immunes.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultImmune == true)
+                    {
+                        multiplesModel.InformationExamination.ResultMienDich = true;
+                    }
                 }
-                var checkResultAmniocente = multiplesModel.Detail_Amniocentes.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-                if (checkResultAmniocente == true)
+                if(multiplesModel.Detail_Amniocentes != null)
                 {
-                    multiplesModel.InformationExamination.ResultDichChocDo = true;
+                    var checkResultAmniocente = multiplesModel.Detail_Amniocentes.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultAmniocente == true)
+                    {
+                        multiplesModel.InformationExamination.ResultDichChocDo = true;
+                    }
                 }
                 db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                 db.SaveChanges();
