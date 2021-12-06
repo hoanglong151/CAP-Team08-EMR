@@ -13,7 +13,6 @@ namespace ElectronicMedicalRecords
     public class MvcApplication : System.Web.HttpApplication
     {
         string conString = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
-        //string conbs = ConfigurationManager.ConnectionStrings["sqlConStringBS"].ConnectionString;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -29,24 +28,35 @@ namespace ElectronicMedicalRecords
             NotificationComponentKTV NCktv = new NotificationComponentKTV();
             NotificationComponentBS NCbs = new NotificationComponentBS();
             NotificationComponentBS1 NCyta = new NotificationComponentBS1();
-            //var currentTimebs = DateTime.Now;
-            //var currentTimektv = DateTime.Now;
-            //HttpContext.Current.Session["LastUpdated"] = currentTimektv;
             NCktv.RegisterNotificationKTV();
             NCbs.RegisterNotificationBS();
             NCyta.RegisterNotificationBS1();
         }
-
-        //protected void Session_Startbs(object sender, EventArgs e)
-        //{
-        //    NotificationComponentBS NCbs = new NotificationComponentBS();
-        //    var currentTimebs = DateTime.Now;
-        //    HttpContext.Current.Session["LastUpdated"] = currentTimebs;
-        //    NCbs.RegisterNotificationBS(currentTimebs);
-        //}
-
         protected void Application_End()
         {
+            var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                if (loggedInUsers != null)
+                {
+                    loggedInUsers[userName] = DateTime.Now;
+                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                }
+            }
+
+            if (loggedInUsers != null)
+            {
+                foreach (var item in loggedInUsers.ToList())
+                {
+                    if (item.Value < DateTime.Now.AddMinutes(-1))
+                    {
+                        loggedInUsers.Remove(item.Key);
+                    }
+                }
+                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            }
             SqlDependency.Stop(conString);
         }
     }

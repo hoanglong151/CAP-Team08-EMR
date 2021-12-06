@@ -27,6 +27,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(users);
         }
 
+        public ActionResult Status()
+        {
+            List<string> listUser = new List<string>();
+            var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+            foreach(var user in usersOnline)
+            {
+                listUser.Add(user.Key);
+            }
+            return Json(new { data = listUser }, JsonRequestBehavior.AllowGet);
+        }
+
         [ChildActionOnly]
         public ActionResult RenderUser()
         {
