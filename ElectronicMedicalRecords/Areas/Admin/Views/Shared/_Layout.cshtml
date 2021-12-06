@@ -236,53 +236,53 @@
                 }
                 @if (User.IsInRole("Bác Sĩ"))
                 {
-            <div class="container-fluid">
-                <a href="#" class="burger-btn d-block">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
 
-                <div class="d-flex">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown me-3">
-                                <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-bell" style="font-size:25px"></i>
-                                    <span class="countBS">&nbsp;</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
-                                    <li>
-                                        <h6 class="dropdown-header">Notifications</h6>
+                        <div class="d-flex">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown me-3">
+                                        <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-bell" style="font-size:25px"></i>
+                                            <span class="countBS">&nbsp;</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
+                                            <li>
+                                                <h6 class="dropdown-header">Notifications</h6>
+                                            </li>
+                                            <li><a class="dropdown-item">No notification available</a></li>
+                                        </ul>
                                     </li>
-                                    <li><a class="dropdown-item">No notification available</a></li>
                                 </ul>
-                            </li>
-                        </ul>
-                    </div>
+                            </div>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown me-3">
-                                <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-address-card" style="font-size:25px"></i>
-                                    <span style="left:2.5rem" class="countBS1">&nbsp;</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
-                                    <li>
-                                        <h6 class="dropdown-header">Notifications</h6>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown me-3">
+                                        <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-address-card" style="font-size:25px"></i>
+                                            <span style="left:2.5rem" class="countBS1">&nbsp;</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
+                                            <li>
+                                                <h6 class="dropdown-header">Notifications</h6>
+                                            </li>
+                                            <li><a class="dropdown-item">No notification available</a></li>
+                                        </ul>
                                     </li>
-                                    <li><a class="dropdown-item">No notification available</a></li>
                                 </ul>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
                 }
             </nav>
             @RenderBody()
@@ -413,7 +413,6 @@
                 }
 
                 var notificationHub = $.connection.notificationHub;
-
                 notificationHub.client.notify = function (message) {
                     if (message && message.toLowerCase() == "added") {
                         updateNotification();
@@ -493,6 +492,39 @@
                 });
             }
         })
+    </script>
+    <script type="text/javascript">
+        function updateUser() {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("Status", "Users")",
+                    success: function (res) {
+                        $('.checkUserOnline').each((index, user) => {
+                            if (res.data.indexOf(user.innerText) != -1) {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
+                            } else {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
+                            }
+                        })
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+                }
+
+        var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
+        $.connection.hub.start().done(function () {
+            updateUser();
+            console.log("Notification hub started User");
+            setInterval(() => {
+                updateUser();
+            }, 100000)
+        }).fail((e) => {
+            alert(e)
+        });
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)

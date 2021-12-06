@@ -427,6 +427,7 @@
     <Compile Include="NotificationComponentBS1.cs" />
     <Compile Include="NotificationComponentBS.cs" />
     <Compile Include="NotificationComponentKTV.cs" />
+    <Compile Include="NotificationHubOnlineUser.cs" />
     <Compile Include="NotificationHubBS1.cs" />
     <Compile Include="NotificationHubBS.cs" />
     <Compile Include="NotificationHub.cs" />

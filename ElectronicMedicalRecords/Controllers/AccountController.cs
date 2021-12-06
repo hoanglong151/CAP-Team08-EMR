@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ElectronicMedicalRecords.Models;
 using Microsoft.Owin.Security.VanLang;
+using System.Collections.Generic;
 
 namespace ElectronicMedicalRecords.Controllers
 {
@@ -355,6 +356,32 @@ namespace ElectronicMedicalRecords.Controllers
                     {
                         if(check.ActiveAccount == true)
                         {
+                            {
+                                //if the list exists, add this user to it
+                                if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                                {
+                                    //get the list of logged in users from the cache
+                                    var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+
+                                    if (!loggedInUsers.ContainsKey(check.Name))
+                                    {
+                                        //add this user to the list
+                                        loggedInUsers.Add(check.Name, DateTime.Now);
+                                        //add the list back into the cache
+                                        HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                                    }
+                                }
+                                //the list does not exist so create it
+                                else
+                                {
+                                    //create a new list
+                                    var loggedInUsers = new Dictionary<string, DateTime>();
+                                    //add this user to the list
+                                    loggedInUsers.Add(check.Name, DateTime.Now);
+                                    //add the list into the cache
+                                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                                }
+                            }
                             return RedirectToAction("HomePage", "Users", new { Area = "Admin"});
                         }
                         return RedirectToAction("DenyAccount", "Users", new { Area = "Admin" });
