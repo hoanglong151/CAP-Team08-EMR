@@ -494,7 +494,8 @@
         })
     </script>
     <script type="text/javascript">
-        function updateUser() {
+        $(function () {
+            function updateUser() {
                 $.ajax({
                     type: "GET",
                     url: "@Url.Action("Status", "Users")",
@@ -531,6 +532,7 @@
         }).fail((e) => {
             alert(e)
         });
+        })
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)
