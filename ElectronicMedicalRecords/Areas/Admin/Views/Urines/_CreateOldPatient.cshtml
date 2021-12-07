@@ -64,7 +64,6 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th hidden></th>
                 <th>Chỉ Số Cân Bằng</th>
                 <th>Đơn Vị</th>
             </tr>
@@ -84,9 +83,6 @@
                     <td>
                         <input value="@Model.Urine[i].Name" type="text" name="Urine[@i].Name" hidden />
                         <label class="form-check-label" for="CTMau-@Model.Urine[i].ID">@Model.Urine[i].Name</label>
-                    </td>
-                    <td hidden>
-                        <input value="@Model.Urine[i].Result" type="text" name="Urine[@i].Result" hidden />
                     </td>
                     <td>
                         <input value="@Model.Urine[i].CSBT" type="text" name="Urine[@i].CSBT" hidden />

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Detail_ViSinh>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiDinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultNC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultDD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatDo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InformationExamination.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViSinh.NameTest)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiDinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Result)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResultNC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResultDD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatDo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InformationExamination.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ViSinh.NameTest)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

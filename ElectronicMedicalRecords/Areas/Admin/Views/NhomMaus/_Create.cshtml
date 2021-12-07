@@ -63,7 +63,6 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th hidden></th>
             </tr>
         </thead>
         <tbody>
@@ -81,9 +80,6 @@
                     <td>
                         <input value="@Model.NhomMau[i].NameTest" type="text" name="NhomMau[@i].NameTest" hidden />
                         <label class="form-check-label" for="customColorCheck-@Model.NhomMau[i].ID">@Model.NhomMau[i].NameTest</label>
-                    </td>
-                    <td hidden>
-                        <input value="@Model.NhomMau[i].Result" type="text" name="NhomMau[@i].Result" hidden />
                     </td>
                 </tr>
             }

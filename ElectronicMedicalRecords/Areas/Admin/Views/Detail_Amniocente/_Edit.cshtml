@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < Model.Amniocente.Count(); i++)
+            @for (int i = 0; i < Model.Detail_Amniocentes.Count(); i++)
             {
                 <tr>
                     <td hidden>
@@ -27,20 +27,20 @@
                     </td>
                     <td>
                         @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
-                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Amniocente[i].ID" name="Detail_Amniocentes[@i].ChiDinh">
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_Amniocentes[i].Amniocente_ID" name="Detail_Amniocentes[@i].ChiDinh">
                         <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
                     </td>
                     <td>
-                        <label class="form-check-label">@Model.Amniocente[i].NameTest</label>
+                        <label class="form-check-label">@Model.Detail_Amniocentes[i].Amniocente.NameTest</label>
                     </td>
                     <td>
                         <input value="@Model.Detail_Amniocentes[i].Result" type="number" name="Detail_Amniocentes[@i].Result" class="form-control" />
                     </td>
                     <td>
-                        @Html.Raw(Model.Amniocente[i].CSBT)
+                        @Html.Raw(Model.Detail_Amniocentes[i].Amniocente.CSBT)
                     </td>
                     <td>
-                        @Model.Amniocente[i].Unit
+                        @Model.Detail_Amniocentes[i].Amniocente.Unit
                     </td>
                 </tr>
             }

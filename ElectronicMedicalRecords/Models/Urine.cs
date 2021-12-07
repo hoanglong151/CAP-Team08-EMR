@@ -23,7 +23,6 @@ namespace ElectronicMedicalRecords.Models
         public int ID { get; set; }
         public bool ChiDinh { get; set; }
         public string Name { get; set; }
-        public Nullable<double> Result { get; set; }
         public string CSBT { get; set; }
         public string Unit { get; set; }
     

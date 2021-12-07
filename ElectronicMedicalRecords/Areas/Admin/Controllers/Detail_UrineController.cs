@@ -61,7 +61,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_UrineCreateP.Urine_ID = item.ID;
                     detail_UrineCreateP.InfomationExamination_ID = informationID;
                     detail_UrineCreateP.ChiDinh = item.ChiDinh;
-                    detail_UrineCreateP.Result = item.Result;
                     db.Detail_Urine.Add(detail_UrineCreateP);
                     await db.SaveChangesAsync();
                 }
@@ -77,22 +76,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Urine> detail_Urines = db.Detail_Urine.Where(p => p.InfomationExamination_ID == id).ToList();
-            List<Urine> Urines = new List<Urine>();
-            for (int i = 0; i < detail_Urines.Count; i++)
-            {
-                var Urine_ID = detail_Urines[i].Urine_ID;
-                var UrineCD = db.Urines.FirstOrDefault(p => p.ID == Urine_ID);
-                UrineCD.ChiDinh = detail_Urines[i].ChiDinh;
-                UrineCD.Result = detail_Urines[i].Result;
-                detail_Urines[i].InfomationExamination_ID = id;
-                Urines.Add(UrineCD);
-            }
             if (detail_Urines == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Urine = Urines;
             multiplesModel.Detail_Urines = detail_Urines;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -104,22 +92,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Urine> detail_Urines = db.Detail_Urine.Where(p => p.InfomationExamination_ID == id).ToList();
-            List<Urine> Urines = new List<Urine>();
-            for (int i = 0; i < detail_Urines.Count; i++)
-            {
-                var Urine_ID = detail_Urines[i].Urine_ID;
-                var UrineCD = db.Urines.FirstOrDefault(p => p.ID == Urine_ID);
-                UrineCD.ChiDinh = detail_Urines[i].ChiDinh;
-                UrineCD.Result = detail_Urines[i].Result;
-                detail_Urines[i].InfomationExamination_ID = id;
-                Urines.Add(UrineCD);
-            }
             if (detail_Urines == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Urine = Urines;
             multiplesModel.Detail_Urines = detail_Urines;
             return PartialView("_Edit", multiplesModel);
         }
@@ -160,7 +137,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Urine.Urine_ID = item.ID;
                     detail_Urine.InfomationExamination_ID = informationID;
                     detail_Urine.ChiDinh = item.ChiDinh;
-                    detail_Urine.Result = item.Result;
                     db.Detail_Urine.Add(detail_Urine);
                     await db.SaveChangesAsync();
                 }

@@ -26,45 +26,44 @@ namespace ElectronicMedicalRecords.Models
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Amniocente> Amniocentes { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<CayMau> CayMaus { get; set; }
+        public virtual DbSet<Clinical> Clinicals { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
+        public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
         public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
+        public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
+        public virtual DbSet<Detail_Immune> Detail_Immune { get; set; }
+        public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
         public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
         public virtual DbSet<Detail_Urine> Detail_Urine { get; set; }
+        public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<Diagnostic> Diagnostics { get; set; }
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
         public virtual DbSet<DongMau> DongMaus { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
+        public virtual DbSet<Immune> Immunes { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<MedicalTestsPrescription> MedicalTestsPrescriptions { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
         public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
         public virtual DbSet<Nation1> Nation1 { get; set; }
+        public virtual DbSet<NhomMau> NhomMaus { get; set; }
+        public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
-        public virtual DbSet<Subclinical> Subclinicals { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Urine> Urines { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
-        public virtual DbSet<NhomMau> NhomMaus { get; set; }
-        public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
-        public virtual DbSet<Detail_Immune> Detail_Immune { get; set; }
-        public virtual DbSet<Immune> Immunes { get; set; }
-        public virtual DbSet<Amniocente> Amniocentes { get; set; }
-        public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
-        public virtual DbSet<Patient> Patients { get; set; }
-        public virtual DbSet<CayMau> CayMaus { get; set; }
-        public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
-        public virtual DbSet<Clinical> Clinicals { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
     }
 }

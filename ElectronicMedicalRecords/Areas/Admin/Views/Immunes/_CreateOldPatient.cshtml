@@ -64,7 +64,6 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th hidden></th>
                 <th>Chỉ Số Cân Bằng</th>
                 <th>Đơn Vị</th>
             </tr>
@@ -84,9 +83,6 @@
                     <td>
                         <input value="@Model.Immune[i].NameTest" type="text" name="Immune[@i].NameTest" hidden />
                         <label class="form-check-label" for="Immune-@Model.Immune[i].ID">@Model.Immune[i].NameTest</label>
-                    </td>
-                    <td hidden>
-                        <input value="@Model.Immune[i].Result" type="text" name="Immune[@i].Result" hidden />
                     </td>
                     <td>
                         <input value="@Model.Immune[i].CSBT" type="text" name="Immune[@i].CSBT" hidden />

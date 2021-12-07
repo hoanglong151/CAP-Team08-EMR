@@ -151,6 +151,7 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -263,6 +264,7 @@
     <Compile Include="Areas\Admin\Controllers\Detail_NhomMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_SinhHoaMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_UrineController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_ViSinhController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DongMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImmunesController.cs" />
@@ -273,9 +275,12 @@
     <Compile Include="Areas\Admin\Controllers\NhomMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PrescriptionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Prescription_DetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ViSinhsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -407,9 +412,6 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhHoaMau.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Subclinical.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -2754,6 +2756,30 @@
     <Content Include="Areas\Admin\Views\MultipleModels\Print.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\EditByID.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\CreateTest.cshtml" />
+    <Content Include="Areas\Admin\Views\ViSinhs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ViSinhs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ViSinhs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ViSinhs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ViSinhs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ViSinhs\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\_DetailIE.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescriptions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescriptions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescriptions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescriptions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescriptions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\_CreateOldPatient.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

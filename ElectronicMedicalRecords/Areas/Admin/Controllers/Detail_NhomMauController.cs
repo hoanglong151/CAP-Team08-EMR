@@ -61,7 +61,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_NhomMau.NhomMau_ID = item.ID;
                     detail_NhomMau.InformationExamination_ID = informationID;
                     detail_NhomMau.ChiDinh = item.ChiDinh;
-                    detail_NhomMau.Result = item.Result;
                     db.Detail_NhomMau.Add(detail_NhomMau);
                     await db.SaveChangesAsync();
                 }
@@ -77,22 +76,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_NhomMau> detail_NhomMaus = db.Detail_NhomMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<NhomMau> nhomMaus = new List<NhomMau>();
-            for (int i = 0; i < detail_NhomMaus.Count; i++)
-            {
-                var NhomMau_ID = detail_NhomMaus[i].NhomMau_ID;
-                var NhomMauCD = db.NhomMaus.FirstOrDefault(p => p.ID == NhomMau_ID);
-                NhomMauCD.ChiDinh = detail_NhomMaus[i].ChiDinh;
-                NhomMauCD.Result = detail_NhomMaus[i].Result;
-                detail_NhomMaus[i].InformationExamination_ID = id;
-                nhomMaus.Add(NhomMauCD);
-            }
             if (detail_NhomMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.NhomMau = nhomMaus;
             multiplesModel.Detail_NhomMaus = detail_NhomMaus;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -104,22 +92,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_NhomMau> detail_NhomMaus = db.Detail_NhomMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<NhomMau> nhomMaus = new List<NhomMau>();
-            for (int i = 0; i < detail_NhomMaus.Count; i++)
-            {
-                var NhomMau_ID = detail_NhomMaus[i].NhomMau_ID;
-                var NhomMauCD = db.NhomMaus.FirstOrDefault(p => p.ID == NhomMau_ID);
-                NhomMauCD.ChiDinh = detail_NhomMaus[i].ChiDinh;
-                NhomMauCD.Result = detail_NhomMaus[i].Result;
-                detail_NhomMaus[i].InformationExamination_ID = id;
-                nhomMaus.Add(NhomMauCD);
-            }
             if (detail_NhomMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.NhomMau = nhomMaus;
             multiplesModel.Detail_NhomMaus = detail_NhomMaus;
             return PartialView("_Edit", multiplesModel);
         }
@@ -160,7 +137,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_NhomMau.NhomMau_ID = item.ID;
                     detail_NhomMau.InformationExamination_ID = informationID;
                     detail_NhomMau.ChiDinh = item.ChiDinh;
-                    detail_NhomMau.Result = item.Result;
                     db.Detail_NhomMau.Add(detail_NhomMau);
                     await db.SaveChangesAsync();
                 }

@@ -61,7 +61,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Amniocente.Amniocente_ID = item.ID;
                     detail_Amniocente.InformationExamination_ID = informationID;
                     detail_Amniocente.ChiDinh = item.ChiDinh;
-                    detail_Amniocente.Result = item.Result;
                     db.Detail_Amniocente.Add(detail_Amniocente);
                     await db.SaveChangesAsync();
                 }
@@ -78,22 +77,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == id).ToList();
-            List<Amniocente> aMniocentes = new List<Amniocente>();
-            for (int i = 0; i < detail_Amniocentes.Count; i++)
-            {
-                var Amniocente_ID = detail_Amniocentes[i].Amniocente_ID;
-                var AmniocenteCD = db.Amniocentes.FirstOrDefault(p => p.ID == Amniocente_ID);
-                AmniocenteCD.ChiDinh = detail_Amniocentes[i].ChiDinh;
-                AmniocenteCD.Result = detail_Amniocentes[i].Result;
-                detail_Amniocentes[i].InformationExamination_ID = id;
-                aMniocentes.Add(AmniocenteCD);
-            }
             if (detail_Amniocentes == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Amniocente = aMniocentes;
             multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -105,22 +93,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == id).ToList();
-            List<Amniocente> aMniocentes = new List<Amniocente>();
-            for (int i = 0; i < detail_Amniocentes.Count; i++)
-            {
-                var Amniocente_ID = detail_Amniocentes[i].Amniocente_ID;
-                var AmniocenteCD = db.Amniocentes.FirstOrDefault(p => p.ID == Amniocente_ID);
-                AmniocenteCD.ChiDinh = detail_Amniocentes[i].ChiDinh;
-                AmniocenteCD.Result = detail_Amniocentes[i].Result;
-                detail_Amniocentes[i].InformationExamination_ID = id;
-                aMniocentes.Add(AmniocenteCD);
-            }
             if (detail_Amniocentes == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Amniocente = aMniocentes;
             multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_Edit", multiplesModel);
         }
@@ -161,7 +138,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Amniocente.Amniocente_ID = item.ID;
                     detail_Amniocente.InformationExamination_ID = informationID;
                     detail_Amniocente.ChiDinh = item.ChiDinh;
-                    detail_Amniocente.Result = item.Result;
                     db.Detail_Amniocente.Add(detail_Amniocente);
                     await db.SaveChangesAsync();
                 }
