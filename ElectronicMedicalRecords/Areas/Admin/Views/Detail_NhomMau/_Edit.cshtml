@@ -59,18 +59,24 @@
 </div>
 
 <script type="text/javascript">
-    var selectedNhomMauBth = document.querySelector('#NhomMauBTH').getAttribute("value");
-    var optionSelectedBth = document.querySelectorAll("#NhomMauBTH option");
-    optionSelectedBth.forEach((value, index) => {
-        if (value.getAttribute("value") == selectedNhomMauBth) {
-            value.setAttribute("selected", "selected")
-        }
-    })
+    var selectedNhomMauBth = document.querySelector('#NhomMauBTH');
+    if (selectedNhomMauBth != null) {
+        var getValue = selectedNhomMauBth.getAttribute("value");
+        var optionSelectedBth = document.querySelectorAll("#NhomMauBTH option");
+        optionSelectedBth.forEach((value, index) => {
+            if (value.getAttribute("value") == getValue) {
+                value.setAttribute("selected", "selected")
+            }
+        })
+    }
     var selectedNhomMauRh = document.querySelector('#NhomMauRh').getAttribute("value");
-    var optionSelectedRh = document.querySelectorAll("#NhomMauRh option");
-    optionSelectedRh.forEach((value, index) => {
-        if (value.getAttribute("value") == selectedNhomMauRh) {
-            value.setAttribute("selected", "selected")
-        }
-    })
+    if (selectedNhomMauRh != null) {
+        var getValueRh = selectedNhomMauBth.getAttribute("value");
+        var optionSelectedRh = document.querySelectorAll("#NhomMauRh option");
+        optionSelectedRh.forEach((value, index) => {
+            if (value.getAttribute("value") == getValueRh) {
+                value.setAttribute("selected", "selected")
+            }
+        })
+    }
 </script>    

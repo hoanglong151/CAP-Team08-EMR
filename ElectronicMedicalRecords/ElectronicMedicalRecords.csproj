@@ -2780,6 +2780,8 @@
     <Content Include="Areas\Admin\Views\Prescriptions\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Prescriptions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\_DetailIE.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

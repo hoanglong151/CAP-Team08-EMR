@@ -702,7 +702,8 @@
                 url: "@Url.Action("FindMedication", "Medications")",
                 data: { id: id},
                 success: (res) => {
-                    document.querySelector('#DVT').innerHTML = res.data
+                    document.querySelector('#DVT').innerHTML = res.data.Unit;
+                    document.querySelector('#IDMedication').setAttribute("value", res.data.ID);
                 }
             })
         })
@@ -711,15 +712,16 @@
             var NameMedication = $('#NameMedication').text();
             var UnitMedication = $('#UnitMedication').val();
             var NoteMedication = $('#NoteMedication').val();
+            var IdMedication = $('#IDMedication').val();
             var medication = document.getElementById('TableMedication');
             var row = medication.insertRow(k);
             var cell0 = row.insertCell(0);
             var cell1 = row.insertCell(1);
             var cell2 = row.insertCell(2);
             var cell3 = row.insertCell(3);
-            cell0.innerHTML = NameMedication;
-            cell1.innerHTML = UnitMedication;
-            cell2.innerHTML = NoteMedication;
+            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication +"' hidden /> <input style='border:none;pointer-events: none;' type='text' value='"+ NameMedication +"' readonly/>";
+            cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' +".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' +".Note' value='" + NoteMedication + "' readonly/>";
             cell3.innerHTML = "<button class='btn btn-primary' id='Medication-"+ k +"' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
         }

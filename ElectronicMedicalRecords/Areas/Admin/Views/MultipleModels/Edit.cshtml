@@ -8,7 +8,7 @@
     }
 
         .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -5px;
+            margin-top: -6px;
         }
 
     .name-Medication .choices__input--cloned {
@@ -116,6 +116,9 @@
         font-size: 15px;
         padding: 0;
     }
+    .choices[data-type*=select-one].is-open:after {
+        margin-top: -10px;
+    }
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -199,7 +202,7 @@
                                                 if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                                                 {
                                                     Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                    //Html.RenderAction("Create", "Medications");
+                                                    Html.RenderAction("Edit", "Prescription_Detail");
                                                 }
                                             }
                                         </div>
@@ -330,9 +333,9 @@
 @section scripts{
     <script>
         var k = 1;
-        @*var formatCss = document.querySelector('.choices__list--single');
+        var formatCss = document.querySelector('.choices__list--single');
         formatCss.classList.add('form-control');
-
+        formatCss.style.paddingLeft = '12px';
         var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
@@ -341,7 +344,8 @@
                 url: "@Url.Action("FindMedication", "Medications")",
                 data: { id: id},
                 success: (res) => {
-                    document.querySelector('#DVT').innerHTML = res.data
+                    document.querySelector('#DVT').innerHTML = res.data.Unit;
+                    document.querySelector('#IDMedication').setAttribute("value", res.data.ID);
                 }
             })
         })
@@ -350,24 +354,49 @@
             var NameMedication = $('#NameMedication').text();
             var UnitMedication = $('#UnitMedication').val();
             var NoteMedication = $('#NoteMedication').val();
+            var IdMedication = $('#IDMedication').val();
             var medication = document.getElementById('TableMedication');
             var row = medication.insertRow(k);
             var cell0 = row.insertCell(0);
             var cell1 = row.insertCell(1);
             var cell2 = row.insertCell(2);
             var cell3 = row.insertCell(3);
-            cell0.innerHTML = NameMedication;
-            cell1.innerHTML = UnitMedication;
-            cell2.innerHTML = NoteMedication;
-            cell3.innerHTML = "<button class='btn btn-primary' id='Medication-"+ k +"' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
+            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
+            cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
+        }
+        loadMedication();
+        function loadMedication() {
+            var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
+            var medication = document.getElementById('TableMedication');
+            $.ajax({
+                type: "POST",
+                data: { id: InfoID },
+                url: "@Url.Action("LoadPrescription", "Prescription_Detail")",
+                success: (res) => {
+                    $.each(res.data, function (index, medicationByID) {
+                        var row = medication.insertRow(k);
+                        var cell0 = row.insertCell(0);
+                        var cell1 = row.insertCell(1);
+                        var cell2 = row.insertCell(2);
+                        var cell3 = row.insertCell(3);
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
+                        k++;
+                    })
+                }
+            })
         }
 
         function deleteRow(btn) {
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
             k--;
-        }*@
+        }
         var listTable = $('*.tableLoad');
         listTable.each((index, table) => {
             $('#' + table.id).DataTable({
@@ -425,7 +454,6 @@
             $.validator.addMethod('checkPhoneNumber', function (value, element) {
                 return this.optional(element) || /(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(value);
             }, "Vui lòng nhập đúng định dạng");
-            console.log(obj);
             $(function () {
                 $(obj).validate({
                     rules: {

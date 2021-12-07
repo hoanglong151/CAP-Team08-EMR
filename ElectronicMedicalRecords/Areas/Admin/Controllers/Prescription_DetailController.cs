@@ -17,8 +17,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Prescription_Detail
         public ActionResult Index()
         {
-            var prescription_Detail = db.Prescription_Detail.Include(p => p.Medication).Include(p => p.Prescription);
-            return View(prescription_Detail.ToList());
+            return View();
+        }
+
+        public ActionResult DetailIE()
+        {
+            return PartialView("_DetailIE");
         }
 
         // GET: Admin/Prescription_Detail/Details/5
@@ -36,18 +40,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(prescription_Detail);
         }
 
-        //// GET: Admin/Prescription_Detail/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name");
-        //    ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID");
-        //    return View();
-        //}
-
         public ActionResult CreateOldPatient()
         {
             ViewBag.NameMedication = db.Medications.ToList();
             return PartialView("_CreateOldPatient");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        {
+            foreach (var prescription_Detail in multiplesModel.Prescription_Details)
+            {
+                if (ModelState.IsValid)
+                {
+                    prescription_Detail.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    db.Prescription_Detail.Add(prescription_Detail);
+                    db.SaveChanges();
+                }
+            }
+            ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", multiplesModel.Prescription_Detail.Medication_ID);
+            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", multiplesModel.Prescription_Detail.InformationExamination_ID);
+            return RedirectToAction("CreateTest", "MultipleModels");
         }
 
         // POST: Admin/Prescription_Detail/Create
@@ -65,25 +79,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
 
             ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", prescription_Detail.Medication_ID);
-            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", prescription_Detail.Precription__ID);
+            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", prescription_Detail.InformationExamination_ID);
             return View(prescription_Detail);
         }
 
         // GET: Admin/Prescription_Detail/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
-            if (id == null)
+            ViewBag.NameMedication = db.Medications.ToList();
+            return PartialView("_Edit");
+        }
+
+        [HttpPost]
+        public ActionResult LoadPrescription(int id)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == id).ToList();
+            List<object> listPresciptions = new List<object>();
+            foreach(var item in listPrescription)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var medication = db.Medications.FirstOrDefault(p => p.ID == item.Medication_ID);
+                var prescription = new { item.Medication_ID, item.Note, item.NumMedication, item.InformationExamination_ID, item.ID, medication.Name };
+                listPresciptions.Add(prescription);
             }
-            Prescription_Detail prescription_Detail = db.Prescription_Detail.Find(id);
-            if (prescription_Detail == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", prescription_Detail.Medication_ID);
-            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", prescription_Detail.Precription__ID);
-            return View(prescription_Detail);
+            return Json(new { success = true, data = listPresciptions }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Prescription_Detail/Edit/5
@@ -91,17 +110,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NumMedication,Note,Medication_ID,Precription__ID")] Prescription_Detail prescription_Detail)
+        public ActionResult Edit(MultiplesModel multiplesModel)
         {
-            if (ModelState.IsValid)
+            var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+            if(multiplesModel.Prescription_Details != null)
             {
-                db.Entry(prescription_Detail).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                foreach (var item1 in listPrescription)
+                {
+                    db.Prescription_Detail.Remove(item1);
+                    db.SaveChanges();
+                }
+                foreach (var prescription_Detail in multiplesModel.Prescription_Details)
+                {
+                    prescription_Detail.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    db.Prescription_Detail.Add(prescription_Detail);
+                    db.SaveChanges();
+                }
             }
-            ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", prescription_Detail.Medication_ID);
-            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", prescription_Detail.Precription__ID);
-            return View(prescription_Detail);
+            else
+            {
+                foreach (var item1 in listPrescription)
+                {
+                    db.Prescription_Detail.Remove(item1);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Edit", "MultipleModels");
         }
 
         // GET: Admin/Prescription_Detail/Delete/5
