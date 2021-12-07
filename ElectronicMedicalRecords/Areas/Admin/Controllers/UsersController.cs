@@ -29,6 +29,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult Status()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             List<string> listUser = new List<string>();
             var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
             if(usersOnline != null)
