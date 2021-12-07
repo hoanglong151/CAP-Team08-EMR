@@ -32,7 +32,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
-
         public ActionResult LoadDetailBloods(int[] arr)
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -281,6 +280,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
                 Detail_ViSinhController detail_ViSinhController = new Detail_ViSinhController();
                 ClinicalsController clinicalsController = new ClinicalsController();
+                Prescription_DetailController prescription_DetailController = new Prescription_DetailController();
                 //CayMausController cayMausController = new CayMausController();
 
                 Detail_CTMau detail_CTMau = new Detail_CTMau();
@@ -304,7 +304,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var ResultNew = await Task.WhenAll(CongThucMauCD, SinhHoaMauCD, DongMauCD, NhomMauCD, UrineCD, ImmuneCD, AmniocenteCD, ViSinhCD);
                 clinicalsController.CreateOldPatient(multiplesModel);
                 //cayMausController.CreateOldPatient(multiplesModel);
-
+                prescription_DetailController.CreateOldPatient(multiplesModel);
                 var checkCongThucMauCD = db.Detail_CTMau.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
                 if (checkCongThucMauCD != null)
                 {
@@ -414,6 +414,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
                 Detail_ViSinhController detail_ViSinhController = new Detail_ViSinhController();
                 ClinicalsController clinicalsController = new ClinicalsController();
+                Prescription_DetailController prescription_DetailController = new Prescription_DetailController();
                 //CayMausController cayMausController = new CayMausController();
                 patientsController.Edit(multiplesModel.Patient);
                 informationExaminationsController.Edit(multiplesModel.InformationExamination);
@@ -427,6 +428,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var ViSinhEdit = Task.Run(() => detail_ViSinhController.Edit(multiplesModel));
                 var ResultEdit = await Task.WhenAll(CongThucMauEdit, SinhHoaMauEdit, DongMauEdit, NhomMauEdit, UrineEdit, ImmuneEdit, AmniocenteEdit, ViSinhEdit);
                 clinicalsController.Edit(multiplesModel);
+                prescription_DetailController.Edit(multiplesModel);
                 if(multiplesModel.Detail_CTMaus != null)
                 {
                     var checkResultCTMau = multiplesModel.Detail_CTMaus.All(p => p.Result != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);

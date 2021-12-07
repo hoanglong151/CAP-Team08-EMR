@@ -38,8 +38,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult FindMedication(int? id)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             var medication = db.Medications.FirstOrDefault(p => p.ID == id);
-            return Json(new { data = medication.Unit }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = medication }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create()

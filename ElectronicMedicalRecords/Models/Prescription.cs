@@ -18,7 +18,6 @@ namespace ElectronicMedicalRecords.Models
         public Prescription()
         {
             this.Diagnostics = new HashSet<Diagnostic>();
-            this.Prescription_Detail = new HashSet<Prescription_Detail>();
         }
     
         public int ID { get; set; }
@@ -28,7 +27,5 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Diagnostic> Diagnostics { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
     }
 }

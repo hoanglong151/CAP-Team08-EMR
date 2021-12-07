@@ -58,12 +58,12 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
-        public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Urine> Urines { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
+        public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
     }
 }

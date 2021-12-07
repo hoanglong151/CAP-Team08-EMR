@@ -38,7 +38,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="6" PointY="26.75" />
         <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="6" PointY="23.5" />
         <EntityTypeShape EntityType="CP24Team08Model.Prescription" Width="1.5" PointX="10.5" PointY="60.5" />
-        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="12.75" PointY="57.375" />
         <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="0.75" PointY="24.75" />
         <EntityTypeShape EntityType="CP24Team08Model.SinhHoaMau" Width="1.5" PointX="14.25" PointY="39" />
         <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
@@ -79,14 +78,14 @@
         <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
-        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
-        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Prescription" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
-      </Diagram>
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="12.75" PointY="56.5" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -8,7 +8,7 @@
     }
 
         .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -5px;
+            margin-top: -6px;
         }
 
     .name-Medication .choices__input--cloned {
@@ -116,6 +116,9 @@
         font-size: 15px;
         padding: 0;
     }
+    .choices[data-type*=select-one].is-open:after {
+        margin-top: -10px;
+    }
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -178,7 +181,7 @@
                                         @{
                                             Html.RenderAction("DetailIE", "Patients", new { id = Model.Patient.ID });
                                             Html.RenderAction("DetailIE", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                            //Html.RenderAction("Create", "Medications");
+                                            Html.RenderAction("DetailIE", "Prescription_Detail");
                                         }
                                     </div>
                                 </div>
@@ -339,5 +342,36 @@
                     });
             })
         })      
+    </script>
+    <script>
+        var k = 1;
+        loadMedication();
+        function loadMedication() {
+            var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
+            var medication = document.getElementById('TableMedication');
+            $.ajax({
+                type: "POST",
+                data: { id: InfoID },
+                url: "@Url.Action("LoadPrescription", "Prescription_Detail")",
+                success: (res) => {
+                    $.each(res.data, function (index, medicationByID) {
+                        var row = medication.insertRow(k);
+                        var cell0 = row.insertCell(0);
+                        var cell1 = row.insertCell(1);
+                        var cell2 = row.insertCell(2);
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='border:none;pointer-events: none;' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        k++;
+                    })
+                }
+            })
+        }
+
+        function deleteRow(btn) {
+            var index = $("#Medication-" + btn);
+            index.parent().parent().remove();
+            k--;
+        }
     </script>
 }

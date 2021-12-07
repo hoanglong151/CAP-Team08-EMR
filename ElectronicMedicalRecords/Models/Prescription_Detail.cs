@@ -18,9 +18,8 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> NumMedication { get; set; }
         public string Note { get; set; }
         public Nullable<int> Medication_ID { get; set; }
-        public Nullable<int> Precription__ID { get; set; }
+        public Nullable<int> InformationExamination_ID { get; set; }
     
         public virtual Medication Medication { get; set; }
-        public virtual Prescription Prescription { get; set; }
     }
 }
