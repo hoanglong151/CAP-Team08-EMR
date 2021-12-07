@@ -60,7 +60,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     detail_SinhHoaMau.SinhHoaMau_ID = item.ID;
                     detail_SinhHoaMau.InformationExamination_ID = informationID;
-                    detail_SinhHoaMau.Result = item.Result;
                     detail_SinhHoaMau.ChiDinh = item.ChiDinh;
                     db.Detail_SinhHoaMau.Add(detail_SinhHoaMau);
                     await db.SaveChangesAsync();
@@ -78,23 +77,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_SinhHoaMau> detail_SinhHoaMaus = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<SinhHoaMau> sinhHoaMaus = new List<SinhHoaMau>();
-            //Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-            for (int i = 0; i < detail_SinhHoaMaus.Count; i++)
-            {
-                var SinhHoaMau_ID = detail_SinhHoaMaus[i].SinhHoaMau_ID;
-                var SinhHoaMauCD = db.SinhHoaMaus.FirstOrDefault(p => p.ID == SinhHoaMau_ID);
-                SinhHoaMauCD.ChiDinh = detail_SinhHoaMaus[i].ChiDinh;
-                SinhHoaMauCD.Result = detail_SinhHoaMaus[i].Result;
-                detail_SinhHoaMaus[i].InformationExamination_ID = id;
-                sinhHoaMaus.Add(SinhHoaMauCD);
-            }
             if (detail_SinhHoaMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.SinhHoaMau = sinhHoaMaus;
             multiplesModel.Detail_SinhHoaMaus = detail_SinhHoaMaus;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -106,23 +93,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_SinhHoaMau> detail_SinhHoaMaus = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<SinhHoaMau> sinhHoaMaus = new List<SinhHoaMau>();
-            //Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-            for (int i = 0; i < detail_SinhHoaMaus.Count; i++)
-            {
-                var SinhHoaMau_ID = detail_SinhHoaMaus[i].SinhHoaMau_ID;
-                var SinhHoaMauCD = db.SinhHoaMaus.FirstOrDefault(p => p.ID == SinhHoaMau_ID);
-                SinhHoaMauCD.ChiDinh = detail_SinhHoaMaus[i].ChiDinh;
-                SinhHoaMauCD.Result = detail_SinhHoaMaus[i].Result;
-                detail_SinhHoaMaus[i].InformationExamination_ID = id;
-                sinhHoaMaus.Add(SinhHoaMauCD);
-            }
             if (detail_SinhHoaMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.SinhHoaMau = sinhHoaMaus;
             multiplesModel.Detail_SinhHoaMaus = detail_SinhHoaMaus;
             return PartialView("_Edit", multiplesModel);
         }
@@ -165,7 +140,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     detail_SinhHoaMau.SinhHoaMau_ID = item.ID;
                     detail_SinhHoaMau.InformationExamination_ID = informationID;
-                    detail_SinhHoaMau.Result = item.Result;
                     detail_SinhHoaMau.ChiDinh = item.ChiDinh;
                     db.Detail_SinhHoaMau.Add(detail_SinhHoaMau);
                     await db.SaveChangesAsync();

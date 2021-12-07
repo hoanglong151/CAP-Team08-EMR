@@ -64,7 +64,6 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th hidden></th>
                 <th>Chỉ Số Cân Bằng</th>
                 <th>Đơn Vị</th>
             </tr>
@@ -82,11 +81,8 @@
                         <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountTests" data-id="@Model.Amniocente[i].ID" name="Amniocente[@i].ChiDinh" id="Amniocente-@Model.Amniocente[i].ID">
                     </td>
                     <td>
-                        <input value="@Model.Amniocente[i].NameTest" type="text" name="Amniocente[@i].NameTest" hidden />
-                        <label class="form-check-label" for="Amniocente-@Model.Amniocente[i].ID">@Model.Amniocente[i].NameTest</label>
-                    </td>
-                    <td hidden>
-                        <input value="@Model.Amniocente[i].Result" type="text" name="Amniocente[@i].Result" hidden />
+                        <input value="@Model.Amniocente[i].NameTest" type="text" id="@Model.Amniocente[i].ID" name="Amniocente[@i].NameTest" hidden />
+                        <label class="form-check-label" for="@Model.Amniocente[i].ID">@Model.Amniocente[i].NameTest</label>
                     </td>
                     <td>
                         <input value="@Model.Amniocente[i].CSBT" type="text" name="Amniocente[@i].CSBT" hidden />

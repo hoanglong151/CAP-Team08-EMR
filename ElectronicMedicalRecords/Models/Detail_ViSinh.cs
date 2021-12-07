@@ -22,8 +22,9 @@ namespace ElectronicMedicalRecords.Models
         public string ResultDD { get; set; }
         public string MatDo { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
+        public Nullable<double> Price { get; set; }
     
-        public virtual ViSinh ViSinh { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
+        public virtual ViSinh ViSinh { get; set; }
     }
 }

@@ -159,6 +159,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LoadDetailVS(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<ViSinh> viSinhs = new List<ViSinh>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var VS = db.ViSinhs.FirstOrDefault(p => p.ID == id);
+                    VS.ChiDinh = true;
+                    viSinhs.Add(VS);
+                }
+                return Json(new { data = viSinhs }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult checkExistPatient(Patient patient)
         {
@@ -261,6 +279,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+                Detail_ViSinhController detail_ViSinhController = new Detail_ViSinhController();
                 ClinicalsController clinicalsController = new ClinicalsController();
                 //CayMausController cayMausController = new CayMausController();
 
@@ -271,7 +290,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_Urine detail_Urine = new Detail_Urine();
                 Detail_Immune detail_Immune = new Detail_Immune();
                 Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
-
+                Detail_ViSinh detail_ViSinh = new Detail_ViSinh();
                 patientsController.CreateOldPatient(multiplesModel.Patient);
                 informationExaminationsController.CreateTest(multiplesModel.InformationExamination);
                 var CongThucMauCD = Task.Run(() => detail_CTMauController.CreateOldPatient(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
@@ -281,7 +300,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var UrineCD = Task.Run(() => detail_UrineController.CreateOldPatient(detail_Urine, multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
                 var ImmuneCD = Task.Run(() => detail_ImmuneController.CreateOldPatient(detail_Immune, multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
                 var AmniocenteCD = Task.Run(() => detail_AmniocenteController.CreateOldPatient(detail_Amniocente, multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
-                var ResultNew = await Task.WhenAll(CongThucMauCD, SinhHoaMauCD, DongMauCD, NhomMauCD, UrineCD, ImmuneCD, AmniocenteCD);
+                var ViSinhCD = Task.Run(() => detail_ViSinhController.CreateOldPatient(detail_ViSinh, multiplesModel.ViSinh, multiplesModel.InformationExamination.ID, multiplesModel));
+                var ResultNew = await Task.WhenAll(CongThucMauCD, SinhHoaMauCD, DongMauCD, NhomMauCD, UrineCD, ImmuneCD, AmniocenteCD, ViSinhCD);
                 clinicalsController.CreateOldPatient(multiplesModel);
                 //cayMausController.CreateOldPatient(multiplesModel);
 
@@ -320,10 +340,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     multiplesModel.InformationExamination.ResultDichChocDo = false;
                 }
-                if(multiplesModel.InformationExamination.Breathing != null || multiplesModel.InformationExamination.HeartBeat != null
+                var checkViSinhCD = db.Detail_ViSinh.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkViSinhCD != null)
+                {
+                    multiplesModel.InformationExamination.ResultViSinh = false;
+                }
+                if (multiplesModel.InformationExamination.Breathing != null || multiplesModel.InformationExamination.HeartBeat != null
                     || multiplesModel.InformationExamination.BloodPressure != null || multiplesModel.InformationExamination.Weight != null 
                     || multiplesModel.InformationExamination.Height != null || checkCongThucMauCD != null || checkSinhHoaMauCD != null
-                    || checkDongMauCD != null || checkNhomMauCD != null || checkUrineCD != null || checkImmuneCD != null || checkAmniocenteCD != null)
+                    || checkDongMauCD != null || checkNhomMauCD != null || checkUrineCD != null || checkImmuneCD != null || checkAmniocenteCD != null
+                    || checkViSinhCD != null)
                 {
                     multiplesModel.InformationExamination.New = true;
                 }
@@ -386,6 +412,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_UrineController detail_UrineController = new Detail_UrineController();
                 Detail_ImmuneController detail_ImmuneController = new Detail_ImmuneController();
                 Detail_AmniocenteController detail_AmniocenteController = new Detail_AmniocenteController();
+                Detail_ViSinhController detail_ViSinhController = new Detail_ViSinhController();
                 ClinicalsController clinicalsController = new ClinicalsController();
                 //CayMausController cayMausController = new CayMausController();
                 patientsController.Edit(multiplesModel.Patient);
@@ -397,7 +424,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var UrineEdit = Task.Run(() => detail_UrineController.Edit(multiplesModel));
                 var ImmuneEdit = Task.Run(() => detail_ImmuneController.Edit(multiplesModel));
                 var AmniocenteEdit = Task.Run(() => detail_AmniocenteController.Edit(multiplesModel));
-                var ResultEdit = await Task.WhenAll(CongThucMauEdit, SinhHoaMauEdit, DongMauEdit, NhomMauEdit, UrineEdit, ImmuneEdit, AmniocenteEdit);
+                var ViSinhEdit = Task.Run(() => detail_ViSinhController.Edit(multiplesModel));
+                var ResultEdit = await Task.WhenAll(CongThucMauEdit, SinhHoaMauEdit, DongMauEdit, NhomMauEdit, UrineEdit, ImmuneEdit, AmniocenteEdit, ViSinhEdit);
                 clinicalsController.Edit(multiplesModel);
                 if(multiplesModel.Detail_CTMaus != null)
                 {
@@ -453,6 +481,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     if (checkResultAmniocente == true)
                     {
                         multiplesModel.InformationExamination.ResultDichChocDo = true;
+                    }
+                }
+                if (multiplesModel.Detail_ViSinhs != null)
+                {
+                    var checkResultViSinhs = multiplesModel.Detail_ViSinhs.All(p => p.Result != null || p.ResultNC != null || p.ResultDD != null || p.MatDo != null && p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                    if (checkResultViSinhs == true)
+                    {
+                        multiplesModel.InformationExamination.ResultViSinh = true;
                     }
                 }
                 db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;

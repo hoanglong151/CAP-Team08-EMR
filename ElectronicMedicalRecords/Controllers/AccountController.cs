@@ -11,7 +11,6 @@ using Microsoft.Owin.Security;
 using ElectronicMedicalRecords.Models;
 using Microsoft.Owin.Security.VanLang;
 using System.Collections.Generic;
-
 namespace ElectronicMedicalRecords.Controllers
 {
     [Authorize]
@@ -363,10 +362,10 @@ namespace ElectronicMedicalRecords.Controllers
                                     //get the list of logged in users from the cache
                                     var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
 
-                                    if (!loggedInUsers.ContainsKey(check.Name))
+                                    if (!loggedInUsers.ContainsKey(userId))
                                     {
                                         //add this user to the list
-                                        loggedInUsers.Add(check.Name, DateTime.Now);
+                                        loggedInUsers.Add(userId, DateTime.Now);
                                         //add the list back into the cache
                                         HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
                                     }
@@ -377,7 +376,7 @@ namespace ElectronicMedicalRecords.Controllers
                                     //create a new list
                                     var loggedInUsers = new Dictionary<string, DateTime>();
                                     //add this user to the list
-                                    loggedInUsers.Add(check.Name, DateTime.Now);
+                                    loggedInUsers.Add(userId, DateTime.Now);
                                     //add the list into the cache
                                     HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
                                 }

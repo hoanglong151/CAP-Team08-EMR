@@ -60,7 +60,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_CTMau.CTMau_ID = item.ID;
                     detail_CTMau.InformationExamination_ID = informationID;
                     detail_CTMau.ChiDinh = item.ChiDinh;
-                    detail_CTMau.Result = item.Result;
                     db.Detail_CTMau.Add(detail_CTMau);
                     await db.SaveChangesAsync();
                 }
@@ -77,22 +76,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_CTMau> detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<CTMau> cTMaus = new List<CTMau>();
-            for (int i = 0; i < detail_CTMaus.Count; i++)
-            {
-                var CTMau_ID = detail_CTMaus[i].CTMau_ID;
-                var MauCD = db.CTMaus.FirstOrDefault(p => p.ID == CTMau_ID);
-                MauCD.ChiDinh = detail_CTMaus[i].ChiDinh;
-                MauCD.Result = detail_CTMaus[i].Result;
-                detail_CTMaus[i].InformationExamination_ID = id;
-                cTMaus.Add(MauCD);
-            }
             if (detail_CTMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.CTMau = cTMaus;
             multiplesModel.Detail_CTMaus = detail_CTMaus;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -104,22 +92,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_CTMau> detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == id).ToList();
-            List<CTMau> cTMaus = new List<CTMau>();
-            for(int i = 0; i < detail_CTMaus.Count; i++)
-            {
-                var CTMau_ID = detail_CTMaus[i].CTMau_ID;
-                var MauCD = db.CTMaus.FirstOrDefault(p => p.ID == CTMau_ID);
-                MauCD.ChiDinh = detail_CTMaus[i].ChiDinh;
-                MauCD.Result = detail_CTMaus[i].Result;
-                detail_CTMaus[i].InformationExamination_ID = id;
-                cTMaus.Add(MauCD);
-            }
             if (detail_CTMaus == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.CTMau = cTMaus;
             multiplesModel.Detail_CTMaus = detail_CTMaus;
             return PartialView("_Edit", multiplesModel);
         }
@@ -160,7 +137,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_CTMau.CTMau_ID = item.ID;
                     detail_CTMau.InformationExamination_ID = informationID;
                     detail_CTMau.ChiDinh = item.ChiDinh;
-                    detail_CTMau.Result = item.Result;
                     db.Detail_CTMau.Add(detail_CTMau);
                     await db.SaveChangesAsync();
                 }

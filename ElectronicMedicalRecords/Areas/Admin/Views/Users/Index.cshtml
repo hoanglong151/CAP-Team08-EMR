@@ -76,7 +76,7 @@
                                     <td>
                                         <div class="statusUser">
                                             <img class="avatar" src="@item.Image" />
-                                            @if (loggedOnUsers.ContainsKey(item.Name))
+                                            @if (loggedOnUsers.ContainsKey(item.UserID))
                                             {
                                                 <div class="LoggedInUserBox online"></div>
                                             }
@@ -86,7 +86,8 @@
                                             }
                                         </div>
                                     </td>
-                                    <td class="checkUserOnline">@item.Name</td>
+                                    <td hidden class="checkUserOnline">@item.UserID</td>
+                                    <td>@item.Name</td>
                                     @if (item.IsShow == false)
                                     {
                                         <td>

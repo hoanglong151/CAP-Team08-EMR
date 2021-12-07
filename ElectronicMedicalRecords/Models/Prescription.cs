@@ -27,8 +27,8 @@ namespace ElectronicMedicalRecords.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Diagnostic> Diagnostics { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
-        public virtual InformationExamination InformationExamination { get; set; }
     }
 }

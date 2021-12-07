@@ -36,9 +36,9 @@ namespace ElectronicMedicalRecords.Models
     
         public virtual Gender Gender { get; set; }
         public virtual HomeTown HomeTown { get; set; }
-        public virtual Nation Nation { get; set; }
-        public virtual Nation1 Nation1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
+        public virtual Nation Nation { get; set; }
+        public virtual Nation1 Nation1 { get; set; }
     }
 }

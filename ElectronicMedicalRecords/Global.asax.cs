@@ -1,3 +1,4 @@
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -38,7 +39,7 @@ namespace ElectronicMedicalRecords
 
             if (User.Identity.IsAuthenticated)
             {
-                var userName = User.Identity.Name;
+                var userName = User.Identity.GetUserId();
                 if (loggedInUsers != null)
                 {
                     loggedInUsers[userName] = DateTime.Now;
@@ -50,7 +51,7 @@ namespace ElectronicMedicalRecords
             {
                 foreach (var item in loggedInUsers.ToList())
                 {
-                    if (item.Value < DateTime.Now.AddMinutes(-1))
+                    if (item.Value < DateTime.Now.AddMinutes(-10))
                     {
                         loggedInUsers.Remove(item.Key);
                     }

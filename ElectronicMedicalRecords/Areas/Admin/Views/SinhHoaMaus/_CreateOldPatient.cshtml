@@ -64,7 +64,6 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th hidden></th>
                 <th>Chỉ Số Cân Bằng</th>
             </tr>
         </thead>
@@ -81,9 +80,6 @@
                     <td>
                         <input value="@Model.SinhHoaMau[i].NameTest" type="text" name="SinhHoaMau[@i].NameTest" hidden />
                         <label class="form-check-label" for="customColorCheck-@Model.SinhHoaMau[i].ID">@Model.SinhHoaMau[i].NameTest</label>
-                    </td>
-                    <td hidden>
-                        <input value="@Model.SinhHoaMau[i].Result" type="text" name="SinhHoaMau[@i].Result" hidden />
                     </td>
                     <td>
                         <input value="@Model.SinhHoaMau[i].CSBT" type="text" name="SinhHoaMau[@i].CSBT" hidden />

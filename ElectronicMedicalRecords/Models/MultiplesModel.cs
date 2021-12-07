@@ -30,7 +30,6 @@ namespace ElectronicMedicalRecords.Models
         public List<ViSinh> ViSinh { get; set; }
         public List<Detail_ViSinh> Detail_ViSinhs { get; set; }
         public Clinical Clinical { get; set; }
-
         public CayMau CayMau { get; set; }
     }
 }

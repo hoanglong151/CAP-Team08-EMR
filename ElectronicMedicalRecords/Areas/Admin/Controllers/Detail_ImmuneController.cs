@@ -61,7 +61,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Immune.Immue_ID = item.ID;
                     detail_Immune.InformationExamination_ID = informationID;
                     detail_Immune.ChiDinh = item.ChiDinh;
-                    detail_Immune.Result = item.Result;
                     db.Detail_Immune.Add(detail_Immune);
                     await db.SaveChangesAsync();
                 }
@@ -78,22 +77,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Immune> detail_Immunes = db.Detail_Immune.Where(p => p.InformationExamination_ID == id).ToList();
-            List<Immune> iMmunes = new List<Immune>();
-            for (int i = 0; i < detail_Immunes.Count; i++)
-            {
-                var Immune_ID = detail_Immunes[i].Immue_ID;
-                var ImmuneCD = db.Immunes.FirstOrDefault(p => p.ID == Immune_ID);
-                ImmuneCD.ChiDinh = detail_Immunes[i].ChiDinh;
-                ImmuneCD.Result = detail_Immunes[i].Result;
-                detail_Immunes[i].InformationExamination_ID = id;
-                iMmunes.Add(ImmuneCD);
-            }
             if (detail_Immunes == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Immune = iMmunes;
             multiplesModel.Detail_Immunes = detail_Immunes;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -105,22 +93,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Immune> detail_Immunes = db.Detail_Immune.Where(p => p.InformationExamination_ID == id).ToList();
-            List<Immune> iMmunes = new List<Immune>();
-            for (int i = 0; i < detail_Immunes.Count; i++)
-            {
-                var Immune_ID = detail_Immunes[i].Immue_ID;
-                var ImmuneCD = db.Immunes.FirstOrDefault(p => p.ID == Immune_ID);
-                ImmuneCD.ChiDinh = detail_Immunes[i].ChiDinh;
-                ImmuneCD.Result = detail_Immunes[i].Result;
-                detail_Immunes[i].InformationExamination_ID = id;
-                iMmunes.Add(ImmuneCD);
-            }
             if (detail_Immunes == null)
             {
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Immune = iMmunes;
             multiplesModel.Detail_Immunes = detail_Immunes;
             return PartialView("_Edit", multiplesModel);
         }
@@ -161,7 +138,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_Immune.Immue_ID = item.ID;
                     detail_Immune.InformationExamination_ID = informationID;
                     detail_Immune.ChiDinh = item.ChiDinh;
-                    detail_Immune.Result = item.Result;
                     db.Detail_Immune.Add(detail_Immune);
                     await db.SaveChangesAsync();
                 }

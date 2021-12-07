@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < Model.SinhHoaMau.Count(); i++)
+            @for (int i = 0; i < Model.Detail_SinhHoaMaus.Count(); i++)
             {
                 <tr>
                     <td hidden>
@@ -26,18 +26,18 @@
                     </td>
                     <td>
                         @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
-                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_SinhHoaMaus[i].ID" name="Detail_SinhHoaMaus[@i].ChiDinh">
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_SinhHoaMaus[i].SinhHoaMau_ID" name="Detail_SinhHoaMaus[@i].SinhHoaMau_ID">
                         <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
                     </td>
                     <td>
-                        <label class="form-check-label">@Model.SinhHoaMau[i].NameTest</label>
+                        <label class="form-check-label">@Model.Detail_SinhHoaMaus[i].SinhHoaMau.NameTest</label>
                     </td>
                     <td>
                         @Model.Detail_SinhHoaMaus[i].Result
                     </td>
                     <td>
                         @*@Model.SinhHoaMau[i].CSBT*@
-                        @Html.Raw(Model.SinhHoaMau[i].CSBT)
+                        @Html.Raw(Model.Detail_SinhHoaMaus[i].SinhHoaMau.CSBT)
                     </td>
                 </tr>
             }

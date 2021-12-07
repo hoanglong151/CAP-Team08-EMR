@@ -31,12 +31,52 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             List<string> listUser = new List<string>();
             var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
-            foreach(var user in usersOnline)
+            if(usersOnline != null)
             {
-                listUser.Add(user.Key);
+                foreach (var user in usersOnline)
+                {
+                    listUser.Add(user.Key);
+                }
+                return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { data = listUser }, JsonRequestBehavior.AllowGet);
+            else if(usersOnline == null)
+            {
+                //create a new list
+                var loggedInUsers = new Dictionary<string, DateTime>();
+                //add this user to the list
+                loggedInUsers.Add(User.Identity.GetUserId(), DateTime.Now);
+                //add the list into the cache
+                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+                foreach (var user in usersOnline)
+                {
+                    listUser.Add(user.Key);
+                }
+                return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login","Account", new { Area = "" });
+            }
         }
+
+        //[HttpPost]
+        //public ActionResult ExtendStatus(string extendName)
+        //{
+        //    var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+        //    if (usersOnline != null)
+        //    {
+        //        foreach (var user in usersOnline)
+        //        {
+        //            if(user.Key == extendName)
+        //            {
+        //                usersOnline.Remove(user.Key);
+        //                usersOnline.Add(user.Key, DateTime.Now);
+        //            }
+        //        }
+        //    }
+        //    return RedirectToAction("Status", "Users");
+        //}
 
         [ChildActionOnly]
         public ActionResult RenderUser()

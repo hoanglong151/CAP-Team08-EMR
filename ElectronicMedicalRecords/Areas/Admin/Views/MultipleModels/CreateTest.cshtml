@@ -6,7 +6,7 @@
     }
 
         .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -5px;
+            margin-top: -6px;
         }
 
     .name-Medication .choices__input--cloned {
@@ -67,6 +67,9 @@
 
     .navbar-nav {
         display: none
+    }
+    .choices[data-type*=select-one].is-open:after{
+        margin-top: -10px;
     }
 </style>
 <header class="mb-3">
@@ -143,7 +146,7 @@
                                             @{
                                                 Html.RenderAction("CreateOldPatient", "Patients", new { id = Model.Patient.ID });
                                                 Html.RenderAction("CreateOldPatient", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                //Html.RenderAction("Create", "Medications");
+                                                Html.RenderAction("CreateOldPatient", "Prescription_Detail");
                                             }
                                         </div>
                                     </div>
@@ -253,7 +256,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "CayMaus");
+                                        Html.RenderAction("CreateOldPatient", "ViSinhs");
                                     }
                                 </div>
                             </section>
@@ -267,7 +270,7 @@
 @section scripts{
     <script>
         var k = 1;
-        var count = [0, 0, 0, 0, 0, 0, 0];
+        var count = [0, 0, 0, 0, 0, 0, 0, 0];
         var arrTests = [];
         var arrSinhHoaMau = [];
         var arrDongMau = [];
@@ -275,6 +278,7 @@
         var arrUrine = [];
         var arrImmune = [];
         var arrAmniocente = [];
+        var arrViSinh = [];
         /*Load CD Sinh hoa Mau*/
         function loadDetailTestsSHM() {
             $('#tableNewSinhHoaMau').DataTable({
@@ -451,7 +455,6 @@
                 },
             })
         }
-
         /*Load Detail Test*/
         function loadDetailTests() {
             $('#tableNewBloods').DataTable({
@@ -504,7 +507,6 @@
                     },
                 })
         }
-
         /*Load Detail Test DM*/
         function loadDetailTestsDM() {
             $('#tableNewDM').DataTable({
@@ -553,7 +555,6 @@
                     },
                 })
         }
-
         /*Load Detail Test Nhóm Máu*/
         function loadDetailTestsNM() {
             $('#tableNewNM').DataTable({
@@ -593,7 +594,48 @@
                         "search": "Tìm kiếm:",
                     },
                 })
-            }
+        }
+        /*Load Detail Test ViSinh*/
+        function loadDetailTestsViSinh() {
+            $('#tableNewViSinhs').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("LoadDetailVS", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrViSinh
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "Chỉ Định",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='ViSinh.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 7 + ',' + '"ViSinh-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "NameTest",
+                            "name": "Tên Xét Nghiệm",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.NameTest + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
         var tableNewCD = $('*.tableNewChiDinh');
         var destroyTable = $('*#destroytable');
         tableNewCD.each((index, table) => {
@@ -634,6 +676,10 @@
                     var existAmniocente = arrAmniocente.indexOf("" + id);
                     arrAmniocente.splice(existAmniocente, 1);
                     break;
+                case 7:
+                    var existViSinh = arrViSinh.indexOf("" + id);
+                    arrViSinh.splice(existViSinh, 1);
+                    break;
             }
             count[numTable]--;
             CountTests[numTable].innerHTML = count[numTable];
@@ -644,10 +690,11 @@
             $("#" + row + id).prop("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
         }
-        //var formatCss = document.querySelector('.choices__list--single');
-        //formatCss.classList.add('form-control');
+        var formatCss = document.querySelector('.choices__list--single');
+        formatCss.classList.add('form-control');
+        formatCss.style.paddingLeft = '12px';
 
-        @*var select = document.querySelector('#NameMedication');
+        var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
             $.ajax({
@@ -681,7 +728,7 @@
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
             k--;
-        }*@
+        }
         var listTable = $('*.tableLoad');
         listTable.each((index, table) => {
             $('#' + table.id).DataTable({
@@ -726,6 +773,9 @@
                             break;
                         case 6:
                             arrAmniocente = [];
+                            break;
+                        case 7:
+                            arrViSinh = [];
                             break;
                     }
                     list.each((index, value) => {
@@ -790,6 +840,9 @@
                     case 6:
                         arrAmniocente.push(id);
                         break;
+                    case 7:
+                        arrViSinh.push(id);
+                        break;
                 }
             } else {
                 count[indextable]--;
@@ -823,6 +876,10 @@
                     case 6:
                         const indexAmniocente = arrAmniocente.indexOf("" + id);
                         arrAmniocente.splice(indexAmniocente, 1);
+                        break;
+                    case 7:
+                        const indexViSinh = arrViSinh.indexOf("" + id);
+                        arrViSinh.splice(indexViSinh, 1);
                         break;
                 }
             }

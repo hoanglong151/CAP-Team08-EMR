@@ -1,0 +1,74 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+<style>
+    .mg-10 {
+        margin: 10px 0;
+    }
+</style>
+@for (int i = 0; i < Model.Detail_ViSinhs.Count(); i++)
+{
+    <a class="btn btn-primary" style="margin-bottom:10px" data-bs-toggle="collapse" href="#collapse-@Model.Detail_ViSinhs[i].ViSinh_ID" role="button" aria-expanded="false" aria-controls="collapseExample">
+        @Model.Detail_ViSinhs[i].ViSinh.NameTest
+    </a>
+    <div class="collapse" id="collapse-@Model.Detail_ViSinhs[i].ViSinh_ID">
+        <div style="padding: 1rem 0;">
+            <h5>@Model.Detail_ViSinhs[i].ViSinh.NameTest</h5>
+            @switch (Model.Detail_ViSinhs[i].ViSinh_ID)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 28:
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 39:
+                case 40:
+                case 41:
+                case 42:
+                case 43:
+                    <input value="@Model.Detail_ViSinhs[i].InformationExamination_ID" name="Detail_ViSinhs[@i].InformationExamination_ID" hidden />
+                    <input value="@Model.Detail_ViSinhs[i].Price" name="Detail_ViSinhs[@i].Price" hidden />
+                    <input value="@Model.Detail_ViSinhs[i].ViSinh_ID" name="Detail_ViSinhs[@i].ViSinh_ID" hidden />
+                    <select value="@Model.Detail_ViSinhs[i].Result" name="Detail_ViSinhs[@i].Result" id="Result" class="form-select" disabled>
+                        <option value="@Model.Detail_ViSinhs[i].Result" disabled selected>@Model.Detail_ViSinhs[i].Result</option>
+                    </select>
+                    break;
+                default:
+                    <input value="@Model.Detail_ViSinhs[i].ViSinh_ID" name="Detail_ViSinhs[@i].ViSinh_ID" hidden />
+                    <input value="@Model.Detail_ViSinhs[i].InformationExamination_ID" name="Detail_ViSinhs[@i].InformationExamination_ID" hidden />
+                    <input value="@Model.Detail_ViSinhs[i].Price" name="Detail_ViSinhs[@i].Price" hidden />
+                    <div class="mg-10">
+                        <label>Kết Quả Nuôi Cấy</label>
+                        <textarea name="Detail_ViSinhs[@i].ResultNC" id="Detail_ViSinhs[@i].ResultNC" class="editor">@Model.Detail_ViSinhs[i].ResultNC</textarea>
+                        @Html.ValidationMessageFor(model => model.Detail_ViSinhs[i].ResultNC, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mg-10">
+                        <label>Kết Quả Định Danh</label>
+                        <textarea name="Detail_ViSinhs[@i].ResultDD" id="Detail_ViSinhs[@i].ResultDD" class="editor">@Model.Detail_ViSinhs[i].ResultDD</textarea>
+                        @Html.ValidationMessageFor(model => model.Detail_ViSinhs[i].ResultDD, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mg-10">
+                        <label>Mật Độ</label>
+                        <textarea disabled name="Detail_ViSinhs[@i].MatDo" id="Detail_ViSinhs[@i].MatDo" class="editor">@Model.Detail_ViSinhs[i].MatDo</textarea>
+                        @Html.ValidationMessageFor(model => model.Detail_ViSinhs[i].MatDo, "", new { @class = "text-danger" })
+                    </div>
+                    break;
+            }
+        </div>
+    </div>
+}
