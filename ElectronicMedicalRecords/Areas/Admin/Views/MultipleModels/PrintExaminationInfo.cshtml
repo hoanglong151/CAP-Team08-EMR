@@ -1,0 +1,227 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+@{
+    ViewBag.Title = "PrintExaminationInfo";
+    Layout = "~/Areas/Admin/Views/Shared/Print.cshtml";
+}
+<style>
+    p{
+        text-align:left
+    }
+</style>
+<div class="container bootstrap snippets bootdeys">
+    <div class="row body-pay">
+        <div class="col-sm-12">
+            <div class="panel panel-default invoice" id="invoice">
+                <div class="panel-body">
+                    <div class="invoice-ribbon"><div class="ribbon-inner">PAID</div></div>
+                    <div class="row bg-row">
+
+                        <div class="col-sm-6 top-left">
+                            <img class="logo" src="~/asset/vl-logo.png" />
+                        </div>
+
+                        <div class="col-sm-6 top-right">
+                            <h3 class="marginright txt-white">@Model.Patient.MaBN</h3>
+                            <span class="marginright txt-white">@DateTime.Now</span>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
+                        <div class="d-flex">
+                            <div class="col-xs-6 from w-100">
+                                <p>Bệnh Nhân : @Model.Patient.Name</p>
+                                <p>Địa Chỉ: @Model.Patient.Address</p>
+                                <p>Giới Tính: @ViewBag.Gender</p>
+                            </div>
+                            <div class="col-xs-6 to w-100">
+                                <p>Ngày Sinh: @Model.Patient.BirthDate</p>
+                                <p>Số Điện Thoại: @Model.Patient.Phone</p>
+                                <p>Số BHYT: @Model.Patient.InsuranceCode</p>
+                            </div>
+                        </div>
+                        <p class="lead marginbottom">Thông Tin Bệnh Án</p>
+                        <div class="col-xs-12 to">
+                            <p>Tiền Sử: @Model.Patient.MedicalHistory</p>
+                            <p>Bệnh Sử: @Model.Patient.HistoryDisease</p>
+                        </div>
+
+                        @*<div class="col-xs-4 text-right payment-details">
+            <p class="lead marginbottom payment-info">Payment details</p>
+            <p>Date: 14 April 2014</p>
+            <p>VAT: DK888-777 </p>
+            <p>Total Amount: $1019</p>
+            <p>Account Name: Flatter</p>
+        </div>*@
+
+                    </div>
+
+                    <div class="row">
+                        <p class="lead marginbottom">Thông Tin Khám Bệnh</p>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex justify-content-start">
+                                <p class="col-xs-6 w-100">Ngày Khám: @Model.InformationExamination.DateExamine</p>
+                                <p class="col-xs-6 w-100">Bác Sĩ: @ViewBag.Doctor</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Nhịp Tim: @Model.InformationExamination.HeartBeat</p>
+                                <p class="col-xs-4 w-100">Nhịp Thở: @Model.InformationExamination.Breathing</p>
+                                <p class="col-xs-4 w-100">Huyết Áp: @Model.InformationExamination.BloodPressure</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Cân Nặng: @Model.InformationExamination.Weight</p>
+                                <p class="col-xs-4 w-100">Chiều Cao: @Model.InformationExamination.Height</p>
+                                <p class="col-xs-4 w-100">Tình Trạng: @ViewBag.PatientStatus</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row body-pay">
+                        <p class="lead marginbottom">Khám Tổng Quát</p>
+                        <h5>1. Nội Khoa</h5>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex justify-content-start">
+                                <p class="col-xs-4 w-100">Tuần Hoàn: @Model.Clinical.Circles</p>
+                                <p class="col-xs-4 w-100">Hô Hấp: @Model.Clinical.Respiration</p>
+                                <p class="col-xs-4 w-100">Tiêu Hóa: @Model.Clinical.Digestion</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Thận-Tiết niệu: @Model.Clinical.KidneyUrology</p>
+                                <p class="col-xs-4 w-100">Cơ-Xương-Khớp: @Model.Clinical.MuscleBoneJoint</p>
+                                <p class="col-xs-4 w-100">Thần Kinh: @Model.Clinical.Nerve</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Tâm Thần: @Model.Clinical.Mental</p>
+                            </div>
+                        </div>
+                        <h5>2. Ngoại Khoa</h5>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Ngoại Khoa: @Model.Clinical.Surgery</p>
+                            </div>
+                        </div>
+                        <h5>3. Sản Phụ Khoa</h5>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Ngoại Khoa: @Model.Clinical.ObstetricsAndGynecology</p>
+                            </div>
+                        </div>
+                        <h5>4. Mắt</h5>
+                        <p>- Kết quả khám thị lực:</p>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Không kính:</p>
+                                <p class="col-xs-4 w-100">Mắt phải: @Model.Clinical.RightEyesNoGlasses/10</p>
+                                <p class="col-xs-4 w-100">Mắt trái: @Model.Clinical.LeftEyesNoGlasses/10</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Có kính:</p>
+                                <p class="col-xs-4 w-100">Mắt phải: @Model.Clinical.RightEyesGlasses/10</p>
+                                <p class="col-xs-4 w-100">Mắt trái: @Model.Clinical.LeftEyesGlasses/10</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Các bệnh về mắt: @Model.Clinical.EyesExamination</p>
+                            </div>
+                        </div>
+                        <h5>5. Tai-Mũi-Họng</h5>
+                        <p>- Kết quả khám thính lực:</p>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Tai trái:</p>
+                                <p class="col-xs-4 w-100">Nói thường: @Model.Clinical.LeftEarSay m</p>
+                                <p class="col-xs-4 w-100">Nói thầm: @Model.Clinical.LeftEarWhisper m</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Tai phải:</p>
+                                <p class="col-xs-4 w-100">Nói thường: @Model.Clinical.RightEarSay m</p>
+                                <p class="col-xs-4 w-100">Nói thầm: @Model.Clinical.RightEarWhisper m</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Các bệnh về tai mũi họng: @Model.Clinical.EarNoseThroatExamination</p>
+                            </div>
+                        </div>
+                        <h5>6. Răng-Hàm-Mặt</h5>
+                        <p>- Kết quả khám:</p>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex">
+                                <p class="col-xs-6 w-100">Hàm trên: @Model.Clinical.UpperJaw</p>
+                                <p class="col-xs-6 w-100">Hàm dưới: @Model.Clinical.LowerJaw</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Các bệnh về Răng-Hàm-Mặt: @Model.Clinical.TeethJawFaceExamination</p>
+                            </div>
+                        </div>
+                        <h5>7. Da Liễu</h5>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex">
+                                <p class="col-xs-4 w-100">Da liễu:</p>
+                                <p class="col-xs-8 w-100">Hàm dưới: @Model.Clinical.LowerJaw</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="col-xs-12 w-100">Các bệnh về Răng-Hàm-Mặt: @Model.Clinical.Dermatology</p>
+                            </div>
+                        </div>
+                        @*<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" style="width:5%">#</th>
+                    <th style="width:50%">Item</th>
+                    <th class="text-right" style="width:15%">Quantity</th>
+                    <th class="text-right" style="width:15%">Unit Price</th>
+                    <th class="text-right" style="width:15%">Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>Flatter Theme</td>
+                    <td class="text-right">10</td>
+                    <td class="text-right">$18</td>
+                    <td class="text-right">$180</td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td>Flat Icons</td>
+                    <td class="text-right">6</td>
+                    <td class="text-right">$59</td>
+                    <td class="text-right">$254</td>
+                </tr>
+                <tr>
+                    <td class="text-center">3</td>
+                    <td>Wordpress version</td>
+                    <td class="text-right">4</td>
+                    <td class="text-right">$95</td>
+                    <td class="text-right">$285</td>
+                </tr>
+                <tr class="last-row">
+                    <td class="text-center">4</td>
+                    <td>Server Deployment</td>
+                    <td class="text-right">1</td>
+                    <td class="text-right">$300</td>
+                    <td class="text-right">$300</td>
+                </tr>
+            </tbody>
+        </table>*@
+
+                    </div>
+
+                    <div class="row body-pay">
+                        <div class="col-xs-6 margintop">
+                            <p class="lead marginbottom">THANK YOU!</p>
+                            <a href="javascript:window.print()" class="btn btn-success" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                            @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
+                        </div>
+                        @*<div class="col-xs-6 text-right pull-right invoice-total">
+                            <p>Subtotal : $1019</p>
+                            <p>Discount (10%) : $101 </p>
+                            <p>VAT (8%) : $73 </p>
+                            <p>Total : $991 </p>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

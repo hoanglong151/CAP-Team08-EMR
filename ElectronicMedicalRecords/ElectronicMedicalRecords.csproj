@@ -2753,7 +2753,7 @@
     <Content Include="Areas\Admin\Views\Clinicals\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Clinicals\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Clinicals\_DetailIE.cshtml" />
-    <Content Include="Areas\Admin\Views\MultipleModels\Print.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Print.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\EditByID.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\CreateTest.cshtml" />
     <Content Include="Areas\Admin\Views\ViSinhs\Create.cshtml" />
@@ -2782,6 +2782,7 @@
     <Content Include="Areas\Admin\Views\Prescription_Detail\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_DetailIE.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintExaminationInfo.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
