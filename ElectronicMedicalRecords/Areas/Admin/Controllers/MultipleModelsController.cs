@@ -21,9 +21,25 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Print()
+        public ActionResult PrintExaminationInfo()
         {
-            return View();
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            return View(multiplesModel);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult PrintExaminationInfoPost(MultiplesModel multiplesModel)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            Session["MultipleModels"] = multiplesModel;
+            return Json(new { success = true, data = multiplesModel });
         }
 
         // GET: Admin/MultipleModels/Details/5

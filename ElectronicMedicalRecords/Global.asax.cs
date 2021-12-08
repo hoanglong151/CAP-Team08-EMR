@@ -51,7 +51,7 @@ namespace ElectronicMedicalRecords
             {
                 foreach (var item in loggedInUsers.ToList())
                 {
-                    if (item.Value < DateTime.Now.AddMinutes(-10))
+                    if (item.Value < DateTime.Now.AddMinutes(-1))
                     {
                         loggedInUsers.Remove(item.Key);
                     }

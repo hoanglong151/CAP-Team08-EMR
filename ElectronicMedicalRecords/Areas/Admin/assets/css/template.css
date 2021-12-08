@@ -9,22 +9,26 @@ body {
 }
 
 .logo {
-    width: 17vw;
+    width: 10rem;
+    height: 100%;
+    padding: 1rem 0;
 }
 
 .bg-row {
     background-color: #009688;
 }
 
+.lead{
+    font-weight:500
+}
 /*Invoice*/
 .invoice .top-left {
-    font-size: 65px;
     color: #3ba0ff;
 }
 
 .invoice .top-right {
     text-align: right;
-    padding-right: 37px;
+    padding: 1rem 70px 1rem 0;
 }
 
 .invoice .table-row {
@@ -59,12 +63,20 @@ body {
 }
 
 .invoice-ribbon {
-    width: 85px;
-    height: 88px;
+    width: 84px;
+    height: 100px;
     overflow: hidden;
     position: absolute;
-    top: -1px;
-    right: 14px;
+    top: 0px;
+    right: -12px;
+}
+
+.body-pay {
+    background-color: white
+}
+
+.panel-body{
+    position: relative
 }
 
 .ribbon-inner {
@@ -120,8 +132,7 @@ body {
 }
 
 @media print {
-    .invoice {
-        width: 900px;
-        height: 800px;
+    #invoice-print{
+        display: none!important;
     }
 }

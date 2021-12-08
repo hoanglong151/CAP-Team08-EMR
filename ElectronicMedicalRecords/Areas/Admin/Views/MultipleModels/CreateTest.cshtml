@@ -77,7 +77,7 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("CreateTest", "MultipleModels", FormMethod.Post))
+@using (Html.BeginForm("CreateTest", "MultipleModels", FormMethod.Post, new { id = "createTest"}))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -130,6 +130,18 @@
                             class="btn btn-primary me-1 mb-1">
                         Tạo Hồ Sơ
                     </button>
+                    <div class="btn-group dropend me-1 mb-1">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            In
+                        </button>
+                        <div class="dropdown-menu" style="margin: 0px;">
+                            <h6 class="dropdown-header">Chọn Mục In</h6>
+                            <a class="dropdown-item" id="PrintExamInFo">In Thông Tin Khám Bệnh</a>
+                            <a class="dropdown-item" id="PrintTestSubclinical">In Phiếu Chỉ Định Xét Nghiệm</a>
+                            <a class="dropdown-item" id="PrintToTal" target="_blank" href="#">In Hồ Sơ, Kết Quả Xét Nghiệm</a>
+                            <a class="dropdown-item" id="PrintPrescription" target="_blank" href="#">In Toa Thuốc</a>
+                        </div>
+                    </div>
                     <button type="reset"
                             class="btn btn-light-secondary me-1 mb-1">
                         Reset
@@ -983,6 +995,23 @@
                     validClass: 'validForm',
                 });
             });
+        })
+
+
+        /*Print Examination Information*/
+        $('#PrintExamInFo').click(function (e) {
+            var dataExam = $('#createTest').serialize();
+            console.log("OK")
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataExam }),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintExaminationInfo", "MultipleModels")", "_blank");
+                    }
+                }
+            })
         })
     </script>
 }
