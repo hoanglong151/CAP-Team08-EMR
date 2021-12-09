@@ -42,6 +42,155 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { success = true, data = multiplesModel });
         }
 
+        public ActionResult PrintAllTestInfo()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkCTMaus = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
+            var checkSHMaus = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
+            var checkDMaus = multiplesModel.DongMau.Where(p => p.ChiDinh == true).ToList();
+            var checkNhomMaus = multiplesModel.NhomMau.Where(p => p.ChiDinh == true).ToList();
+            var checkNuocTieu = multiplesModel.Urine.Where(p => p.ChiDinh == true).ToList();
+            var checkMienDich = multiplesModel.Immune.Where(p => p.ChiDinh == true).ToList();
+            var checkDichChocDo = multiplesModel.Amniocente.Where(p => p.ChiDinh == true).ToList();
+            var checkViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.CTMaus = checkCTMaus;
+            ViewBag.SHMaus = checkSHMaus;
+            ViewBag.DMaus = checkDMaus;
+            ViewBag.NhomMaus = checkNhomMaus;
+            ViewBag.NuocTieu = checkNuocTieu;
+            ViewBag.MienDich = checkMienDich;
+            ViewBag.DichChocDo = checkDichChocDo;
+            ViewBag.ViSinh = checkViSinh;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestCTMaus()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkCTMaus = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.CTMaus = checkCTMaus;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestSinhHoaMaus()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkSHMaus = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.SHMaus = checkSHMaus;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestDongMaus()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkDMaus = multiplesModel.DongMau.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.DMaus = checkDMaus;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestNhomMaus()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkNhomMaus = multiplesModel.NhomMau.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.NhomMaus = checkNhomMaus;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestNuocTieus()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkNuocTieu = multiplesModel.Urine.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.NuocTieus = checkNuocTieu;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestMienDichs()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkMienDich = multiplesModel.Immune.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.MienDichs = checkMienDich;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestDichChocDos()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkDichChocDo = multiplesModel.Amniocente.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.DichChocDos = checkDichChocDo;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintTestViSinhs()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
+            ViewBag.ViSinhs = checkViSinh;
+            return View(multiplesModel);
+        }
+
         // GET: Admin/MultipleModels/Details/5
         public ActionResult Details(int id)
         {

@@ -2787,6 +2787,15 @@
     <Content Include="Areas\Admin\Views\Prescription_Detail\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\PrintExaminationInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintAllTestInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestCTMaus.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestSinhHoaMaus.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestDongMaus.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestNhomMaus.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestNuocTieus.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestMienDichs.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestDichChocDos.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintTestViSinhs.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

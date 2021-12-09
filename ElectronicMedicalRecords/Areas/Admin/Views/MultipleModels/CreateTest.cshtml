@@ -71,6 +71,9 @@
     .choices[data-type*=select-one].is-open:after{
         margin-top: -10px;
     }
+    a{
+        cursor:pointer
+    }
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -137,7 +140,7 @@
                         <div class="dropdown-menu" style="margin: 0px;">
                             <h6 class="dropdown-header">Chọn Mục In</h6>
                             <a class="dropdown-item" id="PrintExamInFo">In Thông Tin Khám Bệnh</a>
-                            <a class="dropdown-item" id="PrintTestSubclinical">In Phiếu Chỉ Định Xét Nghiệm</a>
+                            <a class="dropdown-item" id="PrintAllTestSubclinical">In Phiếu Chỉ Định Xét Nghiệm</a>
                             <a class="dropdown-item" id="PrintToTal" target="_blank" href="#">In Hồ Sơ, Kết Quả Xét Nghiệm</a>
                             <a class="dropdown-item" id="PrintPrescription" target="_blank" href="#">In Toa Thuốc</a>
                         </div>
@@ -1001,7 +1004,6 @@
         /*Print Examination Information*/
         $('#PrintExamInFo').click(function (e) {
             var dataExam = $('#createTest').serialize();
-            console.log("OK")
             $.ajax({
                 url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
                 type: "POST",
@@ -1009,6 +1011,141 @@
                 success: function (res) {
                     if (res.success) {
                         window.open("@Url.Action("PrintExaminationInfo", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print All Test Subclinical*/
+        $('#PrintAllTestSubclinical').click(function (e) {
+            var dataAllTest = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataAllTest }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintAllTestInfo", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test CTMau*/
+        $('#PrintCTMaus').click(function (e) {
+            var dataTestCTMaus = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestCTMaus }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestCTMaus", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Sinh Hóa Máu*/
+        $('#PrintSinhHoaMaus').click(function (e) {
+            var dataTestSHMs = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestSHMs }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestSinhHoaMaus", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Đông Máu*/
+        $('#PrintDongMaus').click(function (e) {
+            var dataTestDMaus = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestDMaus }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestDongMaus", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Nhóm Máu*/
+        $('#PrintNhomMaus').click(function (e) {
+            var dataTestNhomMaus = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestNhomMaus }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestNhomMaus", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Nước Tiểu*/
+        $('#PrintNuocTieus').click(function (e) {
+            var dataTestNuocTieus = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestNuocTieus }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestNuocTieus", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Miễn Dịch*/
+        $('#PrintMienDichs').click(function (e) {
+            var dataTestMienDichs = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestMienDichs }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestMienDichs", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Dịch Chọc Dò*/
+        $('#PrintDichChocDos').click(function (e) {
+            var dataTestDichChocDos = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestDichChocDos }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestDichChocDos", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Detail Test Vi Sinh*/
+        $('#PrintViSinhs').click(function (e) {
+            var dataTestViSinhs = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestViSinhs }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintTestViSinhs", "MultipleModels")", "_blank");
                     }
                 }
             })

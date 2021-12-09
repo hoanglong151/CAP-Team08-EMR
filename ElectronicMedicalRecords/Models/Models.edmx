@@ -1198,6 +1198,7 @@
           <EntitySet Name="Patients" EntityType="CP24Team08Model.Patient" />
           <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
           <EntitySet Name="Prescriptions" EntityType="CP24Team08Model.Prescription" />
+          <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
           <EntitySet Name="Religions" EntityType="CP24Team08Model.Religion" />
           <EntitySet Name="SinhHoaMaus" EntityType="CP24Team08Model.SinhHoaMau" />
           <EntitySet Name="sysdiagrams" EntityType="CP24Team08Model.sysdiagram" />
@@ -1340,6 +1341,10 @@
             <End Role="MedicationCategory" EntitySet="MedicationCategories" />
             <End Role="Medication" EntitySet="Medications" />
           </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
+            <End Role="Medication" EntitySet="Medications" />
+            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
+          </AssociationSet>
           <AssociationSet Name="FK_Patient_Nation" Association="CP24Team08Model.FK_Patient_Nation">
             <End Role="Nation" EntitySet="Nations" />
             <End Role="Patient" EntitySet="Patients" />
@@ -1360,12 +1365,7 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
-          <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
-            <End Role="Medication" EntitySet="Medications" />
-            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
-          </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1794,6 +1794,17 @@
           <Property Name="InformationExamination_ID" Type="Int32" />
           <NavigationProperty Name="Diagnostics" Relationship="CP24Team08Model.FK_Diagnostic_Prescription" FromRole="Prescription" ToRole="Diagnostic" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Prescription_InformationExamination" FromRole="Prescription" ToRole="InformationExamination" />
+        </EntityType>
+        <EntityType Name="Prescription_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumMedication" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Medication_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
         </EntityType>
         <EntityType Name="Religion">
           <Key>
@@ -2287,6 +2298,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Prescription_Detail_Medication">
+          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription_Detail">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Patient_Nation">
           <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
@@ -2338,29 +2361,6 @@
         <Association Name="AspNetUserRoles">
           <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Prescription_Detail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NumMedication" Type="Int32" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Medication_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
-        </EntityType>
-        <Association Name="FK_Prescription_Detail_Medication">
-          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medication">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Prescription_Detail">
-              <PropertyRef Name="Medication_ID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2759,6 +2759,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Prescription_Detail">
+            <EntityTypeMapping TypeName="CP24Team08Model.Prescription_Detail">
+              <MappingFragment StoreEntitySet="Prescription_Detail">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="NumMedication" ColumnName="NumMedication" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Religions">
             <EntityTypeMapping TypeName="CP24Team08Model.Religion">
               <MappingFragment StoreEntitySet="Religion">
@@ -2842,17 +2853,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Prescription_Detail">
-            <EntityTypeMapping TypeName="CP24Team08Model.Prescription_Detail">
-              <MappingFragment StoreEntitySet="Prescription_Detail">
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
-                <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="NumMedication" ColumnName="NumMedication" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -28,6 +28,9 @@
                     </div>
                     <hr>
                     <div class="row">
+                        <div style="margin-bottom:12px">
+                            <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                        </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
                             <div class="col-xs-6 from w-100">
@@ -70,8 +73,8 @@
                                 <p class="col-xs-4 w-100">Huyết Áp: @Model.InformationExamination.BloodPressure</p>
                             </div>
                             <div class="d-flex">
-                                <p class="col-xs-4 w-100">Cân Nặng: @Model.InformationExamination.Weight</p>
-                                <p class="col-xs-4 w-100">Chiều Cao: @Model.InformationExamination.Height</p>
+                                <p class="col-xs-4 w-100">Cân Nặng: @Model.InformationExamination.Weight kg</p>
+                                <p class="col-xs-4 w-100">Chiều Cao: @Model.InformationExamination.Height cm</p>
                                 <p class="col-xs-4 w-100">Tình Trạng: @ViewBag.PatientStatus</p>
                             </div>
                         </div>
@@ -209,16 +212,18 @@
 
                     <div class="row body-pay">
                         <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom">THANK YOU!</p>
-                            <a href="javascript:window.print()" class="btn btn-success" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                            <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Chữ Ký Bác Sĩ</p>
+                        </div>
+                        <div class="col-xs-6 margintop">
+                            <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
                             @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
                         </div>
                         @*<div class="col-xs-6 text-right pull-right invoice-total">
-                            <p>Subtotal : $1019</p>
-                            <p>Discount (10%) : $101 </p>
-                            <p>VAT (8%) : $73 </p>
-                            <p>Total : $991 </p>
-                        </div>*@
+            <p>Subtotal : $1019</p>
+            <p>Discount (10%) : $101 </p>
+            <p>VAT (8%) : $73 </p>
+            <p>Total : $991 </p>
+        </div>*@
                     </div>
                 </div>
             </div>
