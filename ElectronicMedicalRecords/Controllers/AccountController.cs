@@ -443,6 +443,9 @@ namespace ElectronicMedicalRecords.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+            usersOnline.Remove(AuthenticationManager.User.Identity.GetUserId());
+            HttpRuntime.Cache["LoggedInUsers"] = usersOnline;
             return RedirectToAction("Login", "Account");
         }
 

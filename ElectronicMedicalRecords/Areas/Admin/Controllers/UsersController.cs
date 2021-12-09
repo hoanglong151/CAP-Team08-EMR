@@ -26,58 +26,51 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var users = db.Users.Include(u => u.HomeTown).Include(u => u.Nation).Include(u => u.Religion).Include(g => g.Gender).ToList();
             return View(users);
         }
-
+        [AllowAnonymous]
         public ActionResult Status()
         {
             db.Configuration.LazyLoadingEnabled = false;
             List<string> listUser = new List<string>();
             var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
-            if(usersOnline != null)
+            if (usersOnline != null)
             {
+                HttpRuntime.Cache["LoggedInUsers"] = usersOnline;
+                if (User.Identity.IsAuthenticated && usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
+                {
+                    usersOnline.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
+                }
                 foreach (var user in usersOnline)
                 {
                     listUser.Add(user.Key);
                 }
-                return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
-            }
-            else if(usersOnline == null)
-            {
-                //create a new list
-                var loggedInUsers = new Dictionary<string, DateTime>();
-                //add this user to the list
-                loggedInUsers.Add(User.Identity.GetUserId(), DateTime.Now);
-                //add the list into the cache
-                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
-                usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
-                foreach (var user in usersOnline)
+                foreach (var item in usersOnline.ToList())
                 {
-                    listUser.Add(user.Key);
+                    if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        usersOnline.Remove(item.Key);
+                    }
                 }
                 return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
             }
+            //else if (usersOnline == null)
+            //{
+            //    //create a new list
+            //    var loggedInUsers = new Dictionary<string, DateTime>();
+            //    //add this user to the list
+            //    loggedInUsers.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
+            //    //add the list into the cache
+            //    usersOnline = loggedInUsers;
+            //    foreach (var user in usersOnline)
+            //    {
+            //        listUser.Add(user.Key);
+            //    }
+            //    return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
+            //}
             else
             {
                 return RedirectToAction("Login","Account", new { Area = "" });
             }
         }
-
-        //[HttpPost]
-        //public ActionResult ExtendStatus(string extendName)
-        //{
-        //    var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
-        //    if (usersOnline != null)
-        //    {
-        //        foreach (var user in usersOnline)
-        //        {
-        //            if(user.Key == extendName)
-        //            {
-        //                usersOnline.Remove(user.Key);
-        //                usersOnline.Add(user.Key, DateTime.Now);
-        //            }
-        //        }
-        //    }
-        //    return RedirectToAction("Status", "Users");
-        //}
 
         [ChildActionOnly]
         public ActionResult RenderUser()

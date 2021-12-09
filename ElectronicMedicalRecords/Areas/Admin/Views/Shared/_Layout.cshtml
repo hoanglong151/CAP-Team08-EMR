@@ -502,7 +502,6 @@
                     success: function (res) {
                         if (res.success) {
                             $('.checkUserOnline').each((index, user) => {
-                                console.log(user)
                                 if (res.data.indexOf(user.innerText) != -1) {
                                     user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
                                     user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
@@ -528,7 +527,7 @@
             console.log("Notification hub started User");
             setInterval(() => {
                 updateUser();
-            }, 100000)
+            }, 30000)
         }).fail((e) => {
             alert(e)
         });
