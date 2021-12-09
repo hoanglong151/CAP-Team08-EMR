@@ -5,45 +5,46 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1cf9d8164afa44e0b71b70f06c85afe3" Name="Diagram1" ZoomLevel="63">
-        <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Amniocente" Width="1.5" PointX="11.25" PointY="40.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="1.5" PointY="36.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3" PointY="41.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="3" PointY="38.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="0.75" PointY="31.125" />
-        <EntityTypeShape EntityType="CP24Team08Model.CayMau" Width="1.5" PointX="10.5" PointY="63.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="10.5" PointY="25.625" />
-        <EntityTypeShape EntityType="CP24Team08Model.CTMau" Width="1.5" PointX="8.25" PointY="21.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_Amniocente" Width="1.5" PointX="13.5" PointY="31.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_CTMau" Width="1.5" PointX="10.5" PointY="21.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_DongMau" Width="1.5" PointX="10.5" PointY="33.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_Immune" Width="1.5" PointX="13.5" PointY="27.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_NhomMau" Width="1.5" PointX="13.5" PointY="23.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_SinhHoaMau" Width="1.5" PointX="16.5" PointY="31.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_Urine" Width="1.5" PointX="16.5" PointY="27.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_ViSinh" Width="1.5" PointX="16.5" PointY="23.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.Diagnostic" Width="1.5" PointX="12.75" PointY="60.625" />
-        <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="10.5" PointY="67.5" />
-        <EntityTypeShape EntityType="CP24Team08Model.DongMau" Width="1.5" PointX="8.25" PointY="33.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="0.75" PointY="28" />
-        <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="3.75" PointY="33" />
-        <EntityTypeShape EntityType="CP24Team08Model.Immune" Width="1.5" PointX="11.25" PointY="37.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="8.25" PointY="25.125" />
-        <EntityTypeShape EntityType="CP24Team08Model.MedicalTestsPrescription" Width="1.5" PointX="10.5" PointY="47.625" />
-        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="10.5" PointY="56.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="8.25" PointY="56.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="3.75" PointY="35.5" />
-        <EntityTypeShape EntityType="CP24Team08Model.Nation1" Width="1.5" PointX="3.75" PointY="22.625" />
-        <EntityTypeShape EntityType="CP24Team08Model.NhomMau" Width="1.5" PointX="11.25" PointY="19" />
-        <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="6" PointY="26.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="6" PointY="23.5" />
-        <EntityTypeShape EntityType="CP24Team08Model.Prescription" Width="1.5" PointX="10.5" PointY="60.5" />
-        <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="0.75" PointY="24.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.SinhHoaMau" Width="1.5" PointX="14.25" PointY="39" />
-        <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Urine" Width="1.5" PointX="14.25" PointY="35.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.User" Width="1.5" PointX="3" PointY="25.875" />
-        <EntityTypeShape EntityType="CP24Team08Model.ViSinh" Width="1.5" PointX="14.25" PointY="21" />
+        <EntityTypeShape EntityType="CP24Team08Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Amniocente" Width="1.5" PointX="8.25" PointY="32.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetRole" Width="1.5" PointX="1.5" PointY="35.625" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="6" PointY="36.625" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="6" PointY="34.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="3.75" PointY="34.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.CayMau" Width="1.5" PointX="10.5" PointY="58.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="16.5" PointY="29.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.CTMau" Width="1.5" PointX="14.25" PointY="34" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_Amniocente" Width="1.5" PointX="10.5" PointY="26" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_CTMau" Width="1.5" PointX="16.5" PointY="26" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_DongMau" Width="1.5" PointX="13.5" PointY="26" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_Immune" Width="1.5" PointX="10.5" PointY="30" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_NhomMau" Width="1.5" PointX="13.5" PointY="22" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_SinhHoaMau" Width="1.5" PointX="10.5" PointY="22" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_Urine" Width="1.5" PointX="13.5" PointY="30" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_ViSinh" Width="1.5" PointX="16.5" PointY="21.625" />
+        <EntityTypeShape EntityType="CP24Team08Model.Diagnostic" Width="1.5" PointX="12.75" PointY="56.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="10.5" PointY="53.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.DongMau" Width="1.5" PointX="11.25" PointY="34.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="0.75" PointY="31.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="0.75" PointY="29.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.Immune" Width="1.5" PointX="8.25" PointY="35.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="8.25" PointY="23.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.MedicalTestsPrescription" Width="1.5" PointX="10.5" PointY="62.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="0.75" PointY="26.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Nation1" Width="1.5" PointX="0.75" PointY="23.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.NhomMau" Width="1.5" PointX="11.25" PointY="19.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="3" PointY="25" />
+        <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="6" PointY="21.875" />
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription" Width="1.5" PointX="10.5" PointY="56.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="3.75" PointY="22" />
+        <EntityTypeShape EntityType="CP24Team08Model.SinhHoaMau" Width="1.5" PointX="8.25" PointY="20.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Urine" Width="1.5" PointX="11.25" PointY="37.125" />
+        <EntityTypeShape EntityType="CP24Team08Model.User" Width="1.5" PointX="6" PointY="24.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.ViSinh" Width="1.5" PointX="14.25" PointY="19.25" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
@@ -78,14 +79,13 @@
         <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
-        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="12.75" PointY="56.5" />
-        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
