@@ -27,7 +27,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public async Task<ActionResult> GetNotification()
         {
-            db.Configuration.ProxyCreationEnabled = true;
             NotificationComponentKTV NCNoti = new NotificationComponentKTV();
             var listNotify = NCNoti.GetInformationExamination();
             var countresult = 0;

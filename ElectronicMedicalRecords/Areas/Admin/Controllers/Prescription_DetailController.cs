@@ -50,13 +50,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            foreach (var prescription_Detail in multiplesModel.Prescription_Details)
+            if(multiplesModel.Prescription_Details != null)
             {
-                if (ModelState.IsValid)
+                foreach (var prescription_Detail in multiplesModel.Prescription_Details)
                 {
-                    prescription_Detail.InformationExamination_ID = multiplesModel.InformationExamination.ID;
-                    db.Prescription_Detail.Add(prescription_Detail);
-                    db.SaveChanges();
+                    if (ModelState.IsValid)
+                    {
+                        prescription_Detail.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                        db.Prescription_Detail.Add(prescription_Detail);
+                        db.SaveChanges();
+                    }
                 }
             }
             ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", multiplesModel.Prescription_Detail.Medication_ID);
