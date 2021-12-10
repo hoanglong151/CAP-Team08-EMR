@@ -72,13 +72,13 @@
                     @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col-md-4 col-12">
+            @*<div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Tình Trạng</label>
                     @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select" })
                     @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

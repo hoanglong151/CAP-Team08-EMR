@@ -24,6 +24,7 @@ namespace ElectronicMedicalRecords.Models
         public bool ChiDinh { get; set; }
         public string NameTest { get; set; }
         public string CSBT { get; set; }
+        public int Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }

@@ -17,7 +17,7 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DiagnosticsCategory()
         {
-            this.Diagnostics = new HashSet<Diagnostic>();
+            this.InformationExaminations = new HashSet<InformationExamination>();
         }
     
         public int ID { get; set; }
@@ -27,6 +27,6 @@ namespace ElectronicMedicalRecords.Models
         public string MDC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnostic> Diagnostics { get; set; }
+        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
     }
 }

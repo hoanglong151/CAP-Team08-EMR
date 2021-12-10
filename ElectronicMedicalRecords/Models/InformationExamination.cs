@@ -42,6 +42,7 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<double> Height { get; set; }
         public Nullable<int> PatientStatus_ID { get; set; }
         public Nullable<int> Patient_ID { get; set; }
+        public Nullable<int> DiagnosticCategory_ID { get; set; }
         public Nullable<bool> ResultCTMau { get; set; }
         public Nullable<bool> ResultSHM { get; set; }
         public Nullable<bool> ResultDMau { get; set; }
@@ -51,6 +52,8 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<bool> ResultDichChocDo { get; set; }
         public Nullable<bool> ResultViSinh { get; set; }
         public Nullable<bool> New { get; set; }
+        public Nullable<int> PriceExamination { get; set; }
+        public Nullable<int> PriceCTMaus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CayMau> CayMaus { get; set; }
@@ -72,6 +75,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_Urine> Detail_Urine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_ViSinh> Detail_ViSinh { get; set; }
+        public virtual DiagnosticsCategory DiagnosticsCategory { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual User User { get; set; }

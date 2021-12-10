@@ -321,6 +321,77 @@
             $('.submenu-item.active').closest('.submenu').addClass('active');
         });
     </script>
+
+    <script type="text/javascript">
+        $(function () {
+            function getPatient() {
+                $('#tableLoadPatient').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData", "Patients")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "MaBN",
+                    },
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": "BirthDate",
+                    },
+                    {
+                        "data": "Address",
+                    },
+                    {
+                        "data": "Gender",
+                    },
+                    {
+                        "className": "w85",
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var hrefCreateOldPatient = '@Url.Action("CreateOldPatient", "MultipleModels")/' + data.ID;
+                            var hrefEditPatient = '@Url.Action("Edit","MultipleModels")/' + data.ID;
+                            var hrefDetailPatient = '@Url.Action("Details","InformationExaminations")/' + data.ID;
+                            var hrefConfirmBill = '@Url.Action("BillExamination", "MultipleModels")/' + data.ID;
+                            var button = "<a class='btn btn-primary btnHover' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><a class='btn btn-primary btnHover' style='margin:0 2px;' href='" + hrefCreateOldPatient + "'><i class='fas fa-plus'></i></a><a class='btn btn-primary btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btn-primary btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btn-primary btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ người",
+                    "search": "Tìm kiếm:",
+                },
+                searching: false,
+            })
+            }
+
+            var notificationHubYTa = $.connection.notificationHubYTa;
+            $.connection.hub.start().done(function () {
+                getPatient();
+                console.log("Notification hub started Y Tá");
+            }).fail((e) => {
+                alert(e)
+            });
+
+            notificationHubYTa.client.notifyPatient = function (message) {
+                if (message && message.toLowerCase() == "added") {
+                    $('#tableLoadPatient').DataTable().ajax.reload();
+                }
+            }
+        })
+    </script>
+
     <script type="text/javascript">
         $(function () {
             var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
@@ -493,6 +564,7 @@
             }
         })
     </script>
+
     <script type="text/javascript">
         $(function () {
             function updateUser() {

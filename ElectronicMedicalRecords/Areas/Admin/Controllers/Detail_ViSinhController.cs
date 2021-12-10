@@ -34,7 +34,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_ViSinh.ViSinh_ID = item.ID;
                     detail_ViSinh.InformationExamination_ID = informationID;
                     detail_ViSinh.ChiDinh = item.ChiDinh;
-                    detail_ViSinh.Price = item.Price;
                     db.Detail_ViSinh.Add(detail_ViSinh);
                     await db.SaveChangesAsync();
                 }
@@ -115,7 +114,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var ViSinh_ID = detail_ViSinhs[i].ViSinh_ID;
                 var ViSinhCD = db.ViSinhs.FirstOrDefault(p => p.ID == ViSinh_ID);
                 ViSinhCD.ChiDinh = detail_ViSinhs[i].ChiDinh;
-                ViSinhCD.Price = detail_ViSinhs[i].Price;
                 detail_ViSinhs[i].InformationExamination_ID = id;
                 ViSinhs.Add(ViSinhCD);
             }
@@ -147,7 +145,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         DetailViSinh.ResultNC = detail_ViSinh.ResultNC;
                         DetailViSinh.ResultDD = detail_ViSinh.ResultDD;
                         DetailViSinh.MatDo = detail_ViSinh.MatDo;
-                        DetailViSinh.Price = detail_ViSinh.Price;
                         db.Entry(DetailViSinh).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }

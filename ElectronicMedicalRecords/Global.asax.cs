@@ -30,9 +30,12 @@ namespace ElectronicMedicalRecords
             NotificationComponentKTV NCktv = new NotificationComponentKTV();
             NotificationComponentBS NCbs = new NotificationComponentBS();
             NotificationComponentBS1 NCyta = new NotificationComponentBS1();
+            NotificationComponentYTa notificationComponentYTa = new NotificationComponentYTa();
             NCktv.RegisterNotificationKTV();
             NCbs.RegisterNotificationBS();
             NCyta.RegisterNotificationBS1();
+            notificationComponentYTa.RegisterNotificationYTa();
+
         }
         protected void Application_End()
         {
