@@ -339,9 +339,6 @@
     <Compile Include="Models\Detail_ViSinh.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Diagnostic.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DiagnosticsCategory.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -426,9 +423,11 @@
     <Compile Include="Models\ViSinh.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="NotificationComponentYTa.cs" />
     <Compile Include="NotificationComponentBS1.cs" />
     <Compile Include="NotificationComponentBS.cs" />
     <Compile Include="NotificationComponentKTV.cs" />
+    <Compile Include="NotificationHubYTa.cs" />
     <Compile Include="NotificationHubOnlineUser.cs" />
     <Compile Include="NotificationHubBS1.cs" />
     <Compile Include="NotificationHubBS.cs" />
@@ -2796,6 +2795,11 @@
     <Content Include="Areas\Admin\Views\MultipleModels\PrintTestMienDichs.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\PrintTestDichChocDos.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\PrintTestViSinhs.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintPrescriptions.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\PrintBillExamination.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\BillExamination.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationExaminations\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\PrintBillTestSubclinical.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

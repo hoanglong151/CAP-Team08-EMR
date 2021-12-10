@@ -129,7 +129,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             foreach (var item1 in list)
             {
                 var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
-                var date = item1.DateExamine.Value.ToString("dd/mm/yyyy hh:mm:ss");
+                var date = item1.DateExamine.Value.ToString("dd/MM/yyyy hh:mm:ss");
                 var NotiResult = new { patientUser.Name, date, item1.ID };
                 NotiBS.Add(NotiResult);
             }
@@ -212,7 +212,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int patientID)
+        public ActionResult Create(int patientID, MultiplesModel multiplesModel)
         {
             InformationExamination informationExamination = new InformationExamination();
             if (ModelState.IsValid)
@@ -220,7 +220,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 informationExamination.Patient_ID = patientID;
                 informationExamination.DateExamine = DateTime.Now;
                 informationExamination.DateEnd = DateTime.Now;
-                informationExamination.New = false;
+                informationExamination.PatientStatus_ID = multiplesModel.InformationExamination.PatientStatus_ID;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");
@@ -230,6 +230,25 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.PatientStatus_ID = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
             ViewBag.User_ID = new SelectList(db.Users, "ID", "Name", informationExamination.User_ID);
             return View(informationExamination);
+        }
+
+        // GET: Admin/InformationExaminations/CreateOldPatient/5
+        public ActionResult BillCheck(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = db.InformationExaminations.Find(id);
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
+            ViewBag.UserByID = userID.ID;
+            ViewBag.UserName = userID.Name;
+            if (informationExamination == null)
+            {
+                return HttpNotFound();
+            }
+            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            multiplesModel.InformationExamination = informationExamination;
+            return PartialView("_BillCheck", multiplesModel);
         }
 
         // GET: Admin/InformationExaminations/CreateOldPatient/5
@@ -261,7 +280,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 informationExamination.Patient_ID = multiplesModel.Patient.ID;
                 informationExamination.DateExamine = DateTime.Now;
                 informationExamination.DateEnd = DateTime.Now;
-                informationExamination.New = false;
+                informationExamination.PatientStatus_ID = multiplesModel.InformationExamination.PatientStatus_ID;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("CreateOldPatient", "MultipleModels");

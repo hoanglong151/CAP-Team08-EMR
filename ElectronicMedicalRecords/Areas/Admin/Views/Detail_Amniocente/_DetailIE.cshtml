@@ -8,31 +8,36 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th>Kết Quả</th>
-                <th>Chỉ Số Cân Bằng</th>
-                <th>Đơn Vị</th>
+                @if (User.IsInRole("Bác Sĩ"))
+                {
+                    <th>Kết Quả</th>
+                    <th>Chỉ Số Cân Bằng</th>
+                    <th>Đơn Vị</th>
+                }
             </tr>
         </thead>
         <tbody>
             @for (int i = 0; i < Model.Detail_Amniocentes.Count(); i++)
             {
-                <tr>
-                    <td hidden>
-                        <input value="@Model.Detail_Amniocentes[i].InformationExamination_ID" type="text" name="Detail_Amniocentes[@i].InformationExamination_ID" hidden />
-                        <input value="@Model.Detail_Amniocentes[i].Amniocente_ID" type="text" name="Detail_Amniocentes[@i].Amniocente_ID" hidden />
-                    </td>
-                    <td hidden>
-                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
-                        <input value="@Model.Detail_Amniocentes[i].ID" type="text" name="Detail_Amniocentes[@i].ID" hidden />
-                    </td>
-                    <td>
-                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
-                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_Amniocentes[i].Amniocente_ID" name="Detail_Amniocentes[@i].Amniocente_ID">
-                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
-                    </td>
-                    <td>
-                        <label class="form-check-label">@Model.Detail_Amniocentes[i].Amniocente.NameTest</label>
-                    </td>
+            <tr>
+                <td hidden>
+                    <input value="@Model.Detail_Amniocentes[i].InformationExamination_ID" type="text" name="Detail_Amniocentes[@i].InformationExamination_ID" hidden />
+                    <input value="@Model.Detail_Amniocentes[i].Amniocente_ID" type="text" name="Detail_Amniocentes[@i].Amniocente_ID" hidden />
+                </td>
+                <td hidden>
+                    @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                    <input value="@Model.Detail_Amniocentes[i].ID" type="text" name="Detail_Amniocentes[@i].ID" hidden />
+                </td>
+                <td>
+                    @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                    <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_Amniocentes[i].Amniocente_ID" name="Detail_Amniocentes[@i].Amniocente_ID">
+                    <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                </td>
+                <td>
+                    <label class="form-check-label">@Model.Detail_Amniocentes[i].Amniocente.NameTest</label>
+                </td>
+                @if (User.IsInRole("Bác Sĩ"))
+                {
                     <td>
                         @Model.Detail_Amniocentes[i].Result
                     </td>
@@ -42,6 +47,7 @@
                     <td>
                         @Model.Detail_Amniocentes[i].Amniocente.Unit
                     </td>
+                }
                 </tr>
             }
         </tbody>

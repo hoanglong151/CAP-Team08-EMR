@@ -41,14 +41,11 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
         public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
         public virtual DbSet<Detail_Urine> Detail_Urine { get; set; }
-        public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
-        public virtual DbSet<Diagnostic> Diagnostics { get; set; }
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
         public virtual DbSet<DongMau> DongMaus { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
         public virtual DbSet<Immune> Immunes { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<MedicalTestsPrescription> MedicalTestsPrescriptions { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
         public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
@@ -65,5 +62,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Urine> Urines { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
+        public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
     }
 }

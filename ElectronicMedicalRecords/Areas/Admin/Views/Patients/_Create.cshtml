@@ -36,14 +36,14 @@
                     @Html.ValidationMessageFor(model => model.Patient.Nation1_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col-md-12 col-12">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="company-column">Địa Chỉ</label>
                     @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ" } })
                     @Html.ValidationMessageFor(model => model.Patient.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col-md-3 col-12">
+            <div class="col-md-6 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Quê Quán</label>
                     @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @name = "Long" })
@@ -71,6 +71,9 @@
                     @Html.ValidationMessageFor(model => model.Patient.InsuranceCode, "", new { @class = "text-danger" })
                 </div>
             </div>
+            @{ 
+                Html.RenderAction("Create", "InformationExaminations");
+            }
         </div>
     </div>
 </div>

@@ -1,0 +1,27 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-header" style="padding-bottom:0px">
+    <h4 class="card-title">Thanh Toán</h4>
+    <hr />
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <div class="row">
+            @Html.HiddenFor(model => model.InformationExamination.ID)
+            @Html.HiddenFor(model => model.InformationExamination.Patient_ID)
+            @Html.HiddenFor(model => model.InformationExamination.DateExamine)
+            @Html.HiddenFor(model => model.InformationExamination.User_ID)
+            <div class="col-md-12 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Thành Tiền</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.InformationExamination.PriceExamination, new { htmlAttributes = new { @class = "form-control", @type = "number", @Value = "250000" } })
+                        <span class="input-group-text">VNĐ</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.InformationExamination.PriceExamination, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

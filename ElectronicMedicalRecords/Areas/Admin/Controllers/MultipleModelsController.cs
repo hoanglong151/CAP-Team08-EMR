@@ -34,6 +34,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(multiplesModel);
         }
 
+        public ActionResult Payment(MultiplesModel multiplesModel)
+        {
+            multiplesModel.InformationExamination.New = false;
+            db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Patients");
+        }
+
         [HttpPost, ValidateInput(false)]
         public ActionResult PrintExaminationInfoPost(MultiplesModel multiplesModel)
         {
@@ -188,6 +196,23 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.PatientStatus = statusPatient.Name;
             var checkViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
             ViewBag.ViSinhs = checkViSinh;
+            return View(multiplesModel);
+        }
+
+        public ActionResult PrintPrescriptions()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            foreach(var item in multiplesModel.Prescription_Details)
+            {
+                item.Medication = db.Medications.Find(item.Medication_ID);
+            }
             return View(multiplesModel);
         }
 
@@ -373,7 +398,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 // TODO: Add insert logic here
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;
-                informationExaminationsController.Create(PatientID);
+                informationExaminationsController.Create(PatientID, multiplesModel);
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
             catch(Exception ex)
@@ -386,6 +411,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         // GET: Admin/MultipleModels/CreateOldPatient/5
         public ActionResult CreateOldPatient(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var inforamtionExaminationList = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var inforamtionExamination = inforamtionExaminationList.LastOrDefault();
+            var patient = db.Patients.Find(id);
+            multiplesModel.InformationExamination = inforamtionExamination;
+            multiplesModel.Patient = patient;
+            return View(multiplesModel);
+        }
+
+        // GET: Admin/MultipleModels/BillExamination/5
+        public ActionResult BillExamination(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             var inforamtionExaminationList = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();

@@ -14,18 +14,10 @@ namespace ElectronicMedicalRecords.Models
     
     public partial class Prescription
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Prescription()
-        {
-            this.Diagnostics = new HashSet<Diagnostic>();
-        }
-    
         public int ID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnostic> Diagnostics { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
     }
 }
