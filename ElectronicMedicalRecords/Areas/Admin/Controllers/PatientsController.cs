@@ -49,6 +49,27 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { success = true, data = multiplesModel });
         }
 
+        public ActionResult PrintBillPrescription()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModelsPatient"];
+            var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
+            var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            ViewBag.Gender = gender.Gender1;
+            ViewBag.Doctor = doctor.Name;
+            ViewBag.PatientStatus = statusPatient.Name;
+            var checkPrescriptions = multiplesModel.Prescription_Details.ToList();
+            if(checkPrescriptions.Count != 0)
+            {
+                foreach(var itemPrescription in checkPrescriptions)
+                {
+                    itemPrescription.Medication = db.Medications.Find(itemPrescription.Medication_ID);
+                }
+            }
+            return View(multiplesModel);
+        }
+
         public ActionResult PrintBillExamination()
         {
             db.Configuration.LazyLoadingEnabled = false;
@@ -70,78 +91,102 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            var checkCTMaus = multiplesModel.Detail_CTMaus.ToList();
-            if(checkCTMaus.Count != 0)
+            if(multiplesModel.Detail_CTMaus != null)
             {
-                foreach (var itemCTMau in checkCTMaus)
+                var checkCTMaus = multiplesModel.Detail_CTMaus.ToList();
+                if (checkCTMaus.Count != 0)
                 {
-                    itemCTMau.CTMau = db.CTMaus.Find(itemCTMau.CTMau_ID);
+                    foreach (var itemCTMau in checkCTMaus)
+                    {
+                        itemCTMau.CTMau = db.CTMaus.Find(itemCTMau.CTMau_ID);
+                    }
+                    ViewBag.CTMaus = checkCTMaus;
                 }
             }
-            var checkSHMaus = multiplesModel.Detail_SinhHoaMaus.ToList();
-            if(checkSHMaus.Count != 0)
+            if(multiplesModel.Detail_SinhHoaMaus != null)
             {
-                foreach (var itemSHM in checkSHMaus)
+                var checkSHMaus = multiplesModel.Detail_SinhHoaMaus.ToList();
+                if (checkSHMaus.Count != 0)
                 {
-                    itemSHM.SinhHoaMau = db.SinhHoaMaus.Find(itemSHM.SinhHoaMau_ID);
+                    foreach (var itemSHM in checkSHMaus)
+                    {
+                        itemSHM.SinhHoaMau = db.SinhHoaMaus.Find(itemSHM.SinhHoaMau_ID);
+                    }
+                    ViewBag.SHMaus = checkSHMaus;
                 }
             }
-            var checkDMaus = multiplesModel.Detail_DongMaus.ToList();
-            if(checkDMaus.Count != 0)
+            if(multiplesModel.Detail_DongMaus != null)
             {
-                foreach (var itemDM in checkDMaus)
+                var checkDMaus = multiplesModel.Detail_DongMaus.ToList();
+                if (checkDMaus.Count != 0)
                 {
-                    itemDM.DongMau = db.DongMaus.Find(itemDM.DongMau_ID);
+                    foreach (var itemDM in checkDMaus)
+                    {
+                        itemDM.DongMau = db.DongMaus.Find(itemDM.DongMau_ID);
+                    }
+                    ViewBag.DMaus = checkDMaus;
                 }
             }
-            var checkNhomMaus = multiplesModel.Detail_NhomMaus.ToList();
-            if (checkNhomMaus.Count != 0)
+            if(multiplesModel.Detail_NhomMaus != null)
             {
-                foreach (var itemNM in checkNhomMaus)
+                var checkNhomMaus = multiplesModel.Detail_NhomMaus.ToList();
+                if (checkNhomMaus.Count != 0)
                 {
-                    itemNM.NhomMau = db.NhomMaus.Find(itemNM.NhomMau_ID);
+                    foreach (var itemNM in checkNhomMaus)
+                    {
+                        itemNM.NhomMau = db.NhomMaus.Find(itemNM.NhomMau_ID);
+                    }
+                    ViewBag.NhomMaus = checkNhomMaus;
                 }
             }
-            var checkNuocTieu = multiplesModel.Detail_Urines.ToList();
-            if (checkNuocTieu.Count != 0)
+            if(multiplesModel.Detail_Urines != null)
             {
-                foreach (var itemNT in checkNuocTieu)
+                var checkNuocTieu = multiplesModel.Detail_Urines.ToList();
+                if (checkNuocTieu.Count != 0)
                 {
-                    itemNT.Urine = db.Urines.Find(itemNT.Urine_ID);
+                    foreach (var itemNT in checkNuocTieu)
+                    {
+                        itemNT.Urine = db.Urines.Find(itemNT.Urine_ID);
+                    }
+                    ViewBag.NuocTieu = checkNuocTieu;
                 }
             }
-            var checkMienDich = multiplesModel.Detail_Immunes.ToList();
-            if (checkMienDich.Count != 0)
+            if(multiplesModel.Detail_Immunes != null)
             {
-                foreach (var itemMD in checkMienDich)
+                var checkMienDich = multiplesModel.Detail_Immunes.ToList();
+                if (checkMienDich.Count != 0)
                 {
-                    itemMD.Immune = db.Immunes.Find(itemMD.Immue_ID);
+                    foreach (var itemMD in checkMienDich)
+                    {
+                        itemMD.Immune = db.Immunes.Find(itemMD.Immue_ID);
+                    }
+                    ViewBag.MienDich = checkMienDich;
                 }
             }
-            var checkDichChocDo = multiplesModel.Detail_Amniocentes.ToList();
-            if (checkDichChocDo.Count != 0)
+            if(multiplesModel.Detail_Amniocentes != null)
             {
-                foreach (var itemDCD in checkDichChocDo)
+                var checkDichChocDo = multiplesModel.Detail_Amniocentes.ToList();
+                if (checkDichChocDo.Count != 0)
                 {
-                    itemDCD.Amniocente = db.Amniocentes.Find(itemDCD.Amniocente_ID);
+                    foreach (var itemDCD in checkDichChocDo)
+                    {
+                        itemDCD.Amniocente = db.Amniocentes.Find(itemDCD.Amniocente_ID);
+                    }
+                    ViewBag.DichChocDo = checkDichChocDo;
                 }
             }
-            var checkViSinh = multiplesModel.Detail_ViSinhs.ToList();
-            if (checkViSinh.Count != 0)
+            if(multiplesModel.Detail_ViSinhs != null)
             {
-                foreach (var itemVSs in checkViSinh)
+                var checkViSinh = multiplesModel.Detail_ViSinhs.ToList();
+                if (checkViSinh.Count != 0)
                 {
-                    itemVSs.ViSinh = db.ViSinhs.Find(itemVSs.ViSinh_ID);
+                    foreach (var itemVSs in checkViSinh)
+                    {
+                        itemVSs.ViSinh = db.ViSinhs.Find(itemVSs.ViSinh_ID);
+                    }
+                    ViewBag.ViSinh = checkViSinh;
                 }
             }
-            ViewBag.CTMaus = checkCTMaus;
-            ViewBag.SHMaus = checkSHMaus;
-            ViewBag.DMaus = checkDMaus;
-            ViewBag.NhomMaus = checkNhomMaus;
-            ViewBag.NuocTieu = checkNuocTieu;
-            ViewBag.MienDich = checkMienDich;
-            ViewBag.DichChocDo = checkDichChocDo;
-            ViewBag.ViSinh = checkViSinh;
             return View(multiplesModel);
         }
 

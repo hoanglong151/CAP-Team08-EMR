@@ -157,32 +157,6 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.DMaus.Count != 0)
-                    {
-                        <div class="row body-pay">
-                            <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width:5%">#</th>
-                                        <th style="width:50%">Chỉ Định</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < ViewBag.DMaus.Count; i++)
-                                    {
-                                        if (ViewBag.DMaus[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.DMaus[i].NameTest</td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
                     @if (ViewBag.NhomMaus.Count != 0)
                     {
                         <div class="row body-pay">

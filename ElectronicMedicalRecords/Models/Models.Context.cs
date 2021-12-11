@@ -47,15 +47,12 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
         public virtual DbSet<Immune> Immunes { get; set; }
         public virtual DbSet<MedicalTestsPrescription> MedicalTestsPrescriptions { get; set; }
-        public virtual DbSet<Medication> Medications { get; set; }
-        public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
         public virtual DbSet<Nation1> Nation1 { get; set; }
         public virtual DbSet<NhomMau> NhomMaus { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
-        public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
@@ -64,5 +61,8 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
         public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
+        public virtual DbSet<Medication> Medications { get; set; }
+        public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
+        public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
     }
 }

@@ -6,10 +6,11 @@
 <div class="card-content">
     <div class="card-body">
         <div class="row">
+            @Html.HiddenFor(model => model.Patient.MaBN)
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="first-name-column">Họ Và Tên</label>
-                    @Html.EditorFor(model => model.Patient.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ Và Tên", @disabled="disabled" } })
+                    @Html.EditorFor(model => model.Patient.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ Và Tên", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Patient.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -17,7 +18,7 @@
                 <div class="form-group">
                     <label for="last-name-column">Giới Tính</label>
                     <div class="position-relative ml-5px">
-                        @Html.DropDownList("Patient.Gender_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                        @Html.DropDownList("Patient.Gender_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
                         @Html.ValidationMessageFor(model => model.Patient.Gender_ID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -25,49 +26,49 @@
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="city-column">Ngày Sinh</label>
-                    <input class="form-control" type="date" name="Patient.BirthDate" value="@Model.Patient.BirthDate.Value.ToString("yyyy-MM-dd")" id="birthdate" disabled />
+                    <input class="form-control" type="date" name="Patient.BirthDate" value="@Model.Patient.BirthDate.Value.ToString("yyyy-MM-dd")" id="birthdate" readonly />
                     @Html.ValidationMessageFor(model => model.Patient.BirthDate, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="country-floating">Dân Tộc</label>
-                    @Html.DropDownList("Patient.Nation1_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("Patient.Nation1_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Patient.Nation1_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-12 col-12">
                 <div class="form-group">
                     <label for="company-column">Địa Chỉ</label>
-                    @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Patient.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Quê Quán</label>
-                    @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Patient.HomeTown_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Quốc Gia</label>
-                    @Html.DropDownList("Patient.Nation_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("Patient.Nation_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Patient.Nation_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Điện Thoại</label>
-                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control", @Value = "0" + Model.Patient.Phone, @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control", @Value = "0" + Model.Patient.Phone, @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Patient.Phone, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Số BHYT</label>
-                    @Html.EditorFor(model => model.Patient.InsuranceCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.Patient.InsuranceCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Patient.InsuranceCode, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,14 +85,14 @@
             <div class="col-md-12 col-12">
                 <div class="form-group patient-taginpust">
                     <label for="email-id-column">Tiền Sử</label>
-                    <input type="text" data-role="tagsinput" name="Patient.MedicalHistory" value="@Model.Patient.MedicalHistory" class="form-control" disabled>
+                    <input type="text" data-role="tagsinput" name="Patient.MedicalHistory" value="@Model.Patient.MedicalHistory" class="form-control" readonly>
                     @Html.ValidationMessageFor(model => model.Patient.MedicalHistory, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-12 col-12">
                 <div class="form-group patient-taginpust">
                     <label for="email-id-column">Bệnh Sử</label>
-                    <input type="text" data-role="tagsinput" name="Patient.HistoryDisease" value="@Model.Patient.HistoryDisease" class="form-control" disabled>
+                    <input type="text" data-role="tagsinput" name="Patient.HistoryDisease" value="@Model.Patient.HistoryDisease" class="form-control" readonly>
                     @Html.ValidationMessageFor(model => model.Patient.HistoryDisease, "", new { @class = "text-danger" })
                 </div>
             </div>

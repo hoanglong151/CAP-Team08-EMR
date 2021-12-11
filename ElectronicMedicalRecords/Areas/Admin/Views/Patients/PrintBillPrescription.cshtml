@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "PrintExaminationInfo";
     Layout = "~/Areas/Admin/Views/Shared/Print.cshtml";
+    var total = 0;
 }
 <style>
     p {
@@ -30,7 +31,6 @@
                     <div class="row">
                         <div style="margin-bottom:12px">
                             <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                            <a href="@Url.Action("Payment","MultipleModels",new { id = Model.InformationExamination.ID })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
                         </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
@@ -67,50 +67,63 @@
                             <div class="d-flex justify-content-start">
                                 <p class="col-xs-6 w-100">Ngày Khám: @Model.InformationExamination.DateExamine</p>
                                 <p class="col-xs-4 w-100">Tình Trạng: @ViewBag.PatientStatus</p>
+                                <p class="col-xs-6 w-100">Bác Sĩ Kê Toa: @ViewBag.Doctor</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row body-pay">
-                        <p class="lead marginbottom">Hóa Đơn Thanh Toán</p>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" style="width:5%">#</th>
-                                    <th style="width:50%">Mục</th>
-                                    <th style="width:50%">Thành Tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td>Khám bệnh</td>
-                                    <td>@Model.InformationExamination.PriceExamination VNĐ</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row body-pay">
-                        <div class="col-xs-6 text-right pull-right invoice-total">
-                            <p><strong>Tổng Thanh Toán: </strong>@((Model.InformationExamination.PriceExamination).Value.ToString("N0")) VNĐ </p>
+                    @if (Model.Prescription_Details.Count != 0)
+                    {
+                        <div class="row body-pay">
+                            <p class="lead marginbottom">Hóa Đơn Thanh Toán Toa Thuốc</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:30%">Tên Thuốc</th>
+                                        <th style="width:20%">Đơn vị</th>
+                                        <th style="width:10%">Số Lượng</th>
+                                        <th style="width:10%">Đơn Giá</th>
+                                        <th style="width:20%">Thành Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Prescription_Details.Count; i++)
+                                    {
+                                        total += (Model.Prescription_Details[i].Medication.Price * Model.Prescription_Details[i].NumMedication);
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.Prescription_Details[i].Medication.Name</td>
+                                            <td>@Model.Prescription_Details[i].Medication.Unit</td>
+                                            <td>@Model.Prescription_Details[i].NumMedication</td>
+                                            <td>@Model.Prescription_Details[i].Medication.Price.ToString("N0")</td>
+                                            <td>@((Model.Prescription_Details[i].Medication.Price * Model.Prescription_Details[i].NumMedication).ToString("N0")) VNĐ</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                        <div class="row body-pay">
+                            <div class="col-xs-6 text-right pull-right invoice-total">
+                                <p><strong>Tổng Thanh Toán: </strong>@total.ToString("N0") VNĐ</p>
+                            </div>
+                        </div>
+                        <div class="row body-pay">
+                            <div class="col-xs-6 margintop">
+                                <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Thu Ngân</p>
+                            </div>
+                            <div class="col-xs-6 margintop">
+                                <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
+                                @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
+                            </div>
+                            @*<div class="col-xs-6 text-right pull-right invoice-total">
+                    <p>Subtotal : $1019</p>
+                    <p>Discount (10%) : $101 </p>
+                    <p>VAT (8%) : $73 </p>
+                    <p>Total : $991 </p>
+                </div>*@
                         </div>
                     </div>
-                    <div class="row body-pay">
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Thu Ngân</p>
-                        </div>
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
-                            @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
-                        </div>
-                        @*<div class="col-xs-6 text-right pull-right invoice-total">
-                <p>Subtotal : $1019</p>
-                <p>Discount (10%) : $101 </p>
-                <p>VAT (8%) : $73 </p>
-                <p>Total : $991 </p>
-            </div>*@
-                    </div>
-                </div>
             </div>
         </div>
     </div>

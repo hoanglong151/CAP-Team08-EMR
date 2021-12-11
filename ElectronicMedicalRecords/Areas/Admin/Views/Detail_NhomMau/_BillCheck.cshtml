@@ -1,7 +1,6 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 
 <div class="card-body">
-    <a class="btn btn-primary" style="margin-bottom:12px" id="PrintResultNhomMau">In kết quả xét nghiệm</a>
     <table class="table table-striped tableLoad" id="tableNhomMaus" style="width:100%">
         <thead>
             <tr>
@@ -9,7 +8,7 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th>Kết Quả</th>
+                <th>Thành Tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -33,17 +32,11 @@
                         <label class="form-check-label">@Model.Detail_NhomMaus[i].NhomMau.NameTest</label>
                     </td>
                     <td>
-                        @if (Model.Detail_NhomMaus[i].NhomMau_ID == 0)
-                        {
-                            <input class="form-control" value="@Model.Detail_NhomMaus[i].Result" name="Detail_NhomMaus[@i].Result" readonly />
-                        }
-                        else
-                        {
-                            <input class="form-control" value="@Model.Detail_NhomMaus[i].Result" name="Detail_NhomMaus[@i].Result" readonly />
-                        }
+                        @Model.Detail_NhomMaus[i].NhomMau.Price.ToString("N0") VNĐ
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+

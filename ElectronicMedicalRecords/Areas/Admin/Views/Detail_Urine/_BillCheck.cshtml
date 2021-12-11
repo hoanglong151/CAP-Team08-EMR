@@ -1,7 +1,6 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 
 <div class="card-body">
-    <a class="btn btn-primary" style="margin-bottom:12px" id="PrintResultNuocTieu">In kết quả xét nghiệm</a>
     <table class="table table-striped tableLoad" id="tableUrines" style="width:100%">
         <thead>
             <tr>
@@ -9,8 +8,7 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th>Kết Quả</th>
-                <th>Chỉ Số Cân Bằng</th>
+                <th>Thành Tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -34,16 +32,12 @@
                         <label class="form-check-label">@Model.Detail_Urines[i].Urine.Name</label>
                     </td>
                     <td>
-                        @Model.Detail_Urines[i].Result
-                        <input name="Detail_Urines[@i].Result" value="@Model.Detail_Urines[i].Result" hidden />
-                    </td>
-                    <td>
-                        @*@Model.SinhHoaMau[i].CSBT*@
-                        @Html.Raw(Model.Detail_Urines[i].Urine.CSBT)
+                        @Model.Detail_Urines[i].Urine.Price.ToString("N0") VNĐ
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
 

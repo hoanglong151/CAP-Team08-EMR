@@ -49,7 +49,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             {
                 Name = rand.ToString(),
                 Unit = rand.ToString(),
-                Price = rand.NextDouble(),
+                Price = rand.Next(),
                 MedicationCategory_ID = rand.Next(1, 166)
             };
 
@@ -101,7 +101,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var medication = db.Medications.AsNoTracking().FirstOrDefault();
             medication.Name = rand.ToString();
             medication.Unit = rand.ToString();
-            medication.Price = rand.NextDouble();
+            medication.Price = rand.Next();
             medication.MedicationCategory_ID = rand.Next(1, 166);
             using (var scope = new TransactionScope())
             {

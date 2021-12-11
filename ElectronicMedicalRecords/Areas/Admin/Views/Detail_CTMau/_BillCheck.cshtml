@@ -1,7 +1,6 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 
 <div class="card-body">
-    <a class="btn btn-primary" style="margin-bottom:12px" id="PrintResultCTMau">In kết quả xét nghiệm</a>
     <table class="table table-striped tableLoad" id="tableCTMaus" style="width:100%">
         <thead>
             <tr>
@@ -9,10 +8,6 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                <th>Kết Quả</th>
-                <th>Chỉ Số Cân Bằng</th>
-                <th>Đơn Vị</th>
-                <th>Máy XN</th>
             </tr>
         </thead>
         <tbody>
@@ -35,21 +30,9 @@
                     <td>
                         <label class="form-check-label">@Model.Detail_CTMaus[i].CTMau.NameTest</label>
                     </td>
-                    <td>
-                        @Model.Detail_CTMaus[i].Result
-                        <input name="Detail_CTMaus[@i].Result" value="@Model.Detail_CTMaus[i].Result" hidden />
-                    </td>
-                    <td>
-                        @Model.Detail_CTMaus[i].CTMau.CSBT
-                    </td>
-                    <td>
-                        @Model.Detail_CTMaus[i].CTMau.Unit
-                    </td>
-                    <td>
-                        @Model.Detail_CTMaus[i].CTMau.MayXN
-                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+

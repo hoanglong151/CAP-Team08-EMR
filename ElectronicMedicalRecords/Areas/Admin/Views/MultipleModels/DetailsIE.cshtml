@@ -66,9 +66,11 @@
     .pd-0px {
         padding: 0 1rem;
     }
+
     .navbar-nav {
         display: none
     }
+
     body {
         background-color: #f5f5f5;
     }
@@ -116,6 +118,7 @@
         font-size: 15px;
         padding: 0;
     }
+
     .choices[data-type*=select-one].is-open:after {
         margin-top: -10px;
     }
@@ -125,226 +128,266 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-<div class="col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
-                       role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
-                       role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
-                       role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
-                       role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
-                       role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
-                       role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
-                       role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
-                       role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
-                       role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#visinh"
-                       role="tab" aria-controls="contact" aria-selected="false">Vi Sinh</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel"
-                     aria-labelledby="home-tab">
-                    <p class='my-2'>
-                        <section id="multiple-column-form">
-                            <div class="row match-height">
-                                <div class="col-12">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Patients", new { id = Model.Patient.ID });
-                                            Html.RenderAction("DetailIE", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                            Html.RenderAction("DetailIE", "Prescription_Detail");
-                                        }
+@using (Html.BeginForm("DetailForm", "MultipleModels", FormMethod.Post, new { id = "DetailForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
+                           role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
+                           role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
+                           role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
+                           role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
+                           role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
+                           role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
+                           role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#visinh"
+                           role="tab" aria-controls="contact" aria-selected="false">Vi Sinh</a>
+                    </li>
+                </ul>
+                <div class="ms-4 col-12 d-flex justify-content-start pt-4">
+                    <div class="btn-group dropend me-1 mb-1">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            In
+                        </button>
+                        <div class="dropdown-menu" style="margin: 0px;">
+                            <h6 class="dropdown-header">Chọn Mục In</h6>
+                            <a class="dropdown-item" id="PrintAllExamInFoTest">In Hồ sơ, kết quả xét nghiệm</a>
+                            <a class="dropdown-item" id="PrintMedication">In Toa Thuốc</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <p class='my-2'>
+                            <section id="multiple-column-form">
+                                <div class="row match-height">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Patients", new { id = Model.Patient.ID });
+                                                Html.RenderAction("DetailIE", "InformationExaminations", new { id = Model.InformationExamination.ID });
+                                                Html.RenderAction("Edit", "Prescription_Detail");
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                                @*<div class="col-12 d-flex justify-content-end pt-4">
-                                    <button type="submit"
-                                            class="btn btn-primary me-1 mb-1">
-                                        Cập Nhât Hồ Sơ
-                                    </button>
-                                    <button type="reset"
-                                            class="btn btn-light-secondary me-1 mb-1">
-                                        Reset
-                                    </button>
-                                </div>*@
-                            </div>
-                        </section>
-                    </p>
-                </div>
-                <div class="tab-pane fade" id="LamSang" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Clinicals", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                            </section>
+                        </p>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_CTMau", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="LamSang" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Clinicals", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="profile" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_CTMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="DongMau" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_DongMau", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="NhomMau" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="DongMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_DongMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="urine" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_Urine", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="NhomMau" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="immune" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_Immune", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="urine" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_Urine", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="amniocente" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="immune" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_Immune", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="visinh" role="tabpanel"
-                     aria-labelledby="profile-tab">
-                    <div class="page-heading">
-                        <section class="section">
-                            <div class="card">
-                                @{
-                                    Html.RenderAction("DetailIE", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
-                                }
-                            </div>
-                        </section>
+                    <div class="tab-pane fade" id="amniocente" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="visinh" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <div class="page-heading">
+                            <section class="section">
+                                <div class="card">
+                                    @{
+                                        Html.RenderAction("DetailIE", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
+                                    }
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
 @section scripts{
-    <script>
-        $(document).ready(function () {
-            var listTable = $('*.tableLoad');
-            listTable.each((index, table) => {
-                $('#' + table.id).DataTable({
-                    "pageLength": 50,
-                    "language": {
-                        "emptyTable": "No data available",
-                        "oPaginate": {
-                            sNext: '<i class="fa fa-chevron-right"></i>',
-                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+        <script>
+            $(document).ready(function () {
+                var listTable = $('*.tableLoad');
+                listTable.each((index, table) => {
+                    $('#' + table.id).DataTable({
+                        "pageLength": 50,
+                        "language": {
+                            "emptyTable": "No data available",
+                            "oPaginate": {
+                                sNext: '<i class="fa fa-chevron-right"></i>',
+                                sPrevious: '<i class="fa fa-chevron-left"></i>',
+                            },
+                            "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                            "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                            "search": "Tìm kiếm:",
                         },
-                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                        "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
-                        "search": "Tìm kiếm:",
-                    },
-                });
-            })
-            const editors = document.querySelectorAll('.editor');
-            editors.forEach(item => {
-                ClassicEditor
-                    .create(item, {
-                        toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
-                    })
-                    .then(item => item.isReadOnly = true)
-                    .catch(error => {
-                        console.error("Toang" + error);
                     });
+                })
+                const editors = document.querySelectorAll('.editor');
+                editors.forEach(item => {
+                    ClassicEditor
+                        .create(item, {
+                            toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+                        })
+                        .then(item => item.isReadOnly = true)
+                        .catch(error => {
+                            console.error("Toang" + error);
+                        });
+                })
             })
-        })      
-    </script>
-    <script>
+        </script>
+        <script>
         var k = 1;
+        var formatCss = document.querySelector('.choices__list--single');
+        formatCss.classList.add('form-control');
+        formatCss.style.paddingLeft = '12px';
+        var select = document.querySelector('#NameMedication');
+        select.addEventListener('change', (e) => {
+            var id = parseInt(e.target.value);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("FindMedication", "Medications")",
+                data: { id: id},
+                success: (res) => {
+                    document.querySelector('#DVT').innerHTML = res.data.Unit;
+                    document.querySelector('#IDMedication').setAttribute("value", res.data.ID);
+                }
+            })
+        })
+
+        function insRowMedication() {
+            var NameMedication = $('#NameMedication').text();
+            var UnitMedication = $('#UnitMedication').val();
+            var NoteMedication = $('#NoteMedication').val();
+            var IdMedication = $('#IDMedication').val();
+            var medication = document.getElementById('TableMedication');
+            var row = medication.insertRow(k);
+            var cell0 = row.insertCell(0);
+            var cell1 = row.insertCell(1);
+            var cell2 = row.insertCell(2);
+            var cell3 = row.insertCell(3);
+            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
+            cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
+            k++;
+        }
         loadMedication();
         function loadMedication() {
             var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
@@ -359,9 +402,11 @@
                         var cell0 = row.insertCell(0);
                         var cell1 = row.insertCell(1);
                         var cell2 = row.insertCell(2);
-                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='border:none;pointer-events: none;' type='text' value='" + medicationByID.Name + "' readonly/>";
-                        cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
-                        cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        var cell3 = row.insertCell(3);
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
                         k++;
                     })
                 }
@@ -373,5 +418,174 @@
             index.parent().parent().remove();
             k--;
         }
-    </script>
-}
+
+        $('#updateMedication').click((e) => {
+            var dataMedication = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("EditMedication", "Prescription_Detail")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataMedication }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: 'Bạn đã cập nhật toa thuốc thành công',
+                            confirmButtonText: 'Xác Nhận'
+                        })
+                    }
+                }
+            })
+        })
+
+        /*Print Examination Information*/
+        $('#PrintAllExamInFoTest').click(function (e) {
+            var dataAllExam = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataAllExam }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintAllExaminationInfo", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Medication Prescription*/
+        $('#PrintMedication').click(function (e) {
+            var dataMedication = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataMedication }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintPrescriptions", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result CT Máu*/
+        $('#PrintResultCTMau').click(function (e) {
+            var dataResultCTMau = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataResultCTMau }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultCTMau", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Sinh Hóa Máu*/
+        $('#PrintResultSinhHoaMau').click(function (e) {
+            var dataSHMau = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataSHMau }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultSHMau", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Đông Máu*/
+        $('#PrintResultDongMau').click(function (e) {
+            var dataDongMau = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataDongMau }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultDongMau", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Nhóm Máu*/
+        $('#PrintResultNhomMau').click(function (e) {
+            var dataNhomMau = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataNhomMau }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultNhomMau", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Nước Tiểu*/
+            $('#PrintResultNuocTieu').click(function (e) {
+            var dataNuocTieu = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataNuocTieu }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultNuocTieu", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Miễn Dịch*/
+            $('#PrintResultMienDich').click(function (e) {
+            var dataMienDich = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataMienDich }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultMienDich", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Dịch Choc Do*/
+        $('#PrintResultMienDich').click(function (e) {
+            var dataDichChocDo = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataDichChocDo }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultDichChocDo", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Result Vi Sinh*/
+            $('#PrintResultViSinh').click(function (e) {
+            var dataDichChocDo = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataDichChocDo }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintResultViSinh", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+        </script>
+    }

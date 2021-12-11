@@ -1,7 +1,6 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 
 <div class="card-body">
-    <a class="btn btn-primary" style="margin-bottom:12px" id="PrintResultDichChocDo">In kết quả xét nghiệm</a>
     <table class="table table-striped tableLoad" id="tableAmniocentes" style="width:100%">
         <thead>
             <tr>
@@ -9,12 +8,7 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                @if (User.IsInRole("Bác Sĩ"))
-                {
-                    <th>Kết Quả</th>
-                    <th>Chỉ Số Cân Bằng</th>
-                    <th>Đơn Vị</th>
-                }
+                <th>Thành Tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -37,21 +31,10 @@
                     <td>
                         <label class="form-check-label">@Model.Detail_Amniocentes[i].Amniocente.NameTest</label>
                     </td>
-                    @if (User.IsInRole("Bác Sĩ"))
-                    {
-                        <td>
-                            @Model.Detail_Amniocentes[i].Result
-                            <input name="Detail_Amniocentes[@i].Result" value="@Model.Detail_Amniocentes[i].Result" type="number" hidden />
-                        </td>
-                        <td>
-                            @Html.Raw(Model.Detail_Amniocentes[i].Amniocente.CSBT)
-                        </td>
-                        <td>
-                            @Model.Detail_Amniocentes[i].Amniocente.Unit
-                        </td>
-                    }
+                    <td>@Model.Detail_Amniocentes[i].Amniocente.Price.ToString("N0") VNĐ</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
