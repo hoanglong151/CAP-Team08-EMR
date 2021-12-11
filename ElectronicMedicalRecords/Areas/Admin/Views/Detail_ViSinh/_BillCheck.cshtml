@@ -1,0 +1,42 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-body">
+    <table class="table table-striped tableLoad" id="tableVSs" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Tên Xét Nghiệm</th>
+                <th>Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Detail_ViSinhs.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_ViSinhs[i].InformationExamination_ID" type="text" name="Detail_ViSinhs[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_ViSinhs[i].ViSinh_ID" type="text" name="Detail_ViSinhs[@i].ViSinh_ID" hidden />
+                    </td>
+                    <td hidden>
+                        @*<input value="@ViewBag.CTMau[i].ID" type="text" name="CTMau[@i].ID" hidden />*@
+                        <input value="@Model.Detail_ViSinhs[i].ID" type="text" name="Detail_ViSinhs[@i].ID" hidden />
+                    </td>
+                    <td>
+                        @*<input type="checkbox" value="false" class="form-check-input form-check-primary" name="CTMau[@i].ChiDinh" id="customColorCheck-@ViewBag.CTMau[i].ID" onchange="updateCountTests(@ViewBag.CTMau[i].ID, event)">*@
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_ViSinhs[i].ViSinh_ID" name="Detail_ViSinhs[@i].ChiDinh">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.Detail_ViSinhs[i].ViSinh.NameTest</label>
+                    </td>
+                    <td>
+                        @Model.Detail_ViSinhs[i].ViSinh.Price.ToString("N0") VNĐ
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

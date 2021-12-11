@@ -15,7 +15,7 @@ namespace ElectronicMedicalRecords.Models
     public partial class Prescription_Detail
     {
         public int ID { get; set; }
-        public Nullable<int> NumMedication { get; set; }
+        public int NumMedication { get; set; }
         public string Note { get; set; }
         public Nullable<int> Medication_ID { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }

@@ -27,15 +27,12 @@
         <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="0.75" PointY="22.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Immune" Width="1.5" PointX="11.25" PointY="37" />
         <EntityTypeShape EntityType="CP24Team08Model.MedicalTestsPrescription" Width="1.5" PointX="10.5" PointY="59.625" />
-        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="CP24Team08Model.Nation" Width="1.5" PointX="0.75" PointY="26.25" />
         <EntityTypeShape EntityType="CP24Team08Model.Nation1" Width="1.5" PointX="0.75" PointY="31.875" />
         <EntityTypeShape EntityType="CP24Team08Model.NhomMau" Width="1.5" PointX="8.25" PointY="32.125" />
         <EntityTypeShape EntityType="CP24Team08Model.Patient" Width="1.5" PointX="3" PointY="24.875" />
         <EntityTypeShape EntityType="CP24Team08Model.PatientStatu" Width="1.5" PointX="6" PointY="17.25" />
         <EntityTypeShape EntityType="CP24Team08Model.Prescription" Width="1.5" PointX="10.5" PointY="62.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="CP24Team08Model.Religion" Width="1.5" PointX="3.75" PointY="30.75" />
         <EntityTypeShape EntityType="CP24Team08Model.SinhHoaMau" Width="1.5" PointX="11.25" PointY="18" />
         <EntityTypeShape EntityType="CP24Team08Model.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" />
@@ -57,8 +54,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_User_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
-        <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
-        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
@@ -83,7 +78,12 @@
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
         <AssociationConnector Association="CP24Team08Model.FK_MedicalTestsPrescription_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
-      </Diagram>
+        <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

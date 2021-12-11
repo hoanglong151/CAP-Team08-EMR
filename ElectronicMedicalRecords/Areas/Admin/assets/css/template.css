@@ -132,7 +132,7 @@ body {
 }
 
 @media print {
-    #invoice-print{
-        display: none!important;
+    #invoice-print, #PrintBill {
+        display: none !important;
     }
 }

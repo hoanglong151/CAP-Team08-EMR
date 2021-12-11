@@ -86,6 +86,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIE", multiplesModel);
         }
 
+        public ActionResult BillCheck(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            informationExamination.ID = id;
+            List<Detail_SinhHoaMau> detail_SinhHoaMaus = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == id).ToList();
+            if (detail_SinhHoaMaus == null)
+            {
+                return HttpNotFound();
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.Detail_SinhHoaMaus = detail_SinhHoaMaus;
+            return PartialView("_BillCheck", multiplesModel);
+        }
+
         // GET: Admin/Detail_SinhHoaMau/Edit/5
         public ActionResult Edit(int id)
         {

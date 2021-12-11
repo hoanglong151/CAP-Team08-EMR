@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "PrintExaminationInfo";
     Layout = "~/Areas/Admin/Views/Shared/Print.cshtml";
+    var totalSHM = 0;
+    var totalDM = 0;
+    var totalNM = 0;
+    var totalNT = 0;
+    var totalMD = 0;
+    var totalDCD = 0;
+    var totalVS = 0;
 }
 <style>
     p {
@@ -29,6 +36,7 @@
                     <div class="row">
                         <div style="margin-bottom:12px">
                             <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                            <a href="@Url.Action("PaymentTestSubclinical","MultipleModels",new { id = Model.InformationExamination.ID })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
                         </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
@@ -55,7 +63,7 @@
                         <div class="col-xs-12 from">
                             <div class="d-flex justify-content-start">
                                 <p class="col-xs-6 w-100">Ngày Khám: @Model.InformationExamination.DateExamine</p>
-                                <p class="col-xs-6 w-100">Bác Sĩ: @ViewBag.Doctor</p>
+                                <p class="col-xs-6 w-100">Bác Sĩ Chỉ Định: @ViewBag.Doctor</p>
                             </div>
                             <div class="d-flex">
                                 <p class="col-xs-4 w-100">Nhịp Tim: @Model.InformationExamination.HeartBeat</p>
@@ -91,6 +99,7 @@
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@Model.InformationExamination.PriceCTMaus.Value.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.SHMaus.Count != 0)
@@ -108,14 +117,16 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.SHMaus.Count; i++)
                                     {
+                                        totalSHM += ViewBag.SHMaus[i].SinhHoaMau.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.SHMaus[i].SinhHoaMau.NameTest</td>
-                                            <td>@ViewBag.SHMaus[i].SinhHoaMau.Price</td>
+                                            <td>@ViewBag.SHMaus[i].SinhHoaMau.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@totalSHM.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.DMaus.Count != 0)
@@ -133,39 +144,16 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.DMaus.Count; i++)
                                     {
+                                        totalDM += ViewBag.DMaus[i].DongMau.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.DMaus[i].DongMau.NameTest</td>
-                                            <td>@ViewBag.DMaus[i].DongMau.Price</td>
+                                            <td>@ViewBag.DMaus[i].DongMau.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
-                        </div>
-                    }
-                    @if (ViewBag.DMaus.Count != 0)
-                    {
-                        <div class="row body-pay">
-                            <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width:5%">#</th>
-                                        <th style="width:50%">Chỉ Định</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < ViewBag.DMaus.Count; i++)
-                                    {
-                                        <tr>
-                                            <td class="text-center">@(i + 1)</td>
-                                            <td>@ViewBag.DMaus[i].DongMau.NameTest</td>
-                                            <td>@ViewBag.DMaus[i].DongMau.Price</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                            <p><strong>Tổng Tiền: </strong>@totalDM.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.NhomMaus.Count != 0)
@@ -183,14 +171,16 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.NhomMaus.Count; i++)
                                     {
+                                        totalNM += ViewBag.NhomMaus[i].NhomMau.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.NhomMaus[i].NhomMau.NameTest</td>
-                                            <td>@ViewBag.NhomMaus[i].NhomMau.Price</td>
+                                            <td>@ViewBag.NhomMaus[i].NhomMau.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@totalNM.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.NuocTieu.Count != 0)
@@ -208,14 +198,16 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.NuocTieu.Count; i++)
                                     {
+                                        totalNT += ViewBag.NuocTieu[i].Urine.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.NuocTieu[i].Urine.Name</td>
-                                            <td>@ViewBag.NuocTieu[i].Urine.Price</td>
+                                            <td>@ViewBag.NuocTieu[i].Urine.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@totalNT.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.MienDich.Count != 0)
@@ -233,14 +225,16 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.MienDich.Count; i++)
                                     {
+                                        totalMD += ViewBag.MienDich[i].Immune.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.MienDich[i].Immune.NameTest</td>
-                                            <td>@ViewBag.MienDich[i].Immune.Price</td>
+                                            <td>@ViewBag.MienDich[i].Immune.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@totalMD.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.DichChocDo.Count != 0)
@@ -258,14 +252,16 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.DichChocDo.Count; i++)
                                     {
+                                        totalDCD += ViewBag.DichChocDo[i].Amniocente.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.DichChocDo[i].Amniocente.NameTest</td>
-                                            <td>@ViewBag.DichChocDo[i].Amniocente.Price</td>
+                                            <td>@ViewBag.DichChocDo[i].Amniocente.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@totalDCD.ToString("N0") VNĐ</p>
                         </div>
                     }
                     @if (ViewBag.ViSinh.Count != 0)
@@ -283,16 +279,26 @@
                                 <tbody>
                                     @for (int i = 0; i < ViewBag.ViSinh.Count; i++)
                                     {
+                                        totalVS += ViewBag.ViSinh[i].ViSinh.Price;
                                         <tr>
                                             <td class="text-center">@(i + 1)</td>
                                             <td>@ViewBag.ViSinh[i].ViSinh.NameTest</td>
-                                            <td>@ViewBag.ViSinh[i].ViSinh.Price</td>
+                                            <td>@ViewBag.ViSinh[i].ViSinh.Price.ToString("N0")</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            <p><strong>Tổng Tiền: </strong>@totalVS.ToString("N0") VNĐ</p>
                         </div>
                     }
+                    <div class="row body-pay">
+                        <div class="col-xs-6 text-right pull-right invoice-total">
+                            @*<p>Subtotal : @()</p>
+                            <p>Discount (10%) : $101 </p>
+                            <p>VAT (8%) : $73 </p>*@
+                            <p><strong>Tổng Thanh Toán: </strong>@((Model.InformationExamination.PriceCTMaus + totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).Value.ToString("N0")) VNĐ </p>
+                        </div>
+                    </div>
 
                     <div class="row body-pay">
                         <div class="col-xs-6 margintop">

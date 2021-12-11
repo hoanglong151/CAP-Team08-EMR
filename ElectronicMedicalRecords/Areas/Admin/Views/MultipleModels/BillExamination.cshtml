@@ -132,16 +132,17 @@
                 </ul>
                 <div class="ms-4 col-12 d-flex justify-content-start pt-4">
                     <div class="btn-group dropend me-1 mb-1">
-                        <button type="submit" class="btn btn-warning">Thanh Toán</button>
-                    </div>
-                    <div class="btn-group dropend me-1 mb-1">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             In
                         </button>
                         <div class="dropdown-menu" style="margin: 0px;">
                             <h6 class="dropdown-header">Chọn Mục In</h6>
                             <a class="dropdown-item" id="PrintBillExamination">In Hóa Đơn Khám Bệnh</a>
-                            <a class="dropdown-item" id="PrintBillTestSubclinical">In Hóa Đơn Xét Nghiệm</a>
+                            @if (Model.InformationExamination.User_ID != null)
+                            {
+                                <a class="dropdown-item" id="PrintBillTestSubclinical">In Hóa Đơn Xét Nghiệm</a>
+                                <a class="dropdown-item" id="PrintBillPrescription">In Hóa Đơn Toa Thuốc</a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -182,7 +183,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_CTMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_CTMau", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -194,7 +195,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -206,7 +207,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_DongMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_DongMau", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -218,7 +219,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -230,7 +231,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_Urine", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_Urine", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -242,7 +243,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_Immune", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_Immune", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -254,7 +255,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -266,7 +267,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("BillCheck", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
                                     }
                                 </div>
                             </section>
@@ -280,6 +281,30 @@
 
 @section scripts{
     <script>
+        var k = 1;
+        loadMedication();
+        function loadMedication() {
+            var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
+            var medication = document.getElementById('TableMedication');
+            $.ajax({
+                type: "POST",
+                data: { id: InfoID },
+                url: "@Url.Action("LoadPrescription", "Prescription_Detail")",
+                success: (res) => {
+                    $.each(res.data, function (index, medicationByID) {
+                        var row = medication.insertRow(k);
+                        var cell0 = row.insertCell(0);
+                        var cell1 = row.insertCell(1);
+                        var cell2 = row.insertCell(2);
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='border:none;pointer-events: none;' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        k++;
+                    })
+                }
+            })
+        }
+
         /*Print Bill Examination*/
         $('#PrintBillExamination').click(function () {
             var dataExam = $('#createTest').serialize();
@@ -310,15 +335,22 @@
             })
         })
 
-        var mediaQueryList = window.matchMedia('print');
-        mediaQueryList.addListener(function (mql) {
-            if (mql.matches) {
-                console.log('before print dialog open');
-            } else {
-                console.log('after print dialog closed');
-            }
-        });
-               /*Load CD Sinh hoa Mau*/
+        /*Print Bill Prescription*/
+        $('#PrintBillPrescription').click(function () {
+            var dataPrescription = $('#createTest').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintBillExaminationPost", "Patients")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataPrescription }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintBillPrescription", "Patients")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Load CD Sinh hoa Mau*/
         function loadDetailTestsSHM() {
             $('#tableNewSinhHoaMau').DataTable({
                 "ajax": {

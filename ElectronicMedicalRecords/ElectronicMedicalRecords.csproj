@@ -152,6 +152,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.2.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.2\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -239,6 +242,7 @@
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Owin.Security.Cookies">
@@ -2800,6 +2804,24 @@
     <Content Include="Areas\Admin\Views\MultipleModels\BillExamination.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\Patients\PrintBillTestSubclinical.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_CTMau\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_SinhHoaMau\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_DongMau\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_NhomMau\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Urine\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Immune\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_Amniocente\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_ViSinh\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\PrintBillPrescription.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintAllExaminationInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultCTMau.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultSHMau.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultDongMau.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultNhomMau.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultNuocTieu.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultMienDich.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultDichChocDo.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\PrintResultViSinh.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

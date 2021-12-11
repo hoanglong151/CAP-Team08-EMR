@@ -11,14 +11,14 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
-                    <input name="InformationExamination.DateExamine" type="datetime" value="@Model.InformationExamination.DateExamine" class="form-control" disabled />
+                    <input name="InformationExamination.DateExamine" type="datetime" value="@Model.InformationExamination.DateExamine" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateExamine, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đi</label>
-                    <input name="InformationExamination.DateEnd" type="datetime" value="@Model.InformationExamination.DateEnd" class="form-control" disabled />
+                    <input name="InformationExamination.DateEnd" type="datetime" value="@Model.InformationExamination.DateEnd" class="form-control" readonly />
                     @Html.ValidationMessageFor(model => model.InformationExamination.DateEnd, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -28,11 +28,11 @@
                     <input value="@Model.InformationExamination.User_ID" name="InformationExamination.User_ID" hidden />
                     @if (ViewBag.UserName != null)
                     {
-                        <input value="@ViewBag.UserName" class="form-control" disabled />
+                        <input value="@ViewBag.UserName" class="form-control" readonly />
                     }
                     else
                     {
-                        <input value="" class="form-control" disabled />
+                        <input value="" class="form-control" readonly />
                     }
                     @Html.ValidationMessageFor(model => model.InformationExamination.User_ID, "", new { @class = "text-danger" })
                 </div>
@@ -40,21 +40,21 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Nhịp Tim</label>
-                    @Html.EditorFor(model => model.InformationExamination.HeartBeat, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.InformationExamination.HeartBeat, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.InformationExamination.HeartBeat, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Nhịp Thở</label>
-                    @Html.EditorFor(model => model.InformationExamination.Breathing, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.InformationExamination.Breathing, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.InformationExamination.Breathing, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Huyết Áp</label>
-                    @Html.EditorFor(model => model.InformationExamination.BloodPressure, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.InformationExamination.BloodPressure, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.InformationExamination.BloodPressure, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label for="email-id-column">Cân Nặng</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         <span class="input-group-text">kg</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })
@@ -72,7 +72,7 @@
                 <div class="form-group">
                     <label for="email-id-column">Chiều Cao</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.EditorFor(model => model.InformationExamination.Height, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         <span class="input-group-text">cm</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Height, "", new { @class = "text-danger" })
@@ -81,7 +81,7 @@
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Tình Trạng</label>
-                    @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
+                    @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
                 </div>
             </div>

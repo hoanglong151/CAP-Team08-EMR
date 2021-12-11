@@ -141,6 +141,35 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("Edit", "MultipleModels");
         }
 
+        [HttpPost]
+        public ActionResult EditMedication(MultiplesModel multiplesModel)
+        {
+            var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+            if (multiplesModel.Prescription_Details != null)
+            {
+                foreach (var item1 in listPrescription)
+                {
+                    db.Prescription_Detail.Remove(item1);
+                    db.SaveChanges();
+                }
+                foreach (var prescription_Detail in multiplesModel.Prescription_Details)
+                {
+                    prescription_Detail.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    db.Prescription_Detail.Add(prescription_Detail);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                foreach (var item1 in listPrescription)
+                {
+                    db.Prescription_Detail.Remove(item1);
+                    db.SaveChanges();
+                }
+            }
+            return Json(new { success = true });
+        }
+
         // GET: Admin/Prescription_Detail/Delete/5
         public ActionResult Delete(int? id)
         {
