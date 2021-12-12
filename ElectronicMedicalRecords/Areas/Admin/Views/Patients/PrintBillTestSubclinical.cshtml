@@ -99,9 +99,12 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@Model.InformationExamination.PriceCTMaus.Value.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @Model.InformationExamination.PriceCTMaus.Value.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
+                    <hr />
                     @if (ViewBag.SHMaus != null && ViewBag.SHMaus.Count != 0)
                     {
                         <div class="row body-pay">
@@ -126,9 +129,12 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalSHM.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalSHM.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
+                    <hr />
                     @if (ViewBag.DMaus != null && ViewBag.DMaus.Count != 0)
                     {
                         <div class="row body-pay">
@@ -153,7 +159,9 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalDM.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalDM.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
                     @if (ViewBag.NhomMaus != null && ViewBag.NhomMaus.Count != 0)
@@ -180,9 +188,12 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalNM.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalNM.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
+                    <hr />
                     @if (ViewBag.NuocTieu != null && ViewBag.NuocTieu.Count != 0)
                     {
                         <div class="row body-pay">
@@ -207,9 +218,12 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalNT.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalNT.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
+                    <hr />
                     @if (ViewBag.MienDich != null && ViewBag.MienDich.Count != 0)
                     {
                         <div class="row body-pay">
@@ -234,9 +248,12 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalMD.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalMD.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
+                    <hr />
                     @if (ViewBag.DichChocDo != null && ViewBag.DichChocDo.Count != 0)
                     {
                         <div class="row body-pay">
@@ -261,9 +278,12 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalDCD.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalDCD.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
+                    <hr />
                     @if (ViewBag.ViSinh != null && ViewBag.ViSinh.Count != 0)
                     {
                         <div class="row body-pay">
@@ -288,32 +308,29 @@
                                     }
                                 </tbody>
                             </table>
-                            <p><strong>Tổng Tiền: </strong>@totalVS.ToString("N0") VNĐ</p>
+                            <div class="position-relative mt-5 right-1">
+                                <p class="position-absolute bottom-0 end-0"><strong>Tổng Tiền: @totalVS.ToString("N0") VNĐ </strong></p>
+                            </div>
                         </div>
                     }
-                    <div class="row body-pay">
-                        <div class="col-xs-6 text-right pull-right invoice-total">
-                            @*<p>Subtotal : @()</p>
-        <p>Discount (10%) : $101 </p>
-        <p>VAT (8%) : $73 </p>*@
+                    <div class="position-relative">
+                        <div class="position-absolute top-0 end-0">
                             @if (Model.InformationExamination.PriceCTMaus == null)
                             {
-                                <p><strong>Tổng Thanh Toán: </strong>@((totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).ToString("N0")) VNĐ </p>
+                                <p><strong>Tổng Thanh Toán:@((totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).ToString("N0")) VNĐ  </strong></p>
                             }
                             else
                             {
-                                <p><strong>Tổng Thanh Toán: </strong>@((Model.InformationExamination.PriceCTMaus + totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).Value.ToString("N0")) VNĐ </p>
+                                <p><strong>Tổng Thanh Toán:@((Model.InformationExamination.PriceCTMaus + totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).Value.ToString("N0")) VNĐ </strong></p>
                             }
                         </div>
                     </div>
 
-                    <div class="row body-pay">
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Thu Ngân</p>
-                        </div>
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
-                        </div>
+                    <div class="col-xs-6 margt-70 ps-5">
+                        <p class="lead margb-150">Thu Ngân</p>
+                    </div>
+                    <div class="col-xs-6 margintop ">
+                        <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
                     </div>
                 </div>
             </div>
