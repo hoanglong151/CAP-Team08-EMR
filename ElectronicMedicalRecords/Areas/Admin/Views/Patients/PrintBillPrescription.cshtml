@@ -31,6 +31,7 @@
                     <div class="row">
                         <div style="margin-bottom:12px">
                             <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                            <a href="@Url.Action("PaymentPrescription","MultipleModels",new { id = Model.InformationExamination.ID })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
                         </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
@@ -71,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    @if (Model.Prescription_Details.Count != 0)
+                    @if (Model.Prescription_Details != null && Model.Prescription_Details.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Hóa Đơn Thanh Toán Toa Thuốc</p>

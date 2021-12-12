@@ -30,7 +30,7 @@
                     <div class="row">
                         <div style="margin-bottom:12px">
                             <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                            <a href="@Url.Action("Payment","MultipleModels",new { id = Model.InformationExamination.ID })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
+                            <a href="@Url.Action("Payment","MultipleModels",new { id = Model.InformationExamination.ID, price = Model.InformationExamination.PriceExamination })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
                         </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">

@@ -80,8 +80,8 @@
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_InformationExamination" />
         <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="CP24Team08Model.MedicationCategory" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="1" />
         <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
+        <EntityTypeShape EntityType="CP24Team08Model.Prescription_Detail" Width="1.5" PointX="5.25" PointY="1" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         </Diagram>
     </edmx:Diagrams>
