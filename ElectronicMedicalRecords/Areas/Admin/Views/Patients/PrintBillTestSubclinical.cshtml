@@ -78,7 +78,7 @@
                         </div>
 
                     </div>
-                    @if (ViewBag.CTMaus.Count != 0)
+                    @if (ViewBag.CTMaus != null && ViewBag.CTMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
@@ -102,7 +102,7 @@
                             <p><strong>Tổng Tiền: </strong>@Model.InformationExamination.PriceCTMaus.Value.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.SHMaus.Count != 0)
+                    @if (ViewBag.SHMaus != null && ViewBag.SHMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Sinh Hóa Máu</p>
@@ -129,7 +129,7 @@
                             <p><strong>Tổng Tiền: </strong>@totalSHM.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.DMaus.Count != 0)
+                    @if (ViewBag.DMaus != null && ViewBag.DMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
@@ -156,7 +156,7 @@
                             <p><strong>Tổng Tiền: </strong>@totalDM.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.NhomMaus.Count != 0)
+                    @if (ViewBag.NhomMaus != null && ViewBag.NhomMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nhóm Máu</p>
@@ -183,7 +183,7 @@
                             <p><strong>Tổng Tiền: </strong>@totalNM.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.NuocTieu.Count != 0)
+                    @if (ViewBag.NuocTieu != null && ViewBag.NuocTieu.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nước Tiểu</p>
@@ -210,7 +210,7 @@
                             <p><strong>Tổng Tiền: </strong>@totalNT.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.MienDich.Count != 0)
+                    @if (ViewBag.MienDich != null && ViewBag.MienDich.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
@@ -237,7 +237,7 @@
                             <p><strong>Tổng Tiền: </strong>@totalMD.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.DichChocDo.Count != 0)
+                    @if (ViewBag.DichChocDo != null && ViewBag.DichChocDo.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Dịch Chọc Dò</p>
@@ -264,7 +264,7 @@
                             <p><strong>Tổng Tiền: </strong>@totalDCD.ToString("N0") VNĐ</p>
                         </div>
                     }
-                    @if (ViewBag.ViSinh.Count != 0)
+                    @if (ViewBag.ViSinh != null && ViewBag.ViSinh.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Vi Sinh</p>
@@ -294,9 +294,16 @@
                     <div class="row body-pay">
                         <div class="col-xs-6 text-right pull-right invoice-total">
                             @*<p>Subtotal : @()</p>
-                            <p>Discount (10%) : $101 </p>
-                            <p>VAT (8%) : $73 </p>*@
-                            <p><strong>Tổng Thanh Toán: </strong>@((Model.InformationExamination.PriceCTMaus + totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).Value.ToString("N0")) VNĐ </p>
+        <p>Discount (10%) : $101 </p>
+        <p>VAT (8%) : $73 </p>*@
+                            @if (Model.InformationExamination.PriceCTMaus == null)
+                            {
+                                <p><strong>Tổng Thanh Toán: </strong>@((totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).ToString("N0")) VNĐ </p>
+                            }
+                            else
+                            {
+                                <p><strong>Tổng Thanh Toán: </strong>@((Model.InformationExamination.PriceCTMaus + totalSHM + totalDM + totalNM + totalNT + totalMD + totalDCD + totalVS).Value.ToString("N0")) VNĐ </p>
+                            }
                         </div>
                     </div>
 

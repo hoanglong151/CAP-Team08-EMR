@@ -21,7 +21,7 @@
                     @Html.ValidationMessageFor(model => model.InformationExamination.PriceExamination, "", new { @class = "text-danger" })
                 </div>
             </div>
-            @if (Model.InformationExamination.Detail_CTMau != null)
+            @if (Model.InformationExamination.Detail_CTMau.Count != 0)
             {
                 <div class="col-md-12 col-12">
                     <div class="form-group">

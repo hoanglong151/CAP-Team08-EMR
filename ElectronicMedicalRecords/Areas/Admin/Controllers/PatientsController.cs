@@ -59,12 +59,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            var checkPrescriptions = multiplesModel.Prescription_Details.ToList();
-            if(checkPrescriptions.Count != 0)
+            if(multiplesModel.Prescription_Details != null)
             {
-                foreach(var itemPrescription in checkPrescriptions)
+                var checkPrescriptions = multiplesModel.Prescription_Details.ToList();
+                if (checkPrescriptions.Count != 0)
                 {
-                    itemPrescription.Medication = db.Medications.Find(itemPrescription.Medication_ID);
+                    foreach (var itemPrescription in checkPrescriptions)
+                    {
+                        itemPrescription.Medication = db.Medications.Find(itemPrescription.Medication_ID);
+                        itemPrescription.TotalPrice = (itemPrescription.NumMedication * itemPrescription.Medication.Price);
+                    }
                 }
             }
             return View(multiplesModel);

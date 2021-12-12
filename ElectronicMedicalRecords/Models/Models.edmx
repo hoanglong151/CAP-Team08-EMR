@@ -381,6 +381,7 @@
           <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="Medication_ID" Type="int" />
           <Property Name="InformationExamination_ID" Type="int" />
+          <Property Name="TotalPrice" Type="int" />
         </EntityType>
         <EntityType Name="Religion">
           <Key>
@@ -1334,11 +1335,11 @@
           </AssociationSet>
           <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
           <EntitySet Name="MedicationCategories" EntityType="CP24Team08Model.MedicationCategory" />
-          <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
           <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
             <End Role="MedicationCategory" EntitySet="MedicationCategories" />
             <End Role="Medication" EntitySet="Medications" />
           </AssociationSet>
+          <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
           <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
             <End Role="Medication" EntitySet="Medications" />
             <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
@@ -2291,17 +2292,6 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Medications" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="MedicationCategory" ToRole="Medication" />
         </EntityType>
-        <EntityType Name="Prescription_Detail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NumMedication" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Medication_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
-        </EntityType>
         <Association Name="FK_Medication_MedicationCategory">
           <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
           <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
@@ -2314,6 +2304,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Prescription_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumMedication" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Medication_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="TotalPrice" Type="Int32" />
+          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
+        </EntityType>
         <Association Name="FK_Prescription_Detail_Medication">
           <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
@@ -2808,6 +2810,7 @@
           <EntitySetMapping Name="Prescription_Detail">
             <EntityTypeMapping TypeName="CP24Team08Model.Prescription_Detail">
               <MappingFragment StoreEntitySet="Prescription_Detail">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
                 <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
                 <ScalarProperty Name="Note" ColumnName="Note" />

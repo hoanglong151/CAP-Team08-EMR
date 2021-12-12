@@ -37,12 +37,25 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(multiplesModel);
         }
 
-        public ActionResult Payment(int id)
+        public ActionResult Payment(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
             examinationBill.New = false;
+            examinationBill.PriceExamination = price;
             db.Entry(examinationBill).State = EntityState.Modified;
             db.SaveChanges();
+            return RedirectToAction("PrintBillExamination", "Patients");
+        }
+
+        public ActionResult PaymentPrescription(int id)
+        {
+            var prescriptionsBill = db.Prescription_Detail.Where(p => p.InformationExamination_ID == id).ToList();
+            foreach(var bill in prescriptionsBill)
+            {
+                bill.TotalPrice = bill.NumMedication * bill.Medication.Price;
+                db.Entry(bill).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("PrintBillExamination", "Patients");
         }
 
@@ -261,9 +274,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            foreach(var item in multiplesModel.Prescription_Details)
+            if(multiplesModel.Prescription_Details != null)
             {
-                item.Medication = db.Medications.Find(item.Medication_ID);
+                foreach (var item in multiplesModel.Prescription_Details)
+                {
+                    item.Medication = db.Medications.Find(item.Medication_ID);
+                }
+
             }
             return View(multiplesModel);
         }
