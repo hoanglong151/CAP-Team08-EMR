@@ -72,7 +72,7 @@ section .color:nth-child(3) {
         border: 1px solid rgba(255, 255, 255, 0.5);
         border-right: 1px solid rgba(255, 255, 255, 0.2);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.4);
         border-radius: 10px;
         animation: animate 10s linear infinite;
         animation-delay: calc(-1s * var(--i));
@@ -135,7 +135,7 @@ section .color:nth-child(3) {
     position: relative;
     width: 400px;
     /*min-height: 400px;*/
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -237,6 +237,6 @@ section .color:nth-child(3) {
     transition: all .4s ease-in-out;
 }
 .btn-hover.color-11 {
-    background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);
+    background-image: linear-gradient(to right, #e79599, #f70300, #f33144, #e2373f);
     box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
 }

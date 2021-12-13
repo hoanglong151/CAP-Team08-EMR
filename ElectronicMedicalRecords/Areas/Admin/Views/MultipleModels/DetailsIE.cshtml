@@ -559,7 +559,7 @@
         })
 
         /*Print Result Dịch Choc Do*/
-        $('#PrintResultMienDich').click(function (e) {
+        $('#PrintResultDichChocDo').click(function (e) {
             var dataDichChocDo = $('#DetailForm').serialize();
             $.ajax({
                 url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
@@ -575,11 +575,12 @@
 
         /*Print Result Vi Sinh*/
             $('#PrintResultViSinh').click(function (e) {
-            var dataDichChocDo = $('#DetailForm').serialize();
+                var dataViSinh = $('#DetailForm').serialize();
+                console.log(dataViSinh)
             $.ajax({
                 url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
                 type: "POST",
-                data: JSON.stringify({ multiplesModel: dataDichChocDo }).replaceAll('"}', ''),
+                data: JSON.stringify({ multiplesModel: dataViSinh }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
                         window.open("@Url.Action("PrintResultViSinh", "MultipleModels")", "_blank");

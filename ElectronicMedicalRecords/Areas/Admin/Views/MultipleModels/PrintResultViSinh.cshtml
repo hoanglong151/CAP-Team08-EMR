@@ -5,7 +5,10 @@
 }
 <style>
     p {
-        text-align: left
+        text-align: left;
+    }
+    td p{
+        margin-bottom: 0
     }
 </style>
 <div class="container bootstrap snippets bootdeys">
@@ -118,9 +121,9 @@
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
                                                 <td>@Model.Detail_ViSinhs[i].ViSinh.NameTest</td>
-                                                <td>@Model.Detail_ViSinhs[i].ResultNC</td>
-                                                <td>@Model.Detail_ViSinhs[i].ResultDD</td>
-                                                <td>@Model.Detail_ViSinhs[i].MatDo</td>
+                                                <td>@Html.Raw(Model.Detail_ViSinhs[i].ResultNC)</td>
+                                                <td>@Html.Raw(Model.Detail_ViSinhs[i].ResultDD)</td>
+                                                <td>@Html.Raw(Model.Detail_ViSinhs[i].MatDo)</td>
                                             </tr>
                                         }
                                     </tbody>

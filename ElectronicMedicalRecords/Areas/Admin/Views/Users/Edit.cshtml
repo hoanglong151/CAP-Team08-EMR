@@ -23,6 +23,12 @@
     .card {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
+    .float-start p,.float-end p{
+        color:#fff
+    }
+    .float-end p a{
+        color:red
+    }
 </style>
     @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormEdit" }))
     {
