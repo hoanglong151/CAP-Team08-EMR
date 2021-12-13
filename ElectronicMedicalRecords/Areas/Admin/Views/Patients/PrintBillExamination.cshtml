@@ -3,11 +3,13 @@
     ViewBag.Title = "PrintExaminationInfo";
     Layout = "~/Areas/Admin/Views/Shared/Print.cshtml";
 }
+<link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.min.css")">
+<script src="@Url.Content("~/Areas/Admin/assets/js/extensions/sweetalert2.js")"></script>
+<script src="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.all.min.js")"></script>
 <style>
     p {
         text-align: left
     }
-    
 </style>
 <div class="container bootstrap snippets bootdeys">
     <div class="row body-pay">
@@ -53,12 +55,12 @@
                         </div>
 
                         @*<div class="col-xs-4 text-right payment-details">
-                <p class="lead marginbottom payment-info">Payment details</p>
-                <p>Date: 14 April 2014</p>
-                <p>VAT: DK888-777 </p>
-                <p>Total Amount: $1019</p>
-                <p>Account Name: Flatter</p>
-            </div>*@
+                                <p class="lead marginbottom payment-info">Payment details</p>
+                                <p>Date: 14 April 2014</p>
+                                <p>VAT: DK888-777 </p>
+                                <p>Total Amount: $1019</p>
+                                <p>Account Name: Flatter</p>
+                            </div>*@
 
                     </div>
 
@@ -72,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="row body-pay">
                         <p class="lead marginbottom">Hóa Đơn Thanh Toán</p>
                         <table class="table table-striped">
@@ -97,12 +99,12 @@
                             <p><strong>Tổng Thanh Toán: @((Model.InformationExamination.PriceExamination).Value.ToString("N0")) VNĐ </strong></p>
                         </div>
                     </div>
-                        <div class="col-xs-6 margt-70 ps-5">
-                            <p class="lead margb-150">Thu Ngân</p>
-                        </div>
-                        <div class="col-xs-6 margintop ">
-                            <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
-                        </div>
+                    <div class="col-xs-6 margt-70 ps-5">
+                        <p class="lead margb-150">Thu Ngân</p>
+                    </div>
+                    <div class="col-xs-6 margintop ">
+                        <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
+                    </div>
                 </div>
             </div>
         </div>
