@@ -7,6 +7,7 @@
     p {
         text-align: left
     }
+    
 </style>
 <div class="container bootstrap snippets bootdeys">
     <div class="row body-pay">
@@ -61,6 +62,7 @@
 
                     </div>
 
+                    <hr />
                     <div class="row">
                         <p class="lead marginbottom">Thông Tin Khám Bệnh</p>
                         <div class="col-xs-12 from">
@@ -70,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <hr/>
                     <div class="row body-pay">
                         <p class="lead marginbottom">Hóa Đơn Thanh Toán</p>
                         <table class="table table-striped">
@@ -90,26 +92,17 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="row body-pay">
-                        <div class="col-xs-6 text-right pull-right invoice-total">
-                            <p><strong>Tổng Thanh Toán: </strong>@((Model.InformationExamination.PriceExamination).Value.ToString("N0")) VNĐ </p>
+                    <div class="position-relative">
+                        <div class="position-absolute top-0 end-0">
+                            <p><strong>Tổng Thanh Toán: @((Model.InformationExamination.PriceExamination).Value.ToString("N0")) VNĐ </strong></p>
                         </div>
                     </div>
-                    <div class="row body-pay">
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Thu Ngân</p>
+                        <div class="col-xs-6 margt-70 ps-5">
+                            <p class="lead margb-150">Thu Ngân</p>
                         </div>
-                        <div class="col-xs-6 margintop">
+                        <div class="col-xs-6 margintop ">
                             <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
-                            @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
                         </div>
-                        @*<div class="col-xs-6 text-right pull-right invoice-total">
-                <p>Subtotal : $1019</p>
-                <p>Discount (10%) : $101 </p>
-                <p>VAT (8%) : $73 </p>
-                <p>Total : $991 </p>
-            </div>*@
-                    </div>
                 </div>
             </div>
         </div>

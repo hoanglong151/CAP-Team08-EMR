@@ -3,15 +3,31 @@ body {
     background: #eee;
 }
 
+.margt-70{
+    margin-top: 70px;
+}
+
+.margb-150{
+    margin-bottom: 150px;
+}
+
+table > tbody {
+    background-color: #fff;
+    border-bottom: .5px solid #00000061;
+}
 
 .txt-white{
     color: #fff;
 }
 
+.right-1{
+    right:1.5rem;
+}
+
 .logo {
-    width: 10rem;
+    width: 16rem;
     height: 100%;
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 1.5rem 2rem;
 }
 
 .bg-row {
@@ -28,7 +44,7 @@ body {
 
 .invoice .top-right {
     text-align: right;
-    padding: 1rem 70px 1rem 0;
+    padding: 2rem 70px 2rem 0;
 }
 
 .invoice .table-row {
