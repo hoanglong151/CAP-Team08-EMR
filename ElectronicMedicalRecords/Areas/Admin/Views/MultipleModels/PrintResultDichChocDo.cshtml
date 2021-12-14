@@ -25,11 +25,18 @@
                         </div>
 
                     </div>
+
+                    <div style="margin-top:10px">
+                        <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                    </div>
+
+                    <div class="p-header">
+                        <h2>Kết Quả Xét Nghiệm</h2>
+                        <h1>Dịch Chọc Dò</h1>
+                    </div>
+
                     <hr>
                     <div class="row">
-                        <div style="margin-bottom:12px">
-                            <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                        </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
                             <div class="col-xs-4 from w-100">
@@ -43,17 +50,17 @@
                                 <p>Số BHYT: @Model.Patient.InsuranceCode</p>
                             </div>
                             <div class="col-xs-4 to w-100">
-                                <img src="@ViewBag.Url" width="130" height="130" alt="Alternate Text" />
-                                <span>Mã Bệnh Nhân: @Model.Patient.MaBN</span>
+                                <img src="@ViewBag.Url" width="150" height="150" alt="Alternate Text" />
                             </div>
                         </div>
+                        <hr />
                         <p class="lead marginbottom">Thông Tin Bệnh Án</p>
                         <div class="col-xs-12 to">
                             <p>Tiền Sử: @Model.Patient.MedicalHistory</p>
                             <p>Bệnh Sử: @Model.Patient.HistoryDisease</p>
                         </div>
                     </div>
-
+                    <hr />
                     <div class="row">
                         <p class="lead marginbottom">Thông Tin Khám Bệnh</p>
                         <div class="col-xs-12 from">
@@ -73,6 +80,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr />
                     @if (Model.Detail_Amniocentes != null)
                     {
                         <div class="row body-pay">
@@ -103,14 +111,12 @@
                         </div>
                     }
                 </div>
-                <div class="row body-pay">
-                    <div class="col-xs-6 margintop">
-                        <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Chữ Ký Bác Sĩ</p>
-                    </div>
-                    <div class="col-xs-6 margintop">
-                        <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
-                        @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
-                    </div>
+                <div class="col-xs-6 mb-7 p-3">
+                    <p class="lead m-0 ps-1 ">Bác Sỹ</p>
+                    <i>(ghi rõ họ tên)</i>
+                </div>
+                <div class="col-xs-6 margintop ">
+                    <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
                 </div>
             </div>
         </div>
