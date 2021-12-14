@@ -24,42 +24,39 @@
                             <h3 class="marginright txt-white">@Model.Patient.MaBN</h3>
                             <span class="marginright txt-white">@DateTime.Now</span>
                         </div>
-
+                    </div>
+                    <div style="margin-top:10px">
+                        <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                    </div> 
+                    <div class="p-header">
+                        <h1>Toa Thuốc</h1>
                     </div>
                     <hr>
                     <div class="row">
-                        <div style="margin-bottom:12px">
-                            <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                        </div>
+
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
-                            <div class="col-xs-6 from w-100">
+                            <div class="col-xs-4 from w-100">
                                 <p>Bệnh Nhân : @Model.Patient.Name</p>
                                 <p>Địa Chỉ: @Model.Patient.Address</p>
-                                <p>Giới Tính: @ViewBag.Gender</p>
                             </div>
-                            <div class="col-xs-6 to w-100">
-                                <p>Ngày Sinh: @Model.Patient.BirthDate</p>
+                            <div class="col-xs-4 to w-100">
+                                <p>Giới Tính: @ViewBag.Gender</p>
                                 <p>Số Điện Thoại: @Model.Patient.Phone</p>
+                            </div>
+                            <div class="col-xs-4 to w-100">
+                                <p>Ngày Sinh: @Model.Patient.BirthDate.Value.ToString("dd/MM/yyyy")</p>
                                 <p>Số BHYT: @Model.Patient.InsuranceCode</p>
                             </div>
                         </div>
+                        <hr />
                         <p class="lead marginbottom">Thông Tin Bệnh Án</p>
                         <div class="col-xs-12 to">
                             <p>Tiền Sử: @Model.Patient.MedicalHistory</p>
                             <p>Bệnh Sử: @Model.Patient.HistoryDisease</p>
                         </div>
-
-                        @*<div class="col-xs-4 text-right payment-details">
-                                <p class="lead marginbottom payment-info">Payment details</p>
-                                <p>Date: 14 April 2014</p>
-                                <p>VAT: DK888-777 </p>
-                                <p>Total Amount: $1019</p>
-                                <p>Account Name: Flatter</p>
-                            </div>*@
-
                     </div>
-
+                    <hr />
                     <div class="row">
                         <p class="lead marginbottom">Thông Tin Khám Bệnh</p>
                         <div class="col-xs-12 from">
@@ -80,61 +77,55 @@
                         </div>
 
                     </div>
+                    <hr />
                     @if (Model.Prescription_Details != null && Model.Prescription_Details.Count != 0)
                     {
-                <div class="row body-pay">
-                    <p class="lead marginbottom">Toa Thuốc</p>
-                    @for (int i = 0; i < Model.Prescription_Details.Count; i++)
-                    {
-                        <div class="col-xs-12 from" style="padding: 0 3rem">
-                            <div class="d-flex justify-content-start">
-                                <p>@(i + 1).</p>
-                                <p class="col-xs-6 w-100" style="font-weight:500;margin-left:2rem">@Model.Prescription_Details[i].Medication.Name</p>
-                                <p class="col-xs-6 w-100">@Model.Prescription_Details[i].NumMedication <span>@Model.Prescription_Details[i].Medication.Unit</span></p>
-                            </div>
-                            <p style="margin-left:2.8rem">
-                                @Model.Prescription_Details[i].Note
-                            </p>
-                        </div>
-                    }
-                    @*<table class="table table-striped">
-            <thead>
-                <tr>
-                    <th class="text-center" style="width:5%">#</th>
-                    <th style="width:20%">Tên Thuốc</th>
-                    <th style="width:50%">Tên Thuốc</th>
-                    <th style="width:50%">Tên Thuốc</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < ViewBag.SHMaus.Count; i++)
-                {
-                    if (ViewBag.SHMaus[i].ChiDinh == true)
-                    {
+                        <div class="row body-pay">
+                            <p class="lead marginbottom">Toa Thuốc</p>
+                            @for (int i = 0; i < Model.Prescription_Details.Count; i++)
+                            {
+                                <div class="col-xs-12 from" style="padding: 0 3rem">
+                                    <div class="d-flex justify-content-start">
+                                        <p>@(i + 1).</p>
+                                        <p class="col-xs-6 w-100" style="font-weight:500;margin-left:2rem">@Model.Prescription_Details[i].Medication.Name</p>
+                                        <p class="col-xs-6 w-100">@Model.Prescription_Details[i].NumMedication <span>@Model.Prescription_Details[i].Medication.Unit</span></p>
+                                    </div>
+                                    <p style="margin-left:2.8rem">
+                                        @Model.Prescription_Details[i].Note
+                                    </p>
+                                </div>
+                            }
+                            @*<table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td class="text-center">@(i + 1)</td>
-                            <td>@ViewBag.SHMaus[i].NameTest</td>
+                            <th class="text-center" style="width:5%">#</th>
+                            <th style="width:20%">Tên Thuốc</th>
+                            <th style="width:50%">Tên Thuốc</th>
+                            <th style="width:50%">Tên Thuốc</th>
                         </tr>
-                    }
-                }
-            </tbody>
-        </table>*@
-                </div>
-                    }
-                    <div class="row body-pay">
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;margin-bottom:10rem">Chữ Ký Bác Sĩ</p>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < ViewBag.SHMaus.Count; i++)
+                        {
+                            if (ViewBag.SHMaus[i].ChiDinh == true)
+                            {
+                                <tr>
+                                    <td class="text-center">@(i + 1)</td>
+                                    <td>@ViewBag.SHMaus[i].NameTest</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>*@
                         </div>
-                        <div class="col-xs-6 margintop">
-                            <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
-                            @*<button class="btn btn-danger" id><i class="fa fa-envelope-o"></i> Mail Invoice</button>*@
-                        </div>
-                        @*<div class="col-xs-6 text-right pull-right invoice-total">
-                                <p>Subtotal : $1019</p>
-                                <p>Discount (10%) : $101 </p>
-                                <p>VAT (8%) : $73 </p>
-                                <p>Total : $991 </p>
-                            </div>*@
+                    }
+                    <hr />
+                    <div class="col-xs-6 mb-7 p-5">
+                        <p class="lead m-0 ps-1 ">Bác Sỹ</p>
+                        <i>(ghi rõ họ tên)</i>
+                    </div>
+                    <div class="col-xs-6 margintop">
+                        <p class="lead marginbottom" style="text-align:center;">THANK YOU!</p>
                     </div>
                 </div>
             </div>

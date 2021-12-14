@@ -1,14 +1,40 @@
+html {
+    font-size: 14px;
+}
+
 body {
     margin-top: 20px;
     background: #eee;
+}
+
+.p-header {
+    margin-top: 5.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.container{
+    max-width: 900px
+}
+
+.row.bg-row {
+    height: 100px
+}
+
+.r-20{
+    right:20px;
+}
+
+.pe-65{
+    padding-left: 65rem;
 }
 
 .margt-70{
     margin-top: 70px;
 }
 
-.margb-150{
-    margin-bottom: 150px;
+.mb-7{
+    margin-bottom: 7rem;
 }
 
 table > tbody {
@@ -25,9 +51,9 @@ table > tbody {
 }
 
 .logo {
-    width: 16rem;
-    height: 100%;
-    padding: 1.5rem 0 1.5rem 2rem;
+    width: 12rem;
+    height: 50%;
+    margin: 1.5rem 0 1.5rem 1rem;
 }
 
 .bg-row {
@@ -44,7 +70,7 @@ table > tbody {
 
 .invoice .top-right {
     text-align: right;
-    padding: 2rem 70px 2rem 0;
+    padding: 1.5rem 70px 2rem 0;
 }
 
 .invoice .table-row {
