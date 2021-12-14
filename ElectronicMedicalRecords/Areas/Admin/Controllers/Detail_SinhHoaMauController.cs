@@ -17,34 +17,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         private CP24Team08Entities db = new CP24Team08Entities();
 
         // GET: Admin/Detail_SinhHoaMau
-        public ActionResult Index()
-        {
-            var detail_SinhHoaMau = db.Detail_SinhHoaMau.Include(d => d.InformationExamination).Include(d => d.SinhHoaMau);
-            return View(detail_SinhHoaMau.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var detail_SinhHoaMau = db.Detail_SinhHoaMau.Include(d => d.InformationExamination).Include(d => d.SinhHoaMau);
+        //    return View(detail_SinhHoaMau.ToList());
+        //}
 
-        // GET: Admin/Detail_SinhHoaMau/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-            if (detail_SinhHoaMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_SinhHoaMau);
-        }
+        //// GET: Admin/Detail_SinhHoaMau/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
+        //    if (detail_SinhHoaMau == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_SinhHoaMau);
+        //}
 
-        // GET: Admin/Detail_SinhHoaMau/Create
-        public ActionResult Create()
-        {
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-            ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest");
-            return View();
-        }
+        //// GET: Admin/Detail_SinhHoaMau/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
+        //    ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest");
+        //    return View();
+        //}
 
         // POST: Admin/Detail_SinhHoaMau/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -77,10 +77,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_SinhHoaMau> detail_SinhHoaMaus = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_SinhHoaMaus == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_SinhHoaMaus = detail_SinhHoaMaus;
             return PartialView("_DetailIE", multiplesModel);
@@ -92,10 +88,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_SinhHoaMau> detail_SinhHoaMaus = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_SinhHoaMaus == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_SinhHoaMaus = detail_SinhHoaMaus;
             return PartialView("_BillCheck", multiplesModel);
@@ -108,10 +100,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_SinhHoaMau> detail_SinhHoaMaus = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_SinhHoaMaus == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_SinhHoaMaus = detail_SinhHoaMaus;
             return PartialView("_Edit", multiplesModel);
@@ -166,30 +154,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("Create", "MultipleModels");
         }
         // GET: Admin/Detail_SinhHoaMau/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-            if (detail_SinhHoaMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_SinhHoaMau);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
+        //    if (detail_SinhHoaMau == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_SinhHoaMau);
+        //}
 
-        // POST: Admin/Detail_SinhHoaMau/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-            db.Detail_SinhHoaMau.Remove(detail_SinhHoaMau);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/Detail_SinhHoaMau/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
+        //    db.Detail_SinhHoaMau.Remove(detail_SinhHoaMau);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

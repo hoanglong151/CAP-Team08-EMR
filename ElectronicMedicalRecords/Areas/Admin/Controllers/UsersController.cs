@@ -52,20 +52,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
                 return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
             }
-            //else if (usersOnline == null)
-            //{
-            //    //create a new list
-            //    var loggedInUsers = new Dictionary<string, DateTime>();
-            //    //add this user to the list
-            //    loggedInUsers.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
-            //    //add the list into the cache
-            //    usersOnline = loggedInUsers;
-            //    foreach (var user in usersOnline)
-            //    {
-            //        listUser.Add(user.Key);
-            //    }
-            //    return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
-            //}
             else
             {
                 return RedirectToAction("Login","Account", new { Area = "" });

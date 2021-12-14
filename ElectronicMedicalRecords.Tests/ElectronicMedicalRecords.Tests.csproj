@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="CloudinaryDotNet, Version=1.15.2.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
       <HintPath>..\packages\CloudinaryDotNet.1.15.2\lib\net452\CloudinaryDotNet.dll</HintPath>
     </Reference>
@@ -88,6 +91,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=4.16.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.16.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -127,6 +133,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.Extensions.4.1.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
       <Private>True</Private>
@@ -142,6 +151,9 @@
       <HintPath>..\packages\System.Text.Encodings.Web.4.0.1\lib\netstandard1.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,10 +186,27 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ClinicalsControllerTest.cs" />
+    <Compile Include="Controllers\Detail_ViSinhControllerTest.cs" />
+    <Compile Include="Controllers\Detail_UrineControllerTest.cs" />
+    <Compile Include="Controllers\Detail_SinhHoaMauControllerTest.cs" />
+    <Compile Include="Controllers\Detail_NhomMauControllerTest.cs" />
+    <Compile Include="Controllers\Detail_ImmuneControllerTest.cs" />
+    <Compile Include="Controllers\Detail_DongMauControllerTest.cs" />
+    <Compile Include="Controllers\Detail_CTMauControllerTest.cs" />
+    <Compile Include="Controllers\Detail_AmniocenteControllerTest.cs" />
+    <Compile Include="Controllers\InformationExaminationsControllerTest.cs" />
+    <Compile Include="Controllers\ViSinhsControllerTest.cs" />
+    <Compile Include="Controllers\UrinesControllerTest.cs" />
+    <Compile Include="Controllers\SinhHoaMausControllerTest.cs" />
+    <Compile Include="Controllers\NhomMausControllerTest.cs" />
+    <Compile Include="Controllers\ImmunesControllerTest.cs" />
+    <Compile Include="Controllers\DongMausControllerTest.cs" />
     <Compile Include="Controllers\AspNetRolesControllerTest.cs" />
     <Compile Include="Controllers\MedicationCategoriesControllerTest.cs" />
     <Compile Include="Controllers\PatientStatusControllerTest.cs" />
     <Compile Include="Controllers\PatientsControllerTest.cs" />
+    <Compile Include="Controllers\AmniocentesControllerTest.cs" />
     <Compile Include="Controllers\UsersControllerTest.cs" />
     <Compile Include="Controllers\MedicationsControllerTest.cs" />
     <Compile Include="Controllers\DiagnosticsCategoriesControllerTest.cs" />

@@ -17,34 +17,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         private CP24Team08Entities db = new CP24Team08Entities();
 
         // GET: Admin/Detail_Urine
-        public ActionResult Index()
-        {
-            var detail_UrineIndex = db.Detail_Urine.Include(d => d.InformationExamination).Include(d => d.Urine);
-            return View(detail_UrineIndex.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var detail_UrineIndex = db.Detail_Urine.Include(d => d.InformationExamination).Include(d => d.Urine);
+        //    return View(detail_UrineIndex.ToList());
+        //}
 
-        // GET: Admin/Detail_Urine/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_Urine detail_UrineDetails = db.Detail_Urine.Find(id);
-            if (detail_UrineDetails == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_UrineDetails);
-        }
+        //// GET: Admin/Detail_Urine/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_Urine detail_UrineDetails = db.Detail_Urine.Find(id);
+        //    if (detail_UrineDetails == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_UrineDetails);
+        //}
 
-        // GET: Admin/Detail_Urine/Create
-        public ActionResult Create()
-        {
-            ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-            ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name");
-            return View();
-        }
+        //// GET: Admin/Detail_Urine/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
+        //    ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name");
+        //    return View();
+        //}
 
         // POST: Admin/Detail_Urine/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -76,10 +76,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Urine> detail_Urines = db.Detail_Urine.Where(p => p.InfomationExamination_ID == id).ToList();
-            if (detail_Urines == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_Urines = detail_Urines;
             return PartialView("_DetailIE", multiplesModel);
@@ -91,10 +87,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Urine> detail_Urines = db.Detail_Urine.Where(p => p.InfomationExamination_ID == id).ToList();
-            if (detail_Urines == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_Urines = detail_Urines;
             return PartialView("_BillCheck", multiplesModel);
@@ -107,10 +99,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Urine> detail_Urines = db.Detail_Urine.Where(p => p.InfomationExamination_ID == id).ToList();
-            if (detail_Urines == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_Urines = detail_Urines;
             return PartialView("_Edit", multiplesModel);
@@ -162,30 +150,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Detail_Urine/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
-            if (detail_Urine == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_Urine);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
+        //    if (detail_Urine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_Urine);
+        //}
 
-        // POST: Admin/Detail_Urine/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
-            db.Detail_Urine.Remove(detail_Urine);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/Detail_Urine/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
+        //    db.Detail_Urine.Remove(detail_Urine);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

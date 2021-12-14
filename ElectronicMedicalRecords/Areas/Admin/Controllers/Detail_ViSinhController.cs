@@ -16,11 +16,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         private CP24Team08Entities db = new CP24Team08Entities();
 
         // GET: Admin/Detail_ViSinh
-        public ActionResult Index()
-        {
-            var detail_ViSinh = db.Detail_ViSinh.Include(d => d.InformationExamination).Include(d => d.ViSinh);
-            return View(detail_ViSinh.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var detail_ViSinh = db.Detail_ViSinh.Include(d => d.InformationExamination).Include(d => d.ViSinh);
+        //    return View(detail_ViSinh.ToList());
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -40,7 +40,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.ViSinh_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_ViSinh.ViSinh_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_ViSinh.InformationExamination_ID);
-            //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
@@ -50,10 +49,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_ViSinhs == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_DetailIE", multiplesModel);
@@ -65,56 +60,52 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_ViSinhs == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_BillCheck", multiplesModel);
         }
 
         // GET: Admin/Detail_ViSinh/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_ViSinh detail_ViSinh = db.Detail_ViSinh.Find(id);
-            if (detail_ViSinh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_ViSinh);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_ViSinh detail_ViSinh = db.Detail_ViSinh.Find(id);
+        //    if (detail_ViSinh == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_ViSinh);
+        //}
 
-        // GET: Admin/Detail_ViSinh/Create
-        public ActionResult Create()
-        {
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-            ViewBag.ViSinh_ID = new SelectList(db.ViSinhs, "ID", "NameTest");
-            return View();
-        }
+        //// GET: Admin/Detail_ViSinh/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
+        //    ViewBag.ViSinh_ID = new SelectList(db.ViSinhs, "ID", "NameTest");
+        //    return View();
+        //}
 
         // POST: Admin/Detail_ViSinh/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ViSinh_ID,ChiDinh,Result,ResultNC,ResultDD,MatDo,InformationExamination_ID")] Detail_ViSinh detail_ViSinh)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Detail_ViSinh.Add(detail_ViSinh);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ID,ViSinh_ID,ChiDinh,Result,ResultNC,ResultDD,MatDo,InformationExamination_ID")] Detail_ViSinh detail_ViSinh)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Detail_ViSinh.Add(detail_ViSinh);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_ViSinh.InformationExamination_ID);
-            ViewBag.ViSinh_ID = new SelectList(db.ViSinhs, "ID", "NameTest", detail_ViSinh.ViSinh_ID);
-            return View(detail_ViSinh);
-        }
+        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_ViSinh.InformationExamination_ID);
+        //    ViewBag.ViSinh_ID = new SelectList(db.ViSinhs, "ID", "NameTest", detail_ViSinh.ViSinh_ID);
+        //    return View(detail_ViSinh);
+        //}
 
         // GET: Admin/Detail_ViSinh/Edit/5
         public ActionResult Edit(int id)
@@ -131,10 +122,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 ViSinhCD.ChiDinh = detail_ViSinhs[i].ChiDinh;
                 detail_ViSinhs[i].InformationExamination_ID = id;
                 ViSinhs.Add(ViSinhCD);
-            }
-            if (detail_ViSinhs == null)
-            {
-                return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.ViSinh = ViSinhs;
@@ -170,30 +157,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Detail_ViSinh/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_ViSinh detail_ViSinh = db.Detail_ViSinh.Find(id);
-            if (detail_ViSinh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_ViSinh);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_ViSinh detail_ViSinh = db.Detail_ViSinh.Find(id);
+        //    if (detail_ViSinh == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_ViSinh);
+        //}
 
-        // POST: Admin/Detail_ViSinh/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Detail_ViSinh detail_ViSinh = db.Detail_ViSinh.Find(id);
-            db.Detail_ViSinh.Remove(detail_ViSinh);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/Detail_ViSinh/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Detail_ViSinh detail_ViSinh = db.Detail_ViSinh.Find(id);
+        //    db.Detail_ViSinh.Remove(detail_ViSinh);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

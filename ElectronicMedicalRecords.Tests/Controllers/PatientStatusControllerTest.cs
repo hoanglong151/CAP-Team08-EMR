@@ -149,7 +149,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.IsNotNull(result);
 
                 dynamic noti = result.Data;
-                Assert.AreEqual(true, noti.success);
+                Assert.AreEqual(false, noti.success);
             }
         }
     }

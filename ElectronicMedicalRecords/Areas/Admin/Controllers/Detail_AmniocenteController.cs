@@ -17,34 +17,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         private CP24Team08Entities db = new CP24Team08Entities();
 
         // GET: Admin/Detail_Amniocente
-        public ActionResult Index()
-        {
-            var detail_Amniocente = db.Detail_Amniocente.Include(d => d.Amniocente).Include(d => d.InformationExamination);
-            return View(detail_Amniocente.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var detail_Amniocente = db.Detail_Amniocente.Include(d => d.Amniocente).Include(d => d.InformationExamination);
+        //    return View(detail_Amniocente.ToList());
+        //}
 
-        // GET: Admin/Detail_Amniocente/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_Amniocente detail_Amniocente = db.Detail_Amniocente.Find(id);
-            if (detail_Amniocente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_Amniocente);
-        }
+        //// GET: Admin/Detail_Amniocente/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_Amniocente detail_Amniocente = db.Detail_Amniocente.Find(id);
+        //    if (detail_Amniocente == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_Amniocente);
+        //}
 
         // GET: Admin/Detail_Amniocente/Create
-        public ActionResult Create()
-        {
-            ViewBag.Amniocente_ID = new SelectList(db.Amniocentes, "ID", "NameTest");
-            ViewBag.InformationExamination = new SelectList(db.InformationExaminations, "ID", "ID");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.Amniocente_ID = new SelectList(db.Amniocentes, "ID", "NameTest");
+        //    ViewBag.InformationExamination = new SelectList(db.InformationExaminations, "ID", "ID");
+        //    return View();
+        //}
 
         // POST: Admin/Detail_Amniocente/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -67,7 +67,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.Amniocent_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_Amniocente.Amniocente_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);
-            //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
@@ -77,10 +76,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_Amniocentes == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_DetailIE", multiplesModel);
@@ -92,10 +87,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_Amniocentes == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_BillCheck", multiplesModel);
@@ -108,10 +99,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == id).ToList();
-            if (detail_Amniocentes == null)
-            {
-                return HttpNotFound();
-            }
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_Edit", multiplesModel);
@@ -159,35 +146,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.Amniocent_ID = new SelectList(db.Amniocentes, "ID", "NameTest", detail_Amniocente.Amniocente_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);
-            //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
-        // GET: Admin/Detail_Amniocente/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_Amniocente detail_Amniocente = db.Detail_Amniocente.Find(id);
-            if (detail_Amniocente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_Amniocente);
-        }
+        //// GET: Admin/Detail_Amniocente/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Detail_Amniocente detail_Amniocente = db.Detail_Amniocente.Find(id);
+        //    if (detail_Amniocente == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(detail_Amniocente);
+        //}
 
-        // POST: Admin/Detail_Amniocente/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Detail_Amniocente detail_Amniocente = db.Detail_Amniocente.Find(id);
-            db.Detail_Amniocente.Remove(detail_Amniocente);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/Detail_Amniocente/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Detail_Amniocente detail_Amniocente = db.Detail_Amniocente.Find(id);
+        //    db.Detail_Amniocente.Remove(detail_Amniocente);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
