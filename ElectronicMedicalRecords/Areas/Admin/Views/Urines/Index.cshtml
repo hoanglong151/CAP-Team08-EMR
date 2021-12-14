@@ -2,56 +2,223 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ChiDinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Result)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CSBT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Unit)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChiDinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Result)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CSBT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unit)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
 }
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
+                <h3>Quản Lý Nước Tiểu</h3>
+                <p class="text-subtitle text-muted">Bạn có thể xem danh sách nước tiểu tại đây</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Urines")">Danh sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Nước Tiểu</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped" id="tableUrine" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>CSBT</th>
+                            <th>Đơn Vị</th>
+                            <th>Giá</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th style="width:80px">Chức Năng</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
 
-</table>
+<!-- Update Basic Modal -->
+<div class="modal fade text-left" id="Updateurine" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Cập nhật giá xét nghiệm</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-updateUrine" class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <input value="" type="text" name="Name" id="urineName" hidden />
+                            <input value="" type="checkbox" name="ChiDinh" id="urineChiDinh" hidden />
+                            <input value="" type="text" name="CSBT" id="urineCSBT" hidden />
+                            <input value="" type="text" name="Unit" id="urineUnit" hidden />
+                            <input value="" type="number" name="ID" id="urineID" hidden />
+                            <div class="col-md-4">
+                                <label>Giá</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Price" type="number" class="form-control"
+                                               placeholder="Giá" id="urinePrice" required>
+                                        <div class="form-control-icon">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="updateUrine" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cập Nhật</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
+            $('#tableUrine').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData", "Urines")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": "CSBT",
+                    },
+                    {
+                        "data": "Unit",
+                    },
+                    {
+                        "data": "Price",
+                    },
+                    {
+                        "className": "w45",
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var button = "<button class='btn btn-primary btnHover edit' onclick='getUrineByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'> <i class='fas fa-user-edit'></i> </button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ loại chuẩn đoán",
+                    "search": "Tìm kiếm:",
+                },
+                "columnDefs": [
+                    {
+                        "targets": [4], //four column
+                        "visible": RoleCheck
+                    }
+                ]
+            })
+            updateUrine()
+        })
+
+        function getUrineByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit", "Urines")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        $('#urinePrice').val(res.data.Price);
+                        $('#urineName').val(res.data.Name);
+                        $('#urineChiDinh').val(res.data.ChiDinh);
+                        $('#urineCSBT').val(res.data.CSBT);
+                        $('#urineUnit').val(res.data.Unit);
+                        $('#urineID').val(res.data.ID);
+                    }
+                }
+            })
+            $('#Updateurine').modal('show')
+        }
+
+        function updateUrine() {
+            $('#form-updateUrine').submit((e) => {
+                var dataUrine = $('#form-updateUrine').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataUrine,
+                }
+                $.ajax({
+                    url: "@Url.Action("Edit", "Urines")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            $('#Updateurine').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').remove();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã cập nhật thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tableUrine').DataTable().ajax.reload();
+                        }
+                        else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1500,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                e.preventDefault();
+            })
+        }
+    </script>
+}
