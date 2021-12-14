@@ -20,6 +20,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.ViSinhs.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var viSinhs = db.ViSinhs.ToList();
+            return Json(new { data = viSinhs }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/CTMaus/CreateOldPatient
         public ActionResult CreateOldPatient()
         {
@@ -67,34 +74,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/ViSinhs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             ViSinh viSinh = db.ViSinhs.Find(id);
             if (viSinh == null)
             {
                 return HttpNotFound();
             }
-            return View(viSinh);
+            var ViSinh = new { viSinh.ID, viSinh.NameTest, viSinh.Price, viSinh.ChiDinh };
+            return Json(new { data = ViSinh }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/ViSinhs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NameTest,ChiDinh,Result,ResultNC,ResultDD,NongDo")] ViSinh viSinh)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(ViSinh viSinh)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(viSinh).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(viSinh);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/ViSinhs/Delete/5

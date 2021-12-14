@@ -21,6 +21,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.Immunes.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var immunes = db.Immunes.ToList();
+            return Json(new { data = immunes }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/Immunes/Details/5
         public ActionResult Details(int? id)
         {
@@ -70,34 +77,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Immunes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Immune immune = db.Immunes.Find(id);
             if (immune == null)
             {
                 return HttpNotFound();
             }
-            return View(immune);
+            var Immune = new { immune.Price, immune.ID, immune.NameTest, immune.Unit, immune.CSBT, immune.ChiDinh };
+            return Json(new { data = Immune }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Immunes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ChiDinh,NameTest,Result,CSBT,Unit")] Immune immune)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(Immune immune)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(immune).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(immune);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/Immunes/Delete/5

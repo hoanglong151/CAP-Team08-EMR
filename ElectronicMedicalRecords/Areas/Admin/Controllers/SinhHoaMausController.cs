@@ -21,6 +21,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.SinhHoaMaus.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var sinhHoaMaus = db.SinhHoaMaus.ToList();
+            return Json(new { data = sinhHoaMaus }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/SinhHoaMaus/Details/5
         public ActionResult Details(int? id)
         {
@@ -70,34 +77,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/SinhHoaMaus/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             SinhHoaMau sinhHoaMau = db.SinhHoaMaus.Find(id);
             if (sinhHoaMau == null)
             {
                 return HttpNotFound();
             }
-            return View(sinhHoaMau);
+            var SinhHoaMau = new { sinhHoaMau.ID, sinhHoaMau.NameTest, sinhHoaMau.Price, sinhHoaMau.CSBT, sinhHoaMau.ChiDinh };
+            return Json(new { data = SinhHoaMau }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/SinhHoaMaus/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ChiDinh,NameTest,CSBT,Result")] SinhHoaMau sinhHoaMau)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(SinhHoaMau sinhHoaMau)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(sinhHoaMau).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(sinhHoaMau);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/SinhHoaMaus/Delete/5

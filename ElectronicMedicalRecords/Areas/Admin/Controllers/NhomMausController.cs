@@ -21,6 +21,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.NhomMaus.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var nhomMaus = db.NhomMaus.ToList();
+            return Json(new { data = nhomMaus }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/NhomMaus/Details/5
         public ActionResult Details(int? id)
         {
@@ -70,34 +77,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhomMaus/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             NhomMau nhomMau = db.NhomMaus.Find(id);
             if (nhomMau == null)
             {
                 return HttpNotFound();
             }
-            return View(nhomMau);
+            var NhomMau = new { nhomMau.ChiDinh, nhomMau.ID, nhomMau.NameTest, nhomMau.Price };
+            return Json(new { data = NhomMau }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/NhomMaus/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NameTest,Result")] NhomMau nhomMau)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(NhomMau nhomMau)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(nhomMau).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(nhomMau);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/NhomMaus/Delete/5

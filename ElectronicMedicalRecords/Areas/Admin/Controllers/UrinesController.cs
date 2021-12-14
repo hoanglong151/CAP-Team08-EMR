@@ -21,6 +21,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.Urines.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var urines = db.Urines.ToList();
+            return Json(new { data = urines }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/Urines/Details/5
         public ActionResult Details(int? id)
         {
@@ -70,34 +77,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Urines/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Urine urine = db.Urines.Find(id);
             if (urine == null)
             {
                 return HttpNotFound();
             }
-            return View(urine);
+            var Urine = new { urine.ID, urine.Name, urine.Price, urine.Unit, urine.CSBT, urine.ChiDinh };
+            return Json(new { data = Urine }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Urines/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ChiDinh,Name,Result,CSBT,Unit")] Urine urine)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(Urine urine)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(urine).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(urine);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/Urines/Delete/5

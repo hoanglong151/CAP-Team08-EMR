@@ -21,6 +21,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.DongMaus.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var dongMaus = db.DongMaus.ToList();
+            return Json(new { data = dongMaus }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/DongMaus/Details/5
         public ActionResult Details(int? id)
         {
@@ -70,34 +77,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/DongMaus/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             DongMau dongMau = db.DongMaus.Find(id);
             if (dongMau == null)
             {
                 return HttpNotFound();
             }
-            return View(dongMau);
+            var DongMau = new { dongMau.ID, dongMau.NameTest, dongMau.Price, dongMau.Unit, dongMau.ChiDinh, dongMau.CSBT };
+            return Json(new { data = DongMau }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/DongMaus/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ChiDinh,NameTest,Result,CSBT,Unit")] DongMau dongMau)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(DongMau dongMau)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(dongMau).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(dongMau);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/DongMaus/Delete/5

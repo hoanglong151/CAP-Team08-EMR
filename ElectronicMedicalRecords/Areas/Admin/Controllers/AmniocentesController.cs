@@ -21,6 +21,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.Amniocentes.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var amniocentes = db.Amniocentes.ToList();
+            return Json(new { data = amniocentes }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Admin/Amniocentes/Details/5
         public ActionResult Details(int? id)
         {
@@ -72,34 +79,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Amniocentes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Amniocente amniocente = db.Amniocentes.Find(id);
             if (amniocente == null)
             {
                 return HttpNotFound();
             }
-            return View(amniocente);
+            var Amniocente = new { amniocente.ID, amniocente.ChiDinh, amniocente.NameTest, amniocente.Unit, amniocente.Price, amniocente.CSBT };
+            return Json(new { data = Amniocente }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Amniocentes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ChiDinh,NameTest,Result,CSBT,Unit")] Amniocente amniocente)
+        [ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Edit(Amniocente amniocente)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(amniocente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(amniocente);
+            return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
 
         // GET: Admin/Amniocentes/Delete/5
