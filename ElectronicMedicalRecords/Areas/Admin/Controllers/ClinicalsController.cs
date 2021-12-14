@@ -15,27 +15,27 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Clinicals
-        public ActionResult Index()
-        {
-            var clinicals = db.Clinicals.Include(c => c.InformationExamination).Include(c => c.User);
-            return View(clinicals.ToList());
-        }
+        //// GET: Admin/Clinicals
+        //public ActionResult Index()
+        //{
+        //    var clinicals = db.Clinicals.Include(c => c.InformationExamination).Include(c => c.User).ToList(); ;
+        //    return View(clinicals);
+        //}
 
-        // GET: Admin/Clinicals/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Clinical clinical = db.Clinicals.Find(id);
-            if (clinical == null)
-            {
-                return HttpNotFound();
-            }
-            return View(clinical);
-        }
+        //// GET: Admin/Clinicals/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Clinical clinical = db.Clinicals.Find(id);
+        //    if (clinical == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(clinical);
+        //}
 
         public ActionResult DetailIE(int id)
         {
@@ -138,31 +138,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(multiplesModel.Clinical);
         }
 
-        // GET: Admin/Clinicals/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Clinical clinical = db.Clinicals.Find(id);
-            if (clinical == null)
-            {
-                return HttpNotFound();
-            }
-            return View(clinical);
-        }
+        //// GET: Admin/Clinicals/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Clinical clinical = db.Clinicals.Find(id);
+        //    if (clinical == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(clinical);
+        //}
 
-        // POST: Admin/Clinicals/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Clinical clinical = db.Clinicals.Find(id);
-            db.Clinicals.Remove(clinical);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/Clinicals/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Clinical clinical = db.Clinicals.Find(id);
+        //    db.Clinicals.Remove(clinical);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

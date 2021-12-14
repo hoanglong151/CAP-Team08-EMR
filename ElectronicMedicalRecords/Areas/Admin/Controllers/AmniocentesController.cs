@@ -28,21 +28,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = amniocentes }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Admin/Amniocentes/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Amniocente amniocente = db.Amniocentes.Find(id);
-            if (amniocente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(amniocente);
-        }
-
         // GET: Admin/Amniocentes/CreateOldPatient
         public ActionResult CreateOldPatient()
         {

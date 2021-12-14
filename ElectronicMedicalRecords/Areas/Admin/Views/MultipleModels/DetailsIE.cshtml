@@ -382,9 +382,9 @@
             var cell1 = row.insertCell(1);
             var cell2 = row.insertCell(2);
             var cell3 = row.insertCell(3);
-            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
-            cell1.innerHTML = "<input style='border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
-            cell2.innerHTML = "<input style='border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
+            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
             cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
         }
@@ -403,9 +403,9 @@
                         var cell1 = row.insertCell(1);
                         var cell2 = row.insertCell(2);
                         var cell3 = row.insertCell(3);
-                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
-                        cell1.innerHTML = "<input style='border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
-                        cell2.innerHTML = "<input style='border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
                         cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
                         k++;
                     })

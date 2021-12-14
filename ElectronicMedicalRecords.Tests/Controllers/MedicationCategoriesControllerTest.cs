@@ -150,7 +150,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
 
                 dynamic noti = result.Data;
                 Assert.AreEqual(false, noti.success);
-                Assert.AreEqual("Danh mục thuốc này đang được sử dụng", noti.responseText);
+                Assert.AreEqual("Danh mục này đã được sử dụng cho thuốc. Bạn không thể xóa nó!", noti.responseText);
             }
         }
     }

@@ -2708,7 +2708,6 @@
     <Content Include="Areas\Admin\Views\Detail_Immune\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Amniocentes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Amniocentes\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Amniocentes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Amniocentes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Amniocentes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Amniocentes\_Create.cshtml" />
