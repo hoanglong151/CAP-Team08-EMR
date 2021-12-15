@@ -1,10 +1,12 @@
 ﻿using ElectronicMedicalRecords.Areas.Admin.Controllers;
 using ElectronicMedicalRecords.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ElectronicMedicalRecords.Tests.Controllers
@@ -14,7 +16,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
     {
         CP24Team08Entities db = new CP24Team08Entities();
         PatientsController controller = new PatientsController();
-        MultiplesModel multiplesModel = new MultiplesModel();
         [TestMethod]
         public void TestIndex()
         {
@@ -181,6 +182,97 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 controller.ModelState.AddModelError("", "Error Message");
                 var result1 = controller.Edit(patientUpdate) as ViewResult;
                 Assert.IsNotNull(result1);
+            }
+        }
+
+        [TestMethod]
+        public void GetData()
+        {
+            var result = controller.GetData() as JsonResult;
+            Assert.IsNotNull(result);
+            dynamic check = result.Data;
+            Assert.AreEqual(db.Patients.Count(), check.data.Count);
+        }
+
+        public MultiplesModel MockSessionBillAll()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var info = db.InformationExaminations.First();
+            var patient = db.Patients.First(p => p.ID == info.Patient_ID);
+            var clinical = db.Clinicals.First(p => p.InformationExamination_ID == info.ID);
+            var prescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_Amniocente = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_CTMaus = db.Detail_CTMau.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_DMaus = db.Detail_DongMau.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_Immune = db.Detail_Immune.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_NMaus = db.Detail_NhomMau.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_SHM = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            var detail_Urine = db.Detail_Urine.Where(p => p.InfomationExamination_ID == info.ID).ToList();
+            var detail_VS = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            multiplesModel.Detail_SinhHoaMaus = detail_SHM;
+            multiplesModel.Detail_Urines = detail_Urine;
+            multiplesModel.Detail_ViSinhs = detail_VS;
+            multiplesModel.Detail_NhomMaus = detail_NMaus;
+            multiplesModel.Detail_Immunes = detail_Immune;
+            multiplesModel.Detail_DongMaus = detail_DMaus;
+            multiplesModel.Detail_CTMaus = detail_CTMaus;
+            multiplesModel.Detail_Amniocentes = detail_Amniocente;
+            multiplesModel.Clinical = clinical;
+            multiplesModel.Patient = patient;
+            multiplesModel.Prescription_Details = prescription;
+            multiplesModel.InformationExamination = info;
+
+            var mockControllerContext = new Mock<ControllerContext>();
+            var mockSession = new Mock<HttpSessionStateBase>();
+            mockSession.SetupGet(s => s["MultipleModelsPatient"]).Returns(multiplesModel); //somevalue
+            mockControllerContext.Setup(p => p.HttpContext.Session).Returns(mockSession.Object);
+            controller.ControllerContext = mockControllerContext.Object;
+            return multiplesModel;
+        }
+
+        [TestMethod]
+        public void PrintBillExaminationPost()
+        {
+            var multiple = MockSessionBillAll();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.PrintBillExaminationPost(multiple) as JsonResult;
+                Assert.IsNotNull(result);
+                dynamic check = result.Data;
+                Assert.AreEqual(true, check.success);
+            }
+        }
+
+        [TestMethod]
+        public void PrintBillPrescription()
+        {
+            MockSessionBillAll();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.PrintBillPrescription() as ViewResult;
+                Assert.IsNotNull(result);
+            }
+        }
+
+        [TestMethod]
+        public void PrintBillExamination()
+        {
+            MockSessionBillAll();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.PrintBillExamination() as ViewResult;
+                Assert.IsNotNull(result);
+            }
+        }
+
+        [TestMethod]
+        public void PrintBillTestSubclinical()
+        {
+            MockSessionBillAll();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.PrintBillTestSubclinical() as ViewResult;
+                Assert.IsNotNull(result);
             }
         }
     }

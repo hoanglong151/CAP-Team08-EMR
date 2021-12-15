@@ -141,10 +141,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             var informationExaminations = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
             ViewBag.id = id;
-            if (informationExaminations == null)
-            {
-                return HttpNotFound();
-            }
             return View(informationExaminations);
         }
 

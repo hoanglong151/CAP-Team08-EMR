@@ -159,5 +159,21 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.AreEqual(true, noti.success);
             }
         }
+
+        [TestMethod]
+        public void TestFindMedication()
+        {
+            var medication = db.Medications.First();
+            var result = controller.FindMedication(medication.ID) as JsonResult;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestCreateG()
+        {
+            var result = controller.Create() as PartialViewResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual("_Create", result.ViewName);
+        }
     }
 }

@@ -80,7 +80,7 @@
                         </div>
 
                     </div>
-                    @if (ViewBag.CTMaus.Count != 0)
+                    @if (Model.Detail_CTMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
@@ -92,13 +92,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.CTMaus.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_CTMaus.Count; i++)
                                     {
-                                        if (ViewBag.CTMaus[i].ChiDinh == true)
+                                        if (Model.Detail_CTMaus[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.CTMaus[i].NameTest</td>
+                                                <td>@Model.Detail_CTMaus[i].CTMau.NameTest</td>
                                             </tr>
                                         }
                                     }
