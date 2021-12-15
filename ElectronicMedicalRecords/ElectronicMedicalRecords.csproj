@@ -971,6 +971,7 @@
     <Content Include="Areas\Admin\Views\Shared\component-modal.html" />
     <Content Include="Areas\Admin\Views\Shared\table-datatable.html" />
     <Content Include="asset\440.jpg" />
+    <Content Include="asset\bg-up.png" />
     <Content Include="asset\Deny.png" />
     <Content Include="Areas\Admin\assets\images\faces\1.jpg" />
     <Content Include="Areas\Admin\assets\images\faces\2.jpg" />
@@ -2818,6 +2819,10 @@
     <Content Include="Areas\Admin\Views\MultipleModels\PrintResultMienDich.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\PrintResultDichChocDo.cshtml" />
     <Content Include="Areas\Admin\Views\MultipleModels\PrintResultViSinh.cshtml" />
+    <Content Include="Areas\Admin\Views\MultipleModels\DetailsIERead.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\_DetailIERead.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\_DetailIERead.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationExaminations\_DetailIERead.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

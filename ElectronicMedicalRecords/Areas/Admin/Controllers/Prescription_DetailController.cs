@@ -25,6 +25,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIE");
         }
 
+        public ActionResult DetailIERead()
+        {
+            return PartialView("_DetailIERead");
+        }
+
         // GET: Admin/Prescription_Detail/Details/5
         public ActionResult Details(int? id)
         {

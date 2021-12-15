@@ -985,6 +985,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(multiplesModel);
         }
 
+        public ActionResult DetailsIERead(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var InformationExamination = db.InformationExaminations.Find(id);
+            var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
+            multiplesModel.InformationExamination = InformationExamination;
+            multiplesModel.Patient = patient;
+            return View(multiplesModel);
+        }
+
         // POST: Admin/MultipleModels/Edit/5
         [HttpPost, ValidateInput(false)]
         public async Task<RedirectToRouteResult> Edit(MultiplesModel multiplesModel)
