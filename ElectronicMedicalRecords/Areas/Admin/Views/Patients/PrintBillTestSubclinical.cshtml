@@ -34,16 +34,17 @@
 
                     </div>
 
+                    <div style="margin-top:10px">
+                        <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                        <a href="@Url.Action("Payment","MultipleModels",new { id = Model.InformationExamination.ID, price = Model.InformationExamination.PriceExamination })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
+                    </div>
+
                     <div class="p-header">
                         <h1>Hóa Đơn Xét Nghiệm</h1>
                     </div>
 
                     <hr>
                     <div class="row">
-                        <div style="margin-bottom:12px">
-                            <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                            <a href="@Url.Action("PaymentTestSubclinical","MultipleModels",new { id = Model.InformationExamination.ID })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
-                        </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
                             <div class="col-xs-4 from w-100">
@@ -152,7 +153,8 @@
                                     <tr>
                                         <th class="text-center" style="width:5%">#</th>
                                         <th style="width:50%">Chỉ Định</th>
-                                        <<th>Đơn giá</th>
+                                        <
+                                        <th>Đơn giá</th>
                                     </tr>
                                 </thead>
                                 <tbody>
