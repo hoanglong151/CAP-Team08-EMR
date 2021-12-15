@@ -190,6 +190,25 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailsIE", multiplesModel);
         }
 
+        public ActionResult DetailIERead(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = db.InformationExaminations.Find(id);
+            if (informationExamination == null)
+            {
+                return HttpNotFound();
+            }
+
+            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            if (UserName != null)
+            {
+                ViewBag.UserName = UserName.Name;
+            }
+            multiplesModel.InformationExamination = informationExamination;
+            return PartialView("_DetailIERead", multiplesModel);
+        }
+
 
         // GET: Admin/InformationExaminations/Create
         public ActionResult Create()

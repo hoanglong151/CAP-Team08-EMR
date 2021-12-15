@@ -587,6 +587,10 @@
                     }
                 }
             })
-        })
+            })
+
+            if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
+                $('a[href="/Admin/Patients"]').parent().addClass("active");
+            }
         </script>
     }

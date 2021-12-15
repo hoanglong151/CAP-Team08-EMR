@@ -449,6 +449,25 @@
                 });
         })
 
+        $('#updateMedication').click((e) => {
+            var dataMedication = $('#FormEdit').serialize();
+            $.ajax({
+                url: "@Url.Action("EditMedication", "Prescription_Detail")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataMedication }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: 'Bạn đã cập nhật toa thuốc thành công',
+                            confirmButtonText: 'Xác Nhận'
+                        })
+                    }
+                }
+            })
+        })
+
         /*Validate Form*/
         $('form').each((i, obj) => {
             $.validator.addMethod('checkPhoneNumber', function (value, element) {
@@ -506,5 +525,9 @@
                 });
             });
         })
+
+        if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
+            $('a[href="/Admin/Patients"]').parent().addClass("active");
+        }
     </script>
 }

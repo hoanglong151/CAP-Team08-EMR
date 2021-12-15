@@ -80,7 +80,7 @@
                                 <td>@item.Patient.Name</td>
                                 <td>@item.Patient.BirthDate.Value.ToString("yyyy")</td>
                                 <td>
-                                    <a class="btn btn-primary btnHover info" href="@Url.Action("DetailsIE","MultipleModels", new { id = item.ID})">
+                                    <a class="btn btn-primary btnHover info" href="@Url.Action("DetailsIERead","MultipleModels", new { id = item.ID})">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-primary btnHover trash" onclick="deleteInformationExamination(@item.ID)">
@@ -153,6 +153,10 @@
                     })
                 }
             })
+        }
+
+        if (window.location.href.indexOf("Admin/InformationExaminations/Details") > -1) {
+            $('a[href="/Admin/Patients"]').parent().addClass("active");
         }
     </script>
 }
