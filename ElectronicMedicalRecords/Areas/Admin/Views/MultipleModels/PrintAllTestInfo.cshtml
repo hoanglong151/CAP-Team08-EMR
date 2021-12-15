@@ -79,7 +79,7 @@
                         </div>
 
                     </div>
-                    @if (ViewBag.CTMaus.Count != 0)
+                    @if (Model.Detail_CTMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
@@ -91,13 +91,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.CTMaus.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_CTMaus.Count; i++)
                                     {
-                                        if (ViewBag.CTMaus[i].ChiDinh == true)
+                                        if (Model.Detail_CTMaus[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.CTMaus[i].NameTest</td>
+                                                <td>@Model.Detail_CTMaus[i].CTMau.NameTest</td>
                                             </tr>
                                         }
                                     }
@@ -105,7 +105,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.SHMaus.Count != 0)
+                    @if (Model.Detail_SinhHoaMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Sinh Hóa Máu</p>
@@ -117,13 +117,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.SHMaus.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_SinhHoaMaus.Count; i++)
                                     {
-                                        if (ViewBag.SHMaus[i].ChiDinh == true)
+                                        if (Model.Detail_SinhHoaMaus[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.SHMaus[i].NameTest</td>
+                                                <td>@Model.Detail_SinhHoaMaus[i].SinhHoaMau.NameTest</td>
                                             </tr>
                                         }
                                     }
@@ -131,7 +131,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.DMaus.Count != 0)
+                    @if (Model.Detail_DongMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
@@ -143,13 +143,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.DMaus.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_DongMaus.Count; i++)
                                     {
-                                        if (ViewBag.DMaus[i].ChiDinh == true)
+                                        if (Model.Detail_DongMaus[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.DMaus[i].NameTest</td>
+                                                <td>@Model.Detail_DongMaus[i].DongMau.NameTest</td>
                                             </tr>
                                         }
                                     }
@@ -157,7 +157,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.NhomMaus.Count != 0)
+                    @if (Model.Detail_NhomMaus.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nhóm Máu</p>
@@ -169,13 +169,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.NhomMaus.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_NhomMaus.Count; i++)
                                     {
-                                        if (ViewBag.NhomMaus[i].ChiDinh == true)
+                                        if (Model.Detail_NhomMaus[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.NhomMaus[i].NameTest</td>
+                                                <td>@Model.Detail_NhomMaus[i].NhomMau.NameTest</td>
                                             </tr>
                                         }
                                     }
@@ -183,7 +183,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.NuocTieu.Count != 0)
+                    @if (Model.Detail_Urines.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nước Tiểu</p>
@@ -195,13 +195,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.NuocTieu.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_Urines.Count; i++)
                                     {
-                                        if (ViewBag.NuocTieu[i].ChiDinh == true)
+                                        if (Model.Detail_Urines[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.NuocTieu[i].Name</td>
+                                                <td>@Model.Detail_Urines[i].Urine.Name</td>
                                             </tr>
                                         }
                                     }
@@ -209,7 +209,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.MienDich.Count != 0)
+                    @if (Model.Detail_Immunes.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
@@ -221,13 +221,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.MienDich.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_Immunes.Count; i++)
                                     {
-                                        if (ViewBag.MienDich[i].ChiDinh == true)
+                                        if (Model.Detail_Immunes[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.MienDich[i].NameTest</td>
+                                                <td>@Model.Detail_Immunes[i].Immune.NameTest</td>
                                             </tr>
                                         }
                                     }
@@ -235,7 +235,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.DichChocDo.Count != 0)
+                    @if (Model.Detail_Amniocentes.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Dịch Chọc Dò</p>
@@ -247,13 +247,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.DichChocDo.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_Amniocentes.Count; i++)
                                     {
-                                        if (ViewBag.DichChocDo[i].ChiDinh == true)
+                                        if (Model.Detail_Amniocentes[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.DichChocDo[i].NameTest</td>
+                                                <td>@Model.Detail_Amniocentes[i].Amniocente.NameTest</td>
                                             </tr>
                                         }
                                     }
@@ -261,7 +261,7 @@
                             </table>
                         </div>
                     }
-                    @if (ViewBag.ViSinh.Count != 0)
+                    @if (Model.Detail_ViSinhs.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Vi Sinh</p>
@@ -273,13 +273,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.ViSinh.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_ViSinhs.Count; i++)
                                     {
-                                        if (ViewBag.ViSinh[i].ChiDinh == true)
+                                        if (Model.Detail_ViSinhs[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.ViSinh[i].NameTest</td>
+                                                <td>@Model.Detail_ViSinhs[i].ViSinh.NameTest</td>
                                             </tr>
                                         }
                                     }

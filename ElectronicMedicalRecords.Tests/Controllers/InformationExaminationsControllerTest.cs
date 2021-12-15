@@ -63,9 +63,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.First();
             var result = controller.Details(info.ID) as ViewResult;
             Assert.IsNotNull(result);
-
-            var resultError = controller.Details(0) as HttpNotFoundResult;
-            Assert.IsNotNull(resultError);
         }
 
         [TestMethod]
@@ -123,7 +120,11 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void CreateP()
         {
             MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
             var patient = db.Patients.First();
+            var patientStatus = db.PatientStatus.First();
+            informationExamination.PatientStatus_ID = patientStatus.ID;
+            multiplesModel.InformationExamination = informationExamination;
             using (var scope = new TransactionScope())
             {
                 var result = controller.Create(patient.ID, multiplesModel) as RedirectToRouteResult;
@@ -136,6 +137,160 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 controller.ModelState.AddModelError("", "Error Message");
                 var resultError = controller.Create(patient.ID, multiplesModel) as ViewResult;
                 Assert.IsNotNull(resultError);
+            }
+        }
+
+        [TestMethod]
+        public void BillCheck()
+        {
+            var user = db.AspNetUsers.First();
+            List<Claim> claims = new List<Claim>{
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
+            };
+            var genericIdentity = new GenericIdentity("");
+            genericIdentity.AddClaims(claims);
+            var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
+            var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
+            var controllerContext = new ControllerContext
+            {
+                HttpContext = fakeHttpContext,
+            };
+            controller.ControllerContext = controllerContext;
+            var info = db.InformationExaminations.First();
+            var result = controller.BillCheck(info.ID) as PartialViewResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual("_BillCheck", result.ViewName);
+
+            var resultError = controller.BillCheck(0) as HttpNotFoundResult;
+            Assert.IsNotNull(resultError);
+        }
+
+        [TestMethod]
+        public void CreateOldPatient()
+        {
+            var user = db.AspNetUsers.First();
+            List<Claim> claims = new List<Claim>{
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
+            };
+            var genericIdentity = new GenericIdentity("");
+            genericIdentity.AddClaims(claims);
+            var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
+            var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
+            var controllerContext = new ControllerContext
+            {
+                HttpContext = fakeHttpContext,
+            };
+            controller.ControllerContext = controllerContext;
+            var info = db.InformationExaminations.First();
+            var result = controller.CreateOldPatient(info.ID) as PartialViewResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual("_CreateOldPatient", result.ViewName);
+
+            var resultError = controller.CreateOldPatient(0) as HttpNotFoundResult;
+            Assert.IsNotNull(resultError);
+        }
+
+        [TestMethod]
+        public void CreateOldPatientP()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            InformationExamination informationExamination = new InformationExamination();
+            var patient = db.Patients.First();
+            var patientStatus = db.PatientStatus.First();
+            informationExamination.PatientStatus_ID = patientStatus.ID;
+            multiplesModel.InformationExamination = informationExamination;
+            multiplesModel.Patient = patient;
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.CreateOldPatient(multiplesModel) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("CreateOldPatient", result.RouteValues["action"]);
+            }
+            using (var scope = new TransactionScope())
+            {
+                controller.ModelState.AddModelError("", "Error Message");
+                var resultError = controller.CreateOldPatient(multiplesModel) as ViewResult;
+                Assert.IsNotNull(resultError);
+            }
+        }
+
+        [TestMethod]
+        public void CreateTest()
+        {
+            var info = db.InformationExaminations.AsNoTracking().First();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.CreateTest(info) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+            using (var scope = new TransactionScope())
+            {
+                controller.ModelState.AddModelError("", "Error Message");
+                var resultError = controller.CreateTest(info) as ViewResult;
+                Assert.IsNotNull(resultError);
+            }
+        }
+
+        [TestMethod]
+        public void EditG()
+        {
+            var user = db.AspNetUsers.First();
+            List<Claim> claims = new List<Claim>{
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
+            };
+            var genericIdentity = new GenericIdentity("");
+            genericIdentity.AddClaims(claims);
+            var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
+            var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
+            var controllerContext = new ControllerContext
+            {
+                HttpContext = fakeHttpContext,
+            };
+            controller.ControllerContext = controllerContext;
+            var info = db.InformationExaminations.AsNoTracking().First();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.Edit(info.ID) as PartialViewResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("_Edit", result.ViewName);
+            }
+            using (var scope = new TransactionScope())
+            {
+                var resultError = controller.Edit(0) as HttpNotFoundResult;
+                Assert.IsNotNull(resultError);
+            }
+        }
+
+        [TestMethod]
+        public void EditP()
+        {
+            var info = db.InformationExaminations.AsNoTracking().First();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.Edit(info) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+            using (var scope = new TransactionScope())
+            {
+                controller.ModelState.AddModelError("", "Error Message");
+                var resultError = controller.Edit(info) as ViewResult;
+                Assert.IsNotNull(resultError);
+            }
+        }
+
+        [TestMethod]
+        public void DeleteConfirmed()
+        {
+            var info = db.InformationExaminations.AsNoTracking().First();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.DeleteConfirmed(info.ID) as JsonResult;
+                Assert.IsNotNull(result);
             }
         }
     }

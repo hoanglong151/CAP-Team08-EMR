@@ -80,7 +80,7 @@
                         </div>
 
                     </div>
-                    @if (ViewBag.MienDichs.Count != 0)
+                    @if (Model.Detail_Immunes.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
@@ -92,13 +92,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < ViewBag.MienDichs.Count; i++)
+                                    @for (int i = 0; i < Model.Detail_Immunes.Count; i++)
                                     {
-                                        if (ViewBag.MienDichs[i].ChiDinh == true)
+                                        if (Model.Detail_Immunes[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                <td>@ViewBag.MienDichs[i].NameTest</td>
+                                                <td>@Model.Detail_Immunes[i].Immune.NameTest</td>
                                             </tr>
                                         }
                                     }

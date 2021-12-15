@@ -29,7 +29,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).ToList();
-            var listMedication = patients.Select(s => new
+            var listPatient = patients.Select(s => new
             {
                 ID = s.ID,
                 MaBN = s.MaBN,
@@ -38,7 +38,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Address = s.Address,
                 Gender = s.Gender.Gender1
             }).ToList();
-            return Json(new { data = listMedication }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = listPatient }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost, ValidateInput(false)]
