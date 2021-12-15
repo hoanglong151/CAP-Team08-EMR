@@ -66,7 +66,7 @@
                             <p>Bệnh Sử: @Model.Patient.HistoryDisease</p>
                         </div>
                     </div>
-
+                    <hr />
                     <div class="row">
                         <p class="lead marginbottom">Thông Tin Khám Bệnh</p>
                         <div class="col-xs-12 from">
@@ -85,10 +85,10 @@
                                 <p class="col-xs-4 w-100">Tình Trạng: @ViewBag.PatientStatus</p>
                             </div>
                         </div>
-
                     </div>
                     @if (ViewBag.CTMaus != null && ViewBag.CTMaus.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
                             <table class="table table-striped">
@@ -112,10 +112,10 @@
                                 <p class="position-absolute bottom-0 end-0"><strong>Thành Tiền: @Model.InformationExamination.PriceCTMaus.Value.ToString("N0") VNĐ </strong></p>
                             </div>
                         </div>
-                        <hr />
                     }
                     @if (ViewBag.SHMaus != null && ViewBag.SHMaus.Count != 0)
                     {
+                     <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Sinh Hóa Máu</p>
                             <table class="table table-striped">
@@ -142,10 +142,10 @@
                                 <p class="position-absolute bottom-0 end-0"><strong>Thành Tiền: @totalSHM.ToString("N0") VNĐ </strong></p>
                             </div>
                         </div>
-                        <hr />
                     }
                     @if (ViewBag.DMaus != null && ViewBag.DMaus.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
                             <table class="table table-striped">
@@ -174,9 +174,9 @@
                             </div>
                         </div>
                     }
-                    <hr />
                     @if (ViewBag.NhomMaus != null && ViewBag.NhomMaus.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nhóm Máu</p>
                             <table class="table table-striped">
@@ -203,10 +203,10 @@
                                 <p class="position-absolute bottom-0 end-0"><strong>Thành Tiền: @totalNM.ToString("N0") VNĐ </strong></p>
                             </div>
                         </div>
-                        <hr />
                     }
                     @if (ViewBag.NuocTieu != null && ViewBag.NuocTieu.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nước Tiểu</p>
                             <table class="table table-striped">
@@ -233,10 +233,10 @@
                                 <p class="position-absolute bottom-0 end-0"><strong>Thành Tiền: @totalNT.ToString("N0") VNĐ </strong></p>
                             </div>
                         </div>
-                        <hr />
                     }
                     @if (ViewBag.MienDich != null && ViewBag.MienDich.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
                             <table class="table table-striped">
@@ -263,10 +263,10 @@
                                 <p class="position-absolute bottom-0 end-0"><strong>Thành Tiền: @totalMD.ToString("N0") VNĐ </strong></p>
                             </div>
                         </div>
-                        <hr />
                     }
                     @if (ViewBag.DichChocDo != null && ViewBag.DichChocDo.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Dịch Chọc Dò</p>
                             <table class="table table-striped">
@@ -293,10 +293,10 @@
                                 <p class="position-absolute bottom-0 end-0"><strong>Thành Tiền: @totalDCD.ToString("N0") VNĐ </strong></p>
                             </div>
                         </div>
-                        <hr />
                     }
                     @if (ViewBag.ViSinh != null && ViewBag.ViSinh.Count != 0)
                     {
+                    <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Vi Sinh</p>
                             <table class="table table-striped">
@@ -337,8 +337,8 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 mb-7 p-5">
-                        <p class="lead m-0 ps-1 ">Thu Ngân</p>
+                    <div class="d-flex-col-sign p-5">
+                        <p class="lead m-0 pe-1">Thu Ngân</p>
                         <i>(ghi rõ họ tên)</i>
                     </div>
                     <div class="col-xs-6 margintop ">
