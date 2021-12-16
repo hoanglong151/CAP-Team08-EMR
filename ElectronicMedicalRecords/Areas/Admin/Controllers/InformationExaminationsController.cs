@@ -139,7 +139,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/InformationExaminations/Details/5
         public ActionResult Details(int id)
         {
-            var informationExaminations = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var informationExaminations = db.InformationExaminations.Where(p => p.Patient_ID == id && p.User_ID != null).ToList();
             ViewBag.id = id;
             return View(informationExaminations);
         }
