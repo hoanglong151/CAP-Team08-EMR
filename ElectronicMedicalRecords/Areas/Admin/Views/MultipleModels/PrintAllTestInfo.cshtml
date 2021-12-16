@@ -79,7 +79,7 @@
                         </div>
 
                     </div>
-                    @if (Model.Detail_CTMaus.Count != 0)
+                    @if (Model.CTMau.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
@@ -91,21 +91,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_CTMaus.Count; i++)
+                                    @for (int i = 0; i < Model.CTMau.Count; i++)
                                     {
-                                        if (Model.Detail_CTMaus[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_CTMaus[i].CTMau.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.CTMau[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_SinhHoaMaus.Count != 0)
+                    @if (Model.SinhHoaMau.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Sinh Hóa Máu</p>
@@ -117,21 +114,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_SinhHoaMaus.Count; i++)
+                                    @for (int i = 0; i < Model.SinhHoaMau.Count; i++)
                                     {
-                                        if (Model.Detail_SinhHoaMaus[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_SinhHoaMaus[i].SinhHoaMau.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.SinhHoaMau[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_DongMaus.Count != 0)
+                    @if (Model.DongMau.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
@@ -143,21 +137,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_DongMaus.Count; i++)
+                                    @for (int i = 0; i < Model.DongMau.Count; i++)
                                     {
-                                        if (Model.Detail_DongMaus[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_DongMaus[i].DongMau.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.DongMau[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_NhomMaus.Count != 0)
+                    @if (Model.NhomMau.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nhóm Máu</p>
@@ -169,21 +160,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_NhomMaus.Count; i++)
+                                    @for (int i = 0; i < Model.NhomMau.Count; i++)
                                     {
-                                        if (Model.Detail_NhomMaus[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_NhomMaus[i].NhomMau.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.NhomMau[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_Urines.Count != 0)
+                    @if (Model.Urine.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nước Tiểu</p>
@@ -195,21 +183,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_Urines.Count; i++)
+                                    @for (int i = 0; i < Model.Urine.Count; i++)
                                     {
-                                        if (Model.Detail_Urines[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_Urines[i].Urine.Name</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.Urine[i].Name</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_Immunes.Count != 0)
+                    @if (Model.Immune.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
@@ -221,21 +206,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_Immunes.Count; i++)
+                                    @for (int i = 0; i < Model.Immune.Count; i++)
                                     {
-                                        if (Model.Detail_Immunes[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_Immunes[i].Immune.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.Immune[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_Amniocentes.Count != 0)
+                    @if (Model.Amniocente.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Dịch Chọc Dò</p>
@@ -247,21 +229,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_Amniocentes.Count; i++)
+                                    @for (int i = 0; i < Model.Amniocente.Count; i++)
                                     {
-                                        if (Model.Detail_Amniocentes[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_Amniocentes[i].Amniocente.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.Amniocente[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                    @if (Model.Detail_ViSinhs.Count != 0)
+                    @if (Model.ViSinh.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Vi Sinh</p>
@@ -273,15 +252,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_ViSinhs.Count; i++)
+                                    @for (int i = 0; i < Model.ViSinh.Count; i++)
                                     {
-                                        if (Model.Detail_ViSinhs[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_ViSinhs[i].ViSinh.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.ViSinh[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>

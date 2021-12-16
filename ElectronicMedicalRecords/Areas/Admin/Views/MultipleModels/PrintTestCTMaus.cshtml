@@ -80,7 +80,7 @@
                         </div>
 
                     </div>
-                    @if (Model.Detail_CTMaus.Count != 0)
+                    @if (Model.CTMau.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
@@ -92,15 +92,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_CTMaus.Count; i++)
+                                    @for (int i = 0; i < Model.CTMau.Count; i++)
                                     {
-                                        if (Model.Detail_CTMaus[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_CTMaus[i].CTMau.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.CTMau[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>

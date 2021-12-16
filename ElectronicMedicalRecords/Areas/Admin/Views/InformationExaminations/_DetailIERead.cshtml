@@ -8,6 +8,8 @@
     <div class="card-body">
         <div class="row">
             @Html.HiddenFor(model => model.InformationExamination.ID)
+            @Html.HiddenFor(model => model.InformationExamination.PriceExamination)
+            @Html.HiddenFor(model => model.InformationExamination.PriceCTMaus)
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
@@ -82,7 +84,7 @@
                 <div class="form-group">
                     <label for="email-id-column">Tình Trạng</label>
                     @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select", @disabled = "disabled" })
-                    <input value="@Model.InformationExamination.PatientStatus_ID" name="InformationExamination.PatientStatus_ID" hidden/>
+                    <input value="@Model.InformationExamination.PatientStatus_ID" name="InformationExamination.PatientStatus_ID" hidden />
                     @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
                 </div>
             </div>

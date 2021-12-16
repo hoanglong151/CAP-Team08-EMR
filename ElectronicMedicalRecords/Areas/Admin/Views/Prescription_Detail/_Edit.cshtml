@@ -10,6 +10,30 @@
         <div class="row">
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
+                    <label for="email-id-column">Chẩn Đoán</label>
+                    <select id="NameDiagnostic" name="InformationExamination.DiagnosticCategory_ID" class="choices form-select">
+                        @if (Model.InformationExamination.DiagnosticCategory_ID != null)
+                        {
+                            <option value="@Model.InformationExamination.DiagnosticCategory_ID">@Model.InformationExamination.DiagnosticsCategory.Name</option>
+                        }
+                        else
+                        {
+                            <option value="">Vui Lòng Chọn Chẩn Đoán</option>
+                        }
+                        @foreach (var diagnostic in ViewBag.NameDiagnostic)
+                        {
+                            <option value="@diagnostic.ID">@diagnostic.Name</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
+                    <input id="IDDiagnostic" name="InformationExamination.DiagnosticCategory_ID" value="" type="number" hidden />
+                </div>
+            </div>
+            <div class="col-md-4" style="position: relative;top:23px">
+                <button type="button" id="updateDiagnostic" class="btn btn-primary">Cập nhật chẩn đoán</button>
+            </div>
+            <div class="col-md-8 col-12">
+                <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>
                     <select id="NameMedication" name="Medication.Name" class="choices form-select">
                         <option value="">Vui Lòng Chọn Tên Thuốc</option>

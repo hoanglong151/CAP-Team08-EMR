@@ -1,28 +1,28 @@
-var optionsProfileVisit = {
-	annotations: {
-		position: 'back'
-	},
-	dataLabels: {
-		enabled:false
-	},
-	chart: {
-		type: 'bar',
-		height: 300
-	},
-	fill: {
-		opacity:1
-	},
-	plotOptions: {
-	},
-	series: [{
-		name: 'sales',
-		data: [9,20,30,20,10,20,30,20,10,20,30,20]
-	}],
-	colors: '#435ebe',
-	xaxis: {
-		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
-	},
-}
+//var optionsProfileVisit = {
+//	annotations: {
+//		position: 'back'
+//	},
+//	dataLabels: {
+//		enabled:false
+//	},
+//	chart: {
+//		type: 'bar',
+//		height: 300
+//	},
+//	fill: {
+//		opacity:1
+//	},
+//	plotOptions: {
+//	},
+//	series: [{
+//		name: 'sales',
+//		data: [9,20,30,20,10,20,30,20,10,20,30,20]
+//	}],
+//	colors: '#435ebe',
+//	xaxis: {
+//		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
+//	},
+//}
 let optionsVisitorsProfile  = {
 	series: [70, 30],
 	labels: ['Male', 'Female'],
@@ -109,8 +109,10 @@ var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), option
 var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
 var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
 
-chartIndonesia.render();
-chartAmerica.render();
-chartEurope.render();
-chartProfileVisit.render();
-chartVisitorsProfile.render()
+setTimeout(() => {
+	chartIndonesia.render();
+	chartAmerica.render();
+	chartEurope.render();
+	chartProfileVisit.render();
+	chartVisitorsProfile.render()
+},1000)

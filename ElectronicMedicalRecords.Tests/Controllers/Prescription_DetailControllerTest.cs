@@ -67,7 +67,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void DetailIE()
         {
-            var result = controller.DetailIE() as PartialViewResult;
+            var info = db.InformationExaminations.First();
+            var result = controller.DetailIE(info.ID) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_DetailIE", result.ViewName);
         }
@@ -75,7 +76,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void DetailIERead()
         {
-            var result = controller.DetailIERead() as PartialViewResult;
+            var info = db.InformationExaminations.First();
+            var result = controller.DetailIERead(info.ID) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_DetailIERead", result.ViewName);
         }
@@ -103,7 +105,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void EditG()
         {
-            var result = controller.Edit() as PartialViewResult;
+            var multiple = MockPrescription();
+            var result = controller.Edit(multiple) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_Edit", result.ViewName);
         }

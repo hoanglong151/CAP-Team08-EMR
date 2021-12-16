@@ -11,7 +11,7 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên")]
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
     public class Detail_AmniocenteController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
@@ -69,7 +69,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Amniocente.InformationExamination_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
-
+        
         public ActionResult DetailIE(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();

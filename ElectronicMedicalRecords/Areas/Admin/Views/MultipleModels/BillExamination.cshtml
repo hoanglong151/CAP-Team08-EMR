@@ -160,7 +160,7 @@
                                             @{
                                                 Html.RenderAction("BillCheck", "InformationExaminations", new { id = Model.InformationExamination.ID });
                                                 Html.RenderAction("CreateOldPatient", "Patients", new { id = Model.Patient.ID });
-                                                Html.RenderAction("DetailIE", "Prescription_Detail");
+                                                Html.RenderAction("DetailIE", "Prescription_Detail", new { id = Model.InformationExamination.ID});
                                             }
                                         </div>
                                     </div>

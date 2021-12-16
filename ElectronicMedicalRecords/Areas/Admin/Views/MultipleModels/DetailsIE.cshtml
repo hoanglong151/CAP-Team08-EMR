@@ -354,9 +354,11 @@
         </script>
         <script>
         var k = 1;
-        var formatCss = document.querySelector('.choices__list--single');
-        formatCss.classList.add('form-control');
-        formatCss.style.paddingLeft = '12px';
+        var formatCss = document.querySelectorAll('.choices__list--single');
+        formatCss.forEach((value, index) => {
+            value.classList.add('form-control');
+            value.style.paddingLeft = '12px';
+        })
         var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
@@ -431,6 +433,25 @@
                             icon: 'success',
                             title: 'Thành công!',
                             text: 'Bạn đã cập nhật toa thuốc thành công',
+                            confirmButtonText: 'Xác Nhận'
+                        })
+                    }
+                }
+            })
+        })
+
+        $('#updateDiagnostic').click((e) => {
+            var dataDiagnostic = $('#DetailForm').serialize();
+            $.ajax({
+                url: "@Url.Action("EditDiagnostic", "DiagnosticsCategories")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataDiagnostic }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: 'Bạn đã cập nhật chẩn đoán thành công',
                             confirmButtonText: 'Xác Nhận'
                         })
                     }

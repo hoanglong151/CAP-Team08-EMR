@@ -261,6 +261,7 @@
     <Compile Include="Areas\Admin\Controllers\CayMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClinicalsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_AmniocenteController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_DongMauController.cs" />
@@ -387,6 +388,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\MultiplesModel.cs" />
     <Compile Include="Models\Nation.cs">
       <DependentUpon>Models.tt</DependentUpon>
@@ -969,7 +971,9 @@
     <Content Include="Areas\Admin\assets\videos\vbg_Trim.mp4" />
     <Content Include="Areas\Admin\assets\videos\videoHomePageVL.mp4" />
     <Content Include="Areas\Admin\Views\Shared\component-modal.html" />
+    <Content Include="Areas\Admin\Views\Shared\index.html" />
     <Content Include="Areas\Admin\Views\Shared\table-datatable.html" />
+    <Content Include="Areas\Admin\Views\Shared\ui-chart-apexcharts.html" />
     <Content Include="asset\440.jpg" />
     <Content Include="asset\bg-up.png" />
     <Content Include="asset\Deny.png" />
@@ -2823,6 +2827,7 @@
     <Content Include="Areas\Admin\Views\Prescription_Detail\_DetailIERead.cshtml" />
     <Content Include="Areas\Admin\Views\Patients\_DetailIERead.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\_DetailIERead.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Dashboard.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

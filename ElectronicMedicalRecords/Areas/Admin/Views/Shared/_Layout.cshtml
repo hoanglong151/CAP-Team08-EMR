@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/choices.js/choices.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/bootstrap.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/iconly/bold.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/toastify/toastify.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/bootstrap-icons/bootstrap-icons.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/app.css")">
@@ -147,6 +149,13 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title text-white">Trang Chủ</li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
+                                <i class="text-white bi bi-person-badge-fill"></i>
+                                <span>DashBoard</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item">
                             <a href="@Url.Action("Index", "Users")" class='sidebar-link underline'>
@@ -347,6 +356,11 @@
     <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/toastify.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap-tagsinput.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/pages/dashboard.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/dayjs/dayjs.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/pages/ui-apexchart.js")"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="@Url.Content("~/Scripts/jquery.signalR-2.4.2.min.js")"></script>
     <script src="@Url.Content("~/signalr/hubs")"></script>
@@ -356,6 +370,14 @@
             $('.submenu-item.active').closest('.sidebar-item').addClass('active');
             $('.submenu-item.active').closest('.submenu').addClass('active');
         });
+        var NumberInput = document.querySelectorAll('.numberInput');
+        NumberInput.forEach((item, index) => {
+            item.addEventListener("keypress", function (evt) {
+                if (evt.which != 8 && evt.which != 0 && evt.which < 46 || evt.which == 47 || evt.which > 57) {
+                    evt.preventDefault();
+                }
+            })
+        })
     </script>
 
     <script type="text/javascript">
@@ -501,7 +523,7 @@
                     type: "GET",
                     url: "@Url.Action("GetNotification", "InformationExaminations")",
                     success: function (res) {
-
+                        console.log(res.data)
                         $('#notiContent').empty();
                         if (res.length == 0) {
                             $('#notiContent').append($('<li>No data available</li>'));
@@ -520,6 +542,7 @@
                 }
 
                 var notificationHub = $.connection.notificationHub;
+
                 notificationHub.client.notify = function (message) {
                     if (message && message.toLowerCase() == "added") {
                         updateNotification();
@@ -533,14 +556,6 @@
                     alert(e)
                 });
             }
-        })
-        var NumberInput = document.querySelectorAll('.numberInput');
-        NumberInput.forEach((item, index) => {
-            item.addEventListener("keypress", function (evt) {
-                if (evt.which != 8 && evt.which != 0 && evt.which < 46 || evt.which == 47 || evt.which > 57) {
-                    evt.preventDefault();
-                }
-            })
         })
     </script>
     <script type="text/javascript">

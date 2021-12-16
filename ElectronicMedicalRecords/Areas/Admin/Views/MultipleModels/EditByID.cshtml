@@ -196,7 +196,7 @@
                                             @{
                                                 Html.RenderAction("Edit", "Patients", new { id = Model.Patient.ID });
                                                 Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                Html.RenderAction("Edit", "Prescription_Detail");
+                                                Html.RenderAction("DetailIERead", "Prescription_Detail");
                                             }
                                         </div>
                                     </div>
@@ -320,9 +320,11 @@
 @section scripts{
     <script>
         var k = 1;
-        var formatCss = document.querySelector('.choices__list--single');
-        formatCss.classList.add('form-control');
-        formatCss.style.paddingLeft = '12px';
+        var formatCss = document.querySelectorAll('.choices__list--single');
+        formatCss.forEach((value, i) => {
+            value.classList.add('form-control');
+            value.style.paddingLeft = '12px';
+        })
         var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
