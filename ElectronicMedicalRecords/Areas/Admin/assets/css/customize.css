@@ -73,23 +73,76 @@
     background-color: transparent;
     border: none;
     padding: 0;
-    color: #000;
+    color: #fff;
     padding: 3px 6px;
-    background-color: #00766c;
     transition: .4s ease-in-out;
 }
 
+.btn-search {
+    height: 3rem;
+    line-height: 3rem;
+    width: 3rem;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    background: #b9b9b9;
+    transition: all .6s;
+}
+
+.btn-search:hover {
+    color: #fff;
+    background: #009688;
+    transform: rotate( 360deg);
+}
+
+.btnHover.trash {
+    background-color: #FF0000;
+}
+
+.btnHover.info{
+    color:#fff;
+    background-color: #DB97FF;
+}
+
+.btnHover.plus {
+    background-color:#009DAE;
+}
+
+.btnHover.edit {
+    background-color: #F0BB62;
+}
+
+.btnHover.print {
+    background-color: #616F39;
+}
+
 .btnHover.edit:hover {
-    background: #ddb41e;
+    color:#fff;
+    background-color: #ddb41e;
    
 }
 
+.btnHover.print:hover {
+    color: #fff;
+    background-color: #A7D129;
+}
+
+
+.btnHover.plus:hover {
+    color: #fff;
+    background-color: #6998AB
+}
+
 .btnHover.trash:hover{
-    background: red;
+    color:#fff;
+    background-color: #950101;
 }
 
 .btnHover.info:hover {
-    background: #26c9d1;
+    color:#fff;
+    background-color: #B983FF;
 }
 
 .page-link{

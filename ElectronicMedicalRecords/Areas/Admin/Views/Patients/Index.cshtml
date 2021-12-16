@@ -31,7 +31,10 @@
                 Danh Sách Bệnh Nhân
             </div>
             <div class="card-body">
-                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">Tạo Hồ Sơ Bệnh Nhân</a>
+                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">
+                    <i class="m-icon bi bi-plus-circle"></i>
+                    Tạo Hồ Sơ
+                </a>
                 @if (ViewBag.Error != null)
                 {
                     <div class="alert alert-danger alert-dismissible show fade">
@@ -58,7 +61,7 @@
                             <input name="Code" type="text" class="form-control" placeholder="Mã Bệnh Nhân" />
                         </div>
                         <div class="col-md-1 align-self-end">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn-search">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
