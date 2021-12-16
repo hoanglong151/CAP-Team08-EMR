@@ -70,39 +70,43 @@
                                 <p class="col-xs-6 w-100">Bác Sĩ Kê Toa: @ViewBag.Doctor</p>
                             </div>
                         </div>
+                        @if (Model.InformationExamination.DiagnosticsCategory != null)
+                        {
+                            <p>Chẩn Đoán: @Model.InformationExamination.DiagnosticsCategory.Name</p>
+                        }
                     </div>
                     <hr />
                     @if (Model.Prescription_Details != null && Model.Prescription_Details.Count != 0)
                     {
-                        <div class="row body-pay">
-                            <p class="lead marginbottom">Hóa Đơn Thanh Toán Toa Thuốc</p>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width:5%">#</th>
-                                        <th style="width:30%">Tên Thuốc</th>
-                                        <th style="width:20%">Đơn vị</th>
-                                        <th style="width:10%">Số Lượng</th>
-                                        <th style="width:10%">Đơn Giá</th>
-                                        <th style="width:20%">Thành Tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < Model.Prescription_Details.Count; i++)
-                                    {
-                                        total += (Model.Prescription_Details[i].Medication.Price * Model.Prescription_Details[i].NumMedication);
-                                        <tr>
-                                            <td class="text-center">@(i + 1)</td>
-                                            <td>@Model.Prescription_Details[i].Medication.Name</td>
-                                            <td>@Model.Prescription_Details[i].Medication.Unit</td>
-                                            <td>@Model.Prescription_Details[i].NumMedication</td>
-                                            <td>@Model.Prescription_Details[i].Medication.Price.ToString("N0")</td>
-                                            <td>@((Model.Prescription_Details[i].Medication.Price * Model.Prescription_Details[i].NumMedication).ToString("N0")) VNĐ</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="row body-pay">
+                    <p class="lead marginbottom">Hóa Đơn Thanh Toán Toa Thuốc</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width:5%">#</th>
+                                <th style="width:30%">Tên Thuốc</th>
+                                <th style="width:20%">Đơn vị</th>
+                                <th style="width:10%">Số Lượng</th>
+                                <th style="width:10%">Đơn Giá</th>
+                                <th style="width:20%">Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Prescription_Details.Count; i++)
+                            {
+                                total += (Model.Prescription_Details[i].Medication.Price * Model.Prescription_Details[i].NumMedication);
+                                <tr>
+                                    <td class="text-center">@(i + 1)</td>
+                                    <td>@Model.Prescription_Details[i].Medication.Name</td>
+                                    <td>@Model.Prescription_Details[i].Medication.Unit</td>
+                                    <td>@Model.Prescription_Details[i].NumMedication</td>
+                                    <td>@Model.Prescription_Details[i].Medication.Price.ToString("N0")</td>
+                                    <td>@((Model.Prescription_Details[i].Medication.Price * Model.Prescription_Details[i].NumMedication).ToString("N0")) VNĐ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
                     }
                     <div class="position-relative r-20">
                         <div class="position-absolute top-0 end-0">

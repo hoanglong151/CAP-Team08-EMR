@@ -18,6 +18,8 @@
             @Html.HiddenFor(model => model.InformationExamination.ResultViSinh)
             @Html.HiddenFor(model => model.InformationExamination.ResultSHM)
             @Html.HiddenFor(model => model.InformationExamination.New)
+            @Html.HiddenFor(model => model.InformationExamination.PriceExamination)
+            @Html.HiddenFor(model => model.InformationExamination.PriceCTMaus)
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
@@ -65,7 +67,7 @@
                 <div class="form-group">
                     <label for="email-id-column">Cân Nặng</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control", @type="number" } })
+                        @Html.EditorFor(model => model.InformationExamination.Weight, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                         <span class="input-group-text">kg</span>
                     </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.Weight, "", new { @class = "text-danger" })

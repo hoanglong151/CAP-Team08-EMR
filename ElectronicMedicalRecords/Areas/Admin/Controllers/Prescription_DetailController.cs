@@ -20,14 +20,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult DetailIE()
+        public ActionResult DetailIE(int id)
         {
-            return PartialView("_DetailIE");
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var info = db.InformationExaminations.Find(id);
+            multiplesModel.InformationExamination = info;
+            return PartialView("_DetailIE", multiplesModel);
         }
 
-        public ActionResult DetailIERead()
+        public ActionResult DetailIERead(int id)
         {
-            return PartialView("_DetailIERead");
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var info = db.InformationExaminations.Find(id);
+            multiplesModel.InformationExamination = info;
+            return PartialView("_DetailIERead", multiplesModel);
         }
 
         // GET: Admin/Prescription_Detail/Details/5
@@ -47,6 +53,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult CreateOldPatient()
         {
+            ViewBag.NameDiagnostics = db.DiagnosticsCategories.ToList();
             ViewBag.NameMedication = db.Medications.ToList();
             return PartialView("_CreateOldPatient");
         }
@@ -92,10 +99,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Prescription_Detail/Edit/5
-        public ActionResult Edit()
+        public ActionResult Edit(int? id)
         {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            ViewBag.NameDiagnostic = db.DiagnosticsCategories.ToList();
             ViewBag.NameMedication = db.Medications.ToList();
-            return PartialView("_Edit");
+            if(id != null)
+            {
+                var info = db.InformationExaminations.Find(id);
+                if(info.DiagnosticCategory_ID != null)
+                {
+                    info.DiagnosticsCategory = db.DiagnosticsCategories.First(p => p.ID == info.DiagnosticCategory_ID);
+                }
+                multiplesModel.InformationExamination = info;
+            }
+            return PartialView("_Edit", multiplesModel);
         }
 
         [HttpPost]

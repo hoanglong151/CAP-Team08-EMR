@@ -34,6 +34,25 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = diagnostic}, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult EditDiagnostic(MultiplesModel multiplesModel)
+        {
+            var info = db.InformationExaminations.Find(multiplesModel.InformationExamination.ID);
+            info.DiagnosticCategory_ID = multiplesModel.InformationExamination.DiagnosticCategory_ID;
+            db.Entry(info).State = EntityState.Modified;
+            db.SaveChanges();
+            Session["MultipleModels"] = multiplesModel;
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        public JsonResult FindDiagnostic(int? id)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            var diagnosticsCategory = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == id);
+            return Json(new { data = diagnosticsCategory }, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: Admin/DiagnosticsCategories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

@@ -80,7 +80,7 @@
                         </div>
 
                     </div>
-                    @if (Model.Detail_ViSinhs.Count != 0)
+                    @if (Model.ViSinh.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Vi Sinh</p>
@@ -92,15 +92,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_ViSinhs.Count; i++)
+                                    @for (int i = 0; i < Model.ViSinh.Count; i++)
                                     {
-                                        if (Model.Detail_ViSinhs[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_ViSinhs[i].ViSinh.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.ViSinh[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>

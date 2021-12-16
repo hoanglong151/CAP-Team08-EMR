@@ -28,17 +28,39 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).ToList();
-            var listPatient = patients.Select(s => new
+            List<Patient> patientlist = (List<Patient>)TempData["Patient"];
+            if (patientlist == null)
             {
-                ID = s.ID,
-                MaBN = s.MaBN,
-                Name = s.Name,
-                BirthDate = s.BirthDate.Value.ToString("yyyy"),
-                Address = s.Address,
-                Gender = s.Gender.Gender1
-            }).ToList();
-            return Json(new { data = listPatient }, JsonRequestBehavior.AllowGet);
+                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).ToList();
+                var listPatient = patients.Select(s => new
+                {
+                    ID = s.ID,
+                    MaBN = s.MaBN,
+                    Name = s.Name,
+                    BirthDate = s.BirthDate.Value.ToString("yyyy"),
+                    Address = s.Address,
+                    Gender = s.Gender.Gender1
+                }).ToList();
+                return Json(new { data = listPatient }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                List<Patient> patientlist1 = (List<Patient>)TempData["Patient"];
+                foreach (var item in patientlist)
+                {
+                    item.Gender = db.Genders.First(p => p.ID == item.Gender_ID);
+                }
+                var listPatient1 = patientlist1.Select(s => new
+                {
+                    ID = s.ID,
+                    MaBN = s.MaBN,
+                    Name = s.Name,
+                    BirthDate = s.BirthDate.Value.ToString("yyyy"),
+                    Address = s.Address,
+                    Gender = s.Gender.Gender1
+                }).ToList();
+                return Json(new { data = listPatient1 }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost, ValidateInput(false)]
@@ -235,7 +257,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 TempData["Error"] = "Vui lòng nhập ít nhất 1 trường";
                 return RedirectToAction("Index", "Patients");
             }
-            //var findDate = new List<InformationExamination>();
             var informationExaminations = db.InformationExaminations.ToList();
             var patients = new List<Patient>();
             if (Name != "")
@@ -244,8 +265,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             if (DateStart.HasValue)
             {
-                TimeSpan timeStart = new TimeSpan(1, 0, 01);
-                DateStart = DateStart + timeStart;
                 informationExaminations = informationExaminations.Where(p => p.DateExamine >= DateStart.Value).ToList();
             }
             if (DateEnd.HasValue)
@@ -262,7 +281,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 for (int i = 0; i < informationExaminations.Count; i++)
                 {
-                    var checkexist = patients.FirstOrDefault(p => p.MaBN == informationExaminations[i].Patient.MaBN);
+                    var CodePatient = informationExaminations[i].Patient.MaBN;
+                    var checkexist = patients.FirstOrDefault(p => p.MaBN == CodePatient);
                     if(checkexist == null)
                     {
                         var patient_ID = informationExaminations[i].Patient_ID;
@@ -275,7 +295,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     }
                 }
             }
-            return View("Index", patients);
+            TempData["Patient"] = patients;
+            return View("Index");
         }
 
         // GET: Admin/Patients/Create

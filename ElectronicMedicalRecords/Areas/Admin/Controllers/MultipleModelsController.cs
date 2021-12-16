@@ -125,38 +125,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_CTMaus != null)
-            {
-                var checkCTMaus = multiplesModel.Detail_CTMaus.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_SinhHoaMaus != null)
-            {
-                var checkSHMaus = multiplesModel.Detail_SinhHoaMaus.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_DongMaus != null)
-            {
-                var checkDMaus = multiplesModel.Detail_DongMaus.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_NhomMaus != null)
-            {
-                var checkNhomMaus = multiplesModel.Detail_NhomMaus.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_Urines != null)
-            {
-                var checkNuocTieu = multiplesModel.Detail_Urines.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_Immunes != null)
-            {
-                var checkMienDich = multiplesModel.Detail_Immunes.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_Amniocentes != null)
-            {
-                var checkDichChocDo = multiplesModel.Detail_Amniocentes.Where(p => p.ChiDinh == true).ToList();
-            }
-            if(multiplesModel.Detail_ViSinhs != null)
-            {
-                var checkViSinh = multiplesModel.Detail_ViSinhs.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.CTMau = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.SinhHoaMau = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.DongMau = multiplesModel.DongMau.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.NhomMau = multiplesModel.NhomMau.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Urine = multiplesModel.Urine.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Immune = multiplesModel.Immune.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Amniocente = multiplesModel.Amniocente.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.ViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -170,10 +146,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_CTMaus != null)
-            {
-                var checkCTMaus = multiplesModel.Detail_CTMaus.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.CTMau = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -187,10 +160,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_SinhHoaMaus != null)
-            {
-                var checkSHMaus = multiplesModel.Detail_SinhHoaMaus.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.SinhHoaMau = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -204,10 +174,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_DongMaus != null)
-            {
-                var checkDMaus = multiplesModel.Detail_DongMaus.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.DongMau = multiplesModel.DongMau.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -221,10 +188,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_NhomMaus != null)
-            {
-                var checkNhomMaus = multiplesModel.Detail_NhomMaus.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.NhomMau = multiplesModel.NhomMau.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -238,10 +202,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_Urines != null)
-            {
-                var checkNuocTieu = multiplesModel.Detail_Urines.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.Urine = multiplesModel.Urine.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -255,10 +216,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_Immunes != null)
-            {
-                var checkMienDich = multiplesModel.Detail_Immunes.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.Immune = multiplesModel.Immune.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -272,10 +230,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_Amniocentes != null)
-            {
-                var checkDichChocDo = multiplesModel.Detail_Amniocentes.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.Amniocente = multiplesModel.Amniocente.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -289,10 +244,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
-            if(multiplesModel.Detail_ViSinhs != null)
-            {
-                var checkViSinh = multiplesModel.Detail_ViSinhs.Where(p => p.ChiDinh == true).ToList();
-            }
+            multiplesModel.ViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
             return View(multiplesModel);
         }
 
@@ -302,10 +254,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
+            multiplesModel.InformationExamination.DiagnosticsCategory = db.DiagnosticsCategories.Find(multiplesModel.InformationExamination.DiagnosticCategory_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
+            //ViewBag.Diagnostic = diagnostic.Name;
             if(multiplesModel.Prescription_Details != null)
             {
                 foreach (var item in multiplesModel.Prescription_Details)

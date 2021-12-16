@@ -9,6 +9,8 @@
         <div class="row">
             @Html.HiddenFor(model => model.InformationExamination.ID)
             @Html.HiddenFor(model => model.InformationExamination.Patient_ID)
+            @Html.HiddenFor(model => model.InformationExamination.PriceExamination)
+            @Html.HiddenFor(model => model.InformationExamination.PriceCTMaus)
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>
@@ -73,12 +75,12 @@
                 </div>
             </div>
             @*<div class="col-md-4 col-12">
-                <div class="form-group">
-                    <label for="email-id-column">Tình Trạng</label>
-                    @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select" })
-                    @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
+            <div class="form-group">
+                <label for="email-id-column">Tình Trạng</label>
+                @Html.DropDownList("InformationExamination.PatientStatus_ID", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.InformationExamination.PatientStatus_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
         </div>
     </div>
 </div>

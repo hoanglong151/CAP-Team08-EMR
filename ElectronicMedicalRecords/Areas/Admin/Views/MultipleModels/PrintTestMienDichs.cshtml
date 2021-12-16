@@ -80,7 +80,7 @@
                         </div>
 
                     </div>
-                    @if (Model.Detail_Immunes.Count != 0)
+                    @if (Model.Immune.Count != 0)
                     {
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
@@ -92,15 +92,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Detail_Immunes.Count; i++)
+                                    @for (int i = 0; i < Model.Immune.Count; i++)
                                     {
-                                        if (Model.Detail_Immunes[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                <td>@Model.Detail_Immunes[i].Immune.NameTest</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@Model.Immune[i].NameTest</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>

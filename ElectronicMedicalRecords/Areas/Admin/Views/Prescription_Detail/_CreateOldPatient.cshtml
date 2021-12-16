@@ -8,6 +8,20 @@
 <div class="card-content">
     <div class="card-body">
         <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="form-group name-Medication has-icon-left">
+                    <label for="email-id-column">Chẩn Đoán</label>
+                    <select id="NameDiagnostic" name="DiagnosticsCategory.Name" class="choices form-select">
+                        <option value="">Vui Lòng Chọn Tên Chẩn Đoán</option>
+                        @foreach (var diagnostic in ViewBag.NameDiagnostics)
+                        {
+                            <option value="@diagnostic.ID">@diagnostic.Name</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input id="IDDiagnostic" name="InformationExamination.DiagnosticCategory_ID" value="" type="number" hidden />
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>

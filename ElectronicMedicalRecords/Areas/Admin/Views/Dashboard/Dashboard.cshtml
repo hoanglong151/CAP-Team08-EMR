@@ -1,0 +1,345 @@
+﻿@model ElectronicMedicalRecords.Models.DashboardModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+
+<div class="page-heading">
+    <h3>Thống Kê</h3>
+</div>
+<div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-9">
+            <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon purple">
+                                        <i class="iconly-boldShow"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Giám Đốc</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.userGD.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Quản Trị Viên</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.userQTV.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon green">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Bác Sĩ</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.userBS.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon" style="background-color: #ceda5d">
+                                        <i class="iconly-boldAdd-User"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Kỹ Thuật Viên</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.userKTV.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="fas fa-money-check-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Thu Ngân</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.userTN.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon" style="background-color: #525be1">
+                                        <i class="fas fa-user-nurse"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Y Tá</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.userYTa.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon" style="background-color: #b233d9">
+                                        <i class="fas fa-user-injured"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Bệnh Nhân</h6>
+                                    <h6 class="font-extrabold mb-0">@Model.patients.Count</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Thống kê bệnh nhân</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart-profile-visit"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Doanh Thu</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="card">
+                <div class="card-body py-4 px-5">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar avatar-xl">
+                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/1.jpg")" alt="Face 1">
+                        </div>
+                        <div class="ms-3 name">
+                            <h5 class="font-bold">John Duck</h5>
+                            <h6 class="text-muted mb-0">johnducky</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Recent Messages</h4>
+                </div>
+                <div class="card-content pb-4">
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/4.jpg")">
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">Hank Schrader</h5>
+                            <h6 class="text-muted mb-0">johnducky</h6>
+                        </div>
+                    </div>
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/5.jpg")">
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">Dean Winchester</h5>
+                            <h6 class="text-muted mb-0">imdean</h6>
+                        </div>
+                    </div>
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/1.jpg")">
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">John Dodol</h5>
+                            <h6 class="text-muted mb-0">dodoljohn</h6>
+                        </div>
+                    </div>
+                    <div class="px-4">
+                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>
+                            Start
+                            Conversation
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Visitors Profile</h4>
+                </div>
+                <div class="card-body">
+                    <div id="chart-visitors-profile"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts{
+<script>
+    function getData() {
+        $.ajax({
+            url: "@Url.Action("GetData","Dashboard")",
+            type: "GET",
+            success: function (res) {
+                console.log(res)
+                $.each(res.datetime, (index, date) => {
+                    optionsProfileVisit.xaxis.categories.unshift(date);
+                    barOptions.xaxis.categories.unshift(date);
+                })
+                $.each(res.numUser, (i, user) => {
+                    optionsProfileVisit.series[0].data.unshift(user);
+                })
+
+                $.each(res.priceExaminationInfo, (i, priceInfo) => {
+                    barOptions.series[0].data.unshift(priceInfo);
+                })
+
+                $.each(res.pricePrescriptionDetail, (i, pricePrescription) => {
+                    barOptions.series[1].data.unshift(pricePrescription);
+                })
+
+                $.each(res.priceTestSubclinical, (i, priceTest) => {
+                    barOptions.series[2].data.unshift(priceTest);
+                })
+            }
+        })
+    }
+    getData();
+</script>
+}
+<script>
+    var optionsProfileVisit = {
+        annotations: {
+            position: 'back'
+        },
+        dataLabels: {
+            enabled: false
+        },
+        chart: {
+            type: 'bar',
+            height: 300
+        },
+        fill: {
+            opacity: 1
+        },
+        plotOptions: {
+        },
+        series: [{
+            name: 'khám',
+            data: []
+        }],
+        colors: '#435ebe',
+        xaxis: {
+            categories: [],
+        },
+    }
+</script>
+<script>
+    var barOptions = {
+        series: [
+            {
+                name: "Khám",
+                data: [],
+            },
+            {
+                name: "Thuốc",
+                data: [],
+            },
+            {
+                name: "Xét Nghiệm",
+                data: [],
+            },
+        ],
+        chart: {
+            type: "bar",
+            height: 350,
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: "55%",
+                endingShape: "rounded",
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ["transparent"],
+        },
+        xaxis: {
+            categories: [],
+        },
+        yaxis: {
+            title: {
+                text: "$ (Nghìn)",
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return "$ " + val + " Nghìn";
+                },
+            },
+        },
+    };
+</script>
+

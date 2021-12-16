@@ -75,7 +75,10 @@
                                 <p class="col-xs-4 w-100">Tình Trạng: @ViewBag.PatientStatus</p>
                             </div>
                         </div>
-
+                        @if (Model.InformationExamination.DiagnosticsCategory != null)
+                        {
+                            <p>Chẩn Đoán: @Model.InformationExamination.DiagnosticsCategory.Name</p>
+                        }
                     </div>
                     <hr />
                     @if (Model.Prescription_Details != null && Model.Prescription_Details.Count != 0)
@@ -118,8 +121,8 @@
                     </tbody>
                 </table>*@
                         </div>
-                    }
                     <hr />
+                    }
                     <div class="d-flex-col-sign p-5">
                         <p class="lead m-0 pe-3 ">Bác Sỹ</p>
                         <i>(ghi rõ họ tên)</i>

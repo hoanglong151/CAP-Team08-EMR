@@ -69,7 +69,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
         }
-
         public ActionResult DetailIE(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();

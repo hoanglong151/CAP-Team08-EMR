@@ -202,7 +202,7 @@
                                                 if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                                                 {
                                                     Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                    Html.RenderAction("Edit", "Prescription_Detail");
+                                                    Html.RenderAction("Edit", "Prescription_Detail", new { id = Model.InformationExamination.ID });
                                                 }
                                             }
                                         </div>
@@ -333,9 +333,11 @@
 @section scripts{
     <script>
         var k = 1;
-        var formatCss = document.querySelector('.choices__list--single');
-        formatCss.classList.add('form-control');
-        formatCss.style.paddingLeft = '12px';
+        var formatCss = document.querySelectorAll('.choices__list--single');
+        formatCss.forEach((value, index) => {
+            value.classList.add('form-control');
+            value.style.paddingLeft = '12px';
+        })
         var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
@@ -464,6 +466,20 @@
                             confirmButtonText: 'Xác Nhận'
                         })
                     }
+                }
+            })
+        })
+
+        var selectDiagnostic = document.querySelector('#NameDiagnostic');
+        selectDiagnostic.addEventListener('change', (e) => {
+            console.log(e.target.value)
+            var id = parseInt(e.target.value);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("FindDiagnostic", "DiagnosticsCategories")",
+                data: { id: id},
+                success: (res) => {
+                    document.querySelector('#IDDiagnostic').setAttribute("value", res.data.ID);
                 }
             })
         })
