@@ -10,11 +10,13 @@
     var totalDCD = 0;
     var totalVS = 0;
 }
+<link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.min.css")">
+<script src="@Url.Content("~/Areas/Admin/assets/js/extensions/sweetalert2.js")"></script>
+<script src="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.all.min.js")"></script>
 <style>
     p {
         text-align: left
     }
-
 </style>
 <div class="container bootstrap snippets bootdeys">
     <div class="row body-pay">
@@ -36,7 +38,7 @@
 
                     <div style="margin-top:10px">
                         <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                        <a href="@Url.Action("PaymentTestSubclinical","MultipleModels",new { id = Model.InformationExamination.ID, price = Model.InformationExamination.PriceCTMaus })" class="btn btn-warning" id="PrintBill">Thanh Toán</a>
+                        <button class="btn btn-warning" onclick="paymentTest(@Model.InformationExamination.ID, @Model.InformationExamination.PriceCTMaus)">Thanh Toán</button>
                     </div>
 
                     <div class="p-header">
@@ -88,7 +90,7 @@
                     </div>
                     @if (ViewBag.CTMaus != null && ViewBag.CTMaus.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Công Thức Máu</p>
                             <table class="table table-striped">
@@ -115,7 +117,7 @@
                     }
                     @if (ViewBag.SHMaus != null && ViewBag.SHMaus.Count != 0)
                     {
-                     <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Sinh Hóa Máu</p>
                             <table class="table table-striped">
@@ -145,7 +147,7 @@
                     }
                     @if (ViewBag.DMaus != null && ViewBag.DMaus.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Đông Máu</p>
                             <table class="table table-striped">
@@ -176,7 +178,7 @@
                     }
                     @if (ViewBag.NhomMaus != null && ViewBag.NhomMaus.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nhóm Máu</p>
                             <table class="table table-striped">
@@ -206,7 +208,7 @@
                     }
                     @if (ViewBag.NuocTieu != null && ViewBag.NuocTieu.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Nước Tiểu</p>
                             <table class="table table-striped">
@@ -236,7 +238,7 @@
                     }
                     @if (ViewBag.MienDich != null && ViewBag.MienDich.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Miễn Dịch</p>
                             <table class="table table-striped">
@@ -266,7 +268,7 @@
                     }
                     @if (ViewBag.DichChocDo != null && ViewBag.DichChocDo.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Dịch Chọc Dò</p>
                             <table class="table table-striped">
@@ -296,7 +298,7 @@
                     }
                     @if (ViewBag.ViSinh != null && ViewBag.ViSinh.Count != 0)
                     {
-                    <hr />
+                        <hr />
                         <div class="row body-pay">
                             <p class="lead marginbottom">Xét Nghiệm Vi Sinh</p>
                             <table class="table table-striped">
@@ -349,3 +351,39 @@
         </div>
     </div>
 </div>
+
+<script>
+    function paymentTest(id, price) {
+        $.ajax({
+            url: "@Url.Action("PaymentTestSubclinical", "MultipleModels")",
+            type: "POST",
+            data: { id: id, price: price },
+            success: (res) => {
+                if (res.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: 'Bạn đã thanh toán hóa đơn thành công',
+                        confirmButtonText: 'Xác Nhận'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    })
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thất Bại!',
+                        text: res.responeText,
+                        confirmButtonText: 'Xác Nhận'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    })
+                }
+            }
+        })
+    }
+</script>

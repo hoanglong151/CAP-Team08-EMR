@@ -40,72 +40,99 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Payment(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
-            examinationBill.New = false;
-            examinationBill.PriceExamination = price;
-            db.Entry(examinationBill).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("PrintBillExamination", "Patients");
+            if(examinationBill.New == null && examinationBill.PriceExamination == null)
+            {
+                examinationBill.New = false;
+                examinationBill.PriceExamination = price;
+                db.Entry(examinationBill).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, responeText = "Hóa Đơn Này Đã Được Thanh Toán" });
+            }
         }
 
         public ActionResult PaymentPrescription(int id)
         {
+            int error = 0;
             var prescriptionsBill = db.Prescription_Detail.Where(p => p.InformationExamination_ID == id).ToList();
             foreach(var bill in prescriptionsBill)
             {
-                bill.TotalPrice = bill.NumMedication * bill.Medication.Price;
-                db.Entry(bill).State = EntityState.Modified;
-                db.SaveChanges();
+                if(bill.TotalPrice == null)
+                {
+                    bill.TotalPrice = bill.NumMedication * bill.Medication.Price;
+                    db.Entry(bill).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    error += 1;
+                }
             }
-            return RedirectToAction("PrintBillExamination", "Patients");
+            if(error == prescriptionsBill.Count)
+            {
+                return Json(new { success = false, responeText = "Hóa Đơn Này Đã Được Thanh Toán" });
+            }
+            return Json(new { success = true });
         }
 
         public ActionResult PaymentTestSubclinical(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
-            examinationBill.PriceCTMaus = price;
-            var checkCongThucMauCD = db.Detail_CTMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
-            if (checkCongThucMauCD != null)
+            if(examinationBill.ResultCTMau != null || examinationBill.ResultSHM != null || examinationBill.ResultDMau != null || examinationBill.ResultNhomMau != null
+                || examinationBill.ResultNuocTieu != null || examinationBill.ResultMienDich != null || examinationBill.ResultDichChocDo != null || examinationBill.ResultViSinh != null)
             {
-                examinationBill.ResultCTMau = false;
+                return Json(new { success = false, responeText = "Hóa Đơn Này Đã Được Thanh Toán" });
             }
-            var checkSinhHoaMauCD = db.Detail_SinhHoaMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID); ;
-            if (checkSinhHoaMauCD != null)
+            else
             {
-                examinationBill.ResultSHM = false;
+                examinationBill.PriceCTMaus = price;
+                var checkCongThucMauCD = db.Detail_CTMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkCongThucMauCD != null)
+                {
+                    examinationBill.ResultCTMau = false;
+                }
+                var checkSinhHoaMauCD = db.Detail_SinhHoaMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkSinhHoaMauCD != null)
+                {
+                    examinationBill.ResultSHM = false;
+                }
+                var checkDongMauCD = db.Detail_DongMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkDongMauCD != null)
+                {
+                    examinationBill.ResultDMau = false;
+                }
+                var checkNhomMauCD = db.Detail_NhomMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkNhomMauCD != null)
+                {
+                    examinationBill.ResultNhomMau = false;
+                }
+                var checkUrineCD = db.Detail_Urine.FirstOrDefault(p => p.InfomationExamination_ID == examinationBill.ID);
+                if (checkUrineCD != null)
+                {
+                    examinationBill.ResultNuocTieu = false;
+                }
+                var checkImmuneCD = db.Detail_Immune.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkImmuneCD != null)
+                {
+                    examinationBill.ResultMienDich = false;
+                }
+                var checkAmniocenteCD = db.Detail_Amniocente.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkAmniocenteCD != null)
+                {
+                    examinationBill.ResultDichChocDo = false;
+                }
+                var checkViSinhCD = db.Detail_ViSinh.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
+                if (checkViSinhCD != null)
+                {
+                    examinationBill.ResultViSinh = false;
+                }
+                db.Entry(examinationBill).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true });
             }
-            var checkDongMauCD = db.Detail_DongMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
-            if (checkDongMauCD != null)
-            {
-                examinationBill.ResultDMau = false;
-            }
-            var checkNhomMauCD = db.Detail_NhomMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
-            if (checkNhomMauCD != null)
-            {
-                examinationBill.ResultNhomMau = false;
-            }
-            var checkUrineCD = db.Detail_Urine.FirstOrDefault(p => p.InfomationExamination_ID == examinationBill.ID);
-            if (checkUrineCD != null)
-            {
-                examinationBill.ResultNuocTieu = false;
-            }
-            var checkImmuneCD = db.Detail_Immune.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
-            if (checkImmuneCD != null)
-            {
-                examinationBill.ResultMienDich = false;
-            }
-            var checkAmniocenteCD = db.Detail_Amniocente.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
-            if (checkAmniocenteCD != null)
-            {
-                examinationBill.ResultDichChocDo = false;
-            }
-            var checkViSinhCD = db.Detail_ViSinh.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
-            if (checkViSinhCD != null)
-            {
-                examinationBill.ResultViSinh = false;
-            }
-            db.Entry(examinationBill).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("PrintBillTestSubclinical", "Patients");
         }
 
         [HttpPost, ValidateInput(false)]
