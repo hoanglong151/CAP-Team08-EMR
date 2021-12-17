@@ -21,6 +21,7 @@
     <link href="@Url.Content("~/Areas/Admin/assets/css/bootstrap-tagsinput.css")" rel="stylesheet" />
     <link rel="shortcut icon" href="@Url.Content("~/Areas/Admin/assets/images/favicon.svg")" type="image/x-icon">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
+    <link href="@Url.Content("~/Areas/Admin/assets/css/loading-page.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -128,6 +129,7 @@
             color: black
         }
     </style>
+
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active nav-bg">
@@ -330,6 +332,7 @@
                     </div>
                 }
             </nav>
+
             @RenderBody()
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
@@ -657,5 +660,14 @@
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)
+
+
+    <script>
+        $(window).on("load", function () {
+            $(".loading-wrapper").fadeOut("slow");
+        });
+    </script>
+
+
 </body>
 </html>
