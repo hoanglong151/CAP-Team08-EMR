@@ -16,5 +16,6 @@ namespace ElectronicMedicalRecords.Models
         public List<AspNetUser> userTN { get; set; }
         public List<AspNetUser> userYTa { get; set; }
         public List<Patient> patients { get; set; }
+        public List<User> users { get; set; }
     }
 }

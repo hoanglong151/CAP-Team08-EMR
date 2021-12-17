@@ -34,7 +34,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = diagnostic}, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult EditDiagnostic(MultiplesModel multiplesModel)
         {
             var info = db.InformationExaminations.Find(multiplesModel.InformationExamination.ID);

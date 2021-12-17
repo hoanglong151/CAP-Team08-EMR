@@ -252,14 +252,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            var UserID = User.Identity.GetUserId();
-            var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
-            ViewBag.UserByID = userID.ID;
-            ViewBag.UserName = userID.Name;
-            if (informationExamination == null)
-            {
-                return HttpNotFound();
-            }
+            //var UserID = User.Identity.GetUserId();
+            //var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
+            //ViewBag.UserByID = userID.ID;
+            //ViewBag.UserName = userID.Name;
+            //if (informationExamination == null)
+            //{
+            //    return HttpNotFound();
+            //}
             var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
             multiplesModel.InformationExamination = informationExamination;

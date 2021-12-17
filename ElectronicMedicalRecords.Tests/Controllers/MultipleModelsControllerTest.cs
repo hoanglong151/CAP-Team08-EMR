@@ -67,7 +67,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.First();
             using (var scope = new TransactionScope())
             {
-                var result = controller.PaymentTestSubclinical(info.ID) as RedirectToRouteResult;
+                var result = controller.PaymentTestSubclinical(info.ID, (int)info.PriceCTMaus) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("PrintBillTestSubclinical", result.RouteValues["action"]);
             }

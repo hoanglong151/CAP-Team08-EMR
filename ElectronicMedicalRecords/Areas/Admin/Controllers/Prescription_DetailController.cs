@@ -116,6 +116,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_Edit", multiplesModel);
         }
 
+        // GET: Admin/Prescription_Detail/Edit/5
+        public ActionResult EditNoButton(int? id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            ViewBag.NameDiagnostic = db.DiagnosticsCategories.ToList();
+            ViewBag.NameMedication = db.Medications.ToList();
+            if (id != null)
+            {
+                var info = db.InformationExaminations.Find(id);
+                if (info.DiagnosticCategory_ID != null)
+                {
+                    info.DiagnosticsCategory = db.DiagnosticsCategories.First(p => p.ID == info.DiagnosticCategory_ID);
+                }
+                multiplesModel.InformationExamination = info;
+            }
+            return PartialView("_EditNoButton", multiplesModel);
+        }
+
         [HttpPost]
         public ActionResult LoadPrescription(int id)
         {
@@ -164,7 +182,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("Edit", "MultipleModels");
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult EditMedication(MultiplesModel multiplesModel)
         {
             var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();

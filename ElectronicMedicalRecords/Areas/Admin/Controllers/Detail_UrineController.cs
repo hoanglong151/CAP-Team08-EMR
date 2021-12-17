@@ -16,36 +16,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Detail_Urine
-        //public ActionResult Index()
-        //{
-        //    var detail_UrineIndex = db.Detail_Urine.Include(d => d.InformationExamination).Include(d => d.Urine);
-        //    return View(detail_UrineIndex.ToList());
-        //}
-
-        //// GET: Admin/Detail_Urine/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_Urine detail_UrineDetails = db.Detail_Urine.Find(id);
-        //    if (detail_UrineDetails == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_UrineDetails);
-        //}
-
-        //// GET: Admin/Detail_Urine/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.InfomationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-        //    ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name");
-        //    return View();
-        //}
-
         // POST: Admin/Detail_Urine/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -148,32 +118,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Urine_ID = new SelectList(db.Urines, "ID", "Name", detail_Urine.Urine_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
-
-        // GET: Admin/Detail_Urine/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
-        //    if (detail_Urine == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_Urine);
-        //}
-
-        //// POST: Admin/Detail_Urine/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Detail_Urine detail_Urine = db.Detail_Urine.Find(id);
-        //    db.Detail_Urine.Remove(detail_Urine);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {

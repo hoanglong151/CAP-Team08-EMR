@@ -202,7 +202,7 @@
                                                 if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                                                 {
                                                     Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                    Html.RenderAction("Edit", "Prescription_Detail", new { id = Model.InformationExamination.ID });
+                                                    Html.RenderAction("EditNoButton", "Prescription_Detail", new { id = Model.InformationExamination.ID });
                                                 }
                                             }
                                         </div>

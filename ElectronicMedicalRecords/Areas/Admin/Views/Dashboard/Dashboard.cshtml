@@ -2,7 +2,32 @@
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
 }
+<style>
+    .statusUser {
+        width: 4rem;
+        height: 4rem;
+        position: relative;
+    }
+
+    .LoggedInUserBox {
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        bottom: 0px;
+        right: 5px;
+    }
+
+        .LoggedInUserBox.online {
+            background-color: green;
+        }
+
+        .LoggedInUserBox.offline {
+            background-color: red;
+        }
+</style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
@@ -163,65 +188,27 @@
         </div>
         <div class="col-12 col-lg-3">
             <div class="card">
-                <div class="card-body py-4 px-5">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/1.jpg")" alt="Face 1">
-                        </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">johnducky</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
                 <div class="card-header">
-                    <h4>Recent Messages</h4>
+                    <h4>Đang Truy Cập</h4>
                 </div>
-                <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/4.jpg")">
+                @foreach (var user in Model.users)
+                {
+                    if (loggedOnUsers.ContainsKey(user.UserID))
+                    {
+                        <div class="card-content pb-3">
+                            <div class="recent-message d-flex px-3 py-3">
+                                <div class="statusUser">
+                                    <img class="avatar" src="@user.Image">
+                                    <div class="LoggedInUserBox online"></div>
+                                </div>
+                                <div class="name ms-3">
+                                    <h5 class="mb-1">@user.Degree</h5>
+                                    <h6 class="text-muted mb-0">@user.Name</h6>
+                                </div>
+                            </div>
                         </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">johnducky</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/5.jpg")">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="@Url.Content("~/Areas/Admin/assets/images/faces/1.jpg")">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>
-                            Start
-                            Conversation
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Visitors Profile</h4>
-                </div>
-                <div class="card-body">
-                    <div id="chart-visitors-profile"></div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </section>
@@ -229,12 +216,12 @@
 
 @section scripts{
 <script>
+    getData();
     function getData() {
         $.ajax({
             url: "@Url.Action("GetData","Dashboard")",
             type: "GET",
             success: function (res) {
-                console.log(res)
                 $.each(res.datetime, (index, date) => {
                     optionsProfileVisit.xaxis.categories.unshift(date);
                     barOptions.xaxis.categories.unshift(date);
@@ -244,20 +231,19 @@
                 })
 
                 $.each(res.priceExaminationInfo, (i, priceInfo) => {
-                    barOptions.series[0].data.unshift(priceInfo);
+                    barOptions.series[0].data.unshift(priceInfo.slice(0, -3));
                 })
 
                 $.each(res.pricePrescriptionDetail, (i, pricePrescription) => {
-                    barOptions.series[1].data.unshift(pricePrescription);
+                    barOptions.series[1].data.unshift(pricePrescription.slice(0, -3));
                 })
 
                 $.each(res.priceTestSubclinical, (i, priceTest) => {
-                    barOptions.series[2].data.unshift(priceTest);
+                    barOptions.series[2].data.unshift(priceTest.slice(0, -3));
                 })
             }
         })
     }
-    getData();
 </script>
 }
 <script>

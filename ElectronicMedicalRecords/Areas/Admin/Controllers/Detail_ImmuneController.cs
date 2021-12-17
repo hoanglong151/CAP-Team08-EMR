@@ -16,36 +16,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Detail_Immune
-        //public ActionResult Index()
-        //{
-        //    var detail_Immune = db.Detail_Immune.Include(d => d.Immune).Include(d => d.InformationExamination);
-        //    return View(detail_Immune.ToList());
-        //}
-
-        //// GET: Admin/Detail_Immune/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_Immune detail_Immune = db.Detail_Immune.Find(id);
-        //    if (detail_Immune == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_Immune);
-        //}
-
-        //// GET: Admin/Detail_Immune/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.Immue_ID = new SelectList(db.Immunes, "ID", "NameTest");
-        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-        //    return View();
-        //}
-
         // POST: Admin/Detail_Immune/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,7 +37,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
-            //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
@@ -147,35 +116,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
-            //return View(detail_CTMau);
             return RedirectToAction("Create", "MultipleModels");
         }
-
-        // GET: Admin/Detail_Immune/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_Immune detail_Immune = db.Detail_Immune.Find(id);
-        //    if (detail_Immune == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_Immune);
-        //}
-
-        //// POST: Admin/Detail_Immune/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Detail_Immune detail_Immune = db.Detail_Immune.Find(id);
-        //    db.Detail_Immune.Remove(detail_Immune);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {

@@ -59,9 +59,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("PrintBillExamination", "Patients");
         }
 
-        public ActionResult PaymentTestSubclinical(int id)
+        public ActionResult PaymentTestSubclinical(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
+            examinationBill.PriceCTMaus = price;
             var checkCongThucMauCD = db.Detail_CTMau.FirstOrDefault(p => p.InformationExamination_ID == examinationBill.ID);
             if (checkCongThucMauCD != null)
             {

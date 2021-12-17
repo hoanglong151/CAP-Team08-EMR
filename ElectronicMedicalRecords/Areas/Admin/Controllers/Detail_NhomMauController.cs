@@ -16,36 +16,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Detail_NhomMau
-        //public ActionResult Index()
-        //{
-        //    var detail_NhomMau = db.Detail_NhomMau.Include(d => d.InformationExamination).Include(d => d.NhomMau);
-        //    return View(detail_NhomMau.ToList());
-        //}
-
-        //// GET: Admin/Detail_NhomMau/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_NhomMau detail_NhomMau = db.Detail_NhomMau.Find(id);
-        //    if (detail_NhomMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_NhomMau);
-        //}
-
-        //// GET: Admin/Detail_NhomMau/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-        //    ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest");
-        //    return View();
-        //}
-
         // POST: Admin/Detail_NhomMau/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -148,32 +118,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.NhomMau_ID = new SelectList(db.NhomMaus, "ID", "NameTest", detail_NhomMau.NhomMau_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
-
-        // GET: Admin/Detail_NhomMau/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_NhomMau detail_NhomMau = db.Detail_NhomMau.Find(id);
-        //    if (detail_NhomMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_NhomMau);
-        //}
-
-        //// POST: Admin/Detail_NhomMau/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Detail_NhomMau detail_NhomMau = db.Detail_NhomMau.Find(id);
-        //    db.Detail_NhomMau.Remove(detail_NhomMau);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {
