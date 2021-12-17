@@ -437,7 +437,7 @@
             var notificationHubYTa = $.connection.notificationHubYTa;
             $.connection.hub.start().done(function () {
                 getPatient();
-                console.log("Notification hub started Y Tá");
+                /*console.log("Notification hub started Y Tá");*/
             }).fail((e) => {
                 alert(e)
             });
@@ -464,7 +464,7 @@
                     $('.noti-content').hide();
                 })
 
-                updateNotificationBS();
+                /*updateNotificationBS();*/
                 function updateNotificationBS() {
                     $('#notiContentBS').empty();
                     $('#notiContentBS').append($('<li>Loading...</li>'));
@@ -491,7 +491,8 @@
                 }
                 var notificationHubBS = $.connection.notificationHubBS;
                 $.connection.hub.start().done(function () {
-                    console.log("Notification hub started Bác Sĩ");
+                    updateNotificationBS();
+                    /*console.log("Notification hub started Bác Sĩ");*/
                 });
                 notificationHubBS.client.notifyResult = function (message) {
                     if (message && message.toLowerCase() == "added") {
@@ -515,7 +516,7 @@
                 $('.noti-content').hide();
             })
 
-            updateNotification();
+          /*  updateNotification();*/
             function updateNotification() {
                 $('#notiContent').empty();
                 $('#notiContent').append($('<li>Loading...</li>'));
@@ -550,7 +551,7 @@
 
                 $.connection.hub.start().done(function () {
                     updateNotification();
-                    console.log("Notification hub started KTV");
+                    /*console.log("Notification hub started KTV");*/
                 }).fail((e) => {
                     alert(e)
                 });
@@ -571,7 +572,7 @@
                 $('.noti-contentBS1').hide();
             })
 
-                updateNotificationBS1();
+                /*updateNotificationBS1();*/
                 function updateNotificationBS1() {
                 $('#notiContentBS1').empty();
                 $('#notiContentBS1').append($('<li>Loading...</li>'));
@@ -607,7 +608,7 @@
 
                 $.connection.hub.start().done(function () {
                     updateNotificationBS1();
-                    console.log("Notification hub started Bac Si 1");
+                    /*console.log("Notification hub started Bac Si 1");*/
                 }).fail((e) => {
                     alert(e)
                 });
@@ -646,7 +647,7 @@
         var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
         $.connection.hub.start().done(function () {
             updateUser();
-            console.log("Notification hub started User");
+            /*console.log("Notification hub started User");*/
             setInterval(() => {
                 updateUser();
             }, 30000)

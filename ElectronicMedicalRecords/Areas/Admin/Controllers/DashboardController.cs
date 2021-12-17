@@ -172,7 +172,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == item.ID).ToList();
                     foreach(var price in listPrescription)
                     {
-                        pricePres += (price.NumMedication * price.Medication.Price);
+                        if(price.TotalPrice != null)
+                        {
+                            pricePres += (int)price.TotalPrice;
+                        }
                     }
                     var priceCTMau = PriceCTMau(item);
                     var priceAmniocente = PriceAmniocente(item);
