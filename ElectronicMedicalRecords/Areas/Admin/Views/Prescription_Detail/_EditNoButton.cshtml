@@ -8,32 +8,26 @@
 <div class="card-content">
     <div class="card-body">
         <div class="row">
-            <div class="col-md-8 col-12">
+            <div class="col-md-12 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Chẩn Đoán</label>
                     <select id="NameDiagnostic" name="InformationExamination.DiagnosticCategory_ID" class="choices form-select">
-                        @if (Model.InformationExamination.DiagnosticCategory_ID == null)
+                        @if (Model.InformationExamination.DiagnosticCategory_ID != null)
+                        {
+                            <option value="@Model.InformationExamination.DiagnosticCategory_ID">@Model.InformationExamination.DiagnosticsCategory.Name</option>
+                        }
+                        else
                         {
                             <option value="">Vui Lòng Chọn Chẩn Đoán</option>
                         }
                         @foreach (var diagnostic in ViewBag.NameDiagnostic)
                         {
-                            if (Model.InformationExamination.DiagnosticCategory_ID == diagnostic.ID)
-                            {
-                                <option selected value="@Model.InformationExamination.DiagnosticCategory_ID">@Model.InformationExamination.DiagnosticsCategory.Name</option>
-                            }
-                            else
-                            {
-                                <option value="@diagnostic.ID">@diagnostic.Name</option>
-                            }
+                            <option value="@diagnostic.ID">@diagnostic.Name</option>
                         }
                     </select>
                     @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
                     <input id="IDDiagnostic" name="InformationExamination.DiagnosticCategory_ID" value="" type="number" hidden />
                 </div>
-            </div>
-            <div class="col-md-4" style="position: relative;top:23px">
-                <button type="button" id="updateDiagnostic" class="btn btn-primary">Cập nhật chẩn đoán</button>
             </div>
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
@@ -68,7 +62,6 @@
             </div>
             <div class="col-md-4" style="position: relative;top:23px">
                 <button type="button" class="btn btn-primary" onclick="insRowMedication()">Thêm Thuốc</button>
-                <button type="button" id="updateMedication" class="btn btn-primary">Cập nhật thuốc</button>
             </div>
             <div class="col-md-12">
                 <table id="TableMedication" style="width:100%" border="1" class="table-bordered">
@@ -83,3 +76,4 @@
         </div>
     </div>
 </div>
+

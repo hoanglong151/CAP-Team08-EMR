@@ -325,7 +325,7 @@
             value.classList.add('form-control');
             value.style.paddingLeft = '12px';
         })
-        var select = document.querySelector('#NameMedication');
+        @*var select = document.querySelector('#NameMedication');
         select.addEventListener('change', (e) => {
             var id = parseInt(e.target.value);
             $.ajax({
@@ -337,7 +337,7 @@
                     document.querySelector('#IDMedication').setAttribute("value", res.data.ID);
                 }
             })
-        })
+        })*@
 
         function insRowMedication() {
             var NameMedication = $('#NameMedication').text();

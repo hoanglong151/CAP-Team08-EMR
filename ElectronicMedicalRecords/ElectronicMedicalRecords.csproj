@@ -2828,6 +2828,7 @@
     <Content Include="Areas\Admin\Views\Patients\_DetailIERead.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\_DetailIERead.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\_EditNoButton.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -15,35 +15,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     public class Detail_CTMauController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
-        // GET: Admin/Detail_CTMau
-        //public ActionResult Index()
-        //{
-        //    var detail_CTMau = db.Detail_CTMau.Include(d => d.CTMau).Include(d => d.InformationExamination);
-        //    return View(detail_CTMau.ToList());
-        //}
-
-        //// GET: Admin/Detail_CTMau/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-        //    if (detail_CTMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_CTMau);
-        //}
-
-        //// GET: Admin/Detail_CTMau/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.CTMau_ID = new SelectList(db.CTMaus, "ID", "NameTest");
-        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-        //    return View();
-        //}
 
         // POST: Admin/Detail_CTMau/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -148,32 +119,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             //return View(detail_CTMau);
             return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
-
-        // GET: Admin/Detail_CTMau/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-        //    if (detail_CTMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_CTMau);
-        //}
-
-        //// POST: Admin/Detail_CTMau/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Detail_CTMau detail_CTMau = db.Detail_CTMau.Find(id);
-        //    db.Detail_CTMau.Remove(detail_CTMau);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {

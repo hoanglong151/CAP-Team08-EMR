@@ -16,36 +16,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Detail_SinhHoaMau
-        //public ActionResult Index()
-        //{
-        //    var detail_SinhHoaMau = db.Detail_SinhHoaMau.Include(d => d.InformationExamination).Include(d => d.SinhHoaMau);
-        //    return View(detail_SinhHoaMau.ToList());
-        //}
-
-        //// GET: Admin/Detail_SinhHoaMau/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-        //    if (detail_SinhHoaMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_SinhHoaMau);
-        //}
-
-        //// GET: Admin/Detail_SinhHoaMau/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-        //    ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest");
-        //    return View();
-        //}
-
         // POST: Admin/Detail_SinhHoaMau/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,7 +37,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_SinhHoaMau.InformationExamination_ID);
             ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest", detail_SinhHoaMau.SinhHoaMau_ID);
-            //return View(detail_SinhHoaMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
@@ -127,9 +96,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return RedirectToAction("Edit", "MultipleModels");
             }
             return RedirectToAction("Edit", "MultipleModels");
-            //ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_SinhHoaMau.InformationExamination_ID);
-            //ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest", detail_SinhHoaMau.SinhHoaMau_ID);
-            //return View(detail_SinhHoaMau);
         }
 
         [HttpPost]
@@ -150,34 +116,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_SinhHoaMau.InformationExamination_ID);
             ViewBag.SinhHoaMau_ID = new SelectList(db.SinhHoaMaus, "ID", "NameTest", detail_SinhHoaMau.SinhHoaMau_ID);
-            //return View(detail_SinhHoaMau);
             return RedirectToAction("Create", "MultipleModels");
         }
-        // GET: Admin/Detail_SinhHoaMau/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-        //    if (detail_SinhHoaMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_SinhHoaMau);
-        //}
-
-        //// POST: Admin/Detail_SinhHoaMau/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Detail_SinhHoaMau detail_SinhHoaMau = db.Detail_SinhHoaMau.Find(id);
-        //    db.Detail_SinhHoaMau.Remove(detail_SinhHoaMau);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {

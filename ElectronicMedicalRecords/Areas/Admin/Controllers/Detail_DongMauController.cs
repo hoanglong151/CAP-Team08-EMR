@@ -16,36 +16,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Detail_DongMau
-        //public ActionResult Index()
-        //{
-        //    var detail_DongMau = db.Detail_DongMau.Include(d => d.DongMau).Include(d => d.InformationExamination);
-        //    return View(detail_DongMau.ToList());
-        //}
-
-        //// GET: Admin/Detail_DongMau/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_DongMau detail_DongMau = db.Detail_DongMau.Find(id);
-        //    if (detail_DongMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_DongMau);
-        //}
-
-        //// GET: Admin/Detail_DongMau/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest");
-        //    ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID");
-        //    return View();
-        //}
-
         // POST: Admin/Detail_DongMau/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,7 +37,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest", detail_DongMau.DongMau_ID);
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_DongMau.InformationExamination_ID);
-            //return View(detail_DongMau);
             return RedirectToAction("Create", "MultipleModels");
         }
 
@@ -149,32 +118,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_DongMau.InformationExamination_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
-
-        // GET: Admin/Detail_DongMau/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Detail_DongMau detail_DongMau = db.Detail_DongMau.Find(id);
-        //    if (detail_DongMau == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(detail_DongMau);
-        //}
-
-        //// POST: Admin/Detail_DongMau/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Detail_DongMau detail_DongMau = db.Detail_DongMau.Find(id);
-        //    db.Detail_DongMau.Remove(detail_DongMau);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {
