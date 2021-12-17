@@ -130,6 +130,11 @@
         }
     </style>
 
+
+    <div id="loader-wrapper">
+        <div class="pulse"></div>
+    </div>
+
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active nav-bg">
@@ -665,10 +670,9 @@
 
     <script>
         $(window).on("load", function () {
-            $(".loading-wrapper").fadeOut("slow");
+            $("#loader-wrapper").fadeOut("slow");
         });
     </script>
-
 
 </body>
 </html>

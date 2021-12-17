@@ -451,6 +451,7 @@
     <Content Include="Areas\Admin\assets\css\pages\dripicons.css" />
     <Content Include="Areas\Admin\assets\css\pages\email.css" />
     <Content Include="Areas\Admin\assets\css\pages\error.css" />
+    <Content Include="Areas\Admin\assets\css\loading-page.css" />
     <Content Include="Areas\Admin\assets\css\template.css" />
     <Content Include="Areas\Admin\assets\css\widgets\chat.css" />
     <Content Include="Areas\Admin\assets\css\widgets\todo.css" />
