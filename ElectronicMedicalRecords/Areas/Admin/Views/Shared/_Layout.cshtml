@@ -523,7 +523,6 @@
                     type: "GET",
                     url: "@Url.Action("GetNotification", "InformationExaminations")",
                     success: function (res) {
-                        console.log(res.data)
                         $('#notiContent').empty();
                         if (res.length == 0) {
                             $('#notiContent').append($('<li>No data available</li>'));
