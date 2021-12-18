@@ -750,10 +750,10 @@
             var cell1 = row.insertCell(1);
             var cell2 = row.insertCell(2);
             var cell3 = row.insertCell(3);
-            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='border:none;pointer-events: none;width:100%;' type='text' value='" + NameMedication +"' readonly'/>";
-            cell1.innerHTML = "<input style='border:none;pointer-events: none;width:100%;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' +".NumMedication' value='" + UnitMedication + "' readonly/>";
-            cell2.innerHTML = "<input style='border:none;pointer-events: none;width:100%;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' +".Note' value='" + NoteMedication + "' readonly/>";
-            cell3.innerHTML = "<button class='btn btn-primary' id='Medication-"+ k +"' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
+            cell0.innerHTML = "<input type='number' id='medicationID' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' id='numMedication' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' id='noteMedication' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
+            cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
         }
 
@@ -761,7 +761,28 @@
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
             k--;
+            updateRow();
         }
+
+        function updateRow() {
+            k = 1;
+            var listTr = $('#tablePre tr');
+            for (let i = 1; i < listTr.length; i++) {
+                var InputNote = $(listTr[i]).children('td').children('input[id]');
+                if (InputNote.length == 4) {
+                    InputNote[0].setAttribute('name', `Prescription_Details[${k - 1}].InformationExamination_ID`);
+                    InputNote[1].setAttribute('name', `Prescription_Details[${k - 1}].Medication_ID`);
+                    InputNote[2].setAttribute('name', `Prescription_Details[${k - 1}].NumMedication`);
+                    InputNote[3].setAttribute('name', `Prescription_Details[${k - 1}].Note`);
+                } else {
+                    InputNote[0].setAttribute('name', `Prescription_Details[${k - 1}].Medication_ID`);
+                    InputNote[1].setAttribute('name', `Prescription_Details[${k - 1}].NumMedication`);
+                    InputNote[2].setAttribute('name', `Prescription_Details[${k - 1}].Note`);
+                }
+                k++;
+            }
+        }
+
         var listTable = $('*.tableLoad');
         listTable.each((index, table) => {
             $('#' + table.id).DataTable({

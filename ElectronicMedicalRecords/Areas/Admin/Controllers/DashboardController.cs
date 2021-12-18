@@ -158,7 +158,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 int priceTotalTest = 0;
                 DateTime Datetime = DateTime.Now;
                 TimeSpan timeEnd = new TimeSpan(23, 59, 59);
-                Datetime = Datetime.AddDays(DateTime.Today.Day - (DateTime.Today.Day + i));
+                Datetime = Datetime.AddDays(DateTime.Today.Day - 14 + (DateTime.Today.Day + i));
                 Datetime = Datetime.AddHours(Datetime.Hour - (Datetime.Hour * 2)).AddMinutes(Datetime.Minute - (Datetime.Minute * 2)).AddSeconds(Datetime.Second - (Datetime.Second * 2));
                 DateTime DateEnd = Datetime + timeEnd;
                 var numUsers = db.InformationExaminations.Where(p => p.DateExamine >= Datetime && p.DateExamine < DateEnd).Count();
@@ -198,6 +198,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 priceSubclinical.Add(priceTotalTest.ToString());
                 date.Add(Datetime.ToString("dd/MM"));
                 patient.Add(numUsers);
+
+                //date.Reverse();
+                //priceExamination.Reverse();
+                //pricePrescription.Reverse();
+                //priceSubclinical.Reverse();
+                //patient.Reverse();
             }
             return Json(new { datetime = date, numUser = patient, priceExaminationInfo = priceExamination, pricePrescriptionDetail = pricePrescription, priceTestSubclinical = priceSubclinical }, JsonRequestBehavior.AllowGet);
         }

@@ -216,6 +216,8 @@
 
 @section scripts{
     <script>
+        @*var dataUser = [];
+        var dataTime = [];
     getData();
     function getData() {
         $.ajax({
@@ -223,31 +225,38 @@
             type: "GET",
             success: function (res) {
                 $.each(res.datetime, (index, date) => {
-                    optionsProfileVisit.xaxis.categories.unshift(date);
-                    barOptions.xaxis.categories.unshift(date);
+                    dataTime.unshift(date);
                 })
+                optionsProfileVisit.xaxis.categories = dataTime;
+                barOptions.xaxis.categories = dataTime;
                 $.each(res.numUser, (i, user) => {
-                    optionsProfileVisit.series[0].data.unshift(user);
+                    dataUser.unshift(user);
                 })
+                optionsProfileVisit.series[0].data = dataUser;
 
-                $.each(res.priceExaminationInfo, (i, priceInfo) => {
-                    barOptions.series[0].data.unshift(priceInfo.slice(0, -3));
-                })
+                //$.each(res.priceExaminationInfo, (i, priceInfo) => {
+                //    barOptions.series[0].data.unshift(priceInfo.slice(0, -3));
+                //})
 
-                $.each(res.pricePrescriptionDetail, (i, pricePrescription) => {
-                    barOptions.series[1].data.unshift(pricePrescription.slice(0, -3));
-                })
+                //$.each(res.pricePrescriptionDetail, (i, pricePrescription) => {
+                //    barOptions.series[1].data.unshift(pricePrescription.slice(0, -3));
+                //})
 
-                $.each(res.priceTestSubclinical, (i, priceTest) => {
-                    barOptions.series[2].data.unshift(priceTest.slice(0, -3));
-                })
+                //$.each(res.priceTestSubclinical, (i, priceTest) => {
+                //    barOptions.series[2].data.unshift(priceTest.slice(0, -3));
+                //})
             }
         })
-    }
+    }*@
+
+
+        @*$.getJSON('@Url.Action("GetData","Dashboard")', function (res) {
+            optionsProfileVisit.updateSeries()
+        })*@
     </script>
 }
 <script>
-    var optionsProfileVisit = {
+        var optionsProfileVisit = {
         annotations: {
             position: 'back'
         },
@@ -328,4 +337,3 @@
         },
     };
 </script>
-

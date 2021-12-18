@@ -177,6 +177,10 @@
                     </li>
                 </ul>
                 <div class="ms-4 col-12 d-flex justify-content-start pt-4">
+                    <button type="submit"
+                            class="btn btn-primary me-1 mb-1">
+                        Cập Nhât Hồ Sơ
+                    </button>
                     <div class="btn-group dropend me-1 mb-1">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             In
@@ -199,7 +203,8 @@
                                             @{
                                                 Html.RenderAction("DetailIE", "Patients", new { id = Model.Patient.ID });
                                                 Html.RenderAction("DetailIE", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                Html.RenderAction("Edit", "Prescription_Detail");
+                                                //Html.RenderAction("Edit", "Prescription_Detail");
+                                                Html.RenderAction("EditNoButton", "Prescription_Detail", new { id = Model.InformationExamination.ID });
                                             }
                                         </div>
                                     </div>
@@ -321,38 +326,38 @@
     </div>
 }
 @section scripts{
-        <script>
-            $(document).ready(function () {
-                var listTable = $('*.tableLoad');
-                listTable.each((index, table) => {
-                    $('#' + table.id).DataTable({
-                        "pageLength": 50,
-                        "language": {
-                            "emptyTable": "No data available",
-                            "oPaginate": {
-                                sNext: '<i class="fa fa-chevron-right"></i>',
-                                sPrevious: '<i class="fa fa-chevron-left"></i>',
-                            },
-                            "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                            "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
-                            "search": "Tìm kiếm:",
+    <script>
+        $(document).ready(function () {
+            var listTable = $('*.tableLoad');
+            listTable.each((index, table) => {
+                $('#' + table.id).DataTable({
+                    "pageLength": 50,
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
                         },
-                    });
-                })
-                const editors = document.querySelectorAll('.editor');
-                editors.forEach(item => {
-                    ClassicEditor
-                        .create(item, {
-                            toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
-                        })
-                        .then(item => item.isReadOnly = true)
-                        .catch(error => {
-                            console.error("Toang" + error);
-                        });
-                })
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục thuốc",
+                        "search": "Tìm kiếm:",
+                    },
+                });
             })
-        </script>
-        <script>
+            const editors = document.querySelectorAll('.editor');
+            editors.forEach(item => {
+                ClassicEditor
+                    .create(item, {
+                        toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
+                    })
+                    .then(item => item.isReadOnly = true)
+                    .catch(error => {
+                        console.error("Toang" + error);
+                    });
+            })
+        })
+    </script>
+    <script>
         var k = 1;
         var formatCss = document.querySelectorAll('.choices__list--single');
         formatCss.forEach((value, index) => {
@@ -384,12 +389,13 @@
             var cell1 = row.insertCell(1);
             var cell2 = row.insertCell(2);
             var cell3 = row.insertCell(3);
-            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
-            cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
-            cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
+            cell0.innerHTML = "<input type='number' id='medicationID' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' id='numMedication' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' id='noteMedication' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
             cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
             k++;
-        }
+            }
+
         loadMedication();
         function loadMedication() {
             var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
@@ -405,9 +411,9 @@
                         var cell1 = row.insertCell(1);
                         var cell2 = row.insertCell(2);
                         var cell3 = row.insertCell(3);
-                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
-                        cell1.innerHTML = "<input style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
-                        cell2.innerHTML = "<input style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        cell0.innerHTML = "<input type='number' id='infomartionID' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input id='medicationID' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input id='numMedication' style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input id='noteMedication' style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
                         cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
                         k++;
                     })
@@ -419,6 +425,26 @@
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
             k--;
+            updateRow();
+        }
+
+        function updateRow() {
+            k = 1;
+            var listTr = $('#tablePre tr');
+            for (let i = 1; i < listTr.length; i++) {
+                var InputNote = $(listTr[i]).children('td').children('input[id]');
+                if (InputNote.length == 4) {
+                    InputNote[0].setAttribute('name', `Prescription_Details[${k - 1}].InformationExamination_ID`);
+                    InputNote[1].setAttribute('name', `Prescription_Details[${k - 1}].Medication_ID`);
+                    InputNote[2].setAttribute('name', `Prescription_Details[${k - 1}].NumMedication`);
+                    InputNote[3].setAttribute('name', `Prescription_Details[${k - 1}].Note`);
+                } else {
+                    InputNote[0].setAttribute('name', `Prescription_Details[${k - 1}].Medication_ID`);
+                    InputNote[1].setAttribute('name', `Prescription_Details[${k - 1}].NumMedication`);
+                    InputNote[2].setAttribute('name', `Prescription_Details[${k - 1}].Note`);
+                }
+                k++;
+            }
         }
 
         $('#updateMedication').click((e) => {
@@ -613,5 +639,73 @@
             if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
                 $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");
             }
-        </script>
-    }
+    </script>
+
+    @*<script>
+        $(document).ready(function () {
+
+            // Denotes total number of rows
+            var rowIdx = 0;
+
+            // jQuery button click event to add a row
+            $('#addBtn').on('click', function () {
+                var NameMedication = $('#NameMedication').text();
+                var UnitMedication = $('#UnitMedication').val();
+                var NoteMedication = $('#NoteMedication').val();
+                var IdMedication = $('#IDMedication').val();
+                // Adding a row inside the tbody.
+                $('#tbody').append(`<tr id="R${++rowIdx}">
+                 <td class="row-index text-center">
+                    <input type='number' name='Prescription_Details[${rowIdx}].Medication_ID' value='${IdMedication}' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='${NameMedication}' readonly/>
+                 </td>
+                 <td class="row-index text-center">
+                    <input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>
+                 </td>
+                <td class="row-index text-center">
+                <input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>
+                </td>
+                  <td class="text-center">
+
+                    <button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>
+
+                    <button class="btn btn-danger remove"
+                      type="button">Remove</button>
+                    </td>
+                  </tr>`);
+            });
+
+            // jQuery button click event to remove a row.
+            $('#tbody').on('click', '.remove', function () {
+
+                // Getting all the rows next to the row
+                // containing the clicked button
+                var child = $(this).closest('tr').nextAll();
+
+                // Iterating across all the rows
+                // obtained to change the index
+                child.each(function () {
+
+                    // Getting <tr> id.
+                    var id = $(this).attr('id');
+
+                    // Getting the <p> inside the .row-index class.
+                    var idx = $(this).children('.row-index').children('#medicationID');
+                    // Gets the row number from <tr> id.
+                    var dig = parseInt(id.substring(1));
+
+                    // Modifying row index.
+                    idx.attr('name', `Prescription_Details[${dig - 1}].Medication_ID`);
+
+                    // Modifying row id.
+                    $(this).attr('id', `R${dig - 1}`);
+                });
+
+                // Removing the current row.
+                $(this).closest('tr').remove();
+
+                // Decreasing total number of rows by 1.
+                rowIdx--;
+            });
+        });
+    </script>*@
+}
