@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng,Thu Ngân")]
     public class MultipleModelsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
@@ -22,6 +22,124 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult DetailForm(MultiplesModel multiplesModel)
+        {
+            int count = 0;
+            int success = 0;
+            db.Entry(multiplesModel.Patient).State = EntityState.Modified;
+            db.SaveChanges();
+            if (multiplesModel.Detail_CTMaus != null)
+            {
+                count += 1;
+                if(multiplesModel.Detail_CTMaus.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_SinhHoaMaus != null)
+            {
+                count += 1;
+                if(multiplesModel.Detail_SinhHoaMaus.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_DongMaus != null)
+            {
+                count += 1;
+                if(multiplesModel.Detail_DongMaus.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_NhomMaus != null)
+            {
+                count += 1;
+                if (multiplesModel.Detail_NhomMaus.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_Urines != null)
+            {
+                count += 1;
+                if (multiplesModel.Detail_Urines.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_Immunes != null)
+            {
+                count += 1;
+                if (multiplesModel.Detail_Immunes.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_Amniocentes != null)
+            {
+                count += 1;
+                if (multiplesModel.Detail_Amniocentes.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_ViSinhs != null && multiplesModel.Detail_ViSinhs.All(p => p.Result != null))
+            {
+                count += 1;
+                if(multiplesModel.Detail_Amniocentes.All(p => p.Result != null))
+                {
+                    success += 1;
+                }
+            }
+            if (multiplesModel.Detail_ViSinhs != null)
+            {
+                count += 1;
+                if (multiplesModel.Detail_ViSinhs.All(p => p.ResultNC != null && p.ResultDD != null && p.MatDo != null))
+                {
+                    success += 1;
+                }
+            }
+            if(count == success)
+            {
+                multiplesModel.InformationExamination.ResultCTMau = null;
+                multiplesModel.InformationExamination.ResultSHM = null;
+                multiplesModel.InformationExamination.ResultDMau = null;
+                multiplesModel.InformationExamination.ResultNhomMau = null;
+                multiplesModel.InformationExamination.ResultNuocTieu = null;
+                multiplesModel.InformationExamination.ResultMienDich = null;
+                multiplesModel.InformationExamination.ResultDichChocDo = null;
+                multiplesModel.InformationExamination.ResultViSinh = null;
+            }
+            var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+            if (multiplesModel.Prescription_Details != null)
+            {
+                foreach (var item1 in listPrescription)
+                {
+                    db.Prescription_Detail.Remove(item1);
+                    db.SaveChanges();
+                }
+                foreach (var prescription_Detail in multiplesModel.Prescription_Details)
+                {
+                    prescription_Detail.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    db.Prescription_Detail.Add(prescription_Detail);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                foreach (var item1 in listPrescription)
+                {
+                    db.Prescription_Detail.Remove(item1);
+                    db.SaveChanges();
+                }
+            }
+            db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Patients");
         }
 
         public ActionResult PrintExaminationInfo()

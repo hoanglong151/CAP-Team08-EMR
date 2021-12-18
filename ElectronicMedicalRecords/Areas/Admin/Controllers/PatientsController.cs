@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -12,7 +14,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng")]
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng,Thu Ngân")]
     public class PatientsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
@@ -248,6 +250,23 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIERead", multiplesModel);
         }
 
+        private string ConvertToUnSign(string input)
+        {
+            input = input.Trim().ToLower();
+            for (int i = 0x20; i < 0x30; i++)
+            {
+                input = input.Replace(((char)i).ToString(), " ");
+            }
+            Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+            string str = input.Normalize(NormalizationForm.FormD);
+            string str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');
+            while (str2.IndexOf("?") >= 0)
+            {
+                str2 = str2.Remove(str2.IndexOf("?"), 1);
+            }
+            return str2;
+        }
+
         [HttpPost]
         public ActionResult SearchPatient(DateTime? DateStart, DateTime? DateEnd, string Name, string Code)
         {
@@ -258,10 +277,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Patients");
             }
             var informationExaminations = db.InformationExaminations.ToList();
+            var informationExaminationsList = db.InformationExaminations.ToList();
             var patients = new List<Patient>();
             if (Name != "")
-            {
-                informationExaminations = informationExaminations.Where(p => p.Patient.Name.Contains(Name)).ToList();
+            {     
+                informationExaminations = informationExaminationsList.Where(delegate (InformationExamination c)
+                {
+                    if (ConvertToUnSign(c.Patient.Name).IndexOf(Name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                        return true;
+                    else
+                        return false;
+                }).ToList();
+                if (informationExaminations.Count == 0)
+                {
+                    informationExaminations = informationExaminationsList.Where(p => p.Patient.Name.ToLower().Contains(Name.ToLower())).ToList();
+                }
             }
             if (DateStart.HasValue)
             {
@@ -275,7 +305,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             if( Code != "")
             {
-                informationExaminations = informationExaminations.Where(p => p.Patient.MaBN.Contains(Code)).ToList();
+                informationExaminations = informationExaminations.Where(p => p.Patient.MaBN.ToLower().Contains(Code.ToLower())).ToList();
             }
             if (informationExaminations.Count > 0)
             {

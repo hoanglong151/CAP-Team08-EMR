@@ -19,10 +19,8 @@
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/app.css")">
     <link href="@Url.Content("~/Areas/Admin/assets/css/bootstrap-tagsinput.css")" rel="stylesheet" />
-    <link rel="shortcut icon" href="@Url.Content("~/Areas/Admin/assets/images/favicon.svg")" type="image/x-icon">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
     <link href="@Url.Content("~/Areas/Admin/assets/css/loading-page.css")" rel="stylesheet" />
-
 </head>
 <body>
     <style type="text/css">
@@ -354,13 +352,13 @@
         </div>
     </div>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/jquery/jquery.min.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap.bundle.min.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/dayjs/dayjs.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/pages/ui-apexchart.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/pages/dashboard.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/choices.js/choices.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/sweetalert2.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.all.min.js")"></script>
@@ -491,9 +489,6 @@
                                 $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                             })
                             $('span.countBS').html(res.data.length);
-                        },
-                        error: function (error) {
-                            console.log(error)
                         }
                     })
                 }
@@ -542,9 +537,6 @@
                             $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
                         })
                         $('span.count').html(res.data.length);
-                    },
-                    error: function (error) {
-                        console.log(error)
                     }
                 })
                 }
@@ -599,9 +591,6 @@
                             $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
                         })
                         $('span.countBS1').html(res.data.length);
-                    },
-                    error: function (error) {
-                        console.log(error)
                     }
                 })
                 }
@@ -645,9 +634,6 @@
                         else {
                             alert(res.responText)
                         }
-                    },
-                    error: function (error) {
-                        console.log(error)
                     }
                 })
             }
@@ -673,6 +659,5 @@
             $("#loader-wrapper").fadeOut("slow");
         });
     </script>
-
 </body>
 </html>
