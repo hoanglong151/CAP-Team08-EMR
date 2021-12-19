@@ -10,10 +10,11 @@
         <div class="row">
             @if (Model.InformationExamination.DiagnosticCategory_ID != null)
             {
-                <div class="col-md-12" style="margin-bottom:12px">
-                    <label>Chẩn Đoán</label>
-                    <input class="form-control" value="@Model.InformationExamination.DiagnosticsCategory.Name" readonly />
-                </div>
+            <div class="col-md-12" style="margin-bottom:12px">
+                <label>Chẩn Đoán</label>
+                <input class="form-control" value="@Model.InformationExamination.DiagnosticsCategory.Name" readonly />
+                <input class="form-control" name="InformationExamination.DiagnosticCategory_ID" value="@Model.InformationExamination.DiagnosticCategory_ID" hidden />
+            </div>
             }
             <div class="col-md-12">
                 <table id="TableMedication" style="width:100%" border="1" class="table-bordered">
