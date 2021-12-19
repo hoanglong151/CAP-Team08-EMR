@@ -87,18 +87,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     success += 1;
                 }
             }
-            if (multiplesModel.Detail_ViSinhs != null && multiplesModel.Detail_ViSinhs.All(p => p.Result != null))
-            {
-                count += 1;
-                if(multiplesModel.Detail_Amniocentes.All(p => p.Result != null))
-                {
-                    success += 1;
-                }
-            }
             if (multiplesModel.Detail_ViSinhs != null)
             {
                 count += 1;
-                if (multiplesModel.Detail_ViSinhs.All(p => p.ResultNC != null && p.ResultDD != null && p.MatDo != null))
+                List<Detail_ViSinh> detail_ViSinhsAD = multiplesModel.Detail_ViSinhs.Where(p => p.Result != null).ToList();
+                List<Detail_ViSinh> detail_ViSinhsRS = multiplesModel.Detail_ViSinhs.Where(p => p.ResultNC != null && p.ResultDD != null && p.MatDo != null).ToList();
+                if((detail_ViSinhsAD.Count + detail_ViSinhsRS.Count) == multiplesModel.Detail_ViSinhs.Count)
                 {
                     success += 1;
                 }
@@ -155,6 +149,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(multiplesModel);
         }
 
+        [HttpPost]
         public ActionResult Payment(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
@@ -171,7 +166,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return Json(new { success = false, responeText = "Hóa Đơn Này Đã Được Thanh Toán" });
             }
         }
-
+        [HttpPost]
         public ActionResult PaymentPrescription(int id)
         {
             int error = 0;
@@ -195,9 +190,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             return Json(new { success = true });
         }
-
-        public ActionResult PaymentTestSubclinical(int id, int price)
+        [HttpPost]
+        public ActionResult PaymentTestSubclinical(int id, int? price)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             var examinationBill = db.InformationExaminations.Find(id);
             if(examinationBill.ResultCTMau != null || examinationBill.ResultSHM != null || examinationBill.ResultDMau != null || examinationBill.ResultNhomMau != null
                 || examinationBill.ResultNuocTieu != null || examinationBill.ResultMienDich != null || examinationBill.ResultDichChocDo != null || examinationBill.ResultViSinh != null)

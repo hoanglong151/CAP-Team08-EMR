@@ -142,7 +142,6 @@ $.getJSON(url, function (res) {
 			categories: res.datetime
 		}
 	});
-/*	chartProfileVisit.update*/
 })
 //////var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
 //////var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
