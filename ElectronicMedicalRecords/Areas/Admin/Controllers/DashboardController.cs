@@ -148,9 +148,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             List<string> date = new List<string>();
             List<int> patient = new List<int>();
-            List<string> priceExamination = new List<string>();
-            List<string> pricePrescription = new List<string>();
-            List<string> priceSubclinical = new List<string>();
+            List<double> priceExamination = new List<double>();
+            List<double> pricePrescription = new List<double>();
+            List<double> priceSubclinical = new List<double>();
             for(int i = 7; i > 0; i--)
             {
                 int priceInfo = 0;
@@ -193,9 +193,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         priceTotalTest += price;
                     }
                 }
-                priceExamination.Add(priceInfo.ToString());
-                pricePrescription.Add(pricePres.ToString());
-                priceSubclinical.Add(priceTotalTest.ToString());
+                priceExamination.Add(priceInfo);
+                pricePrescription.Add(pricePres);
+                priceSubclinical.Add(priceTotalTest);
                 date.Add(Datetime.ToString("dd/MM"));
                 patient.Add(numUsers);
             }
