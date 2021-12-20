@@ -16,6 +16,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             var patients = db.Patients.ToList();
             var allUsers = db.AspNetUsers.ToList();
+            var userList = db.Users.Where(p => p.ActiveAccount == true).ToList();
             var userBS = allUsers.Where(p => p.AspNetRoles.Select(role => role.Name).Contains("Bác Sĩ")).ToList();
             var userGD = allUsers.Where(p => p.AspNetRoles.Select(role => role.Name).Contains("Giám Đốc")).ToList();
             var userKTV = allUsers.Where(p => p.AspNetRoles.Select(role => role.Name).Contains("Kỹ Thuật Viên")).ToList();
@@ -32,6 +33,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             dashboardModel.userYTa = userYTa;
             dashboardModel.patients = patients;
             dashboardModel.users = userOnline;
+            dashboardModel.userList = userList;
             return View(dashboardModel);
         }
 
