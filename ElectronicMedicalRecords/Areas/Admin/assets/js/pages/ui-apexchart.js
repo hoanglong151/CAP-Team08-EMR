@@ -1,5 +1,5 @@
 var bar = new ApexCharts(document.querySelector("#bar"), barOptions);
-var url = 'https://localhost:44328/Admin/Dashboard/GetData';
+var url = 'http://cntttest.vanlanguni.edu.vn:18080/CP24Team08/Admin/Dashboard/GetData';
 $.getJSON(url, function (res) {
 	bar.updateOptions({
 		series: [{

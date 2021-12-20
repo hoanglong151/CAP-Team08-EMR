@@ -132,7 +132,7 @@
 
 
 var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
-var url = 'https://localhost:44328/Admin/Dashboard/GetData';
+var url = 'http://cntttest.vanlanguni.edu.vn:18080/CP24Team08/Admin/Dashboard/GetData';
 $.getJSON(url, function (res) {
 	chartProfileVisit.updateOptions({
 		series: [{
