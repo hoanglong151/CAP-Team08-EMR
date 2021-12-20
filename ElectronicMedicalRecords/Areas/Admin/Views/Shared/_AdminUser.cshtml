@@ -10,7 +10,7 @@
 <div class="sidebar-menu">
     <ul class="menu p-0 m-0">
         <li class="sidebar-item has-sub" style="margin-top:0">
-            <audio controls="controls" muted loop id="mp3">
+            <audio controls="controls" loop id="mp3">
                 <source src="~/Areas/Admin/assets/Nhac.mp3" type="audio/mpeg" />
             </audio>
             <a href="#" class='sidebar-link t-43'>
@@ -56,7 +56,6 @@
             }
             if (song.muted) {
                 window.localStorage.setItem('muted', 0)
-                console.log("OK")
             }
             if (song.volume != 0) {
                 var bk = song.volume;
@@ -84,9 +83,8 @@
         var mutedPlayed = getMuted('muted');
         function update() {
             if (!played) {
-                if (tillPlayed) {
+                if (tillPlayed != 0) {
                     song.currentTime = tillPlayed;
-                    console.log(tillPlayed, mutedPlayed)
                     if (mutedPlayed) {
                         song.volume = mutedPlayed;
                     }
@@ -95,7 +93,7 @@
                 } else {
                     song.currentTime = tillPlayed;
                     if (mutedPlayed) {
-                        song.volume = mutedPlayed;
+                        song.volume = 0;
                     }
                     song.play();
                     played = true;

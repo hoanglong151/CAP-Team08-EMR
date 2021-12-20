@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
@@ -18,6 +19,29 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult ListPrescriptionBill()
+        {
+            List<Prescription_Detail> prescription_Details = new List<Prescription_Detail>();
+            List<InformationExamination> informationExaminations = new List<InformationExamination>();
+            var UserID = User.Identity.GetUserId();
+            var prescriptionList = db.Prescription_Detail.ToList();
+            foreach (var prescription in prescriptionList)
+            {
+                var check = prescription_Details.FirstOrDefault(p => p.InformationExamination_ID == prescription.InformationExamination_ID);
+                if (check == null)
+                {
+                    var info = db.InformationExaminations.FirstOrDefault(p => p.ID == prescription.InformationExamination_ID);
+                    var userBS = db.Users.FirstOrDefault(p => p.ID == info.User_ID);
+                    if(userBS.UserID == UserID)
+                    {
+                        prescription_Details.Add(prescription);
+                        informationExaminations.Add(info);
+                    }
+                }
+            }
+            return View(informationExaminations);
         }
 
         public ActionResult DetailIE(int id)

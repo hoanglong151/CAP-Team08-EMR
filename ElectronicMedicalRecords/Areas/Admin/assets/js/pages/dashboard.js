@@ -130,19 +130,44 @@
 //////}
 
 
+    //var optionsProfileVisit = {
+    //    annotations: {
+    //    position: 'back'
+    //    },
+    //dataLabels: {
+    //    enabled: false
+    //    },
+    //chart: {
+    //    type: 'bar',
+    //height: 300
+    //    },
+    //fill: {
+    //    opacity: 1
+    //    },
+    //plotOptions: {
+    //},
+    //series: [{
+    //    name: 'khám',
+    //data: []
+    //    }],
+    //colors: '#435ebe',
+    //xaxis: {
+    //    categories: [],
+    //    },
+    //}
 
-var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
-var url = 'http://cntttest.vanlanguni.edu.vn:18080/CP24Team08/Admin/Dashboard/GetData';
-$.getJSON(url, function (res) {
-	chartProfileVisit.updateOptions({
-		series: [{
-				data: res.numUser
-			}],
-		xaxis: {
-			categories: res.datetime
-		}
-	});
-})
+//var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
+//var url = 'http://cntttest.vanlanguni.edu.vn:18080/CP24Team08/Admin/Dashboard/GetData';
+//$.getJSON(url, function (res) {
+//	chartProfileVisit.updateOptions({
+//		series: [{
+//				data: res.numUser
+//			}],
+//		xaxis: {
+//			categories: res.datetime
+//		}
+//	});
+//})
 //////var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
 //////var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
 //////var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);

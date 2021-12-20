@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.InformationExamination>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
+                <h3>Quản Lý Toa Thuốc</h3>
+                <p class="text-subtitle text-muted">Bạn có thể xem danh sách toa thuốc tại đây</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("ListPrescriptionBill", "Prescription_Detail")">Danh sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Toa Thuốc</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped" id="tableListPrescription" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Mã Bệnh Nhân</th>
+                            <th>Bệnh Nhân</th>
+                            <th>Bác Sĩ Kê Toa</th>
+                            <th>Ngày Kê/Cập Nhật Toa</th>
+                            <th style="width:80px">Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                        <tr>
+                            <td>@item.Patient.MaBN</td>
+                            <td>@item.Patient.Name</td>
+                            <td>@item.User.Name</td>
+                            <td>@item.DateEnd</td>
+                            <td>
+                                <a class="btn btnHover info" style="margin:0 2px;" href="@Url.Action("DetailsIERead", "MultipleModels", new { id = item.ID })"><i class="fas fa-info"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts{
+    <script>
+        $('#tableListPrescription').DataTable({
+            "language": {
+                "emptyTable": "No data available, please click on <b>Tạo Chẩn Đoán</b> button",
+                "oPaginate": {
+                    sNext: '<i class="fa fa-chevron-right"></i>',
+                    sPrevious: '<i class="fa fa-chevron-left"></i>',
+                },
+                "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                "lengthMenu": "Hiển thị _MENU_ loại chuẩn đoán",
+                "search": "Tìm kiếm:",
+            }
+        })
+    </script>
+}
