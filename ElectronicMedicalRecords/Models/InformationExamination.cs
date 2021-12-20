@@ -27,7 +27,6 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_SinhHoaMau = new HashSet<Detail_SinhHoaMau>();
             this.Detail_Urine = new HashSet<Detail_Urine>();
             this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
-            this.MedicalTestsPrescriptions = new HashSet<MedicalTestsPrescription>();
             this.Prescriptions = new HashSet<Prescription>();
         }
     
@@ -79,8 +78,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual Patient Patient { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedicalTestsPrescription> MedicalTestsPrescriptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription> Prescriptions { get; set; }
     }

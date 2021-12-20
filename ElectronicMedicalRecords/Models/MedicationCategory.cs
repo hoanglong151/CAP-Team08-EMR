@@ -6,14 +6,12 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ElectronicMedicalRecords.Tests")]
 namespace ElectronicMedicalRecords.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class MedicationCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

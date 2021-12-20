@@ -20,7 +20,7 @@ namespace ElectronicMedicalRecords.Models
         public bool ChiDinh { get; set; }
         public string Result { get; set; }
     
-        public virtual NhomMau NhomMau { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
+        public virtual NhomMau NhomMau { get; set; }
     }
 }

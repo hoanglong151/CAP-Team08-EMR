@@ -6,9 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ElectronicMedicalRecords.Tests")]
 namespace ElectronicMedicalRecords.Models
 {
     using System;
@@ -38,9 +36,9 @@ namespace ElectronicMedicalRecords.Models
     
         public virtual Gender Gender { get; set; }
         public virtual HomeTown HomeTown { get; set; }
-        public virtual Nation Nation { get; set; }
-        public virtual Nation1 Nation1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
+        public virtual Nation Nation { get; set; }
+        public virtual Nation1 Nation1 { get; set; }
     }
 }
