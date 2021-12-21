@@ -1,0 +1,102 @@
+﻿@model ElectronicMedicalRecords.Models.StatisticModel
+@{
+    ViewBag.Title = "StatisByDoctorAndCondition";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
+                <h3>Thống Kê</h3>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("StatisByCondition","Statistics")">Trang Chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thống Kê</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Doanh Số
+            </div>
+            <div class="card-body">
+                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">
+                    <i class="m-icon bi bi-plus-circle"></i>
+                    In
+                </a>
+                <form action="@Url.Action("SearchMoney","Statistics")" method="post">
+                    <div class="row mgb-1 mgt-05">
+                        <div class="col-md-5">
+                            <label>Từ ngày</label>
+                            <input name="dateStart" type="date" class="form-control" />
+                        </div>
+                        <div class="col-md-5">
+                            <label>Đến ngày</label>
+                            <input name="dateEnd" type="date" class="form-control" />
+                        </div>
+                        <div class="col-md-2 align-self-end">
+                            <button type="submit" class="btn-search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-striped" id="tableStatisMoney" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Khám</th>
+                            <th>Thuốc</th>
+                            <th>Xét Nghiệm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.priceExamination.ToString("N0") VNĐ</td>
+                            <td>@Model.pricePrescription.ToString("N0") VNĐ</td>
+                            <td>@Model.priceSubclinical.ToString("N0") VNĐ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts{
+    <script>
+        $('#tableStatisMoney').DataTable({
+            "language": {
+                "emptyTable": "No data available",
+                "oPaginate": {
+                    sNext: '<i class="fa fa-chevron-right"></i>',
+                    sPrevious: '<i class="fa fa-chevron-left"></i>',
+                },
+                "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                "lengthMenu": "Hiển thị _MENU_ thống kê",
+                "search": "Tìm kiếm:",
+            },
+        })
+
+        if (window.location.href.indexOf("Admin/Statistics") > -1) {
+            $('a[href="/CP24Team08//Admin/Statistics/StatisByMoney"]').parent().parent().addClass("active");
+            $('a[href="/CP24Team08//Admin/Statistics/StatisByMoney"]').parent().parent().parent().addClass("active");
+        }
+        if (window.location.href.indexOf("Admin/Statistics/SearchMoney") > -1) {
+            $('a[href="/CP24Team08//Admin/Statistics/StatisByMoney"]').parent().addClass("active");
+        }
+    </script>
+}
+
+

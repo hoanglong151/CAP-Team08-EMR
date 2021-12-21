@@ -162,6 +162,30 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link underline'>
+                                <i class="text-white far fa-chart-bar"></i>
+                                <span>Thống Kê</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ & Tình Trạng</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("StatisByCondition", "Statistics")">Theo Tình Trạng</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("StatisByDiagnostic", "Statistics")">Theo Nhóm Bệnh</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu Theo TG</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="sidebar-item">
                             <a href="@Url.Action("Index", "Users")" class='sidebar-link underline'>
                                 <i class="text-white bi bi-person-badge-fill"></i>
