@@ -283,6 +283,7 @@
     <Compile Include="Areas\Admin\Controllers\PrescriptionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Prescription_DetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViSinhsController.cs" />
@@ -320,6 +321,7 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatisticModel.cs" />
     <Compile Include="Models\Detail_Amniocente.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -2829,6 +2831,10 @@
     <Content Include="Areas\Admin\Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_EditNoButton.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\ListPrescriptionBill.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\StatisByDoctorAndCondition.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\StatisByCondition.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\StatisByDiagnostic.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\StatisByMoney.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -320,6 +320,14 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
     transform-origin: 50% 4px;
 }
 
+.mgb-1{
+    margin-bottom: 1rem;
+}
+
+.mgt-05{
+    margin-top: 0.5rem;
+}
+
 @-webkit-keyframes ring {
     0% {
         -webkit-transform: rotateZ(0);
