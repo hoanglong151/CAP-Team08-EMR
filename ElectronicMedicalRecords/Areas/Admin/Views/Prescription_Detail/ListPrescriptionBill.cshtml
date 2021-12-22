@@ -36,6 +36,7 @@
                             <th>Mã Bệnh Nhân</th>
                             <th>Bệnh Nhân</th>
                             <th>Bác Sĩ Kê Toa</th>
+                            <th>Mã Bác Sĩ</th>
                             <th>Ngày Kê/Cập Nhật Toa</th>
                             <th style="width:80px">Chức Năng</th>
                         </tr>
@@ -43,15 +44,18 @@
                     <tbody>
                         @foreach(var item in Model)
                         {
-                        <tr>
-                            <td>@item.Patient.MaBN</td>
-                            <td>@item.Patient.Name</td>
-                            <td>@item.User.Name</td>
-                            <td>@item.DateEnd</td>
-                            <td>
-                                <a class="btn btnHover info" style="margin:0 2px;" href="@Url.Action("DetailsIERead", "MultipleModels", new { id = item.ID })"><i class="fas fa-info"></i></a>
-                            </td>
-                        </tr>
+                            var charName = item.User.AspNetUser.Email.IndexOf(".", 0);
+                            var charName1 = item.User.AspNetUser.Email.IndexOf("@", 0);
+                            <tr>
+                                <td>@item.Patient.MaBN</td>
+                                <td>@item.Patient.Name</td>
+                                <td>@item.User.Name</td>
+                                <td>@item.User.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1)</td>
+                                <td>@item.DateEnd</td>
+                                <td>
+                                    <a class="btn btnHover info" style="margin:0 2px;" href="@Url.Action("DetailsIERead", "MultipleModels", new { id = item.ID })"><i class="fas fa-info"></i></a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>

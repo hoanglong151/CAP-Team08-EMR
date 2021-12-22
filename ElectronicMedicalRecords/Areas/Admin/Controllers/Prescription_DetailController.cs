@@ -34,10 +34,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     var info = db.InformationExaminations.FirstOrDefault(p => p.ID == prescription.InformationExamination_ID);
                     var userBS = db.Users.FirstOrDefault(p => p.ID == info.User_ID);
-                    if(userBS.UserID == UserID)
+                    if(User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                     {
                         prescription_Details.Add(prescription);
                         informationExaminations.Add(info);
+                    }
+                    else
+                    {
+                        if (userBS.UserID == UserID)
+                        {
+                            prescription_Details.Add(prescription);
+                            informationExaminations.Add(info);
+                        }
                     }
                 }
             }
