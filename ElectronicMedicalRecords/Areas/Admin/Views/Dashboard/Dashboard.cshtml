@@ -20,13 +20,23 @@
         right: 5px;
     }
 
-        .LoggedInUserBox.online {
-            background-color: green;
-        }
+    .LoggedInUserBox.online {
+        background-color: green;
+    }
 
-        .LoggedInUserBox.offline {
-            background-color: red;
-        }
+    .LoggedInUserBox.offline {
+        background-color: red;
+    }
+
+    .card {
+        box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    }
+
+    .text-d{
+        font-size: 30px;
+        font-weight: 600;
+    }
+
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -43,16 +53,16 @@
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon purple">
                                         <i class="iconly-boldShow"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Giám Đốc</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userGD.Count</h6>
+                                <div class="col-md-8 p-0">
+                                    <h6 class="text-muted font-semibold m-0">Giám Đốc</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userGD.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -60,16 +70,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon blue">
                                         <i class="iconly-boldProfile"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Quản Trị Viên</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userQTV.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Quản Trị Viên</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userQTV.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -77,16 +87,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon green">
                                         <i class="fas fa-user-md"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Bác Sĩ</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userBS.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Bác Sĩ</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userBS.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -94,16 +104,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon" style="background-color: #ceda5d">
                                         <i class="iconly-boldAdd-User"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Kỹ Thuật Viên</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userKTV.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Kỹ Thuật Viên</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userKTV.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -111,16 +121,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon red">
                                         <i class="fas fa-money-check-alt"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Thu Ngân</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userTN.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Thu Ngân</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userTN.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -128,16 +138,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon" style="background-color: #525be1">
                                         <i class="fas fa-user-nurse"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Y Tá</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userYTa.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Y Tá</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userYTa.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -145,16 +155,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon" style="background-color: #b233d9">
                                         <i class="fas fa-user-injured"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Bệnh Nhân</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.patients.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Bệnh Nhân</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.patients.Count</h6>
                                 </div>
                             </div>
                         </div>
@@ -162,16 +172,16 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
+                        <div class="card-body p-3">
+                            <div class="row align-item-center">
                                 <div class="col-md-4">
                                     <div class="stats-icon" style="background-color: #eb0d0d">
                                         <i class="fas fa-user-circle"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Tài Khoản</h6>
-                                    <h6 class="font-extrabold mb-0">@Model.userList.Count</h6>
+                                    <h6 class="text-muted font-semibold m-0">Tài Khoản</h6>
+                                    <h6 class="text-muted text-d font-extrabold mb-0">@Model.userList.Count</h6>
                                 </div>
                             </div>
                         </div>

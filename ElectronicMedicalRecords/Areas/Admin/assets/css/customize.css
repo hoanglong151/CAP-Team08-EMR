@@ -115,7 +115,7 @@
 }
 
 .btnHover.print {
-    background-color: #616F39;
+    background-color: #A7D129;
 }
 
 .btnHover.edit:hover {
@@ -126,7 +126,7 @@
 
 .btnHover.print:hover {
     color: #fff;
-    background-color: #A7D129;
+    background-color: #616F39;
 }
 
 
