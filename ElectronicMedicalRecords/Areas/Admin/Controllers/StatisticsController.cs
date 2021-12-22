@@ -1,7 +1,10 @@
 ﻿using ElectronicMedicalRecords.Models;
 using Newtonsoft.Json;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -33,6 +36,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     statisticModels.usersStatis = usersInfo;
                     statisticModels.patientStatu = status;
                     statisticModels1.Add(statisticModels);
+                    TempData["DoctorAndCondition"] = statisticModels1;
                 }
             }
             return View(statisticModels1);
@@ -43,6 +47,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var users = db.Users.ToList();
             var statusP = db.PatientStatus.ToList();
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
+            TempData["DateStartBSAndTT"] = dateStart;
+            TempData["DateEndBSAndTT"] = dateEnd;
             foreach (var user in users)
             {
                 var listInfo = user.InformationExaminations;
@@ -77,6 +83,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     statisticModels.usersStatis = usersInfo;
                     statisticModels.patientStatu = status;
                     statisticModels1.Add(statisticModels);
+                    TempData["DoctorAndCondition"] = statisticModels1;
                 }
             }
             return View("StatisByDoctorAndCondition", statisticModels1);
@@ -93,6 +100,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.patientStatu = status;
                 statisticModels1.Add(statisticModels);
+                TempData["Condition"] = statisticModels1;
             }
             return View(statisticModels1);
         }
@@ -102,6 +110,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusP = db.PatientStatus.ToList();
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
             List<InformationExamination> info = new List<InformationExamination>();
+            TempData["DateStartTT"] = dateStart;
+            TempData["DateEndTT"] = dateEnd;
             foreach (var status in statusP)
             {
                 StatisticModel statisticModels = new StatisticModel();
@@ -128,6 +138,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.patientStatu = status;
                 statisticModels1.Add(statisticModels);
+                TempData["Condition"] = statisticModels1;
             }
             return View("StatisByCondition", statisticModels1);
         }
@@ -154,6 +165,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.diagnosticsCategory = item;
                 statisticModels1.Add(statisticModels);
+                TempData["Diagnostic"] = statisticModels1;
             }
             return View(statisticModels1);
         }
@@ -163,6 +175,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var Infomation = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID != null).ToList();
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
             List<DiagnosticsCategory> diagnosticsCategories1 = new List<DiagnosticsCategory>();
+            TempData["DateStartDiagnostic"] = dateStart;
+            TempData["DateEndDiagnostic"] = dateEnd;
             foreach (var informationExamination in Infomation)
             {
                 StatisticModel statisticModels = new StatisticModel();
@@ -200,11 +214,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.diagnosticsCategory = item;
                 statisticModels1.Add(statisticModels);
+                TempData["Diagnostic"] = statisticModels1;
             }
             return View("StatisByDiagnostic", statisticModels1);
         }
-
-
 
         public async Task<int> PriceCTMau(InformationExamination informationExamination)
         {
@@ -352,9 +365,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     priceTotalTest += price;
                 }
             }
-            statisticModels.priceExamination = priceInfo;
-            statisticModels.pricePrescription = pricePres;
-            statisticModels.priceSubclinical = priceTotalTest;
+            statisticModels.priceExamination = priceInfo.ToString("N0");
+            statisticModels.pricePrescription = pricePres.ToString("N0");
+            statisticModels.priceSubclinical = priceTotalTest.ToString("N0");
+            TempData["Money"] = statisticModels;
             return View(statisticModels);
         }
 
@@ -365,6 +379,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             int pricePres = 0;
             int priceTotalTest = 0;
             List<InformationExamination> informationExaminations = new List<InformationExamination>();
+            TempData["DateStartMoney"] = dateStart;
+            TempData["DateEndMoney"] = dateEnd;
             if (dateStart.HasValue && dateEnd.HasValue)
             {
                 TimeSpan timeEnd = new TimeSpan(23, 59, 59);
@@ -416,10 +432,399 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     priceTotalTest += price;
                 }
             }
-            statisticModels.priceExamination = priceInfo;
-            statisticModels.pricePrescription = pricePres;
-            statisticModels.priceSubclinical = priceTotalTest;
+            statisticModels.priceExamination = priceInfo.ToString("N0");
+            statisticModels.pricePrescription = pricePres.ToString("N0");
+            statisticModels.priceSubclinical = priceTotalTest.ToString("N0");
+            TempData["Money"] = statisticModels;
             return View("StatisByMoney",statisticModels);
+        }
+
+        public ActionResult ExportExcelCondition()
+        {
+            List<StatisticModel> statisticModels = (List<StatisticModel>)TempData["Condition"];
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+
+            workSheet.DefaultColWidth = 25;
+            workSheet.DefaultRowHeight = 25;
+            workSheet.Cells.Style.Font.Name = "Arial";
+            workSheet.Cells.Style.Font.Size = 12;
+            workSheet.Cells.Style.WrapText = true;
+            workSheet.Cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            workSheet.Cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            for (int i = 0; i < statisticModels.Count; i++)
+            {
+                var item = statisticModels[i];
+                workSheet.Cells[8 + i, 1].Value = item.patientStatu.ID;
+                workSheet.Cells[8 + i, 2].Value = item.patientStatu.Name;
+                workSheet.Cells[8 + i, 4].Value = item.countPatient;
+                workSheet.Cells[8 + i, 2, 8 + i, 3].Merge = true;
+                workSheet.Column(2).Width = 16;
+                workSheet.Column(3).Width = 16;
+                workSheet.Column(4).Width = 30;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            }
+
+            workSheet.Cells[statisticModels.Count + 9, 3].Value = "Thành Phố Hồ Chí Minh, Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+            workSheet.Cells[statisticModels.Count + 9, 3, statisticModels.Count + 9, 4].Style.Font.Size = 10;
+            workSheet.Cells[statisticModels.Count + 9, 3, statisticModels.Count + 9, 4].Merge = true;
+
+            workSheet.Cells[statisticModels.Count + 10, 3].Value = "Thư Ký";
+            workSheet.Cells[statisticModels.Count + 10, 3, statisticModels.Count + 10, 4].Merge = true;
+
+            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1:B1"].Merge = true;
+            workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
+            workSheet.Cells["A2:B2"].Merge = true;
+            workSheet.Cells["A1:A2"].Style.Font.Bold = true;
+
+            workSheet.Cells["C1"].Value = "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM";
+            workSheet.Cells["C1:D1"].Merge = true;
+            workSheet.Cells["C2"].Value = "Độc lập - Tự do - Hạnh phúc";
+            workSheet.Cells["C2:D2"].Merge = true;
+            workSheet.Cells["C1:C2"].Style.Font.Bold = true;
+
+            workSheet.Cells["A4"].Value = "THỐNG KÊ THEO TÌNH TRẠNG";
+            workSheet.Cells["A4:D4"].Merge = true;
+            workSheet.Cells["A4:B4:C4:D4"].Style.Font.Bold = true;
+
+            if(TempData["DateStartTT"] != null && TempData["DateEndTT"] == null)
+            {
+                DateTime dateStart = (DateTime)TempData["DateStartTT"];
+                workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
+            }
+            else if(TempData["DateStartTT"] == null && TempData["DateEndTT"] != null) {
+                DateTime dateEnd = (DateTime)TempData["DateEndTT"];
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else if(TempData["DateStartTT"] != null && TempData["DateEndTT"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndTT"];
+                DateTime dateStart = (DateTime)TempData["DateStartTT"];
+                workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else
+            {
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
+            }
+            workSheet.Cells["A5:D5"].Merge = true;
+
+            workSheet.Cells["A7"].Value = "Mã Tình Trạng";
+            workSheet.Cells["B7"].Value = "Tên Tình Trạng";
+            workSheet.Cells["B7:C7"].Merge = true;
+            workSheet.Cells["D7"].Value = "Số Lượng Bệnh Nhân";
+            workSheet.Cells["A7:B7:D7"].Style.Font.Bold = true;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //here i have set filname as StatisticCondition.xlsx
+                Response.AddHeader("content-disposition", "attachment;  filename=StatisticCondition.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+            return View();
+        }
+
+        public ActionResult ExportExcelDiagnostic()
+        {
+            List<StatisticModel> statisticModels = (List<StatisticModel>)TempData["Diagnostic"];
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+
+            workSheet.DefaultColWidth = 25;
+            workSheet.DefaultRowHeight = 25;
+            workSheet.Cells.Style.Font.Name = "Arial";
+            workSheet.Cells.Style.Font.Size = 12;
+            workSheet.Cells.Style.WrapText = true;
+            workSheet.Cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            workSheet.Cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            for (int i = 0; i < statisticModels.Count; i++)
+            {
+                var item = statisticModels[i];
+                workSheet.Cells[8 + i, 1].Value = item.diagnosticsCategory.Code;
+                workSheet.Cells[8 + i, 2].Value = item.diagnosticsCategory.Name;
+                workSheet.Cells[8 + i, 4].Value = item.countPatient;
+                workSheet.Cells[8 + i, 2, 8 + i, 3].Merge = true;
+                workSheet.Column(2).Width = 16;
+                workSheet.Column(3).Width = 16;
+                workSheet.Column(4).Width = 30;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            }
+
+            workSheet.Cells[statisticModels.Count + 9, 3].Value = "Thành Phố Hồ Chí Minh, Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+            workSheet.Cells[statisticModels.Count + 9, 3, statisticModels.Count + 9, 4].Style.Font.Size = 10;
+            workSheet.Cells[statisticModels.Count + 9, 3, statisticModels.Count + 9, 4].Merge = true;
+
+            workSheet.Cells[statisticModels.Count + 10, 3].Value = "Thư Ký";
+            workSheet.Cells[statisticModels.Count + 10, 3, statisticModels.Count + 10, 4].Merge = true;
+
+            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1:B1"].Merge = true;
+            workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
+            workSheet.Cells["A2:B2"].Merge = true;
+            workSheet.Cells["A1:A2"].Style.Font.Bold = true;
+
+            workSheet.Cells["C1"].Value = "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM";
+            workSheet.Cells["C1:D1"].Merge = true;
+            workSheet.Cells["C2"].Value = "Độc lập - Tự do - Hạnh phúc";
+            workSheet.Cells["C2:D2"].Merge = true;
+            workSheet.Cells["C1:C2"].Style.Font.Bold = true;
+
+            workSheet.Cells["A4"].Value = "THỐNG KÊ THEO NHÓM BỆNH";
+            workSheet.Cells["A4:D4"].Merge = true;
+            workSheet.Cells["A4:B4:C4:D4"].Style.Font.Bold = true;
+
+            if (TempData["DateStartDiagnostic"] != null && TempData["DateEndDiagnostic"] == null)
+            {
+                DateTime dateStart = (DateTime)TempData["DateStartDiagnostic"];
+                workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
+            }
+            else if (TempData["DateStartDiagnostic"] == null && TempData["DateEndDiagnostic"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndDiagnostic"];
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else if (TempData["DateStartDiagnostic"] != null && TempData["DateEndDiagnostic"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndDiagnostic"];
+                DateTime dateStart = (DateTime)TempData["DateStartDiagnostic"];
+                workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else
+            {
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
+            }
+            workSheet.Cells["A5:D5"].Merge = true;
+
+            workSheet.Cells["A7"].Value = "Mã Chẩn Đoán";
+            workSheet.Cells["B7"].Value = "Tên Chẩn Đoán";
+            workSheet.Cells["B7:C7"].Merge = true;
+            workSheet.Cells["D7"].Value = "Số Lượng Bệnh Nhân";
+            workSheet.Cells["A7:B7:D7"].Style.Font.Bold = true;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //here i have set filname as StatisticCondition.xlsx
+                Response.AddHeader("content-disposition", "attachment;  filename=StatisticDiagnostic.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+            return View();
+        }
+
+        public ActionResult ExportExcelMoney()
+        {
+            StatisticModel statisticModels = (StatisticModel)TempData["Money"];
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+
+            workSheet.DefaultColWidth = 25;
+            workSheet.DefaultRowHeight = 25;
+            workSheet.Cells.Style.Font.Name = "Arial";
+            workSheet.Cells.Style.Font.Size = 12;
+            workSheet.Cells.Style.WrapText = true;
+            workSheet.Cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            workSheet.Cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+            workSheet.Cells[8, 1].Value = statisticModels.priceExamination;
+            workSheet.Cells[8, 2].Value = statisticModels.pricePrescription;
+            workSheet.Cells[8, 4].Value = statisticModels.priceSubclinical;
+            workSheet.Cells[8, 2, 8, 3].Merge = true;
+            workSheet.Column(2).Width = 16;
+            workSheet.Column(3).Width = 16;
+            workSheet.Column(4).Width = 30;
+            workSheet.Cells[8, 1, 8, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[8, 1, 8, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[8, 1, 8, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[8, 1, 8, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+
+            workSheet.Cells[10, 3].Value = "Thành Phố Hồ Chí Minh, Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+            workSheet.Cells[10, 3, 10, 4].Style.Font.Size = 10;
+            workSheet.Cells[10, 3, 10, 4].Merge = true;
+
+            workSheet.Cells[11, 3].Value = "Thư Ký";
+            workSheet.Cells[11, 3, 11, 4].Merge = true;
+
+            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1:B1"].Merge = true;
+            workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
+            workSheet.Cells["A2:B2"].Merge = true;
+            workSheet.Cells["A1:A2"].Style.Font.Bold = true;
+
+            workSheet.Cells["C1"].Value = "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM";
+            workSheet.Cells["C1:D1"].Merge = true;
+            workSheet.Cells["C2"].Value = "Độc lập - Tự do - Hạnh phúc";
+            workSheet.Cells["C2:D2"].Merge = true;
+            workSheet.Cells["C1:C2"].Style.Font.Bold = true;
+
+            workSheet.Cells["A4"].Value = "THỐNG KÊ DOANH SỐ";
+            workSheet.Cells["A4:D4"].Merge = true;
+            workSheet.Cells["A4:B4:C4:D4"].Style.Font.Bold = true;
+
+            if (TempData["DateStartMoney"] != null && TempData["DateEndMoney"] == null)
+            {
+                DateTime dateStart = (DateTime)TempData["DateStartMoney"];
+                workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
+            }
+            else if (TempData["DateStartMoney"] == null && TempData["DateEndMoney"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndMoney"];
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else if (TempData["DateStartMoney"] != null && TempData["DateEndMoney"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndMoney"];
+                DateTime dateStart = (DateTime)TempData["DateStartMoney"];
+                workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else
+            {
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
+            }
+            workSheet.Cells["A5:D5"].Merge = true;
+
+            workSheet.Cells["A7"].Value = "Khám";
+            workSheet.Cells["B7"].Value = "Thuốc";
+            workSheet.Cells["B7:C7"].Merge = true;
+            workSheet.Cells["D7"].Value = "Xét Nghiệm";
+            workSheet.Cells["A7:B7:D7"].Style.Font.Bold = true;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //here i have set filname as StatisticCondition.xlsx
+                Response.AddHeader("content-disposition", "attachment;  filename=StatisticMoney.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+            return View();
+        }
+
+        public ActionResult ExportExcelBSAndTT()
+        {
+            List<StatisticModel> statisticModels = (List<StatisticModel>)TempData["DoctorAndCondition"];
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+
+            workSheet.DefaultColWidth = 25;
+            workSheet.DefaultRowHeight = 25;
+            workSheet.Cells.Style.Font.Name = "Arial";
+            workSheet.Cells.Style.Font.Size = 12;
+            workSheet.Cells.Style.WrapText = true;
+            workSheet.Cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            workSheet.Cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            for (int i = 0; i < statisticModels.Count; i++)
+            {
+                var item = statisticModels[i];
+                var charName = item.usersStatis.AspNetUser.Email.IndexOf(".", 0);
+                var charName1 = item.usersStatis.AspNetUser.Email.IndexOf("@", 0);
+                workSheet.Cells[8 + i, 1].Value = item.usersStatis.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1);
+                workSheet.Cells[8 + i, 2].Value = item.usersStatis.Name;
+                workSheet.Cells[8 + i, 3].Value = item.patientStatu.Name;
+                workSheet.Cells[8 + i, 4].Value = item.usersStatis.InformationExaminations.Count;
+                workSheet.Column(1).Width = 15;
+                workSheet.Column(2).Width = 25;
+                workSheet.Column(3).Width = 16;
+                workSheet.Column(4).Width = 30;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[8 + i, 1, 8 + i, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                workSheet.Row(8 + i).Height = 35;
+            }
+
+            workSheet.Cells[statisticModels.Count + 9, 3].Value = "Thành Phố Hồ Chí Minh, Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+            workSheet.Cells[statisticModels.Count + 9, 3, statisticModels.Count + 9, 4].Style.Font.Size = 10;
+            workSheet.Cells[statisticModels.Count + 9, 3, statisticModels.Count + 9, 4].Merge = true;
+
+            workSheet.Cells[statisticModels.Count + 10, 3].Value = "Thư Ký";
+            workSheet.Cells[statisticModels.Count + 10, 3, statisticModels.Count + 10, 4].Merge = true;
+
+            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1:B1"].Merge = true;
+            workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
+            workSheet.Cells["A2:B2"].Merge = true;
+            workSheet.Cells["A1:A2"].Style.Font.Bold = true;
+
+            workSheet.Cells["C1"].Value = "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM";
+            workSheet.Cells["C1:D1"].Merge = true;
+            workSheet.Cells["C2"].Value = "Độc lập - Tự do - Hạnh phúc";
+            workSheet.Cells["C2:D2"].Merge = true;
+            workSheet.Cells["C1:C2"].Style.Font.Bold = true;
+
+            workSheet.Cells["A4"].Value = "THỐNG KÊ THEO BÁC SĨ & TÌNH TRẠNG";
+            workSheet.Cells["A4:D4"].Merge = true;
+            workSheet.Cells["A4:D4"].Style.Font.Bold = true;
+
+            if (TempData["DateStartBSAndTT"] != null && TempData["DateEndBSAndTT"] == null)
+            {
+                DateTime dateStart = (DateTime)TempData["DateStartBSAndTT"];
+                workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
+            }
+            else if (TempData["DateStartBSAndTT"] == null && TempData["DateEndBSAndTT"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndBSAndTT"];
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else if (TempData["DateStartBSAndTT"] != null && TempData["DateEndBSAndTT"] != null)
+            {
+                DateTime dateEnd = (DateTime)TempData["DateEndBSAndTT"];
+                DateTime dateStart = (DateTime)TempData["DateStartBSAndTT"];
+                workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
+            }
+            else
+            {
+                workSheet.Cells["A5"].Value = "Đến Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
+            }
+            workSheet.Cells["A5:D5"].Merge = true;
+
+            workSheet.Cells["A7"].Value = "Mã Bác Sĩ";
+            workSheet.Cells["B7"].Value = "Bác Sĩ";
+            workSheet.Cells["C7"].Value = "Tình Trạng";
+            workSheet.Cells["D7"].Value = "Số Lượng Bệnh Nhân";
+            workSheet.Cells["A7:B7:C7:D7"].Style.Font.Bold = true;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[7, 1, 7, 4].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //here i have set filname as StatisticCondition.xlsx
+                Response.AddHeader("content-disposition", "attachment;  filename=StatisticBSAndTT.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+            return View();
         }
     }
 }
