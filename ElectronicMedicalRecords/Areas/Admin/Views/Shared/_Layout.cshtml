@@ -154,7 +154,7 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title text-white">
-                            <a href="@Url.Action("HomePage", "Users")" class='text-white'>
+                            <a href="@Url.Action("HomePage", "Users")" class='text-white'></a>
                             Trang Chủ
                         </li>
 
@@ -290,42 +290,13 @@
         </div>
         <div id="main">
             <nav class="navbar navbar-expand navbar-light " style="padding:0;height:0">
-                @if (User.IsInRole("Kỹ Thuật Viên"))
-                {
-                    <div class="container-fluid">
-                        <a href="#" class="burger-btn d-block">
-                            <i class="bi bi-justify fs-3"></i>
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown me-3">
-                                    <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-bell" style="font-size:25px"></i>
-                                        <span class="count">&nbsp;</span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContent" aria-labelledby="dropdownMenuButton">
-                                        <li>
-                                            <h6 class="dropdown-header">Notifications</h6>
-                                        </li>
-                                        <li><a class="dropdown-item">No notification available</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                }
-                @if (User.IsInRole("Bác Sĩ"))
-                {
-                    <div class="container-fluid">
-                        <a href="#" class="burger-btn d-block">
-                            <i class="bi bi-justify fs-3"></i>
-                        </a>
-
-                        <div class="d-flex">
+                <div class="container-fluid">
+                    <a href="#" class="burger-btn d-block">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+                     <div class="d-flex">
+                        @if (User.IsInRole("Kỹ Thuật Viên"))
+                        {
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -333,7 +304,29 @@
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li class="nav-item dropdown me-3">
                                         <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-bell" style="font-size:25px"></i>
+                                            <i class="fas fa-bell" style="font-size: 25px; color: #f80909"></i>
+                                            <span class="count">&nbsp;</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContent" aria-labelledby="dropdownMenuButton">
+                                            <li>
+                                                <h6 class="dropdown-header">Notifications</h6>
+                                            </li>
+                                            <li><a class="dropdown-item">No notification available</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        @if (User.IsInRole("Bác Sĩ"))
+                        {
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown me-3">
+                                        <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-bell" style="font-size: 25px; color: #f8a209"></i>
                                             <span class="countBS">&nbsp;</span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
@@ -353,7 +346,7 @@
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li class="nav-item dropdown me-3">
                                         <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-address-card" style="font-size:25px"></i>
+                                            <i class="fas fa-address-card" style="font-size: 25px; color: #5316a0"></i>
                                             <span style="left:2.5rem" class="countBS1">&nbsp;</span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
@@ -365,9 +358,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        }
                     </div>
-                }
+                </div>
             </nav>
 
             @RenderBody()
