@@ -82,7 +82,7 @@
         var tillPlayed = getCookie('timePlayed');
         var mutedPlayed = getMuted('muted');
         function update() {
-            if (!played) {
+            if (!played) {                            
                 if (tillPlayed != 0) {
                     song.currentTime = tillPlayed;
                     if (mutedPlayed) {
@@ -92,8 +92,8 @@
                     played = true;
                 } else {
                     song.currentTime = tillPlayed;
-                    if (mutedPlayed) {
-                        song.volume = 0;
+                    if (mutedPlayed == null) {
+                        song.muted = true;
                     }
                     song.play();
                     played = true;

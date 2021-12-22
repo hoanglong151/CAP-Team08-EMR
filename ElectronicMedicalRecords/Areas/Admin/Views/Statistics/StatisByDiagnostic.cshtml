@@ -36,6 +36,12 @@
                     <i class="m-icon bi bi-plus-circle"></i>
                     In
                 </a>
+                @using (Html.BeginForm("ExportExcelDiagnostic", "Statistics", FormMethod.Post, new { style = "display:inline-block" }))
+                {
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="far fa-file-excel"></i> Export Excel
+                    </button>
+                }
                 <form action="@Url.Action("SearchDiagnostic","Statistics")" method="post">
                     <div class="row mgb-1 mgt-05">
                         <div class="col-md-5">
@@ -96,11 +102,11 @@
         })
 
         if (window.location.href.indexOf("Admin/Statistics") > -1) {
-            $('a[href="/CP24Team08//Admin/Statistics/StatisByDiagnostic"]').parent().parent().addClass("active");
-            $('a[href="/CP24Team08//Admin/Statistics/StatisByDiagnostic"]').parent().parent().parent().addClass("active");
+            $('a[href="/CP24Team08/Admin/Statistics/StatisByDiagnostic"]').parent().parent().addClass("active");
+            $('a[href="/CP24Team08/Admin/Statistics/StatisByDiagnostic"]').parent().parent().parent().addClass("active");
         }
         if (window.location.href.indexOf("Admin/Statistics/SearchDiagnostic") > -1) {
-            $('a[href="/CP24Team08//Admin/Statistics/StatisByDiagnostic"]').parent().addClass("active");
+            $('a[href="/CP24Team08/Admin/Statistics/StatisByDiagnostic"]').parent().addClass("active");
         }
     </script>
 }
