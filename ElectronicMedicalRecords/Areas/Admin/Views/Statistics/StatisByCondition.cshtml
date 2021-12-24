@@ -32,11 +32,11 @@
                 Theo Tình Trạng
             </div>
             <div class="card-body">
-                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">
+                <a id="PrintStatisticCondition" class="btn btn-outline-primary">
                     <i class="m-icon bi bi-plus-circle"></i>
                     In
                 </a>
-                @using (Html.BeginForm("ExportExcelCondition", "Statistics", FormMethod.Post, new { style = "display:inline-block"}))
+                @using (Html.BeginForm("ExportExcelCondition", "Statistics", FormMethod.Post, new { style = "display:inline-block" , id = "createStatistic" }))
                 {
                     <button class="btn btn-outline-primary" type="submit">
                         <i class="far fa-file-excel"></i> Export Excel
@@ -107,7 +107,21 @@
         }
         if (window.location.href.indexOf("Admin/Statistics/SearchTT") > -1) {
             $('a[href="/CP24Team08/Admin/Statistics/StatisByCondition"]').parent().addClass("active");
+
         }
+
+
+        $('#PrintStatisticCondition').click(function () {
+            $.ajax({
+                url: "@Url.Action("PrintStatisByConditionPost", "Statistics")",
+                type: "GET",
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintStatisticByCondition", "Statistics")", "_blank");
+                    }
+                }
+            })
+        })
     </script>
 }
 
