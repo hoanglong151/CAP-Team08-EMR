@@ -12,6 +12,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections;
 using Moq;
 using System.Web;
+using System.Security.Principal;
+using static ElectronicMedicalRecords.Tests.Controllers.InformationExaminationsControllerTest;
+using System.Security.Claims;
 
 namespace ElectronicMedicalRecords.Tests.Controllers
 {
@@ -166,6 +169,26 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 dynamic data = resultError.Data;
                 Assert.AreEqual(true, data.success);
             }
+        }
+        [TestMethod]
+        public void TestListPrescriptionBill()
+        {
+            var user = db.AspNetUsers.First();
+            List<Claim> claims = new List<Claim>{
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
+            };
+            var genericIdentity = new GenericIdentity("");
+            genericIdentity.AddClaims(claims);
+            var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
+            var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
+            var controllerContext = new ControllerContext
+            {
+                HttpContext = fakeHttpContext,
+            };
+            controller.ControllerContext = controllerContext;
+            var result = controller.ListPrescriptionBill() as ViewResult;
+            Assert.IsNotNull(result);
         }
     }
 }
