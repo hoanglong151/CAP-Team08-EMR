@@ -199,6 +199,7 @@
     <Compile Include="Controllers\Detail_CTMauControllerTest.cs" />
     <Compile Include="Controllers\Detail_AmniocenteControllerTest.cs" />
     <Compile Include="Controllers\InformationExaminationsControllerTest.cs" />
+    <Compile Include="Controllers\StatisticsControllerTest.cs" />
     <Compile Include="Controllers\ViSinhsControllerTest.cs" />
     <Compile Include="Controllers\UrinesControllerTest.cs" />
     <Compile Include="Controllers\SinhHoaMausControllerTest.cs" />

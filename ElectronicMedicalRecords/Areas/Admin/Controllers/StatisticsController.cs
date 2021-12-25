@@ -36,8 +36,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     statisticModels.usersStatis = usersInfo;
                     statisticModels.patientStatu = status;
                     statisticModels1.Add(statisticModels);
-                    Session["DoctorAndCondition"] = statisticModels1;
                 }
+                Session["DoctorAndCondition"] = statisticModels1;
             }
             return View(statisticModels1);
         }
@@ -201,8 +201,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.diagnosticsCategory = item;
                 statisticModels1.Add(statisticModels);
-                Session["Diagnostic"] = statisticModels1;
             }
+            Session["Diagnostic"] = statisticModels1;
             return View(statisticModels1);
         }
 
@@ -250,8 +250,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.diagnosticsCategory = item;
                 statisticModels1.Add(statisticModels);
-                Session["Diagnostic"] = statisticModels1;
             }
+            Session["Diagnostic"] = statisticModels1;
             return View("StatisByDiagnostic", statisticModels1);
         }
 
