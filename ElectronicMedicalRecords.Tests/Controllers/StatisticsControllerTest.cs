@@ -87,5 +87,45 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.PriceAmniocente(information) as Task<int>;
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void TestSearchDiagnostic()
+        {
+            MockSession();
+            var result = controller.SearchDiagnostic(DateTime.Now, DateTime.Now) as ViewResult;
+            Assert.IsNotNull(result);
+
+            controller.ModelState.Clear();
+            var result1 = controller.SearchDiagnostic(DateTime.Now, null) as ViewResult;
+            Assert.IsNotNull(result1);
+        }
+
+        [TestMethod]
+        public void TestPriceSinhHoaMau()
+        {
+            var detail_SinhHoaMau = db.Detail_SinhHoaMau.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_SinhHoaMau.InformationExamination_ID);
+            var result = controller.PriceSinhHoaMau(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceUrine()
+        {
+            var detail_Urine = db.Detail_Urine.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Urine.InfomationExamination_ID);
+            var result = controller.PriceUrine(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceViSinh()
+        {
+            var detail_ViSinh = db.Detail_ViSinh.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_ViSinh.InformationExamination_ID);
+            var result = controller.PriceViSinh(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
     }
 }
