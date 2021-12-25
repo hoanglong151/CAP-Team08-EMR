@@ -2835,6 +2835,10 @@
     <Content Include="Areas\Admin\Views\Statistics\StatisByCondition.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\StatisByDiagnostic.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\StatisByMoney.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\PrintStatisticByCondition.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\PrintStatisByDocandCon.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\PrintStatisticDiagnostic.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\PrintStatisticPrice.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

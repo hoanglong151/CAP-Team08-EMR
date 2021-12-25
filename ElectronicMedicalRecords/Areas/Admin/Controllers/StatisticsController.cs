@@ -41,6 +41,42 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             return View(statisticModels1);
         }
+        public ActionResult PrintStatisByConditionPost()
+        {
+            return Json(new { success = true}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult PrintStatisticByCondition()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<StatisticModel> statisticModels = new List<StatisticModel>();
+            statisticModels = (List<StatisticModel>)TempData["Condition"];
+            return View(statisticModels);
+        }
+
+        public ActionResult PrintStatisByDocandCon()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<StatisticModel> statisticModels = new List<StatisticModel>();
+            statisticModels = (List<StatisticModel>)TempData["DoctorAndCondition"];
+            return View(statisticModels);
+        }
+
+        public ActionResult PrintStatisticDiagnostic()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<StatisticModel> statisticModels = new List<StatisticModel>();
+            statisticModels = (List<StatisticModel>)TempData["Diagnostic"];
+            return View(statisticModels);
+        }
+
+        public ActionResult PrintStatisticPrice()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            StatisticModel statisticModels = new StatisticModel();
+            statisticModels = (StatisticModel)TempData["Money"];
+            return View(statisticModels);
+        }
 
         public ActionResult SearchBSAndTT(DateTime? dateStart, DateTime? dateEnd)
         {

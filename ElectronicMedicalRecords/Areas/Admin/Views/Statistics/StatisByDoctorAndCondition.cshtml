@@ -32,7 +32,7 @@
                 Theo Bác Sĩ & Tình Trạng
             </div>
             <div class="card-body">
-                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">
+                <a target="_blank" href="@Url.Action("PrintStatisByDocandCon", "Statistics")" class="btn btn-outline-primary">
                     <i class="m-icon bi bi-plus-circle"></i>
                     In
                 </a>
@@ -112,6 +112,7 @@
         if (window.location.href.indexOf("Admin/Statistics/SearchBSAndTT") > -1) {
             $('a[href="/CP24Team08/Admin/Statistics/StatisByDoctorAndCondition"]').parent().addClass("active");
         }
+
     </script>
 }
 
