@@ -126,6 +126,29 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.PriceViSinh(information) as Task<int>;
             Assert.IsNotNull(result);
         }
+      
+        [TestMethod]
+        public void TestSearchMoney()
+        {
+            MockSession();
+            var result = controller.SearchMoney(DateTime.Now, DateTime.Now) as Task<ActionResult>;
+            Assert.IsNotNull(result);
 
+            controller.ModelState.Clear();
+            var result1 = controller.SearchMoney(DateTime.Now, null) as Task<ActionResult>;
+            Assert.IsNotNull(result1);
+            var result2 = controller.SearchMoney(null, DateTime.Now) as Task<ActionResult>;
+            Assert.IsNotNull(result2);
+            var result3 = controller.SearchMoney(null, null) as Task<ActionResult>;
+            Assert.IsNotNull(result3);
+        }
+
+        [TestMethod]
+        public void TestStatisByMoney()
+        {
+            MockSession();
+            var result = controller.StatisByMoney() as Task<ActionResult>;
+            Assert.IsNotNull(result);
+        }
     }
 }
