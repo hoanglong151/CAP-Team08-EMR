@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections;
 using Moq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace ElectronicMedicalRecords.Tests.Controllers
 {
@@ -49,6 +50,41 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         {
             MockSession();
             var result = controller.StatisByDiagnostic() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void TestSearchBSAndTT()
+        {
+            MockSession();
+            var result = controller.SearchBSAndTT(DateTime.Now, DateTime.Now) as ViewResult;
+            Assert.IsNotNull(result);
+
+            controller.ModelState.Clear();
+            var result1 = controller.SearchBSAndTT(DateTime.Now, null) as ViewResult;
+            Assert.IsNotNull(result1);
+        }
+        [TestMethod]
+        public void TestStatisByDoctorAndCondition()
+        {
+            MockSession();
+            var result = controller.StatisByDoctorAndCondition() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void TestPriceCTMau()
+        {
+            var detail_CTMau = db.Detail_CTMau.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_CTMau.InformationExamination_ID);
+            information.PriceCTMaus = 250000;
+            var result = controller.PriceCTMau(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void TestPriceAmniocente()
+        {
+            var detail_Aminocente = db.Detail_Amniocente.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Aminocente.InformationExamination_ID);
+            var result = controller.PriceAmniocente(information) as Task<int>;
             Assert.IsNotNull(result);
         }
     }
