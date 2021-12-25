@@ -68,6 +68,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [Authorize]
         public ActionResult HomePage()
         {
+            Random randomNum = new Random();
+            string[] random = {"Khó khăn không trường tồn, chỉ có con người cứng rắn trường tồn.",
+                "Khó khăn nào rồi cũng qua. Cũng giống như sau cơn mưa, trời lại sáng.",
+                "Không bao giờ cúi đầu, không bao giờ bỏ cuộc hay chỉ ngồi than thở. Hãy tìm một cách khác. Và đừng cầu nguyện khi trời mưa nếu bạn không cầu nguyện khi trời nắng",
+                "Sẽ không bao giờ có bế tắc thật sự khi trong bạn còn niềm tin. Chỉ cần có niềm tin, bạn sẽ có hi vọng, sẽ tìm thấy con đường để bước tiếp.",
+                "Nếu bạn không thích điều gì đó, hãy thay đổi nó. Nếu bạn không thể thay đổi nó, hãy thay đổi cách suy nghĩ của bạn về nó." };
+            var indexRandom = randomNum.Next(0, 4);
+            var status = random[indexRandom];
+            ViewBag.StatusAccess = status;
             return View();
         }
 
