@@ -36,7 +36,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     statisticModels.usersStatis = usersInfo;
                     statisticModels.patientStatu = status;
                     statisticModels1.Add(statisticModels);
-                    TempData["DoctorAndCondition"] = statisticModels1;
+                    Session["DoctorAndCondition"] = statisticModels1;
                 }
             }
             return View(statisticModels1);
@@ -50,7 +50,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.LazyLoadingEnabled = false;
             List<StatisticModel> statisticModels = new List<StatisticModel>();
-            statisticModels = (List<StatisticModel>)TempData["Condition"];
+            statisticModels = (List<StatisticModel>)Session["Condition"];
             return View(statisticModels);
         }
 
@@ -58,7 +58,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.LazyLoadingEnabled = false;
             List<StatisticModel> statisticModels = new List<StatisticModel>();
-            statisticModels = (List<StatisticModel>)TempData["DoctorAndCondition"];
+            statisticModels = (List<StatisticModel>)Session["DoctorAndCondition"];
             return View(statisticModels);
         }
 
@@ -66,7 +66,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.LazyLoadingEnabled = false;
             List<StatisticModel> statisticModels = new List<StatisticModel>();
-            statisticModels = (List<StatisticModel>)TempData["Diagnostic"];
+            statisticModels = (List<StatisticModel>)Session["Diagnostic"];
             return View(statisticModels);
         }
 
@@ -74,7 +74,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.LazyLoadingEnabled = false;
             StatisticModel statisticModels = new StatisticModel();
-            statisticModels = (StatisticModel)TempData["Money"];
+            statisticModels = (StatisticModel)Session["Money"];
             return View(statisticModels);
         }
 
@@ -83,8 +83,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var users = db.Users.ToList();
             var statusP = db.PatientStatus.ToList();
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
-            TempData["DateStartBSAndTT"] = dateStart;
-            TempData["DateEndBSAndTT"] = dateEnd;
+            Session["DateStartBSAndTT"] = dateStart;
+            Session["DateEndBSAndTT"] = dateEnd;
             foreach (var user in users)
             {
                 var listInfo = user.InformationExaminations;
@@ -119,7 +119,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     statisticModels.usersStatis = usersInfo;
                     statisticModels.patientStatu = status;
                     statisticModels1.Add(statisticModels);
-                    TempData["DoctorAndCondition"] = statisticModels1;
+                    Session["DoctorAndCondition"] = statisticModels1;
                 }
             }
             return View("StatisByDoctorAndCondition", statisticModels1);
@@ -136,7 +136,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.patientStatu = status;
                 statisticModels1.Add(statisticModels);
-                TempData["Condition"] = statisticModels1;
+                Session["Condition"] = statisticModels1;
             }
             return View(statisticModels1);
         }
@@ -146,8 +146,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusP = db.PatientStatus.ToList();
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
             List<InformationExamination> info = new List<InformationExamination>();
-            TempData["DateStartTT"] = dateStart;
-            TempData["DateEndTT"] = dateEnd;
+            Session["DateStartTT"] = dateStart;
+            Session["DateEndTT"] = dateEnd;
             foreach (var status in statusP)
             {
                 StatisticModel statisticModels = new StatisticModel();
@@ -174,7 +174,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.patientStatu = status;
                 statisticModels1.Add(statisticModels);
-                TempData["Condition"] = statisticModels1;
+                Session["Condition"] = statisticModels1;
             }
             return View("StatisByCondition", statisticModels1);
         }
@@ -201,7 +201,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.diagnosticsCategory = item;
                 statisticModels1.Add(statisticModels);
-                TempData["Diagnostic"] = statisticModels1;
+                Session["Diagnostic"] = statisticModels1;
             }
             return View(statisticModels1);
         }
@@ -211,8 +211,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var Infomation = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID != null).ToList();
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
             List<DiagnosticsCategory> diagnosticsCategories1 = new List<DiagnosticsCategory>();
-            TempData["DateStartDiagnostic"] = dateStart;
-            TempData["DateEndDiagnostic"] = dateEnd;
+            Session["DateStartDiagnostic"] = dateStart;
+            Session["DateEndDiagnostic"] = dateEnd;
             foreach (var informationExamination in Infomation)
             {
                 StatisticModel statisticModels = new StatisticModel();
@@ -250,7 +250,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 statisticModels.countPatient = info.Count;
                 statisticModels.diagnosticsCategory = item;
                 statisticModels1.Add(statisticModels);
-                TempData["Diagnostic"] = statisticModels1;
+                Session["Diagnostic"] = statisticModels1;
             }
             return View("StatisByDiagnostic", statisticModels1);
         }
@@ -404,7 +404,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             statisticModels.priceExamination = priceInfo.ToString("N0");
             statisticModels.pricePrescription = pricePres.ToString("N0");
             statisticModels.priceSubclinical = priceTotalTest.ToString("N0");
-            TempData["Money"] = statisticModels;
+            Session["Money"] = statisticModels;
             return View(statisticModels);
         }
 
@@ -415,8 +415,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             int pricePres = 0;
             int priceTotalTest = 0;
             List<InformationExamination> informationExaminations = new List<InformationExamination>();
-            TempData["DateStartMoney"] = dateStart;
-            TempData["DateEndMoney"] = dateEnd;
+            Session["DateStartMoney"] = dateStart;
+            Session["DateEndMoney"] = dateEnd;
             if (dateStart.HasValue && dateEnd.HasValue)
             {
                 TimeSpan timeEnd = new TimeSpan(23, 59, 59);
@@ -471,13 +471,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             statisticModels.priceExamination = priceInfo.ToString("N0");
             statisticModels.pricePrescription = pricePres.ToString("N0");
             statisticModels.priceSubclinical = priceTotalTest.ToString("N0");
-            TempData["Money"] = statisticModels;
+            Session["Money"] = statisticModels;
             return View("StatisByMoney",statisticModels);
         }
 
         public ActionResult ExportExcelCondition()
         {
-            List<StatisticModel> statisticModels = (List<StatisticModel>)TempData["Condition"];
+            List<StatisticModel> statisticModels = (List<StatisticModel>)Session["Condition"];
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
             var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
@@ -528,19 +528,19 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A4:D4"].Merge = true;
             workSheet.Cells["A4:B4:C4:D4"].Style.Font.Bold = true;
 
-            if(TempData["DateStartTT"] != null && TempData["DateEndTT"] == null)
+            if(Session["DateStartTT"] != null && Session["DateEndTT"] == null)
             {
-                DateTime dateStart = (DateTime)TempData["DateStartTT"];
+                DateTime dateStart = (DateTime)Session["DateStartTT"];
                 workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if(TempData["DateStartTT"] == null && TempData["DateEndTT"] != null) {
-                DateTime dateEnd = (DateTime)TempData["DateEndTT"];
+            else if(Session["DateStartTT"] == null && Session["DateEndTT"] != null) {
+                DateTime dateEnd = (DateTime)Session["DateEndTT"];
                 workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if(TempData["DateStartTT"] != null && TempData["DateEndTT"] != null)
+            else if(Session["DateStartTT"] != null && Session["DateEndTT"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndTT"];
-                DateTime dateStart = (DateTime)TempData["DateStartTT"];
+                DateTime dateEnd = (DateTime)Session["DateEndTT"];
+                DateTime dateStart = (DateTime)Session["DateStartTT"];
                 workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
@@ -573,7 +573,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult ExportExcelDiagnostic()
         {
-            List<StatisticModel> statisticModels = (List<StatisticModel>)TempData["Diagnostic"];
+            List<StatisticModel> statisticModels = (List<StatisticModel>)Session["Diagnostic"];
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
             var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
@@ -624,20 +624,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A4:D4"].Merge = true;
             workSheet.Cells["A4:B4:C4:D4"].Style.Font.Bold = true;
 
-            if (TempData["DateStartDiagnostic"] != null && TempData["DateEndDiagnostic"] == null)
+            if (Session["DateStartDiagnostic"] != null && Session["DateEndDiagnostic"] == null)
             {
-                DateTime dateStart = (DateTime)TempData["DateStartDiagnostic"];
+                DateTime dateStart = (DateTime)Session["DateStartDiagnostic"];
                 workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if (TempData["DateStartDiagnostic"] == null && TempData["DateEndDiagnostic"] != null)
+            else if (Session["DateStartDiagnostic"] == null && Session["DateEndDiagnostic"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndDiagnostic"];
+                DateTime dateEnd = (DateTime)Session["DateEndDiagnostic"];
                 workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if (TempData["DateStartDiagnostic"] != null && TempData["DateEndDiagnostic"] != null)
+            else if (Session["DateStartDiagnostic"] != null && Session["DateEndDiagnostic"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndDiagnostic"];
-                DateTime dateStart = (DateTime)TempData["DateStartDiagnostic"];
+                DateTime dateEnd = (DateTime)Session["DateEndDiagnostic"];
+                DateTime dateStart = (DateTime)Session["DateStartDiagnostic"];
                 workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
@@ -670,7 +670,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult ExportExcelMoney()
         {
-            StatisticModel statisticModels = (StatisticModel)TempData["Money"];
+            StatisticModel statisticModels = (StatisticModel)Session["Money"];
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
             var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
@@ -718,20 +718,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A4:D4"].Merge = true;
             workSheet.Cells["A4:B4:C4:D4"].Style.Font.Bold = true;
 
-            if (TempData["DateStartMoney"] != null && TempData["DateEndMoney"] == null)
+            if (Session["DateStartMoney"] != null && Session["DateEndMoney"] == null)
             {
-                DateTime dateStart = (DateTime)TempData["DateStartMoney"];
+                DateTime dateStart = (DateTime)Session["DateStartMoney"];
                 workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if (TempData["DateStartMoney"] == null && TempData["DateEndMoney"] != null)
+            else if (Session["DateStartMoney"] == null && Session["DateEndMoney"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndMoney"];
+                DateTime dateEnd = (DateTime)Session["DateEndMoney"];
                 workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if (TempData["DateStartMoney"] != null && TempData["DateEndMoney"] != null)
+            else if (Session["DateStartMoney"] != null && Session["DateEndMoney"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndMoney"];
-                DateTime dateStart = (DateTime)TempData["DateStartMoney"];
+                DateTime dateEnd = (DateTime)Session["DateEndMoney"];
+                DateTime dateStart = (DateTime)Session["DateStartMoney"];
                 workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
@@ -764,7 +764,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult ExportExcelBSAndTT()
         {
-            List<StatisticModel> statisticModels = (List<StatisticModel>)TempData["DoctorAndCondition"];
+            List<StatisticModel> statisticModels = (List<StatisticModel>)Session["DoctorAndCondition"];
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
             var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
@@ -819,20 +819,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A4:D4"].Merge = true;
             workSheet.Cells["A4:D4"].Style.Font.Bold = true;
 
-            if (TempData["DateStartBSAndTT"] != null && TempData["DateEndBSAndTT"] == null)
+            if (Session["DateStartBSAndTT"] != null && Session["DateEndBSAndTT"] == null)
             {
-                DateTime dateStart = (DateTime)TempData["DateStartBSAndTT"];
+                DateTime dateStart = (DateTime)Session["DateStartBSAndTT"];
                 workSheet.Cells["A5"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if (TempData["DateStartBSAndTT"] == null && TempData["DateEndBSAndTT"] != null)
+            else if (Session["DateStartBSAndTT"] == null && Session["DateEndBSAndTT"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndBSAndTT"];
+                DateTime dateEnd = (DateTime)Session["DateEndBSAndTT"];
                 workSheet.Cells["A5"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if (TempData["DateStartBSAndTT"] != null && TempData["DateEndBSAndTT"] != null)
+            else if (Session["DateStartBSAndTT"] != null && Session["DateEndBSAndTT"] != null)
             {
-                DateTime dateEnd = (DateTime)TempData["DateEndBSAndTT"];
-                DateTime dateStart = (DateTime)TempData["DateStartBSAndTT"];
+                DateTime dateEnd = (DateTime)Session["DateEndBSAndTT"];
+                DateTime dateStart = (DateTime)Session["DateStartBSAndTT"];
                 workSheet.Cells["A5"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
