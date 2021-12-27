@@ -419,7 +419,12 @@
                                             <div class="sh-header-builder-main-content">
                                                 <div class="sh-header-builder-main-content-left">
                                                     <div class="sh-header-builder-main-logo">
-                                                        <div class="sh-header-builder-logo"><a href="https://jevelin.shufflehound.com/medical/"><img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-standard" /><img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-sticky" /></a></div>
+                                                        <div class="sh-header-builder-logo">
+                                                            <a href="@Url.Action("Index", "Home")">
+                                                                <img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-standard" />
+                                                                <img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-sticky" />
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="sh-header-builder-main-content-right">
@@ -427,27 +432,23 @@
                                                         <div class="sh-header-builder-main-navigation-alignment">
                                                             <div class="sh-header-builder-main-element sh-header-builder-main-element-navigation sh-nav-container">
                                                                 <ul id="menu-header-medical" class="sh-nav">
-                                                                    <li id="menu-item-29" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-29"><a href="http://jevelin.shufflehound.com/medical/#backtotop">Home</a></li>
-                                                                    <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="http://jevelin.shufflehound.com/medical/#about">About</a></li>
-                                                                    <li id="menu-item-31" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-31"><a href="http://jevelin.shufflehound.com/medical/#departments">Departments</a></li>
-                                                                    <li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-33"><a href="http://jevelin.shufflehound.com/medical/#faq">FAQ</a></li>
-                                                                    <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34"><a href="http://jevelin.shufflehound.com/medical/#contacts">Contacts</a></li>
-                                                                </ul>
-                                                            </div><div class="sh-header-builder-main-element sh-header-builder-main-element-divider"></div>
-                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-social">
-                                                                <a href="#" target="_blank">
-                                                                    <i class="icon-social-facebook sh-header-builder-main-element-icon"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-social">
-                                                                <a href="#" target="_blank">
-                                                                    <i class="icon-social-twitter sh-header-builder-main-element-icon"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-search sh-nav-container">
-                                                                <ul class="sh-nav">
-                                                                    <li class="menu-item sh-nav-search sh-header-builder-search-trigger">
-                                                                        <a href="#"><i class="icon-magnifier sh-header-builder-main-element-icon"></i></a>
+                                                                    <li id="menu-item-29" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-29">
+                                                                        <a href="@Url.Action("Doctors", "Home")">Doctor</a>
+                                                                    </li>
+                                                                    <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30">
+                                                                        <a href="#about">About</a>
+                                                                    </li>
+                                                                    <li id="menu-item-31" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-31">
+                                                                        <a href="#departments">Departments</a>
+                                                                    </li>
+                                                                    <li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-33">
+                                                                        <a href="#faq">FAQ</a>
+                                                                    </li>
+                                                                    <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34">
+                                                                        <a href="#contacts">Contacts</a>
+                                                                    </li>
+                                                                    <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34">
+                                                                        <a style="color: #0078aa !important;" href="@Url.Action("Login", "Account")">Log in</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -536,7 +537,8 @@
     </div>
     <div class="sh-notifications"></div>
     <div class="sh-notification-item-example">
-        <strong class="sh-notification-item-name"></strong> has been added to the cart.		<a href="https://jevelin.shufflehound.com/medical">
+        <a href="https://jevelin.shufflehound.com/medical">
+            <strong class="sh-notification-item-name"></strong> has been added to the cart.
             <strong>
                 View Cart
             </strong>
@@ -578,7 +580,8 @@
                             <div id="sh-footer-builder-widgets-F3YWRz2wKA" class="sh-footer-builder-widgets sh-footer-builder-widgets-F3YWRz2wKA sh-footer-builder-widgets-3columns ">
                                 <div id="image-2" class="widget_social_links widget-item widget_image">
                                     <div class="wrap-image">
-                                        <h3 class="widget-title">Important Information</h3>				<div class="sh-image-widgets">
+                                        <div class="sh-image-widgets">
+                                            <h3 class="widget-title">Important Information</h3>
                                             <p class="sh-image-widgets-description">
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum lacinia turpis, ut facilisis sapien lacinia eget. Cras interdum ligula elit, maximus molestie ex placerat non.
                                             </p>
