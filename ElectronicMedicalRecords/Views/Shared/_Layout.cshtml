@@ -1,47 +1,1921 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jevelin Theme Medical Demo &#8211; Just another Jevelin WordPress Theme site</title>
+    <meta name='robots' content='max-image-preview:large' />
+    <link rel='dns-prefetch' href='//cdn.jevelin.shufflehound.com' />
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <link rel="alternate" type="application/rss+xml" title="Jevelin Theme Medical Demo &raquo; Feed" href="https://jevelin.shufflehound.com/medical/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Jevelin Theme Medical Demo &raquo; Comments Feed" href="https://jevelin.shufflehound.com/medical/comments/feed/" />
+    <script type="text/javascript">
+        window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "https:\/\/jevelin.shufflehound.com\/medical\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.1" } };
+        !function (e, a, t) { var n, r, o, i = a.createElement("canvas"), p = i.getContext && i.getContext("2d"); function s(e, t) { var a = String.fromCharCode; p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, e), 0, 0); e = i.toDataURL(); return p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, t), 0, 0), e === i.toDataURL() } function c(e) { var t = a.createElement("script"); t.src = e, t.defer = t.type = "text/javascript", a.getElementsByTagName("head")[0].appendChild(t) } for (o = Array("flag", "emoji"), t.supports = { everything: !0, everythingExceptFlag: !0 }, r = 0; r < o.length; r++)t.supports[o[r]] = function (e) { if (!p || !p.fillText) return !1; switch (p.textBaseline = "top", p.font = "600 32px Arial", e) { case "flag": return s([127987, 65039, 8205, 9895, 65039], [127987, 65039, 8203, 9895, 65039]) ? !1 : !s([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819]) && !s([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]); case "emoji": return !s([10084, 65039, 8205, 55357, 56613], [10084, 65039, 8203, 55357, 56613]) }return !1 }(o[r]), t.supports.everything = t.supports.everything && t.supports[o[r]], "flag" !== o[r] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[o[r]]); t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () { t.DOMReady = !0 }, t.supports.everything || (n = function () { t.readyCallback() }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function () { "complete" === a.readyState && t.readyCallback() })), (n = t.source || {}).concatemoji ? c(n.concatemoji) : n.wpemoji && n.twemoji && (c(n.twemoji), c(n.wpemoji))) }(window, document, window._wpemojiSettings);
+    </script>
+    <link rel='stylesheet' id='jevelin-settings-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/shufflehound-showcase-framework/style.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-block-library-css' href='https://jevelin.shufflehound.com/medical/wp-includes/css/dist/block-library/style.min.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='wc-blocks-vendors-style-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-vendors-style.css?ver=5.5.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='wc-blocks-style-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style.css?ver=5.5.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.4.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-layout-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=5.6.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-smallscreen-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=5.6.0' type='text/css' media='only screen and (max-width: 768px)' />
+    <link rel='stylesheet' id='woocommerce-general-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=5.6.0' type='text/css' media='all' />
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required {
+            visibility: visible;
+        }
+    </style>
+    <link rel='stylesheet' id='fw-ext-builder-frontend-grid-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/unyson/framework/extensions/builder/static/css/frontend-grid.css?ver=1.2.12' type='text/css' media='all' />
+    <link rel='stylesheet' id='fw-ext-forms-default-styles-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/unyson/framework/extensions/forms/static/css/frontend.css?ver=2.7.24' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/unyson/framework/static/libs/font-awesome/css/font-awesome.min.css?ver=2.7.24' type='text/css' media='all' />
+    <link rel='stylesheet' id='js_composer_front-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.7.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/plugins/bootstrap.min.css?ver=3.3.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-plugins-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/plugins.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-shortcodes-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/shortcodes.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-styles-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/style.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-responsive-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/responsive.css?ver=5.8.1' type='text/css' media='all' />
+    <style id='jevelin-responsive-inline-css' type='text/css'>
+        .cf7-required:after, .woocommerce ul.products li.product a h3:hover, .woocommerce ul.products li.product ins, .post-title h2:hover, .sh-team:hover .sh-team-role, .sh-team-style4 .sh-team-role, .sh-team-style4 .sh-team-icon:hover i, .sh-header-search-submit, .woocommerce .woocommerce-tabs li.active a, .woocommerce .required, .sh-recent-products .woocommerce .star-rating span::before, .woocommerce .woocomerce-styling .star-rating span::before, .sh-jevelin-style3.woocommerce .product .product_meta .posted_in a, .sh-jevelin-style3 .sh-increase-numbers span:hover, .woocommerce div.product p.price, .woocomerce-styling li.product .amount, .post-format-icon, .sh-accent-color, .sh-blog-tag-item:hover h6, ul.page-numbers a:hover, .sh-portfolio-single-info-item i, .sh-filter-item.active, .sh-filter-item:hover, .sh-nav .sh-nav-cart li.menu-item-cart .mini_cart_item .amount, .sh-pricing-button-style3, #sidebar a:not(.sh-social-widgets-item):hover, .logged-in-as a:hover, .woocommerce table.shop_table.cart a:hover, .wrap-forms sup:before, .sh-comment-date a:hover, .reply a.comment-edit-link, .comment-respond #cancel-comment-reply-link, .sh-portfolio-title:hover, .sh-portfolio-single-related-mini h5:hover, .sh-header-top-10 .header-contacts-details-large-icon i, .sh-unyson-frontend-test.active, .plyr--full-ui input[type=range], .woocommerce td.woocommerce-grouped-product-list-item__label a:hover, .sh-accent-color-hover:hover {
+            color: #47c9e5 !important;
+        }
 
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>
-                        <a href="@Url.Action("HomePage","Users", new { Area = "Admin" })">Quản Lý</a>
-                    </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+        .woocommerce p.stars.selected a:not(.active), .woocommerce p.stars.selected a.active, .sh-jevelin-style3 .woocommerce-form-coupon-toggle .sh-alert, .sh-jevelin-style3 .woocommerce-progress.step1 .woocommerce-header-item-cart, .sh-jevelin-style3 .woocommerce-progress.step2 .woocommerce-header-item-checkout, .sh-dropcaps-full-square, .sh-dropcaps-full-square-border, .masonry2 .post-content-container a.post-meta-comments:hover, .sh-header-builder-edit:hover {
+            background-color: #47c9e5;
+        }
+
+        .contact-form input[type="submit"], .sh-back-to-top:hover, .sh-dropcaps-full-square-tale, .sh-404-button, .woocommerce .wc-forward, .woocommerce .checkout-button, .woocommerce div.product form.cart button, .woocommerce .button:not(.add_to_cart_button), .sh-blog-tag-item, .sh-comments .submit, .sh-sidebar-search-active .search-field, .sh-nav .sh-nav-cart .buttons a.checkout, ul.page-numbers .current, ul.page-numbers .current:hover, .post-background, .post-item .post-category .post-category-list, .cart-icon span, .comment-input-required, .widget_tag_cloud a:hover, .widget_product_tag_cloud a:hover, .woocommerce #respond input#submit, .sh-portfolio-overlay1-bar, .sh-pricing-button-style4, .sh-pricing-button-style11, .sh-revslider-button2, .sh-portfolio-default2 .sh-portfolio-title, .sh-recent-posts-widgets-count, .sh-filter-item.active:after, .blog-style-largedate .post-comments, .sh-video-player-style1 .sh-video-player-image-play, .sh-video-player-style2 .sh-video-player-image-play:hover, .sh-video-player-style2 .sh-video-player-image-play:focus, .woocommerce .woocommerce-tabs li a:after, .sh-image-gallery .slick-dots li.slick-active button, .sh-recent-posts-carousel .slick-dots li.slick-active button, .sh-recent-products-carousel .slick-dots li.slick-active button, .sh-settings-container-bar .sh-progress-status-value, .post-password-form input[type="submit"], .wpcf7-form .wpcf7-submit, .sh-portfolio-filter-style3 .sh-filter-item.active .sh-filter-item-content, .sh-portfolio-filter-style4 .sh-filter-item:hover .sh-filter-item-content, .sh-woocommerce-categories-count, .sh-woocommerce-products-style2 .woocommerce ul.products li.product .add_to_cart_button:hover, .woocomerce-styling.sh-woocommerce-products-style2 ul.products li.product .add_to_cart_button:hover, .sh-icon-group-style2 .sh-icon-group-item:hover, .sh-text-background, .plyr--audio .plyr__control.plyr__tab-focus, .plyr--audio .plyr__control:hover, .plyr--audio .plyr__control[aria-expanded=true], .sh-jevelin-style3 .widget_price_filter .ui-slider .ui-slider-range {
+            background-color: #47c9e5 !important;
+        }
+
+        .sh-cf7-style4 form input:not(.wpcf7-submit):focus {
+            border-bottom-color: #47c9e5;
+        }
+
+        ::selection {
+            background-color: #47c9e5 !important;
+            color: #fff;
+        }
+
+        ::-moz-selection {
+            background-color: #47c9e5 !important;
+            color: #fff;
+        }
+
+        .woocommerce .woocommerce-tabs li.active a {
+            border-bottom-color: #47c9e5 !important;
+        }
+
+        #header-quote, .sh-dropcaps-full-square-tale:after, .sh-blog-tag-item:after, .widget_tag_cloud a:hover:after, .widget_product_tag_cloud a:hover:after {
+            border-left-color: #47c9e5 !important;
+        }
+
+        .cart-icon .cart-icon-triangle-color {
+            border-right-color: #47c9e5 !important;
+        }
+
+        .sh-back-to-top:hover, .widget_price_filter .ui-slider .ui-slider-handle, .sh-sidebar-search-active .search-field:hover, .sh-sidebar-search-active .search-field:focus, .sh-cf7-style2 form p input:not(.wpcf7-submit):focus, .sh-cf7-style2 form p textarea:focus, .sh-jevelin-style3 .order-total .woocommerce-Price-amount {
+            border-color: #47c9e5 !important;
+        }
+
+        .post-item .post-category .arrow-right {
+            border-left-color: #47c9e5;
+        }
+
+        .woocommerce .wc-forward:hover, .woocommerce .button:not(.add_to_cart_button):hover, .woocommerce .checkout-button:hover, .woocommerce #respond input#submit:hover, .contact-form input[type="submit"]:hover, .wpcf7-form .wpcf7-submit:hover, .sh-video-player-image-play:hover, .sh-404-button:hover, .post-password-form input[type="submit"], .sh-pricing-button-style11:hover, .sh-revslider-button2.spacing-animation:not(.inverted):hover {
+            background-color: #15bee4 !important;
+        }
+
+        .sh-cf7-unyson form .wpcf7-submit {
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #47c9e5, #15bee4, #15bee4);
+        }
+
+        .sh-mini-overlay-container, .sh-portfolio-overlay-info-box, .sh-portfolio-overlay-bottom .sh-portfolio-icon, .sh-portfolio-overlay-bottom .sh-portfolio-text, .sh-portfolio-overlay2-bar, .sh-portfolio-overlay2-data, .sh-portfolio-overlay3-data {
+            background-color: rgba(71,201,229,0.75) !important;
+        }
+
+        .woocommerce-progress {
+            background-color: rgba(71,201,229,0.07);
+        }
+
+        .woocommerce-progress-item {
+            color: rgba(71,201,229,0.5);
+        }
+
+        .sh-jevelin-style3 .sh-increase-numbers span:hover, .widget_price_filter .price_slider_wrapper .ui-widget-content {
+            background-color: rgba(71,201,229,0.12) !important;
+        }
+
+        .widget_price_filter .ui-slider .ui-slider-range {
+            background-color: rgba(71,201,229,0.5) !important;
+        }
+
+        .sh-team-social-overlay2 .sh-team-image:hover .sh-team-overlay2, .sh-overlay-style1, .sh-portfolio-overlay4 {
+            background-color: rgba(71,201,229,0.8) !important;
+        }
+
+        .sh-header .sh-nav > .current_page_item > a, .sh-header .sh-nav > .current-menu-ancestor > a, .sh-header .sh-nav > .current-menu-item > a, .sh-header-left-side .sh-nav > .current_page_item > a {
+            color: #47c9e5 !important;
+        }
+
+        .sh-popover-mini:not(.sh-popover-mini-dark) {
+            background-color: #47c9e5;
+        }
+
+            .sh-popover-mini:not(.sh-popover-mini-dark):before {
+                border-color: transparent transparent #47c9e5 #47c9e5 !important;
+            }
+
+        .sh-footer .sh-footer-widgets a:hover, .sh-footer .sh-footer-widgets li a:hover, .sh-footer .sh-footer-widgets h6:hover {
+            color: #3ce2ad;
+        }
+    </style>
+    <link rel='stylesheet' id='jevelin-ie-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/ie.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-theme-settings-css' href='//cdn.jevelin.shufflehound.com/medical/wp-content/cache/autoptimize/23/css/autoptimize_single_f0306d3f1e4c80e4ac9ee71ce763f495.css?ver=26140129' type='text/css' media='all' />
+    <link rel='stylesheet' id='plyr-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/plugins/plyr.css?ver=5.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='jevelin-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Raleway:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&#038;subset=latin' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.5.6.0' id='jquery-blockui-js'></script>
+    <script type='text/javascript' id='wc-add-to-cart-js-extra'>
+        /* <![CDATA[ */
+        var wc_add_to_cart_params = { "ajax_url": "\/medical\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/medical\/?wc-ajax=%%endpoint%%", "i18n_view_cart": "View cart", "cart_url": "https:\/\/jevelin.shufflehound.com\/medical", "is_cart": "", "cart_redirect_after_add": "no" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=5.6.0' id='wc-add-to-cart-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/js_composer/assets/js/vendors/woocommerce-add-to-cart.js?ver=6.7.0' id='vc_woocommerce-add-to-cart-js-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/themes/jevelin/js/plugins.js?ver=5.8.1' id='jevelin-plugins-js'></script>
+    <script type='text/javascript' id='jevelin-scripts-js-extra'>
+        /* <![CDATA[ */
+        var jevelin_loadmore_posts = { "ajax_url": "https:\/\/jevelin.shufflehound.com\/medical\/wp-admin\/admin-ajax.php" };
+        var jevelin = { "page_loader": "0", "notice": "", "header_animation_dropdown_delay": "1000", "header_animation_dropdown": "easeOutQuint", "header_animation_dropdown_speed": "300", "lightbox_opacity": "0.88", "lightbox_transition": "elastic", "lightbox_window_max_width": "1200", "lightbox_window_max_height": "1200", "lightbox_window_size": "0.8", "page_numbers_prev": "Previous", "page_numbers_next": "Next", "rtl_support": "", "footer_parallax": "", "one_pager": "1", "wc_lightbox": "jevelin", "quantity_button": "on" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/themes/jevelin/js/scripts.js?ver=5.8.1' id='jevelin-scripts-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/themes/jevelin/js/plugins/plyr.min.js?ver=5.8.1' id='plyr-js'></script>
+    <link rel="https://api.w.org/" href="https://jevelin.shufflehound.com/medical/wp-json/" />
+    <link rel="alternate" type="application/json" href="https://jevelin.shufflehound.com/medical/wp-json/wp/v2/pages/4" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://jevelin.shufflehound.com/medical/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://jevelin.shufflehound.com/medical/wp-includes/wlwmanifest.xml" />
+    <meta name="generator" content="WordPress 5.8.1" />
+    <meta name="generator" content="WooCommerce 5.6.0" />
+    <link rel="canonical" href="https://jevelin.shufflehound.com/medical/" />
+    <link rel='shortlink' href='https://jevelin.shufflehound.com/medical/' />
+    <link rel="alternate" type="application/json+oembed" href="https://jevelin.shufflehound.com/medical/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjevelin.shufflehound.com%2Fmedical%2F" />
+    <link rel="alternate" type="text/xml+oembed" href="https://jevelin.shufflehound.com/medical/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjevelin.shufflehound.com%2Fmedical%2F&#038;format=xml" />
+    <link rel="icon" type="image/png" href="/fav.png" />
+    <meta name="description" content="Jevelin is multi-purpose WordPress theme for creating stunning websites. Features all the right tools needed for your next design.">
+    <meta name="keywords" content="agency, blog, business, corporate, creative, fitness, flat, modern, portfolio, responsive, shufflehound, startup, theme, wedding, wordpress, jevelin, multi-purpose, theme, themes">
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-57154054-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- Google Analytics -->
+
+    <div class="sh-page-loader sh-table sh-page-loader-style-spinner">
+        <div class="sh-table-cell">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+    <meta name="generator" content="Powered by Slider Revolution 6.5.7 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+    <script type="text/javascript">
+        function setREVStartSize(e) {
+            //window.requestAnimationFrame(function() {
+            window.RSIW = window.RSIW === undefined ? window.innerWidth : window.RSIW;
+            window.RSIH = window.RSIH === undefined ? window.innerHeight : window.RSIH;
+            try {
+                var pw = document.getElementById(e.c).parentNode.offsetWidth,
+                    newh;
+                pw = pw === 0 || isNaN(pw) ? window.RSIW : pw;
+                e.tabw = e.tabw === undefined ? 0 : parseInt(e.tabw);
+                e.thumbw = e.thumbw === undefined ? 0 : parseInt(e.thumbw);
+                e.tabh = e.tabh === undefined ? 0 : parseInt(e.tabh);
+                e.thumbh = e.thumbh === undefined ? 0 : parseInt(e.thumbh);
+                e.tabhide = e.tabhide === undefined ? 0 : parseInt(e.tabhide);
+                e.thumbhide = e.thumbhide === undefined ? 0 : parseInt(e.thumbhide);
+                e.mh = e.mh === undefined || e.mh == "" || e.mh === "auto" ? 0 : parseInt(e.mh, 0);
+                if (e.layout === "fullscreen" || e.l === "fullscreen")
+                    newh = Math.max(e.mh, window.RSIH);
+                else {
+                    e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+                    for (var i in e.rl) if (e.gw[i] === undefined || e.gw[i] === 0) e.gw[i] = e.gw[i - 1];
+                    e.gh = e.el === undefined || e.el === "" || (Array.isArray(e.el) && e.el.length == 0) ? e.gh : e.el;
+                    e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+                    for (var i in e.rl) if (e.gh[i] === undefined || e.gh[i] === 0) e.gh[i] = e.gh[i - 1];
+
+                    var nl = new Array(e.rl.length),
+                        ix = 0,
+                        sl;
+                    e.tabw = e.tabhide >= pw ? 0 : e.tabw;
+                    e.thumbw = e.thumbhide >= pw ? 0 : e.thumbw;
+                    e.tabh = e.tabhide >= pw ? 0 : e.tabh;
+                    e.thumbh = e.thumbhide >= pw ? 0 : e.thumbh;
+                    for (var i in e.rl) nl[i] = e.rl[i] < window.RSIW ? 0 : e.rl[i];
+                    sl = nl[0];
+                    for (var i in nl) if (sl > nl[i] && nl[i] > 0) { sl = nl[i]; ix = i; }
+                    var m = pw > (e.gw[ix] + e.tabw + e.thumbw) ? 1 : (pw - (e.tabw + e.thumbw)) / (e.gw[ix]);
+                    newh = (e.gh[ix] * m) + (e.tabh + e.thumbh);
+                }
+                var el = document.getElementById(e.c);
+                if (el !== null && el) el.style.height = newh + "px";
+                el = document.getElementById(e.c + "_wrapper");
+                if (el !== null && el) {
+                    el.style.height = newh + "px";
+                    el.style.display = "block";
+                }
+            } catch (e) {
+                console.log("Failure at Presize of Slider:" + e)
+            }
+            //});
+        };</script>
+    <style type="text/css" data-type="vc_shortcodes-custom-css">
+        .vc_custom_1549551999594 {
+            padding-top: 200px !important;
+            padding-bottom: 250px !important;
+            background-image: url(http://jevelin.shufflehound.com/medical/wp-content/uploads/sites/23/2018/09/lady.jpg?id=17) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+
+        .vc_custom_1549539284566 {
+            margin-top: -180px !important;
+        }
+
+        .vc_custom_1539866195448 {
+            padding-top: 120px !important;
+            padding-bottom: 150px !important;
+        }
+
+        .vc_custom_1549386070285 {
+            padding-top: 60px !important;
+            padding-bottom: 100px !important;
+            background-image: url(http://jevelin.shufflehound.com/medical/wp-content/uploads/sites/23/2018/09/Rectangle-827-copy-2.jpg?id=72) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+
+        .vc_custom_1537542183399 {
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1537542216539 {
+            padding-top: 40px !important;
+            padding-bottom: 100px !important;
+            background-color: #f4f4f4 !important;
+        }
+
+        .vc_custom_1539783434000 {
+            padding-top: 120px !important;
+            background-image: url(http://jevelin.shufflehound.com/medical/wp-content/uploads/sites/23/2018/09/BG.jpg?id=7) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+
+        .vc_custom_1549384592617 {
+            padding-top: 100px !important;
+            padding-bottom: 100px !important;
+        }
+
+        .vc_custom_1539866408672 {
+            padding-top: 50px !important;
+            padding-bottom: 70px !important;
+            background-color: #f4f4f4 !important;
+        }
+
+        .vc_custom_1549551568280 {
+            padding-top: 100px !important;
+            padding-bottom: 100px !important;
+            background-image: url(http://jevelin.shufflehound.com/medical/wp-content/uploads/sites/23/2018/09/Vector-Smart-Object.jpg?id=24) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+
+        .vc_custom_1549539157283 {
+            padding-right: 50px !important;
+            padding-left: 50px !important;
+        }
+
+        .vc_custom_1549539354178 {
+            padding-top: 80px !important;
+            padding-right: 40px !important;
+            padding-bottom: 60px !important;
+            padding-left: 40px !important;
+            background-color: #b9f7f9 !important;
+            border-radius: 10px !important;
+        }
+
+        .vc_custom_1549539360892 {
+            padding-top: 90px !important;
+            padding-right: 50px !important;
+            padding-bottom: 70px !important;
+            padding-left: 50px !important;
+            background-color: #d4fdfe !important;
+            border-radius: 10px !important;
+        }
+
+        .vc_custom_1549539367670 {
+            padding-top: 80px !important;
+            padding-right: 50px !important;
+            padding-bottom: 60px !important;
+            padding-left: 50px !important;
+            background-color: #b9f7f9 !important;
+            border-radius: 10px !important;
+        }
+
+        .vc_custom_1549386094916 {
+            padding-right: 50px !important;
+            padding-bottom: 100px !important;
+            padding-left: 50px !important;
+            background-color: #ffffff !important;
+            border-radius: 10px !important;
+        }
+
+        .vc_custom_1537537596106 {
+            margin-bottom: 0px !important;
+        }
+
+        .vc_custom_1537537682420 {
+            margin-bottom: 0px !important;
+        }
+
+        .vc_custom_1537537619945 {
+            margin-bottom: 0px !important;
+        }
+
+        .vc_custom_1537537701964 {
+            margin-bottom: 0px !important;
+        }
+
+        .vc_custom_1537537636409 {
+            margin-bottom: 0px !important;
+        }
+
+        .vc_custom_1537537716795 {
+            margin-bottom: 0px !important;
+        }
+
+        .vc_custom_1549552234702 {
+            padding-top: 50px !important;
+            padding-bottom: 50px !important;
+        }
+
+        .vc_custom_1537542291079 {
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1549552094233 {
+            padding-right: 40px !important;
+            padding-left: 100px !important;
+        }
+    </style>
+    <noscript>
+        <style>
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+    <link href="@Url.Content("~/Users/Css.css")" rel="stylesheet" />
+</head>
+<body class="home page-template-default page page-id-4 theme-jevelin woocommerce-no-js wpb-js-composer js-comp-ver-6.7.0 vc_responsive sh-header-mobile-spacing-compact sh-body-header-sticky sh-blog-style2 carousel-dot-style1 carousel-dot-spacing-5px carousel-dot-size-standard">
+    <div id="page-container" class="">
+        <div class="sh-header-template" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+            <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding vc_row_1139288528">
+                <div class="wpb_column vc_column_container vc_col-sm-12 vc_column_453490312">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <script type="text/javascript">
+                                    jQuery(document).ready(function ($) {
+                                        $('#sh-header-builder-9CcOom8qTf .sh-header-builder-mobile').css('height', $('#sh-header-builder-9CcOom8qTf .sh-header-builder-mobile').actual('outerHeight'));
+                                    });
+                            </script>
+                            <header id="sh-header-builder-9CcOom8qTf" class="sh-header-builder sh-header-builder-9CcOom8qTf sh-header-builder-main-spacing-standard sh-header-builder-main-nav-spacing-standard sh-header-builder-main-above-content sh-header-builder-main-icons-small ">
+                                <div class="sh-header-builder-main sh-header-builder-layout1 sh-header-builder-main-sticky-enabled sh-header-megamenu-style2 sh-header-builder-main-sticky-shadow-small">
+                                    <div class="sh-header-builder-main-container">
+                                        <div class="container">
+                                            <div class="sh-header-builder-main-content">
+                                                <div class="sh-header-builder-main-content-left">
+                                                    <div class="sh-header-builder-main-logo">
+                                                        <div class="sh-header-builder-logo"><a href="https://jevelin.shufflehound.com/medical/"><img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-standard" /><img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-sticky" /></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="sh-header-builder-main-content-right">
+                                                    <div class="sh-header-builder-main-navigation">
+                                                        <div class="sh-header-builder-main-navigation-alignment">
+                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-navigation sh-nav-container">
+                                                                <ul id="menu-header-medical" class="sh-nav">
+                                                                    <li id="menu-item-29" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-29"><a href="http://jevelin.shufflehound.com/medical/#backtotop">Home</a></li>
+                                                                    <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30"><a href="http://jevelin.shufflehound.com/medical/#about">About</a></li>
+                                                                    <li id="menu-item-31" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-31"><a href="http://jevelin.shufflehound.com/medical/#departments">Departments</a></li>
+                                                                    <li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-33"><a href="http://jevelin.shufflehound.com/medical/#faq">FAQ</a></li>
+                                                                    <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34"><a href="http://jevelin.shufflehound.com/medical/#contacts">Contacts</a></li>
+                                                                </ul>
+                                                            </div><div class="sh-header-builder-main-element sh-header-builder-main-element-divider"></div>
+                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-social">
+                                                                <a href="#" target="_blank">
+                                                                    <i class="icon-social-facebook sh-header-builder-main-element-icon"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-social">
+                                                                <a href="#" target="_blank">
+                                                                    <i class="icon-social-twitter sh-header-builder-main-element-icon"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="sh-header-builder-main-element sh-header-builder-main-element-search sh-nav-container">
+                                                                <ul class="sh-nav">
+                                                                    <li class="menu-item sh-nav-search sh-header-builder-search-trigger">
+                                                                        <a href="#"><i class="icon-magnifier sh-header-builder-main-element-icon"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sh-header-search">
+                                            <div class="sh-table-full">
+                                                <div class="sh-table-cell">
+                                                    <div class="line-test">
+                                                        <div class="container">
+                                                            <form method="get" class="sh-header-search-form" action="https://jevelin.shufflehound.com/medical/">
+                                                                <input type="search" class="sh-header-search-input" placeholder="Search Here.." value="" name="s" required />
+                                                                <button type="submit" class="sh-header-search-submit">
+                                                                    <i class="icon-magnifier"></i>
+                                                                </button>
+                                                                <div class="sh-header-search-close close-header-search">
+                                                                    <i class="ti-close"></i>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sh-header-builder-mobile  sh-header-builder-mobile-sticky-enabled">
+                                    <div class="sh-header-builder-mobile-container container">
+                                        <div class="sh-header-builder-mobile-content sh-header-builder-layout1">
+                                            <div class="sh-header-builder-mobile-content-left">
+                                                <div class="sh-header-builder-mobile-logo">
+                                                    <div class="sh-header-builder-logo"><a href="https://jevelin.shufflehound.com/medical/"><img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-standard" /><img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-sticky" /></a></div>
+                                                </div>
+                                            </div>
+                                            <div class="sh-header-builder-mobile-content-right">
+                                                <div class="sh-header-builder-mobile-navigation">
+                                                    <div class="sh-header-builder-mobile-element sh-header-builder-mobile-menu" style="cursor: pointer;">
+                                                        <span class="c-hamburger c-hamburger--htx">
+                                                            <span>Toggle menu</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <nav class="sh-header-mobile-dropdown">
+                                        <div class="container sh-nav-container">
+                                            <ul class="sh-nav-mobile"></ul>
+                                        </div>
+                                        <div class="container sh-nav-container">
+                                            <div class="header-mobile-search">
+                                                <form role="search" method="get" class="header-mobile-form" action="https://jevelin.shufflehound.com/medical/">
+                                                    <input class="header-mobile-form-input" type="text" placeholder="Search here.." value="" name="s" required />
+                                                    <button type="submit" class="header-mobile-form-submit">
+                                                        <i class="icon-magnifier"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="header-mobile-social-media">
+                                            <a href="#" target="_blank" class="social-media-twitter">
+                                                <i class="icon-social-facebook"></i>
+                                            </a>
+                                            <a href="#" target="_blank" class="social-media-twitter">
+                                                <i class="icon-social-twitter"></i>
+                                            </a>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="vc_row-full-width vc_clearfix"></div>
+        </div>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+        <div class="sh-back-to-top sh-back-to-top3">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <div class="sh-notifications"></div>
+    <div class="sh-notification-item-example">
+        <strong class="sh-notification-item-name"></strong> has been added to the cart.		<a href="https://jevelin.shufflehound.com/medical">
+            <strong>
+                View Cart
+            </strong>
+        </a>
+        <span class="sh-notification-item-close">
+            <i class="ti-close"></i>
+        </span>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <footer class="sh-footer-template" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+        <div class="container">
+            <style type="text/css" data-type="vc_shortcodes-custom-css">
+                .vc_custom_1542706507952 {
+                    padding-top: 90px !important;
+                    padding-bottom: 90px !important;
+                    background-color: #1c1c1c !important;
+                }
+
+                .vc_custom_1549616847056 {
+                    padding-top: 33px !important;
+                    padding-right: 50px !important;
+                    padding-bottom: 33px !important;
+                    padding-left: 50px !important;
+                    background-color: #363636 !important;
+                }
+
+                .vc_custom_1540835811724 {
+                    padding-top: 0px !important;
+                }
+
+                .vc_custom_1540835811724 {
+                    padding-top: 0px !important;
+                }
+            </style>
+            <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1542706507952 vc_row-has-fill vc_row_264888628">
+                <div class="wpb_column vc_column_container vc_col-sm-12 vc_column_495570213">
+                    <div class="vc_column-inner vc_custom_1540835811724">
+                        <div class="wpb_wrapper">
+                            <div id="sh-footer-builder-widgets-F3YWRz2wKA" class="sh-footer-builder-widgets sh-footer-builder-widgets-F3YWRz2wKA sh-footer-builder-widgets-3columns ">
+                                <div id="image-2" class="widget_social_links widget-item widget_image">
+                                    <div class="wrap-image">
+                                        <h3 class="widget-title">Important Information</h3>				<div class="sh-image-widgets">
+                                            <p class="sh-image-widgets-description">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum lacinia turpis, ut facilisis sapien lacinia eget. Cras interdum ligula elit, maximus molestie ex placerat non.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="recent_posts-2" class="widget_social_links widget-item widget_recent_posts">
+                                    <div class="wrap-recent-posts">
+                                        <h3 class="widget-title">Latest News</h3>
+                                        <div class="sh-recent-posts-widgets">
+                                            <div class="sh-recent-posts-widgets-item">
+                                                <div class="sh-recent-posts-widgets-item-thumb">
+                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/welcome-to-our-new-building/">
+                                                        <div class="sh-ratio">
+                                                            <div class="sh-ratio-container sh-ratio-container-square">
+                                                                <div class="sh-ratio-content" style="background-image: url(https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Untitled-1_0001_niti-k-228198-unsplash-150x150.jpg);"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="sh-mini-overlay">
+                                                            <div class="sh-mini-overlay-container">
+                                                                <div class="sh-table-full">
+                                                                    <div class="sh-table-cell">
+                                                                        <i class="icon-link"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="sh-recent-posts-widgets-count">
+                                                            0
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="sh-recent-posts-widgets-item-content">
+                                                    <span class="post-meta-categories">
+                                                        <a href="https://jevelin.shufflehound.com/medical/category/news/" rel="category tag">News</a>
+                                                    </span>
+                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/welcome-to-our-new-building/">
+                                                        <h6>Welcome to our new building</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="sh-recent-posts-widgets-item">
+                                                <div class="sh-recent-posts-widgets-item-thumb">
+                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/healthier-diet-for-better-future/">
+                                                        <div class="sh-ratio">
+                                                            <div class="sh-ratio-container sh-ratio-container-square">
+                                                                <div class="sh-ratio-content" style="background-image: url(https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Untitled-1_0003_brooke-lark-250695-150x150.jpg);"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="sh-mini-overlay">
+                                                            <div class="sh-mini-overlay-container">
+                                                                <div class="sh-table-full">
+                                                                    <div class="sh-table-cell">
+                                                                        <i class="icon-link"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="sh-recent-posts-widgets-count">
+                                                            0
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="sh-recent-posts-widgets-item-content">
+                                                    <span class="post-meta-categories">
+                                                        <a href="https://jevelin.shufflehound.com/medical/category/diet/" rel="category tag">Diet</a>
+                                                    </span>
+
+                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/healthier-diet-for-better-future/">
+                                                        <h6>Healthier diet for better future</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="contacts-2" class="widget_social_links widget-item widget_contacts">
+                                    <div class="wrap-social">
+                                        <h3 class="widget-title"></h3>
+                                        <div class="sh-contacts-widget-item">
+                                            <i class="icon-map"></i>
+                                            Street number 5, Town, Country
+                                        </div>
+                                        <div class="sh-contacts-widget-item">
+                                            <i class="icon-phone"></i>
+                                            (+371) 512 566 921
+                                        </div>
+                                        <div class="sh-contacts-widget-item">
+                                            <i class="icon-envelope"></i>
+                                            brandname@company.com
+                                        </div>
+                                        <div class="sh-contacts-widget-item">
+                                            <i class="icon-clock"></i>
+                                            Mon. – Frie. 11AM – 19PM
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vc_row-full-width vc_clearfix"></div>
+            <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1549616847056 vc_row-has-fill vc_row-no-padding vc_row_225904988">
+                <div class="wpb_column vc_column_container vc_col-sm-12 vc_column_184066015">
+                    <div class="vc_column-inner vc_custom_1540835811724">
+                        <div class="wpb_wrapper">
+                            <div id="text-block-5JrmGNkf3R" class="sh-text-block">
+
+                                <p style="text-align: center;">Copyright © 2017 JevelinTheme - Theme by Shufflehound</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="vc_row-full-width vc_clearfix"></div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        window.RS_MODULES = window.RS_MODULES || {};
+        window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+        window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+        window.RS_MODULES.defered = true;
+        window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+        window.RS_MODULES.type = 'compiled';
+    </script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.primary-desktop .header-logo-container, .primary-mobile .header-logo-container').attr('href', '//jevelin.shufflehound.com/hello/');
+
+            function jevelin_settings() {
+                if ($(window).width() < 600) {
+                    $('.sh-settings').hide();
+                } else {
+                    $('.sh-settings').show();
+                }
+            }
+            jevelin_settings();
+
+            $(window).resize(function () {
+                clearTimeout(window.resizedFinished2);
+                window.resizedFinished2 = setTimeout(function () {
+                    jevelin_settings();
+                }, 500);
+            });
+
+            $('.sh-settings-hide').on('click', function () {
+                $('.sh-settings').toggleClass('sh-settings-active');
+            });
+
+            $(document).keyup(function (e) {
+                if (e.keyCode == 27) {
+                    if ($('.sh-settings').hasClass('sh-settings-active')) {
+                        $('.sh-settings').removeClass('sh-settings-active');
+                    }
+                }
+            });
+
+            jQuery('.form-submit #submit').on('click', function (event) {
+                alert('This feature is disabled in our demo site. Sorry for any inconvenience.');
+                event.preventDefault()
+                event.stopPropagation()
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+
+        jQuery(document).ready(function ($) {
+            "use strict";
+
+            $(".sh-page-loader").fadeOut(500);
+            $("body").css('overflow-y', 'visible').css('overflow-x', 'hidden');
+
+            $(window).bind('beforeunload', function (e) {
+                $('.sh-page-loader').fadeIn();
+            });
+
+        });
+    </script>
+    <style>
+        .sh-page-loader {
+            background-color: rgba(255,255,255,0.98) !important;
+        }
+    </style>
+
+    <!-- Hotjar Tracking for jevelin.shufflehound.com -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2013664, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <div class="sh-side-options sh-side-options-pages">
+        <div class="sh-side-options-container" data-url="https://jevelin.shufflehound.com/medical/">
+
+            <a href="//jevelin.shufflehound.com/hello/" class="sh-side-options-item sh-accent-color">
+                <div class="sh-side-options-item-container">
+                    <i class="icon icon-layers"></i>
+                </div>
+                <div class="sh-side-options-hover">
+                    Showcase
+                </div>
+            </a>
+
+            <a class="sh-side-options-item sh-side-options-item-trigger-demos sh-accent-color">
+                <div class="sh-side-options-item-container">
+                    <i class="icon icon-eyeglass"></i>
+                </div>
+                <div class="sh-side-options-hover">
+                    Demo<span></span>viewer
+                </div>
+            </a>
+
+            <a target="blank" href="https://shufflehound.com/get/jevelin" class="sh-side-options-item sh-accent-color">
+                <div class="sh-side-options-item-container">
+                    <i class="icon icon-bag"></i>
+                </div>
+                <div class="sh-side-options-hover">
+                    Purchase<span></span>Jevelin
+                </div>
+            </a>
+
+            <a href="//jevelin.shufflehound.com/hello/#questions" class="sh-side-options-item sh-accent-color">
+                <div class="sh-side-options-item-container">
+                    <i class="icon icon-question"></i>
+                </div>
+                <div class="sh-side-options-hover">
+                    Questions<span></span>/<span></span>Answers
+                </div>
+            </a>
+
+            <a target="blank" href="https://support.shufflehound.com/" class="sh-side-options-item sh-accent-color">
+                <div class="sh-side-options-item-container">
+                    <i class="icon icon-support"></i>
+                </div>
+                <div class="sh-side-options-hover">
+                    Get<span></span>Support
+                </div>
+            </a>
+
+            <a target="blank" href="https://support.shufflehound.com/pre-sale-questions/" class="sh-side-options-item sh-accent-color">
+                <div class="sh-side-options-item-container">
+                    <i class="icon icon-envelope"></i>
+                </div>
+                <div class="sh-side-options-hover" style="white-space: nowrap;">
+                    Ask a Pre-Sale<span></span>Question
+                </div>
+            </a>
+        </div>
+
+        <div class="sh-side-demos-container">
+            <div class="sh-side-demos-container-close">
+                <i class="ti-close"></i>
+            </div>
+            <div class="sh-side-demos-intro">
+                <h3 class="sh-side-demos-intro-title sh-heading-font">
+                    <img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/2016/05/Je_Logo_black_big.png" alt="">
+                    Demos
+                </h3>
+                <p class="sh-side-demos-intro-descr sh-heading-font">
+                    Choose one of our premium made
+                    demos and make it your own!
+                </p>
+            </div>
+            <div class="sh-side-demos-loop">
+                <div class="sh-side-demos-loop-container">
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/burger-shop/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2020/11/burder-shop-preview.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Burger Shop
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/business/">
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/12/screenshot-jevelin-business2.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Business
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/startup-clean">
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/11/screenshot-jevelin-startup-clean.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Startup Clean
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/startup-creative/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/11/creative-startup.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Startup Creative
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/creative-agency/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/03/jevelin-agency.png" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Creative Agency
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/minimal-furniture-shop/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2020/09/minimal-furniture-demo-preview.png" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Minimal Furniture Shop
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/medical/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/02/screenshot-jevelin-medical.png" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Medical
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/mobile-app-2/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2020/07/screenshot-jevelin-app2.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Mobile App 2
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/education/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin-education.png" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Education
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/single-product/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/09/single-product.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Single Product
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/portfolio-freelance/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/11/portfolio-freelance.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Portfolio Freelance
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/corporate-accounting/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/10/Demo-preview-frame.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Corporate Accounting
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/mobile-app/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/12/screenshot-jevelin-app.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Mobile App
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/portfolio-minimalistic/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/11/minimal-portfolio.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Portfolio Minimalistic
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/architect/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/10/screenshot-jevelin-architect.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Architect
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/portfolio-full-width/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/10/screenshot-jevelin-portfolio-full-width.jpg" alt="digitalt-jevelin" />
+
+                                            <div class="sh-side-demos-item-tag">
+                                                new
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Portfolio Full-Width
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/personal-blog/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2019/09/screenshot-jevelin-peronal-blog.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Personal Blog
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/fashion-shop/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin-ecommerce.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Fashion eCommerce
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/finances/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Finance
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/digital-media-agency/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/digitalt-jevelin.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Digital Media Agency
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/startup/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin18.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Startup
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/corporate/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin11.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Corporate
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/portfolio1/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin17.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Portfolio
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/blog1/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin16.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Blog + Sidebar
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/blog1/from-side-to-side/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin1-1.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Blog - Side to Side
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/construction/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin23.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Construction
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/blog1/masonry_sidebar/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin2-1.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Blog - Full
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/home/home-creative/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin5.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Creative
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/shop1/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin14.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Shop
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/autospot/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin1.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Autospot
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/portfolio1/masonry-side-header/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin10.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Portfolio + Side Header
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/landing/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin13.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Landing
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/landing2/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin-LANDING2.png" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Landing 2
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/home/home-fitness/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin9.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Fitness
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/coming-soon/side-by-side/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin22.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Coming Soon - Side by Side
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/coming-soon/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin21.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Coming Soon
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/home/home-photography/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin4.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Photography
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/home/home-nature/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin3-1.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Nature
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/wedding/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin8.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Wedding
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin7.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Basic/Classic
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/boxed/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin12.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Boxed
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/home/home-event/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin6.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Event
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/foodie/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin20.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Foodie
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/beauty/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin19.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Beauty
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="https://jevelin.shufflehound.com/crypto/">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin-crypto.jpg" alt="digitalt-jevelin" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sh-side-demos-item-name">
+                                Crypto
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="sh-side-demos-item">
+                        <a href="">
+
+                            <div class="sh-image-lazy-loading">
+                                <div class="sh-single-image-container sh-single-image-container-lazy">
+                                    <div class="ratio-container" style="padding-top: 62.692307692308%;">
+                                        <div class="ratio-content">
+                                            <img class="sh-image-url sh-side-demos-image" data-src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/22/2016/05/screenshot-jevelin-coming-soon.jpg" alt="digitalt-jevelin" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sh-side-demos-item-name">
+                                Coming Soon
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            /*if( $(window).width() > 1000) {
+                if( $.cookie( 'gillion.sidebartest', { path: '', domain: 'jevelin.shufflehound.com' } ) == 'opened' ) {
+                    $('.sh-side-demos').addClass('open');
+                } else {
+                    $('.sh-side-demos').removeClass('open');
+                }
+            }*/
+
+            $('.sh-side-options-item-trigger-demos').on('click', function () {
+                $('.sh-side-options').css('transition', '0.3s all ease-in-out');
+
+                if ($('.sh-side-options').hasClass('open')) {
+                    $('.sh-side-options').removeClass('open');
+                } else {
+                    $('.sh-side-options .sh-side-demos-image').each(function () {
+                        $(this).attr('src', $(this).attr('data-src'));
+                    });
+                    $('.sh-side-options').addClass('open');
+                }
+            });
+
+            $('.sh-side-demos-container-close').on('click', function () {
+                $('.sh-side-options').css('transition', '0.3s all ease-in-out');
+                $('.sh-side-options').removeClass('open');
+            });
+        });
+    </script>
+
+    <script type="text/html" id="wpb-modifications">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        })();
+    </script>
+    <link rel='stylesheet' id='vc_animate-css-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/js_composer/assets/lib/bower/animate-css/animate.min.css?ver=6.7.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-plugin-settings-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.5.7' type='text/css' media='all' />
+    <style id='rs-plugin-settings-inline-css' type='text/css'>
+        #rs-demo-id {
+        }
+    </style>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.7' id='regenerator-runtime-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+    <script type='text/javascript' id='contact-form-7-js-extra'>
+        /* <![CDATA[ */
+        var wpcf7 = { "api": { "root": "https:\/\/jevelin.shufflehound.com\/medical\/wp-json\/", "namespace": "contact-form-7\/v1" } };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.4.2' id='contact-form-7-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/revslider/public/assets/js/rbtools.min.js?ver=6.5.7' defer async id='tp-tools-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/revslider/public/assets/js/rs6.min.js?ver=6.5.7' defer async id='revmin-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.5.6.0' id='js-cookie-js'></script>
+    <script type='text/javascript' id='woocommerce-js-extra'>
+        /* <![CDATA[ */
+        var woocommerce_params = { "ajax_url": "\/medical\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/medical\/?wc-ajax=%%endpoint%%" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=5.6.0' id='woocommerce-js'></script>
+    <script type='text/javascript' id='wc-cart-fragments-js-extra'>
+        /* <![CDATA[ */
+        var wc_cart_fragments_params = { "ajax_url": "\/medical\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/medical\/?wc-ajax=%%endpoint%%", "cart_hash_key": "wc_cart_hash_197ec7940b25bc1383e861b3265f0d58", "fragment_name": "wc_fragments_197ec7940b25bc1383e861b3265f0d58", "request_timeout": "5000" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=5.6.0' id='wc-cart-fragments-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/jquery/ui/effect.min.js?ver=1.12.1' id='jquery-effects-core-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/themes/jevelin/js/plugins/bootstrap.min.js?ver=3.3.4' id='bootstrap-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/themes/jevelin/js/plugins/jquery.instagramFeed.min.js?ver=1.0' id='instagramFeed-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/wp-embed.min.js?ver=5.8.1' id='wp-embed-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=6.7.0' id='wpb_composer_front_js-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-content/plugins/js_composer/assets/lib/vc_waypoints/vc-waypoints.min.js?ver=6.7.0' id='vc_waypoints-js'></script>
+    @*<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBgjHclrfJFYerx9mG4_VND4MV3MEYuvks' id='google-maps-api-js'></script>*@
+    <script type='text/javascript' src='//cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js?ver=5.8.1' id='gmap3-js'></script>
+    <script type='text/javascript' src='//cdn.jevelin.shufflehound.com/medical/wp-includes/js/comment-reply.min.js?ver=5.8.1' id='comment-reply-js'></script>
+    <script type="text/javascript">jQuery(document).ready(function ($) { "use strict"; });</script>
 </body>
 </html>
