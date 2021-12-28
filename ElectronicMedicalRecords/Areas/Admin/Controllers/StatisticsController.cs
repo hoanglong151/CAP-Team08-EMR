@@ -512,7 +512,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 10, 3].Value = "Thư Ký";
             workSheet.Cells[statisticModels.Count + 10, 3, statisticModels.Count + 10, 4].Merge = true;
 
-            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["A1:B1"].Merge = true;
             workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
             workSheet.Cells["A2:B2"].Merge = true;
@@ -608,7 +608,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 10, 3].Value = "Thư Ký";
             workSheet.Cells[statisticModels.Count + 10, 3, statisticModels.Count + 10, 4].Merge = true;
 
-            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["A1:B1"].Merge = true;
             workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
             workSheet.Cells["A2:B2"].Merge = true;
@@ -702,7 +702,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[11, 3].Value = "Thư Ký";
             workSheet.Cells[11, 3, 11, 4].Merge = true;
 
-            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["A1:B1"].Merge = true;
             workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
             workSheet.Cells["A2:B2"].Merge = true;
@@ -803,7 +803,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 10, 3].Value = "Thư Ký";
             workSheet.Cells[statisticModels.Count + 10, 3, statisticModels.Count + 10, 4].Merge = true;
 
-            workSheet.Cells["A1"].Value = "BỘ GIÁO DỤC VÀ ĐÀO TẠO";
+            workSheet.Cells["A1"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["A1:B1"].Merge = true;
             workSheet.Cells["A2"].Value = "TRƯỜNG ĐẠI HỌC VĂN LANG";
             workSheet.Cells["A2:B2"].Merge = true;

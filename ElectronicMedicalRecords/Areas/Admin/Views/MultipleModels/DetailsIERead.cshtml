@@ -189,6 +189,12 @@
                             <h6 class="dropdown-header">Chọn Mục In</h6>
                             <a class="dropdown-item" id="PrintAllExamInFoTestRead">In Hồ sơ, kết quả xét nghiệm</a>
                             <a class="dropdown-item" id="PrintMedicationRead">In Toa Thuốc</a>
+                            <a class="dropdown-item" id="PrintBillExaminationRead">In Hóa Đơn Khám Bệnh</a>
+                            @if (Model.InformationExamination.User_ID != null)
+                            {
+                                <a class="dropdown-item" id="PrintBillTestSubclinicalRead">In Hóa Đơn Xét Nghiệm</a>
+                                <a class="dropdown-item" id="PrintBillPrescriptionRead">In Hóa Đơn Toa Thuốc</a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -534,6 +540,51 @@
                 success: function (res) {
                     if (res.success) {
                         window.open("@Url.Action("PrintResultViSinh", "MultipleModels")", "_blank");
+                    }
+                }
+            })
+        })
+
+            /*Print Bill Examination*/
+        $('#PrintBillExaminationRead').click(function () {
+            var dataExam = $('#DetailReadForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintBillExaminationPost", "Patients")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataExam }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintBillExamination", "Patients")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Bill Test Subclinical*/
+        $('#PrintBillTestSubclinicalRead').click(function () {
+            var dataTestSubclinical = $('#DetailReadForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintBillExaminationPost", "Patients")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataTestSubclinical }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintBillTestSubclinical", "Patients")", "_blank");
+                    }
+                }
+            })
+        })
+
+        /*Print Bill Prescription*/
+        $('#PrintBillPrescriptionRead').click(function () {
+            var dataPrescription = $('#DetailReadForm').serialize();
+            $.ajax({
+                url: "@Url.Action("PrintBillExaminationPost", "Patients")",
+                type: "POST",
+                data: JSON.stringify({ multiplesModel: dataPrescription }).replaceAll('"}', ''),
+                success: function (res) {
+                    if (res.success) {
+                        window.open("@Url.Action("PrintBillPrescription", "Patients")", "_blank");
                     }
                 }
             })

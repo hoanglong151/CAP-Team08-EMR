@@ -127,6 +127,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     foreach (var itemCTMau in checkCTMaus)
                     {
                         itemCTMau.CTMau = db.CTMaus.Find(itemCTMau.CTMau_ID);
+                        itemCTMau.InformationExamination = multiplesModel.InformationExamination;
                     }
                     ViewBag.CTMaus = checkCTMaus;
                 }
@@ -390,6 +391,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
             return View(patient);
+        }
+        
+        public ActionResult checkExist(int id)
+        {
+            var Info = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var InfoLast = Info.LastOrDefault();
+            if(InfoLast.PriceExamination == null)
+            {
+                return Json(new { success = true, responeText = "Một hồ sơ mới đã được tạo trước đó!" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Admin/Patients/CreateOldPatient/5
