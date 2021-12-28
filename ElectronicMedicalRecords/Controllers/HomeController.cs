@@ -20,6 +20,11 @@ namespace ElectronicMedicalRecords.Controllers
             return View();
         }
 
+        public ActionResult Doctors()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
