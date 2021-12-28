@@ -130,5 +130,26 @@
                 }
             })
         }
+
+        function createOldPatient(id) {
+            $.ajax({
+                url: "@Url.Action("checkExist","Patients")",
+                type: "GET",
+                data: { id: id },
+                success: (res) => {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thất Bại!',
+                            text: res.responeText,
+                            confirmButtonText: 'Xác Nhận',
+                        })
+                    } else {
+                        window.location.href = '@Url.Action("CreateOldPatient", "MultipleModels")/' + id;
+                    }
+                }
+            })
+        }
+
     </script>
 }
