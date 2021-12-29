@@ -27,7 +27,8 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_SinhHoaMau = new HashSet<Detail_SinhHoaMau>();
             this.Detail_Urine = new HashSet<Detail_Urine>();
             this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
-            this.Prescriptions = new HashSet<Prescription>();
+            this.Prescription_Detail = new HashSet<Prescription_Detail>();
+            this.Bills = new HashSet<Bill>();
         }
     
         public int ID { get; set; }
@@ -53,6 +54,8 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<bool> New { get; set; }
         public Nullable<int> PriceExamination { get; set; }
         public Nullable<int> PriceCTMaus { get; set; }
+        public Nullable<int> PriceTest { get; set; }
+        public Nullable<int> PricePrescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CayMau> CayMaus { get; set; }
@@ -79,6 +82,8 @@ namespace ElectronicMedicalRecords.Models
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription> Prescriptions { get; set; }
+        public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }

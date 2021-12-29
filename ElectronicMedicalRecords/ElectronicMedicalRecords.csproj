@@ -280,7 +280,6 @@
     <Compile Include="Areas\Admin\Controllers\NhomMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PrescriptionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Prescription_DetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
@@ -309,6 +308,9 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bill.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CayMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -321,6 +323,7 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BillModel.cs" />
     <Compile Include="Models\StatisticModel.cs" />
     <Compile Include="Models\Detail_Amniocente.cs">
       <DependentUpon>Models.tt</DependentUpon>
@@ -402,9 +405,6 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PatientStatu.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Prescription.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Prescription_Detail.cs">
@@ -968,6 +968,8 @@
     <Content Include="Areas\Admin\assets\images\img\total-stripe-gold.png" />
     <Content Include="Areas\Admin\assets\images\img\total-stripe-turquoise.png" />
     <Content Include="Areas\Admin\assets\images\logo\logoVL.png" />
+    <Content Include="Areas\Admin\assets\images\logo\VLExcel.jpg" />
+    <Content Include="Areas\Admin\assets\images\logo\VLExcel1.jpg" />
     <Content Include="Areas\Admin\assets\Nhac.mp3" />
     <Content Include="Areas\Admin\assets\videos\vbg_Trim.mp4" />
     <Content Include="Areas\Admin\assets\videos\videoHomePageVL.mp4" />
@@ -2783,11 +2785,6 @@
     <Content Include="Areas\Admin\Views\Prescription_Detail\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Prescriptions\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Prescriptions\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Prescriptions\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Prescriptions\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Prescriptions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_DetailIE.cshtml" />
@@ -2839,6 +2836,9 @@
     <Content Include="Areas\Admin\Views\Statistics\PrintStatisByDocandCon.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\PrintStatisticDiagnostic.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\PrintStatisticPrice.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\BillExam.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\BillPre.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\BillTest.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

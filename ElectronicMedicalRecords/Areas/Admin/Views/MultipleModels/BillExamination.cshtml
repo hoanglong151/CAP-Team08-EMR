@@ -143,10 +143,15 @@
                             <a class="dropdown-item" id="PrintBillExamination">In Hóa Đơn Khám Bệnh</a>
                             @if (Model.InformationExamination.User_ID != null)
                             {
-                                <a class="dropdown-item" id="PrintBillTestSubclinical">In Hóa Đơn Xét Nghiệm</a>
-                                <a class="dropdown-item" id="PrintBillPrescription">In Hóa Đơn Toa Thuốc</a>
-                            }
-                        </div>
+                                if (Model.InformationExamination.PriceTest == null)
+                                    {
+                                        <a class="dropdown-item" id="PrintBillTestSubclinical">
+                                            In Hóa Đơn Xét Nghiệm
+                                        </a>
+                                    }
+                                    <a class="dropdown-item" id="PrintBillPrescription">In Hóa Đơn Toa Thuốc </a>
+                             }
+                            </div>
                     </div>
                 </div>
                 <div class="tab-content" id="myTabContent">

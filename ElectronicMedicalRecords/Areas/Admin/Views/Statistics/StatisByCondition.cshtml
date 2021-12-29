@@ -70,14 +70,11 @@
                     <tbody>
                         @foreach (var user in Model)
                         {
-                            if (user.countPatient != 0)
-                            {
-                                <tr>
-                                    <td>@user.patientStatu.ID</td>
-                                    <td>@user.patientStatu.Name</td>
-                                    <td>@user.countPatient</td>
-                                </tr>
-                            }
+                            <tr>
+                                <td>@user.patientStatu.ID</td>
+                                <td>@user.patientStatu.Name</td>
+                                <td>@user.countPatient</td>
+                            </tr>
                         }
                     </tbody>
                 </table>

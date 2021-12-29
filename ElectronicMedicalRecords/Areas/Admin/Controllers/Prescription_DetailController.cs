@@ -107,7 +107,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
             }
             ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", multiplesModel.Prescription_Detail.Medication_ID);
-            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", multiplesModel.Prescription_Detail.InformationExamination_ID);
             return RedirectToAction("CreateTest", "MultipleModels");
         }
 
@@ -126,7 +125,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
 
             ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", prescription_Detail.Medication_ID);
-            ViewBag.Precription__ID = new SelectList(db.Prescriptions, "ID", "ID", prescription_Detail.InformationExamination_ID);
             return View(prescription_Detail);
         }
 

@@ -20,7 +20,7 @@ namespace ElectronicMedicalRecords.Models
         public bool ChiDinh { get; set; }
         public Nullable<double> Result { get; set; }
     
-        public virtual InformationExamination InformationExamination { get; set; }
         public virtual Urine Urine { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model ElectronicMedicalRecords.Models.StatisticModel
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.StatisticModel>
 @{
     ViewBag.Title = "StatisByDoctorAndCondition";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -62,17 +62,36 @@
                 <table class="table table-striped" id="tableStatisMoney" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Mã Bệnh Nhân</th>
+                            <th>Tên Bệnh Nhân</th>
                             <th>Khám</th>
                             <th>Thuốc</th>
                             <th>Xét Nghiệm</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>@Model.priceExamination VNĐ</td>
-                            <td>@Model.pricePrescription VNĐ</td>
-                            <td>@Model.priceSubclinical VNĐ</td>
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.patient.MaBN</td>
+                                <td>@item.patient.Name</td>
+                                <td>@item.informationExamination.PriceExamination.Value.ToString("N0") VNĐ</td>
+                                <td>
+                                    @if (item.informationExamination.PricePrescription != null)
+                                    {
+                                        @item.informationExamination.PricePrescription.Value.ToString("N0") 
+                                        <span>VNĐ</span>
+                                    }                           
+                                </td>
+                                <td>
+                                    @if (item.informationExamination.PriceTest != null)
+                                    {
+                                        @item.informationExamination.PriceTest.Value.ToString("N0")
+                                        <span>VNĐ</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
