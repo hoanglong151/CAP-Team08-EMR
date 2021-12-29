@@ -398,9 +398,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 13, 4, statisticModels.Count + 13, 5].Merge = true;
 
             Image img = Image.FromFile(Server.MapPath("~/Areas/Admin/assets/images/logo/VLang.png"));
-            var excelImage = workSheet.Drawings.AddPicture("My Logo", img);
+            var cfBm = new Bitmap(img, new Size(250, 85));
+            var excelImage = workSheet.Drawings.AddPicture("My Logo", cfBm);
             excelImage.SetPosition(1, 0, 0, 0);
-            excelImage.SetSize(80);
 
             workSheet.Cells["D2"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["D2:E2"].Merge = true;
@@ -514,8 +514,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 13, 4, statisticModels.Count + 13, 5].Merge = true;
 
             Image img = Image.FromFile(Server.MapPath("~/Areas/Admin/assets/images/logo/VLang.png"));
-            var excelImage = workSheet.Drawings.AddPicture("My Logo", img);
-            excelImage.SetPosition(0, 0, 0, 0);
+            var cfBm = new Bitmap(img, new Size(250, 85));
+            var excelImage = workSheet.Drawings.AddPicture("My Logo", cfBm);
+            excelImage.SetPosition(1, 0, 0, 0);
 
             workSheet.Cells["D2"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["D2:E2"].Merge = true;
@@ -645,8 +646,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 13, 4, statisticModels.Count + 13, 7].Merge = true;
 
             Image img = Image.FromFile(Server.MapPath("~/Areas/Admin/assets/images/logo/VLang.png"));
-            var excelImage = workSheet.Drawings.AddPicture("My Logo", img);
-            excelImage.SetPosition(0, 0, 0, 0);
+            var cfBm = new Bitmap(img, new Size(250, 85));
+            var excelImage = workSheet.Drawings.AddPicture("My Logo", cfBm);
+            excelImage.SetPosition(1, 0, 0, 0);
 
             workSheet.Cells["E2"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["E2:G2"].Merge = true;
@@ -765,8 +767,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells[statisticModels.Count + 13, 4, statisticModels.Count + 13, 5].Merge = true;
 
             Image img = Image.FromFile(Server.MapPath("~/Areas/Admin/assets/images/logo/VLang.png"));
-            var excelImage = workSheet.Drawings.AddPicture("My Logo", img);
-            excelImage.SetPosition(0, 0, 0, 0);
+            var cfBm = new Bitmap(img, new Size(250, 85));
+            var excelImage = workSheet.Drawings.AddPicture("My Logo", cfBm);
+            excelImage.SetPosition(1, 0, 0, 0);
 
             workSheet.Cells["D2"].Value = "PHÒNG KHÁM VĂN LANG";
             workSheet.Cells["D2:E2"].Merge = true;
