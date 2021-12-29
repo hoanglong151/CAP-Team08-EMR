@@ -23,6 +23,10 @@ namespace ElectronicMedicalRecords.Controllers
         public ActionResult Doctors()
         {
             return View();
+
+        } public ActionResult News()
+        {
+            return View();
         }
 
         public ActionResult Contact()
