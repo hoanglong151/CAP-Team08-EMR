@@ -21,7 +21,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void GetData()
         {
-            var result = controller.GetData() as Task<ActionResult>;
+            var result = controller.GetData() as ViewResult;
             Assert.IsNotNull(result);
         }
     }

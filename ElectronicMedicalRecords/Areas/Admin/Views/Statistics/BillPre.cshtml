@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Bill>
+@{
+    ViewBag.Title = "BillExam";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
+                <h3>Danh Sách Hóa Đơn Thuốc</h3>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Hóa Đơn</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Lịch sử hóa đơn
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table1">
+                    <thead>
+                        <tr>
+                            <th>Số Hóa Đơn</th>
+                            <th>Mã Bệnh Nhân</th>
+                            <th>Tên</th>
+                            <th>Ngày Tạo</th>
+                            <th>Thuốc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Patient.MaBN</td>
+                                <td>@item.Patient.Name</td>
+                                <td>@item.Date</td>
+                                <td>@item.InformationExamination.PricePrescription.Value.ToString("N0") VNĐ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts{
+    <script>
+        $('#table1').DataTable({
+            "language": {
+                "emptyTable": "No data available",
+                "oPaginate": {
+                    sNext: '<i class="fa fa-chevron-right"></i>',
+                    sPrevious: '<i class="fa fa-chevron-left"></i>',
+                },
+                "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                "lengthMenu": "Hiển thị _MENU_ người",
+                "search": "Tìm kiếm:",
+            },
+        })
+    </script>
+}

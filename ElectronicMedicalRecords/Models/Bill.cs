@@ -12,12 +12,16 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Prescription
+    public partial class Bill
     {
         public int ID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> Patient_ID { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string TypePayment { get; set; }
+        public string UserPayment_ID { get; set; }
     
         public virtual InformationExamination InformationExamination { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

@@ -38,6 +38,78 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         }
 
         [TestMethod]
+        public void TestPriceCTMau()
+        {
+            var detail_CTMau = db.Detail_CTMau.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_CTMau.InformationExamination_ID);
+            information.PriceCTMaus = 250000;
+            var result = controller.PriceCTMau(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void TestPriceAmniocente()
+        {
+            var detail_Aminocente = db.Detail_Amniocente.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Aminocente.InformationExamination_ID);
+            var result = controller.PriceAmniocente(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceSinhHoaMau()
+        {
+            var detail_SinhHoaMau = db.Detail_SinhHoaMau.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_SinhHoaMau.InformationExamination_ID);
+            var result = controller.PriceSinhHoaMau(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceUrine()
+        {
+            var detail_Urine = db.Detail_Urine.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Urine.InfomationExamination_ID);
+            var result = controller.PriceUrine(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceViSinh()
+        {
+            var detail_ViSinh = db.Detail_ViSinh.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_ViSinh.InformationExamination_ID);
+            var result = controller.PriceViSinh(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceDongMau()
+        {
+            var detail_DongMau = db.Detail_DongMau.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_DongMau.InformationExamination_ID);
+            var result = controller.PriceDongMau(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceImmunes()
+        {
+            var detail_Immune = db.Detail_Immune.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Immune.InformationExamination_ID);
+            var result = controller.PriceImmune(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestPriceNhomMau()
+        {
+            var detail_NhomMau = db.Detail_NhomMau.FirstOrDefault();
+            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_NhomMau.InformationExamination_ID);
+            var result = controller.PriceNhomMau(information) as Task<int>;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
         public void Payment()
         {
             var info = db.InformationExaminations.AsNoTracking().First();
@@ -47,7 +119,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.IsNotNull(result);
                 Assert.AreEqual("PrintBillExamination", result.RouteValues["action"]);
             }
-        } 
+        }
 
         [TestMethod]
         public void PaymentPrescription()
@@ -67,9 +139,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.First();
             using (var scope = new TransactionScope())
             {
-                var result = controller.PaymentTestSubclinical(info.ID, (int)info.PriceCTMaus) as RedirectToRouteResult;
+                var result = controller.PaymentTestSubclinical(info.ID, (int)info.PriceCTMaus) as Task<ActionResult>;
                 Assert.IsNotNull(result);
-                Assert.AreEqual("PrintBillTestSubclinical", result.RouteValues["action"]);
             }
         }
 

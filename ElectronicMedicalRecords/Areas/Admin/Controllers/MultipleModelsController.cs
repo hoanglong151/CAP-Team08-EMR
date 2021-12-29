@@ -159,6 +159,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 examinationBill.PriceExamination = price;
                 db.Entry(examinationBill).State = EntityState.Modified;
                 db.SaveChanges();
+                var bill = new Bill();
+                bill.InformationExamination_ID = examinationBill.ID;
+                bill.Patient_ID = examinationBill.Patient_ID;
+                bill.Date = DateTime.Now;
+                bill.TypePayment = "Khám";
+                bill.UserPayment_ID = User.Identity.GetUserId();
+                db.Bills.Add(bill);
+                db.SaveChanges();
                 return Json(new { success = true });
             }
             else
@@ -170,6 +178,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PaymentPrescription(int id)
         {
             int error = 0;
+            int totalPrice = 0;
             var prescriptionsBill = db.Prescription_Detail.Where(p => p.InformationExamination_ID == id).ToList();
             foreach(var bill in prescriptionsBill)
             {
@@ -178,6 +187,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     bill.TotalPrice = bill.NumMedication * bill.Medication.Price;
                     db.Entry(bill).State = EntityState.Modified;
                     db.SaveChanges();
+                    totalPrice += (int)bill.TotalPrice;
                 }
                 else
                 {
@@ -188,10 +198,155 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return Json(new { success = false, responeText = "Hóa Đơn Này Đã Được Thanh Toán" });
             }
+            else
+            {
+                var info = db.InformationExaminations.Find(id);
+                var checkid = db.Bills.FirstOrDefault(p => p.InformationExamination_ID == info.ID && p.TypePayment == "Thuốc");
+                if(checkid == null)
+                {
+                    var patient = db.Patients.FirstOrDefault(p => p.ID == info.Patient_ID);
+                    var billPre = new Bill();
+                    billPre.InformationExamination_ID = info.ID;
+                    billPre.Patient_ID = patient.ID;
+                    billPre.Date = DateTime.Now;
+                    billPre.TypePayment = "Thuốc";
+                    billPre.UserPayment_ID = User.Identity.GetUserId();
+                    db.Bills.Add(billPre);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    checkid.Date = DateTime.Now;
+                    checkid.UserPayment_ID = User.Identity.GetUserId();
+                    db.Entry(checkid).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                info.PricePrescription = totalPrice;
+                db.Entry(info).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return Json(new { success = true });
         }
+
+
+        public async Task<int> PriceCTMau(InformationExamination informationExamination)
+        {
+            int priceCTMaus = 0;
+            var priceCTMau = db.Detail_CTMau.FirstOrDefault(p => p.InformationExamination_ID == informationExamination.ID);
+            if (informationExamination.PriceCTMaus != null && priceCTMau != null)
+            {
+                priceCTMaus += (int)informationExamination.PriceCTMaus;
+            }
+            return priceCTMaus;
+        }
+
+        public async Task<int> PriceAmniocente(InformationExamination informationExamination)
+        {
+            int priceAmniocentes = 0;
+            var priceAmniocente = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == informationExamination.ID).ToList();
+            if (priceAmniocente != null)
+            {
+                foreach (var priceAmnio in priceAmniocente)
+                {
+                    priceAmnio.Amniocente = db.Amniocentes.Find(priceAmnio.Amniocente_ID);
+                    priceAmniocentes += priceAmnio.Amniocente.Price;
+                }
+            }
+            return priceAmniocentes;
+        }
+
+        public async Task<int> PriceDongMau(InformationExamination informationExamination)
+        {
+            int priceDongMaus = 0;
+            var priceDongMau = db.Detail_DongMau.Where(p => p.InformationExamination_ID == informationExamination.ID).ToList();
+            if (priceDongMau != null)
+            {
+                foreach (var priceDM in priceDongMau)
+                {
+                    priceDM.DongMau = db.DongMaus.Find(priceDM.DongMau_ID);
+                    priceDongMaus += priceDM.DongMau.Price;
+                }
+            }
+            return priceDongMaus;
+        }
+
+        public async Task<int> PriceImmune(InformationExamination informationExamination)
+        {
+            int priceImmunes = 0;
+            var priceImmune = db.Detail_Immune.Where(p => p.InformationExamination_ID == informationExamination.ID).ToList();
+            if (priceImmune != null)
+            {
+                foreach (var priceIm in priceImmune)
+                {
+                    priceIm.Immune = db.Immunes.Find(priceIm.Immue_ID);
+                    priceImmunes += priceIm.Immune.Price;
+                }
+            }
+            return priceImmunes;
+        }
+
+        public async Task<int> PriceNhomMau(InformationExamination informationExamination)
+        {
+            int priceNhomMaus = 0;
+            var priceNhomMau = db.Detail_NhomMau.Where(p => p.InformationExamination_ID == informationExamination.ID).ToList();
+            if (priceNhomMau != null)
+            {
+                foreach (var priceNM in priceNhomMau)
+                {
+                    priceNM.NhomMau = db.NhomMaus.Find(priceNM.NhomMau_ID);
+                    priceNhomMaus += priceNM.NhomMau.Price;
+                }
+            }
+            return priceNhomMaus;
+        }
+
+        public async Task<int> PriceSinhHoaMau(InformationExamination informationExamination)
+        {
+            int priceSHMaus = 0;
+            var priceSHMau = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == informationExamination.ID).ToList();
+            if (priceSHMau != null)
+            {
+                foreach (var priceSHM in priceSHMau)
+                {
+                    priceSHM.SinhHoaMau = db.SinhHoaMaus.Find(priceSHM.SinhHoaMau_ID);
+                    priceSHMaus += priceSHM.SinhHoaMau.Price;
+                }
+            }
+            return priceSHMaus;
+        }
+
+        public async Task<int> PriceUrine(InformationExamination informationExamination)
+        {
+            int priceUrines = 0;
+            var priceUrine = db.Detail_Urine.Where(p => p.InfomationExamination_ID == informationExamination.ID).ToList();
+            if (priceUrine != null)
+            {
+                foreach (var priceUr in priceUrine)
+                {
+                    priceUr.Urine = db.Urines.Find(priceUr.Urine_ID);
+                    priceUrines += priceUr.Urine.Price;
+                }
+            }
+            return priceUrines;
+        }
+
+        public async Task<int> PriceViSinh(InformationExamination informationExamination)
+        {
+            int priceViSinhs = 0;
+            var priceVSinh = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == informationExamination.ID).ToList();
+            if (priceVSinh != null)
+            {
+                foreach (var priceVS in priceVSinh)
+                {
+                    priceVS.ViSinh = db.ViSinhs.Find(priceVS.ViSinh_ID);
+                    priceViSinhs += priceVS.ViSinh.Price;
+                }
+            }
+            return priceViSinhs;
+        }
+
         [HttpPost]
-        public ActionResult PaymentTestSubclinical(int id, int? price)
+        public async Task<ActionResult> PaymentTestSubclinical(int id, int? price)
         {
             db.Configuration.LazyLoadingEnabled = false;
             var examinationBill = db.InformationExaminations.Find(id);
@@ -243,7 +398,32 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     examinationBill.ResultViSinh = false;
                 }
+                var priceTotalTest = 0;
+                var priceCTMau = PriceCTMau(examinationBill);
+                var priceAmniocente = PriceAmniocente(examinationBill);
+                var priceDongMau = PriceDongMau(examinationBill);
+                var priceImmune = PriceImmune(examinationBill);
+                var priceNhomMau = PriceNhomMau(examinationBill);
+                var priceSinhHoaMau = PriceSinhHoaMau(examinationBill);
+                var priceUrine = PriceUrine(examinationBill);
+                var priceViSinh = PriceViSinh(examinationBill);
+                var result = await Task.WhenAll(priceCTMau, priceAmniocente
+                    , priceDongMau, priceImmune, priceNhomMau, priceSinhHoaMau
+                    , priceUrine, priceViSinh);
+                foreach (var priceTest in result)
+                {
+                    priceTotalTest += priceTest;
+                }
+                examinationBill.PriceTest = priceTotalTest;
                 db.Entry(examinationBill).State = EntityState.Modified;
+                db.SaveChanges();
+                var bill = new Bill();
+                bill.Date = DateTime.Now;
+                bill.InformationExamination_ID = examinationBill.ID;
+                bill.Patient_ID = examinationBill.Patient_ID;
+                bill.TypePayment = "Xét Nghiệm";
+                bill.UserPayment_ID = User.Identity.GetUserId();
+                db.Bills.Add(bill);
                 db.SaveChanges();
                 return Json(new { success = true });
             }
@@ -1026,26 +1206,36 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_Immune detail_Immune = new Detail_Immune();
                 Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
                 Detail_ViSinh detail_ViSinh = new Detail_ViSinh();
+
+                multiplesModel.CTMau = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.SinhHoaMau = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.DongMau = multiplesModel.DongMau.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.NhomMau = multiplesModel.NhomMau.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.Urine = multiplesModel.Urine.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.Immune = multiplesModel.Immune.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.Amniocente = multiplesModel.Amniocente.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.ViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
+
                 patientsController.CreateOldPatient(multiplesModel.Patient);
                 informationExaminationsController.CreateTest(multiplesModel.InformationExamination);
-                var CongThucMauCD = Task.Run(() => detail_CTMauController.CreateOldPatient(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var SinhHoaMauCD = Task.Run(() => detail_SinhHoaMauController.CreateOldPatient(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var DongMauCD = Task.Run(() => detail_DongMauController.CreateOldPatient(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var NhomMauCD = Task.Run(() => detail_NhomMauController.CreateOldPatient(detail_NhomMau, multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel));
-                var UrineCD = Task.Run(() => detail_UrineController.CreateOldPatient(detail_Urine, multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel));
-                var ImmuneCD = Task.Run(() => detail_ImmuneController.CreateOldPatient(detail_Immune, multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel));
-                var AmniocenteCD = Task.Run(() => detail_AmniocenteController.CreateOldPatient(detail_Amniocente, multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel));
-                var ViSinhCD = Task.Run(() => detail_ViSinhController.CreateOldPatient(detail_ViSinh, multiplesModel.ViSinh, multiplesModel.InformationExamination.ID, multiplesModel));
+                var CongThucMauCD = detail_CTMauController.CreateOldPatient(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                var SinhHoaMauCD = detail_SinhHoaMauController.CreateOldPatient(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                var DongMauCD = detail_DongMauController.CreateOldPatient(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                var NhomMauCD = detail_NhomMauController.CreateOldPatient(detail_NhomMau, multiplesModel.NhomMau, multiplesModel.InformationExamination.ID, multiplesModel);
+                var UrineCD = detail_UrineController.CreateOldPatient(detail_Urine, multiplesModel.Urine, multiplesModel.InformationExamination.ID, multiplesModel);
+                var ImmuneCD = detail_ImmuneController.CreateOldPatient(detail_Immune, multiplesModel.Immune, multiplesModel.InformationExamination.ID, multiplesModel);
+                var AmniocenteCD = detail_AmniocenteController.CreateOldPatient(detail_Amniocente, multiplesModel.Amniocente, multiplesModel.InformationExamination.ID, multiplesModel);
+                var ViSinhCD = detail_ViSinhController.CreateOldPatient(detail_ViSinh, multiplesModel.ViSinh, multiplesModel.InformationExamination.ID, multiplesModel);
                 var ResultNew = await Task.WhenAll(CongThucMauCD, SinhHoaMauCD, DongMauCD, NhomMauCD, UrineCD, ImmuneCD, AmniocenteCD, ViSinhCD);
                 clinicalsController.CreateOldPatient(multiplesModel);
                 //cayMausController.CreateOldPatient(multiplesModel);
                 prescription_DetailController.CreateOldPatient(multiplesModel);
-                return await Task.Run(() => RedirectToAction("Index", "Patients"));
+                return RedirectToAction("Index", "Patients");
             }
             catch (Exception ex1)
             {
                 var error = ex1;
-                return await Task.Run(() => RedirectToAction("Index", "Patients"));
+                return RedirectToAction("Index", "Patients");
             }
         }
 

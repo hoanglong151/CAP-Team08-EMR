@@ -70,23 +70,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.StatisByDoctorAndCondition() as ViewResult;
             Assert.IsNotNull(result);
         }
-        [TestMethod]
-        public void TestPriceCTMau()
-        {
-            var detail_CTMau = db.Detail_CTMau.FirstOrDefault();
-            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_CTMau.InformationExamination_ID);
-            information.PriceCTMaus = 250000;
-            var result = controller.PriceCTMau(information) as Task<int>;
-            Assert.IsNotNull(result);
-        }
-        [TestMethod]
-        public void TestPriceAmniocente()
-        {
-            var detail_Aminocente = db.Detail_Amniocente.FirstOrDefault();
-            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Aminocente.InformationExamination_ID);
-            var result = controller.PriceAmniocente(information) as Task<int>;
-            Assert.IsNotNull(result);
-        }
 
         [TestMethod]
         public void TestSearchDiagnostic()
@@ -100,33 +83,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Assert.IsNotNull(result1);
         }
 
-        [TestMethod]
-        public void TestPriceSinhHoaMau()
-        {
-            var detail_SinhHoaMau = db.Detail_SinhHoaMau.FirstOrDefault();
-            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_SinhHoaMau.InformationExamination_ID);
-            var result = controller.PriceSinhHoaMau(information) as Task<int>;
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void TestPriceUrine()
-        {
-            var detail_Urine = db.Detail_Urine.FirstOrDefault();
-            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_Urine.InfomationExamination_ID);
-            var result = controller.PriceUrine(information) as Task<int>;
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void TestPriceViSinh()
-        {
-            var detail_ViSinh = db.Detail_ViSinh.FirstOrDefault();
-            var information = db.InformationExaminations.FirstOrDefault(b => b.ID == detail_ViSinh.InformationExamination_ID);
-            var result = controller.PriceViSinh(information) as Task<int>;
-            Assert.IsNotNull(result);
-        }
-      
         [TestMethod]
         public void TestSearchMoney()
         {

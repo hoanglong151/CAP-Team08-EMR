@@ -16,12 +16,22 @@
             @Html.HiddenFor(model => model.InformationExamination.BloodPressure)
             @Html.HiddenFor(model => model.InformationExamination.Weight)
             @Html.HiddenFor(model => model.InformationExamination.Height)
+            @Html.HiddenFor(model => model.InformationExamination.PricePrescription)
+            @Html.HiddenFor(model => model.InformationExamination.PriceTest)
             <div class="col-md-12 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Tiền Khám Bệnh</label>
                     <div class="input-group">
-                        @Html.EditorFor(model => model.InformationExamination.PriceExamination, new { htmlAttributes = new { @class = "form-control", @type = "number", @Value = "250000" } })
-                        <span class="input-group-text">VNĐ</span>
+                        @if (Model.InformationExamination.User_ID != null)
+                        {
+                            @Html.EditorFor(model => model.InformationExamination.PriceExamination, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                            <span class="input-group-text">VNĐ</span>
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.InformationExamination.PriceExamination, new { htmlAttributes = new { @class = "form-control", @type = "number", @Value = "250000" } })
+                            <span class="input-group-text">VNĐ</span>
+                        }
                     </div>
                     @Html.ValidationMessageFor(model => model.InformationExamination.PriceExamination, "", new { @class = "text-danger" })
                 </div>

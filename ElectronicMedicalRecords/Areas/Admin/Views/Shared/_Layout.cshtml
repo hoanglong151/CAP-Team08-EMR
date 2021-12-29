@@ -166,12 +166,32 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link underline'>
+                                <i class="text-white fas fa-file-invoice-dollar"></i>
+                                <span>Hóa Đơn</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("BillExam", "Statistics")">Khám</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("BillPre", "Statistics")">Thuốc</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("BillTest", "Statistics")">Xét Nghiệm</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link underline'>
                                 <i class="text-white far fa-chart-bar"></i>
                                 <span>Thống Kê</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ & Tình Trạng</a>
+                                    <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ</a>
                                 </li>
 
                                 <li class="submenu-item ">
@@ -183,7 +203,7 @@
                                 </li>
 
                                 <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu Theo TG</a>
+                                    <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu</a>
                                 </li>
                             </ul>
                         </li>

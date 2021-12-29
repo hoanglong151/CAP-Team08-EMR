@@ -22,5 +22,6 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> TotalPrice { get; set; }
     
         public virtual Medication Medication { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
     }
 }
