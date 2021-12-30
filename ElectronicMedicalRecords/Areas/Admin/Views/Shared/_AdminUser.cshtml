@@ -42,9 +42,9 @@
 </div>
 
 <script>
+    var count = 0;
+    var song = document.getElementById('mp3');
     document.addEventListener('DOMContentLoaded', () => {
-        var song = document.getElementById('mp3');
-        var count = 0;
         song.addEventListener('volumechange', function (e) {
             window.localStorage.setItem('muted', song.volume)
             if (song.volume == 0 && count == 1) {
@@ -64,6 +64,14 @@
             count = 1;
         });
 
+        song.onpause = function () {
+            window.localStorage.setItem('statusSong', "stop")
+        }
+
+        song.onplay = function () {
+            window.localStorage.setItem('statusSong', "start")
+        }
+
         function setCookie(c_name, value) {
             window.localStorage.setItem(c_name, value)
         }
@@ -78,9 +86,15 @@
             return getMuted;
         }
 
+        function getStatusSong() {
+            var getStatusSong1 = window.localStorage.getItem("statusSong");
+            return getStatusSong1;
+        }
+
         var played = false;
         var tillPlayed = getCookie('timePlayed');
         var mutedPlayed = getMuted('muted');
+        var statusSong = getStatusSong();
         function update() {
             if (!played) {                            
                 if (tillPlayed != 0) {
@@ -88,14 +102,23 @@
                     if (mutedPlayed) {
                         song.volume = mutedPlayed;
                     }
-                    song.play();
+                    if (statusSong == 'stop') {
+                        song.pause()
+                    } else {
+                        song.play();
+                    }
                     played = true;
                 } else {
                     song.currentTime = tillPlayed;
                     if (mutedPlayed == null) {
                         song.muted = true;
                     }
-                    song.play();
+                    song.muted = true;
+                    if (statusSong == 'stop') {
+                        song.pause()
+                    } else {
+                        song.play();
+                    }
                     played = true;
                 }
             } else {
