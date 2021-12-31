@@ -87,6 +87,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<StatisticModel> statisticModels1 = new List<StatisticModel>();
             Session["DateStartBSAndTT"] = dateStart;
             Session["DateEndBSAndTT"] = dateEnd;
+            ViewBag.DateStart = dateStart;
+            ViewBag.DateEnd = dateEnd;
             foreach (var user in users)
             {
                 var listInfo = user.InformationExaminations;
@@ -150,6 +152,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<InformationExamination> info = new List<InformationExamination>();
             Session["DateStartTT"] = dateStart;
             Session["DateEndTT"] = dateEnd;
+            ViewBag.DateStart = dateStart;
+            ViewBag.DateEnd = dateEnd;
             foreach (var status in statusP)
             {
                 StatisticModel statisticModels = new StatisticModel();
@@ -215,6 +219,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<DiagnosticsCategory> diagnosticsCategories1 = new List<DiagnosticsCategory>();
             Session["DateStartDiagnostic"] = dateStart;
             Session["DateEndDiagnostic"] = dateEnd;
+            ViewBag.DateStart = dateStart;
+            ViewBag.DateEnd = dateEnd;
             foreach (var informationExamination in Infomation)
             {
                 StatisticModel statisticModels = new StatisticModel();
@@ -297,6 +303,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<InformationExamination> informationExaminations = new List<InformationExamination>();
             Session["DateStartMoney"] = dateStart;
             Session["DateEndMoney"] = dateEnd;
+            ViewBag.DateStart = dateStart;
+            ViewBag.DateEnd = dateEnd;
             if (dateStart.HasValue && dateEnd.HasValue)
             {
                 TimeSpan timeEnd = new TimeSpan(23, 59, 59);

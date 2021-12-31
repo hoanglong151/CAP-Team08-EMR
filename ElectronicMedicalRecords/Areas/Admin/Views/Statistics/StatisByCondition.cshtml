@@ -46,9 +46,9 @@
                     <div class="row mgb-1 mgt-05">
                         <div class="col-md-5">
                             <label>Từ ngày</label>
-                            @if (Session["DateStartTT"] != null)
+                            @if (ViewBag.DateStart != null)
                             {
-                                DateTime dateStart = (DateTime)Session["DateStartTT"];
+                                DateTime dateStart = (DateTime)ViewBag.DateStart;
                                 <input name="dateStart" type="date" value=@dateStart.ToString("yyyy-MM-dd") class="form-control" />
                             }
                             else
@@ -58,9 +58,9 @@
                         </div>
                         <div class="col-md-5">
                             <label>Đến ngày</label>
-                            @if (Session["DateEndTT"] != null)
+                            @if (ViewBag.DateEnd != null)
                             {
-                                DateTime dateEnd = (DateTime)Session["DateEndTT"];
+                                DateTime dateEnd = (DateTime)ViewBag.DateEnd;
                                 <input name="dateEnd" type="date" value=@dateEnd.ToString("yyyy-MM-dd") class="form-control" />
                             }
                             else
