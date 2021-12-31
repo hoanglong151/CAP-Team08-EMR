@@ -46,11 +46,27 @@
                     <div class="row mgb-1 mgt-05">
                         <div class="col-md-5">
                             <label>Từ ngày</label>
-                            <input name="dateStart" type="date" class="form-control" />
-                        </div>
+                            @if (Session["DateStartDiagnostic"] != null)
+                            {
+                                DateTime dateStart = (DateTime)Session["DateStartDiagnostic"];
+                                <input name="dateStart" type="date" value="@dateStart.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else 
+                            { 
+                                <input name="dateStart" type="date" class="form-control" />
+                            }
+                            </div>
                         <div class="col-md-5">
                             <label>Đến ngày</label>
-                            <input name="dateEnd" type="date" class="form-control" />
+                            @if (Session["DateEndDiagnostic"] != null)
+                            {
+                                DateTime dateEnd = (DateTime)Session["DateEndDiagnostic"];
+                                <input name="dateEnd" type="date" value="@dateEnd.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input name="dateEnd" type="date" class="form-control" />
+                            }
                         </div>
                         <div class="col-md-2 align-self-end">
                             <button type="submit" class="btn-search">

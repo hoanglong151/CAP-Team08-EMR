@@ -46,19 +46,47 @@
                     <div class="row mgb-1 mgt-05">
                         <div class="col-md-2">
                             <label>Từ ngày</label>
-                            <input name="DateStart" type="date" class="form-control" />
+                            @if (ViewBag.DateStart != null)
+                            {
+                                <input name="DateStart" type="date" value="@ViewBag.DateStart.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input name="DateStart" type="date" class="form-control" />
+                            }
                         </div>
                         <div class="col-md-2">
                             <label>Đến ngày</label>
-                            <input name="DateEnd" type="date" class="form-control" />
+                            @if (ViewBag.DateEnd != null)
+                            {
+                                <input name="DateEnd" type="date" value="@ViewBag.DateEnd.ToString("yyyy-MM-dd")" class="form-control" />
+                            }
+                            else
+                            {
+                                <input name="DateEnd" type="date" class="form-control" />
+                            }
                         </div>
                         <div class="col-md-4">
                             <label>Họ Tên</label>
-                            <input name="Name" type="text" class="form-control" placeholder="Họ Tên" />
+                            @if (ViewBag.NamePatient != null)
+                            {
+                                <input name="Name" type="text" class="form-control" value="@ViewBag.NamePatient" placeholder="Họ Tên" />
+                            }
+                            else
+                            {
+                                <input name="Name" type="text" class="form-control" placeholder="Họ Tên" />
+                            }
                         </div>
                         <div class="col-md-3">
                             <label>Mã Bệnh Nhân</label>
-                            <input name="Code" type="text" class="form-control" placeholder="Mã Bệnh Nhân" />
+                            @if (ViewBag.CodePatient != null)
+                            {
+                                <input name="Code" type="text" value="@ViewBag.CodePatient" class="form-control" placeholder="Mã Bệnh Nhân" />
+                            }
+                            else
+                            {
+                                <input name="Code" type="text" class="form-control" placeholder="Mã Bệnh Nhân" />
+                            }
                         </div>
                         <div class="col-md-1 align-self-end">
                             <button type="submit" class="btn-search">

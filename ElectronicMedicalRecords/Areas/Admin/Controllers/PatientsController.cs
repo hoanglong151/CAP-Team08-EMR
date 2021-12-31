@@ -293,20 +293,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     informationExaminations = informationExaminationsList.Where(p => p.Patient.Name.ToLower().Contains(Name.ToLower())).ToList();
                 }
+                ViewBag.NamePatient = Name;
             }
             if (DateStart.HasValue)
             {
                 informationExaminations = informationExaminations.Where(p => p.DateExamine >= DateStart.Value).ToList();
+                ViewBag.DateStart = DateStart;
             }
             if (DateEnd.HasValue)
             {
                 TimeSpan timeEnd = new TimeSpan(23, 59, 59);
                 DateEnd = DateEnd + timeEnd;
                 informationExaminations = informationExaminations.Where(p => p.DateEnd <= DateEnd.Value).ToList();
+                ViewBag.DateEnd = DateEnd;
             }
             if( Code != "")
             {
                 informationExaminations = informationExaminations.Where(p => p.Patient.MaBN.ToLower().Contains(Code.ToLower())).ToList();
+                ViewBag.CodePatient = Code;
             }
             if (informationExaminations.Count > 0)
             {
