@@ -2858,8 +2858,6 @@
     <Content Include="Users\doctor.css" />
     <Content Include="Users\Css.css" />
     <Content Include="Users\js\glightbox.js" />
-    <Content Include="Users\js\tiny-slider.js" />
-    <Content Include="Users\js\bootstrap.bundle.min.js" />
     <Content Include="Users\animation.css" />
     <Content Include="Views\Shared\data.js" />
     <Content Include="Views\Shared\template.html" />

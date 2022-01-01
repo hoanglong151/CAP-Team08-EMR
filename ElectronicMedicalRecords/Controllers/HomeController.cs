@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectronicMedicalRecords.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace ElectronicMedicalRecords.Controllers
 {
     public class HomeController : Controller
     {
+        private CP24Team08Entities db = new CP24Team08Entities();
         public ActionResult Index()
         {
             return View();
@@ -22,7 +24,8 @@ namespace ElectronicMedicalRecords.Controllers
 
         public ActionResult Doctors()
         {
-            return View();
+            var listDoctor = db.Users.ToList();
+            return View(listDoctor);
 
         } public ActionResult News()
         {
