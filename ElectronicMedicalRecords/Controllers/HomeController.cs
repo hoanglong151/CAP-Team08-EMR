@@ -12,6 +12,10 @@ namespace ElectronicMedicalRecords.Controllers
         private CP24Team08Entities db = new CP24Team08Entities();
         public ActionResult Index()
         {
+            var listPatient = db.Patients.Count();
+            var listDoctor = db.Users.Count();
+            ViewBag.ListPatient = listPatient;
+            ViewBag.ListDoctor = listDoctor;
             return View();
         }
 
