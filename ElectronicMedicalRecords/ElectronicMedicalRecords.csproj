@@ -2857,6 +2857,8 @@
     <Content Include="Users\cssDoctor.css" />
     <Content Include="Users\doctor.css" />
     <Content Include="Users\Css.css" />
+    <Content Include="Users\js\glightbox.js" />
+    <Content Include="Users\animation.css" />
     <Content Include="Views\Shared\data.js" />
     <Content Include="Views\Shared\template.html" />
     <Content Include="Web.config" />
