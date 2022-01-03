@@ -163,51 +163,52 @@
                                 <span>DashBoard</span>
                             </a>
                         </li>
+                        @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc") || User.IsInRole("Thu Ngân"))
+                        {
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-file-invoice-dollar"></i>
+                                    <span>Hóa Đơn</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("BillExam", "Statistics")">Khám</a>
+                                    </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link underline'>
-                                <i class="text-white fas fa-file-invoice-dollar"></i>
-                                <span>Hóa Đơn</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("BillExam", "Statistics")">Khám</a>
-                                </li>
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("BillPre", "Statistics")">Thuốc</a>
+                                    </li>
 
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("BillPre", "Statistics")">Thuốc</a>
-                                </li>
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("BillTest", "Statistics")">Xét Nghiệm</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("BillTest", "Statistics")">Xét Nghiệm</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link underline'>
+                                    <i class="text-white far fa-chart-bar"></i>
+                                    <span>Thống Kê</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ</a>
+                                    </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link underline'>
-                                <i class="text-white far fa-chart-bar"></i>
-                                <span>Thống Kê</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ</a>
-                                </li>
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByCondition", "Statistics")">Theo Tình Trạng</a>
+                                    </li>
 
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("StatisByCondition", "Statistics")">Theo Tình Trạng</a>
-                                </li>
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByDiagnostic", "Statistics")">Theo Nhóm Bệnh</a>
+                                    </li>
 
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("StatisByDiagnostic", "Statistics")">Theo Nhóm Bệnh</a>
-                                </li>
-
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu</a>
-                                </li>
-                            </ul>
-                        </li>
-
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                         <li class="sidebar-item">
                             <a href="@Url.Action("Index", "Users")" class='sidebar-link underline'>
                                 <i class="text-white bi bi-person-badge-fill"></i>
@@ -248,6 +249,13 @@
                             <a href="@Url.Action("ListPrescriptionBill", "Prescription_Detail")" class='sidebar-link underline'>
                                 <i class="text-white fas fa-pills"></i>
                                 <span>Toa Thuốc</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("ListExamination", "Prescription_Detail")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-book-medical"></i>
+                                <span>Lịch Sử Khám Bệnh</span>
                             </a>
                         </li>
 

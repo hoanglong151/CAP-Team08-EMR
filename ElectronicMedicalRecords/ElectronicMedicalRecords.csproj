@@ -2838,6 +2838,7 @@
     <Content Include="Areas\Admin\Views\Statistics\BillExam.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\BillPre.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\BillTest.cshtml" />
+    <Content Include="Areas\Admin\Views\Prescription_Detail\ListExamination.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
