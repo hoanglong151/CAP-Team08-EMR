@@ -52,6 +52,35 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExaminations);
         }
 
+        public ActionResult ListExamination()
+        {
+            List<InformationExamination> informationExaminations = new List<InformationExamination>();
+            var UserID = User.Identity.GetUserId();
+            var informationList = db.InformationExaminations.ToList();
+            foreach (var information in informationList)
+            {
+                if(information.User_ID != null)
+                {
+                    var userBS = db.Users.FirstOrDefault(p => p.ID == information.User_ID);
+                    var userByID = db.AspNetUsers.Find(userBS.UserID);
+                    if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                    {
+                        information.User.AspNetUser = userByID;
+                        informationExaminations.Add(information);
+                    }
+                    else
+                    {
+                        if (userBS.UserID == UserID)
+                        {
+                            information.User.AspNetUser = userByID;
+                            informationExaminations.Add(information);
+                        }
+                    }
+                }                
+            }
+            return View(informationExaminations);
+        }
+
         public ActionResult DetailIE(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();

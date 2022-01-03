@@ -285,7 +285,7 @@
 @section scripts{
     <script>
         var k = 1;
-        var count = [0, 0, 0, 0, 0, 0, 0, 0];
+        var countEach = [0, 0, 0, 0, 0, 0, 0, 0];
         var arrTests = [];
         var arrSinhHoaMau = [];
         var arrDongMau = [];
@@ -353,7 +353,7 @@
                         "data": "ChiDinh",
                         "name": "Chỉ Định",
                         "render": (data, type, row) => {
-                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Amniocente.ChiDinh' onchange='updateNewCountTests(" + row.ID + ',' + 6 + ',' + '"Amniocente-"' +")'>"
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Amniocente.ChiDinh' onchange='updateNewTests(" + row.ID + ',' + 6 + ',' + '"Amniocente-"' +")'>"
                             return checkbox;
                         },
                     },
@@ -696,11 +696,9 @@
                     arrViSinh.splice(existViSinh, 1);
                     break;
             }
-            count[numTable]--;
-            CountTests[numTable].innerHTML = count[numTable];
+            countEach[numTable]--;
+            CountTests[numTable].innerHTML = countEach[numTable];
             var GetTable = tableNewCD[numTable].getAttribute("id");
-            console.log($("#" + row + id))
-            console.log(GetTable)
             $("#" + row + id).prop("value", false);
             $("#" + row + id).prop("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
@@ -713,7 +711,6 @@
 
         var selectDiagnostic = document.querySelector('#NameDiagnostic');
         selectDiagnostic.addEventListener('change', (e) => {
-            console.log(e.target.value)
             var id = parseInt(e.target.value);
             $.ajax({
                 type: "POST",
@@ -805,7 +802,7 @@
             table.addEventListener('click', function (event) {
                 var list = $('#' + listTable[index1].id + ' tbody td *input[type="checkbox"]');
                 if (event.target.checked == true) {
-                    count[index1] = 0;
+                    countEach[index1] = 0;
                     switch (index1) {
                         case 0:
                             arrTests = [];
@@ -838,7 +835,7 @@
                         value.checked = true;
                     })
                 } else {
-                    count[index1] = list.length;
+                    countEach[index1] = list.length;
                     list.each((index, value) => {
                         var id = value.getAttribute("data-id");
                         updateCountTests(id, event, value, index1)
@@ -870,8 +867,8 @@
         function updateCountTests(id, e, value, indextable) {
             if (e.target.checked == true) {
             value.setAttribute("value", true);
-            value.setAttribute("checked", true);
-                count[indextable]++;
+                value.setAttribute("checked", true);
+                countEach[indextable]++;
                 switch (indextable) {
                     case 0:
                         arrTests.push(id);
@@ -899,7 +896,7 @@
                         break;
                 }
             } else {
-                count[indextable]--;
+                countEach[indextable]--;
                 value.setAttribute("value", false);
                 value.setAttribute("checked", false);
                 switch (indextable) {
@@ -937,12 +934,13 @@
                         break;
                 }
             }
-            if (count[indextable] > 0) {
-                DetailTests[indextable].style.display = "block"
+            if (countEach[indextable] > 0) {
+                DetailTests[indextable].style.display = "block";
+                console.log(countEach[indextable])
             } else {
                 DetailTests[indextable].style.display = "none"
             }
-            CountTests[indextable].innerHTML = count[indextable];
+            CountTests[indextable].innerHTML = countEach[indextable];
         }
         //$(".imgAdd").click(function () {
         //    var nameInput = $(this).closest(".row").find("input[type='file']").attr("name");

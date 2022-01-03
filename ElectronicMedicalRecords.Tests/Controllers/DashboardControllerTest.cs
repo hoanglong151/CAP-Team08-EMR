@@ -24,5 +24,13 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.GetData() as ViewResult;
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Dashboard()
+        {
+            var result = controller.Dashboard() as ViewResult;
+            Assert.IsNotNull(result);
+        }
     }
+
 }

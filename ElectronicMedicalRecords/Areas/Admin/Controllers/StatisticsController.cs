@@ -14,6 +14,7 @@ using System.Web.Mvc;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Giám Đốc,QTV,Thu Ngân")]
     public class StatisticsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
