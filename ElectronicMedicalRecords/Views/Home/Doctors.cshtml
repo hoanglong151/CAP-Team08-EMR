@@ -4,7 +4,43 @@
         border: none;
         background: none
     }
+
+    .modal-form{
+        min-width: 1000px;
+    }
+
+    .image-zoom {
+        border: 1px solid #ccc;
+        padding: 5px;
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+    .image-zoom img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .md-body {
+        overflow: hidden !important;
+        min-height: auto;
+    }
+
 </style>
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url(https://preview.colorlib.com/theme/toothcare/images/xbg_2.jpg.pagespeed.ic.tdZ9NoFhG4.webp)">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 text-center mb-5">
+                <p class="breadcrumbs"><span class="me-2"><a href="@Url.Action("Index", "Home")">Home <i class="fa fa-chevron-right"></i></a></span> <span>Doctors <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Doctors</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="ftco-section">
     <div class="container">
         <div class="row">
@@ -12,7 +48,6 @@
             {
                 <div class="col-md-6 col-lg-3 aos-init aos-animate" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000">
                     <!-- Button trigger for BorderLess Modal -->
-                    <button type="button" class="btn-staff" data-bs-toggle="modal" data-bs-target="#border-less-@user.ID">
                         <div class="staff">
                             <div class="img-wrap d-flex align-items-stretch">
                                 <div class="img align-self-stretch" style="background-image: url(@user.Image)"></div>
@@ -22,26 +57,24 @@
                                 <span class="position mb-2">Head Dentist</span>
                                 <div class="faded">
                                     <ul class="ftco-social text-center">
-                                        <li class="ftco-animate">
-                                            <a href="#" class="d-flex align-items-center justify-content-center">
-                                                <span class="fa fa-twitter"></span>
-                                            </a>
-                                        </li>
-                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a></li>
-                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a></li>
-                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a></li>
+                                        <button type="button" class="btn-staff" data-bs-toggle="modal" data-bs-target="#border-less-@user.ID">
+                                            <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-eye-fill ri-lg"></i></a></li>
+                                        </button>
+                                            
+                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-facebook-fill ri-lg"></i></a></li>
+                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-linkedin-fill ri-lg"></i></a></li>
+                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-instagram-fill ri-lg"></i></a></li>
                                     </ul>
                                     <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
                                 </div>
                             </div>
                         </div>
-                    </button>
                 </div>
                 <!--BorderLess Modal Modal -->
                 <div class="modal fade text-left modal-borderless" id="border-less-@user.ID"
                      tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                      aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
+                    <div class="modal-dialog modal-dialog-scrollable modal-700 modal-form" role="document">
                         <div class="modal-content modal-user">
                             <div class="modal-header">
                                 <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
@@ -50,9 +83,11 @@
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
-                            <div class="modal-body detailDoctor d-flex">
-                                <img class="detailDoctor-img" src="@user.Image" style="border-radius:4px" />
-                                <div class="content content-doctor">
+                            <div class="modal-body detailDoctor d-flex md-body">
+                                <div class="image-zoom">
+                                <img class="detailDoctor-img" src="@user.Image" style="border-radius:4px;" />
+                                </div>
+                                <div class="content content-doctor p-2">
                                     <h5>@user.Degree. @user.Name</h5>
                                     <p>@Html.Raw(user.Introduction)</p>
                                     <div class="training">
@@ -68,13 +103,6 @@
                                         <p>@Html.Raw(user.SpecializedTreatment)</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary ml-1"
-                                        data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
-                                </button>
                             </div>
                         </div>
                     </div>
