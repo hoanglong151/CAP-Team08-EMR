@@ -53,6 +53,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             db.Configuration.LazyLoadingEnabled = false;
             List<StatisticModel> statisticModels = new List<StatisticModel>();
             statisticModels = (List<StatisticModel>)Session["Condition"];
+            ViewBag.DateStart = Session["DateStartTT"];
+            ViewBag.DateEnd = Session["DateEndTT"];
             return View(statisticModels);
         }
 
@@ -61,6 +63,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             db.Configuration.LazyLoadingEnabled = false;
             List<StatisticModel> statisticModels = new List<StatisticModel>();
             statisticModels = (List<StatisticModel>)Session["DoctorAndCondition"];
+            ViewBag.DateStart = Session["DateStartBSAndTT"];
+            ViewBag.DateEnd = Session["DateEndBSAndTT"];
             return View(statisticModels);
         }
 
@@ -69,14 +73,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             db.Configuration.LazyLoadingEnabled = false;
             List<StatisticModel> statisticModels = new List<StatisticModel>();
             statisticModels = (List<StatisticModel>)Session["Diagnostic"];
+            ViewBag.DateStart = Session["DateStartDiagnostic"];
+            ViewBag.DateEnd = Session["DateEndDiagnostic"];
             return View(statisticModels);
         }
 
-        public ActionResult PrintStatisticPrice()
+        public ActionResult PrintStatisticMoney()
         {
             db.Configuration.LazyLoadingEnabled = false;
-            StatisticModel statisticModels = new StatisticModel();
-            statisticModels = (StatisticModel)Session["Money"];
+            List<StatisticModel> statisticModels = new List<StatisticModel>();
+            statisticModels = (List<StatisticModel>)Session["Money"];
+            ViewBag.DateStart = Session["DateStartMoney"];
+            ViewBag.DateEnd = Session["DateEndMoney"];
             return View(statisticModels);
         }
 

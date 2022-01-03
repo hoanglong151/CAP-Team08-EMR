@@ -2834,7 +2834,7 @@
     <Content Include="Areas\Admin\Views\Statistics\PrintStatisticByCondition.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\PrintStatisByDocandCon.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\PrintStatisticDiagnostic.cshtml" />
-    <Content Include="Areas\Admin\Views\Statistics\PrintStatisticPrice.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\PrintStatisticMoney.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\BillExam.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\BillPre.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\BillTest.cshtml" />
@@ -2896,7 +2896,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
-    <Content Include="Views\Home\News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

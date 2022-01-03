@@ -10,6 +10,12 @@
     p {
         text-align: center;
     }
+
+    .box-date {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
    
 </style>
 <div class="container bootstrap snippets bootdeys">
@@ -25,6 +31,25 @@
 
                     <div style="margin-top:10px">
                         <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                    </div>
+
+                    <div class="box-date">
+                        @if (ViewBag.DateStart != null)
+                        {
+                            <span>Từ Ngày: @ViewBag.DateStart</span>
+                        }
+                        else
+                        {
+                            <span>Từ Ngày: @DateTime.Now </span>
+                        }
+                        @if (ViewBag.DateEnd != null)
+                        {
+                            <span>Đến Ngày: @ViewBag.DateEnd</span>
+                        }
+                        else
+                        {
+                            <span>Đến Ngày: @DateTime.Now</span>
+                        }
                     </div>
 
                     <div class="p-header">
@@ -43,11 +68,14 @@
                             <tbody>
                                 @foreach (var diagnostics in Model)
                                 {
+                                    if (diagnostics.countPatient != 0)
+                                    {
                                         <tr>
-                                            <td style="text-align: center;">@diagnostics.diagnosticsCategory.Code</td>
-                                            <td style="text-align: center; padding-left: 140px">@diagnostics.diagnosticsCategory.Name</td>
-                                            <td style="text-align: center; padding-left:120px">@diagnostics.countPatient</td>
+                                            <td>@diagnostics.diagnosticsCategory.Code</td>
+                                            <td>@diagnostics.diagnosticsCategory.Name</td>
+                                            <td>@diagnostics.countPatient</td>
                                         </tr>
+                                    }
                                 }
                             </tbody>
                         </table>

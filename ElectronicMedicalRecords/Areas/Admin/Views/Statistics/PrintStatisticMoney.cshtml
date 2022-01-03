@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<ElectronicMedicalRecords.Models.StatisticModel>
-
 @{
-    ViewBag.Title = "PrintStatisticPrice";
+    ViewBag.Title = "PrintStatisticMoney";
     Layout = "~/Areas/Admin/Views/Shared/Print.cshtml";
 }
 <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.min.css")">
@@ -12,9 +11,9 @@
         text-align: center;
     }
 
-    .box-date{
+    .box-date {
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         align-items: flex-end;
     }
 
@@ -57,26 +56,38 @@
                         <h1>Bảng Thống Kê</h1>
                     </div>
                     <div class="row body-pay">
-                        <p class="lead marginbottom">Bác Sỹ & Tình Trạng Bệnh Nhân</p>
+                        <p class="lead marginbottom">Doanh Thu</p>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center" style="width:15%">Mã Bác Sỹ</th>
-                                    <th style="width: 28.33%;">Bác Sỹ</th>
-                                    <th style="width: 28.33%">Tình Trạng</th>
-                                    <th style="width: 28.33%">Số Lượng Bệnh Nhân</th>
+                                    <th>Mã Bệnh Nhân</th>
+                                    <th>Tên Bệnh Nhân</th>
+                                    <th>Khám</th>
+                                    <th>Thuốc</th>
+                                    <th>Xét Nghiệm</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var user in Model)
+                                @foreach (var item in Model)
                                 {
-                                    var charName = user.usersStatis.AspNetUser.Email.IndexOf(".", 0);
-                                    var charName1 = user.usersStatis.AspNetUser.Email.IndexOf("@", 0);
                                     <tr>
-                                        <td>@user.usersStatis.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1)</td>
-                                        <td>@user.usersStatis.Name</td>
-                                        <td>@user.patientStatu.Name</td>
-                                        <td>@user.usersStatis.InformationExaminations.Count</td>
+                                        <td>@item.patient.MaBN</td>
+                                        <td>@item.patient.Name</td>
+                                        <td>@item.informationExamination.PriceExamination.Value.ToString("N0") VNĐ</td>
+                                        <td>
+                                            @if (item.informationExamination.PricePrescription != null)
+                                            {
+                                                @item.informationExamination.PricePrescription.Value.ToString("N0")
+                                                <span>VNĐ</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.informationExamination.PriceTest != null)
+                                            {
+                                                @item.informationExamination.PriceTest.Value.ToString("N0")
+                                                <span>VNĐ</span>
+                                            }
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -95,3 +106,4 @@
         </div>
     </div>
 </div>
+
