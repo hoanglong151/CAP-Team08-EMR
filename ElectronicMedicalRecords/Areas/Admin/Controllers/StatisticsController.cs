@@ -616,6 +616,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             for (int i = 0; i < statisticModels.Count; i++)
             {
                 var item = statisticModels[i];
+                item.informationExamination.PriceExamination = item.informationExamination.PriceExamination != null ? item.informationExamination.PriceExamination : 0;
+                item.informationExamination.PricePrescription = item.informationExamination.PricePrescription != null ? item.informationExamination.PricePrescription : 0;
+                item.informationExamination.PriceTest = item.informationExamination.PriceTest != null ? item.informationExamination.PriceTest : 0;
                 totalExam += (int)item.informationExamination.PriceExamination;
                 totalPres += (int)item.informationExamination.PricePrescription;
                 totalTest += (int)item.informationExamination.PriceTest;
