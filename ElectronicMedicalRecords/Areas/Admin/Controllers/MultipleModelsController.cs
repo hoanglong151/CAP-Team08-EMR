@@ -1399,13 +1399,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             if(InfoExamination.Count == 1)
             {
                 var checkInfoExam = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == id);
+                var checkBill = db.Bills.FirstOrDefault(p => p.Patient_ID == id);
                 if (checkInfoExam.HeartBeat != null || checkInfoExam.Breathing != null
                     || checkInfoExam.BloodPressure != null || checkInfoExam.Weight != null
                     || checkInfoExam.Height != null || checkInfoExam.ResultCTMau != null
                     || checkInfoExam.ResultSHM != null || checkInfoExam.ResultDMau != null
                     || checkInfoExam.ResultNhomMau != null || checkInfoExam.ResultNuocTieu != null
                     || checkInfoExam.ResultMienDich != null || checkInfoExam.ResultDichChocDo != null
-                    || checkInfoExam.ResultViSinh != null)
+                    || checkInfoExam.ResultViSinh != null || checkBill != null)
                 {
                     return Json(new { success = false });
                 }

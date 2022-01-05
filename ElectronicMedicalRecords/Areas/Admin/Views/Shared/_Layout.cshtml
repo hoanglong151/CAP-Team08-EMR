@@ -513,9 +513,9 @@
         $(function () {
             var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
             if (RoleCheckBS) {
-                var count = 0;
-                count = parseInt($('span.countBS').html()) || 0;
-                if (count > 0) {
+                var countBS = 0;
+                countBS = parseInt($('span.countBS').html()) || 0;
+                if (countBS > 0) {
                     updateNotificationBS();
                 }
                 $('span.countBS', this).html("&nbsp;");
@@ -532,6 +532,7 @@
                         type: "GET",
                         url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
                         success: function (res) {
+                            console.log(res)
                             $('#notiContentBS').empty();
                             if (res.length == 0) {
                                 $('#notiContentBS').append($('<li>No data available</li>'));
@@ -562,9 +563,9 @@
         $(function () {
             var RoleCheckKTV = @(User.IsInRole("Kỹ Thuật Viên") ? "true" : "false");
             if (RoleCheckKTV) {
-            var count = 0;
-            count = parseInt($('span.count').html()) || 0;
-            if (count > 0) {
+            var countKTV = 0;
+            countKTV = parseInt($('span.count').html()) || 0;
+                if (countKTV > 0) {
                 updateNotification();
             }
             $('span.count', this).html("&nbsp;");
@@ -573,13 +574,14 @@
             })
 
           /*  updateNotification();*/
-            function updateNotification() {
+                function updateNotification() {
                 $('#notiContent').empty();
                 $('#notiContent').append($('<li>Loading...</li>'));
                 $.ajax({
                     type: "GET",
                     url: "@Url.Action("GetNotification", "InformationExaminations")",
                     success: function (res) {
+                        console.log(res)
                         $('#notiContent').empty();
                         if (res.length == 0) {
                             $('#notiContent').append($('<li>No data available</li>'));
@@ -615,9 +617,9 @@
         $(function () {
             var RoleCheckBS1 = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
             if (RoleCheckBS1) {
-            var count = 0;
-            count = parseInt($('span.countBS1').html()) || 0;
-            if (count > 0) {
+            var countBS1 = 0;
+            countBS1 = parseInt($('span.countBS1').html()) || 0;
+            if (countBS1 > 0) {
                 updateNotificationBS1();
             }
             $('span.countBS1', this).html("&nbsp;");
@@ -633,7 +635,7 @@
                     type: "GET",
                     url: "@Url.Action("GetNotificationBS1", "InformationExaminations")",
                     success: function (res) {
-
+                        console.log(res)
                         $('#notiContentBS1').empty();
                         if (res.length == 0) {
                             $('#notiContentBS1').append($('<li>No data available</li>'));
