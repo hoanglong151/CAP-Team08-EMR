@@ -440,258 +440,246 @@
     </script>
 
     <script type="text/javascript">
-        $(function () {
-            function getPatient() {
-                $('#tableLoadPatient').DataTable({
-                "ajax": {
-                    "url": "@Url.Action("GetData", "Patients")",
-                    "type": "GET",
-                    "datatype": "json"
+    function getPatient() {
+        $('#tableLoadPatient').DataTable({
+        "ajax": {
+            "url": "@Url.Action("GetData", "Patients")",
+            "type": "GET",
+            "datatype": "json"
+        },
+        "columns": [
+            {
+                "data": "MaBN",
+            },
+            {
+                "data": "Name",
+            },
+            {
+                "data": "BirthDate",
+            },
+            {
+                "data": "Address",
+            },
+            {
+                "data": "Gender",
+            },
+            {
+                "className": "w85",
+                "data": null,
+                "render": function (data, type, row) {
+                    var hrefCreateOldPatient = '@Url.Action("CreateOldPatient", "MultipleModels")/' + data.ID;
+                    var hrefEditPatient = '@Url.Action("Edit","MultipleModels")/' + data.ID;
+                    var hrefDetailPatient = '@Url.Action("Details","InformationExaminations")/' + data.ID;
+                    var hrefConfirmBill = '@Url.Action("BillExamination", "MultipleModels")/' + data.ID;
+                    var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                    return button;
                 },
-                "columns": [
-                    {
-                        "data": "MaBN",
-                    },
-                    {
-                        "data": "Name",
-                    },
-                    {
-                        "data": "BirthDate",
-                    },
-                    {
-                        "data": "Address",
-                    },
-                    {
-                        "data": "Gender",
-                    },
-                    {
-                        "className": "w85",
-                        "data": null,
-                        "render": function (data, type, row) {
-                            var hrefCreateOldPatient = '@Url.Action("CreateOldPatient", "MultipleModels")/' + data.ID;
-                            var hrefEditPatient = '@Url.Action("Edit","MultipleModels")/' + data.ID;
-                            var hrefDetailPatient = '@Url.Action("Details","InformationExaminations")/' + data.ID;
-                            var hrefConfirmBill = '@Url.Action("BillExamination", "MultipleModels")/' + data.ID;
-                            var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
-                            return button;
-                        },
-                        "targets": 0,
-                        "orderable": false
-                    }
-                ],
-                "language": {
-                    "emptyTable": "No data available",
-                    "oPaginate": {
-                        sNext: '<i class="fa fa-chevron-right"></i>',
-                        sPrevious: '<i class="fa fa-chevron-left"></i>',
-                    },
-                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                    "lengthMenu": "Hiển thị _MENU_ người",
-                    "search": "Tìm kiếm:",
-                },
-                searching: false,
-            })
+                "targets": 0,
+                "orderable": false
             }
+        ],
+        "language": {
+            "emptyTable": "No data available",
+            "oPaginate": {
+                sNext: '<i class="fa fa-chevron-right"></i>',
+                sPrevious: '<i class="fa fa-chevron-left"></i>',
+            },
+            "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+            "lengthMenu": "Hiển thị _MENU_ người",
+            "search": "Tìm kiếm:",
+        },
+        searching: false,
+    })
+    }
 
-            var notificationHubYTa = $.connection.notificationHubYTa;
-            $.connection.hub.start().done(function () {
-                getPatient();
-                /*console.log("Notification hub started Y Tá");*/
-            }).fail((e) => {
-                alert(e)
-            });
+    var notificationHubYTa = $.connection.notificationHubYTa;
 
-            notificationHubYTa.client.notifyPatient = function (message) {
-                if (message && message.toLowerCase() == "added") {
-                    $('#tableLoadPatient').DataTable().ajax.reload();
-                }
-            }
-        })
+    notificationHubYTa.client.notifyPatient = function (message) {
+        if (message && message.toLowerCase() == "added") {
+            $('#tableLoadPatient').DataTable().ajax.reload();
+        }
+    }
+    $.connection.hub.start().done(function () {
+        getPatient();
+        /*console.log("Notification hub started Y Tá");*/
+    }).fail((e) => {
+        alert(e)
+    });
     </script>
 
     <script type="text/javascript">
-        $(function () {
-            var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
-            if (RoleCheckBS) {
-                var countBS = 0;
-                countBS = parseInt($('span.countBS').html()) || 0;
-                if (countBS > 0) {
-                    updateNotificationBS();
-                }
-                $('span.countBS', this).html("&nbsp;");
-                $('html').click(function () {
-                    $('.noti-content').hide();
-                })
+    var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
+    if (RoleCheckBS) {
+        var countBS = 0;
+        countBS = parseInt($('span.countBS').html()) || 0;
+        if (countBS > 0) {
+            updateNotificationBS();
+        }
+        $('span.countBS', this).html("&nbsp;");
+        $('html').click(function () {
+            $('.noti-content').hide();
+        })
 
-                /*updateNotificationBS();*/
-                function updateNotificationBS() {
+        function updateNotificationBS() {
+            $('#notiContentBS').empty();
+            $('#notiContentBS').append($('<li>Loading...</li>'));
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
+                success: function (res) {
+                    console.log(res)
                     $('#notiContentBS').empty();
-                    $('#notiContentBS').append($('<li>Loading...</li>'));
-
-                    $.ajax({
-                        type: "GET",
-                        url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
-                        success: function (res) {
-                            console.log(res)
-                            $('#notiContentBS').empty();
-                            if (res.length == 0) {
-                                $('#notiContentBS').append($('<li>No data available</li>'));
-                            }
-                            $.each(res.data, function (index, value) {
-                                $('span.countBS').parent().children('i').addClass('bell');
-                                var href = "@Url.Action("DetailsIE", "MultipleModels")" + "/" + value.ID;
-                                $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
-                            })
-                            $('span.countBS').html(res.data.length);
-                        }
-                    })
-                }
-                var notificationHubBS = $.connection.notificationHubBS;
-                $.connection.hub.start().done(function () {
-                    updateNotificationBS();
-                    /*console.log("Notification hub started Bác Sĩ");*/
-                });
-                notificationHubBS.client.notifyResult = function (message) {
-                    if (message && message.toLowerCase() == "added") {
-                        updateNotificationBS();
+                    if (res.length == 0) {
+                        $('#notiContentBS').append($('<li>No data available</li>'));
                     }
+                    $.each(res.data, function (index, value) {
+                        $('span.countBS').parent().children('i').addClass('bell');
+                        var href = "@Url.Action("DetailsIE", "MultipleModels")" + "/" + value.ID;
+                        $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                    })
+                    $('span.countBS').html(res.data.length);
                 }
+            })
+        }
+        var notificationHubBS = $.connection.notificationHubBS;
+        $.connection.hub.start().done(function () {
+            updateNotificationBS();
+            /*console.log("Notification hub started Bác Sĩ");*/
+        });
+        notificationHubBS.client.notifyResult = function (message) {
+            if (message && message.toLowerCase() == "added") {
+                updateNotificationBS();
             }
-        })
+        }
+    }
     </script>
     <script type="text/javascript">
-        $(function () {
-            var RoleCheckKTV = @(User.IsInRole("Kỹ Thuật Viên") ? "true" : "false");
-            if (RoleCheckKTV) {
-            var countKTV = 0;
-            countKTV = parseInt($('span.count').html()) || 0;
-                if (countKTV > 0) {
+        var RoleCheckKTV = @(User.IsInRole("Kỹ Thuật Viên") ? "true" : "false");
+        if (RoleCheckKTV) {
+        var countKTV = 0;
+        countKTV = parseInt($('span.count').html()) || 0;
+            if (countKTV > 0) {
+            updateNotification();
+        }
+        $('span.count', this).html("&nbsp;");
+        $('html').click(function () {
+            $('.noti-content').hide();
+        })
+
+        function updateNotification() {
+        $('#notiContent').empty();
+        $('#notiContent').append($('<li>Loading...</li>'));
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetNotification", "InformationExaminations")",
+            success: function (res) {
+                console.log(res)
+                $('#notiContent').empty();
+                if (res.length == 0) {
+                    $('#notiContent').append($('<li>No data available</li>'));
+                }
+                $.each(res.data, function (index, value) {
+                    $('span.count').parent().children('i').addClass('bell');
+                    var href = "@Url.Action("EditByID", "MultipleModels")" +"/" + value.ID;
+                    $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
+                })
+                $('span.count').html(res.data.length);
+            }
+        })
+        }
+
+        var notificationHub = $.connection.notificationHub;
+
+        notificationHub.client.notify = function (message) {
+            if (message && message.toLowerCase() == "added") {
                 updateNotification();
             }
-            $('span.count', this).html("&nbsp;");
-            $('html').click(function () {
-                $('.noti-content').hide();
-            })
+        }
 
-          /*  updateNotification();*/
-                function updateNotification() {
-                $('#notiContent').empty();
-                $('#notiContent').append($('<li>Loading...</li>'));
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetNotification", "InformationExaminations")",
-                    success: function (res) {
-                        console.log(res)
-                        $('#notiContent').empty();
-                        if (res.length == 0) {
-                            $('#notiContent').append($('<li>No data available</li>'));
-                        }
-                        $.each(res.data, function (index, value) {
-                            $('span.count').parent().children('i').addClass('bell');
-                            var href = "@Url.Action("EditByID", "MultipleModels")" +"/" + value.ID;
-                            $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
-                        })
-                        $('span.count').html(res.data.length);
-                    }
-                })
-                }
-
-                var notificationHub = $.connection.notificationHub;
-
-                notificationHub.client.notify = function (message) {
-                    if (message && message.toLowerCase() == "added") {
-                        updateNotification();
-                    }
-                }
-
-                $.connection.hub.start().done(function () {
-                    updateNotification();
-                    /*console.log("Notification hub started KTV");*/
-                }).fail((e) => {
-                    alert(e)
-                });
-            }
-        })
+        $.connection.hub.start().done(function () {
+            updateNotification();
+            /*console.log("Notification hub started KTV");*/
+        }).fail((e) => {
+            alert(e)
+        });
+    }
     </script>
     <script type="text/javascript">
-        $(function () {
-            var RoleCheckBS1 = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
-            if (RoleCheckBS1) {
-            var countBS1 = 0;
-            countBS1 = parseInt($('span.countBS1').html()) || 0;
-            if (countBS1 > 0) {
+        var RoleCheckBS1 = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
+        if (RoleCheckBS1) {
+        var countBS1 = 0;
+        countBS1 = parseInt($('span.countBS1').html()) || 0;
+        if (countBS1 > 0) {
+            updateNotificationBS1();
+        }
+        $('span.countBS1', this).html("&nbsp;");
+        $('html').click(function () {
+            $('.noti-contentBS1').hide();
+        })
+
+        function updateNotificationBS1() {
+        $('#notiContentBS1').empty();
+        $('#notiContentBS1').append($('<li>Loading...</li>'));
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetNotificationBS1", "InformationExaminations")",
+            success: function (res) {
+                console.log(res)
+                $('#notiContentBS1').empty();
+                if (res.length == 0) {
+                    $('#notiContentBS1').append($('<li>No data available</li>'));
+                }
+                $.each(res.data, function (index, value) {
+                    $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
+                    var href = "@Url.Action("CreateTest", "MultipleModels")" +"/" + value.ID;
+                    $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                })
+                $('span.countBS1').html(res.data.length);
+            }
+        })
+        }
+
+        var notificationHubBS1 = $.connection.notificationHubBS1;
+
+        notificationHubBS1.client.notifyResultBS1 = function (message) {
+            if (message && message.toLowerCase() == "added") {
                 updateNotificationBS1();
             }
-            $('span.countBS1', this).html("&nbsp;");
-            $('html').click(function () {
-                $('.noti-contentBS1').hide();
-            })
+        }
 
-                /*updateNotificationBS1();*/
-                function updateNotificationBS1() {
-                $('#notiContentBS1').empty();
-                $('#notiContentBS1').append($('<li>Loading...</li>'));
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetNotificationBS1", "InformationExaminations")",
-                    success: function (res) {
-                        console.log(res)
-                        $('#notiContentBS1').empty();
-                        if (res.length == 0) {
-                            $('#notiContentBS1').append($('<li>No data available</li>'));
-                        }
-                        $.each(res.data, function (index, value) {
-                            $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
-                            var href = "@Url.Action("CreateTest", "MultipleModels")" +"/" + value.ID;
-                            $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
-                        })
-                        $('span.countBS1').html(res.data.length);
-                    }
-                })
-                }
-
-                var notificationHubBS1 = $.connection.notificationHubBS1;
-
-                notificationHubBS1.client.notifyResultBS1 = function (message) {
-                    if (message && message.toLowerCase() == "added") {
-                        updateNotificationBS1();
-                    }
-                }
-
-                $.connection.hub.start().done(function () {
-                    updateNotificationBS1();
-                    /*console.log("Notification hub started Bac Si 1");*/
-                }).fail((e) => {
-                    alert(e)
-                });
-            }
-        })
+        $.connection.hub.start().done(function () {
+            updateNotificationBS1();
+            /*console.log("Notification hub started Bac Si 1");*/
+        }).fail((e) => {
+            alert(e)
+        });
+    }
     </script>
 
     <script type="text/javascript">
-        $(function () {
-            function updateUser() {
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("Status", "Users")",
-                    success: function (res) {
-                        if (res.success) {
-                            $('.checkUserOnline').each((index, user) => {
-                                if (res.data.indexOf(user.innerText) != -1) {
-                                    user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
-                                    user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
-                                } else {
-                                    user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
-                                    user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
-                                }
-                            })
-                        }
-                        else {
-                            alert(res.responText)
-                        }
+        function updateUser() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("Status", "Users")",
+                success: function (res) {
+                    if (res.success) {
+                        $('.checkUserOnline').each((index, user) => {
+                            if (res.data.indexOf(user.innerText) != -1) {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
+                            } else {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
+                            }
+                        })
                     }
-                })
-            }
+                    else {
+                        alert(res.responText)
+                    }
+                }
+            })
+        }
 
         var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
         $.connection.hub.start().done(function () {
@@ -703,7 +691,6 @@
         }).fail((e) => {
             alert(e)
         });
-        })
     </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)
