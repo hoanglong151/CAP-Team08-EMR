@@ -87,6 +87,11 @@
     }
 }
 
+div.panel-body{
+    border-top-color: transparent !important;
+    background-color: transparent !important;
+}
+
 img.wp-smiley,
 img.emoji {
     display: inline !important;
@@ -850,14 +855,19 @@ body.admin-bar .sh-side-demos-container {
     font-family: 'Montserrat' !important;
 }
 
-#accordion-4Dtf5jiy8C.sh-accordion .panel-title a.collapsed, #accordion-4Dtf5jiy8C.sh-accordion .panel-title a.collapsed i {
+#accordion-4Dtf5jiy8C.sh-accordion .panel-title a.collapsed{
     color: #505050;
     background-color: #f4f4f4;
 }
 
-#accordion-4Dtf5jiy8C.sh-accordion .panel-title a, #accordion-4Dtf5jiy8C.sh-accordion .panel-title a i {
+#accordion-4Dtf5jiy8C.sh-accordion .panel-title a{
     color: #ffffff;
     background-color: #3ce2ad;
+}
+
+#accordion-4Dtf5jiy8C.sh-accordion .panel-title a i, #accordion-4Dtf5jiy8C.sh-accordion .panel-title a.collapsed i{
+    background-color: transparent;
+    color: #fff;
 }
 
 #accordion-4Dtf5jiy8C .sh-accordion-icon {
