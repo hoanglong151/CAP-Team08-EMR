@@ -41,10 +41,10 @@
     </ul>
 </div>
 
-<script>
+<script type="text/javascript">
     var count = 0;
-    var song = document.getElementById('mp3');
-    document.addEventListener('DOMContentLoaded', () => {
+    var song = document.querySelector('#mp3');
+    window.onload = function () {
         song.addEventListener('volumechange', function (e) {
             window.localStorage.setItem('muted', song.volume)
             if (song.volume == 0 && count == 1) {
@@ -90,13 +90,12 @@
             var getStatusSong1 = window.localStorage.getItem("statusSong");
             return getStatusSong1;
         }
-
         var played = false;
         var tillPlayed = getCookie('timePlayed');
         var mutedPlayed = getMuted('muted');
         var statusSong = getStatusSong();
         function update() {
-            if (!played) {                            
+            if (!played) {
                 if (tillPlayed != 0) {
                     song.currentTime = tillPlayed;
                     if (mutedPlayed) {
@@ -126,6 +125,6 @@
             }
         }
         setInterval(update, 1000);
-    })
+    }
 </script>
 

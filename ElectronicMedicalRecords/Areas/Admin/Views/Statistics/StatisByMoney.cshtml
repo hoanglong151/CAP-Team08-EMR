@@ -38,6 +38,14 @@
                 </a>
                 @using (Html.BeginForm("ExportExcelMoney", "Statistics", FormMethod.Post, new { style = "display:inline-block" }))
                 {
+                    if (ViewBag.DateStart != null)
+                    {
+                        <input name="ExportStart" type="date" value=@ViewBag.DateStart.ToString("yyyy-MM-dd") hidden />
+                    }
+                    if (ViewBag.DateEnd != null)
+                    {
+                        <input name="ExportEnd" type="date" value=@ViewBag.DateEnd.ToString("yyyy-MM-dd") hidden />
+                    }
                     <button class="btn btn-outline-primary" type="submit">
                         <i class="far fa-file-excel"></i> Export Excel
                     </button>
@@ -95,9 +103,9 @@
                                 <td>
                                     @if (item.informationExamination.PricePrescription != null)
                                     {
-                                        @item.informationExamination.PricePrescription.Value.ToString("N0") 
+                                        @item.informationExamination.PricePrescription.Value.ToString("N0")
                                         <span>VNĐ</span>
-                                    }                           
+                                    }
                                 </td>
                                 <td>
                                     @if (item.informationExamination.PriceTest != null)

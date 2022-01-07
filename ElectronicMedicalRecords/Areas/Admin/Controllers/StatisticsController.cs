@@ -360,7 +360,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View("StatisByMoney",statisticModels);
         }
 
-        public ActionResult ExportExcelCondition()
+        [HttpPost]
+        public ActionResult ExportExcelCondition(DateTime? ExportStart, DateTime? ExportEnd)
         {
             List<StatisticModel> statisticModels = (List<StatisticModel>)Session["Condition"];
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -430,19 +431,19 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A6:E6"].Merge = true;
             workSheet.Cells["A6:E6"].Style.Font.Bold = true;
 
-            if(Session["DateStartTT"] != null && Session["DateEndTT"] == null)
+            if(ExportStart != null && ExportEnd == null)
             {
-                DateTime dateStart = (DateTime)Session["DateStartTT"];
+                DateTime dateStart = (DateTime)ExportStart;
                 workSheet.Cells["A7"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if(Session["DateStartTT"] == null && Session["DateEndTT"] != null) {
-                DateTime dateEnd = (DateTime)Session["DateEndTT"];
+            else if(ExportStart == null && ExportEnd != null) {
+                DateTime dateEnd = (DateTime)ExportEnd;
                 workSheet.Cells["A7"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if(Session["DateStartTT"] != null && Session["DateEndTT"] != null)
+            else if(ExportStart != null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndTT"];
-                DateTime dateStart = (DateTime)Session["DateStartTT"];
+                DateTime dateEnd = (DateTime)ExportEnd;
+                DateTime dateStart = (DateTime)ExportStart;
                 workSheet.Cells["A7"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
@@ -476,7 +477,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult ExportExcelDiagnostic()
+        public ActionResult ExportExcelDiagnostic(DateTime? ExportStart, DateTime? ExportEnd)
         {
             List<StatisticModel> statisticModels = (List<StatisticModel>)Session["Diagnostic"];
             var totalCount = 0;
@@ -546,20 +547,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A6:E6"].Merge = true;
             workSheet.Cells["A6:E6"].Style.Font.Bold = true;
 
-            if (Session["DateStartDiagnostic"] != null && Session["DateEndDiagnostic"] == null)
+            if (ExportStart != null && ExportEnd == null)
             {
-                DateTime dateStart = (DateTime)Session["DateStartDiagnostic"];
+                DateTime dateStart = (DateTime)ExportStart;
                 workSheet.Cells["A7"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if (Session["DateStartDiagnostic"] == null && Session["DateEndDiagnostic"] != null)
+            else if (ExportStart == null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndDiagnostic"];
+                DateTime dateEnd = (DateTime)ExportEnd;
                 workSheet.Cells["A7"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if (Session["DateStartDiagnostic"] != null && Session["DateEndDiagnostic"] != null)
+            else if (ExportStart != null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndDiagnostic"];
-                DateTime dateStart = (DateTime)Session["DateStartDiagnostic"];
+                DateTime dateEnd = (DateTime)ExportEnd;
+                DateTime dateStart = (DateTime)ExportStart;
                 workSheet.Cells["A7"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
@@ -594,7 +595,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult ExportExcelMoney()
+        public ActionResult ExportExcelMoney(DateTime? ExportStart, DateTime? ExportEnd)
         {
             var totalExam = 0;
             var totalPres = 0;
@@ -681,27 +682,27 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A6:G6"].Merge = true;
             workSheet.Cells["A6:G6"].Style.Font.Bold = true;
 
-            if (Session["DateStartMoney"] != null && Session["DateEndMoney"] == null)
+            if (ExportStart != null && ExportEnd == null)
             {
-                DateTime dateStart = (DateTime)Session["DateStartMoney"];
-                workSheet.Cells["A6"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
+                DateTime dateStart = (DateTime)ExportStart;
+                workSheet.Cells["A7"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if (Session["DateStartMoney"] == null && Session["DateEndMoney"] != null)
+            else if (ExportStart == null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndMoney"];
-                workSheet.Cells["A6"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
+                DateTime dateEnd = (DateTime)ExportEnd;
+                workSheet.Cells["A7"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if (Session["DateStartMoney"] != null && Session["DateEndMoney"] != null)
+            else if (ExportStart != null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndMoney"];
-                DateTime dateStart = (DateTime)Session["DateStartMoney"];
-                workSheet.Cells["A6"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
+                DateTime dateEnd = (DateTime)ExportEnd;
+                DateTime dateStart = (DateTime)ExportStart;
+                workSheet.Cells["A7"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else
             {
-                workSheet.Cells["A6"].Value = "Đến Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
+                workSheet.Cells["A7"].Value = "Đến Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
             }
-            workSheet.Cells["A6:G6"].Merge = true;
+            workSheet.Cells["A7:G7"].Merge = true;
 
             workSheet.PrinterSettings.RepeatRows = new ExcelAddress("1:9");
 
@@ -730,7 +731,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult ExportExcelBSAndTT()
+        public ActionResult ExportExcelBSAndTT(DateTime? ExportStart, DateTime? ExportEnd)
         {
             List<StatisticModel> statisticModels = (List<StatisticModel>)Session["DoctorAndCondition"];
             var totalCount = 0;
@@ -802,20 +803,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             workSheet.Cells["A6:E6"].Merge = true;
             workSheet.Cells["A6:E6"].Style.Font.Bold = true;
 
-            if (Session["DateStartBSAndTT"] != null && Session["DateEndBSAndTT"] == null)
+            if (ExportStart != null && ExportEnd == null)
             {
-                DateTime dateStart = (DateTime)Session["DateStartBSAndTT"];
+                DateTime dateStart = (DateTime)ExportStart;
                 workSheet.Cells["A7"].Value = "Từ Ngày: " + dateStart.ToString("dd-MM-yyyy");
             }
-            else if (Session["DateStartBSAndTT"] == null && Session["DateEndBSAndTT"] != null)
+            else if (ExportStart == null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndBSAndTT"];
+                DateTime dateEnd = (DateTime)ExportEnd;
                 workSheet.Cells["A7"].Value = "Đến Ngày: " + dateEnd.ToString("dd-MM-yyyy");
             }
-            else if (Session["DateStartBSAndTT"] != null && Session["DateEndBSAndTT"] != null)
+            else if (ExportStart != null && ExportEnd != null)
             {
-                DateTime dateEnd = (DateTime)Session["DateEndBSAndTT"];
-                DateTime dateStart = (DateTime)Session["DateStartBSAndTT"];
+                DateTime dateEnd = (DateTime)ExportEnd;
+                DateTime dateStart = (DateTime)ExportStart;
                 workSheet.Cells["A7"].Value = "Ngày: " + dateStart.ToString("dd-MM-yyyy") + " - " + dateEnd.ToString("dd-MM-yyyy");
             }
             else

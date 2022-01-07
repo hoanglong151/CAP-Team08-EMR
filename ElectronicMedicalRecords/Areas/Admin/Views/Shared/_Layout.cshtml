@@ -528,7 +528,6 @@
                 type: "GET",
                 url: "@Url.Action("GetNotificationBS", "InformationExaminations")",
                 success: function (res) {
-                    console.log(res)
                     $('#notiContentBS').empty();
                     if (res.length == 0) {
                         $('#notiContentBS').append($('<li>No data available</li>'));
@@ -574,7 +573,6 @@
             type: "GET",
             url: "@Url.Action("GetNotification", "InformationExaminations")",
             success: function (res) {
-                console.log(res)
                 $('#notiContent').empty();
                 if (res.length == 0) {
                     $('#notiContent').append($('<li>No data available</li>'));
@@ -625,7 +623,6 @@
             type: "GET",
             url: "@Url.Action("GetNotificationBS1", "InformationExaminations")",
             success: function (res) {
-                console.log(res)
                 $('#notiContentBS1').empty();
                 if (res.length == 0) {
                     $('#notiContentBS1').append($('<li>No data available</li>'));

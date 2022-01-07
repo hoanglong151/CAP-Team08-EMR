@@ -38,6 +38,14 @@
                 </a>
                 @using (Html.BeginForm("ExportExcelBSAndTT", "Statistics", FormMethod.Post, new { style = "display:inline-block" }))
                 {
+                    if (ViewBag.DateStart != null)
+                    {
+                        <input name="ExportStart" type="date" value=@ViewBag.DateStart.ToString("yyyy-MM-dd") hidden />
+                    }
+                    if (ViewBag.DateEnd != null)
+                    {
+                        <input name="ExportEnd" type="date" value=@ViewBag.DateEnd.ToString("yyyy-MM-dd") hidden />
+                    }
                     <button class="btn btn-outline-primary" type="submit">
                         <i class="far fa-file-excel"></i> Export Excel
                     </button>
