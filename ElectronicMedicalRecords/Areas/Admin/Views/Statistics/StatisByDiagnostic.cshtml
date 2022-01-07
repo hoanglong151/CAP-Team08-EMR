@@ -94,14 +94,11 @@
                     <tbody>
                         @foreach (var diagnostics in Model)
                         {
-                            if (diagnostics.countPatient != 0)
-                            {
-                                <tr>
-                                    <td>@diagnostics.diagnosticsCategory.Code</td>
-                                    <td>@diagnostics.diagnosticsCategory.Name</td>
-                                    <td>@diagnostics.countPatient</td>
-                                </tr>
-                            }
+                            <tr>
+                                <td>@diagnostics.diagnosticsCategory.Code</td>
+                                <td>@diagnostics.diagnosticsCategory.Name</td>
+                                <td>@diagnostics.countPatient</td>
+                            </tr>
                         }
                     </tbody>
                 </table>
