@@ -38,6 +38,14 @@
                 </a>
                 @using (Html.BeginForm("ExportExcelDiagnostic", "Statistics", FormMethod.Post, new { style = "display:inline-block" }))
                 {
+                    if (ViewBag.DateStart != null)
+                    {
+                        <input name="ExportStart" type="date" value=@ViewBag.DateStart.ToString("yyyy-MM-dd") hidden />
+                    }
+                    if (ViewBag.DateEnd != null)
+                    {
+                        <input name="ExportEnd" type="date" value=@ViewBag.DateEnd.ToString("yyyy-MM-dd") hidden />
+                    }
                     <button class="btn btn-outline-primary" type="submit">
                         <i class="far fa-file-excel"></i> Export Excel
                     </button>
@@ -51,11 +59,11 @@
                                 DateTime dateStart = (DateTime)ViewBag.DateStart;
                                 <input name="dateStart" type="date" value="@dateStart.ToString("yyyy-MM-dd")" class="form-control" />
                             }
-                            else 
-                            { 
+                            else
+                            {
                                 <input name="dateStart" type="date" class="form-control" />
                             }
-                            </div>
+                        </div>
                         <div class="col-md-5">
                             <label>Đến ngày</label>
                             @if (ViewBag.DateEnd != null)
