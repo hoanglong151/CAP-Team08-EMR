@@ -855,17 +855,17 @@ body.admin-bar .sh-side-demos-container {
     font-family: 'Montserrat' !important;
 }
 
-#accordion-4Dtf5jiy8C.sh-accordion .panel-title a.collapsed{
+#accordion-4Dtf5jiy8C.sh-accordion .panel-title button.collapsed {
     color: #505050;
     background-color: #f4f4f4;
 }
 
-#accordion-4Dtf5jiy8C.sh-accordion .panel-title a{
+#accordion-4Dtf5jiy8C.sh-accordion .panel-title button{
     color: #ffffff;
     background-color: #3ce2ad;
 }
 
-#accordion-4Dtf5jiy8C.sh-accordion .panel-title a i, #accordion-4Dtf5jiy8C.sh-accordion .panel-title a.collapsed i{
+#accordion-4Dtf5jiy8C.sh-accordion .panel-title button i, #accordion-4Dtf5jiy8C.sh-accordion .panel-title button.collapsed i {
     background-color: transparent;
     color: #fff;
 }
@@ -874,9 +874,19 @@ body.admin-bar .sh-side-demos-container {
     font-size: 14px
 }
 
-    #accordion-4Dtf5jiy8C .sh-accordion-icon i.open-icon {
-        color: #505050 !important;
-    }
+.sh-accordion-style6 .panel-title button {
+    font-family: Roboto;
+    padding: 25px 20px;
+    border-radius: 8px;
+}
+
+
+
+
+
+#accordion-4Dtf5jiy8C .sh-accordion-icon i.open-icon {
+    color: #505050 !important;
+}
 
 #accordion-4Dtf5jiy8C.sh-accordion-style5 .nav-tabs li.active:after {
     background-color: #3ce2ad;
@@ -1685,12 +1695,12 @@ body.admin-bar .sh-side-demos-container {
     position: relative;
 }
 
-#accordion-qYNPBsj4OC.sh-accordion .panel-title a.collapsed, #accordion-qYNPBsj4OC.sh-accordion .panel-title a.collapsed i {
+#accordion-qYNPBsj4OC.sh-accordion .panel-title button.collapsed, #accordion-qYNPBsj4OC.sh-accordion .panel-title button.collapsed i {
     color: rgba(80,80,80,0.74);
     background-color: rgba(255,255,255,0.01);
 }
 
-#accordion-qYNPBsj4OC.sh-accordion .panel-title a, #accordion-qYNPBsj4OC.sh-accordion .panel-title a i {
+#accordion-qYNPBsj4OC.sh-accordion .panel-title button, #accordion-qYNPBsj4OC.sh-accordion .panel-title button i {
     color: #505050;
     background-color: #f4f4f4;
 }
@@ -1719,13 +1729,17 @@ body.admin-bar .sh-side-demos-container {
     background-color: #f4f4f4;
 }
 
-#accordion-qYNPBsj4OC.sh-accordion .panel-title a {
+#accordion-qYNPBsj4OC.sh-accordion .panel-title button {
     border-radius: 8px !important;
 }
 
 .vc_column_668680499:not(.vc_parallax):not(.jarallax) {
     overflow: center !important;
     position: relative;
+}
+
+.sh-accordion .panel-title a{
+    display:block
 }
 
 @media (max-width: 800px) {
@@ -2005,4 +2019,41 @@ body.admin-bar .sh-side-demos-container {
 
 .jevelin-header-button:after {
     display: none;
+}
+
+.modal-700 {
+    max-width: 700px
+}
+
+.detailDoctor {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailDoctor-img {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 20px;
+}
+
+.content-doctor {
+    flex-grow: 1;
+}
+
+.btn-modal {
+    width: 100%;
+    display: flex;
+    border: none;
+    align-items: center
+}
+
+.sh-accordion-style6 button.collapsed .sh-accordion-title{
+    font-weight: 400
+}
+
+
+#sh-header-builder-9CcOom8qTf .sh-header-builder-main ul.sh-nav > li > a.current-page {
+    color: #0078aa !important;
 }

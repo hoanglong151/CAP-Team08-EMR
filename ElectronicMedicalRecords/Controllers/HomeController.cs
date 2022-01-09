@@ -1,4 +1,7 @@
 ﻿using ElectronicMedicalRecords.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +16,12 @@ namespace ElectronicMedicalRecords.Controllers
         public ActionResult Index()
         {
             var listPatient = db.Patients.Count();
+            var role = db.AspNetRoles.FirstOrDefault(x => x.Name == "Giám Đốc");
+            var director = role.AspNetUsers.FirstOrDefault();
             var listDoctor = db.Users.Count();
             ViewBag.ListPatient = listPatient;
             ViewBag.ListDoctor = listDoctor;
+            ViewBag.Director = director.Users.FirstOrDefault();
             return View();
         }
 
@@ -28,7 +34,7 @@ namespace ElectronicMedicalRecords.Controllers
 
         public ActionResult Doctors()
         {
-            var listDoctor = db.Users.ToList();
+            var listDoctor = db.Users.Where(p => p.IsShow == true).ToList();
             return View(listDoctor);
 
         } public ActionResult News()
