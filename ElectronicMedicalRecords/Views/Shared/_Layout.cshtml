@@ -31,7 +31,6 @@
     <link rel='stylesheet' id='fw-ext-forms-default-styles-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/unyson/framework/extensions/forms/static/css/frontend.css?ver=2.7.24' type='text/css' media='all' />
     <link rel='stylesheet' id='font-awesome-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/unyson/framework/static/libs/font-awesome/css/font-awesome.min.css?ver=2.7.24' type='text/css' media='all' />
     <link rel='stylesheet' id='js_composer_front-css' href='https://jevelin.shufflehound.com/medical/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.7.0' type='text/css' media='all' />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel='stylesheet' id='jevelin-plugins-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/plugins.css?ver=5.8.1' type='text/css' media='all' />
     <link rel='stylesheet' id='jevelin-shortcodes-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/shortcodes.css?ver=5.8.1' type='text/css' media='all' />
     <link rel='stylesheet' id='jevelin-styles-css' href='https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/style.css?ver=5.8.1' type='text/css' media='all' />
@@ -403,16 +402,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Users/animation.css" rel="stylesheet" />
-    <link href="https://jevelin.shufflehound.com/medical/wp-content/themes/jevelin/css/plugins/bootstrap.min.css?ver=3.3.4" rel="stylesheet" />
-
-    @*<script>
-        (function (w, d) {
-                !function (e, t, r, a, s) {
-                    e[r] = e[r] || {}, e[r].executed = [], e.zaraz = { deferred: [] }; var n = t.getElementsByTagName("title")[0]; e[r].c = t.cookie, n && (e[r].t = t.getElementsByTagName("title")[0].text), e[r].w = e.screen.width, e[r].h = e.screen.height, e[r].j = e.innerHeight, e[r].e = e.innerWidth, e[r].l = e.location.href, e[r].r = t.referrer, e[r].k = e.screen.colorDepth, e[r].n = t.characterSet, e[r].o = (new Date).getTimezoneOffset(),
-                        e[s] = e[s] || [], e.zaraz._preTrack = [], e.zaraz.track = (t, r) => e.zaraz._preTrack.push([t, r]), e[s].push({ "zaraz.start": (new Date).getTime() }); var i = t.getElementsByTagName(a)[0], o = t.createElement(a); o.defer = !0, o.src = "https://preview.colorlib.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" + new URLSearchParams(e[r]).toString(), i.parentNode.insertBefore(o, i)}(w, d, "zarazData", "script", "dataLayer");
-            })(window, document);
-        </script>*@
     <link href="@Url.Content("~/Users/Css.css")" rel="stylesheet" />
     <style>
         a:hover {
@@ -452,8 +443,8 @@
                                                     <div class="sh-header-builder-main-logo">
                                                         <div class="sh-header-builder-logo">
                                                             <a href="@Url.Action("Index", "Home")">
-                                                                <img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-standard" />
-                                                                <img src="https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Logo-1-copy-9.png" class="sh-header-builder-logo-sticky" />
+                                                                <img src="https://haitrieu.com/wp-content/uploads/2021/10/Logo-DH-Van-Lang-H.png" width="120" class="sh-header-builder-logo-standard" />
+                                                                <img src="https://haitrieu.com/wp-content/uploads/2021/10/Logo-DH-Van-Lang-H.png" width="120" class="sh-header-builder-logo-sticky" />
                                                             </a>
                                                         </div>
                                                     </div>
@@ -464,22 +455,22 @@
                                                             <div class="sh-header-builder-main-element sh-header-builder-main-element-navigation sh-nav-container">
                                                                 <ul id="menu-header-medical" class="sh-nav">
                                                                     <li id="menu-item-29" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-29">
-                                                                        <a href="@Url.Action("Doctors", "Home")">BÁC SỸ</a>
+                                                                        <a class="home" href="@Url.Action("Index", "Home")">TRANG CHỦ</a>
                                                                     </li>
                                                                     <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-30">
-                                                                        <a href="@Url.Action("Index", "Home")#about">VỀ CHÚNG TÔI</a>
+                                                                        <a class="about" href="@Url.Action("Index", "Home")#about">VỀ CHÚNG TÔI</a>
                                                                     </li>
                                                                     <li id="menu-item-31" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-31">
-                                                                        <a href="@Url.Action("Index", "Home")#departments">DỊCH VỤ</a>
+                                                                        <a class="departments" href="@Url.Action("Index", "Home")#departments">DỊCH VỤ</a>
+                                                                    </li>
+                                                                    <li id="menu-item-32" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-32">
+                                                                        <a class="doctor" href="@Url.Action("Doctors", "Home")">BÁC SĨ</a>
                                                                     </li>
                                                                     <li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-33">
-                                                                        <a href="@Url.Action("Index", "Home")#news">TIN TỨC</a>
+                                                                        <a class="news" href="@Url.Action("Index", "Home")#news">TIN TỨC</a>
                                                                     </li>
                                                                     <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34">
-                                                                        <a href="#contacts">LIÊN HỆ</a>
-                                                                    </li>
-                                                                    <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34">
-                                                                        <a style="color: #bd042f !important;" href="@Url.Action("Login", "Account")">ĐĂNG NHẬP</a>
+                                                                        <a class="contacts" href="@Url.Action("Index", "Home")#contacts">LIÊN HỆ</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -612,7 +603,7 @@
                                 <div id="image-2" class="widget_social_links widget-item widget_image">
                                     <div class="wrap-image">
                                         <div class="sh-image-widgets">
-                                            <h3 class="widget-title">Important Information</h3>
+                                            <h3 class="widget-title">Thông Tin Quan Trọng</h3>
                                             <p class="sh-image-widgets-description">
                                                 Trang thông tin hiện đang xin giấy phép đăng ký
                                             </p>
@@ -621,14 +612,14 @@
                                 </div>
                                 <div id="recent_posts-2" class="widget_social_links widget-item widget_recent_posts">
                                     <div class="wrap-recent-posts">
-                                        <h3 class="widget-title">Latest News</h3>
+                                        <h3 class="widget-title">Tin Nổi Bật</h3>
                                         <div class="sh-recent-posts-widgets">
                                             <div class="sh-recent-posts-widgets-item">
                                                 <div class="sh-recent-posts-widgets-item-thumb">
-                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/welcome-to-our-new-building/">
+                                                    <a target="_blank" href="https://covid19.gov.vn/">
                                                         <div class="sh-ratio">
                                                             <div class="sh-ratio-container sh-ratio-container-square">
-                                                                <div class="sh-ratio-content" style="background-image: url(https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Untitled-1_0001_niti-k-228198-unsplash-150x150.jpg);"></div>
+                                                                <div class="sh-ratio-content" style="background-image: url(data:image/jpeg;base64,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); "></div>
                                                             </div>
                                                         </div>
                                                         <div class="sh-mini-overlay">
@@ -640,23 +631,20 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="sh-recent-posts-widgets-count">
-                                                            0
-                                                        </div>
                                                     </a>
                                                 </div>
                                                 <div class="sh-recent-posts-widgets-item-content">
                                                     <span class="post-meta-categories">
-                                                        <a href="https://jevelin.shufflehound.com/medical/category/news/" rel="category tag">News</a>
+                                                        <a target="_blank" href="https://covid19.who.int/" rel="category tag">Covid-19</a>
                                                     </span>
-                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/welcome-to-our-new-building/">
-                                                        <h6>Welcome to our new building</h6>
+                                                    <a target="_blank" href="https://covid19.hochiminhcity.gov.vn/">
+                                                        <h6>Cập nhật tin tức Covid-19 Hàng ngày</h6>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="sh-recent-posts-widgets-item">
                                                 <div class="sh-recent-posts-widgets-item-thumb">
-                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/healthier-diet-for-better-future/">
+                                                    <a target="_blank" href="http://viendinhduong.vn/vi/tin-tuc---su-kien-noi-bat/che-do-an-lanh-manh-dua-tren-thuc-pham-lanh-manh.html">
                                                         <div class="sh-ratio">
                                                             <div class="sh-ratio-container sh-ratio-container-square">
                                                                 <div class="sh-ratio-content" style="background-image: url(https://cdn.jevelin.shufflehound.com/wp-content/uploads/sites/23/2018/09/Untitled-1_0003_brooke-lark-250695-150x150.jpg);"></div>
@@ -671,19 +659,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="sh-recent-posts-widgets-count">
-                                                            0
-                                                        </div>
                                                     </a>
                                                 </div>
                                                 <div class="sh-recent-posts-widgets-item-content">
                                                     <span class="post-meta-categories">
-                                                        <a href="https://jevelin.shufflehound.com/medical/category/diet/" rel="category tag">Diet</a>
+                                                        <a target="_blank" href="https://www.vinmec.com/vi/tin-tuc/thong-tin-suc-khoe/dinh-duong/cac-luu-y-ve-mot-che-do-uong-lanh-manh/" rel="category tag">Dinh Dưỡng</a>
                                                     </span>
 
-                                                    <a href="https://jevelin.shufflehound.com/medical/2018/10/18/healthier-diet-for-better-future/">
-                                                        <h6>Healthier diet for better future</h6>
+                                                    <a target="_blank" href="https://www.bidvmetlife.com.vn/vn/for-customers/navigating-happiness-together/eat-happy/9-meo-don-gian-giup-an-lanh-manh-hon/">
+                                                        <h6>Chế độ ăn uống lành mạnh</h6>
                                                     </a>
                                                 </div>
                                             </div>
@@ -707,7 +691,7 @@
                                         </div>
                                         <div class="sh-contacts-widget-item">
                                             <i class="icon-clock"></i>
-                                            Mon. – Frie. 11AM – 19PM
+                                            Thứ 2. – Thứ 6. 11AM – 19PM
                                         </div>
                                     </div>
                                 </div>
@@ -881,9 +865,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
         AOS.init();
+    </script>
+    <script>
+        var links = document.querySelectorAll('.sh-nav > li > a');
+        var sec = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sec.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            })
+            links.forEach(a => {
+                a.classList.remove('current-page');
+                if (a.classList.contains(current)) {
+                    a.classList.add('current-page');
+                }
+            })
+        })
+
+        var oldURL = '';
+        links.forEach((value, index) => {
+            value.addEventListener('click', (e) => {
+                var elems = document.querySelector(".current-page");
+                if (elems != null) {
+                    elems.classList.remove("current-page");
+                }
+                if (value.href === e.target.href) {
+                    value.classList.add('current-page')
+                }
+            })
+        })
+        var linkhref = document.querySelector(`.sh-nav > li > a[href="${window.location.pathname + window.location.hash}"]`);
+        linkhref.classList.add("current-page");
     </script>
     <script type="text/javascript">jQuery(document).ready(function ($) { "use strict"; });</script>
 </body>

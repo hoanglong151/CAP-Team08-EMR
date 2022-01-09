@@ -26,10 +26,13 @@
         overflow: hidden !important;
         min-height: auto;
     }
-
+    .modal-header:before{
+        display: none;
+        content: none;
+    }
 </style>
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url(https://preview.colorlib.com/theme/toothcare/images/xbg_2.jpg.pagespeed.ic.tdZ9NoFhG4.webp)">
+<section id="doctor" class="hero-wrap hero-wrap-2" style="background-image: url(https://preview.colorlib.com/theme/toothcare/images/xbg_2.jpg.pagespeed.ic.tdZ9NoFhG4.webp)">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -41,53 +44,56 @@
     </div>
 </section>
 
-<section class="ftco-section">
+<section id="doctor" class="ftco-section">
     <div class="container">
         <div class="row">
             @foreach (var user in Model)
             {
                 <div class="col-md-6 col-lg-3 aos-init aos-animate" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000">
                     <!-- Button trigger for BorderLess Modal -->
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(@user.Image)"></div>
+                    <div class="staff">
+                        <div class="img-wrap d-flex align-items-stretch">
+                            <div class="img align-self-stretch" style="background-image: url(@user.Image)"></div>
+                        </div>
+                        <div class="text text-center">
+                            <div>
+                                <h3 class="mb-2">@user.Name</h3>
+                                <span class="position mb-2">@user.Degree</span>
                             </div>
-                            <div class="text text-center">
-                                <h3 class="mb-2">Dr. Lloyd Wilson</h3>
-                                <span class="position mb-2">Head Dentist</span>
-                                <div class="faded">
-                                    <ul class="ftco-social text-center">
-                                        <button type="button" class="btn-staff" data-bs-toggle="modal" data-bs-target="#border-less-@user.ID">
-                                            <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-eye-fill ri-lg"></i></a></li>
+                            <div class="faded">
+                                <ul class="ftco-social text-center">
+                                    <li class="ftco-animate">
+                                        <button type="button" class="d-flex align-items-center justify-content-center"
+                                                data-bs-toggle="modal" data-bs-target="#border-less-@user.ID">
+                                            <i class="ri-eye-fill ri-lg"></i>
                                         </button>
-                                            
-                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-facebook-fill ri-lg"></i></a></li>
-                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-linkedin-fill ri-lg"></i></a></li>
-                                        <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-instagram-fill ri-lg"></i></a></li>
-                                    </ul>
-                                    <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                </div>
+                                    </li>
+                                    <li class="ftco-animate"><a target="_blank" href="https://www.facebook.com/khoa.y.vlu/" class="d-flex align-items-center justify-content-center"><i class="ri-facebook-fill ri-lg"></i></a></li>
+                                    @*<li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-linkedin-fill ri-lg"></i></a></li>
+                                    <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><i class="ri-instagram-fill ri-lg"></i></a></li>*@
+                                </ul>
+                                <p>Phòng Khám Đại Học Văn Lang.</p>
                             </div>
                         </div>
+                    </div>
                 </div>
+
                 <!--BorderLess Modal Modal -->
                 <div class="modal fade text-left modal-borderless" id="border-less-@user.ID"
                      tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                      aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-700 modal-form" role="document">
+                    <div class="modal-dialog modal-dialog-scrollable modal-700" role="document">
                         <div class="modal-content modal-user">
                             <div class="modal-header">
                                 <h5 class="modal-title">Thông Tin Bác Sĩ</h5>
-                                <button type="button" class="close rounded-pill btn-staff"
-                                        data-bs-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close rounded-pill"
+                                        data-bs-dismiss="modal" aria-label="Close" style="border:none">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
-                            <div class="modal-body detailDoctor d-flex md-body">
-                                <div class="image-zoom">
-                                <img class="detailDoctor-img" src="@user.Image" style="border-radius:4px;" />
-                                </div>
-                                <div class="content content-doctor p-2">
+                            <div class="modal-body detailDoctor">
+                                <img class="detailDoctor-img" src="@user.Image" style="border-radius:4px" />
+                                <div class="content content-doctor">
                                     <h5>@user.Degree. @user.Name</h5>
                                     <p>@Html.Raw(user.Introduction)</p>
                                     <div class="training">

@@ -3951,12 +3951,6 @@ Copyright (c) 2015 Daniel Eden
     box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    :root {
-        scroll-behavior: smooth;
-    }
-}
-
 body {
     margin: 0;
     font-family: var(--bs-font-sans-serif);
@@ -6009,8 +6003,8 @@ textarea.form-control {
 
 body {
     font-family: "Roboto", Arial, sans-serif;
-    background: #f8f8f8;
-    font-size: 16px;
+    background: #fff;
+    font-size: 12px !important;
     line-height: 1.8;
     font-weight: 400;
     color: #999999;
@@ -7559,6 +7553,9 @@ textarea.form-control {
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    height: calc(100% - 30px);
+    display:flex;
+    flex-direction: column;
 }
 
     .staff .img {
@@ -7576,6 +7573,7 @@ textarea.form-control {
         margin: 0 auto;
         border: 10px solid #f8f9fa;
         z-index: 0;
+        flex-shrink: 0
     }
 
         .staff .img:after {
@@ -7610,6 +7608,11 @@ textarea.form-control {
         -webkit-box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.01);
         -moz-box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.01);
         box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.01);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
     }
 
         .staff .text h3, .staff .text .h3 {
@@ -7650,12 +7653,13 @@ textarea.form-control {
         transition: all 0.3s ease;
     }
 
-        .staff .ftco-social li a {
+        .staff .ftco-social li a, .staff .ftco-social li button {
             width: 40px;
             height: 40px;
             background: #00bcd4;
             color: #fff;
             border-radius: 50%;
+            border: none
         }
 
     .staff:hover .text, .staff:focus .text {
@@ -7671,7 +7675,7 @@ textarea.form-control {
             color: #fff;
         }
 
-    .staff:hover .ftco-social li a, .staff:focus .ftco-social li a {
+    .staff:hover .ftco-social li a, .staff:focus .ftco-social li a, .staff:hover .ftco-social li button, .staff:focus .ftco-social li button {
         background: rgba(255, 255, 255, 0.3);
         color: #fff;
     }
