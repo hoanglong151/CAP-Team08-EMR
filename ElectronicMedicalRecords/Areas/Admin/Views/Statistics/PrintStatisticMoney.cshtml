@@ -12,9 +12,8 @@
     }
 
     .box-date {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        text-align: center;
+        padding-bottom: 0.5rem;
     }
 
 </style>
@@ -33,27 +32,27 @@
                         <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
                     </div>
 
-                    <div class="box-date">
-                        @if (ViewBag.DateStart != null)
-                        {
-                            <span>Từ Ngày: @ViewBag.DateStart</span>
-                        }
-                        else
-                        {
-                            <span>Từ Ngày: @DateTime.Now </span>
-                        }
-                        @if (ViewBag.DateEnd != null)
-                        {
-                            <span>Đến Ngày: @ViewBag.DateEnd</span>
-                        }
-                        else
-                        {
-                            <span>Đến Ngày: @DateTime.Now</span>
-                        }
-                    </div>
-
                     <div class="p-header">
                         <h1>Bảng Thống Kê</h1>
+                    </div>
+
+                    <div class="box-date">
+                        @if (ViewBag.DateStart == null && ViewBag.DateEnd != null)
+                        {
+                            <span>Đến ngày: @ViewBag.DateEnd.ToString("dd-MM-yyyy")</span>
+                        }
+                        else if (ViewBag.DateStart != null && ViewBag.DateEnd == null)
+                        {
+                            <span>Từ Ngày: @ViewBag.DateStart.ToString("dd-MM-yyyy") </span>
+                        }
+                        else if (ViewBag.DateStart != null && ViewBag.DateEnd != null)
+                        {
+                            <span>Ngày: @ViewBag.DateStart.ToString("dd-MM-yyyy") <strong>-</strong> @ViewBag.DateEnd.ToString("dd-MM-yyyy")</span>
+                        }
+                        else
+                        {
+                            <span>Đến ngày: @DateTime.Now.ToString("dd-MM-yyyy")</span>
+                        }
                     </div>
                     <div class="row body-pay">
                         <p class="lead marginbottom">Doanh Thu</p>
