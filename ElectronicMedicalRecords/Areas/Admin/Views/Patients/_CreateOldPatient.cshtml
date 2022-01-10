@@ -81,7 +81,7 @@
                 </div>
             </div>
             @{
-                Html.RenderAction("Create", "InformationExaminations");
+                Html.RenderAction("Create", "InformationExaminations", new { id = Model.Patient.ID });
             }
         </div>
     </div>

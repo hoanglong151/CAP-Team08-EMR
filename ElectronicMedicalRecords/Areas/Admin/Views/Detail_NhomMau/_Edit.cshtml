@@ -69,13 +69,14 @@
             }
         })
     }
-    var selectedNhomMauRh = document.querySelector('#NhomMauRh').getAttribute("value");
+    var selectedNhomMauRh = document.querySelector('#NhomMauRh');
     if (selectedNhomMauRh != null) {
-        var getValueRh = selectedNhomMauBth.getAttribute("value");
+        var getValueRh = selectedNhomMauRh.getAttribute("value");
         var optionSelectedRh = document.querySelectorAll("#NhomMauRh option");
-        optionSelectedRh.forEach((value, index) => {
-            if (value.getAttribute("value") == getValueRh) {
-                value.setAttribute("selected", "selected")
+        optionSelectedRh.forEach((valueRh, indexRh) => {
+            console.log(valueRh.getAttribute("value"), getValueRh)
+            if (valueRh.getAttribute("value") == getValueRh) {
+                valueRh.setAttribute("selected", "selected")
             }
         })
     }

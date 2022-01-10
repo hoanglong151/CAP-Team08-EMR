@@ -97,6 +97,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void CreateG()
         {
+            var patient = db.Patients.FirstOrDefault();
             var user = db.AspNetUsers.First();
             List<Claim> claims = new List<Claim>{
                 new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
@@ -111,7 +112,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 HttpContext = fakeHttpContext,
             };
             controller.ControllerContext = controllerContext;
-            var result = controller.Create() as PartialViewResult;
+            var result = controller.Create(patient.ID) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_Create", result.ViewName);
         }
