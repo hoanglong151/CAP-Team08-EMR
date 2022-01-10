@@ -74,6 +74,19 @@
 }
 
 <script>
+    var selectedViSinhAD = document.querySelectorAll('#Result');
+    selectedViSinhAD.forEach((v, i) => {
+        if (v != null) {
+            var getValue = v.getAttribute("value");
+            var optionSelectedViSinhAD = v.querySelectorAll("option");
+            optionSelectedViSinhAD.forEach((value, index) => {
+                if (value.getAttribute("value") == getValue) {
+                    value.setAttribute("selected", "selected")
+                }
+            })
+        }
+    })
+
     $(document).ready(function () {
         const editors = document.querySelectorAll('.editor');
         editors.forEach(item => {
