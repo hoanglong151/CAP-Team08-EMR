@@ -211,16 +211,23 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
 
         // GET: Admin/InformationExaminations/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(int? id)
         {
             var UserID = User.Identity.GetUserId();
             var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
-            var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
-            var informationExamination = listInfo.LastOrDefault();
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
             ViewBag.DateExamination = DateTime.Now;
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            if (id != null)
+            {
+                var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+                var informationExamination = listInfo.LastOrDefault();
+                ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            }
+            else
+            {
+                ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name");
+            }
             return PartialView("_Create");
         }
 
