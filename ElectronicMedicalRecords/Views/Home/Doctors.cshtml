@@ -37,8 +37,8 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 text-center mb-5">
-                <p class="breadcrumbs"><span class="me-2"><a href="@Url.Action("Index", "Home")">Home <i class="fa fa-chevron-right"></i></a></span> <span>Doctors <i class="fa fa-chevron-right"></i></span></p>
-                <h1 class="mb-0 bread">Doctors</h1>
+                <p class="breadcrumbs"><span class="me-2"><a href="@Url.Action("Index", "Home")">Trang Chủ <i class="fa fa-chevron-right"></i></a></span> <span>Đội Ngũ Bác Sĩ <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Đội Ngũ Bác Sĩ</h1>
             </div>
         </div>
     </div>
@@ -104,10 +104,13 @@
                                         <h6>Quá trình công tác</h6>
                                         <p>@Html.Raw(user.WorkingProcess)</p>
                                     </div>
-                                    <div class="treatment">
-                                        <h6>Các mặt bệnh hay điều trị</h6>
-                                        <p>@Html.Raw(user.SpecializedTreatment)</p>
-                                    </div>
+                                    @if (user.SpecializedTreatment != null)
+                                    {
+                                        <div class="treatment">
+                                            <h6>Các mặt bệnh hay điều trị</h6>
+                                            <p>@Html.Raw(user.SpecializedTreatment)</p>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
