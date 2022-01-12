@@ -693,10 +693,17 @@
     @RenderSection("scripts", required: false)
 
 
-    <script>
+<script>
         $(window).on("load", function () {
             $("#loader-wrapper").fadeOut("slow");
         });
-    </script>
+
+        window.addEventListener('beforeunload', function (e) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("updateUser", "Users")",
+            })
+        });
+</script>
 </body>
 </html>

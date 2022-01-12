@@ -41,7 +41,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
                 foreach (var user in usersOnline)
                 {
-                    listUser.Add(user.Key);
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        listUser.Add(user.Key);
+                    }
+                    var time = user.Value.AddMinutes(1);
+                    if (time <= DateTime.Now)
+                    {
+                        listUser.Remove(user.Key);
+                    }
                 }
                 foreach (var item in usersOnline.ToList())
                 {
@@ -56,6 +64,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 return RedirectToAction("Login","Account", new { Area = "" });
             }
+        }
+
+        public ActionResult updateUser()
+        {
+            var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+            var userUpdate = User.Identity.GetUserId();
+            usersOnline.Remove(userUpdate);
+            usersOnline.Add(userUpdate, DateTime.Now);
+            return View("Status");
         }
 
         [ChildActionOnly]

@@ -39,29 +39,29 @@ namespace ElectronicMedicalRecords
         }
         protected void Application_End()
         {
-            //var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+            var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
 
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    var userName = User.Identity.GetUserId();
-            //    if (loggedInUsers != null)
-            //    {
-            //        loggedInUsers[userName] = DateTime.Now;
-            //        HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
-            //    }
-            //}
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.GetUserId();
+                if (loggedInUsers != null)
+                {
+                    loggedInUsers[userName] = DateTime.Now;
+                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                }
+            }
 
-            //if (loggedInUsers != null)
-            //{
-            //    foreach (var item in loggedInUsers.ToList())
-            //    {
-            //        if (item.Value < DateTime.Now.AddMinutes(-1))
-            //        {
-            //            loggedInUsers.Remove(item.Key);
-            //        }
-            //    }
-            //    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
-            //}
+            if (loggedInUsers != null)
+            {
+                foreach (var item in loggedInUsers.ToList())
+                {
+                    if (item.Value < DateTime.Now.AddSeconds(-30))
+                    {
+                        loggedInUsers.Remove(item.Key);
+                    }
+                }
+                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            }
             SqlDependency.Stop(conString);
         }
     }
