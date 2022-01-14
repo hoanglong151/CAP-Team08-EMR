@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Giám Đốc,QTV")]
     public class DashboardController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
@@ -34,6 +35,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             dashboardModel.patients = patients;
             dashboardModel.users = userOnline;
             dashboardModel.userList = userList;
+            dashboardModel.listUsersOnline = (List<string>)Session["ListUsersOnline"];
             return View(dashboardModel);
         }
 

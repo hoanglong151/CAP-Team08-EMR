@@ -139,7 +139,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/InformationExaminations/Details/5
         public ActionResult Details(int id)
         {
-            var informationExaminations = db.InformationExaminations.Where(p => p.Patient_ID == id && p.User_ID != null).ToList();
+            var informationExaminations = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
             ViewBag.id = id;
             return View(informationExaminations);
         }
@@ -382,23 +382,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     || checkInfoExam.ResultSHM != null || checkInfoExam.ResultDMau != null
                     || checkInfoExam.ResultNhomMau != null || checkInfoExam.ResultNuocTieu != null
                     || checkInfoExam.ResultMienDich != null || checkInfoExam.ResultDichChocDo != null
-                    || checkInfoExam.ResultViSinh != null)
+                    || checkInfoExam.ResultViSinh != null || checkInfoExam.PricePrescription != null || checkInfoExam.PriceExamination != null
+                    || checkInfoExam.PriceTest != null)
             {
                 return Json(new { success = false });
             }
             else
             {
-                var patientCheck = db.Patients.Where(p => p.ID == checkInfoExam.Patient_ID).ToList();
-                if(patientCheck.Count > 1)
-                {
-                    db.InformationExaminations.Remove(checkInfoExam);
-                    db.SaveChanges();
-                    return Json(new { success = true });
-                }
-                else
-                {
-                    return Json(new { success = false, TextResponse = "Vui lòng xóa thông tin bệnh nhân nếu chỉ có 1 hồ sơ bệnh án" });
-                }
+                var patientCheck = db.Patients.FirstOrDefault(p => p.ID == checkInfoExam.Patient_ID);
+                db.InformationExaminations.Remove(checkInfoExam);
+                db.SaveChanges();
+                return Json(new { success = true });
             }
         }
 

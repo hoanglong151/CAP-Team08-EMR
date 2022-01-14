@@ -18,5 +18,6 @@ namespace ElectronicMedicalRecords.Models
         public List<Patient> patients { get; set; }
         public List<User> users { get; set; }
         public List<User> userList { get; set; }
+        public List<string> listUsersOnline { get; set; }
     }
 }

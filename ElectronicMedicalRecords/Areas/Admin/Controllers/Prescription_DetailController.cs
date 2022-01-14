@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Bác Sĩ,Giám Đốc,QTV,Kỹ Thuật Viên,Y tá/Điều dưỡng,Thu Ngân")]
     public class Prescription_DetailController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();

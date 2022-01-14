@@ -156,13 +156,15 @@
                             <a href="@Url.Action("HomePage", "Users")" class='text-white'></a>
                             Trang Chủ
                         </li>
-
-                        <li class="sidebar-item">
-                            <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
-                                <i class="text-white fas fa-chart-line"></i>
-                                <span>DashBoard</span>
-                            </a>
-                        </li>
+                        @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-chart-line"></i>
+                                    <span>DashBoard</span>
+                                </a>
+                            </li>
+                        }
                         @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc") || User.IsInRole("Thu Ngân"))
                         {
                             <li class="sidebar-item  has-sub">

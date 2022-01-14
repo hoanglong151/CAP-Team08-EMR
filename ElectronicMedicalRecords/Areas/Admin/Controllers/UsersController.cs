@@ -58,6 +58,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         usersOnline.Remove(item.Key);
                     }
                 }
+                Session["ListUsersOnline"] = listUser;
                 return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
             }
             else
