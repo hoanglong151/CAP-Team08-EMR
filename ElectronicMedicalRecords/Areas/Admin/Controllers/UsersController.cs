@@ -45,7 +45,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     {
                         listUser.Add(user.Key);
                     }
-                    var time = user.Value.AddMinutes(1);
+                    var time = user.Value.AddMinutes(10);
                     if (time <= DateTime.Now)
                     {
                         listUser.Remove(user.Key);
