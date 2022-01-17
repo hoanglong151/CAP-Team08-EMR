@@ -67,6 +67,10 @@
     .navbar-nav {
         display: none
     }
+    label.invalidForm {
+        color: red;
+        font-size: 13px
+    }
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -884,6 +888,12 @@
                         "Patient.BirthDate": {
                             required: true,
                         },
+                        "Patient.NumHome": {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
                         "Patient.Address": {
                             required: true,
                             normalizer: function (value) {
@@ -906,6 +916,9 @@
                             required: "Trường này bắt buộc nhập"
                         },
                         "Patient.BirthDate": {
+                            required: "Trường này bắt buộc nhập"
+                        },
+                        "Patient.NumHome": {
                             required: "Trường này bắt buộc nhập"
                         },
                         "Patient.Address": {

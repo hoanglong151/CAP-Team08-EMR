@@ -324,6 +324,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\District.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatisticModel.cs" />
     <Compile Include="Models\Detail_Amniocente.cs">
       <DependentUpon>Models.tt</DependentUpon>
@@ -426,6 +429,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViSinh.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ward.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationComponentYTa.cs" />

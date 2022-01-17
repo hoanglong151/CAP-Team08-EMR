@@ -17,31 +17,37 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Patient()
         {
-            this.InformationExaminations = new HashSet<InformationExamination>();
             this.Bills = new HashSet<Bill>();
+            this.InformationExaminations = new HashSet<InformationExamination>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<int> Gender_ID { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
+        public string NumHome { get; set; }
         public string Address { get; set; }
+        public Nullable<int> Ward_ID { get; set; }
+        public Nullable<int> District_ID { get; set; }
         public Nullable<int> HomeTown_ID { get; set; }
         public Nullable<int> Nation_ID { get; set; }
         public Nullable<int> Phone { get; set; }
+        public Nullable<int> PhoneZalo { get; set; }
         public string InsuranceCode { get; set; }
         public string MedicalHistory { get; set; }
         public string HistoryDisease { get; set; }
         public Nullable<int> Nation1_ID { get; set; }
         public string MaBN { get; set; }
     
-        public virtual Gender Gender { get; set; }
-        public virtual HomeTown HomeTown { get; set; }
-        public virtual Nation Nation { get; set; }
-        public virtual Nation1 Nation1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        public virtual District District { get; set; }
+        public virtual Gender Gender { get; set; }
+        public virtual HomeTown HomeTown { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
+        public virtual Nation Nation { get; set; }
+        public virtual Nation1 Nation1 { get; set; }
+        public virtual Ward Ward { get; set; }
     }
 }

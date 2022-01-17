@@ -12,22 +12,18 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DiagnosticsCategory
+    public partial class Ward
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DiagnosticsCategory()
+        public Ward()
         {
-            this.InformationExaminations = new HashSet<InformationExamination>();
+            this.Patients = new HashSet<Patient>();
         }
     
         public int ID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public string NameEnglish { get; set; }
-        public string MDC { get; set; }
-        public string Advice { get; set; }
+        public string Ward1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
+        public virtual ICollection<Patient> Patients { get; set; }
     }
 }

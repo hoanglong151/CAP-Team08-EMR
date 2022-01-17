@@ -7,8 +7,10 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using ElectronicMedicalRecords.Models;
 using ExcelDataReader;
 using OfficeOpenXml;
@@ -31,7 +33,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             var diagnostic = db.DiagnosticsCategories.ToList();
-            return Json(new { data = diagnostic}, JsonRequestBehavior.AllowGet);
+            var listDiagnostic = diagnostic.Select(s => new
+            {
+                ID = s.ID,
+                Code = s.Code,
+                Name = s.Name,
+                NameEnglish = s.NameEnglish,
+                MDC = s.MDC,
+            }).ToList();
+            JsonResult result = Json(listDiagnostic);
+            result.MaxJsonLength = 86753090;
+            return Json(new { data = result.Data}, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost, ValidateInput(false)]

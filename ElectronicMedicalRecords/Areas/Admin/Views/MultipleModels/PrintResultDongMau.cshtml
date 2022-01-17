@@ -41,12 +41,16 @@
                         <div class="d-flex">
                             <div class="col-xs-4 from w-100">
                                 <p>Bệnh Nhân : @Model.Patient.Name</p>
+                                <p>Số Nhà: @Model.Patient.NumHome</p>
                                 <p>Địa Chỉ: @Model.Patient.Address</p>
-                                <p>Giới Tính: @ViewBag.Gender</p>
+                                <p>Phường: @Model.Patient.Ward</p>
+                                <p>Quận: @Model.Patient.District</p>
                             </div>
                             <div class="col-xs-4 to w-100">
+                                <p>Giới Tính: @ViewBag.Gender</p>
                                 <p>Ngày Sinh: @Model.Patient.BirthDate</p>
                                 <p>Số Điện Thoại: @Model.Patient.Phone</p>
+                                <p>Số Điện Thoại: @Model.Patient.PhoneZalo</p>
                                 <p>Số BHYT: @Model.Patient.InsuranceCode</p>
                             </div>
                             <div class="col-xs-4 to w-100">

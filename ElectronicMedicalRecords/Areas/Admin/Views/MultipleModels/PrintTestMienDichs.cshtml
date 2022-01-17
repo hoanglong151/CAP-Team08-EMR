@@ -41,11 +41,15 @@
                         <div class="d-flex">
                             <div class="col-xs-4 from w-100">
                                 <p>Bệnh Nhân : @Model.Patient.Name</p>
+                                <p>Số Nhà: @Model.Patient.NumHome</p>
                                 <p>Địa Chỉ: @Model.Patient.Address</p>
+                                <p>Phường: @Model.Patient.Ward</p>
+                                <p>Quận: @Model.Patient.District</p>
                             </div>
                             <div class="col-xs-4 to w-100">
                                 <p>Giới Tính: @ViewBag.Gender</p>
                                 <p>Số Điện Thoại: @Model.Patient.Phone</p>
+                                <p>Số Điện Thoại: @Model.Patient.PhoneZalo</p>
                             </div>
                             <div class="col-xs-4 to w-100">
                                 <p>Ngày Sinh: @Model.Patient.BirthDate.Value.ToString("dd/MM/yyyy")</p>

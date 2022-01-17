@@ -38,16 +38,37 @@
                     @Html.ValidationMessageFor(model => model.Patient.Nation1_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col-md-12 col-12">
+            <div class="col-md-2 col-12">
                 <div class="form-group">
-                    <label for="company-column">Địa Chỉ</label>
+                    <label for="company-column">Số Nhà</label>
+                    @Html.EditorFor(model => model.Patient.NumHome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Patient.NumHome, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="company-column">Đường</label>
                     @Html.EditorFor(model => model.Patient.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa Chỉ", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Patient.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
-                    <label for="email-id-column">Quê Quán</label>
+                    <label for="company-column">Phường/Xã</label>
+                    @Html.DropDownList("Patient.Ward_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.Patient.Ward_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3 col-12">
+                <div class="form-group">
+                    <label for="company-column">Quận/Huyện</label>
+                    @Html.DropDownList("Patient.District_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.Patient.District_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3 col-12">
+                <div class="form-group">
+                    <label for="email-id-column">Thành Phố/Tỉnh</label>
                     @Html.DropDownList("Patient.HomeTown_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Patient.HomeTown_ID, "", new { @class = "text-danger" })
                 </div>

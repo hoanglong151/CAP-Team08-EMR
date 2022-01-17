@@ -17,6 +17,7 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InformationExamination()
         {
+            this.Bills = new HashSet<Bill>();
             this.CayMaus = new HashSet<CayMau>();
             this.Clinicals = new HashSet<Clinical>();
             this.Detail_Amniocente = new HashSet<Detail_Amniocente>();
@@ -28,7 +29,6 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_Urine = new HashSet<Detail_Urine>();
             this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
             this.Prescription_Detail = new HashSet<Prescription_Detail>();
-            this.Bills = new HashSet<Bill>();
         }
     
         public int ID { get; set; }
@@ -58,6 +58,8 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> PricePrescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CayMau> CayMaus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clinical> Clinicals { get; set; }
@@ -77,13 +79,11 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_Urine> Detail_Urine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_ViSinh> Detail_ViSinh { get; set; }
-        public virtual DiagnosticsCategory DiagnosticsCategory { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
+        public virtual DiagnosticsCategory DiagnosticsCategory { get; set; }
     }
 }

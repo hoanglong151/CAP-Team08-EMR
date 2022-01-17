@@ -23,7 +23,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Error"];
-            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).ToList();
+            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).ToList();
             return View(patients);
         }
 
@@ -231,6 +231,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             multiplesModel.Patient = patient;
             return PartialView("_DetailIE", multiplesModel);
         }
@@ -247,6 +249,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             multiplesModel.Patient = patient;
             return PartialView("_DetailIERead", multiplesModel);
         }
@@ -341,6 +345,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1");
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name");
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name");
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1");
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1");
             return PartialView("_Create");
         }
 
@@ -394,6 +400,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewBag.District_ID = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewBag.Ward_ID = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             return View(patient);
         }
         
@@ -420,6 +428,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             multiplesModel.Patient = patient;
             return PartialView("_CreateOldPatient", multiplesModel);
         }
@@ -438,6 +448,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewBag.District_ID = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewBag.Ward_ID = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             return RedirectToAction("CreateOldPatient", "MultipleModels");
         }
 
@@ -450,6 +462,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             multiplesModel.Patient = patient;
             return PartialView("_Edit", multiplesModel);
         }
@@ -471,6 +485,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.HomeTown_ID = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewBag.Nation_ID = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewBag.District_ID = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewBag.Ward_ID = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             return View(patient);
         }
 

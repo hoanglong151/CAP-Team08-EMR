@@ -203,6 +203,12 @@
                         "Patient.BirthDate": {
                             required: true,
                         },
+                        "Patient.NumHome": {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
                         "Patient.Address": {
                             required: true,
                             normalizer: function (value) {
@@ -225,6 +231,9 @@
                             required: "Trường này bắt buộc nhập"
                         },
                         "Patient.BirthDate": {
+                            required: "Trường này bắt buộc nhập"
+                        },
+                        "Patient.NumHome": {
                             required: "Trường này bắt buộc nhập"
                         },
                         "Patient.Address": {
