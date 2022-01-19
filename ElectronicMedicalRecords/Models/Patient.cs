@@ -18,6 +18,8 @@ namespace ElectronicMedicalRecords.Models
         public Patient()
         {
             this.Bills = new HashSet<Bill>();
+            this.Detail_HistoryDisease = new HashSet<Detail_HistoryDisease>();
+            this.Detail_MedicalHistory = new HashSet<Detail_MedicalHistory>();
             this.InformationExaminations = new HashSet<InformationExamination>();
         }
     
@@ -34,13 +36,15 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> Phone { get; set; }
         public Nullable<int> PhoneZalo { get; set; }
         public string InsuranceCode { get; set; }
-        public string MedicalHistory { get; set; }
-        public string HistoryDisease { get; set; }
         public Nullable<int> Nation1_ID { get; set; }
         public string MaBN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_HistoryDisease> Detail_HistoryDisease { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_MedicalHistory> Detail_MedicalHistory { get; set; }
         public virtual District District { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual HomeTown HomeTown { get; set; }

@@ -14,6 +14,7 @@ namespace ElectronicMedicalRecords.Models
         public Medication Medication { get; set; }
         public Prescription_Detail Prescription_Detail { get; set; }
         public DiagnosticsCategory DiagnosticsCategory { get; set; }
+        public Detail_DiagnosticsCategory Detail_DiagnosticsCategory { get; set; }
         public List<Prescription_Detail> Prescription_Details { get; set; }
         public Detail_CTMau Detail_CTMau { get; set; }
         public List<CTMau> CTMau { get; set; }

@@ -86,7 +86,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             var info = db.InformationExaminations.Find(id);
+            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
             multiplesModel.InformationExamination = info;
+            multiplesModel.Detail_DiagnosticsCategory = detail_dignosticCategory;
             return PartialView("_DetailIE", multiplesModel);
         }
 
@@ -94,7 +96,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             var info = db.InformationExaminations.Find(id);
+            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
             multiplesModel.InformationExamination = info;
+            multiplesModel.Detail_DiagnosticsCategory = detail_dignosticCategory;
             return PartialView("_DetailIERead", multiplesModel);
         }
 
@@ -167,9 +171,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             if(id != null)
             {
                 var info = db.InformationExaminations.Find(id);
-                if(info.DiagnosticCategory_ID != null)
+                var diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+                if(diagnostic != null)
                 {
-                    info.DiagnosticsCategory = db.DiagnosticsCategories.First(p => p.ID == info.DiagnosticCategory_ID);
+                    multiplesModel.Detail_DiagnosticsCategory = diagnostic;
                 }
                 multiplesModel.InformationExamination = info;
             }
@@ -185,9 +190,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             if (id != null)
             {
                 var info = db.InformationExaminations.Find(id);
-                if (info.DiagnosticCategory_ID != null)
+                var diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+                if (diagnostic != null)
                 {
-                    info.DiagnosticsCategory = db.DiagnosticsCategories.First(p => p.ID == info.DiagnosticCategory_ID);
+                    multiplesModel.Detail_DiagnosticsCategory = diagnostic;
                 }
                 multiplesModel.InformationExamination = info;
             }

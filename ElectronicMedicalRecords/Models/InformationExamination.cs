@@ -22,6 +22,7 @@ namespace ElectronicMedicalRecords.Models
             this.Clinicals = new HashSet<Clinical>();
             this.Detail_Amniocente = new HashSet<Detail_Amniocente>();
             this.Detail_CTMau = new HashSet<Detail_CTMau>();
+            this.Detail_DiagnosticsCategory = new HashSet<Detail_DiagnosticsCategory>();
             this.Detail_DongMau = new HashSet<Detail_DongMau>();
             this.Detail_Immune = new HashSet<Detail_Immune>();
             this.Detail_NhomMau = new HashSet<Detail_NhomMau>();
@@ -42,7 +43,6 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<double> Height { get; set; }
         public Nullable<int> PatientStatus_ID { get; set; }
         public Nullable<int> Patient_ID { get; set; }
-        public Nullable<int> DiagnosticCategory_ID { get; set; }
         public Nullable<bool> ResultCTMau { get; set; }
         public Nullable<bool> ResultSHM { get; set; }
         public Nullable<bool> ResultDMau { get; set; }
@@ -53,9 +53,9 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<bool> ResultViSinh { get; set; }
         public Nullable<bool> New { get; set; }
         public Nullable<int> PriceExamination { get; set; }
-        public Nullable<int> PriceCTMaus { get; set; }
         public Nullable<int> PriceTest { get; set; }
         public Nullable<int> PricePrescription { get; set; }
+        public Nullable<int> PriceCTMaus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
@@ -67,6 +67,8 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_Amniocente> Detail_Amniocente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_CTMau> Detail_CTMau { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_DiagnosticsCategory> Detail_DiagnosticsCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_DongMau> Detail_DongMau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -84,6 +86,5 @@ namespace ElectronicMedicalRecords.Models
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
-        public virtual DiagnosticsCategory DiagnosticsCategory { get; set; }
     }
 }

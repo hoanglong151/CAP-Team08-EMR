@@ -72,8 +72,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintStatisticDiagnostic()
         {
             db.Configuration.LazyLoadingEnabled = false;
-            List<StatisticModel> statisticModels = new List<StatisticModel>();
-            statisticModels = (List<StatisticModel>)Session["Diagnostic"];
+            List<Detail_DiagnosticsCategory> statisticModels = new List<Detail_DiagnosticsCategory>();
+            statisticModels = (List<Detail_DiagnosticsCategory>)Session["Diagnostic"];
             ViewBag.DateStart = Session["DateStartDiagnostic"];
             ViewBag.DateEnd = Session["DateEndDiagnostic"];
             return View(statisticModels);
@@ -196,80 +196,65 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult StatisByDiagnostic()
         {
-            var Infomation = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID != null).ToList();
-            List<DiagnosticsCategory> diagnosticsCategories1 = new List<DiagnosticsCategory>();
-            List<StatisticModel> statisticModels1 = new List<StatisticModel>();
-            foreach (var informationExamination in Infomation)
+            var detail_diagnostics = db.Detail_DiagnosticsCategory.ToList();
+            List<Detail_DiagnosticsCategory> detail_DiagnosticsCategories = new List<Detail_DiagnosticsCategory>();
+            foreach(var item in detail_diagnostics)
             {
-                StatisticModel statisticModels = new StatisticModel();
-                var getDiagnostic = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == informationExamination.DiagnosticCategory_ID);
-                var checkDiagnostic = diagnosticsCategories1.FirstOrDefault(p => p.ID == getDiagnostic.ID);
-                if(checkDiagnostic == null)
+                var checkExist = detail_DiagnosticsCategories.FirstOrDefault(p => p.DiagnosticsCategory_ID == item.DiagnosticsCategory_ID);
+                if (checkExist == null)
                 {
-                    diagnosticsCategories1.Add(getDiagnostic);
+                    detail_DiagnosticsCategories.Add(item);
                 }
             }
-            foreach (var item in diagnosticsCategories1)
-            {
-                StatisticModel statisticModels = new StatisticModel();
-                var info = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID == item.ID).ToList();
-                statisticModels.countPatient = info.Count;
-                statisticModels.diagnosticsCategory = item;
-                statisticModels1.Add(statisticModels);
-            }
-            Session["Diagnostic"] = statisticModels1;
-            return View(statisticModels1);
+            Session["Diagnostic"] = detail_DiagnosticsCategories;
+            return View(detail_DiagnosticsCategories);
         }
 
         public ActionResult SearchDiagnostic(DateTime? dateStart, DateTime? dateEnd)
         {
-            var Infomation = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID != null).ToList();
-            List<StatisticModel> statisticModels1 = new List<StatisticModel>();
-            List<DiagnosticsCategory> diagnosticsCategories1 = new List<DiagnosticsCategory>();
+            var detail_diagnostics = db.Detail_DiagnosticsCategory.ToList();
+            List<Detail_DiagnosticsCategory> detail_DiagnosticsCategories = new List<Detail_DiagnosticsCategory>();
+            List<Detail_DiagnosticsCategory> detail_DiagnosticsCategories1 = new List<Detail_DiagnosticsCategory>();
             Session["DateStartDiagnostic"] = dateStart;
             Session["DateEndDiagnostic"] = dateEnd;
             ViewBag.DateStart = dateStart;
             ViewBag.DateEnd = dateEnd;
-            foreach (var informationExamination in Infomation)
+            foreach (var item in detail_diagnostics)
             {
-                StatisticModel statisticModels = new StatisticModel();
-                var getDiagnostic = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == informationExamination.DiagnosticCategory_ID);
-                var checkDiagnostic = diagnosticsCategories1.FirstOrDefault(p => p.ID == getDiagnostic.ID);
-                if (checkDiagnostic == null)
+                var checkExist = detail_DiagnosticsCategories.FirstOrDefault(p => p.DiagnosticsCategory_ID == item.DiagnosticsCategory_ID);
+                if (checkExist == null)
                 {
-                    diagnosticsCategories1.Add(getDiagnostic);
+                    detail_DiagnosticsCategories.Add(item);
                 }
-            }
-            foreach (var item in diagnosticsCategories1)
+             }
+
+            foreach(var detail_diagnostic1 in detail_DiagnosticsCategories)
             {
-                StatisticModel statisticModels = new StatisticModel();
-                List<InformationExamination> info = new List<InformationExamination>();
                 if (dateStart.HasValue && dateEnd.HasValue)
                 {
                     TimeSpan timeEnd = new TimeSpan(23, 59, 59);
-                    dateEnd = dateEnd + timeEnd;
-                    info = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID == item.ID && p.DateExamine >= dateStart.Value && p.DateEnd <= dateEnd.Value).ToList();
+                    DateTime dateEnd1 = (DateTime)(dateEnd + timeEnd);
+                    detail_diagnostic1.DiagnosticsCategory.Detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.Where(p => p.DiagnosticsCategory_ID == detail_diagnostic1.DiagnosticsCategory_ID && p.InformationExamination.DateExamine >= dateStart.Value && p.InformationExamination.DateEnd <= dateEnd1).ToList();
                 }
                 else if (dateStart.HasValue)
                 {
-                    info = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID == item.ID && p.DateExamine >= dateStart.Value).ToList();
+                    detail_diagnostic1.DiagnosticsCategory.Detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.Where(p => p.DiagnosticsCategory_ID == detail_diagnostic1.DiagnosticsCategory_ID && p.InformationExamination.DateExamine >= dateStart.Value).ToList();
                 }
                 else if (dateEnd.HasValue)
                 {
                     TimeSpan timeEnd = new TimeSpan(23, 59, 59);
-                    dateEnd = dateEnd + timeEnd;
-                    info = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID == item.ID && p.DateEnd <= dateEnd.Value).ToList();
+                    DateTime dateEnd1 = (DateTime)(dateEnd + timeEnd);
+                    detail_diagnostic1.DiagnosticsCategory.Detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.Where(p => p.DiagnosticsCategory_ID == detail_diagnostic1.DiagnosticsCategory_ID && p.InformationExamination.DateEnd <= dateEnd1).ToList();
                 }
                 else
                 {
-                    info = db.InformationExaminations.Where(p => p.DiagnosticCategory_ID == item.ID).ToList();
+                    detail_diagnostic1.DiagnosticsCategory.Detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.Where(p => p.DiagnosticsCategory_ID == detail_diagnostic1.DiagnosticsCategory_ID).ToList();
                 }
-                statisticModels.countPatient = info.Count;
-                statisticModels.diagnosticsCategory = item;
-                statisticModels1.Add(statisticModels);
+                detail_DiagnosticsCategories1.Add(detail_diagnostic1);
             }
-            Session["Diagnostic"] = statisticModels1;
-            return View("StatisByDiagnostic", statisticModels1);
+
+            Session["Diagnostic"] = detail_DiagnosticsCategories1;
+            return View("StatisByDiagnostic", detail_DiagnosticsCategories1);
         }
 
         public async Task<ActionResult> StatisByMoney()
@@ -479,7 +464,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult ExportExcelDiagnostic(DateTime? ExportStart, DateTime? ExportEnd)
         {
-            List<StatisticModel> statisticModels = (List<StatisticModel>)Session["Diagnostic"];
+            List<Detail_DiagnosticsCategory> statisticModels = (List<Detail_DiagnosticsCategory>)Session["Diagnostic"];
             var totalCount = 0;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
@@ -494,11 +479,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             for (int i = 0; i < statisticModels.Count; i++)
             {
                 var item = statisticModels[i];
-                totalCount += item.countPatient;
+                totalCount += item.DiagnosticsCategory.Detail_DiagnosticsCategory.Count;
                 workSheet.Cells[10 + i, 1].Value = i + 1;
-                workSheet.Cells[10 + i, 2].Value = item.diagnosticsCategory.Code;
-                workSheet.Cells[10 + i, 3].Value = item.diagnosticsCategory.Name;
-                workSheet.Cells[10 + i, 5].Value = item.countPatient;
+                workSheet.Cells[10 + i, 2].Value = item.DiagnosticsCategory.Code;
+                workSheet.Cells[10 + i, 3].Value = item.DiagnosticsCategory.Name;
+                workSheet.Cells[10 + i, 5].Value = item.DiagnosticsCategory.Detail_DiagnosticsCategory.Count;
                 workSheet.Cells[10 + i, 3, 10 + i, 4].Merge = true;
                 workSheet.Column(1).Width = 3;
                 workSheet.Column(2).Width = 16;

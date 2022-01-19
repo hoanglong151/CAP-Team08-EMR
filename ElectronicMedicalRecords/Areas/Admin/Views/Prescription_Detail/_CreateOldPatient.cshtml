@@ -21,7 +21,15 @@
                     @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <input id="IDDiagnostic" name="InformationExamination.DiagnosticCategory_ID" value="" type="number" hidden />
+            <div class="col-md-12 col-12">
+                <div class="form-group">
+                    <label for="AdviceDiagnostic">Lời Khuyên</label>
+                    <input id="AdviceDiagnostic" name="Detail_DiagnosticsCategory.Advice" class="form-control" type="text" />
+                    @Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.Advice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <input id="IDDiagnostic" name="Detail_DiagnosticsCategory.DiagnosticsCategory_ID" value="" type="number" hidden />
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>

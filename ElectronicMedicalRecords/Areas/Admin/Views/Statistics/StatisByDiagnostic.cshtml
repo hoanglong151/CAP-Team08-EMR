@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ElectronicMedicalRecords.Models.StatisticModel>
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Detail_DiagnosticsCategory>
 @{
     ViewBag.Title = "StatisByDoctorAndCondition";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -95,9 +95,9 @@
                         @foreach (var diagnostics in Model)
                         {
                             <tr>
-                                <td>@diagnostics.diagnosticsCategory.Code</td>
-                                <td>@diagnostics.diagnosticsCategory.Name</td>
-                                <td>@diagnostics.countPatient</td>
+                                <td>@diagnostics.DiagnosticsCategory.Code</td>
+                                <td>@diagnostics.DiagnosticsCategory.Name</td>
+                                <td>@diagnostics.DiagnosticsCategory.Detail_DiagnosticsCategory.Count</td>
                             </tr>
                         }
                     </tbody>

@@ -317,12 +317,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTest(InformationExamination informationExamination)
+        public ActionResult CreateTest(InformationExamination informationExamination, Detail_DiagnosticsCategory detail_DiagnosticsCategory)
         {
             if (ModelState.IsValid)
             {
                 informationExamination.DateEnd = DateTime.Now;
                 db.Entry(informationExamination).State = EntityState.Modified;
+                db.SaveChanges();
+
+                detail_DiagnosticsCategory.InformationExamination_ID = informationExamination.ID;
+                db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index", "MultipleModels");
             }

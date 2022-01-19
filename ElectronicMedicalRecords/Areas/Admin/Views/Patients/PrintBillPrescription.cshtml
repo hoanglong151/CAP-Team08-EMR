@@ -50,6 +50,7 @@
                             <div class="col-xs-4 to w-100">
                                 <p>Giới Tính: @ViewBag.Gender</p>
                                 <p>Số Điện Thoại: @Model.Patient.Phone</p>
+                                <p>Số Điện Thoại Zalo: @Model.Patient.PhoneZalo</p>
                             </div>
                             <div class="col-xs-4 to w-100">
                                 <p>Ngày Sinh: @Model.Patient.BirthDate.Value.ToString("dd/MM/yyyy")</p>
@@ -73,9 +74,10 @@
                                 <p class="col-xs-6 w-100">Bác Sĩ Kê Toa: @ViewBag.Doctor</p>
                             </div>
                         </div>
-                        @if (Model.InformationExamination.DiagnosticsCategory != null)
+                        @if (Model.Detail_DiagnosticsCategory != null)
                         {
-                            <p>Chẩn Đoán: @Model.InformationExamination.DiagnosticsCategory.Name</p>
+                            <p>Chẩn Đoán: @Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</p>
+                            <p>Lời Khuyên: @Model.Detail_DiagnosticsCategory.Advice</p>
                         }
                     </div>
                     <hr />
