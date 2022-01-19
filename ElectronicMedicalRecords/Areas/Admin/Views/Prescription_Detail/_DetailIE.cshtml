@@ -8,11 +8,15 @@
 <div class="card-content">
     <div class="card-body">
         <div class="row">
-            @if(Model.InformationExamination.DiagnosticCategory_ID != null)
+            @if (Model.Detail_DiagnosticsCategory != null)
             {
                 <div class="col-md-12" style="margin-bottom:12px">
                     <label>Chẩn Đoán</label>
-                    <input class="form-control" value="@Model.InformationExamination.DiagnosticsCategory.Name" name="InformationExamination.DiagnosticsCategory.Name" readonly/>
+                    <input class="form-control" value="@Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name" name="Detail_DiagnosticsCategory.DiagnosticsCategory.Name" readonly />
+                </div>
+                <div class="col-md-12" style="margin-bottom:12px">
+                    <label>Lời Khuyên</label>
+                    <input class="form-control" value="@Model.Detail_DiagnosticsCategory.Advice" name="Detail_DiagnosticsCategory.Advice" readonly />
                 </div>
             }
             <div class="col-md-12">

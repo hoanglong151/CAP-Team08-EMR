@@ -731,6 +731,7 @@
                 data: { id: id},
                 success: (res) => {
                     document.querySelector('#IDDiagnostic').setAttribute("value", res.data.ID);
+                    document.querySelector('#AdviceDiagnostic').setAttribute("value", res.data.Advice);
                 }
             })
         })

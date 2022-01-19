@@ -26,8 +26,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         {
             List<StatisticModel> statisticModels = new List<StatisticModel>();
 
-            var Infomation = db.InformationExaminations.FirstOrDefault(p => p.DiagnosticCategory_ID != null);
-            var getDiagnostic = db.DiagnosticsCategories.AsNoTracking().FirstOrDefault(p => p.ID == Infomation.DiagnosticCategory_ID);
+            var detail_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault();
+            var getDiagnostic = db.DiagnosticsCategories.AsNoTracking().FirstOrDefault(p => p.ID == detail_diagnostic.DiagnosticsCategory_ID);
             for (int i = 0; i < 2; i++)
             {
                 var statis = new StatisticModel();

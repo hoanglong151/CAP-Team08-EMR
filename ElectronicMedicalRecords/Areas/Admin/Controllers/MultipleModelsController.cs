@@ -131,6 +131,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.SaveChanges();
                 }
             }
+            db.Entry(multiplesModel.Detail_DiagnosticsCategory).State = EntityState.Modified;
+            db.SaveChanges();
+
             db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", "Patients");
@@ -576,7 +579,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
-            multiplesModel.InformationExamination.DiagnosticsCategory = db.DiagnosticsCategories.Find(multiplesModel.InformationExamination.DiagnosticCategory_ID);
+            multiplesModel.Detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
@@ -1217,7 +1220,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.ViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
 
                 patientsController.CreateOldPatient(multiplesModel.Patient);
-                informationExaminationsController.CreateTest(multiplesModel.InformationExamination);
+                informationExaminationsController.CreateTest(multiplesModel.InformationExamination, multiplesModel.Detail_DiagnosticsCategory);
                 var CongThucMauCD = detail_CTMauController.CreateOldPatient(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel);
                 var SinhHoaMauCD = detail_SinhHoaMauController.CreateOldPatient(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel);
                 var DongMauCD = detail_DongMauController.CreateOldPatient(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel);

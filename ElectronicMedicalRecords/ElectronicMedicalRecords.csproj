@@ -271,12 +271,16 @@
     <Compile Include="Areas\Admin\Controllers\Detail_UrineController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_ViSinhController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiagnosticsCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DistrictsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DongMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeTownsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImmunesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MultipleModelsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Nation1Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\NationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhomMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
@@ -286,6 +290,7 @@
     <Compile Include="Areas\Admin\Controllers\UrinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViSinhsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WardsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -324,7 +329,22 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\Detail_DiagnosticsCategory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_HistoryDisease.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_MedicalHistory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\District.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HistoryDisease.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MedicalHistory.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatisticModel.cs" />
@@ -2845,6 +2865,11 @@
     <Content Include="Areas\Admin\Views\Statistics\BillPre.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\BillTest.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\ListExamination.cshtml" />
+    <Content Include="Areas\Admin\Views\Nations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Nation1\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Wards\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Districts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeTowns\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

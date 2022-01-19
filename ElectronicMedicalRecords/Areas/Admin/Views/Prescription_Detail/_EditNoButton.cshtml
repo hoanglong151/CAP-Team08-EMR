@@ -12,15 +12,15 @@
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Chẩn Đoán</label>
                     <select id="NameDiagnostic" name="InformationExamination.DiagnosticCategory_ID" class="choices form-select">
-                        @if (Model.InformationExamination.DiagnosticCategory_ID == null)
+                        @if (Model.Detail_DiagnosticsCategory == null)
                         {
                             <option value="">Vui Lòng Chọn Chẩn Đoán</option>
                         }
                         @foreach (var diagnostic in ViewBag.NameDiagnostic)
                         {
-                            if (Model.InformationExamination.DiagnosticCategory_ID == diagnostic.ID)
+                            if (Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID == diagnostic.ID)
                             {
-                                <option selected value="@Model.InformationExamination.DiagnosticCategory_ID">@Model.InformationExamination.DiagnosticsCategory.Name</option>
+                                <option selected value="@Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID">@Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</option>
                             }
                             else
                             {
@@ -28,10 +28,22 @@
                             }
                         }
                     </select>
-                    @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
-                    <input id="IDDiagnostic" name="InformationExamination.DiagnosticCategory_ID" value="" type="number" hidden />
+                    @Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
+                    <input id="IDDiagnostic" name="Detail_DiagnosticsCategory.DiagnosticsCategory_ID" value="" type="number" hidden />
                 </div>
             </div>
+            @if (Model.Detail_DiagnosticsCategory != null)
+            {
+                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.ID)
+                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID)
+                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.InformationExamination_ID)
+                <div class="col-md-12 col-12">
+                    <div class="form-group">
+                        <label for="email-id-column">Lời Khuyên</label>
+                        <input id="AdviceDiagnostic" value="@Model.Detail_DiagnosticsCategory.Advice" class="form-control" name="Detail_DiagnosticsCategory.Advice" type="text" />
+                    </div>
+                </div>
+            }
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>
@@ -75,7 +87,7 @@
                             <th>Ghi Chú</th>
                             <th>Gỡ Bỏ</th>
                         </tr>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>

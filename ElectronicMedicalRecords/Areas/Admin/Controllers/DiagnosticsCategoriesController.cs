@@ -49,9 +49,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult EditDiagnostic(MultiplesModel multiplesModel)
         {
-            var info = db.InformationExaminations.Find(multiplesModel.InformationExamination.ID);
-            info.DiagnosticCategory_ID = multiplesModel.InformationExamination.DiagnosticCategory_ID;
-            db.Entry(info).State = EntityState.Modified;
+            var detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+            //detail_DiagnosticsCategory.ad = multiplesModel.InformationExamination.DiagnosticCategory_ID;
+            db.Entry(detail_DiagnosticsCategory).State = EntityState.Modified;
             db.SaveChanges();
             Session["MultipleModels"] = multiplesModel;
             return Json(new { success = true });

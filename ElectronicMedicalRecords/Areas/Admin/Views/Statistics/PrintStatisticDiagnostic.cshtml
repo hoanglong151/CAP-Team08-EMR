@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ElectronicMedicalRecords.Models.StatisticModel>
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Detail_DiagnosticsCategory>
 @{
     ViewBag.Title = "PrintStatisticDiagnostic";
     Layout = "~/Areas/Admin/Views/Shared/Print.cshtml";
@@ -67,14 +67,11 @@
                             <tbody>
                                 @foreach (var diagnostics in Model)
                                 {
-                                    if (diagnostics.countPatient != 0)
-                                    {
-                                        <tr>
-                                            <td>@diagnostics.diagnosticsCategory.Code</td>
-                                            <td>@diagnostics.diagnosticsCategory.Name</td>
-                                            <td>@diagnostics.countPatient</td>
-                                        </tr>
-                                    }
+                                    <tr>
+                                        <td>@diagnostics.DiagnosticsCategory.Code</td>
+                                        <td>@diagnostics.DiagnosticsCategory.Name</td>
+                                        <td>@diagnostics.DiagnosticsCategory.Detail_DiagnosticsCategory.Count</td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

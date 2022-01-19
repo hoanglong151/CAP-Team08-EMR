@@ -1,0 +1,401 @@
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.Nation1>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
+                <h3>Quản lý danh mục dân tộc</h3>
+                <p class="text-subtitle text-muted">Danh sách danh mục dân tộc</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Nation1")">Danh Sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Danh Mục Dân Tộc</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách danh mục dân tộc
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                {
+                    <br />
+                    <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                            data-bs-target="#createNation1Modal">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Thêm Dân Tộc
+                    </button>
+                }
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="tableNation1" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Danh Mục Dân Tộc</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Create Basic Modal -->
+<div class="modal fade text-left" id="createNation1Modal" data-backdrop="true" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel1">Thêm Danh Mục Dân Tộc</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-createNation1" class="form form-horizontal needs-validation" novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Tên Dân Tộc</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control pd-form"
+                                               placeholder="Tên Dân Tộc" id="first-name-icon Nation1NameCreate" required>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Hủy</span>
+                        </button>
+                        <button type="submit" id="createNation1" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tạo</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Basic Modal -->
+<div class="modal fade text-left" id="UpdateNation1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Cập nhật dân tộc</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-updateNation1" class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <input type="text" id="UpdateNation1ID" name="ID" hidden />
+                            <div class="col-md-4">
+                                <label for="UpdateNation1Name">Tên Quốc Gia</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control"
+                                               placeholder="Tên Dân Tộc" id="UpdateNation1Name" required>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="updateNation1" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cập nhật</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
+            $('#tableNation1').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData", "Nation1")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var button = "<button class='btn btn-primary btnHover edit' onclick='getNation1ByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteNation1(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Tạo Dân Tộc</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ dân tộc",
+                    "search": "Tìm kiếm:",
+                },
+                "columnDefs": [
+                    {
+                        "targets": [1], //second column
+                        "visible": RoleCheck
+                    }
+                ]
+            })
+        })
+        createNation1()
+        updateNation1()
+        /*Create Medication Categories*/
+        function createNation1() {
+            $('#form-createNation1').submit(function (e) {
+                var dataNation1 = $('#form-createNation1').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataNation1,
+                }
+                var isvalidCreate = $("#form-createNation1").valid();
+                if (isvalidCreate) {
+                    $.ajax({
+                    url: "@Url.Action("Create", "Nation1")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            resetInputCreate();
+                            $('#createNation1Modal').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').toggle();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã tạo thành công',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                            $('#tableNation1').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                }
+            e.preventDefault();
+            })
+        }
+
+        /*get ID Update*/
+        function getNation1ByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit", "Nation1")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        $('#UpdateNation1Name').val(res.data.Name);
+                        $('#UpdateNation1ID').val(res.data.ID);
+                    }
+                }
+            })
+            $('#UpdateNation1').modal('show')
+        }
+
+        /*update*/
+        function updateNation1() {
+            $('#form-updateNation1').submit(function (e) {
+                var dataNation = $('#form-updateNation1').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                var model = {
+                    validata: dataNation,
+                }
+                var isvalidUpdate = $("#form-updateNation1").valid();
+                if (isvalidUpdate) {
+                    $.ajax({
+                    url: "@Url.Action("Edit", "Nation1")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            $('#UpdateNation1').modal('hide');
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã cập nhật thành công',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                            $('#tableNation1').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 3000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                }
+                e.preventDefault();
+            })
+        }
+
+        /*Get & Post Delete Nation*/
+        function deleteNation1(id) {
+            $.ajax({
+                url: '@Url.Action("Delete", "Nation1")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        Swal.fire({
+                            title: 'Bạn muốn xóa dân tộc này?',
+                            html:
+                                '<b>Dân Tộc:</b> <span>' + res.data.Name +'</span>',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#777',
+                            confirmButtonText: 'Xác nhận',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var form = $('#__AjaxAntiForgeryForm');
+                                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                $.ajax({
+                                    url: '@Url.Action("Delete", "Nation1")',
+                                    type: 'POST',
+                                    data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
+                                    success: function (res) {
+                                        if (res.success) {
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Xóa thành công',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $("#tableNation1").DataTable().ajax.reload();
+                                        }
+                                        else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Thất Bại',
+                                                text: res.responseText,
+                                            })
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            })
+        }
+
+        /*Reset Input Create Form*/
+        function resetInputCreate() {
+            $('#form-createNation1').get(0).reset();
+        }
+
+        /*Validate Form*/
+        $('form').each((i, obj) => {
+            $(function () {
+                $(obj).validate({
+                    rules: {
+                        Name: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        }
+                    },
+                    messages: {
+                        Name: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng"
+                        }
+                    },
+                    errorClass: 'invalidLB',
+                    validClass: 'validLB',
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").addClass('mb-25')
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").removeClass('mb-25')
+                    }
+                });
+            });
+        })
+    </script>
+}
