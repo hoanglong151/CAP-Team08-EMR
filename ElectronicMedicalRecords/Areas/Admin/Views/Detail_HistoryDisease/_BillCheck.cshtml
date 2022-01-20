@@ -1,0 +1,120 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+@if (Model.Detail_HistoryDiseases1.Count != 0 || Model.Detail_HistoryDiseases2.Count != 0 || Model.Detail_HistoryDiseases3.Count != 0)
+{
+    <h2>Bệnh Tiền Sử</h2>
+}
+
+@*Ông/Bà*@
+@if (Model.Detail_HistoryDiseases1.Count != 0)
+{
+    <div class="card-body">
+        <table class="table table-striped" id="tableHistoryDiseases1" style="width:100%">
+            <thead>
+                <tr>
+                    <th hidden></th>
+                    <th>#</th>
+                    <th>Tiền sử bệnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Detail_HistoryDiseases1.Count(); i++)
+                {
+                    <tr>
+                        <td hidden>
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases1[i].HistoryDisease_ID)
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases1[i].HistoryDisease.Name)
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases1[i].HistoryDisease.Dangerous)
+                            <input type="text" name="Detail_HistoryDiseases1[@i].LevelFamily" value="Ông/Bà" hidden />
+                        </td>
+                        <td>
+                            @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                            @Html.CheckBoxFor(model => model.Detail_HistoryDiseases1[i].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary", @disabled = "disabled" })
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases1[i].Selected )
+                        </td>
+                        <td>
+                            @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                            @Html.DisplayFor(model => model.Detail_HistoryDiseases1[i].HistoryDisease.Name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@*Cha/Mẹ*@
+@if (Model.Detail_HistoryDiseases2.Count != 0)
+{
+    <div class="card-body">
+        <table class="table table-striped" id="tableHistoryDiseases2" style="width:100%">
+            <thead>
+                <tr>
+                    <th hidden></th>
+                    <th>#</th>
+                    <th>Tiền sử bệnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int j = 0; j < Model.Detail_HistoryDiseases2.Count(); j++)
+                {
+                    <tr>
+                        <td hidden>
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases2[j].HistoryDisease_ID)
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases2[j].HistoryDisease.Name)
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases2[j].HistoryDisease.Dangerous)
+                            <input type="text" name="Detail_HistoryDiseases2[@j].LevelFamily" value="Cha/Mẹ" hidden />
+
+                        </td>
+                        <td>
+                            @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                            @Html.CheckBoxFor(model => model.Detail_HistoryDiseases2[j].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary", @disabled = "disabled" })
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases2[j].Selected)
+                        </td>
+                        <td>
+                            @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                            @Html.DisplayFor(model => model.Detail_HistoryDiseases2[j].HistoryDisease.Name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@*Anh/Chị em*@
+@if (Model.Detail_HistoryDiseases3.Count != 0)
+{
+    <div class="card-body">
+        <table class="table table-striped" id="tableHistoryDiseases3" style="width:100%">
+            <thead>
+                <tr>
+                    <th hidden></th>
+                    <th>#</th>
+                    <th>Tiền sử bệnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int k = 0; k < Model.Detail_HistoryDiseases3.Count(); k++)
+                {
+                    <tr>
+                        <td hidden>
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases3[k].HistoryDisease_ID)
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases3[k].HistoryDisease.Name)
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases3[k].HistoryDisease.Dangerous)
+                            <input type="text" name="Detail_HistoryDiseases3[@k].LevelFamily" value="Anh/Chị em" hidden />
+                        </td>
+                        <td>
+                            @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                            @Html.CheckBoxFor(model => model.Detail_HistoryDiseases3[k].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary", @disabled = "disabled" })
+                            @Html.HiddenFor(model => model.Detail_HistoryDiseases3[k].Selected)
+                        </td>
+                        <td>
+                            @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                            @Html.DisplayFor(model => model.Detail_HistoryDiseases3[k].HistoryDisease.Name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

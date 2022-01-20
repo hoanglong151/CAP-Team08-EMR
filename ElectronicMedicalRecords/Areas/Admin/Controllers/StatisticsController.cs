@@ -196,7 +196,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult StatisByDiagnostic()
         {
-            var detail_diagnostics = db.Detail_DiagnosticsCategory.ToList();
+            var detail_diagnostics = db.Detail_DiagnosticsCategory.Where(p => p.DiagnosticsCategory_ID != null).ToList();
             List<Detail_DiagnosticsCategory> detail_DiagnosticsCategories = new List<Detail_DiagnosticsCategory>();
             foreach(var item in detail_diagnostics)
             {

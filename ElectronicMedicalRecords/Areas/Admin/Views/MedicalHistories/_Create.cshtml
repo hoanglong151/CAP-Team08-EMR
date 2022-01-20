@@ -1,0 +1,33 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+<h2>Bệnh sử</h2>
+<div class="card-body">
+    <table class="table table-striped" id="tableMedicalHistories" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th>#</th>
+                <th>Bệnh sử</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.MedicalHistories.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        @Html.HiddenFor(model => model.MedicalHistories[i].ID)
+                        @Html.HiddenFor(model => model.MedicalHistories[i].Name)
+                        @Html.HiddenFor(model => model.MedicalHistories[i].Dangerous)
+                    </td>
+                    <td>
+                        @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                        @Html.CheckBoxFor(model => model.MedicalHistories[i].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary" })
+                    </td>
+                    <td>
+                        @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
+                        @Html.DisplayFor(model => model.MedicalHistories[i].Name)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

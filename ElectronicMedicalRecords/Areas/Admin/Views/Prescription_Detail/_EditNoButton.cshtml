@@ -18,9 +18,16 @@
                         }
                         @foreach (var diagnostic in ViewBag.NameDiagnostic)
                         {
-                            if (Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID == diagnostic.ID)
+                            if (Model.Detail_DiagnosticsCategory != null)
                             {
-                                <option selected value="@Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID">@Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</option>
+                                if (Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID == diagnostic.ID)
+                                {
+                                    <option selected value="@Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID">@Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@diagnostic.ID">@diagnostic.Name</option>
+                                }
                             }
                             else
                             {
@@ -28,22 +35,34 @@
                             }
                         }
                     </select>
-                    @Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
-                    <input id="IDDiagnostic" name="Detail_DiagnosticsCategory.DiagnosticsCategory_ID" value="" type="number" hidden />
+                    @*@Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name, "", new { @class = "text-danger" })*@
+                    @*@Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })*@
                 </div>
-            </div>
-            @if (Model.Detail_DiagnosticsCategory != null)
-            {
-                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.ID)
-                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID)
-                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.InformationExamination_ID)
-                <div class="col-md-12 col-12">
-                    <div class="form-group">
-                        <label for="email-id-column">Lời Khuyên</label>
-                        <input id="AdviceDiagnostic" value="@Model.Detail_DiagnosticsCategory.Advice" class="form-control" name="Detail_DiagnosticsCategory.Advice" type="text" />
+                @if (Model.Detail_DiagnosticsCategory != null)
+                {
+                    @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.ID)
+                    @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID)
+                    @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.InformationExamination_ID)
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="AdviceDiagnostic">Lời Khuyên</label>
+                            <input id="AdviceDiagnostic" value="@Model.Detail_DiagnosticsCategory.Advice" name="Detail_DiagnosticsCategory.Advice" class="form-control" type="text" />
+                            @Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.Advice, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-            }
+                }
+                else
+                {
+                    <input id="IDDiagnostic" name="Detail_DiagnosticsCategory.DiagnosticsCategory_ID" value="" type="number" hidden />
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="AdviceDiagnostic">Lời Khuyên</label>
+                            <input id="AdviceDiagnostic" name="Detail_DiagnosticsCategory.Advice" class="form-control" type="text" />
+                            @Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.Advice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+            </div>
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>

@@ -185,7 +185,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult EditNoButton(int? id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
-            ViewBag.NameDiagnostic = db.DiagnosticsCategories.ToList();
+            var listDiagnostic = db.DiagnosticsCategories.ToList();
+            ViewBag.NameDiagnostic = listDiagnostic;
             ViewBag.NameMedication = db.Medications.ToList();
             if (id != null)
             {

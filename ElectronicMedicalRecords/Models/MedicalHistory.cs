@@ -22,7 +22,9 @@ namespace ElectronicMedicalRecords.Models
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public bool Selected { get; set; }
         public Nullable<bool> Dangerous { get; set; }
+        public string LevelFamily { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_MedicalHistory> Detail_MedicalHistory { get; set; }

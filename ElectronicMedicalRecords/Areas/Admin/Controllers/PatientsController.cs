@@ -80,6 +80,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID);
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -104,6 +107,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModelsPatient"];
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.PatientStatus = statusPatient.Name;
             return View(multiplesModel);

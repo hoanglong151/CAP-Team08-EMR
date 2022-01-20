@@ -190,6 +190,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HistoryDisease_ID" Type="int" />
           <Property Name="Patient_ID" Type="int" />
+          <Property Name="LevelFamily" Type="nvarchar" MaxLength="50" />
+          <Property Name="Selected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Detail_Immune">
           <Key>
@@ -208,6 +210,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MedicalHistory_ID" Type="int" />
           <Property Name="Patient_ID" Type="int" />
+          <Property Name="LevelFamily" Type="nvarchar" MaxLength="50" />
+          <Property Name="Selected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Detail_NhomMau">
           <Key>
@@ -294,7 +298,9 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Selected" Type="bit" Nullable="false" />
           <Property Name="Dangerous" Type="bit" />
+          <Property Name="LevelFamily" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HomeTown">
           <Key>
@@ -349,7 +355,9 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Selected" Type="bit" Nullable="false" />
           <Property Name="Dangerous" Type="bit" />
+          <Property Name="LevelFamily" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Medication">
           <Key>
@@ -1769,6 +1777,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HistoryDisease_ID" Type="Int32" />
           <Property Name="Patient_ID" Type="Int32" />
+          <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Selected" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="Detail_HistoryDisease" ToRole="HistoryDisease" />
           <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Detail_HistoryDisease" ToRole="Patient" />
         </EntityType>
@@ -1791,6 +1801,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MedicalHistory_ID" Type="Int32" />
           <Property Name="Patient_ID" Type="Int32" />
+          <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Selected" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="Detail_MedicalHistory" ToRole="MedicalHistory" />
           <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_Patient" FromRole="Detail_MedicalHistory" ToRole="Patient" />
         </EntityType>
@@ -1892,7 +1904,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Selected" Type="Boolean" Nullable="false" />
           <Property Name="Dangerous" Type="Boolean" />
+          <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="HistoryDisease" ToRole="Detail_HistoryDisease" />
         </EntityType>
         <EntityType Name="HomeTown">
@@ -1967,7 +1981,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Selected" Type="Boolean" Nullable="false" />
           <Property Name="Dangerous" Type="Boolean" />
+          <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="MedicalHistory" ToRole="Detail_MedicalHistory" />
         </EntityType>
         <EntityType Name="Medication">
@@ -2908,6 +2924,8 @@
           <EntitySetMapping Name="Detail_HistoryDisease">
             <EntityTypeMapping TypeName="CP24Team08Model.Detail_HistoryDisease">
               <MappingFragment StoreEntitySet="Detail_HistoryDisease">
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
                 <ScalarProperty Name="HistoryDisease_ID" ColumnName="HistoryDisease_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -2928,6 +2946,8 @@
           <EntitySetMapping Name="Detail_MedicalHistory">
             <EntityTypeMapping TypeName="CP24Team08Model.Detail_MedicalHistory">
               <MappingFragment StoreEntitySet="Detail_MedicalHistory">
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
                 <ScalarProperty Name="MedicalHistory_ID" ColumnName="MedicalHistory_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -3024,7 +3044,9 @@
           <EntitySetMapping Name="HistoryDiseases">
             <EntityTypeMapping TypeName="CP24Team08Model.HistoryDisease">
               <MappingFragment StoreEntitySet="HistoryDisease">
+                <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -3083,7 +3105,9 @@
           <EntitySetMapping Name="MedicalHistories">
             <EntityTypeMapping TypeName="CP24Team08Model.MedicalHistory">
               <MappingFragment StoreEntitySet="MedicalHistory">
+                <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

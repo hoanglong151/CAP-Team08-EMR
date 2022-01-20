@@ -140,6 +140,10 @@
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history"
+                           role="tab" aria-controls="history" aria-selected="true">Tiền Sử, Bệnh Sử</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
                            role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
                     </li>
@@ -205,6 +209,23 @@
                                                 Html.RenderAction("DetailIE", "InformationExaminations", new { id = Model.InformationExamination.ID });
                                                 //Html.RenderAction("Edit", "Prescription_Detail");
                                                 Html.RenderAction("EditNoButton", "Prescription_Detail", new { id = Model.InformationExamination.ID });
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </p>
+                    </div>
+                    <div class="tab-pane fade show" id="history" role="tabpanel"
+                         aria-labelledby="history-tab">
+                        <p class='my-2'>
+                            <section id="multiple-column-form">
+                                <div class="row match-height">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("BillCheck", "Detail_HistoryDisease", new { id = Model.Patient.ID });
+                                                Html.RenderAction("BillCheck", "Detail_MedicalHistory", new { id = Model.Patient.ID });
                                             }
                                         </div>
                                     </div>
@@ -650,6 +671,71 @@
                 }
             })
             })
+
+
+        /*Ông/Bà*/
+        $(document).ready(function () {
+            $('#tableHistoryDiseases1').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ tiền sử bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
+        /*Cha/Mẹ*/
+        $(document).ready(function () {
+            $('#tableHistoryDiseases2').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ tiền sử bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
+        /*Anh/Chị em*/
+        $(document).ready(function () {
+            $('#tableHistoryDiseases3').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ tiền sử bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
+        $(document).ready(function () {
+            $('#tableMedicalHistories').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ bệnh sử",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
 
             if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
                 $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");
