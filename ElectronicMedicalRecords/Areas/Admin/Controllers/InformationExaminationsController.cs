@@ -325,9 +325,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 db.Entry(informationExamination).State = EntityState.Modified;
                 db.SaveChanges();
 
-                detail_DiagnosticsCategory.InformationExamination_ID = informationExamination.ID;
-                db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
-                db.SaveChanges();
+                if(detail_DiagnosticsCategory.DiagnosticsCategory_ID != null)
+                {
+                    detail_DiagnosticsCategory.InformationExamination_ID = informationExamination.ID;
+                    db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index", "MultipleModels");
             }
             ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);

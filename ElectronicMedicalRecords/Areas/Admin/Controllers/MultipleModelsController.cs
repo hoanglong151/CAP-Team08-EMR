@@ -131,8 +131,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.SaveChanges();
                 }
             }
-            db.Entry(multiplesModel.Detail_DiagnosticsCategory).State = EntityState.Modified;
-            db.SaveChanges();
+            var checkExistDiagnostic = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+            if(checkExistDiagnostic == null)
+            {
+                Detail_DiagnosticsCategory detail_DiagnosticsCategory = new Detail_DiagnosticsCategory();
+                detail_DiagnosticsCategory.DiagnosticsCategory_ID = multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID;
+                detail_DiagnosticsCategory.Advice = multiplesModel.Detail_DiagnosticsCategory.Advice;
+                detail_DiagnosticsCategory.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
+                db.SaveChanges();
+            }
+            else
+            {
+                db.Entry(multiplesModel.Detail_DiagnosticsCategory).State = EntityState.Modified;
+                db.SaveChanges();
+            }
 
             db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
             db.SaveChanges();
@@ -146,6 +159,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -450,6 +469,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             multiplesModel.CTMau = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
             multiplesModel.SinhHoaMau = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
             multiplesModel.DongMau = multiplesModel.DongMau.Where(p => p.ChiDinh == true).ToList();
@@ -468,6 +493,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -482,6 +513,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -496,6 +533,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -510,6 +553,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -523,7 +572,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
-            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID); multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -537,7 +591,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = (MultiplesModel)Session["MultipleModels"];
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
-            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID); multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -552,6 +611,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -566,6 +631,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -580,7 +651,29 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             multiplesModel.Detail_DiagnosticsCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+            if(multiplesModel.Detail_DiagnosticsCategory != null)
+            {
+                multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID);
+            }
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
+            if(multiplesModel.HistoryDiseases1 != null)
+            {
+                multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+            }
+            if(multiplesModel.HistoryDiseases2 != null)
+            {
+                multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+            }
+            if(multiplesModel.HistoryDiseases3 != null)
+            {
+                multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+            }
+            if(multiplesModel.MedicalHistories != null)
+            {
+                multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+            }
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
             ViewBag.PatientStatus = statusPatient.Name;
@@ -600,6 +693,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintAllExaminationInfoPost(MultiplesModel multiplesModel)
         {
             db.Configuration.LazyLoadingEnabled = false;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             Session["MultipleModelsAll"] = multiplesModel;
             return Json(new { success = true, data = multiplesModel });
         }
@@ -1110,11 +1205,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
          {
             PatientsController patientsController = new PatientsController();
             InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+            Detail_HistoryDiseaseController detail_HistoryDiseaseController = new Detail_HistoryDiseaseController();
+            Detail_MedicalHistoryController detail_MedicalHistoryController = new Detail_MedicalHistoryController();
             try
             {
                 // TODO: Add insert logic here
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;
+                detail_HistoryDiseaseController.Create(PatientID, multiplesModel);
+                detail_MedicalHistoryController.Create(PatientID, multiplesModel);
                 informationExaminationsController.Create(PatientID, multiplesModel);
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
@@ -1158,8 +1257,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 // TODO: Add update logic here
                 PatientsController patientsController = new PatientsController();
                 InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                Detail_HistoryDiseaseController detail_HistoryDiseaseController = new Detail_HistoryDiseaseController();
+                Detail_MedicalHistoryController detail_MedicalHistoryController = new Detail_MedicalHistoryController();
+                multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+                multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+                multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+                multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+                Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
+                Detail_HistoryDisease detail_HistoryDisease = new Detail_HistoryDisease();
                 patientsController.CreateOldPatient(multiplesModel.Patient);
                 informationExaminationsController.CreateOldPatient(multiplesModel);
+                detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
+                detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
             catch(Exception ex1)
@@ -1189,6 +1298,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 // TODO: Add update logic here
                 PatientsController patientsController = new PatientsController();
                 InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                Detail_HistoryDiseaseController detail_HistoryDiseaseController = new Detail_HistoryDiseaseController();
+                Detail_MedicalHistoryController detail_MedicalHistoryController = new Detail_MedicalHistoryController();
                 Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
                 Detail_SinhHoaMauController detail_SinhHoaMauController = new Detail_SinhHoaMauController();
                 Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
@@ -1209,6 +1320,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_Immune detail_Immune = new Detail_Immune();
                 Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
                 Detail_ViSinh detail_ViSinh = new Detail_ViSinh();
+                Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
+                Detail_HistoryDisease detail_HistoryDisease = new Detail_HistoryDisease();
 
                 multiplesModel.CTMau = multiplesModel.CTMau.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.SinhHoaMau = multiplesModel.SinhHoaMau.Where(p => p.ChiDinh == true).ToList();
@@ -1218,9 +1331,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.Immune = multiplesModel.Immune.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.Amniocente = multiplesModel.Amniocente.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.ViSinh = multiplesModel.ViSinh.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+                multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+                multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+                multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
 
                 patientsController.CreateOldPatient(multiplesModel.Patient);
                 informationExaminationsController.CreateTest(multiplesModel.InformationExamination, multiplesModel.Detail_DiagnosticsCategory);
+                detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
+                detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
                 var CongThucMauCD = detail_CTMauController.CreateOldPatient(detail_CTMau, multiplesModel.CTMau, multiplesModel.InformationExamination.ID, multiplesModel);
                 var SinhHoaMauCD = detail_SinhHoaMauController.CreateOldPatient(detail_SinhHoaMau, multiplesModel.SinhHoaMau, multiplesModel.InformationExamination.ID, multiplesModel);
                 var DongMauCD = detail_DongMauController.CreateOldPatient(detail_DongMau, multiplesModel.DongMau, multiplesModel.InformationExamination.ID, multiplesModel);
@@ -1269,6 +1388,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             var InformationExamination = db.InformationExaminations.Find(id);
             var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
+            var details_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Detail_DiagnosticsCategory = details_diagnostic;
             multiplesModel.InformationExamination = InformationExamination;
             multiplesModel.Patient = patient;
             return View(multiplesModel);
@@ -1279,7 +1400,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             var InformationExamination = db.InformationExaminations.Find(id);
             var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
+            var details_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
             multiplesModel.InformationExamination = InformationExamination;
+            multiplesModel.Detail_DiagnosticsCategory = details_diagnostic;
             multiplesModel.Patient = patient;
             return View(multiplesModel);
         }
@@ -1293,6 +1416,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 // TODO: Add update logic here
                 PatientsController patientsController = new PatientsController();
                 InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                Detail_HistoryDiseaseController detail_HistoryDiseaseController = new Detail_HistoryDiseaseController();
+                Detail_MedicalHistoryController detail_MedicalHistoryController = new Detail_MedicalHistoryController();
                 Detail_CTMauController detail_CTMauController = new Detail_CTMauController();
                 Detail_SinhHoaMauController detail_SinhHoaMauController = new Detail_SinhHoaMauController();
                 Detail_DongMauController detail_DongMauController = new Detail_DongMauController();
@@ -1304,8 +1429,33 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 ClinicalsController clinicalsController = new ClinicalsController();
                 Prescription_DetailController prescription_DetailController = new Prescription_DetailController();
                 //CayMausController cayMausController = new CayMausController();
+                if(multiplesModel.HistoryDiseases1 != null)
+                {
+                    multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.Selected == true).ToList();
+                }
+                if(multiplesModel.HistoryDiseases2 != null)
+                {
+                    multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.Selected == true).ToList();
+                }
+                if(multiplesModel.HistoryDiseases3 != null)
+                {
+                    multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.Selected == true).ToList();
+                }
+                if(multiplesModel.MedicalHistories != null)
+                {
+                    multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.Selected == true).ToList();
+                }
+
                 patientsController.Edit(multiplesModel.Patient);
                 informationExaminationsController.Edit(multiplesModel.InformationExamination);
+                if (multiplesModel.MedicalHistories != null)
+                {
+                    detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
+                }
+                if(multiplesModel.HistoryDiseases1 != null || multiplesModel.HistoryDiseases2 != null || multiplesModel.HistoryDiseases3 != null)
+                {
+                    detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
+                }
                 var CongThucMauEdit = Task.Run(() => detail_CTMauController.Edit(multiplesModel));
                 var SinhHoaMauEdit = Task.Run(() => detail_SinhHoaMauController.Edit(multiplesModel));
                 var DongMauEdit = Task.Run(() => detail_DongMauController.Edit(multiplesModel));

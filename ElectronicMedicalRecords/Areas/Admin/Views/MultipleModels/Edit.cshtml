@@ -140,6 +140,10 @@
                         <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history"
+                           role="tab" aria-controls="history" aria-selected="true">Tiền Sử, Bệnh Sử</a>
+                    </li>
                     @if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Kỹ Thuật Viên"))
                     {
                         <li class="nav-item" role="presentation">
@@ -151,38 +155,38 @@
                     {
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
-                                role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
-                                role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
-                                role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
-                                role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
-                                role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
-                                role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
-                                role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#visinh"
-                                role="tab" aria-controls="profile" aria-selected="false">Vi Sinh</a>
+                               role="tab" aria-controls="profile" aria-selected="false">Vi Sinh</a>
                         </li>
                     }
-                    </ul>
+                </ul>
                 <div class="ms-4 col-12 d-flex justify-content-start pt-4">
                     <button type="submit"
                             class="btn btn-primary me-1 mb-1">
@@ -215,6 +219,23 @@
                             </section>
                         </p>
                     </div>
+                    <div class="tab-pane fade show" id="history" role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <p class='my-2'>
+                            <section id="multiple-column-form">
+                                <div class="row match-height">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("CreateOldPatient", "HistoryDiseases", new { id = Model.Patient.ID });
+                                                Html.RenderAction("CreateOldPatient", "MedicalHistories", new { id = Model.Patient.ID });
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </p>
+                    </div>
                     @if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Kỹ Thuật Viên"))
                     {
                         <div class="tab-pane fade" id="LamSang" role="tabpanel"
@@ -232,102 +253,102 @@
                     }
                     @if (User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                     {
-                    <div class="tab-pane fade" id="profile" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_CTMau", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="profile" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_CTMau", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="DongMau" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_DongMau", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="DongMau" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_DongMau", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="NhomMau" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="NhomMau" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="urine" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_Urine", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="urine" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_Urine", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="immune" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_Immune", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="immune" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_Immune", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="amniocente" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="amniocente" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="visinh" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <div class="page-heading">
-                            <section class="section">
-                                <div class="card">
-                                    @{
-                                        Html.RenderAction("Edit", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
-                                    }
-                                </div>
-                            </section>
+                        <div class="tab-pane fade" id="visinh" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="page-heading">
+                                <section class="section">
+                                    <div class="card">
+                                        @{
+                                            Html.RenderAction("Edit", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
+                                        }
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
                     }
                 </div>
             </div>
@@ -576,6 +597,71 @@
                 });
             });
         })
+
+
+        /*Ông/Bà*/
+        $(document).ready(function () {
+            $('#tableHistoryDiseases1').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ tiền sử bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
+        /*Cha/Mẹ*/
+        $(document).ready(function () {
+            $('#tableHistoryDiseases2').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ tiền sử bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
+        /*Anh/Chị em*/
+        $(document).ready(function () {
+            $('#tableHistoryDiseases3').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ tiền sử bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
+        $(document).ready(function () {
+            $('#tableMedicalHistories').dataTable({
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Loading...</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ bệnh sử",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        });
+
 
         if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
             $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");

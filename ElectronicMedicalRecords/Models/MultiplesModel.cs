@@ -33,6 +33,14 @@ namespace ElectronicMedicalRecords.Models
         public List<Detail_Amniocente> Detail_Amniocentes { get; set; }
         public List<ViSinh> ViSinh { get; set; }
         public List<Detail_ViSinh> Detail_ViSinhs { get; set; }
+        public List<HistoryDisease> HistoryDiseases1 { get; set; }
+        public List<HistoryDisease> HistoryDiseases2 { get; set; }
+        public List<HistoryDisease> HistoryDiseases3 { get; set; }
+        public List<Detail_HistoryDisease> Detail_HistoryDiseases1 { get; set; }
+        public List<Detail_HistoryDisease> Detail_HistoryDiseases2 { get; set; }
+        public List<Detail_HistoryDisease> Detail_HistoryDiseases3 { get; set; }
+        public List<MedicalHistory> MedicalHistories { get; set; }
+        public List<Detail_MedicalHistory> Detail_MedicalHistories { get; set; }
         public Clinical Clinical { get; set; }
         public CayMau CayMau { get; set; }
     }

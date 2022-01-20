@@ -44,14 +44,14 @@
                                 <p>Bệnh Nhân : @Model.Patient.Name</p>
                                 <p>Số Nhà: @Model.Patient.NumHome</p>
                                 <p>Địa Chỉ: @Model.Patient.Address</p>
-                                <p>Phường: @Model.Patient.Ward</p>
-                                <p>Quận: @Model.Patient.District</p>
+                                <p>Phường: @Model.Patient.Ward.Ward1</p>
+                                <p>Quận: @Model.Patient.District.District1</p>
                             </div>
                             <div class="col-xs-4 to w-100">
                                 <p>Giới Tính: @ViewBag.Gender</p>
                                 <p>Ngày Sinh: @Model.Patient.BirthDate</p>
-                                <p>Số Điện Thoại: @Model.Patient.Phone</p>
-                                <p>Số Điện Thoại: @Model.Patient.PhoneZalo</p>
+                                <p>Số Điện Thoại: <span>0</span>@Model.Patient.Phone</p>
+                                <p>Số Điện Thoại: <span>0</span>@Model.Patient.PhoneZalo</p>
                                 <p>Số BHYT: @Model.Patient.InsuranceCode</p>
                             </div>
                             <div class="col-xs-4 to w-100">
@@ -61,8 +61,77 @@
                         <hr />
                         <p class="lead marginbottom">Thông Tin Bệnh Án</p>
                         <div class="col-xs-12 to">
-                            <p>Tiền Sử: @Model.Patient.MedicalHistory</p>
-                            <p>Bệnh Sử: @Model.Patient.HistoryDisease</p>
+                            @if (Model.Detail_HistoryDiseases1 != null)
+                            {
+                                <p>
+                                    Tiền sử bệnh (Ông/Bà):
+                                    @for (int item1 = 0; item1 < Model.Detail_HistoryDiseases1.Count; item1++)
+                                    {
+                                        if (item1 == Model.Detail_HistoryDiseases1.Count - 1)
+                                        {
+                                            <span>@Model.Detail_HistoryDiseases1[item1].HistoryDisease.Name</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Model.Detail_HistoryDiseases1[item1].HistoryDisease.Name,</span>
+                                        }
+                                    }
+                                </p>
+                            }
+
+                            @if (Model.Detail_HistoryDiseases2 != null)
+                            {
+                                <p>
+                                    Tiền sử bệnh (Cha/Mẹ):
+                                    @for (int item2 = 0; item2 < Model.Detail_HistoryDiseases2.Count; item2++)
+                                    {
+                                        if (item2 == Model.Detail_HistoryDiseases2.Count - 1)
+                                        {
+                                            <span>@Model.Detail_HistoryDiseases2[item2].HistoryDisease.Name</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Model.Detail_HistoryDiseases2[item2].HistoryDisease.Name,</span>
+                                        }
+                                    }
+                                </p>
+                            }
+
+                            @if (Model.Detail_HistoryDiseases3 != null)
+                            {
+                                <p>
+                                    Tiền sử bệnh (Anh/Chị em):
+                                    @for (int item3 = 0; item3 < Model.Detail_HistoryDiseases3.Count; item3++)
+                                    {
+                                        if (item3 == Model.Detail_HistoryDiseases3.Count - 1)
+                                        {
+                                            <span>@Model.Detail_HistoryDiseases3[item3].HistoryDisease.Name</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Model.Detail_HistoryDiseases3[item3].HistoryDisease.Name,</span>
+                                        }
+                                    }
+                                </p>
+                            }
+
+                            @if (Model.Detail_MedicalHistories != null)
+                            {
+                                <p>
+                                    Bệnh sử:
+                                    @for (int item4 = 0; item4 < Model.Detail_MedicalHistories.Count; item4++)
+                                    {
+                                        if (item4 == Model.Detail_MedicalHistories.Count - 1)
+                                        {
+                                            <span>@Model.Detail_MedicalHistories[item4].MedicalHistory.Name</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Model.Detail_MedicalHistories[item4].MedicalHistory.Name,</span>
+                                        }
+                                    }
+                                </p>
+                            }
                         </div>
                     </div>
                     <hr />

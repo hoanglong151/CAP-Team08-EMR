@@ -107,30 +107,6 @@
         </div>
     </div>
 </div>
-<div class="card-header" style="padding-bottom:0px">
-    <h4 class="card-title">Thông Tin Bệnh Án</h4>
-    <hr />
-</div>
-<div class="card-content">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12 col-12">
-                <div class="form-group patient-taginpust">
-                    <label for="email-id-column">Tiền Sử</label>
-                    <input type="text" data-role="tagsinput" name="Patient.MedicalHistory" value="@Model.Patient.MedicalHistory" class="form-control" readonly>
-                    @Html.ValidationMessageFor(model => model.Patient.MedicalHistory, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-12 col-12">
-                <div class="form-group patient-taginpust">
-                    <label for="email-id-column">Bệnh Sử</label>
-                    <input type="text" data-role="tagsinput" name="Patient.HistoryDisease" value="@Model.Patient.HistoryDisease" class="form-control" readonly>
-                    @Html.ValidationMessageFor(model => model.Patient.HistoryDisease, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-    </div>
-</div>   
 
 
 

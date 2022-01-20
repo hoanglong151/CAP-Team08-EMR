@@ -17,6 +17,8 @@ namespace ElectronicMedicalRecords.Models
         public int ID { get; set; }
         public Nullable<int> MedicalHistory_ID { get; set; }
         public Nullable<int> Patient_ID { get; set; }
+        public string LevelFamily { get; set; }
+        public bool Selected { get; set; }
     
         public virtual MedicalHistory MedicalHistory { get; set; }
         public virtual Patient Patient { get; set; }
