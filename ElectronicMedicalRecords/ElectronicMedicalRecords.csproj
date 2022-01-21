@@ -1002,10 +1002,6 @@
     <Content Include="Areas\Admin\assets\Nhac.mp3" />
     <Content Include="Areas\Admin\assets\videos\vbg_Trim.mp4" />
     <Content Include="Areas\Admin\assets\videos\videoHomePageVL.mp4" />
-    <Content Include="Areas\Admin\Views\Shared\component-modal.html" />
-    <Content Include="Areas\Admin\Views\Shared\index.html" />
-    <Content Include="Areas\Admin\Views\Shared\table-datatable.html" />
-    <Content Include="Areas\Admin\Views\Shared\ui-chart-apexcharts.html" />
     <Content Include="asset\440.jpg" />
     <Content Include="asset\bg-up.png" />
     <Content Include="asset\Deny.png" />
@@ -2531,8 +2527,6 @@
     <Content Include="Areas\Admin\assets\vendors\sweetalert2\sweetalert2.min.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.css" />
     <Content Include="Areas\Admin\assets\vendors\toastify\toastify.js" />
-    <Content Include="Areas\Admin\Views\Shared\component-navs.html" />
-    <Content Include="Areas\Admin\Views\Shared\form-layout.html" />
     <Content Include="asset\021.jpg" />
     <Content Include="asset\bg-login.jpg" />
     <Content Include="asset\bg.jpg" />

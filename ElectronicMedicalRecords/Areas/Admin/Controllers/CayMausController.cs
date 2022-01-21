@@ -53,7 +53,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.CayMau = cayMau;
+            //multiplesModel.CayMau = cayMau;
             return PartialView("_DetailIE", multiplesModel);
         }
 
@@ -115,19 +115,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             //    var uploadResult = _cloudinary.Upload(uploadParams);
             //    multiplesModel.CayMau.ImageDinhDanh += uploadResult.SecureUri.AbsoluteUri + ",";
             //}
-            if (ModelState.IsValid && multiplesModel.CayMau.ChiDinh == true)
-            {
-                multiplesModel.CayMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
-                //multiplesModel.CayMau.ImageNuoiCay.Remove(multiplesModel.CayMau.ImageNuoiCay.Length - 1);
-                //multiplesModel.CayMau.ImageDinhDanh.Remove(multiplesModel.CayMau.ImageDinhDanh.Length - 1);
-                multiplesModel.InformationExamination.ResultViSinh = false;
-                db.CayMaus.Add(multiplesModel.CayMau);
-                db.SaveChanges();
-                return RedirectToAction("Create", "MultipleModels"); 
-            }
+            //if (ModelState.IsValid && multiplesModel.CayMau.ChiDinh == true)
+            //{
+            //    multiplesModel.CayMau.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+            //    //multiplesModel.CayMau.ImageNuoiCay.Remove(multiplesModel.CayMau.ImageNuoiCay.Length - 1);
+            //    //multiplesModel.CayMau.ImageDinhDanh.Remove(multiplesModel.CayMau.ImageDinhDanh.Length - 1);
+            //    multiplesModel.InformationExamination.ResultViSinh = false;
+            //    db.CayMaus.Add(multiplesModel.CayMau);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Create", "MultipleModels"); 
+            //}
 
-            ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", multiplesModel.CayMau.InformationExamination_ID);
-            return View(multiplesModel.CayMau);
+            //ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", multiplesModel.CayMau.InformationExamination_ID);
+            //return View(multiplesModel.CayMau);
+            return View();
         }
 
         // GET: Admin/CayMaus/Edit/5
@@ -142,7 +143,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.CayMau = cayMau;
+            //multiplesModel.CayMau = cayMau;
             ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", cayMau.InformationExamination_ID);
             return PartialView("_Edit", multiplesModel);
         }

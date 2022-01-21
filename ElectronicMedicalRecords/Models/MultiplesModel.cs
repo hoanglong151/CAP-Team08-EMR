@@ -42,6 +42,5 @@ namespace ElectronicMedicalRecords.Models
         public List<MedicalHistory> MedicalHistories { get; set; }
         public List<Detail_MedicalHistory> Detail_MedicalHistories { get; set; }
         public Clinical Clinical { get; set; }
-        public CayMau CayMau { get; set; }
     }
 }
