@@ -1447,7 +1447,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
 
                 patientsController.Edit(multiplesModel.Patient);
-                informationExaminationsController.Edit(multiplesModel.InformationExamination);
+                informationExaminationsController.Edit(multiplesModel.InformationExamination, multiplesModel.Detail_DiagnosticsCategory);
                 if (multiplesModel.MedicalHistories != null)
                 {
                     detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
@@ -1566,6 +1566,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 else
                 {
                     var patient = db.Patients.Find(id);
+                    var historyDiseases = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id).ToList();
+                    if(historyDiseases.Count != 0)
+                    {
+                        foreach(var item in historyDiseases)
+                        {
+                            db.Detail_HistoryDisease.Remove(item);
+                            db.SaveChanges();
+                        }
+                    }
+                    var medicalHistory = db.Detail_MedicalHistory.Where(p => p.Patient_ID == id).ToList();
+                    if(medicalHistory.Count != 0)
+                    {
+                        foreach(var item1 in medicalHistory)
+                        {
+                            db.Detail_MedicalHistory.Remove(item1);
+                            db.SaveChanges();
+                        }
+                    }
                     db.InformationExaminations.Remove(checkInfoExam);
                     db.Patients.Remove(patient);
                     db.SaveChanges();

@@ -662,6 +662,20 @@
             });
         });
 
+        var selectDiagnostic = document.querySelector('#NameDiagnostic');
+        selectDiagnostic.addEventListener('change', (e) => {
+            var id = parseInt(e.target.value);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("FindDiagnostic", "DiagnosticsCategories")",
+                data: { id: id},
+                success: (res) => {
+                    document.querySelector('#IDDiagnostic').setAttribute("value", res.data.ID);
+                    document.querySelector('#AdviceDiagnostic').setAttribute("value", res.data.Advice);
+                }
+            })
+        })
+
 
         if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
             $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");

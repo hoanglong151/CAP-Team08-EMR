@@ -10,6 +10,7 @@
         <div class="row">
             @if (Model.Detail_DiagnosticsCategory != null)
             {
+                @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.ID);
                 @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID);
                 @Html.HiddenFor(model => model.Detail_DiagnosticsCategory.InformationExamination_ID);
                 <div class="col-md-12" style="margin-bottom:12px">

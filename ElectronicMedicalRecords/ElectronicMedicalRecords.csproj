@@ -2889,7 +2889,6 @@
     <Content Include="Areas\Admin\Views\Detail_MedicalHistory\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_MedicalHistory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_MedicalHistory\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Detail_HistoryDisease\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Immune\_DetailIE.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_HistoryDisease\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_MedicalHistory\_BillCheck.cshtml" />

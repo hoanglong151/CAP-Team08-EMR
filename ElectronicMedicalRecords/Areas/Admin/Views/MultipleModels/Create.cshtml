@@ -362,6 +362,13 @@
             });
         });
 
+        var phonePatient = document.querySelector('#Patient_Phone');
+        var phonePatientZalo = document.querySelector('#Patient_PhoneZalo');
+
+        phonePatient.addEventListener('input', (e) => {
+            phonePatientZalo.value = e.target.value;
+        })
+
         if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
             $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");
         }

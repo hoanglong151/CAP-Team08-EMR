@@ -271,16 +271,17 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void EditP()
         {
             var info = db.InformationExaminations.AsNoTracking().First();
+            var diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == info.ID);
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(info) as RedirectToRouteResult;
+                var result = controller.Edit(info, diagnostic) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
             }
             using (var scope = new TransactionScope())
             {
                 controller.ModelState.AddModelError("", "Error Message");
-                var resultError = controller.Edit(info) as ViewResult;
+                var resultError = controller.Edit(info, diagnostic) as ViewResult;
                 Assert.IsNotNull(resultError);
             }
         }
