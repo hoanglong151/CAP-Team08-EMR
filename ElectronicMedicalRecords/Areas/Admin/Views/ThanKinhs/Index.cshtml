@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ElectronicMedicalRecords.Models.HoHap>
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.ThanKinh>
 
 @{
     ViewBag.Title = "Index";
@@ -18,14 +18,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
-                <h3>Quản lý danh mục hô hấp</h3>
-                <p class="text-subtitle text-muted">Danh sách danh mục hô hấp</p>
+                <h3>Quản lý danh mục Thần Kinh</h3>
+                <p class="text-subtitle text-muted">Danh sách danh mục Thần Kinh</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "HoHaps")">Danh Sách</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Danh Mục Hô Hấp</li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "ThanKinhs")">Danh Sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Danh Mục Thần Kinh</li>
                     </ol>
                 </nav>
             </div>
@@ -34,22 +34,22 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Danh sách danh mục hô hấp
+                Danh sách danh mục Thần Kinh
                 @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                 {
                     <br />
                     <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                            data-bs-target="#createHoHapsModal">
+                            data-bs-target="#createThanKinhsModal">
                         <i class="m-icon bi bi-plus-circle"></i>
-                        Thêm Hô Hấp
+                        Thêm Thần Kinh
                     </button>
                 }
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="tableHoHaps" style="width:100%">
+                <table class="table table-striped" id="tableThanKinhs" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Danh Mục Hô Hấp</th>
+                            <th>Danh Mục Thần Kinh</th>
                             <th>Nguy Hiểm</th>
                             @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                             {
@@ -65,29 +65,29 @@
 </div>
 
 <!-- Create Basic Modal -->
-<div class="modal fade text-left" id="createHoHapsModal" data-backdrop="true" tabindex="-1" role="dialog"
+<div class="modal fade text-left" id="createThanKinhsModal" data-backdrop="true" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel1">Thêm Danh Mục Hô Hấp</h5>
+                <h5 class="modal-title" id="myModalLabel1">Thêm Danh Mục Thần Kinh</h5>
                 <button type="button" class="close rounded-pill"
                         data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-createHoHaps" class="form form-horizontal needs-validation" novalidate>
+                <form id="form-createThanKinhs" class="form form-horizontal needs-validation" novalidate>
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Tên Hô Hấp</label>
+                                <label>Tên Thần Kinh</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control pd-form"
-                                               placeholder="Tên Hô Hấp" id="first-name-icon HoHapsNameCreate" required>
+                                               placeholder="Tên Thần Kinh" id="first-name-icon ThanKinhsNameCreate" required>
                                         <div class="form-control-icon icon-MedicationCategory">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -111,7 +111,7 @@
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Hủy</span>
                         </button>
-                        <button type="submit" id="createHoHaps" class="btn btn-primary ml-1">
+                        <button type="submit" id="createThanKinhs" class="btn btn-primary ml-1">
                             <i class="bx bx-check d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Tạo</span>
                         </button>
@@ -123,30 +123,30 @@
 </div>
 
 <!-- Update Basic Modal -->
-<div class="modal fade text-left" id="UpdateHoHaps" tabindex="-1" role="dialog"
+<div class="modal fade text-left" id="UpdateThanKinhs" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Cập nhật hô hấp</h5>
+                <h5 class="modal-title" id="myModalLabel">Cập nhật Thần Kinh</h5>
                 <button type="button" class="close rounded-pill"
                         data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-updateHoHaps" class="form form-horizontal">
+                <form id="form-updateThanKinhs" class="form form-horizontal">
                     <div class="form-body">
                         <div class="row">
-                            <input type="text" id="UpdateHoHapsID" name="ID" hidden />
+                            <input type="text" id="UpdateThanKinhsID" name="ID" hidden />
                             <div class="col-md-4">
-                                <label for="UpdateHoHapsName">Tên Tuần Hoàn</label>
+                                <label for="UpdateThanKinhsName">Tên Thần Kinh</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên Hô Hấp" id="UpdateHoHapsName" required>
+                                               placeholder="Tên Thần Kinh" id="UpdateThanKinhsName" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -159,7 +159,7 @@
                             <div class="col-md-8">
                                 <div class="form-check">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="form-check-input form-check-danger" id="UpdateHoHapsDangerous" name="Dangerous">
+                                        <input type="checkbox" class="form-check-input form-check-danger" id="UpdateThanKinhsDangerous" name="Dangerous">
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                 <i class="bx bx-x d-block d-sm-none"></i>
                                 <span class="d-none d-sm-block">Hủy</span>
                             </button>
-                            <button type="submit" id="updateHoHaps" class="btn btn-primary ml-1">
+                            <button type="submit" id="updateThanKinhs" class="btn btn-primary ml-1">
                                 <i class="bx bx-check d-block d-sm-none"></i>
                                 <span class="d-none d-sm-block">Cập nhật</span>
                             </button>
@@ -186,9 +186,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
-            $('#tableHoHaps').DataTable({
+            $('#tableThanKinhs').DataTable({
                 "ajax": {
-                    "url": "@Url.Action("GetData", "HoHaps")",
+                    "url": "@Url.Action("GetData", "ThanKinhs")",
                     "type": "GET",
                     "datatype": "json"
                 },
@@ -209,8 +209,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            var button = "<button class='btn btn-primary btnHover edit' onclick='getHoHapsByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteHoHaps(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            var button = "<button class='btn btn-primary btnHover edit' onclick='getThanKinhsByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteThanKinhs(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                             return button;
                         },
                         "targets": 0,
@@ -218,13 +218,13 @@
                     }
                 ],
                 "language": {
-                    "emptyTable": "No data available, please click on <b>Tạo Hô Hấp</b> button",
+                    "emptyTable": "No data available, please click on <b>Tạo Thần Kinh</b> button",
                     "oPaginate": {
                         sNext: '<i class="fa fa-chevron-right"></i>',
                         sPrevious: '<i class="fa fa-chevron-left"></i>',
                     },
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                    "lengthMenu": "Hiển thị _MENU_ hô hấp",
+                    "lengthMenu": "Hiển thị _MENU_ Thần Kinh",
                     "search": "Tìm kiếm:",
                 },
                 "columnDefs": [
@@ -235,30 +235,30 @@
                 ]
             })
         })
-        createHoHaps()
-        updateHoHaps()
-        /*Create Tuần Hoàn*/
-        function createHoHaps() {
-            $('#form-createHoHaps').submit(function (e) {
-                var dataHoHap = $('#form-createHoHaps').serialize();
+        createThanKinhs()
+        updateThanKinhs()
+        /*Create Thần Kinh*/
+        function createThanKinhs() {
+            $('#form-createThanKinhs').submit(function (e) {
+                var dataThanKinh = $('#form-createThanKinhs').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
                 if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                    dataHoHap = dataHoHap.replace("&Dangerous=on", "&Dangerous=true");
+                    dataThanKinh = dataThanKinh.replace("&Dangerous=on", "&Dangerous=true");
                 }
                 var model = {
-                    validata: dataHoHap,
+                    validata: dataThanKinh,
                 }
-                var isvalidCreate = $("#form-createHoHaps").valid();
+                var isvalidCreate = $("#form-createThanKinhs").valid();
                 if (isvalidCreate) {
                     $.ajax({
-                    url: "@Url.Action("Create", "HoHaps")",
+                    url: "@Url.Action("Create", "ThanKinhs")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
                     success: (res) => {
                         if (res.success) {
                             resetInputCreate();
-                            $('#createHoHapsModal').modal('hide');
+                            $('#createThanKinhsModal').modal('hide');
                             $(document.body).removeClass('modal-open').attr("style", "none");
                             $('.modal-backdrop').toggle();
                             Swal.fire({
@@ -268,7 +268,7 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             })
-                            $('#tableHoHaps').DataTable().ajax.reload();
+                            $('#tableThanKinhs').DataTable().ajax.reload();
                         } else {
                             Toastify({
                                 text: res.responseText,
@@ -287,43 +287,43 @@
         }
 
         /*get ID Update*/
-        function getHoHapsByID(id) {
+        function getThanKinhsByID(id) {
             $.ajax({
-                url: '@Url.Action("Edit", "HoHaps")',
+                url: '@Url.Action("Edit", "ThanKinhs")',
                 type: 'GET',
                 data: { id: id },
                 success: function (res) {
                     if (res.data != null) {
-                        $('#UpdateHoHapsName').val(res.data.Name);
-                        $('#UpdateHoHapsDangerous').prop('checked', res.data.Dangerous);
-                        $('#UpdateHoHapsID').val(res.data.ID);
+                        $('#UpdateThanKinhsName').val(res.data.Name);
+                        $('#UpdateThanKinhsDangerous').prop('checked', res.data.Dangerous);
+                        $('#UpdateThanKinhsID').val(res.data.ID);
                     }
                 }
             })
-            $('#UpdateHoHaps').modal('show')
+            $('#UpdateThanKinhs').modal('show')
         }
 
         /*update*/
-        function updateHoHaps() {
-            $('#form-updateHoHaps').submit(function (e) {
-                var dataHoHap = $('#form-updateHoHaps').serialize();
+        function updateThanKinhs() {
+            $('#form-updateThanKinhs').submit(function (e) {
+                var dataThanKinh = $('#form-updateThanKinhs').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
                 if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                    dataHoHap = dataHoHap.replace("&Dangerous=on", "&Dangerous=true");
+                    dataThanKinh = dataThanKinh.replace("&Dangerous=on", "&Dangerous=true");
                 }
                 var model = {
-                    validata: dataHoHap,
+                    validata: dataThanKinh,
                 }
-                var isvalidUpdate = $("#form-updateHoHaps").valid();
+                var isvalidUpdate = $("#form-updateThanKinhs").valid();
                 if (isvalidUpdate) {
                     $.ajax({
-                    url: "@Url.Action("Edit", "HoHaps")",
+                    url: "@Url.Action("Edit", "ThanKinhs")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
                     success: (res) => {
                         if (res.success) {
-                            $('#UpdateHoHaps').modal('hide');
+                            $('#UpdateThanKinhs').modal('hide');
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
@@ -331,7 +331,7 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             })
-                            $('#tableHoHaps').DataTable().ajax.reload();
+                            $('#tableThanKinhs').DataTable().ajax.reload();
                         } else {
                             Toastify({
                                 text: res.responseText,
@@ -349,18 +349,18 @@
             })
         }
 
-        /*Get & Post Delete Tuần Hoàn*/
-        function deleteHoHaps(id) {
+        /*Get & Post Delete Thần Kinh*/
+        function deleteThanKinhs(id) {
             $.ajax({
-                url: '@Url.Action("Delete", "HoHaps")',
+                url: '@Url.Action("Delete", "ThanKinhs")',
                 type: 'GET',
                 data: { id: id },
                 success: function (res) {
                     if (res.data != null) {
                         Swal.fire({
-                            title: 'Bạn muốn xóa hô hấp này?',
+                            title: 'Bạn muốn xóa Thần Kinh này?',
                             html:
-                                '<b>Hô Hấp:</b> <span>' + res.data.Name +'</span>',
+                                '<b>Thần Kinh:</b> <span>' + res.data.Name +'</span>',
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#d33',
@@ -372,7 +372,7 @@
                                 var form = $('#__AjaxAntiForgeryForm');
                                 var token = $('input[name="__RequestVerificationToken"]', form).val();
                                 $.ajax({
-                                    url: '@Url.Action("Delete", "HoHaps")',
+                                    url: '@Url.Action("Delete", "ThanKinhs")',
                                     type: 'POST',
                                     data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
                                     success: function (res) {
@@ -384,7 +384,7 @@
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
-                                            $("#tableHoHaps").DataTable().ajax.reload();
+                                            $("#tableThanKinhs").DataTable().ajax.reload();
                                         }
                                         else {
                                             Swal.fire({
@@ -404,7 +404,7 @@
 
         /*Reset Input Create Form*/
         function resetInputCreate() {
-            $('#form-createHoHaps').get(0).reset();
+            $('#form-createThanKinhs').get(0).reset();
         }
 
         /*Validate Form*/

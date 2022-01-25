@@ -431,6 +431,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             Patient patient = db.Patients.Find(id);
+            var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var lastInfo = listInfo.LastOrDefault();
             ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
@@ -438,7 +440,26 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
             ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
             multiplesModel.Patient = patient;
+            multiplesModel.InformationExamination = lastInfo;
             return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
+        // GET: Admin/Patients/CreateOldPatient/5
+        public ActionResult CreateTest(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            Patient patient = db.Patients.Find(id);
+            var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
+            var lastInfo = listInfo.LastOrDefault();
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
+            multiplesModel.Patient = patient;
+            multiplesModel.InformationExamination = lastInfo;
+            return PartialView("_CreateTest", multiplesModel);
         }
 
         [HttpPost]

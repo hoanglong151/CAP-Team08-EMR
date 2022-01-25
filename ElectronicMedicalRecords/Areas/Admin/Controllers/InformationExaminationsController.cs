@@ -209,6 +209,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIERead", multiplesModel);
         }
 
+        // GET: Admin/InformationExaminations/Create1
+        public ActionResult Create1()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
+            ViewBag.UserByID = userID.ID;
+            ViewBag.UserName = userID.Name;
+            ViewBag.DateExamination = DateTime.Now;
+            return PartialView("_Create1");
+        }
+
 
         // GET: Admin/InformationExaminations/Create
         public ActionResult Create(int? id)
@@ -245,6 +257,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 informationExamination.DateExamine = DateTime.Now;
                 informationExamination.DateEnd = DateTime.Now;
                 informationExamination.PatientStatus_ID = multiplesModel.InformationExamination.PatientStatus_ID;
+                informationExamination.BloodPressure = multiplesModel.InformationExamination.BloodPressure;
+                informationExamination.Breathing = multiplesModel.InformationExamination.Breathing;
+                informationExamination.HeartBeat = multiplesModel.InformationExamination.HeartBeat;
+                informationExamination.Weight = multiplesModel.InformationExamination.Weight;
+                informationExamination.Height = multiplesModel.InformationExamination.Height;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");

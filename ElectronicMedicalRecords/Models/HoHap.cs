@@ -21,9 +21,9 @@ namespace ElectronicMedicalRecords.Models
         }
     
         public int ID { get; set; }
-        public Nullable<bool> ChiDinh { get; set; }
+        public bool ChiDinh { get; set; }
         public string Name { get; set; }
-        public Nullable<bool> Dangerous { get; set; }
+        public bool Dangerous { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_HoHap> Detail_HoHap { get; set; }

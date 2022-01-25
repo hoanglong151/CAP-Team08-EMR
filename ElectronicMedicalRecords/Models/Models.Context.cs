@@ -34,16 +34,24 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<CayMau> CayMaus { get; set; }
         public virtual DbSet<Clinical> Clinicals { get; set; }
+        public virtual DbSet<CoXuongKhop> CoXuongKhops { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
         public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
+        public virtual DbSet<Detail_CoXuongKhop> Detail_CoXuongKhop { get; set; }
         public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
         public virtual DbSet<Detail_DiagnosticsCategory> Detail_DiagnosticsCategory { get; set; }
         public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
         public virtual DbSet<Detail_HistoryDisease> Detail_HistoryDisease { get; set; }
+        public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
         public virtual DbSet<Detail_Immune> Detail_Immune { get; set; }
         public virtual DbSet<Detail_MedicalHistory> Detail_MedicalHistory { get; set; }
         public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
         public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
+        public virtual DbSet<Detail_TamThan> Detail_TamThan { get; set; }
+        public virtual DbSet<Detail_ThanKinh> Detail_ThanKinh { get; set; }
+        public virtual DbSet<Detail_ThanTietNieu> Detail_ThanTietNieu { get; set; }
+        public virtual DbSet<Detail_TieuHoa> Detail_TieuHoa { get; set; }
+        public virtual DbSet<Detail_TuanHoan> Detail_TuanHoan { get; set; }
         public virtual DbSet<Detail_Urine> Detail_Urine { get; set; }
         public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
@@ -51,6 +59,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<DongMau> DongMaus { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HistoryDisease> HistoryDiseases { get; set; }
+        public virtual DbSet<HoHap> HoHaps { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
         public virtual DbSet<Immune> Immunes { get; set; }
         public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
@@ -66,23 +75,14 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Urine> Urines { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<ViSinh> ViSinhs { get; set; }
-        public virtual DbSet<Ward> Wards { get; set; }
-        public virtual DbSet<CoXuongKhop> CoXuongKhops { get; set; }
-        public virtual DbSet<Detail_CoXuongKhop> Detail_CoXuongKhop { get; set; }
-        public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
-        public virtual DbSet<Detail_TamThan> Detail_TamThan { get; set; }
-        public virtual DbSet<Detail_ThanKinh> Detail_ThanKinh { get; set; }
-        public virtual DbSet<Detail_ThanTietNieu> Detail_ThanTietNieu { get; set; }
-        public virtual DbSet<Detail_TieuHoa> Detail_TieuHoa { get; set; }
-        public virtual DbSet<Detail_TuanHoan> Detail_TuanHoan { get; set; }
-        public virtual DbSet<HoHap> HoHaps { get; set; }
         public virtual DbSet<TamThan> TamThans { get; set; }
         public virtual DbSet<ThanKinh> ThanKinhs { get; set; }
         public virtual DbSet<ThanTietNieu> ThanTietNieux { get; set; }
         public virtual DbSet<TieuHoa> TieuHoas { get; set; }
         public virtual DbSet<TuanHoan> TuanHoans { get; set; }
+        public virtual DbSet<Urine> Urines { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ViSinh> ViSinhs { get; set; }
+        public virtual DbSet<Ward> Wards { get; set; }
     }
 }

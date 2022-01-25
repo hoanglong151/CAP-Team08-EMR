@@ -243,10 +243,9 @@
                 var dataTuanHoan = $('#form-createTuanHoans').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
-                //if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                //    jQuery('input[name="Dangerous"]').val("true")
-                //}
-                //console.log(dataTuanHoan)
+                if (jQuery('input[name="Dangerous"]').val() == 'on') {
+                    dataTuanHoan = dataTuanHoan.replace("&Dangerous=on", "&Dangerous=true");
+                }
                 var model = {
                     validata: dataTuanHoan,
                 }
@@ -310,6 +309,9 @@
                 var dataTuanHoan = $('#form-updateTuanHoans').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
+                if (jQuery('input[name="Dangerous"]').val() == 'on') {
+                    dataTuanHoan = dataTuanHoan.replace("&Dangerous=on", "&Dangerous=true");
+                }
                 var model = {
                     validata: dataTuanHoan,
                 }

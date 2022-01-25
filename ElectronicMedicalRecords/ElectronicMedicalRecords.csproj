@@ -260,6 +260,7 @@
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CayMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClinicalsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoXuongKhopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_AmniocenteController.cs" />
@@ -292,6 +293,10 @@
     <Compile Include="Areas\Admin\Controllers\Prescription_DetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TamThansController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThanKinhsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThanTietNieuxController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TieuHoasController.cs" />
     <Compile Include="Areas\Admin\Controllers\TuanHoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
@@ -2939,11 +2944,14 @@
     <Content Include="Areas\Admin\Views\HistoryDiseases\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\MedicalHistories\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\TuanHoans\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HoHaps\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\HoHaps\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\HoHaps\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\HoHaps\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\HoHaps\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationExaminations\_Create1.cshtml" />
+    <Content Include="Areas\Admin\Views\Patients\_CreateTest.cshtml" />
+    <Content Include="Areas\Admin\Views\TieuHoas\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThanTietNieux\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CoXuongKhops\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThanKinhs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TamThans\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

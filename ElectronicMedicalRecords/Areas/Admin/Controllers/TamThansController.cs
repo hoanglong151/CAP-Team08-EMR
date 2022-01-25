@@ -10,130 +10,131 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    public class HoHapsController : Controller
+    public class TamThansController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/HoHaps
+        // GET: Admin/TamThans
         public ActionResult Index()
         {
-            return View(db.HoHaps.ToList());
+            return View(db.TamThans.ToList());
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var hoHaps = db.HoHaps.ToList();
-            return Json(new { data = hoHaps }, JsonRequestBehavior.AllowGet);
+            var tamThans = db.TamThans.ToList();
+            return Json(new { data = tamThans }, JsonRequestBehavior.AllowGet);
         }
 
-        public string ValidateForm(HoHap hoHap)
+        public string ValidateForm(TamThan tamThan)
         {
             string text = "";
-            var checkExist = db.HoHaps.FirstOrDefault(e => e.Name == hoHap.Name);
-            if (checkExist != null && hoHap.Name != null)
+            var checkExist = db.TieuHoas.FirstOrDefault(e => e.Name == tamThan.Name);
+            if (checkExist != null && tamThan.Name != null)
             {
-                text = "Hô Hấp đã có trong danh sách";
+                text = "Tâm Thần đã có trong danh sách";
             }
             return text;
         }
 
-        public string ValidateFormUpdate(HoHap hoHap)
+        public string ValidateFormUpdate(TamThan tamThan)
         {
             string text = "";
-            var checkExist = db.HoHaps.FirstOrDefault(e => e.Name == hoHap.Name);
-            if (checkExist != null && checkExist.ID != hoHap.ID && hoHap.Name != null)
+            var checkExist = db.TamThans.FirstOrDefault(e => e.Name == tamThan.Name);
+            if (checkExist != null && checkExist.ID != tamThan.ID && tamThan.Name != null)
             {
-                text = "Hô Hấp đã có trong danh sách";
+                text = "Tâm Thần đã có trong danh sách";
             }
             return text;
         }
-        // POST: Admin/HoHaps/Create
+
+        // POST: Admin/TamThans/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HoHap hoHap)
+        public ActionResult Create(TamThan tamThan)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateForm(hoHap);
+            var text = ValidateForm(tamThan);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    hoHap.ChiDinh = false;
-                    db.HoHaps.Add(hoHap);
+                    tamThan.ChiDinh = false;
+                    db.TamThans.Add(tamThan);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(hoHap);
+                return View(tamThan);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/HoHaps/Edit/5
+        // GET: Admin/TamThans/Edit/5
         public ActionResult Edit(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            HoHap hoHap = db.HoHaps.Find(id);
-            if (hoHap == null)
+            TamThan tamThan = db.TamThans.Find(id);
+            if (tamThan == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = hoHap }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = tamThan }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/HoHaps/Edit/5
+        // POST: Admin/TamThans/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HoHap hoHap)
+        public ActionResult Edit(TamThan tamThan)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateFormUpdate(hoHap);
+            var text = ValidateFormUpdate(tamThan);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    var existData = db.HoHaps.Find(hoHap.ID);
-                    db.Entry(existData).CurrentValues.SetValues(hoHap);
+                    var existData = db.TamThans.Find(tamThan.ID);
+                    db.Entry(existData).CurrentValues.SetValues(tamThan);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(hoHap);
+                return View(tamThan);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/HoHaps/Delete/5
+        // GET: Admin/TamThans/Delete/5
         public ActionResult Delete(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            HoHap hoHap = db.HoHaps.Find(id);
-            if (hoHap == null)
+            TamThan tamThan = db.TamThans.Find(id);
+            if (tamThan == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = hoHap }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = tamThan }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/HoHaps/Delete/5
+        // POST: Admin/TamThans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            HoHap hoHap = db.HoHaps.Find(id);
+            TamThan tamThan = db.TamThans.Find(id);
             try
             {
-                db.HoHaps.Remove(hoHap);
+                db.TamThans.Remove(tamThan);
                 db.SaveChanges();
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, responseText = "Hô Hấp này đã được sử dụng. Bạn không thể xóa nó!" });
+                return Json(new { success = false, responseText = "Tâm Thần này đã được sử dụng. Bạn không thể xóa nó!" });
             }
         }
 
