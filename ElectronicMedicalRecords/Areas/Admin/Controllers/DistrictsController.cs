@@ -41,7 +41,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public string ValidateFormUpdate(District district)
         {
             string text = "";
-            var checkExist = db.Nation1.FirstOrDefault(e => e.Name == district.District1);
+            var checkExist = db.Districts.FirstOrDefault(e => e.District1 == district.District1);
             if (checkExist != null && checkExist.ID != district.ID && district.District1 != null)
             {
                 text = "Quận/Huyện đã có trong danh sách";
