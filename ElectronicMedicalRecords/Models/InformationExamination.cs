@@ -30,6 +30,13 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_Urine = new HashSet<Detail_Urine>();
             this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
             this.Prescription_Detail = new HashSet<Prescription_Detail>();
+            this.Detail_CoXuongKhop = new HashSet<Detail_CoXuongKhop>();
+            this.Detail_HoHap = new HashSet<Detail_HoHap>();
+            this.Detail_TamThan = new HashSet<Detail_TamThan>();
+            this.Detail_ThanKinh = new HashSet<Detail_ThanKinh>();
+            this.Detail_ThanTietNieu = new HashSet<Detail_ThanTietNieu>();
+            this.Detail_TieuHoa = new HashSet<Detail_TieuHoa>();
+            this.Detail_TuanHoan = new HashSet<Detail_TuanHoan>();
         }
     
         public int ID { get; set; }
@@ -86,5 +93,19 @@ namespace ElectronicMedicalRecords.Models
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_CoXuongKhop> Detail_CoXuongKhop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_HoHap> Detail_HoHap { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_TamThan> Detail_TamThan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_ThanKinh> Detail_ThanKinh { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_ThanTietNieu> Detail_ThanTietNieu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_TieuHoa> Detail_TieuHoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_TuanHoan> Detail_TuanHoan { get; set; }
     }
 }

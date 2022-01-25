@@ -97,6 +97,34 @@
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CP24Team08Model.CoXuongKhop" Width="1.5" PointX="20.25" PointY="20.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_CoXuongKhop" Width="1.5" PointX="22.5" PointY="24.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_HoHap" Width="1.5" PointX="22.5" PointY="39.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_TamThan" Width="1.5" PointX="25.5" PointY="26.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_ThanKinh" Width="1.5" PointX="25.5" PointY="40.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_ThanTietNieu" Width="1.5" PointX="25.5" PointY="23.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_TieuHoa" Width="1.5" PointX="16.5" PointY="39.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_TuanHoan" Width="1.5" PointX="25.5" PointY="37.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.HoHap" Width="1.5" PointX="20.25" PointY="47.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.TamThan" Width="1.5" PointX="23.25" PointY="18.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.ThanKinh" Width="1.5" PointX="23.25" PointY="45.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.ThanTietNieu" Width="1.5" PointX="23.25" PointY="21.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.TieuHoa" Width="1.5" PointX="14.25" PointY="49.5" />
+        <EntityTypeShape EntityType="CP24Team08Model.TuanHoan" Width="1.5" PointX="23.25" PointY="42.5" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_CoXuongKhop_CoXuongKhop" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_CoXuongKhop_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_HoHap" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TamThan_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TamThan_TamThan" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanKinh_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanTietNieu_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TieuHoa_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TuanHoan_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

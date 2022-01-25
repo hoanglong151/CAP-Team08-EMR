@@ -276,6 +276,7 @@
     <Compile Include="Areas\Admin\Controllers\DistrictsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DongMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\HistoryDiseasesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoHapsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeTownsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImmunesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
@@ -291,6 +292,7 @@
     <Compile Include="Areas\Admin\Controllers\Prescription_DetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TuanHoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViSinhsController.cs" />
@@ -326,6 +328,9 @@
     <Compile Include="Models\Clinical.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CoXuongKhop.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CTMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -333,19 +338,43 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\Detail_CoXuongKhop.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Detail_DiagnosticsCategory.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_HistoryDisease.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Detail_HoHap.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Detail_MedicalHistory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_TamThan.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_ThanKinh.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_ThanTietNieu.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_TieuHoa.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_TuanHoan.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\District.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HistoryDisease.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoHap.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicalHistory.cs">
@@ -444,6 +473,21 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TamThan.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThanKinh.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThanTietNieu.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TieuHoa.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TuanHoan.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Urine.cs">
@@ -2894,6 +2938,12 @@
     <Content Include="Areas\Admin\Views\Detail_MedicalHistory\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\HistoryDiseases\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\MedicalHistories\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\TuanHoans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HoHaps\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HoHaps\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HoHaps\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HoHaps\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HoHaps\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

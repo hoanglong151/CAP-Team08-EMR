@@ -70,5 +70,19 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
+        public virtual DbSet<CoXuongKhop> CoXuongKhops { get; set; }
+        public virtual DbSet<Detail_CoXuongKhop> Detail_CoXuongKhop { get; set; }
+        public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
+        public virtual DbSet<Detail_TamThan> Detail_TamThan { get; set; }
+        public virtual DbSet<Detail_ThanKinh> Detail_ThanKinh { get; set; }
+        public virtual DbSet<Detail_ThanTietNieu> Detail_ThanTietNieu { get; set; }
+        public virtual DbSet<Detail_TieuHoa> Detail_TieuHoa { get; set; }
+        public virtual DbSet<Detail_TuanHoan> Detail_TuanHoan { get; set; }
+        public virtual DbSet<HoHap> HoHaps { get; set; }
+        public virtual DbSet<TamThan> TamThans { get; set; }
+        public virtual DbSet<ThanKinh> ThanKinhs { get; set; }
+        public virtual DbSet<ThanTietNieu> ThanTietNieux { get; set; }
+        public virtual DbSet<TieuHoa> TieuHoas { get; set; }
+        public virtual DbSet<TuanHoan> TuanHoans { get; set; }
     }
 }
