@@ -187,6 +187,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerTest.cs" />
+    <Compile Include="Controllers\DistrictsControllerTest.cs" />
+    <Compile Include="Controllers\WardsControllerTest.cs" />
     <Compile Include="Controllers\Prescription_DetailControllerTest.cs" />
     <Compile Include="Controllers\MultipleModelsControllerTest.cs" />
     <Compile Include="Controllers\CTMausControllerTest.cs" />
