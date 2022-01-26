@@ -49,6 +49,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return text;
         }
 
+        // GET: Admin/CoXuongKhop/CreateOldPatient
+        public ActionResult CreateOldPatient()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.CoXuongKhop = db.CoXuongKhops.ToList();
+            return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
         // POST: Admin/CoXuongKhops/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

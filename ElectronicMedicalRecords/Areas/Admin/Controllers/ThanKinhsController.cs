@@ -49,6 +49,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return text;
         }
 
+        // GET: Admin/ThanKinh/CreateOldPatient
+        public ActionResult CreateOldPatient()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.ThanKinh = db.ThanKinhs.ToList();
+            return PartialView("_CreateOldPatient", multiplesModel);
+        }
+
         // POST: Admin/ThanKinhs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

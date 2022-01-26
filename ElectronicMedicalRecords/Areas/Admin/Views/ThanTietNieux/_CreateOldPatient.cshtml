@@ -1,0 +1,92 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseThanTietNieu" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Thận Tiết Niệu
+</a>
+
+<div class="collapse" id="collapseThanTietNieu">
+    <div class="card-header pd-0px">
+        <div class="d-flex justify-content-between align-items-center">
+            <h6 style="margin: 1rem 0.5rem">
+                Số lượng :
+                <span class="countClinicals">0</span>
+            </h6>
+            <h6>Ký tự: <span style="color:red">*</span> nguy hiểm tới tính mạng</h6>
+        </div>
+        <!-- button trigger for  Vertically Centered modal -->
+        <button style="display:none;margin-left:10px" onclick="loadDetailThanTietNieus()" id="DetailClinicalCount" type="button" class="btn btn-outline-primary block"
+                data-bs-toggle="modal" data-bs-target="#ModalThanTietNieu">
+            Chi Tiết
+        </button>
+        <!-- Vertically Centered modal Modal -->
+        <div class="modal fade" id="ModalThanTietNieu" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div style="max-width:900px" class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">
+                            Danh sách đã chọn
+                        </h5>
+                        <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped tableNewChiDinh" id="tableNewThanTietNieus" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Bệnh về Thận Tiết Niệu</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="destroytable" type="button" class="btn btn-primary ml-1"
+                                data-bs-dismiss="modal">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tắt</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped tableLoadClinical" id="tableThanTietNieus" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="unset-tb" hidden></th>
+                    <th class="unset-tb">#</th>
+                    <th class="unset-tb">Bệnh về Thận Tiết Niệu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.ThanTietNieu.Count(); i++)
+                {
+                    <tr>
+                        <td hidden>
+                            <input value="@Model.ThanTietNieu[i].ID" type="text" name="ThanTietNieu[@i].ID" hidden />
+                        </td>
+                        <td>
+                            <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountClinicals" data-id="@Model.ThanTietNieu[i].ID" name="ThanTietNieu[@i].ChiDinh" id="ThanTietNieu-@Model.ThanTietNieu[i].ID">
+                        </td>
+                        <td>
+                            <input value="@Model.ThanTietNieu[i].Name" type="text" name="ThanTietNieu[@i].Name" hidden />
+                            @Html.HiddenFor(model => model.ThanTietNieu[i].Dangerous)
+                            <label class="form-check-label" for="CTMau-@Model.ThanTietNieu[i].ID">@Model.ThanTietNieu[i].Name</label>
+                            @if (Model.ThanTietNieu[i].Dangerous == true)
+                            {
+                                <span style="color:red">*</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

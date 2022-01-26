@@ -2952,6 +2952,13 @@
     <Content Include="Areas\Admin\Views\CoXuongKhops\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ThanKinhs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TamThans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TuanHoans\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\HoHaps\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\TieuHoas\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\ThanTietNieux\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\CoXuongKhops\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\ThanKinhs\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\TamThans\_CreateOldPatient.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
