@@ -1178,6 +1178,132 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LoadDetailTuanHoan(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<TuanHoan> tuanHoans = new List<TuanHoan>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var tuanHoan = db.TuanHoans.FirstOrDefault(p => p.ID == id);
+                    tuanHoan.ChiDinh = true;
+                    tuanHoans.Add(tuanHoan);
+                }
+                return Json(new { data = tuanHoans }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LoadDetailHoHap(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<HoHap> hoHaps = new List<HoHap>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var hoHap = db.HoHaps.FirstOrDefault(p => p.ID == id);
+                    hoHap.ChiDinh = true;
+                    hoHaps.Add(hoHap);
+                }
+                return Json(new { data = hoHaps }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LoadDetailTieuHoa(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<TieuHoa> tieuHoas = new List<TieuHoa>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var tieuHoa = db.TieuHoas.FirstOrDefault(p => p.ID == id);
+                    tieuHoa.ChiDinh = true;
+                    tieuHoas.Add(tieuHoa);
+                }
+                return Json(new { data = tieuHoas }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LoadDetailThanTietNieu(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<ThanTietNieu> thanTietNieus = new List<ThanTietNieu>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var thanTietNieu = db.ThanTietNieux.FirstOrDefault(p => p.ID == id);
+                    thanTietNieu.ChiDinh = true;
+                    thanTietNieus.Add(thanTietNieu);
+                }
+                return Json(new { data = thanTietNieus }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailCoXuongKhops(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<CoXuongKhop> coXuongKhops = new List<CoXuongKhop>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var coXuongKhop = db.CoXuongKhops.FirstOrDefault(p => p.ID == id);
+                    coXuongKhop.ChiDinh = true;
+                    coXuongKhops.Add(coXuongKhop);
+                }
+                return Json(new { data = coXuongKhops }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailThanKinhs(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<ThanKinh> thanKinhs = new List<ThanKinh>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var thanKinh = db.ThanKinhs.FirstOrDefault(p => p.ID == id);
+                    thanKinh.ChiDinh = true;
+                    thanKinhs.Add(thanKinh);
+                }
+                return Json(new { data = thanKinhs }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailTamThans(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<TamThan> tamThans = new List<TamThan>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var tamThan = db.TamThans.FirstOrDefault(p => p.ID == id);
+                    tamThan.ChiDinh = true;
+                    tamThans.Add(tamThan);
+                }
+                return Json(new { data = tamThans }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult checkExistPatient(Patient patient)
         {

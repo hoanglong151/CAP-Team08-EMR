@@ -42,5 +42,13 @@ namespace ElectronicMedicalRecords.Models
         public List<MedicalHistory> MedicalHistories { get; set; }
         public List<Detail_MedicalHistory> Detail_MedicalHistories { get; set; }
         public Clinical Clinical { get; set; }
+
+        public List<TuanHoan> TuanHoan { get; set; }
+        public List<HoHap> HoHap { get; set; }
+        public List<TieuHoa> TieuHoa { get; set; }
+        public List<ThanTietNieu> ThanTietNieu { get; set; }
+        public List<CoXuongKhop> CoXuongKhop { get; set; }
+        public List<ThanKinh> ThanKinh { get; set; }
+        public List<TamThan> TamThan { get; set; }
     }
 }
