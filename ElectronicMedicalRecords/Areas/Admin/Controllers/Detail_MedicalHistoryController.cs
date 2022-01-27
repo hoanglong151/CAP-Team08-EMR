@@ -153,7 +153,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MedicalHistory_ID,Patient_ID")] Detail_MedicalHistory detail_MedicalHistory)
+        public ActionResult Edit(Detail_MedicalHistory detail_MedicalHistory)
         {
             if (ModelState.IsValid)
             {

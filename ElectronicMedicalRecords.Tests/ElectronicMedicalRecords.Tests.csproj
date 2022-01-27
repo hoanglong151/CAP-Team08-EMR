@@ -188,6 +188,9 @@
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerTest.cs" />
     <Compile Include="Controllers\DistrictsControllerTest.cs" />
+    <Compile Include="Controllers\HistoryDiseaseControllerTest.cs" />
+    <Compile Include="Controllers\MedicalHistoriesControllerTest.cs" />
+    <Compile Include="Controllers\Detail_MedicalHistoriesControllerTest.cs" />
     <Compile Include="Controllers\WardsControllerTest.cs" />
     <Compile Include="Controllers\Prescription_DetailControllerTest.cs" />
     <Compile Include="Controllers\MultipleModelsControllerTest.cs" />

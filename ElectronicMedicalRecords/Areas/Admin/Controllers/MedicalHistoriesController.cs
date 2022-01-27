@@ -48,7 +48,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Selected,Dangerous")] MedicalHistory medicalHistory)
+        public ActionResult Create(MedicalHistory medicalHistory)
         {
             if (ModelState.IsValid)
             {
