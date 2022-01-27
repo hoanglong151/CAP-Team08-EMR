@@ -1,0 +1,153 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+<div class="card-content">
+    <div class="card-body">
+        <div class="row">
+            <p>- Kết quả khám thính lực:</p>
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Tai trái:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:120px">Nói thường:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEarSay, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEarSay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Nói thầm:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEarWhisper, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEarWhisper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Tai phải:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:120px">Nói thường:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEarSay, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEarSay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Nói thầm:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEarWhisper, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEarWhisper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTai" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Các bệnh về Tai
+</a>
+
+<div class="collapse" id="collapseTai">
+    <div class="card-header pd-0px">
+        <div class="d-flex justify-content-between align-items-center">
+            <h6 style="margin: 1rem 0.5rem">
+                Số lượng :
+                <span class="countClinicals">0</span>
+            </h6>
+            <h6>Ký tự: <span style="color:red">*</span> nguy hiểm tới tính mạng</h6>
+        </div>
+        <!-- button trigger for  Vertically Centered modal -->
+        <button style="display:none;margin-left:10px" onclick="loadDetailTais()" id="DetailClinicalCount" type="button" class="btn btn-outline-primary block"
+                data-bs-toggle="modal" data-bs-target="#ModalTai">
+            Chi Tiết
+        </button>
+        <!-- Vertically Centered modal Modal -->
+        <div class="modal fade" id="ModalTai" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div style="max-width:900px" class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">
+                            Danh sách đã chọn
+                        </h5>
+                        <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped tableNewChiDinh" id="tableNewTais" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Bệnh về Tai</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="destroytable" type="button" class="btn btn-primary ml-1"
+                                data-bs-dismiss="modal">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tắt</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped tableLoadClinical" id="tableTais" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="unset-tb" hidden></th>
+                    <th class="unset-tb">#</th>
+                    <th class="unset-tb">Bệnh về Tai</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Tai.Count(); i++)
+                {
+                    <tr>
+                        <td hidden>
+                            <input value="@Model.Tai[i].ID" type="text" name="Tai[@i].ID" hidden />
+                        </td>
+                        <td>
+                            <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountClinicals" data-id="@Model.Tai[i].ID" name="Tai[@i].ChiDinh" id="Tai-@Model.Tai[i].ID">
+                        </td>
+                        <td>
+                            <input value="@Model.Tai[i].Name" type="text" name="Tai[@i].Name" hidden />
+                            @Html.HiddenFor(model => model.Tai[i].Dangerous)
+                            <label class="form-check-label" for="Tai-@Model.Tai[i].ID">@Model.Tai[i].Name</label>
+                            @if (Model.Tai[i].Dangerous == true)
+                            {
+                                <span style="color:red">*</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -50,5 +50,13 @@ namespace ElectronicMedicalRecords.Models
         public List<CoXuongKhop> CoXuongKhop { get; set; }
         public List<ThanKinh> ThanKinh { get; set; }
         public List<TamThan> TamThan { get; set; }
+        public List<SanPhuKhoa> SanPhuKhoa { get; set; }
+        public List<NgoaiKhoa> NgoaiKhoa { get; set; }
+        public List<Mat> Mat { get; set; }
+        public List<Tai> Tai { get; set; }
+        public List<Mui> Mui { get; set; }
+        public List<Hong> Hong { get; set; }
+        public List<RangHamMat> RangHamMat { get; set; }
+        public List<DaLieu> DaLieu { get; set; }
     }
 }

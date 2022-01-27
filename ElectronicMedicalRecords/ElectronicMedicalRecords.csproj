@@ -262,6 +262,7 @@
     <Compile Include="Areas\Admin\Controllers\ClinicalsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoXuongKhopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CTMausController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DaLieuxController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_AmniocenteController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_CTMauController.cs" />
@@ -279,20 +280,27 @@
     <Compile Include="Areas\Admin\Controllers\HistoryDiseasesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HoHapsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeTownsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImmunesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MatsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicalHistoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MuisController.cs" />
     <Compile Include="Areas\Admin\Controllers\MultipleModelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Nation1Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\NationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NgoaiKhoasController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhomMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PatientStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\Prescription_DetailController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RangHamMatsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhuKhoasController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaisController.cs" />
     <Compile Include="Areas\Admin\Controllers\TamThansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThanKinhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThanTietNieuxController.cs" />
@@ -343,7 +351,13 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\DaLieu.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Detail_CoXuongKhop.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_DaLieu.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_DiagnosticsCategory.cs">
@@ -355,7 +369,28 @@
     <Compile Include="Models\Detail_HoHap.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Detail_Hong.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_Mat.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Detail_MedicalHistory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_Mui.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_NgoaiKhoa.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_RangHamMat.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_SanPhuKhoa.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail_Tai.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_TamThan.cs">
@@ -382,7 +417,25 @@
     <Compile Include="Models\HoHap.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Hong.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mat.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MedicalHistory.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mui.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NgoaiKhoa.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RangHamMat.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SanPhuKhoa.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatisticModel.cs" />
@@ -478,6 +531,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tai.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TamThan.cs">
@@ -2959,6 +3015,22 @@
     <Content Include="Areas\Admin\Views\CoXuongKhops\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\ThanKinhs\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\TamThans\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\NgoaiKhoas\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhuKhoas\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NgoaiKhoas\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhuKhoas\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Mats\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tais\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Muis\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Hongs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Mats\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Tais\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Muis\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Hongs\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\RangHamMats\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DaLieux\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RangHamMats\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\DaLieux\_CreateOldPatient.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
