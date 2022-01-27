@@ -15,30 +15,17 @@ namespace ElectronicMedicalRecords.Models
     public partial class Clinical
     {
         public int ID { get; set; }
-        public string Circles { get; set; }
-        public string Respiration { get; set; }
-        public string Digestion { get; set; }
-        public string KidneyUrology { get; set; }
-        public string MuscleBoneJoint { get; set; }
-        public string Nerve { get; set; }
-        public string Mental { get; set; }
-        public string Surgery { get; set; }
-        public string ObstetricsAndGynecology { get; set; }
         public Nullable<double> RightEyesNoGlasses { get; set; }
         public Nullable<double> LeftEyesNoGlasses { get; set; }
         public Nullable<double> RightEyesGlasses { get; set; }
         public Nullable<double> LeftEyesGlasses { get; set; }
-        public string EyesExamination { get; set; }
         public Nullable<double> LeftEarSay { get; set; }
         public Nullable<double> LeftEarWhisper { get; set; }
         public Nullable<double> RightEarSay { get; set; }
         public Nullable<double> RightEarWhisper { get; set; }
-        public string EarNoseThroatExamination { get; set; }
         public string UpperJaw { get; set; }
         public string LowerJaw { get; set; }
-        public string TeethJawFaceExamination { get; set; }
         public string Dermatology { get; set; }
-        public Nullable<int> Bill { get; set; }
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
     

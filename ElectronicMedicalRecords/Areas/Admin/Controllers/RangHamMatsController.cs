@@ -10,139 +10,141 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    public class ThanKinhsController : Controller
+    public class RangHamMatsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/ThanKinhs
+        // GET: Admin/RangHamMats
         public ActionResult Index()
         {
-            return View(db.ThanKinhs.ToList());
+            return View(db.RangHamMats.ToList());
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var thanKinhs = db.ThanKinhs.ToList();
-            return Json(new { data = thanKinhs }, JsonRequestBehavior.AllowGet);
+            var rangHamMats = db.RangHamMats.ToList();
+            return Json(new { data = rangHamMats }, JsonRequestBehavior.AllowGet);
         }
 
-        public string ValidateForm(ThanKinh thanKinh)
+        public string ValidateForm(RangHamMat rangHamMat)
         {
             string text = "";
-            var checkExist = db.ThanKinhs.FirstOrDefault(e => e.Name == thanKinh.Name);
-            if (checkExist != null && thanKinh.Name != null)
+            var checkExist = db.RangHamMats.FirstOrDefault(e => e.Name == rangHamMat.Name);
+            if (checkExist != null && rangHamMat.Name != null)
             {
-                text = "Thần Kinh đã có trong danh sách";
+                text = "Răng Hàm Mặt đã có trong danh sách";
             }
             return text;
         }
 
-        public string ValidateFormUpdate(ThanKinh thanKinh)
+        public string ValidateFormUpdate(RangHamMat rangHamMat)
         {
             string text = "";
-            var checkExist = db.ThanKinhs.FirstOrDefault(e => e.Name == thanKinh.Name);
-            if (checkExist != null && checkExist.ID != thanKinh.ID && thanKinh.Name != null)
+            var checkExist = db.RangHamMats.FirstOrDefault(e => e.Name == rangHamMat.Name);
+            if (checkExist != null && checkExist.ID != rangHamMat.ID && rangHamMat.Name != null)
             {
-                text = "Thần Kinh đã có trong danh sách";
+                text = "Răng Hàm Mặt đã có trong danh sách";
             }
             return text;
         }
 
-        // GET: Admin/ThanKinh/CreateOldPatient
+        // GET: Admin/RangHamMats/CreateOldPatient
         public ActionResult CreateOldPatient()
         {
             MultiplesModel multiplesModel = new MultiplesModel();
-            multiplesModel.ThanKinh = db.ThanKinhs.ToList();
+            Clinical clinical = new Clinical();
+            multiplesModel.Clinical = clinical;
+            multiplesModel.RangHamMat = db.RangHamMats.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
-        // POST: Admin/ThanKinhs/Create
+        // POST: Admin/RangHamMats/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ThanKinh thanKinh)
+        public ActionResult Create(RangHamMat rangHamMat)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateForm(thanKinh);
+            var text = ValidateForm(rangHamMat);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    thanKinh.ChiDinh = false;
-                    db.ThanKinhs.Add(thanKinh);
+                    rangHamMat.ChiDinh = false;
+                    db.RangHamMats.Add(rangHamMat);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(thanKinh);
+                return View(rangHamMat);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/ThanKinhs/Edit/5
+        // GET: Admin/RangHamMats/Edit/5
         public ActionResult Edit(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            ThanKinh thanKinh = db.ThanKinhs.Find(id);
-            if (thanKinh == null)
+            RangHamMat rangHamMat = db.RangHamMats.Find(id);
+            if (rangHamMat == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = thanKinh }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = rangHamMat }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/ThanKinhs/Edit/5
+        // POST: Admin/RangHamMats/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ThanKinh thanKinh)
+        public ActionResult Edit(RangHamMat rangHamMat)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateFormUpdate(thanKinh);
+            var text = ValidateFormUpdate(rangHamMat);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    var existData = db.ThanKinhs.Find(thanKinh.ID);
-                    db.Entry(existData).CurrentValues.SetValues(thanKinh);
+                    var existData = db.RangHamMats.Find(rangHamMat.ID);
+                    db.Entry(existData).CurrentValues.SetValues(rangHamMat);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(thanKinh);
+                return View(rangHamMat);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/ThanKinhs/Delete/5
+        // GET: Admin/RangHamMats/Delete/5
         public ActionResult Delete(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            ThanKinh thanKinh = db.ThanKinhs.Find(id);
-            if (thanKinh == null)
+            RangHamMat rangHamMat = db.RangHamMats.Find(id);
+            if (rangHamMat == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = thanKinh }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = rangHamMat }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/ThanKinhs/Delete/5
+        // POST: Admin/RangHamMats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            ThanKinh thanKinh = db.ThanKinhs.Find(id);
+            RangHamMat rangHamMat = db.RangHamMats.Find(id);
             try
             {
-                db.ThanKinhs.Remove(thanKinh);
+                db.RangHamMats.Remove(rangHamMat);
                 db.SaveChanges();
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, responseText = "Thần Kinh này đã được sử dụng. Bạn không thể xóa nó!" });
+                return Json(new { success = false, responseText = "Răng Hàm Mặt này đã được sử dụng. Bạn không thể xóa nó!" });
             }
         }
 

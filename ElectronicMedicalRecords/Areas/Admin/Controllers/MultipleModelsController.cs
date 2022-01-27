@@ -1304,6 +1304,150 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult loadDetailNgoaiKhoas(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<NgoaiKhoa> ngoaiKhoas = new List<NgoaiKhoa>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var ngoaiKhoa = db.NgoaiKhoas.FirstOrDefault(p => p.ID == id);
+                    ngoaiKhoa.ChiDinh = true;
+                    ngoaiKhoas.Add(ngoaiKhoa);
+                }
+                return Json(new { data = ngoaiKhoas }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailSanPhuKhoas(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<SanPhuKhoa> sanPhuKhoas = new List<SanPhuKhoa>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var sanPhuKhoa = db.SanPhuKhoas.FirstOrDefault(p => p.ID == id);
+                    sanPhuKhoa.ChiDinh = true;
+                    sanPhuKhoas.Add(sanPhuKhoa);
+                }
+                return Json(new { data = sanPhuKhoas }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailMats(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<Mat> mats = new List<Mat>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var mat = db.Mats.FirstOrDefault(p => p.ID == id);
+                    mat.ChiDinh = true;
+                    mats.Add(mat);
+                }
+                return Json(new { data = mats }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailTais(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<Tai> tais = new List<Tai>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var tai = db.Tais.FirstOrDefault(p => p.ID == id);
+                    tai.ChiDinh = true;
+                    tais.Add(tai);
+                }
+                return Json(new { data = tais }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailMuis(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<Mui> muis = new List<Mui>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var mui = db.Muis.FirstOrDefault(p => p.ID == id);
+                    mui.ChiDinh = true;
+                    muis.Add(mui);
+                }
+                return Json(new { data = muis }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailHongs(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<Hong> hongs = new List<Hong>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var hong = db.Hongs.FirstOrDefault(p => p.ID == id);
+                    hong.ChiDinh = true;
+                    hongs.Add(hong);
+                }
+                return Json(new { data = hongs }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailRangHamMats(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<RangHamMat> rangHamMats = new List<RangHamMat>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var rangHamMat = db.RangHamMats.FirstOrDefault(p => p.ID == id);
+                    rangHamMat.ChiDinh = true;
+                    rangHamMats.Add(rangHamMat);
+                }
+                return Json(new { data = rangHamMats }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult loadDetailDaLieus(int[] arr)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<DaLieu> daLieus = new List<DaLieu>();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    var id = arr[i];
+                    var daLieu = db.DaLieux.FirstOrDefault(p => p.ID == id);
+                    daLieu.ChiDinh = true;
+                    daLieus.Add(daLieu);
+                }
+                return Json(new { data = daLieus }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult checkExistPatient(Patient patient)
         {

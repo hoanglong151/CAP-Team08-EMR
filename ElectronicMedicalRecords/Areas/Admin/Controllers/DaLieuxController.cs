@@ -10,139 +10,139 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    public class ThanKinhsController : Controller
+    public class DaLieuxController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/ThanKinhs
+        // GET: Admin/DaLieux
         public ActionResult Index()
         {
-            return View(db.ThanKinhs.ToList());
+            return View(db.DaLieux.ToList());
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var thanKinhs = db.ThanKinhs.ToList();
-            return Json(new { data = thanKinhs }, JsonRequestBehavior.AllowGet);
+            var daLieus = db.DaLieux.ToList();
+            return Json(new { data = daLieus }, JsonRequestBehavior.AllowGet);
         }
 
-        public string ValidateForm(ThanKinh thanKinh)
+        public string ValidateForm(DaLieu daLieu)
         {
             string text = "";
-            var checkExist = db.ThanKinhs.FirstOrDefault(e => e.Name == thanKinh.Name);
-            if (checkExist != null && thanKinh.Name != null)
+            var checkExist = db.DaLieux.FirstOrDefault(e => e.Name == daLieu.Name);
+            if (checkExist != null && daLieu.Name != null)
             {
-                text = "Thần Kinh đã có trong danh sách";
+                text = "Da Liễu đã có trong danh sách";
             }
             return text;
         }
 
-        public string ValidateFormUpdate(ThanKinh thanKinh)
+        public string ValidateFormUpdate(DaLieu daLieu)
         {
             string text = "";
-            var checkExist = db.ThanKinhs.FirstOrDefault(e => e.Name == thanKinh.Name);
-            if (checkExist != null && checkExist.ID != thanKinh.ID && thanKinh.Name != null)
+            var checkExist = db.DaLieux.FirstOrDefault(e => e.Name == daLieu.Name);
+            if (checkExist != null && checkExist.ID != daLieu.ID && daLieu.Name != null)
             {
-                text = "Thần Kinh đã có trong danh sách";
+                text = "Da Liễu đã có trong danh sách";
             }
             return text;
         }
 
-        // GET: Admin/ThanKinh/CreateOldPatient
+        // GET: Admin/DaLieux/CreateOldPatient
         public ActionResult CreateOldPatient()
         {
             MultiplesModel multiplesModel = new MultiplesModel();
-            multiplesModel.ThanKinh = db.ThanKinhs.ToList();
+            multiplesModel.DaLieu = db.DaLieux.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
-        // POST: Admin/ThanKinhs/Create
+        // POST: Admin/DaLieux/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ThanKinh thanKinh)
+        public ActionResult Create(DaLieu daLieu)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateForm(thanKinh);
+            var text = ValidateForm(daLieu);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    thanKinh.ChiDinh = false;
-                    db.ThanKinhs.Add(thanKinh);
+                    daLieu.ChiDinh = false;
+                    db.DaLieux.Add(daLieu);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(thanKinh);
+                return View(daLieu);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/ThanKinhs/Edit/5
+        // GET: Admin/DaLieux/Edit/5
         public ActionResult Edit(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            ThanKinh thanKinh = db.ThanKinhs.Find(id);
-            if (thanKinh == null)
+            DaLieu daLieu = db.DaLieux.Find(id);
+            if (daLieu == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = thanKinh }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = daLieu }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/ThanKinhs/Edit/5
+        // POST: Admin/DaLieux/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ThanKinh thanKinh)
+        public ActionResult Edit(DaLieu daLieu)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateFormUpdate(thanKinh);
+            var text = ValidateFormUpdate(daLieu);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    var existData = db.ThanKinhs.Find(thanKinh.ID);
-                    db.Entry(existData).CurrentValues.SetValues(thanKinh);
+                    var existData = db.DaLieux.Find(daLieu.ID);
+                    db.Entry(existData).CurrentValues.SetValues(daLieu);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(thanKinh);
+                return View(daLieu);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/ThanKinhs/Delete/5
+        // GET: Admin/DaLieux/Delete/5
         public ActionResult Delete(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            ThanKinh thanKinh = db.ThanKinhs.Find(id);
-            if (thanKinh == null)
+            DaLieu daLieu = db.DaLieux.Find(id);
+            if (daLieu == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = thanKinh }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = daLieu }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/ThanKinhs/Delete/5
+        // POST: Admin/DaLieux/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            ThanKinh thanKinh = db.ThanKinhs.Find(id);
+            DaLieu daLieu = db.DaLieux.Find(id);
             try
             {
-                db.ThanKinhs.Remove(thanKinh);
+                db.DaLieux.Remove(daLieu);
                 db.SaveChanges();
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, responseText = "Thần Kinh này đã được sử dụng. Bạn không thể xóa nó!" });
+                return Json(new { success = false, responseText = "Da Liễu này đã được sử dụng. Bạn không thể xóa nó!" });
             }
         }
 

@@ -36,17 +36,26 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Clinical> Clinicals { get; set; }
         public virtual DbSet<CoXuongKhop> CoXuongKhops { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
+        public virtual DbSet<DaLieu> DaLieux { get; set; }
         public virtual DbSet<Detail_Amniocente> Detail_Amniocente { get; set; }
         public virtual DbSet<Detail_CoXuongKhop> Detail_CoXuongKhop { get; set; }
         public virtual DbSet<Detail_CTMau> Detail_CTMau { get; set; }
+        public virtual DbSet<Detail_DaLieu> Detail_DaLieu { get; set; }
         public virtual DbSet<Detail_DiagnosticsCategory> Detail_DiagnosticsCategory { get; set; }
         public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
         public virtual DbSet<Detail_HistoryDisease> Detail_HistoryDisease { get; set; }
         public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
+        public virtual DbSet<Detail_Hong> Detail_Hong { get; set; }
         public virtual DbSet<Detail_Immune> Detail_Immune { get; set; }
+        public virtual DbSet<Detail_Mat> Detail_Mat { get; set; }
         public virtual DbSet<Detail_MedicalHistory> Detail_MedicalHistory { get; set; }
+        public virtual DbSet<Detail_Mui> Detail_Mui { get; set; }
+        public virtual DbSet<Detail_NgoaiKhoa> Detail_NgoaiKhoa { get; set; }
         public virtual DbSet<Detail_NhomMau> Detail_NhomMau { get; set; }
+        public virtual DbSet<Detail_RangHamMat> Detail_RangHamMat { get; set; }
+        public virtual DbSet<Detail_SanPhuKhoa> Detail_SanPhuKhoa { get; set; }
         public virtual DbSet<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
+        public virtual DbSet<Detail_Tai> Detail_Tai { get; set; }
         public virtual DbSet<Detail_TamThan> Detail_TamThan { get; set; }
         public virtual DbSet<Detail_ThanKinh> Detail_ThanKinh { get; set; }
         public virtual DbSet<Detail_ThanTietNieu> Detail_ThanTietNieu { get; set; }
@@ -61,20 +70,27 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<HistoryDisease> HistoryDiseases { get; set; }
         public virtual DbSet<HoHap> HoHaps { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
+        public virtual DbSet<Hong> Hongs { get; set; }
         public virtual DbSet<Immune> Immunes { get; set; }
         public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
+        public virtual DbSet<Mat> Mats { get; set; }
         public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
         public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
+        public virtual DbSet<Mui> Muis { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
         public virtual DbSet<Nation1> Nation1 { get; set; }
+        public virtual DbSet<NgoaiKhoa> NgoaiKhoas { get; set; }
         public virtual DbSet<NhomMau> NhomMaus { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
+        public virtual DbSet<RangHamMat> RangHamMats { get; set; }
         public virtual DbSet<Religion> Religions { get; set; }
+        public virtual DbSet<SanPhuKhoa> SanPhuKhoas { get; set; }
         public virtual DbSet<SinhHoaMau> SinhHoaMaus { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Tai> Tais { get; set; }
         public virtual DbSet<TamThan> TamThans { get; set; }
         public virtual DbSet<ThanKinh> ThanKinhs { get; set; }
         public virtual DbSet<ThanTietNieu> ThanTietNieux { get; set; }
