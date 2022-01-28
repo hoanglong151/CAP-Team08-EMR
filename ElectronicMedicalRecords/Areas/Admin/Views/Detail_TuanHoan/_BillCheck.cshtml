@@ -1,0 +1,42 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTuanHoan" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Tuần Hoàn
+</a>
+
+<div class="collapse" id="collapseTuanHoan">
+    <div class="card-body">
+        <table class="table table-striped tableLoadClinical" id="tableTuanHoans" style="width:100%">
+            <thead>
+                <tr>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th>Chỉ Định</th>
+                    <th>Bệnh về Tuần Hoàn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Detail_TuanHoans.Count(); i++)
+                {
+                    <tr>
+                        <td hidden>
+                            <input value="@Model.Detail_TuanHoans[i].InformationExamination_ID" type="text" name="Detail_TuanHoans[@i].InformationExamination_ID" hidden />
+                            <input value="@Model.Detail_TuanHoans[i].TuanHoan_ID" type="text" name="Detail_TuanHoans[@i].TuanHoan_ID" hidden />
+                        </td>
+                        <td hidden>
+                            <input value="@Model.Detail_TuanHoans[i].ID" type="text" name="Detail_TuanHoans[@i].ID" hidden />
+                        </td>
+                        <td>
+                            <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_TuanHoans[i].TuanHoan_ID" name="Detail_TuanHoans[@i].TuanHoan_ID">
+                            <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                        </td>
+                        <td>
+                            <label class="form-check-label">@Model.Detail_TuanHoans[i].TuanHoan.Name</label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

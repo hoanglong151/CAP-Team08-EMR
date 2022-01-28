@@ -20,19 +20,33 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.MedicalHistories.ToList());
         }
 
-        // GET: Admin/MedicalHistories/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult GetData()
         {
-            if (id == null)
+            db.Configuration.ProxyCreationEnabled = false;
+            var medicalHistories = db.MedicalHistories.ToList();
+            return Json(new { data = medicalHistories }, JsonRequestBehavior.AllowGet);
+        }
+
+        public string ValidateForm(MedicalHistory medicalHistory)
+        {
+            string text = "";
+            var checkExist = db.MedicalHistories.FirstOrDefault(e => e.Name == medicalHistory.Name);
+            if (checkExist != null && medicalHistory.Name != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                text = "Bệnh Sử đã có trong danh sách";
             }
-            MedicalHistory medicalHistory = db.MedicalHistories.Find(id);
-            if (medicalHistory == null)
+            return text;
+        }
+
+        public string ValidateFormUpdate(MedicalHistory medicalHistory)
+        {
+            string text = "";
+            var checkExist = db.MedicalHistories.FirstOrDefault(e => e.Name == medicalHistory.Name);
+            if (checkExist != null && checkExist.ID != medicalHistory.ID && medicalHistory.Name != null)
             {
-                return HttpNotFound();
+                text = "Bệnh Sử đã có trong danh sách";
             }
-            return View(medicalHistory);
+            return text;
         }
 
         // GET: Admin/MedicalHistories/Create
@@ -48,16 +62,22 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Selected,Dangerous")] MedicalHistory medicalHistory)
+        public ActionResult Create(MedicalHistory medicalHistory)
         {
-            if (ModelState.IsValid)
+            db.Configuration.ProxyCreationEnabled = false;
+            var text = ValidateForm(medicalHistory);
+            if (text == "")
             {
-                db.MedicalHistories.Add(medicalHistory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    medicalHistory.ChiDinh = false;
+                    db.MedicalHistories.Add(medicalHistory);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(medicalHistory);
             }
-
-            return View(medicalHistory);
+            return Json(new { success = false, responseText = text });
         }
 
         public ActionResult CreateOldPatient(int id)
@@ -69,24 +89,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             foreach(var item in details_medicalHistories1)
             {
                 var medicalHistory = multiplesModel.MedicalHistories.FirstOrDefault(p => p.ID == item.MedicalHistory_ID);
-                medicalHistory.Selected = item.Selected;
+                medicalHistory.ChiDinh = item.Selected;
             }
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
         // GET: Admin/MedicalHistories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            db.Configuration.ProxyCreationEnabled = false;
             MedicalHistory medicalHistory = db.MedicalHistories.Find(id);
             if (medicalHistory == null)
             {
                 return HttpNotFound();
             }
-            return View(medicalHistory);
+            return Json(new { data = medicalHistory }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/MedicalHistories/Edit/5
@@ -94,30 +111,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Selected,Dangerous")] MedicalHistory medicalHistory)
+        public ActionResult Edit(MedicalHistory medicalHistory)
         {
-            if (ModelState.IsValid)
+            db.Configuration.ProxyCreationEnabled = false;
+            var text = ValidateFormUpdate(medicalHistory);
+            if (text == "")
             {
-                db.Entry(medicalHistory).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var existData = db.MedicalHistories.Find(medicalHistory.ID);
+                    db.Entry(existData).CurrentValues.SetValues(medicalHistory);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(medicalHistory);
             }
-            return View(medicalHistory);
+            return Json(new { success = false, responseText = text });
         }
 
         // GET: Admin/MedicalHistories/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            db.Configuration.ProxyCreationEnabled = false;
             MedicalHistory medicalHistory = db.MedicalHistories.Find(id);
             if (medicalHistory == null)
             {
                 return HttpNotFound();
             }
-            return View(medicalHistory);
+            return Json(new { data = medicalHistory }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/MedicalHistories/Delete/5
@@ -125,10 +146,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             MedicalHistory medicalHistory = db.MedicalHistories.Find(id);
-            db.MedicalHistories.Remove(medicalHistory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.MedicalHistories.Remove(medicalHistory);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = "Bệnh Sử này đã được sử dụng. Bạn không thể xóa nó!" });
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,45 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseThanTietNieu" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Thận Tiết Niệu
+</a>
+
+<div class="collapse" id="collapseThanTietNieu">
+    <div class="card-body">
+        <table class="table table-striped tableLoadClinical" id="tableThanTietNieus" style="width:100%">
+            <thead>
+                <tr>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th>Chỉ Định</th>
+                    <th>Bệnh về Thận Tiết Niệu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Detail_ThanTietNieus.Count(); i++)
+                {
+                    <tr>
+                        <td hidden>
+                            <input value="@Model.Detail_ThanTietNieus[i].InformationExamination_ID" type="text" name="Detail_ThanTietNieus[@i].InformationExamination_ID" hidden />
+                            <input value="@Model.Detail_ThanTietNieus[i].ThanTietNieu_ID" type="text" name="Detail_ThanTietNieus[@i].ThanTietNieu_ID" hidden />
+                        </td>
+                        <td hidden>
+                            <input value="@Model.Detail_ThanTietNieus[i].ID" type="text" name="Detail_ThanTietNieus[@i].ID" hidden />
+                        </td>
+                        <td>
+                            <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_ThanTietNieus[i].ThanTietNieu_ID" name="Detail_ThanTietNieus[@i].ThanTietNieu_ID">
+                            <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                        </td>
+                        <td>
+                            <label class="form-check-label">@Model.Detail_ThanTietNieus[i].ThanTietNieu.Name</label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

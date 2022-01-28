@@ -87,7 +87,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         Detail_HistoryDisease detail_HistoryDisease = new Detail_HistoryDisease();
                         detail_HistoryDisease.HistoryDisease_ID = checkExist.ID;
                         detail_HistoryDisease.Patient_ID = multiplesModel.Patient.ID;
-                        detail_HistoryDisease.Selected = checkExist.Selected;
+                        detail_HistoryDisease.Selected = checkExist.ChiDinh;
                         detail_HistoryDisease.LevelFamily = "Ông/Bà";
                         db.Detail_HistoryDisease.Add(detail_HistoryDisease);
                         db.SaveChanges();
@@ -120,7 +120,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         Detail_HistoryDisease detail_HistoryDisease2 = new Detail_HistoryDisease();
                         detail_HistoryDisease2.HistoryDisease_ID = checkExist2.ID;
                         detail_HistoryDisease2.Patient_ID = multiplesModel.Patient.ID;
-                        detail_HistoryDisease2.Selected = checkExist2.Selected;
+                        detail_HistoryDisease2.Selected = checkExist2.ChiDinh;
                         detail_HistoryDisease2.LevelFamily = "Cha/Mẹ";
                         db.Detail_HistoryDisease.Add(detail_HistoryDisease2);
                         db.SaveChanges();
@@ -153,7 +153,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         Detail_HistoryDisease detail_HistoryDisease3 = new Detail_HistoryDisease();
                         detail_HistoryDisease3.HistoryDisease_ID = checkExist3.ID;
                         detail_HistoryDisease3.Patient_ID = multiplesModel.Patient.ID;
-                        detail_HistoryDisease3.Selected = checkExist3.Selected;
+                        detail_HistoryDisease3.Selected = checkExist3.ChiDinh;
                         detail_HistoryDisease3.LevelFamily = "Anh/Chị em";
                         db.Detail_HistoryDisease.Add(detail_HistoryDisease3);
                         db.SaveChanges();
@@ -189,13 +189,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             foreach(var item1 in multiplesModel.HistoryDiseases1)
             {
-                if (ModelState.IsValid && item1.Selected == true)
+                if (ModelState.IsValid && item1.ChiDinh == true)
                 {
                     Detail_HistoryDisease detail_HistoryDisease1 = new Detail_HistoryDisease();
                     detail_HistoryDisease1.HistoryDisease_ID = item1.ID;
                     detail_HistoryDisease1.Patient_ID = patientID;
-                    detail_HistoryDisease1.LevelFamily = item1.LevelFamily;
-                    detail_HistoryDisease1.Selected = item1.Selected;
+                    detail_HistoryDisease1.LevelFamily = "Ông/Bà";
+                    detail_HistoryDisease1.Selected = item1.ChiDinh;
 
                     db.Detail_HistoryDisease.Add(detail_HistoryDisease1);
                     db.SaveChanges();
@@ -203,13 +203,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             foreach (var item2 in multiplesModel.HistoryDiseases2)
             {
-                if (ModelState.IsValid && item2.Selected == true)
+                if (ModelState.IsValid && item2.ChiDinh == true)
                 {
                     Detail_HistoryDisease detail_HistoryDisease2 = new Detail_HistoryDisease();
                     detail_HistoryDisease2.HistoryDisease_ID = item2.ID;
                     detail_HistoryDisease2.Patient_ID = patientID;
-                    detail_HistoryDisease2.LevelFamily = item2.LevelFamily;
-                    detail_HistoryDisease2.Selected = item2.Selected;
+                    detail_HistoryDisease2.LevelFamily = "Cha/Mẹ";
+                    detail_HistoryDisease2.Selected = item2.ChiDinh;
 
                     db.Detail_HistoryDisease.Add(detail_HistoryDisease2);
                     db.SaveChanges();
@@ -217,13 +217,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             foreach (var item3 in multiplesModel.HistoryDiseases3)
             {
-                if (ModelState.IsValid && item3.Selected == true)
+                if (ModelState.IsValid && item3.ChiDinh == true)
                 {
                     Detail_HistoryDisease detail_HistoryDisease3 = new Detail_HistoryDisease();
                     detail_HistoryDisease3.HistoryDisease_ID = item3.ID;
                     detail_HistoryDisease3.Patient_ID = patientID;
-                    detail_HistoryDisease3.LevelFamily = item3.LevelFamily;
-                    detail_HistoryDisease3.Selected = item3.Selected;
+                    detail_HistoryDisease3.LevelFamily = "Anh/Chị em";
+                    detail_HistoryDisease3.Selected = item3.ChiDinh;
 
                     db.Detail_HistoryDisease.Add(detail_HistoryDisease3);
                     db.SaveChanges();

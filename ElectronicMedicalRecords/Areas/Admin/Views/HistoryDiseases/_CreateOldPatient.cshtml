@@ -20,11 +20,10 @@
                         @Html.HiddenFor(model => model.HistoryDiseases1[i].ID)
                         @Html.HiddenFor(model => model.HistoryDiseases1[i].Name)
                         @Html.HiddenFor(model => model.HistoryDiseases1[i].Dangerous)
-                        <input type="text" name="HistoryDiseases1[@i].LevelFamily" value="Ông/Bà" hidden />
                     </td>
                     <td>
                         @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
-                        @Html.CheckBoxFor(model => model.HistoryDiseases1[i].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary" })
+                        @Html.CheckBoxFor(model => model.HistoryDiseases1[i].ChiDinh, htmlAttributes: new { @class = "form-check-input form-check-primary" })
                     </td>
                     <td>
                         @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
@@ -55,12 +54,10 @@
                         @Html.HiddenFor(model => model.HistoryDiseases2[j].ID)
                         @Html.HiddenFor(model => model.HistoryDiseases2[j].Name)
                         @Html.HiddenFor(model => model.HistoryDiseases2[j].Dangerous)
-                        <input type="text" name="HistoryDiseases2[@j].LevelFamily" value="Cha/Mẹ" hidden />
-
                     </td>
                     <td>
                         @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
-                        @Html.CheckBoxFor(model => model.HistoryDiseases2[j].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary" })
+                        @Html.CheckBoxFor(model => model.HistoryDiseases2[j].ChiDinh, htmlAttributes: new { @class = "form-check-input form-check-primary" })
                     </td>
                     <td>
                         @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
@@ -91,11 +88,10 @@
                         @Html.HiddenFor(model => model.HistoryDiseases3[k].ID)
                         @Html.HiddenFor(model => model.HistoryDiseases3[k].Name)
                         @Html.HiddenFor(model => model.HistoryDiseases3[k].Dangerous)
-                        <input type="text" name="HistoryDiseases3[@k].LevelFamily" value="Anh/Chị em" hidden />
                     </td>
                     <td>
                         @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@
-                        @Html.CheckBoxFor(model => model.HistoryDiseases3[k].Selected, htmlAttributes: new { @class = "form-check-input form-check-primary" })
+                        @Html.CheckBoxFor(model => model.HistoryDiseases3[k].ChiDinh, htmlAttributes: new { @class = "form-check-input form-check-primary" })
                     </td>
                     <td>
                         @*<input type="checkbox" class="form-check-input form-check-primary" name="HistoryDiseases[@i].Selected">*@

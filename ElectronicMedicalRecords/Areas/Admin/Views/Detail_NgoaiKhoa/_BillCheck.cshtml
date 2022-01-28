@@ -1,0 +1,38 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-body">
+    <table class="table table-striped tableLoadClinical" id="tableNgoaiKhoas" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Bệnh về Ngoại Khoa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Detail_NgoaiKhoas.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_NgoaiKhoas[i].InformationExamination_ID" type="text" name="Detail_NgoaiKhoas[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_NgoaiKhoas[i].NgoaiKhoa_ID" type="text" name="Detail_NgoaiKhoas[@i].NgoaiKhoa_ID" hidden />
+                    </td>
+                    <td hidden>
+                        <input value="@Model.Detail_NgoaiKhoas[i].ID" type="text" name="Detail_NgoaiKhoas[@i].ID" hidden />
+                    </td>
+                    <td>
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_NgoaiKhoas[i].NgoaiKhoa_ID" name="Detail_NgoaiKhoas[@i].NgoaiKhoa_ID">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.Detail_NgoaiKhoas[i].NgoaiKhoa.Name</label>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

@@ -20,19 +20,33 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.HistoryDiseases.ToList());
         }
 
-        // GET: Admin/HistoryDiseases/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult GetData()
         {
-            if (id == null)
+            db.Configuration.ProxyCreationEnabled = false;
+            var historyDiseases = db.HistoryDiseases.ToList();
+            return Json(new { data = historyDiseases }, JsonRequestBehavior.AllowGet);
+        }
+
+        public string ValidateForm(HistoryDisease historyDisease)
+        {
+            string text = "";
+            var checkExist = db.HistoryDiseases.FirstOrDefault(e => e.Name == historyDisease.Name);
+            if (checkExist != null && historyDisease.Name != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                text = "Bệnh Tiền Sử đã có trong danh sách";
             }
-            HistoryDisease historyDisease = db.HistoryDiseases.Find(id);
-            if (historyDisease == null)
+            return text;
+        }
+
+        public string ValidateFormUpdate(HistoryDisease historyDisease)
+        {
+            string text = "";
+            var checkExist = db.HistoryDiseases.FirstOrDefault(e => e.Name == historyDisease.Name);
+            if (checkExist != null && checkExist.ID != historyDisease.ID && historyDisease.Name != null)
             {
-                return HttpNotFound();
+                text = "Bệnh Tiền Sử đã có trong danh sách";
             }
-            return View(historyDisease);
+            return text;
         }
 
         public ActionResult CreateOldPatient(int id)
@@ -49,7 +63,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var historyDisease1 = detail_HistoryDiseases1.FirstOrDefault(p => p.HistoryDisease_ID == item1.ID);
                 if(historyDisease1 != null)
                 {
-                    item1.Selected = historyDisease1.Selected;
+                    item1.ChiDinh = historyDisease1.Selected;
                 }
             }
             multiplesModel.HistoryDiseases1 = listHistoryDiseases1;
@@ -59,7 +73,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var historyDisease2 = detail_HistoryDiseases2.FirstOrDefault(p => p.HistoryDisease_ID == item2.ID);
                 if (historyDisease2 != null)
                 {
-                    item2.Selected = historyDisease2.Selected;
+                    item2.ChiDinh = historyDisease2.Selected;
                 }
             }
             multiplesModel.HistoryDiseases2 = listHistoryDiseases2;
@@ -69,7 +83,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var historyDisease3 = detail_HistoryDiseases3.FirstOrDefault(p => p.HistoryDisease_ID == item3.ID);
                 if (historyDisease3 != null)
                 {
-                    item3.Selected = historyDisease3.Selected;
+                    item3.ChiDinh = historyDisease3.Selected;
                 }
             }
             multiplesModel.HistoryDiseases3 = listHistoryDiseases3;
@@ -91,31 +105,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Dangerous")] HistoryDisease historyDisease)
+        public ActionResult Create(HistoryDisease historyDisease)
         {
-            if (ModelState.IsValid)
+            db.Configuration.ProxyCreationEnabled = false;
+            var text = ValidateForm(historyDisease);
+            if (text == "")
             {
-                db.HistoryDiseases.Add(historyDisease);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    historyDisease.ChiDinh = false;
+                    db.HistoryDiseases.Add(historyDisease);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(historyDisease);
             }
-
-            return View(historyDisease);
+            return Json(new { success = false, responseText = text });
         }
 
         // GET: Admin/HistoryDiseases/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            db.Configuration.ProxyCreationEnabled = false;
             HistoryDisease historyDisease = db.HistoryDiseases.Find(id);
             if (historyDisease == null)
             {
                 return HttpNotFound();
             }
-            return View(historyDisease);
+            return Json(new { data = historyDisease }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/HistoryDiseases/Edit/5
@@ -123,30 +140,34 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Dangerous")] HistoryDisease historyDisease)
+        public ActionResult Edit(HistoryDisease historyDisease)
         {
-            if (ModelState.IsValid)
+            db.Configuration.ProxyCreationEnabled = false;
+            var text = ValidateFormUpdate(historyDisease);
+            if (text == "")
             {
-                db.Entry(historyDisease).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var existData = db.HistoryDiseases.Find(historyDisease.ID);
+                    db.Entry(existData).CurrentValues.SetValues(historyDisease);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return View(historyDisease);
             }
-            return View(historyDisease);
+            return Json(new { success = false, responseText = text });
         }
 
         // GET: Admin/HistoryDiseases/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            db.Configuration.ProxyCreationEnabled = false;
             HistoryDisease historyDisease = db.HistoryDiseases.Find(id);
             if (historyDisease == null)
             {
                 return HttpNotFound();
             }
-            return View(historyDisease);
+            return Json(new { data = historyDisease }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/HistoryDiseases/Delete/5
@@ -154,10 +175,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             HistoryDisease historyDisease = db.HistoryDiseases.Find(id);
-            db.HistoryDiseases.Remove(historyDisease);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.HistoryDiseases.Remove(historyDisease);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = "Bệnh Tiền Sử này đã được sử dụng. Bạn không thể xóa nó!" });
+            }
         }
 
         protected override void Dispose(bool disposing)

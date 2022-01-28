@@ -1,0 +1,102 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<div class="card-content">
+    <div class="card-body">
+        <div class="row">
+            <p>- Kết quả khám thị lực:</p>
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Không kính:</label>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt phải:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEyesNoGlasses, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEyesNoGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt trái:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEyesNoGlasses, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEyesNoGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Có kính:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt phải:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEyesGlasses, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEyesGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Mắt trái:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEyesGlasses, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEyesGlasses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body">
+    <table class="table table-striped tableLoadClinical" id="tableMats" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Bệnh về Mắt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Detail_Mats.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_Mats[i].InformationExamination_ID" type="text" name="Detail_Mats[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_Mats[i].Mat_ID" type="text" name="Detail_Mats[@i].Mat_ID" hidden />
+                    </td>
+                    <td hidden>
+                        <input value="@Model.Detail_Mats[i].ID" type="text" name="Detail_Mats[@i].ID" hidden />
+                    </td>
+                    <td>
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_Mats[i].Mat_ID" name="Detail_Mats[@i].Mat_ID">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.Detail_Mats[i].Mat.Name</label>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+

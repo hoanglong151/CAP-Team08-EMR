@@ -78,7 +78,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
                         detail_MedicalHistory.MedicalHistory_ID = checkExist.ID;
                         detail_MedicalHistory.Patient_ID = multiplesModel.Patient.ID;
-                        detail_MedicalHistory.Selected = checkExist.Selected;
+                        detail_MedicalHistory.Selected = checkExist.ChiDinh;
                         db.Detail_MedicalHistory.Add(detail_MedicalHistory);
                         db.SaveChanges();
                     }
@@ -115,12 +115,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             foreach(var item in multiplesModel.MedicalHistories)
             {
-                if (ModelState.IsValid && item.Selected == true)
+                if (ModelState.IsValid && item.ChiDinh == true)
                 {
                     Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
                     detail_MedicalHistory.MedicalHistory_ID = item.ID;
                     detail_MedicalHistory.Patient_ID = patientID;
-                    detail_MedicalHistory.Selected = item.Selected;
+                    detail_MedicalHistory.Selected = item.ChiDinh;
 
                     db.Detail_MedicalHistory.Add(detail_MedicalHistory);
                     db.SaveChanges();
