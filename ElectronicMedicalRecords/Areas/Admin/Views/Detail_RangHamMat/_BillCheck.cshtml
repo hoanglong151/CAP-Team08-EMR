@@ -1,0 +1,57 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+<div class="card-content">
+    <div class="card-body">
+        <div class="row">
+            <p>- Kết quả khám:</p>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Hàm trên:</label>
+                    @Html.EditorFor(model => model.Clinical.UpperJaw, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.UpperJaw, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Hàm dưới:</label>
+                    @Html.EditorFor(model => model.Clinical.LowerJaw, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Clinical.LowerJaw, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body">
+    <table class="table table-striped tableLoadClinical" id="tableRangHamMats" style="width:100%">
+        <thead>
+            <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Chỉ Định</th>
+                <th>Bệnh về Răng-Hàm-Mặt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Detail_RangHamMats.Count(); i++)
+            {
+                <tr>
+                    <td hidden>
+                        <input value="@Model.Detail_RangHamMats[i].InformationExamination_ID" type="text" name="Detail_RangHamMats[@i].InformationExamination_ID" hidden />
+                        <input value="@Model.Detail_RangHamMats[i].RangHamMat_ID" type="text" name="Detail_RangHamMats[@i].RangHamMat_ID" hidden />
+                    </td>
+                    <td hidden>
+                        <input value="@Model.Detail_RangHamMats[i].ID" type="text" name="Detail_RangHamMats[@i].ID" hidden />
+                    </td>
+                    <td>
+                        <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_RangHamMats[i].RangHamMat_ID" name="Detail_RangHamMats[@i].RangHamMat_ID">
+                        <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                    </td>
+                    <td>
+                        <label class="form-check-label">@Model.Detail_RangHamMats[i].RangHamMat.Name</label>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

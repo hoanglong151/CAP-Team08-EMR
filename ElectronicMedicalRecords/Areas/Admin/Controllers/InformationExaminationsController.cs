@@ -221,6 +221,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_Create1");
         }
 
+        // GET: Admin/InformationExaminations/BillExamination
+        public ActionResult BillExamination(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var UserID = User.Identity.GetUserId();
+            var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
+            var info = db.InformationExaminations.Find(id);
+            multiplesModel.InformationExamination = info;
+            ViewBag.UserByID = userID.ID;
+            ViewBag.UserName = userID.Name;
+            ViewBag.DateExamination = DateTime.Now;
+            return PartialView("_BillExamination", multiplesModel);
+        }
+
 
         // GET: Admin/InformationExaminations/Create
         public ActionResult Create(int? id)

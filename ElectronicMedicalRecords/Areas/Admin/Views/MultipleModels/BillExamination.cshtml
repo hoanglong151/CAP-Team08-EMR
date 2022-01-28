@@ -168,7 +168,7 @@
                                         <div class="card">
                                             @{
                                                 Html.RenderAction("BillCheck", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                Html.RenderAction("CreateOldPatient", "Patients", new { id = Model.Patient.ID });
+                                                Html.RenderAction("BillExamination", "Patients", new { id = Model.Patient.ID });
                                                 Html.RenderAction("DetailIE", "Prescription_Detail", new { id = Model.InformationExamination.ID });
                                             }
                                         </div>
@@ -199,9 +199,173 @@
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
-                                    @{
-                                        Html.RenderAction("DetailIE", "Clinicals", new { id = Model.InformationExamination.ID });
-                                    }
+                                    <ul class="nav nav-tabs" id="mySubTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="NoiKhoa-tab" data-bs-toggle="tab" href="#NoiKhoa"
+                                               role="tab" aria-controls="home" aria-selected="true">Nội Khoa</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="NgoaiKhoa-tab" data-bs-toggle="tab" href="#NgoaiKhoa"
+                                               role="tab" aria-controls="history" aria-selected="true">Ngoại Khoa</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="SanPhuKhoa-tab" data-bs-toggle="tab" href="#SanPhuKhoa"
+                                               role="tab" aria-controls="home" aria-selected="true">Sản Phụ Khoa</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="Mat-tab" data-bs-toggle="tab" href="#Mat"
+                                               role="tab" aria-controls="home" aria-selected="true">Mắt</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
+                                               role="tab" aria-controls="home" aria-selected="true">Tai Mũi Họng</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
+                                               role="tab" aria-controls="home" aria-selected="true">Răng-Hàm-Mặt</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="DaLieu-tab" data-bs-toggle="tab" href="#DaLieu"
+                                               role="tab" aria-controls="home" aria-selected="true">Da Liễu</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="NoiKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_TuanHoan", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_HoHap", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_TieuHoa", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_ThanTietNieu", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_CoXuongKhop", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_ThanKinh", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_TamThan", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="NgoaiKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="SanPhuKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="Mat" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_Mat", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="TaiMuiHong" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_Tai", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_Mui", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("BillCheck", "Detail_Hong", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="RangHamMat" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_RangHamMat", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="DaLieu" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("BillCheck", "Detail_DaLieu", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -811,6 +975,23 @@
                     },
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
                     "lengthMenu": "Hiển thị _MENU_ danh mục xét nghiệm",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        })
+
+        var listTableClinical = $('*.tableLoadClinical');
+        listTableClinical.each((index, table) => {
+            $('#' + table.id).DataTable({
+                "pageLength": 10,
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục bệnh",
                     "search": "Tìm kiếm:",
                 },
             });

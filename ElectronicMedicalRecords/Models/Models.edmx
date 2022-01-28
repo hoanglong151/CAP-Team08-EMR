@@ -423,9 +423,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Selected" Type="bit" Nullable="false" />
-          <Property Name="Dangerous" Type="bit" />
-          <Property Name="LevelFamily" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Dangerous" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="HoHap">
           <Key>
@@ -507,9 +506,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Selected" Type="bit" Nullable="false" />
-          <Property Name="Dangerous" Type="bit" />
-          <Property Name="LevelFamily" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChiDinh" Type="bit" Nullable="false" />
+          <Property Name="Dangerous" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Medication">
           <Key>
@@ -2963,9 +2961,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Selected" Type="Boolean" Nullable="false" />
-          <Property Name="Dangerous" Type="Boolean" />
-          <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="HistoryDisease" ToRole="Detail_HistoryDisease" />
         </EntityType>
         <EntityType Name="HoHap">
@@ -3085,9 +3082,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Selected" Type="Boolean" Nullable="false" />
-          <Property Name="Dangerous" Type="Boolean" />
-          <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="MedicalHistory" ToRole="Detail_MedicalHistory" />
         </EntityType>
         <EntityType Name="Medication">
@@ -4750,9 +4746,8 @@
           <EntitySetMapping Name="HistoryDiseases">
             <EntityTypeMapping TypeName="CP24Team08Model.HistoryDisease">
               <MappingFragment StoreEntitySet="HistoryDisease">
-                <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
-                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -4841,9 +4836,8 @@
           <EntitySetMapping Name="MedicalHistories">
             <EntityTypeMapping TypeName="CP24Team08Model.MedicalHistory">
               <MappingFragment StoreEntitySet="MedicalHistory">
-                <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
-                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

@@ -4,37 +4,436 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dangerous)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dangerous)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
 }
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
 
-</table>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
+                <h3>Quản lý danh mục Bệnh Tiền Sử</h3>
+                <p class="text-subtitle text-muted">Danh sách danh mục Bệnh Tiền Sử</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "BenhTienSus")">Danh Sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Danh Mục Bệnh Tiền Sử</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Danh sách danh mục Bệnh Tiền Sử
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                {
+                    <br />
+                    <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                            data-bs-target="#createBenhTienSusModal">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Thêm Bệnh Tiền Sử
+                    </button>
+                }
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="tableBenhTienSus" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Danh Mục Bệnh Tiền Sử</th>
+                            <th>Nguy Hiểm</th>
+                            @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                            {
+                                <th>Chức Năng</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Create Basic Modal -->
+<div class="modal fade text-left" id="createBenhTienSusModal" data-backdrop="true" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel1">Thêm Danh Mục Bệnh Tiền Sử</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-createBenhTienSus" class="form form-horizontal needs-validation" novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Tên Bệnh Tiền Sử</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control pd-form"
+                                               placeholder="Tên Bệnh Tiền Sử" id="first-name-icon BenhTienSusNameCreate" required>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Nguy Hiểm</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input form-check-danger" name="Dangerous" id="customColorCheck4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Hủy</span>
+                        </button>
+                        <button type="submit" id="createBenhTienSus" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tạo</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Basic Modal -->
+<div class="modal fade text-left" id="UpdateBenhTienSus" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Cập nhật Bệnh Tiền Sử</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-updateBenhTienSus" class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <input type="text" id="UpdateBenhTienSusID" name="ID" hidden />
+                            <div class="col-md-4">
+                                <label for="UpdateBenhTienSusName">Tên Bệnh Tiền Sử</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input name="Name" type="text" class="form-control"
+                                               placeholder="Tên Bệnh Tiền Sử" id="UpdateBenhTienSusName" required>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Nguy Hiểm</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input form-check-danger" id="UpdateBenhTienSusDangerous" name="Dangerous">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Hủy</span>
+                            </button>
+                            <button type="submit" id="updateBenhTienSus" class="btn btn-primary ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cập nhật</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
+            $('#tableBenhTienSus').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetData", "HistoryDiseases")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "Name",
+                    },
+                    {
+                        "data": "Dangerous",
+                        "render": function (data, type, row) {
+                            var button = "<div class='form-check'><div class='custom-control custom-checkbox'><input type='checkbox' checked class='form-check-input form-check-danger' name='Dangerous' id='customColorCheck4' disabled></div></div>";
+                            if (data == false) {
+                                button = "<div class='form-check'><div class='custom-control custom-checkbox'><input type='checkbox' class='form-check-input form-check-danger' name='Dangerous' id='customColorCheck4' disabled></div></div>";
+                            }
+                            return button;
+                        },
+                    },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var button = "<button class='btn btn-primary btnHover edit' onclick='getBenhTienSusByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteBenhTienSus(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            return button;
+                        },
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available, please click on <b>Tạo Bệnh Tiền Sử</b> button",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ Bệnh Tiền Sử",
+                    "search": "Tìm kiếm:",
+                },
+                "columnDefs": [
+                    {
+                        "targets": [1], //second column
+                        "visible": RoleCheck
+                    }
+                ]
+            })
+        })
+        createBenhTienSus()
+        updateBenhTienSus()
+        /*Create Bệnh Tiền Sử*/
+        function createBenhTienSus() {
+            $('#form-createBenhTienSus').submit(function (e) {
+                var dataBenhTienSu = $('#form-createBenhTienSus').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                if (jQuery('input[name="Dangerous"]').val() == 'on') {
+                    dataBenhTienSu = dataBenhTienSu.replace("&Dangerous=on", "&Dangerous=true");
+                }
+                var model = {
+                    validata: dataBenhTienSu,
+                }
+                var isvalidCreate = $("#form-createBenhTienSus").valid();
+                if (isvalidCreate) {
+                    $.ajax({
+                    url: "@Url.Action("Create", "HistoryDiseases")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            resetInputCreate();
+                            $('#createBenhTienSusModal').modal('hide');
+                            $(document.body).removeClass('modal-open').attr("style", "none");
+                            $('.modal-backdrop').toggle();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã tạo thành công',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                            $('#tableBenhTienSus').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 1000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                }
+            e.preventDefault();
+            })
+        }
+
+        /*get ID Update*/
+        function getBenhTienSusByID(id) {
+            $.ajax({
+                url: '@Url.Action("Edit", "HistoryDiseases")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        $('#UpdateBenhTienSusName').val(res.data.Name);
+                        $('#UpdateBenhTienSusDangerous').prop('checked', res.data.Dangerous);
+                        $('#UpdateBenhTienSusID').val(res.data.ID);
+                    }
+                }
+            })
+            $('#UpdateBenhTienSus').modal('show')
+        }
+
+        /*update*/
+        function updateBenhTienSus() {
+            $('#form-updateBenhTienSus').submit(function (e) {
+                var dataBenhTienSu = $('#form-updateBenhTienSus').serialize();
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                if (jQuery('input[name="Dangerous"]').val() == 'on') {
+                    dataBenhTienSu = dataBenhTienSu.replace("&Dangerous=on", "&Dangerous=true");
+                }
+                var model = {
+                    validata: dataBenhTienSu,
+                }
+                var isvalidUpdate = $("#form-updateBenhTienSus").valid();
+                if (isvalidUpdate) {
+                    $.ajax({
+                    url: "@Url.Action("Edit", "HistoryDiseases")",
+                    type: "POST",
+                    data: model.validata + "&__RequestVerificationToken=" + token,
+                    success: (res) => {
+                        if (res.success) {
+                            $('#UpdateBenhTienSus').modal('hide');
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bạn đã cập nhật thành công',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                            $('#tableBenhTienSus').DataTable().ajax.reload();
+                        } else {
+                            Toastify({
+                                text: res.responseText,
+                                className: "info",
+                                duration: 3000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                }
+                            }).showToast();
+                        }
+                    }
+                })
+                }
+                e.preventDefault();
+            })
+        }
+
+        /*Get & Post Delete Bệnh Tiền Sử*/
+        function deleteBenhTienSus(id) {
+            $.ajax({
+                url: '@Url.Action("Delete", "HistoryDiseases")',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    if (res.data != null) {
+                        Swal.fire({
+                            title: 'Bạn muốn xóa Bệnh Tiền Sử này?',
+                            html:
+                                '<b>Bệnh Tiền Sử:</b> <span>' + res.data.Name +'</span>',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#777',
+                            confirmButtonText: 'Xác nhận',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var form = $('#__AjaxAntiForgeryForm');
+                                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                $.ajax({
+                                    url: '@Url.Action("Delete", "HistoryDiseases")',
+                                    type: 'POST',
+                                    data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
+                                    success: function (res) {
+                                        if (res.success) {
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Xóa thành công',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                            $("#tableBenhTienSus").DataTable().ajax.reload();
+                                        }
+                                        else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Thất Bại',
+                                                text: res.responseText,
+                                            })
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            })
+        }
+
+        /*Reset Input Create Form*/
+        function resetInputCreate() {
+            $('#form-createBenhTienSus').get(0).reset();
+        }
+
+        /*Validate Form*/
+        $('form').each((i, obj) => {
+            $(function () {
+                $(obj).validate({
+                    rules: {
+                        Name: {
+                            required: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        }
+                    },
+                    messages: {
+                        Name: {
+                            required: "Vui lòng không để trống hoặc nhập ký tự khoảng trắng"
+                        }
+                    },
+                    errorClass: 'invalidLB',
+                    validClass: 'validLB',
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").addClass('mb-25')
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest(".position-relative").removeClass('mb-25')
+                    }
+                });
+            });
+        })
+    </script>
+}

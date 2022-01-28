@@ -159,6 +159,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var detail_SHM = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == info.ID).ToList();
             var detail_Urine = db.Detail_Urine.Where(p => p.InfomationExamination_ID == info.ID).ToList();
             var detail_VS = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == info.ID).ToList();
+
             multiplesModel.Detail_SinhHoaMaus = detail_SHM;
             multiplesModel.Detail_Urines = detail_Urine;
             multiplesModel.Detail_ViSinhs = detail_VS;

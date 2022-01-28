@@ -1,0 +1,43 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseHoHap" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Hô Hấp
+</a>
+
+<div class="collapse" id="collapseHoHap">
+    <div class="card-body">
+        <table class="table table-striped tableLoadClinical" id="tableHoHaps" style="width:100%">
+            <thead>
+                <tr>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th>Chỉ Định</th>
+                    <th>Bệnh về Hô Hấp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Detail_HoHaps.Count(); i++)
+                {
+                    <tr>
+                        <td hidden>
+                            <input value="@Model.Detail_HoHaps[i].InformationExamination_ID" type="text" name="Detail_HoHaps[@i].InformationExamination_ID" hidden />
+                            <input value="@Model.Detail_HoHaps[i].HoHap_ID" type="text" name="Detail_HoHaps[@i].HoHap_ID" hidden />
+                        </td>
+                        <td hidden>
+                            <input value="@Model.Detail_HoHaps[i].ID" type="text" name="Detail_HoHaps[@i].ID" hidden />
+                        </td>
+                        <td>
+                            <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_HoHaps[i].HoHap_ID" name="Detail_HoHaps[@i].HoHap_ID">
+                            <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
+                        </td>
+                        <td>
+                            <label class="form-check-label">@Model.Detail_HoHaps[i].HoHap.Name</label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
