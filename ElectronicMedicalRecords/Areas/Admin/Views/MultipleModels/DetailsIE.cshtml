@@ -238,9 +238,173 @@
                         <div class="page-heading">
                             <section class="section">
                                 <div class="card">
-                                    @{
-                                        Html.RenderAction("DetailIE", "Clinicals", new { id = Model.InformationExamination.ID });
-                                    }
+                                    <ul class="nav nav-tabs" id="mySubTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="NoiKhoa-tab" data-bs-toggle="tab" href="#NoiKhoa"
+                                               role="tab" aria-controls="home" aria-selected="true">Nội Khoa</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="NgoaiKhoa-tab" data-bs-toggle="tab" href="#NgoaiKhoa"
+                                               role="tab" aria-controls="history" aria-selected="true">Ngoại Khoa</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="SanPhuKhoa-tab" data-bs-toggle="tab" href="#SanPhuKhoa"
+                                               role="tab" aria-controls="home" aria-selected="true">Sản Phụ Khoa</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="Mat-tab" data-bs-toggle="tab" href="#Mat"
+                                               role="tab" aria-controls="home" aria-selected="true">Mắt</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
+                                               role="tab" aria-controls="home" aria-selected="true">Tai Mũi Họng</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
+                                               role="tab" aria-controls="home" aria-selected="true">Răng-Hàm-Mặt</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="DaLieu-tab" data-bs-toggle="tab" href="#DaLieu"
+                                               role="tab" aria-controls="home" aria-selected="true">Da Liễu</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="NoiKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "TuanHoans", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "HoHaps", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "TieuHoas", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "ThanTietNieux", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "CoXuongKhops", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "ThanKinhs", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "TamThans", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="NgoaiKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "NgoaiKhoas", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="SanPhuKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "SanPhuKhoas", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="Mat" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "Mats", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="TaiMuiHong" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "Tais", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "Muis", new { id = Model.InformationExamination.ID });
+                                                                    <br />
+                                                                    Html.RenderAction("EditSelect", "Hongs", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="RangHamMat" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "RangHamMats", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="DaLieu" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    Html.RenderAction("EditSelect", "DaLieux", new { id = Model.InformationExamination.ID });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -520,6 +684,1185 @@
                 }
             })
         })
+
+        /*Clinical*/
+        var CountClinicals = $('*.countClinicals');
+        var DetailClinicals = $('*#DetailClinicalCount');
+        var countEachClinical = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var arrTuanHoan = [];
+        var arrHoHap = [];
+        var arrTieuHoa = [];
+        var arrThanTietNieu = [];
+        var arrCoXuongKhop = [];
+        var arrThanKinh = [];
+        var arrTamThan = [];
+        var arrNgoaiKhoa = [];
+        var arrSanPhuKhoa = [];
+        var arrMat = [];
+        var arrTai = [];
+        var arrMui = [];
+        var arrHong = [];
+        var arrRangHamMat = [];
+        var arrDaLieu = [];
+
+        getArrTuanHoan();
+        function getArrTuanHoan() {
+            $.ajax({
+                url: "@Url.Action("GetArrTuanHoan", "TuanHoans")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrTuanHoan = res.res;
+                    countEachClinical[0] = res.res.length;
+                    if (countEachClinical[0] > 0) {
+                        DetailClinicals[0].style.display = "block";
+                    } else {
+                        DetailClinicals[0].style.display = "none"
+                    }
+                    CountClinicals[0].innerHTML = countEachClinical[0];
+                }
+            })
+        }
+
+        /*Load Detail Test Tuần Hoàn*/
+        function loadDetailTuanHoans() {
+            $('#tableNewTuanHoans').DataTable().destroy();
+            $('#tableNewTuanHoans').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("LoadDetailTuanHoan", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrTuanHoan
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='TuanHoan.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 0 + ',' + '"TuanHoan-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Tuần Hoàn",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục tuần hoàn",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrHoHap();
+        function getArrHoHap() {
+            $.ajax({
+                url: "@Url.Action("GetArrHoHap", "HoHaps")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrHoHap = res.res;
+                    countEachClinical[1] = res.res.length;
+                    if (countEachClinical[1] > 0) {
+                        DetailClinicals[1].style.display = "block";
+                    } else {
+                        DetailClinicals[1].style.display = "none"
+                    }
+                    CountClinicals[1].innerHTML = countEachClinical[1];
+                }
+            })
+        }
+
+        /*Load Detail Test Hô Hấp*/
+        function loadDetailHoHaps() {
+            $('#tableNewHoHaps').DataTable().destroy();
+            $('#tableNewHoHaps').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("LoadDetailHoHap", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrHoHap
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='HoHap.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 1 + ',' + '"HoHap-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Hô Hấp",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục hô hấp",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrTieuHoa();
+        function getArrTieuHoa() {
+            $.ajax({
+                url: "@Url.Action("GetArrTieuHoa", "TieuHoas")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrTieuHoa = res.res;
+                    countEachClinical[2] = res.res.length;
+                    if (countEachClinical[2] > 0) {
+                        DetailClinicals[2].style.display = "block";
+                    } else {
+                        DetailClinicals[2].style.display = "none"
+                    }
+                    CountClinicals[2].innerHTML = countEachClinical[2];
+                }
+            })
+        }
+
+                /*Load Detail Test Tiêu Hóa*/
+        function loadDetailTieuHoas() {
+            $('#tableNewTieuHoas').DataTable().destroy();
+            $('#tableNewTieuHoas').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("LoadDetailTieuHoa", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrTieuHoa
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='TieuHoa.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 2 + ',' + '"TieuHoa-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Tiêu Hóa",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục tiêu hóa",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrThanTietNieu();
+        function getArrThanTietNieu() {
+            $.ajax({
+                url: "@Url.Action("GetArrThanTietNieu", "ThanTietNieux")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrThanTietNieu = res.res;
+                    countEachClinical[3] = res.res.length;
+                    if (countEachClinical[3] > 0) {
+                        DetailClinicals[3].style.display = "block";
+                    } else {
+                        DetailClinicals[3].style.display = "none"
+                    }
+                    CountClinicals[3].innerHTML = countEachClinical[3];
+                }
+            })
+        }
+
+                /*Load Detail Test Thận Tiết Niệu*/
+        function loadDetailThanTietNieus() {
+            $('#tableNewThanTietNieus').DataTable().destroy();
+            $('#tableNewThanTietNieus').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("LoadDetailThanTietNieu", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrThanTietNieu
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "#",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='ThanTietNieu.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 3 + ',' + '"ThanTietNieu-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "Name",
+                            "name": "Bệnh Thận Tiết Niệu",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục thận tiết niệu",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        getArrCoXuongKhop();
+        function getArrCoXuongKhop() {
+            $.ajax({
+                url: "@Url.Action("GetArrCoXuongKhop", "CoXuongKhops")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrCoXuongKhop = res.res;
+                    countEachClinical[4] = res.res.length;
+                    if (countEachClinical[4] > 0) {
+                        DetailClinicals[4].style.display = "block";
+                    } else {
+                        DetailClinicals[4].style.display = "none"
+                    }
+                    CountClinicals[4].innerHTML = countEachClinical[4];
+                }
+            })
+        }
+
+                /*Load Detail Test Cơ Xương Khớp*/
+        function loadDetailCoXuongKhops() {
+            $('#tableNewCoXuongKhops').DataTable().destroy();
+            $('#tableNewCoXuongKhops').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("LoadDetailCoXuongKhops", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrCoXuongKhop
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "#",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='CoXuongKhop.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 4 + ',' + '"CoXuongKhop-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "Name",
+                            "name": "Bệnh Cơ Xương Khớp",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục cơ xương khớp",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        getArrThanKinh();
+        function getArrThanKinh() {
+            $.ajax({
+                url: "@Url.Action("GetArrThanKinh", "ThanKinhs")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrThanKinh = res.res;
+                    countEachClinical[5] = res.res.length;
+                    if (countEachClinical[5] > 0) {
+                        DetailClinicals[5].style.display = "block";
+                    } else {
+                        DetailClinicals[5].style.display = "none"
+                    }
+                    CountClinicals[5].innerHTML = countEachClinical[5];
+                }
+            })
+        }
+
+                /*Load Detail Test Thần Kinh*/
+        function loadDetailThanKinhs() {
+            $('#tableNewThanKinhs').DataTable().destroy();
+            $('#tableNewThanKinhs').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("loadDetailThanKinhs", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrThanKinh
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "#",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='ThanKinh.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 5 + ',' + '"ThanKinh-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "Name",
+                            "name": "Bệnh Thần Kinh",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục thần kinh",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        getArrTamThan();
+        function getArrTamThan() {
+            $.ajax({
+                url: "@Url.Action("GetArrTamThan", "TamThans")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrTamThan = res.res;
+                    countEachClinical[6] = res.res.length;
+                    if (countEachClinical[6] > 0) {
+                        DetailClinicals[6].style.display = "block";
+                    } else {
+                        DetailClinicals[6].style.display = "none"
+                    }
+                    CountClinicals[6].innerHTML = countEachClinical[6];
+                }
+            })
+        }
+
+                /*Load Detail Test Tâm Thần*/
+        function loadDetailTamThans() {
+            $('#tableNewTamThans').DataTable().destroy();
+            $('#tableNewTamThans').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("loadDetailTamThans", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrTamThan
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "#",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='TamThan.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 6 + ',' + '"TamThan-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "Name",
+                            "name": "Bệnh Tâm Thần",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục tâm thần",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        getArrNgoaiKhoa();
+        function getArrNgoaiKhoa() {
+            $.ajax({
+                url: "@Url.Action("GetArrNgoaiKhoa", "NgoaiKhoas")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrNgoaiKhoa = res.res;
+                    countEachClinical[7] = res.res.length;
+                    if (countEachClinical[7] > 0) {
+                        DetailClinicals[7].style.display = "block";
+                    } else {
+                        DetailClinicals[7].style.display = "none"
+                    }
+                    CountClinicals[7].innerHTML = countEachClinical[7];
+                }
+            })
+        }
+
+            /*Load Detail Test Ngoại Khoa*/
+        function loadDetailNgoaiKhoas() {
+            $('#tableNewNgoaiKhoas').DataTable().destroy();
+            $('#tableNewNgoaiKhoas').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("loadDetailNgoaiKhoas", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrNgoaiKhoa
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "#",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='NgoaiKhoa.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 7 + ',' + '"NgoaiKhoa-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "Name",
+                            "name": "Bệnh Ngoại Khoa",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục ngoại khoa",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        getArrSanPhuKhoa();
+        function getArrSanPhuKhoa() {
+            $.ajax({
+                url: "@Url.Action("GetArrSanPhuKhoa", "SanPhuKhoas")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrSanPhuKhoa = res.res;
+                    countEachClinical[8] = res.res.length;
+                    if (countEachClinical[8] > 0) {
+                        DetailClinicals[8].style.display = "block";
+                    } else {
+                        DetailClinicals[8].style.display = "none"
+                    }
+                    CountClinicals[8].innerHTML = countEachClinical[8];
+                }
+            })
+        }
+
+        /*Load Detail Test Sản Phụ Khoa*/
+        function loadDetailSanPhuKhoas() {
+            $('#tableNewSanPhuKhoas').DataTable().destroy();
+            $('#tableNewSanPhuKhoas').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("loadDetailSanPhuKhoas", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrSanPhuKhoa
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='SanPhuKhoa.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 8 + ',' + '"SanPhuKhoa-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Sản Phụ Khoa",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục sản phụ khoa",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrMat();
+        function getArrMat() {
+            $.ajax({
+                url: "@Url.Action("GetArrMat", "Mats")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrMat = res.res;
+                    countEachClinical[9] = res.res.length;
+                    if (countEachClinical[9] > 0) {
+                        DetailClinicals[9].style.display = "block";
+                    } else {
+                        DetailClinicals[9].style.display = "none"
+                    }
+                    CountClinicals[9].innerHTML = countEachClinical[9];
+                }
+            })
+        }
+
+        /*Load Detail Test Mắt*/
+        function loadDetailMats() {
+            $('#tableNewMats').DataTable().destroy();
+            $('#tableNewMats').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("loadDetailMats", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrMat
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Mat.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 9 + ',' + '"Mat-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Mắt",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục mắt",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrTai();
+        function getArrTai() {
+            $.ajax({
+                url: "@Url.Action("GetArrTai", "Tais")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrTai = res.res;
+                    countEachClinical[10] = res.res.length;
+                    if (countEachClinical[10] > 0) {
+                        DetailClinicals[10].style.display = "block";
+                    } else {
+                        DetailClinicals[10].style.display = "none"
+                    }
+                    CountClinicals[10].innerHTML = countEachClinical[10];
+                }
+            })
+        }
+
+        /*Load Detail Test Tai*/
+        function loadDetailTais() {
+            $('#tableNewTais').DataTable().destroy();
+            $('#tableNewTais').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("loadDetailTais", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrTai
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Tai.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 10 + ',' + '"Tai-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Tai",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục tai",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrMui();
+        function getArrMui() {
+            $.ajax({
+                url: "@Url.Action("GetArrMui", "Muis")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrMui = res.res;
+                    countEachClinical[11] = res.res.length;
+                    if (countEachClinical[11] > 0) {
+                        DetailClinicals[11].style.display = "block";
+                    } else {
+                        DetailClinicals[11].style.display = "none"
+                    }
+                    CountClinicals[11].innerHTML = countEachClinical[11];
+                }
+            })
+        }
+
+         /*Load Detail Test Mũi*/
+        function loadDetailMuis() {
+            $('#tableNewMuis').DataTable().destroy();
+            $('#tableNewMuis').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("loadDetailMuis", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrMui
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Mui.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 11 + ',' + '"Mui-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Mũi",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục mũi",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrHong();
+        function getArrHong() {
+            $.ajax({
+                url: "@Url.Action("GetArrHong", "Hongs")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrHong = res.res;
+                    countEachClinical[12] = res.res.length;
+                    if (countEachClinical[12] > 0) {
+                        DetailClinicals[12].style.display = "block";
+                    } else {
+                        DetailClinicals[12].style.display = "none"
+                    }
+                    CountClinicals[12].innerHTML = countEachClinical[12];
+                }
+            })
+        }
+
+        /*Load Detail Test Họng*/
+        function loadDetailHongs() {
+            $('#tableNewHongs').DataTable().destroy();
+            $('#tableNewHongs').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("loadDetailHongs", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrHong
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Hong.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 12 + ',' + '"Hong-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Họng",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục họng",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrRangHamMat();
+        function getArrRangHamMat() {
+            $.ajax({
+                url: "@Url.Action("GetArrRangHamMat", "RangHamMats")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrRangHamMat = res.res;
+                    countEachClinical[13] = res.res.length;
+                    if (countEachClinical[13] > 0) {
+                        DetailClinicals[13].style.display = "block";
+                    } else {
+                        DetailClinicals[13].style.display = "none"
+                    }
+                    CountClinicals[13].innerHTML = countEachClinical[13];
+                }
+            })
+        }
+
+        /*Load Detail Test Răng Hàm Mặt*/
+        function loadDetailRangHamMats() {
+            $('#tableNewRangHamMats').DataTable().destroy();
+            $('#tableNewRangHamMats').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("loadDetailRangHamMats", "MultipleModels")",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.arr = arrRangHamMat
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "ChiDinh",
+                        "name": "#",
+                        "render": (data, type, row) => {
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='RangHamMat.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 13 + ',' + '"RangHamMat-"' +")'>"
+                            return checkbox;
+                        },
+                    },
+                    {
+                        "data": "Name",
+                        "name": "Bệnh Răng Hàm Mặt",
+                        "render": (data, type, row) => {
+                            var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                            return label;
+                        }
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục răng hàm mặt",
+                    "search": "Tìm kiếm:",
+                },
+            })
+        }
+
+        getArrDaLieu();
+        function getArrDaLieu() {
+            $.ajax({
+                url: "@Url.Action("GetArrDaLieu", "DaLieux")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID },
+                success: (res) => {
+                    arrDaLieu = res.res;
+                    countEachClinical[14] = res.res.length;
+                    if (countEachClinical[14] > 0) {
+                        DetailClinicals[14].style.display = "block";
+                    } else {
+                        DetailClinicals[14].style.display = "none"
+                    }
+                    CountClinicals[14].innerHTML = countEachClinical[14];
+                }
+            })
+        }
+
+        /*Load Detail Test Da Liễu*/
+        function loadDetailDaLieus() {
+            $('#tableNewDaLieus').DataTable().destroy();
+            $('#tableNewDaLieus').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("loadDetailDaLieus", "MultipleModels")",
+                        "type": "POST",
+                        "data": function (d) {
+                            d.arr = arrDaLieu
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "ChiDinh",
+                            "name": "#",
+                            "render": (data, type, row) => {
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='DaLieu.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 14 + ',' + '"DaLieu-"' +")'>"
+                                return checkbox;
+                            },
+                        },
+                        {
+                            "data": "Name",
+                            "name": "Bệnh Da Liễu",
+                            "render": (data, type, row) => {
+                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                return label;
+                            }
+                        }
+                    ],
+                    "language": {
+                        "emptyTable": "No data available",
+                        "oPaginate": {
+                            sNext: '<i class="fa fa-chevron-right"></i>',
+                            sPrevious: '<i class="fa fa-chevron-left"></i>',
+                        },
+                        "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                        "lengthMenu": "Hiển thị _MENU_ danh mục da liễu",
+                        "search": "Tìm kiếm:",
+                    },
+                })
+        }
+
+        var tableNewCD = $('*.tableNewChiDinh');
+        var destroyTable = $('*#destroytable');
+        tableNewCD.each((index, table) => {
+            destroyTable[index].addEventListener('click', (e) => {
+                var tableID = table.getAttribute("id")
+                var tableCD = $('#' + tableID).DataTable();
+                tableCD.destroy();
+            })
+        })
+
+        function updateNewCountClinicals(id, numTable, row) {
+            switch (numTable) {
+                case 0:
+                    var existTuanHoans = arrTuanHoan.indexOf("" + id);
+                    arrTuanHoan.splice(existTuanHoans, 1);
+                    break;
+                case 1:
+                    var existHoHaps = arrHoHap.indexOf("" + id);
+                    arrHoHap.splice(existHoHaps, 1);
+                    break;
+                case 2:
+                    var existTieuHoas = arrTieuHoa.indexOf("" + id);
+                    arrTieuHoa.splice(existTieuHoas, 1);
+                    break;
+                case 3:
+                    var existThanTietNieus = arrThanTietNieu.indexOf("" + id);
+                    arrThanTietNieu.splice(existThanTietNieus, 1);
+                    break;
+                case 4:
+                    var existCoXuongKhops = arrCoXuongKhop.indexOf("" + id);
+                    arrCoXuongKhop.splice(existCoXuongKhops, 1);
+                    break;
+                case 5:
+                    var existThanKinhs = arrThanKinh.indexOf("" + id);
+                    arrThanKinh.splice(existThanKinhs, 1);
+                    break;
+                case 6:
+                    var existTamThans = arrTamThan.indexOf("" + id);
+                    arrTamThan.splice(existTamThans, 1);
+                    break;
+                case 7:
+                    var existNgoaiKhoas = arrNgoaiKhoa.indexOf("" + id);
+                    arrNgoaiKhoa.splice(existNgoaiKhoas, 1);
+                    break;
+                case 8:
+                    var existSanPhuKhoas = arrSanPhuKhoa.indexOf("" + id);
+                    arrSanPhuKhoa.splice(existSanPhuKhoas, 1);
+                    break;
+                case 9:
+                    var existMats = arrMat.indexOf("" + id);
+                    arrMat.splice(existMats, 1);
+                    break;
+                case 10:
+                    var existTais = arrTai.indexOf("" + id);
+                    arrTai.splice(existTais, 1);
+                    break;
+                case 11:
+                    var existMuis = arrMui.indexOf("" + id);
+                    arrMui.splice(existMuis, 1);
+                    break;
+                case 12:
+                    var existHongs = arrHong.indexOf("" + id);
+                    arrHong.splice(existHongs, 1);
+                    break;
+                case 13:
+                    var existRangHamMats = arrRangHamMat.indexOf("" + id);
+                    arrRangHamMat.splice(existRangHamMats, 1);
+                    break;
+                case 14:
+                    var existDaLieus = arrDaLieu.indexOf("" + id);
+                    arrDaLieu.splice(existDaLieus, 1);
+                    break;
+            }
+            countEachClinical[numTable]--;
+            CountClinicals[numTable].innerHTML = countEachClinical[numTable];
+            var GetTable = tableNewCD[numTable].getAttribute("id");
+            $("#" + row + id).prop("value", false);
+            $("#" + row + id).prop("checked", false);
+            $('#' + GetTable).DataTable().ajax.reload();
+        }
+
+        var listTableClinical = $('*.tableLoadClinical');
+        listTableClinical.each((index, table) => {
+            $('#' + table.id).DataTable({
+                "pageLength": 10,
+                "language": {
+                    "emptyTable": "No data available",
+                    "oPaginate": {
+                        sNext: '<i class="fa fa-chevron-right"></i>',
+                        sPrevious: '<i class="fa fa-chevron-left"></i>',
+                    },
+                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+                    "lengthMenu": "Hiển thị _MENU_ danh mục bệnh",
+                    "search": "Tìm kiếm:",
+                },
+            });
+        })
+
+        listTableClinical.each((index, table) => {
+            var listClinical = $('#' + table.id + ' tbody td *input[type="checkbox"]');
+            listClinical.each((index1, value) => {
+                value.addEventListener('click', (e) => {
+                    if (e.target.checked) {
+                        var id = value.getAttribute("data-id");
+                        updateCountClinicals(id, event, value, index)
+                        value.checked = true;
+                    }
+                    else {
+                        var id = value.getAttribute("data-id");
+                        updateCountClinicals(id, event, value, index)
+                        value.checked = false;
+                    }
+                })
+            })
+        })
+
+        function updateCountClinicals(id, e, value, indextable) {
+            console.log(arrTuanHoan, id)
+            if (e.target.checked == true) {
+                value.setAttribute("value", true);
+                value.setAttribute("checked", true);
+                countEachClinical[indextable]++;
+                switch (indextable) {
+                    case 0:
+                        arrTuanHoan.push(id);
+                        break;
+                    case 1:
+                        arrHoHap.push(id);
+                        break;
+                    case 2:
+                        arrTieuHoa.push(id);
+                        break;
+                    case 3:
+                        arrThanTietNieu.push(id);
+                        break;
+                    case 4:
+                        arrCoXuongKhop.push(id);
+                        break;
+                    case 5:
+                        arrThanKinh.push(id);
+                        break;
+                    case 6:
+                        arrTamThan.push(id);
+                        break;
+                    case 7:
+                        arrNgoaiKhoa.push(id);
+                        break;
+                    case 8:
+                        arrSanPhuKhoa.push(id);
+                        break;
+                    case 9:
+                        arrMat.push(id);
+                        break;
+                    case 10:
+                        arrTai.push(id);
+                        break;
+                    case 11:
+                        arrMui.push(id);
+                        break;
+                    case 12:
+                        arrHong.push(id);
+                        break;
+                    case 13:
+                        arrRangHamMat.push(id);
+                        break;
+                    case 14:
+                        arrDaLieu.push(id);
+                        break;
+                }
+            } else {
+                countEachClinical[indextable]--;
+                value.setAttribute("value", false);
+                value.setAttribute("checked", false);
+                switch (indextable) {
+                    case 0:
+                        const indexArrTuanHoans = arrTuanHoan.indexOf("" + id);
+                        arrTuanHoan.splice(indexArrTuanHoans, 1);
+                        break;
+                    case 1:
+                        const indexArrHoHaps = arrHoHap.indexOf("" + id);
+                        arrHoHap.splice(indexArrHoHaps, 1);
+                        break;
+                    case 2:
+                        const indexArrTieuHoas = arrTieuHoa.indexOf("" + id);
+                        arrTieuHoa.splice(indexArrTieuHoas, 1);
+                        break;
+                    case 3:
+                        const indexArrThanTietNieus = arrThanTietNieu.indexOf("" + id);
+                        arrThanTietNieu.splice(indexArrThanTietNieus, 1);
+                        break;
+                    case 4:
+                        const indexArrCoXuongKhops = arrCoXuongKhop.indexOf("" + id);
+                        arrCoXuongKhop.splice(indexArrCoXuongKhops, 1);
+                        break;
+                    case 5:
+                        const indexArrThanKinhs = arrThanKinh.indexOf("" + id);
+                        arrThanKinh.splice(indexArrThanKinhs, 1);
+                        break;
+                    case 6:
+                        const indexArrTamThans = arrTamThan.indexOf("" + id);
+                        arrTamThan.splice(indexArrTamThans, 1);
+                        break;
+                    case 7:
+                        const indexArrNgoaiKhoas = arrNgoaiKhoa.indexOf("" + id);
+                        arrNgoaiKhoa.splice(indexArrNgoaiKhoas, 1);
+                        break;
+                    case 8:
+                        const indexArrSanPhuKhoas = arrSanPhuKhoa.indexOf("" + id);
+                        arrSanPhuKhoa.splice(indexArrSanPhuKhoas, 1);
+                        break;
+                    case 9:
+                        const indexArrMats = arrMat.indexOf("" + id);
+                        arrMat.splice(indexArrMats, 1);
+                        break;
+                    case 10:
+                        const indexArrTais = arrTai.indexOf("" + id);
+                        arrTai.splice(indexArrTais, 1);
+                        break;
+                    case 11:
+                        const indexArrMuis = arrMui.indexOf("" + id);
+                        arrMui.splice(indexArrMuis, 1);
+                        break;
+                    case 12:
+                        const indexArrHongs = arrHong.indexOf("" + id);
+                        arrHong.splice(indexArrHongs, 1);
+                        break;
+                    case 13:
+                        const indexArrRangHamMats = arrRangHamMat.indexOf("" + id);
+                        arrRangHamMat.splice(indexArrRangHamMats, 1);
+                        break;
+                    case 14:
+                        const indexArrDaLieus = arrDaLieu.indexOf("" + id);
+                        arrDaLieu.splice(indexArrDaLieus, 1);
+                        break;
+                }
+            }
+            if (countEachClinical[indextable] > 0) {
+                DetailClinicals[indextable].style.display = "block";
+            } else {
+                DetailClinicals[indextable].style.display = "none"
+            }
+            CountClinicals[indextable].innerHTML = countEachClinical[indextable];
+        }
 
         /*Print Examination Information*/
         $('#PrintAllExamInFoTest').click(function (e) {

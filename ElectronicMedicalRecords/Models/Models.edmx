@@ -218,7 +218,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InformationExamination_ID" Type="int" />
           <Property Name="HoHap_ID" Type="int" />
         </EntityType>
@@ -2113,7 +2113,6 @@
           <EntitySet Name="Detail_DiagnosticsCategory" EntityType="CP24Team08Model.Detail_DiagnosticsCategory" />
           <EntitySet Name="Detail_DongMau" EntityType="CP24Team08Model.Detail_DongMau" />
           <EntitySet Name="Detail_HistoryDisease" EntityType="CP24Team08Model.Detail_HistoryDisease" />
-          <EntitySet Name="Detail_HoHap" EntityType="CP24Team08Model.Detail_HoHap" />
           <EntitySet Name="Detail_Hong" EntityType="CP24Team08Model.Detail_Hong" />
           <EntitySet Name="Detail_Immune" EntityType="CP24Team08Model.Detail_Immune" />
           <EntitySet Name="Detail_Mat" EntityType="CP24Team08Model.Detail_Mat" />
@@ -2256,14 +2255,6 @@
           <AssociationSet Name="FK_Detail_HistoryDisease_Patient" Association="CP24Team08Model.FK_Detail_HistoryDisease_Patient">
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_HoHap_HoHap" Association="CP24Team08Model.FK_Detail_HoHap_HoHap">
-            <End Role="HoHap" EntitySet="HoHaps" />
-            <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_HoHap_InformationExamination" Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination">
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-            <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_Hong_Hong" Association="CP24Team08Model.FK_Detail_Hong_Hong">
             <End Role="Hong" EntitySet="Hongs" />
@@ -2476,6 +2467,15 @@
           <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Detail_HoHap" EntityType="CP24Team08Model.Detail_HoHap" />
+          <AssociationSet Name="FK_Detail_HoHap_HoHap" Association="CP24Team08Model.FK_Detail_HoHap_HoHap">
+            <End Role="HoHap" EntitySet="HoHaps" />
+            <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_HoHap_InformationExamination" Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -2708,16 +2708,6 @@
           <Property Name="Selected" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="Detail_HistoryDisease" ToRole="HistoryDisease" />
           <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Detail_HistoryDisease" ToRole="Patient" />
-        </EntityType>
-        <EntityType Name="Detail_HoHap">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <Property Name="HoHap_ID" Type="Int32" />
-          <NavigationProperty Name="HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_HoHap" FromRole="Detail_HoHap" ToRole="HoHap" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="Detail_HoHap" ToRole="InformationExamination" />
         </EntityType>
         <EntityType Name="Detail_Hong">
           <Key>
@@ -3043,7 +3033,6 @@
           <NavigationProperty Name="Detail_DaLieu" Relationship="CP24Team08Model.FK_Detail_DaLieu_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DaLieu" />
           <NavigationProperty Name="Detail_DiagnosticsCategory" Relationship="CP24Team08Model.FK_Detail_DiagnosticsCategory_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DiagnosticsCategory" />
           <NavigationProperty Name="Detail_DongMau" Relationship="CP24Team08Model.FK_Detail_DongMau_InformationExamination" FromRole="InformationExamination" ToRole="Detail_DongMau" />
-          <NavigationProperty Name="Detail_HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="InformationExamination" ToRole="Detail_HoHap" />
           <NavigationProperty Name="Detail_Hong" Relationship="CP24Team08Model.FK_Detail_Hong_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Hong" />
           <NavigationProperty Name="Detail_Immune" Relationship="CP24Team08Model.FK_Detail_Immune_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Immune" />
           <NavigationProperty Name="Detail_Mat" Relationship="CP24Team08Model.FK_Detail_Mat_InformationExamination" FromRole="InformationExamination" ToRole="Detail_Mat" />
@@ -3065,6 +3054,7 @@
           <NavigationProperty Name="PatientStatu" Relationship="CP24Team08Model.FK_InformationExamination_PatientStatus" FromRole="InformationExamination" ToRole="PatientStatu" />
           <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="InformationExamination" ToRole="User" />
           <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_InformationExamination" FromRole="InformationExamination" ToRole="Prescription_Detail" />
+          <NavigationProperty Name="Detail_HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="InformationExamination" ToRole="Detail_HoHap" />
         </EntityType>
         <EntityType Name="Mat">
           <Key>
@@ -3639,30 +3629,6 @@
             </Principal>
             <Dependent Role="Detail_HistoryDisease">
               <PropertyRef Name="Patient_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_HoHap_HoHap">
-          <End Type="CP24Team08Model.HoHap" Role="HoHap" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HoHap">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_HoHap">
-              <PropertyRef Name="HoHap_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_HoHap_InformationExamination">
-          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InformationExamination">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_HoHap">
-              <PropertyRef Name="InformationExamination_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4294,6 +4260,40 @@
           <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="Detail_HoHap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="HoHap_ID" Type="Int32" />
+          <NavigationProperty Name="HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_HoHap" FromRole="Detail_HoHap" ToRole="HoHap" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="Detail_HoHap" ToRole="InformationExamination" />
+        </EntityType>
+        <Association Name="FK_Detail_HoHap_HoHap">
+          <End Type="CP24Team08Model.HoHap" Role="HoHap" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoHap">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_HoHap">
+              <PropertyRef Name="HoHap_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_HoHap_InformationExamination">
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationExamination">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_HoHap">
+              <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4513,15 +4513,6 @@
                 <ScalarProperty Name="LevelFamily" ColumnName="LevelFamily" />
                 <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
                 <ScalarProperty Name="HistoryDisease_ID" ColumnName="HistoryDisease_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Detail_HoHap">
-            <EntityTypeMapping TypeName="CP24Team08Model.Detail_HoHap">
-              <MappingFragment StoreEntitySet="Detail_HoHap">
-                <ScalarProperty Name="HoHap_ID" ColumnName="HoHap_ID" />
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -5122,6 +5113,15 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Detail_HoHap">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_HoHap">
+              <MappingFragment StoreEntitySet="Detail_HoHap">
+                <ScalarProperty Name="HoHap_ID" ColumnName="HoHap_ID" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

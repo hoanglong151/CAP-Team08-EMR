@@ -44,7 +44,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Detail_DiagnosticsCategory> Detail_DiagnosticsCategory { get; set; }
         public virtual DbSet<Detail_DongMau> Detail_DongMau { get; set; }
         public virtual DbSet<Detail_HistoryDisease> Detail_HistoryDisease { get; set; }
-        public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
         public virtual DbSet<Detail_Hong> Detail_Hong { get; set; }
         public virtual DbSet<Detail_Immune> Detail_Immune { get; set; }
         public virtual DbSet<Detail_Mat> Detail_Mat { get; set; }
@@ -100,5 +99,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
+        public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
     }
 }

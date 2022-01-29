@@ -20,6 +20,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.Muis.ToList());
         }
 
+        public ActionResult EditSelect(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var listDetailMui = db.Detail_Mui.Where(p => p.InformationExamination_ID == id).ToList();
+            var listMui = db.Muis.ToList();
+            foreach (var item in listDetailMui)
+            {
+                var changeSelect = listMui.FirstOrDefault(p => p.ID == item.Mui_ID);
+                changeSelect.ChiDinh = true;
+            }
+            multiplesModel.Mui = listMui;
+            return PartialView("_EditSelect", multiplesModel);
+        }
+
+        public JsonResult GetArrMui(int id)
+        {
+            var listDetailMui = db.Detail_Mui.Where(p => p.InformationExamination_ID == id).ToList();
+            var listOfStrings = new List<string>();
+            foreach (var item in listDetailMui)
+            {
+                listOfStrings.Add("" + item.Mui_ID);
+            }
+            return Json(new { success = true, res = listOfStrings.ToArray() });
+        }
+
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
