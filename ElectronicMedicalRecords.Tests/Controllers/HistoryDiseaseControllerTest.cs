@@ -26,18 +26,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Assert.IsNotNull(list);
 
         }
-        [TestMethod]
-        public void TestDetail()
-        {
-            var info = db.HistoryDiseases.AsNoTracking().First();
-            var list = controller.Details(info.ID) as ViewResult;
-            Assert.IsNotNull(list);
 
-
-            var infoError = controller.Details(0) as HttpNotFoundResult;
-            Assert.IsNotNull(infoError);
-
-        }
         [TestMethod]
         public void TestCreateOldPaitent()
         {
@@ -62,9 +51,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var historyDisease = new HistoryDisease
             {
                 Name = rand.ToString(),
-                Selected = true,
+                ChiDinh = true,
                 Dangerous = false,
-                LevelFamily = rand.ToString()
             };
             using (var scope = new TransactionScope())
             {

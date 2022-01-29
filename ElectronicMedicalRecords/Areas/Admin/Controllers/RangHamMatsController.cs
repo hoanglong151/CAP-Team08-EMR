@@ -20,6 +20,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.RangHamMats.ToList());
         }
 
+        public ActionResult EditSelect(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var listDetailRangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == id).ToList();
+            var listRangHamMat = db.RangHamMats.ToList();
+            foreach (var item in listDetailRangHamMat)
+            {
+                var changeSelect = listRangHamMat.FirstOrDefault(p => p.ID == item.RangHamMat_ID);
+                changeSelect.ChiDinh = true;
+            }
+            multiplesModel.RangHamMat = listRangHamMat;
+            return PartialView("_EditSelect", multiplesModel);
+        }
+
+        public JsonResult GetArrRangHamMat(int id)
+        {
+            var listDetailRangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == id).ToList();
+            var listOfStrings = new List<string>();
+            foreach (var item in listDetailRangHamMat)
+            {
+                listOfStrings.Add("" + item.RangHamMat_ID);
+            }
+            return Json(new { success = true, res = listOfStrings.ToArray() });
+        }
+
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;

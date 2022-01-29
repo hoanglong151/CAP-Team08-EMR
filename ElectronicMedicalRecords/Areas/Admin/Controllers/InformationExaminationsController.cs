@@ -400,19 +400,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 informationExamination.DateEnd = DateTime.Now;
                 db.Entry(informationExamination).State = EntityState.Modified;
                 db.SaveChanges();
-
-                var checkExist = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == detail_DiagnosticsCategory.InformationExamination_ID);
-                if (detail_DiagnosticsCategory.DiagnosticsCategory_ID != null && checkExist == null)
+                if(detail_DiagnosticsCategory != null)
                 {
-                    detail_DiagnosticsCategory.InformationExamination_ID = informationExamination.ID;
-                    db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    db.Entry(detail_DiagnosticsCategory).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+                    var checkExist = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == detail_DiagnosticsCategory.InformationExamination_ID);
+                    if (detail_DiagnosticsCategory.DiagnosticsCategory_ID != null && checkExist == null)
+                    {
+                        detail_DiagnosticsCategory.InformationExamination_ID = informationExamination.ID;
+                        db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        db.Entry(detail_DiagnosticsCategory).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }               
                 return RedirectToAction("Index", "MultipleModels");
             }
             ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", informationExamination.Patient_ID);

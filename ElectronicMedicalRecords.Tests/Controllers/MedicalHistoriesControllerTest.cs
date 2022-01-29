@@ -27,18 +27,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
 
         }
         [TestMethod]
-        public void TestDetail()
-        {
-            var info = db.MedicalHistories.AsNoTracking().First();
-            var list = controller.Details(info.ID) as ViewResult;
-            Assert.IsNotNull(list);
-
-
-            var infoError = controller.Details(0) as HttpNotFoundResult;
-            Assert.IsNotNull(infoError);
-
-        }
-        [TestMethod]
         public void TestCreateGet()
         {
             var result = controller.Create() as PartialViewResult;
@@ -53,9 +41,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var medicalHistories = new MedicalHistory
             {
                 Name = rand.ToString(),
-                Selected = true,
+                ChiDinh = true,
                 Dangerous = false,
-                LevelFamily = rand.ToString()
             };
             using (var scope = new TransactionScope())
             {

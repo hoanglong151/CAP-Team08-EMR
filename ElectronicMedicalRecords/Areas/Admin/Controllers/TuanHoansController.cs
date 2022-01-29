@@ -20,6 +20,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.TuanHoans.ToList());
         }
 
+        public ActionResult EditSelect(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var listDetailTuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == id).ToList();
+            var listTuanHoan = db.TuanHoans.ToList();
+            foreach(var item in listDetailTuanHoan)
+            {
+                var changeSelect = listTuanHoan.FirstOrDefault(p => p.ID == item.TuanHoan_ID);
+                changeSelect.ChiDinh = true;
+            }
+            multiplesModel.TuanHoan = listTuanHoan;
+            return PartialView("_EditSelect", multiplesModel);
+        }
+
+        public JsonResult GetArrTuanHoan(int id)
+        {
+            var listDetailTuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == id).ToList();
+            var listOfStrings = new List<string>();
+            foreach (var item in listDetailTuanHoan)
+            {
+                listOfStrings.Add("" + item.TuanHoan_ID);
+            }
+            return Json(new { success = true, res = listOfStrings.ToArray() });
+        }
+
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;

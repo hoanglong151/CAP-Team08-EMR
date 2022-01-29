@@ -26,7 +26,6 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_DaLieu = new HashSet<Detail_DaLieu>();
             this.Detail_DiagnosticsCategory = new HashSet<Detail_DiagnosticsCategory>();
             this.Detail_DongMau = new HashSet<Detail_DongMau>();
-            this.Detail_HoHap = new HashSet<Detail_HoHap>();
             this.Detail_Hong = new HashSet<Detail_Hong>();
             this.Detail_Immune = new HashSet<Detail_Immune>();
             this.Detail_Mat = new HashSet<Detail_Mat>();
@@ -45,6 +44,7 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_Urine = new HashSet<Detail_Urine>();
             this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
             this.Prescription_Detail = new HashSet<Prescription_Detail>();
+            this.Detail_HoHap = new HashSet<Detail_HoHap>();
         }
     
         public int ID { get; set; }
@@ -91,8 +91,6 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_DongMau> Detail_DongMau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_HoHap> Detail_HoHap { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Hong> Detail_Hong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Immune> Detail_Immune { get; set; }
@@ -131,5 +129,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_HoHap> Detail_HoHap { get; set; }
     }
 }

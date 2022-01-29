@@ -20,6 +20,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.HoHaps.ToList());
         }
 
+        public ActionResult EditSelect(int id)
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var listDetailHoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == id).ToList();
+            var listHoHap = db.HoHaps.ToList();
+            foreach (var item in listDetailHoHap)
+            {
+                var changeSelect = listHoHap.FirstOrDefault(p => p.ID == item.HoHap_ID);
+                changeSelect.ChiDinh = true;
+            }
+            multiplesModel.HoHap = listHoHap;
+            return PartialView("_EditSelect", multiplesModel);
+        }
+
+        public JsonResult GetArrHoHap(int id)
+        {
+            var listDetailHoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == id).ToList();
+            var listOfStrings = new List<string>();
+            foreach (var item in listDetailHoHap)
+            {
+                listOfStrings.Add("" + item.HoHap_ID);
+            }
+            return Json(new { success = true, res = listOfStrings.ToArray() });
+        }
+
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;

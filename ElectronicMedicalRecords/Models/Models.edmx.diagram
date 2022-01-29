@@ -24,7 +24,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.Detail_DiagnosticsCategory" Width="1.5" PointX="25.5" PointY="46.875" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_DongMau" Width="1.5" PointX="19.5" PointY="52.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_HistoryDisease" Width="1.5" PointX="8.25" PointY="48.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Detail_HoHap" Width="1.5" PointX="19.5" PointY="50" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_Hong" Width="1.5" PointX="25.5" PointY="44" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_Immune" Width="1.5" PointX="25.5" PointY="52.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_Mat" Width="1.5" PointX="19.5" PointY="62" />
@@ -102,8 +101,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DongMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HistoryDisease_Patient" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_HoHap" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Hong_Hong" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Hong_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Immune_Immune" />
@@ -157,6 +154,9 @@
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CP24Team08Model.Detail_HoHap" Width="1.5" PointX="25.5" PointY="40.375" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_HoHap" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
