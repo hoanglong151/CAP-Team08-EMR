@@ -1,7 +1,70 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 
+<div class="card-content">
+    <div class="card-body">
+        <div class="row">
+            <p>- Kết quả khám thính lực:</p>
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Tai trái:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:120px">Nói thường:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEarSay, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEarSay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Nói thầm:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.LeftEarWhisper, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.LeftEarWhisper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group d-flex align-items-center" style="height:38px">
+                    <label>Tai phải:</label>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:120px">Nói thường:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEarSay, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEarSay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group d-flex align-items-center">
+                    <label style="width:90px">Nói thầm:</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Clinical.RightEarWhisper, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        <span class="input-group-text">m</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Clinical.RightEarWhisper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTai" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Tai
+    Các bệnh về Tai
 </a>
 
 <div class="collapse" id="collapseTai">

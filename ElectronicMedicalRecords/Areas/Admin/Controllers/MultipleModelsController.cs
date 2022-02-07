@@ -147,6 +147,57 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 db.SaveChanges();
             }
 
+            //Clinical
+            Detail_TuanHoanController detail_TuanHoanController = new Detail_TuanHoanController();
+            Detail_HoHapController detail_HoHapController = new Detail_HoHapController();
+            Detail_TieuHoaController detail_TieuHoaController = new Detail_TieuHoaController();
+            Detail_ThanTietNieuController detail_ThanTietNieuController = new Detail_ThanTietNieuController();
+            Detail_CoXuongKhopController detail_CoXuongKhopController = new Detail_CoXuongKhopController();
+            Detail_ThanKinhController detail_ThanKinhController = new Detail_ThanKinhController();
+            Detail_TamThanController detail_TamThanController = new Detail_TamThanController();
+            Detail_NgoaiKhoaController detail_NgoaiKhoaController = new Detail_NgoaiKhoaController();
+            Detail_SanPhuKhoaController detail_SanPhuKhoaController = new Detail_SanPhuKhoaController();
+            Detail_MatController detail_MatController = new Detail_MatController();
+            Detail_TaiController detail_TaiController = new Detail_TaiController();
+            Detail_MuiController detail_MuiController = new Detail_MuiController();
+            Detail_HongController detail_HongController = new Detail_HongController();
+            Detail_RangHamMatController detail_RangHamMatController = new Detail_RangHamMatController();
+            Detail_DaLieuController detail_DaLieuController = new Detail_DaLieuController();
+
+            // Set Up Clinical
+            multiplesModel.TuanHoan = multiplesModel.TuanHoan.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.HoHap = multiplesModel.HoHap.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.TieuHoa = multiplesModel.TieuHoa.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.ThanTietNieu = multiplesModel.ThanTietNieu.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.CoXuongKhop = multiplesModel.CoXuongKhop.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.TamThan = multiplesModel.TamThan.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.ThanKinh = multiplesModel.ThanKinh.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.NgoaiKhoa = multiplesModel.NgoaiKhoa.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.SanPhuKhoa = multiplesModel.SanPhuKhoa.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Mat = multiplesModel.Mat.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Tai = multiplesModel.Tai.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Mui = multiplesModel.Mui.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.Hong = multiplesModel.Hong.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.RangHamMat = multiplesModel.RangHamMat.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.DaLieu = multiplesModel.DaLieu.Where(p => p.ChiDinh == true).ToList();
+
+            //Clinical
+            detail_TuanHoanController.CreateOldPatient(multiplesModel);
+            detail_HoHapController.CreateOldPatient(multiplesModel);
+            detail_TieuHoaController.CreateOldPatient(multiplesModel);
+            detail_ThanTietNieuController.CreateOldPatient(multiplesModel);
+            detail_CoXuongKhopController.CreateOldPatient(multiplesModel);
+            detail_ThanKinhController.CreateOldPatient(multiplesModel);
+            detail_TamThanController.CreateOldPatient(multiplesModel);
+            detail_NgoaiKhoaController.CreateOldPatient(multiplesModel);
+            detail_SanPhuKhoaController.CreateOldPatient(multiplesModel);
+            detail_MatController.CreateOldPatient(multiplesModel);
+            detail_TaiController.CreateOldPatient(multiplesModel);
+            detail_MuiController.CreateOldPatient(multiplesModel);
+            detail_HongController.CreateOldPatient(multiplesModel);
+            detail_RangHamMatController.CreateOldPatient(multiplesModel);
+            detail_DaLieuController.CreateOldPatient(multiplesModel);
+
             db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", "Patients");
@@ -249,7 +300,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             return Json(new { success = true });
         }
-
 
         public async Task<int> PriceCTMau(InformationExamination informationExamination)
         {
@@ -1712,6 +1762,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var InformationExamination = db.InformationExaminations.Find(id);
             var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
             var details_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+            var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Clinical = clinical;
             multiplesModel.Detail_DiagnosticsCategory = details_diagnostic;
             multiplesModel.InformationExamination = InformationExamination;
             multiplesModel.Patient = patient;
@@ -1724,6 +1776,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var InformationExamination = db.InformationExaminations.Find(id);
             var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
             var details_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+            var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Clinical = clinical;
             multiplesModel.InformationExamination = InformationExamination;
             multiplesModel.Detail_DiagnosticsCategory = details_diagnostic;
             multiplesModel.Patient = patient;

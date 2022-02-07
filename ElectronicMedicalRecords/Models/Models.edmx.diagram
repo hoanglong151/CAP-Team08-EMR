@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="0.75" PointY="56.125" />
         <EntityTypeShape EntityType="CP24Team08Model.Bill" Width="1.5" PointX="11.25" PointY="52.625" />
         <EntityTypeShape EntityType="CP24Team08Model.CayMau" Width="1.5" PointX="16.5" PointY="130.125" />
-        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="22.5" PointY="55.875" />
         <EntityTypeShape EntityType="CP24Team08Model.CoXuongKhop" Width="1.5" PointX="20.25" PointY="68" />
         <EntityTypeShape EntityType="CP24Team08Model.CTMau" Width="1.5" PointX="14.25" PointY="63.75" />
         <EntityTypeShape EntityType="CP24Team08Model.DaLieu" Width="1.5" PointX="23.25" PointY="36" />
@@ -86,8 +85,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_Bill_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Bill_Patient" />
         <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CoXuongKhop_CoXuongKhop" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_CTMau" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DaLieu_DaLieu" />
@@ -157,6 +154,9 @@
         <EntityTypeShape EntityType="CP24Team08Model.Detail_HoHap" Width="1.5" PointX="25.5" PointY="40.375" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_HoHap" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination" />
+        <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="22.5" PointY="56" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

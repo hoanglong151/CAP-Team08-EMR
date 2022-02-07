@@ -25,7 +25,6 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<double> RightEarWhisper { get; set; }
         public string UpperJaw { get; set; }
         public string LowerJaw { get; set; }
-        public string Dermatology { get; set; }
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> InformationExamination_ID { get; set; }
     

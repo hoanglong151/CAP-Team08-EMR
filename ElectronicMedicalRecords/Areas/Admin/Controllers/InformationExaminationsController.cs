@@ -375,6 +375,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = db.InformationExaminations.Find(id);
+            Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
             if (informationExamination == null)
             {
                 return HttpNotFound();
@@ -384,6 +385,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            multiplesModel.Clinical = clinical;
             multiplesModel.InformationExamination = informationExamination;
             return PartialView("_Edit",multiplesModel);
         }

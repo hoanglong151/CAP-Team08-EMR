@@ -19,7 +19,6 @@ namespace ElectronicMedicalRecords.Models
         {
             this.Bills = new HashSet<Bill>();
             this.CayMaus = new HashSet<CayMau>();
-            this.Clinicals = new HashSet<Clinical>();
             this.Detail_Amniocente = new HashSet<Detail_Amniocente>();
             this.Detail_CoXuongKhop = new HashSet<Detail_CoXuongKhop>();
             this.Detail_CTMau = new HashSet<Detail_CTMau>();
@@ -45,6 +44,7 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_ViSinh = new HashSet<Detail_ViSinh>();
             this.Prescription_Detail = new HashSet<Prescription_Detail>();
             this.Detail_HoHap = new HashSet<Detail_HoHap>();
+            this.Clinicals = new HashSet<Clinical>();
         }
     
         public int ID { get; set; }
@@ -76,8 +76,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Bill> Bills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CayMau> CayMaus { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clinical> Clinicals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Amniocente> Detail_Amniocente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -131,5 +129,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_HoHap> Detail_HoHap { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Clinical> Clinicals { get; set; }
     }
 }
