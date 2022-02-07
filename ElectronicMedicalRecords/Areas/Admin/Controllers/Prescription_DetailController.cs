@@ -97,6 +97,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             var info = db.InformationExaminations.Find(id);
             var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+            var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Clinical = clinical;
             multiplesModel.InformationExamination = info;
             multiplesModel.Detail_DiagnosticsCategory = detail_dignosticCategory;
             return PartialView("_DetailIERead", multiplesModel);

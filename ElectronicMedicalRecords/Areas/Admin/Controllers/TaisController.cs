@@ -30,6 +30,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var changeSelect = listTai.FirstOrDefault(p => p.ID == item.Tai_ID);
                 changeSelect.ChiDinh = true;
             }
+            Clinical clinical = new Clinical();
+            clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Clinical = clinical;
             multiplesModel.Tai = listTai;
             return PartialView("_EditSelect", multiplesModel);
         }

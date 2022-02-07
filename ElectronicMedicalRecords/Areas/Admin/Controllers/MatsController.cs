@@ -30,6 +30,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var changeSelect = listMat.FirstOrDefault(p => p.ID == item.Mat_ID);
                 changeSelect.ChiDinh = true;
             }
+            Clinical clinical = new Clinical();
+            clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Clinical = clinical;
             multiplesModel.Mat = listMat;
             return PartialView("_EditSelect", multiplesModel);
         }

@@ -22,6 +22,11 @@
             @Html.HiddenFor(model => model.InformationExamination.User_ID)
             @Html.HiddenFor(model => model.InformationExamination.PricePrescription)
             @Html.HiddenFor(model => model.InformationExamination.PriceTest)
+
+            @*Clinical*@
+            @Html.HiddenFor(model => model.Clinical.User_ID)
+            @Html.HiddenFor(model => model.Clinical.InformationExamination_ID)
+
             <div class="col-md-4 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Ngày Đến</label>

@@ -33,7 +33,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<CayMau> CayMaus { get; set; }
-        public virtual DbSet<Clinical> Clinicals { get; set; }
         public virtual DbSet<CoXuongKhop> CoXuongKhops { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
         public virtual DbSet<DaLieu> DaLieux { get; set; }
@@ -100,5 +99,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
+        public virtual DbSet<Clinical> Clinicals { get; set; }
     }
 }

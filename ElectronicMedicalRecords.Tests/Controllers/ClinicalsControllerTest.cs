@@ -56,7 +56,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 RightEarWhisper = rand.NextDouble(),
                 UpperJaw = rand.ToString(),
                 LowerJaw = rand.ToString(),
-                Dermatology = rand.ToString(),
                 User_ID = db.Users.First().ID,
             };
             MultiplesModel multiplesModel = new MultiplesModel();
@@ -101,7 +100,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 RightEarWhisper = rand.NextDouble(),
                 UpperJaw = rand.ToString(),
                 LowerJaw = rand.ToString(),
-                Dermatology = rand.ToString(),
                 User_ID = db.Users.First().ID,
             };
             MultiplesModel multiplesModel = new MultiplesModel();
