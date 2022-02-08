@@ -145,9 +145,12 @@
                                 <p class="col-xs-6 w-100">Bác Sĩ Kê Toa: @ViewBag.Doctor</p>
                             </div>
                         </div>
-                        @if (Model.Detail_DiagnosticsCategory != null)
+                        @if (Model.Detail_DiagnosticsCategory != null && Model.Detail_DiagnosticsCategory.DiagnosticsCategory != null)
                         {
                             <p>Chẩn Đoán: @Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</p>
+                        }
+                        @if (Model.Detail_DiagnosticsCategory != null && Model.Detail_DiagnosticsCategory.Advice != null)
+                        {
                             <p>Lời Khuyên: @Model.Detail_DiagnosticsCategory.Advice</p>
                         }
                     </div>

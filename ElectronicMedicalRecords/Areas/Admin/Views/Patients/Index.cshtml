@@ -95,6 +95,90 @@
                         </div>
                     </div>
                 </form>
+
+
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#SearchPatient" aria-expanded="false" aria-controls="collapseExample">
+                    Tìm kiếm bệnh nhân (Không Sổ)
+                </button>
+                <div class="collapse" id="SearchPatient">
+                    <div class="card card-body">
+                        <form action="@Url.Action("SearchPatientNoInfo","Patients")" method="post">
+                            <div class="row mgb-1 mgt-05">
+                                <div class="col-md-2">
+                                    <label>Ngày Sinh</label>
+                                    @if (ViewBag.BirthDate != null)
+                                    {
+                                        <input name="BirthDate" type="date" value="@ViewBag.BirthDate.ToString("yyyy-MM-dd")" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input name="BirthDate" type="date" class="form-control" />
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Địa Chỉ</label>
+                                    @if (ViewBag.Address != null)
+                                    {
+                                        <input name="Address" type="text" class="form-control" value="@ViewBag.Address" placeholder="Địa Chỉ" />
+                                    }
+                                    else
+                                    {
+                                        <input name="Address" type="text" class="form-control" placeholder="Địa Chỉ" />
+                                    }
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Họ Tên</label>
+                                    @if (ViewBag.NamePatient != null)
+                                    {
+                                        <input name="Name" type="text" class="form-control" value="@ViewBag.NamePatient" placeholder="Họ Tên" />
+                                    }
+                                    else
+                                    {
+                                        <input name="Name" type="text" class="form-control" placeholder="Họ Tên" />
+                                    }
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Giới Tính</label>
+                                    @*@Html.DropDownList("genders", (IEnumerable<SelectListItem>) ViewBag.Gender, new { @class = "form-control" })*@
+                                <select name="genders" id="genders" class="form-control">
+                                    @switch (ViewBag.gender)
+                                    {
+                                        case 1:
+                                            <option value="1" selected>Nam</option>
+                                            <option value="2">Nữ</option>
+                                            <option value="3">Khác</option>
+                                            break;
+                                        case 2:
+                                            <option value="1">Nam</option>
+                                            <option value="2" selected>Nữ</option>
+                                            <option value="3">Khác</option>
+                                            break;
+                                        case 3:
+                                            <option value="1">Nam</option>
+                                            <option value="2">Nữ</option>
+                                            <option value="3" selected>Khác</option>
+                                            break;
+                                        default:
+                                            <option value="1" selected>Nam</option>
+                                            <option value="2">Nữ</option>
+                                            <option value="3">Khác</option>
+                                            break;
+                                    }
+                                </select>
+                                </div>
+                                <div class="col-md-1 align-self-end">
+                                    <button type="submit" class="btn-search">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
                 <table class="table table-striped" id="tableLoadPatient" style="width:100%">
                     <thead>
                         <tr>
@@ -117,10 +201,10 @@
 @section scripts{
     <script>
         function deletePatient(id) {
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            Swal.fire({
-                title: 'Bạn Muốn Xóa Bệnh Nhân Này?',
+                                            var form = $('#__AjaxAntiForgeryForm');
+                                            var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                            Swal.fire({
+                                            title: 'Bạn Muốn Xóa Bệnh Nhân Này?',
                 text: "Bạn sẽ không thể xóa nếu bệnh nhân đã có thông tin khám bệnh!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -128,7 +212,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Xác Nhận',
                 cancelButtonText: 'Hủy'
-            }).then((result) => {
+                                                }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
                         url: '@Url.Action("Delete","MultipleModels")',
