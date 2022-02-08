@@ -345,6 +345,64 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View("Index");
         }
 
+        [HttpPost]
+        public ActionResult SearchPatientNoInfo(DateTime? BirthDate, string Address, string Name, int genders)
+        {
+            PatientsController patientsController = new PatientsController();
+            var informationExaminations = db.InformationExaminations.ToList();
+            var informationExaminationsList = db.InformationExaminations.ToList();
+            var patients = new List<Patient>();
+            informationExaminations = informationExaminationsList.Where(p => p.Patient.Gender_ID == genders).ToList();
+            ViewBag.gender = genders;
+            if (Name != "")
+            {
+                informationExaminations = informationExaminationsList.Where(delegate (InformationExamination c)
+                {
+                    if (ConvertToUnSign(c.Patient.Name).IndexOf(Name, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                        return true;
+                    else
+                        return false;
+                }).ToList();
+                if (informationExaminations.Count == 0)
+                {
+                    informationExaminations = informationExaminationsList.Where(p => p.Patient.Name.ToLower().Contains(Name.ToLower())).ToList();
+                }
+                ViewBag.NamePatient = Name;
+            }
+            if (BirthDate.HasValue)
+            {
+                TimeSpan timeEnd = new TimeSpan(23, 59, 59);
+                BirthDate = BirthDate + timeEnd;
+                informationExaminations = informationExaminations.Where(p => p.Patient.BirthDate <= BirthDate.Value).ToList();
+                ViewBag.BirthDate = BirthDate;
+            }
+            if (Address != "")
+            {
+                informationExaminations = informationExaminations.Where(p => p.Patient.Address.ToLower().Contains(Address.ToLower())).ToList();
+                ViewBag.Address = Address;
+            }
+            if (informationExaminations.Count > 0)
+            {
+                for (int i = 0; i < informationExaminations.Count; i++)
+                {
+                    var CodePatient = informationExaminations[i].Patient.MaBN;
+                    var checkexist = patients.FirstOrDefault(p => p.MaBN == CodePatient);
+                    if (checkexist == null)
+                    {
+                        var patient_ID = informationExaminations[i].Patient_ID;
+                        var patient = db.Patients.FirstOrDefault(p => p.ID == patient_ID);
+                        patients.Add(patient);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            TempData["Patient"] = patients;
+            return View("Index");
+        }
+
         // GET: Admin/Patients/Create
         public ActionResult Create()
         {

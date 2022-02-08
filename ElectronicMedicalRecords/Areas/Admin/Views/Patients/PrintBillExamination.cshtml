@@ -59,84 +59,85 @@
                                 <p>Số BHYT: @Model.Patient.InsuranceCode</p>
                             </div>
                         </div>
-                        <hr />
-                        <p class="lead marginbottom">Thông Tin Bệnh Án</p>
-                        <div class="col-xs-12 to">
-                            @if (Model.Detail_HistoryDiseases1 != null)
-                            {
-                                <p>
-                                    Tiền sử bệnh (Ông/Bà):
-                                    @for (int item1 = 0; item1 < Model.Detail_HistoryDiseases1.Count; item1++)
-                                    {
-                                        if (item1 == Model.Detail_HistoryDiseases1.Count - 1)
+                        @if (Model.Detail_HistoryDiseases1 != null || Model.Detail_HistoryDiseases2 != null || Model.Detail_HistoryDiseases3 != null || Model.Detail_MedicalHistories != null)
+                        {
+                            <hr />
+                            <p class="lead marginbottom">Thông Tin Bệnh Án</p>
+                            <div class="col-xs-12 to">
+                                @if (Model.Detail_HistoryDiseases1 != null)
+                                {
+                                    <p>
+                                        Tiền sử bệnh (Ông/Bà):
+                                        @for (int item1 = 0; item1 < Model.Detail_HistoryDiseases1.Count; item1++)
                                         {
-                                            <span>@Model.Detail_HistoryDiseases1[item1].HistoryDisease.Name</span>
+                                            if (item1 == Model.Detail_HistoryDiseases1.Count - 1)
+                                            {
+                                                <span>@Model.Detail_HistoryDiseases1[item1].HistoryDisease.Name</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@Model.Detail_HistoryDiseases1[item1].HistoryDisease.Name,</span>
+                                            }
                                         }
-                                        else
-                                        {
-                                            <span>@Model.Detail_HistoryDiseases1[item1].HistoryDisease.Name,</span>
-                                        }
-                                    }
-                                </p>
-                            }
+                                    </p>
+                                }
 
-                            @if (Model.Detail_HistoryDiseases2 != null)
-                            {
-                                <p>
-                                    Tiền sử bệnh (Cha/Mẹ):
-                                    @for (int item2 = 0; item2 < Model.Detail_HistoryDiseases2.Count; item2++)
-                                    {
-                                        if (item2 == Model.Detail_HistoryDiseases2.Count - 1)
+                                @if (Model.Detail_HistoryDiseases2 != null)
+                                {
+                                    <p>
+                                        Tiền sử bệnh (Cha/Mẹ):
+                                        @for (int item2 = 0; item2 < Model.Detail_HistoryDiseases2.Count; item2++)
                                         {
-                                            <span>@Model.Detail_HistoryDiseases2[item2].HistoryDisease.Name</span>
+                                            if (item2 == Model.Detail_HistoryDiseases2.Count - 1)
+                                            {
+                                                <span>@Model.Detail_HistoryDiseases2[item2].HistoryDisease.Name</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@Model.Detail_HistoryDiseases2[item2].HistoryDisease.Name,</span>
+                                            }
                                         }
-                                        else
-                                        {
-                                            <span>@Model.Detail_HistoryDiseases2[item2].HistoryDisease.Name,</span>
-                                        }
-                                    }
-                                </p>
-                            }
+                                    </p>
+                                 }
 
-                            @if (Model.Detail_HistoryDiseases3 != null)
-                            {
-                                <p>
-                                    Tiền sử bệnh (Anh/Chị em):
-                                    @for (int item3 = 0; item3 < Model.Detail_HistoryDiseases3.Count; item3++)
-                                    {
-                                        if (item3 == Model.Detail_HistoryDiseases3.Count - 1)
+                                @if (Model.Detail_HistoryDiseases3 != null)
+                                {
+                                    <p>
+                                        Tiền sử bệnh (Anh/Chị em):
+                                        @for (int item3 = 0; item3 < Model.Detail_HistoryDiseases3.Count; item3++)
                                         {
-                                            <span>@Model.Detail_HistoryDiseases3[item3].HistoryDisease.Name</span>
+                                            if (item3 == Model.Detail_HistoryDiseases3.Count - 1)
+                                            {
+                                                <span>@Model.Detail_HistoryDiseases3[item3].HistoryDisease.Name</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@Model.Detail_HistoryDiseases3[item3].HistoryDisease.Name,</span>
+                                            }
                                         }
-                                        else
-                                        {
-                                            <span>@Model.Detail_HistoryDiseases3[item3].HistoryDisease.Name,</span>
-                                        }
-                                    }
-                                </p>
-                            }
+                                    </p>
+                                }
 
-                            @if (Model.Detail_MedicalHistories != null)
-                            {
-                                <p>
-                                    Bệnh sử:
-                                    @for (int item4 = 0; item4 < Model.Detail_MedicalHistories.Count; item4++)
-                                    {
-                                        if (item4 == Model.Detail_MedicalHistories.Count - 1)
+                                @if (Model.Detail_MedicalHistories != null)
+                                {
+                                    <p>
+                                        Bệnh sử:
+                                        @for (int item4 = 0; item4 < Model.Detail_MedicalHistories.Count; item4++)
                                         {
-                                            <span>@Model.Detail_MedicalHistories[item4].MedicalHistory.Name</span>
+                                            if (item4 == Model.Detail_MedicalHistories.Count - 1)
+                                            {
+                                                <span>@Model.Detail_MedicalHistories[item4].MedicalHistory.Name</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@Model.Detail_MedicalHistories[item4].MedicalHistory.Name,</span>
+                                            }
                                         }
-                                        else
-                                        {
-                                            <span>@Model.Detail_MedicalHistories[item4].MedicalHistory.Name,</span>
-                                        }
-                                    }
-                                </p>
-                            }
-                        </div>
-
+                                    </p>
+                                }
+                            </div>
+                         }
                     </div>
-
                     <hr />
                     <div class="row">
                         <p class="lead marginbottom">Thông Tin Khám Bệnh</p>
@@ -144,6 +145,15 @@
                             <div class="d-flex justify-content-start">
                                 <p class="col-xs-6 w-100">Ngày Khám: @Model.InformationExamination.DateExamine</p>
                                 <p class="col-xs-4 w-100">Tình Trạng: @ViewBag.PatientStatus</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 from">
+                            <div class="d-flex justify-content-start">
+                                <p class="col-xs-4 w-100">Nhịp Tim: @Model.InformationExamination.HeartBeat</p>
+                                <p class="col-xs-4 w-100">Nhịp Thở: @Model.InformationExamination.Breathing</p>
+                                <p class="col-xs-4 w-100">Huyết Áp: @Model.InformationExamination.BloodPressure</p>
+                                <p class="col-xs-4 w-100">Chiều Cao: @Model.InformationExamination.Height cm</p>
+                                <p class="col-xs-8 w-100">Cân Nặng: @Model.InformationExamination.Weight kg</p>
                             </div>
                         </div>
                     </div>

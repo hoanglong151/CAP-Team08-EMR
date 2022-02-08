@@ -894,7 +894,11 @@
                             "data": "Name",
                             "name": "Bệnh Tuần Hoàn",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -936,7 +940,11 @@
                             "data": "Name",
                             "name": "Bệnh Hô Hấp",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -978,7 +986,11 @@
                             "data": "Name",
                             "name": "Bệnh Tiêu Hóa",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1020,7 +1032,11 @@
                             "data": "Name",
                             "name": "Bệnh Thận Tiết Niệu",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1062,7 +1078,11 @@
                             "data": "Name",
                             "name": "Bệnh Cơ Xương Khớp",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1104,7 +1124,11 @@
                             "data": "Name",
                             "name": "Bệnh Thần Kinh",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1146,7 +1170,11 @@
                             "data": "Name",
                             "name": "Bệnh Tâm Thần",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1188,7 +1216,11 @@
                             "data": "Name",
                             "name": "Bệnh Ngoại Khoa",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1230,7 +1262,11 @@
                             "data": "Name",
                             "name": "Bệnh Sản Phụ Khoa",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1272,7 +1308,11 @@
                             "data": "Name",
                             "name": "Bệnh Mắt",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1314,7 +1354,11 @@
                             "data": "Name",
                             "name": "Bệnh Tai",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1356,7 +1400,11 @@
                             "data": "Name",
                             "name": "Bệnh Mũi",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1398,7 +1446,11 @@
                             "data": "Name",
                             "name": "Bệnh Họng",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1440,7 +1492,11 @@
                             "data": "Name",
                             "name": "Bệnh Răng Hàm Mặt",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }
@@ -1482,7 +1538,11 @@
                             "data": "Name",
                             "name": "Bệnh Da Liễu",
                             "render": (data, type, row) => {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                if (row.Dangerous == false) {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
+                                } else {
+                                    var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
+                                }
                                 return label;
                             }
                         }

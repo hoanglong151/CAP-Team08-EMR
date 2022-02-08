@@ -237,7 +237,10 @@
                         }
                         else
                         {
-                            <p>Chẩn Đoán: @Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</p>
+                            if (Model.Detail_DiagnosticsCategory.DiagnosticsCategory != null)
+                            {
+                                <p>Chẩn Đoán: @Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</p>
+                            }
                         }
                     </div>
                     <hr />

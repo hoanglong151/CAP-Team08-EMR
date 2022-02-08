@@ -1075,6 +1075,171 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.VSAmDuong = VSDuongAm;
             ViewBag.VSResult = VSResult;
+            if (multiplesModel.TuanHoan == null)
+            {
+                var listTuanHoan = db.TuanHoans.ToList();
+                var listDetailTuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemTuanHoan in listDetailTuanHoan)
+                {
+                    var getTuanHoan = listTuanHoan.FirstOrDefault(p => p.ID == itemTuanHoan.TuanHoan_ID);
+                    getTuanHoan.ChiDinh = true;
+                }
+                multiplesModel.TuanHoan = listTuanHoan;
+            }
+            if (multiplesModel.HoHap == null)
+            {
+                var listHoHap = db.HoHaps.ToList();
+                var listDetailHoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemHoHap in listDetailHoHap)
+                {
+                    var getHoHap = listHoHap.FirstOrDefault(p => p.ID == itemHoHap.HoHap_ID);
+                    getHoHap.ChiDinh = true;
+                }
+                multiplesModel.HoHap = listHoHap;
+            }
+            if (multiplesModel.TieuHoa == null)
+            {
+                var listTieuHoa = db.TieuHoas.ToList();
+                var listDetailTieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemTieuHoa in listDetailTieuHoa)
+                {
+                    var getTieuHoa = listTieuHoa.FirstOrDefault(p => p.ID == itemTieuHoa.TieuHoa_ID);
+                    getTieuHoa.ChiDinh = true;
+                }
+                multiplesModel.TieuHoa = listTieuHoa;
+            }
+            if (multiplesModel.ThanTietNieu == null)
+            {
+                var listThanTietNieu = db.ThanTietNieux.ToList();
+                var listDetailThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemThanTietNieu in listDetailThanTietNieu)
+                {
+                    var getThanTietNieu = listThanTietNieu.FirstOrDefault(p => p.ID == itemThanTietNieu.ThanTietNieu_ID);
+                    getThanTietNieu.ChiDinh = true;
+                }
+                multiplesModel.ThanTietNieu = listThanTietNieu;
+            }
+            if (multiplesModel.CoXuongKhop == null)
+            {
+                var listCoXuongKhop = db.CoXuongKhops.ToList();
+                var listDetailCoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemCoXuongKhop in listDetailCoXuongKhop)
+                {
+                    var getCoXuongKhop = listCoXuongKhop.FirstOrDefault(p => p.ID == itemCoXuongKhop.CoXuongKhop_ID);
+                    getCoXuongKhop.ChiDinh = true;
+                }
+                multiplesModel.CoXuongKhop = listCoXuongKhop;
+            }
+            if (multiplesModel.ThanKinh == null)
+            {
+                var listThanKinh = db.ThanKinhs.ToList();
+                var listDetailThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemThanKinh in listDetailThanKinh)
+                {
+                    var getThanKinh = listThanKinh.FirstOrDefault(p => p.ID == itemThanKinh.ThanKinh_ID);
+                    getThanKinh.ChiDinh = true;
+                }
+                multiplesModel.ThanKinh = listThanKinh;
+            }
+            if (multiplesModel.TamThan == null)
+            {
+                var listTamThan = db.TamThans.ToList();
+                var listDetailTamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemTamThan in listDetailTamThan)
+                {
+                    var getTamThan = listTamThan.FirstOrDefault(p => p.ID == itemTamThan.TamThan_ID);
+                    getTamThan.ChiDinh = true;
+                }
+                multiplesModel.TamThan = listTamThan;
+            }
+            if (multiplesModel.NgoaiKhoa == null)
+            {
+                var listNgoaiKhoa = db.NgoaiKhoas.ToList();
+                var listDetailNgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemNgoaiKhoa in listDetailNgoaiKhoa)
+                {
+                    var getNgoaiKhoa = listNgoaiKhoa.FirstOrDefault(p => p.ID == itemNgoaiKhoa.NgoaiKhoa_ID);
+                    getNgoaiKhoa.ChiDinh = true;
+                }
+                multiplesModel.NgoaiKhoa = listNgoaiKhoa;
+            }
+            if (multiplesModel.SanPhuKhoa == null)
+            {
+                var listSanPhuKhoa = db.SanPhuKhoas.ToList();
+                var listDetailSanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemSanPhuKhoa in listDetailSanPhuKhoa)
+                {
+                    var getSanPhuKhoa = listSanPhuKhoa.FirstOrDefault(p => p.ID == itemSanPhuKhoa.SanPhuKhoa_ID);
+                    getSanPhuKhoa.ChiDinh = true;
+                }
+                multiplesModel.SanPhuKhoa = listSanPhuKhoa;
+            }
+            if (multiplesModel.Mat == null)
+            {
+                var listMat = db.Mats.ToList();
+                var listDetailMat = db.Detail_Mat.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemMat in listDetailMat)
+                {
+                    var getMat = listMat.FirstOrDefault(p => p.ID == itemMat.Mat_ID);
+                    getMat.ChiDinh = true;
+                }
+                multiplesModel.Mat = listMat;
+            }
+            if (multiplesModel.Tai == null)
+            {
+                var listTai = db.Tais.ToList();
+                var listDetailTai = db.Detail_Tai.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemTai in listDetailTai)
+                {
+                    var getTai = listTai.FirstOrDefault(p => p.ID == itemTai.Tai_ID);
+                    getTai.ChiDinh = true;
+                }
+                multiplesModel.Tai = listTai;
+            }
+            if (multiplesModel.Mui == null)
+            {
+                var listMui = db.Muis.ToList();
+                var listDetailMui = db.Detail_Mui.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemMui in listDetailMui)
+                {
+                    var getMui = listMui.FirstOrDefault(p => p.ID == itemMui.Mui_ID);
+                    getMui.ChiDinh = true;
+                }
+                multiplesModel.Mui = listMui;
+            }
+            if (multiplesModel.Hong == null)
+            {
+                var listHong = db.Hongs.ToList();
+                var listDetailHong = db.Detail_Hong.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemHong in listDetailHong)
+                {
+                    var getHong = listHong.FirstOrDefault(p => p.ID == itemHong.Hong_ID);
+                    getHong.ChiDinh = true;
+                }
+                multiplesModel.Hong = listHong;
+            }
+            if (multiplesModel.RangHamMat == null)
+            {
+                var listRangHamMat = db.RangHamMats.ToList();
+                var listDetailRangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemRangHamMat in listDetailRangHamMat)
+                {
+                    var getRangHamMat = listRangHamMat.FirstOrDefault(p => p.ID == itemRangHamMat.RangHamMat_ID);
+                    getRangHamMat.ChiDinh = true;
+                }
+                multiplesModel.RangHamMat = listRangHamMat;
+            }
+            if (multiplesModel.DaLieu == null)
+            {
+                var listDaLieu = db.DaLieux.ToList();
+                var listDetailDaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                foreach (var itemDaLieu in listDetailDaLieu)
+                {
+                    var getDaLieu = listDaLieu.FirstOrDefault(p => p.ID == itemDaLieu.DaLieu_ID);
+                    getDaLieu.ChiDinh = true;
+                }
+                multiplesModel.DaLieu = listDaLieu;
+            }
             return View(multiplesModel);
         }
 
