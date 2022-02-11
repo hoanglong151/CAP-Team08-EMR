@@ -1801,13 +1801,28 @@
             listClinical.each((index1, value) => {
                 value.addEventListener('click', (e) => {
                     if (e.target.checked) {
-                        var id = value.getAttribute("data-id");
-                        updateCountClinicals(id, event, value, index)
-                        value.checked = true;
+                        if (value.closest('tr').querySelector('span[style="color:red"]') != null) {
+                            Swal.fire({
+                                title: 'Đây là bệnh nguy hiểm. Xác nhận chọn',
+                                showCancelButton: true,
+                                confirmButtonText: 'Xác Nhận',
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                    var id = value.getAttribute("data-id");
+                                    updateCountClinicals(id, e, value, index)
+                                    value.checked = true;
+                                }
+                            })
+                        } else {
+                            var id = value.getAttribute("data-id");
+                            updateCountClinicals(id, e, value, index)
+                            value.checked = true;
+                        }
                     }
                     else {
                         var id = value.getAttribute("data-id");
-                        updateCountClinicals(id, event, value, index)
+                        updateCountClinicals(id, e, value, index)
                         value.checked = false;
                     }
                 })
@@ -1965,7 +1980,7 @@
 
 
         function updateCountClinicals(id, e, value, indextable) {
-            console.log(indextable)
+            console.log(e.target.checked)
             if (e.target.checked == true) {
                 value.setAttribute("value", true);
                 value.setAttribute("checked", true);

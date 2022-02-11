@@ -23,7 +23,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Error"];
-            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).ToList();
+            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).ToList();
             return View(patients);
         }
 
@@ -33,7 +33,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<Patient> patientlist = (List<Patient>)TempData["Patient"];
             if (patientlist == null)
             {
-                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).ToList();
+                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).ToList();
                 var listPatient = patients.Select(s => new
                 {
                     ID = s.ID,

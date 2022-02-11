@@ -201,10 +201,10 @@
 @section scripts{
     <script>
         function deletePatient(id) {
-                                            var form = $('#__AjaxAntiForgeryForm');
-                                            var token = $('input[name="__RequestVerificationToken"]', form).val();
-                                            Swal.fire({
-                                            title: 'Bạn Muốn Xóa Bệnh Nhân Này?',
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                Swal.fire({
+                title: 'Bạn Muốn Xóa Bệnh Nhân Này?',
                 text: "Bạn sẽ không thể xóa nếu bệnh nhân đã có thông tin khám bệnh!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -212,7 +212,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Xác Nhận',
                 cancelButtonText: 'Hủy'
-                                                }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
                         url: '@Url.Action("Delete","MultipleModels")',
@@ -262,6 +262,5 @@
                 }
             })
         }
-
     </script>
 }

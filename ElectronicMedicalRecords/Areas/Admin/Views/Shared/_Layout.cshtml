@@ -533,7 +533,7 @@
         "ajax": {
             "url": "@Url.Action("GetData", "Patients")",
             "type": "GET",
-            "datatype": "json"
+            "datatype": "json",
         },
         "columns": [
             {
@@ -577,9 +577,24 @@
             "search": "Tìm kiếm:",
         },
         searching: false,
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            if (iDisplayIndex == 0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("getPatientDangerous", "InformationExaminations")",
+                success: function (res) {
+                    $.each(res.data, function (index, value) {
+                        if (value.checkResult == true) {
+                            var td = $(`td:contains('${value.MaBN}')`);
+                            console.log(td.attr("style","color:red;font-weight:600"))
+                        }
+                    })
+                }
+            })
+        }
+        }
     })
-    }
-
+}
     var notificationHubYTa = $.connection.notificationHubYTa;
 
     notificationHubYTa.client.notifyPatient = function (message) {
@@ -620,10 +635,15 @@
                     if (res.length == 0) {
                         $('#notiContentBS').append($('<li>No data available</li>'));
                     }
+                    res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                     $.each(res.data, function (index, value) {
                         $('span.countBS').parent().children('i').addClass('bell');
                         var href = "@Url.Action("DetailsIE", "MultipleModels")" + "/" + value.ID;
-                        $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                        if (value.checkResult == true) {
+                            $('#notiContentBS').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                        } else {
+                            $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                        }
                     })
                     $('span.countBS').html(res.data.length);
                 }
@@ -665,10 +685,15 @@
                 if (res.length == 0) {
                     $('#notiContent').append($('<li>No data available</li>'));
                 }
+                res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                 $.each(res.data, function (index, value) {
                     $('span.count').parent().children('i').addClass('bell');
-                    var href = "@Url.Action("EditByID", "MultipleModels")" +"/" + value.ID;
-                    $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
+                    var href = "@Url.Action("EditByID", "MultipleModels")" + "/" + value.ID;
+                    if (value.checkResult == true) {
+                        $('#notiContent').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
+                    } else {
+                        $('#notiContent').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
+                    }
                 })
                 $('span.count').html(res.data.length);
             }
