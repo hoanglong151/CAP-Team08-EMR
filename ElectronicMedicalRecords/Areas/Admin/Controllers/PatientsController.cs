@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElectronicMedicalRecords.Models;
@@ -33,7 +34,117 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<Patient> patientlist = (List<Patient>)TempData["Patient"];
             if (patientlist == null)
             {
-                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).ToList();
+                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).OrderByDescending(p => p.ID).ToList();
+                NotificationComponentBS NC = new NotificationComponentBS();
+                var list = NC.ReturnResultTest();
+                NotificationComponentKTV NCNoti = new NotificationComponentKTV();
+                var listNotify = NCNoti.GetInformationExamination();
+                var newList = list.Union(listNotify).ToList();
+                List<string> Noti = new List<string>();
+                foreach (var item in newList)
+                {
+                    var detail_TuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_HoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_TieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_ThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_CoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_ThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_TamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_Tai = db.Detail_Tai.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_Mui = db.Detail_Mui.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_Hong = db.Detail_Hong.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item.ID).ToList();
+
+                    foreach (var itemTuanHoan in detail_TuanHoan)
+                    {
+                        itemTuanHoan.TuanHoan = db.TuanHoans.FirstOrDefault(p => p.ID == itemTuanHoan.TuanHoan_ID);
+                    }
+                    foreach (var itemHoHap in detail_HoHap)
+                    {
+                        itemHoHap.HoHap = db.HoHaps.FirstOrDefault(p => p.ID == itemHoHap.HoHap_ID);
+                    }
+                    foreach (var itemTieuHoa in detail_TieuHoa)
+                    {
+                        itemTieuHoa.TieuHoa = db.TieuHoas.FirstOrDefault(p => p.ID == itemTieuHoa.TieuHoa_ID);
+                    }
+                    foreach (var itemThanTietNieu in detail_ThanTietNieu)
+                    {
+                        itemThanTietNieu.ThanTietNieu = db.ThanTietNieux.FirstOrDefault(p => p.ID == itemThanTietNieu.ThanTietNieu_ID);
+                    }
+                    foreach (var itemCoXuongKhop in detail_CoXuongKhop)
+                    {
+                        itemCoXuongKhop.CoXuongKhop = db.CoXuongKhops.FirstOrDefault(p => p.ID == itemCoXuongKhop.CoXuongKhop_ID);
+                    }
+                    foreach (var itemThanKinh in detail_ThanKinh)
+                    {
+                        itemThanKinh.ThanKinh = db.ThanKinhs.FirstOrDefault(p => p.ID == itemThanKinh.ThanKinh_ID);
+                    }
+                    foreach (var itemTamThan in detail_TamThan)
+                    {
+                        itemTamThan.TamThan = db.TamThans.FirstOrDefault(p => p.ID == itemTamThan.TamThan_ID);
+                    }
+                    foreach (var itemNgoaiKhoa in detail_NgoaiKhoa)
+                    {
+                        itemNgoaiKhoa.NgoaiKhoa = db.NgoaiKhoas.FirstOrDefault(p => p.ID == itemNgoaiKhoa.NgoaiKhoa_ID);
+                    }
+                    foreach (var itemSanPhuKhoa in detail_SanPhuKhoa)
+                    {
+                        itemSanPhuKhoa.SanPhuKhoa = db.SanPhuKhoas.FirstOrDefault(p => p.ID == itemSanPhuKhoa.SanPhuKhoa_ID);
+                    }
+                    foreach (var itemMat in detail_Mat)
+                    {
+                        itemMat.Mat = db.Mats.FirstOrDefault(p => p.ID == itemMat.Mat_ID);
+                    }
+                    foreach (var itemTai in detail_Tai)
+                    {
+                        itemTai.Tai = db.Tais.FirstOrDefault(p => p.ID == itemTai.Tai_ID);
+                    }
+                    foreach (var itemMui in detail_Mui)
+                    {
+                        itemMui.Mui = db.Muis.FirstOrDefault(p => p.ID == itemMui.Mui_ID);
+                    }
+                    foreach (var itemHong in detail_Hong)
+                    {
+                        itemHong.Hong = db.Hongs.FirstOrDefault(p => p.ID == itemHong.Hong_ID);
+                    }
+                    foreach (var itemRangHamMat in detail_RangHamMat)
+                    {
+                        itemRangHamMat.RangHamMat = db.RangHamMats.FirstOrDefault(p => p.ID == itemRangHamMat.RangHamMat_ID);
+                    }
+                    foreach (var itemDaLieu in detail_DaLieu)
+                    {
+                        itemDaLieu.DaLieu = db.DaLieux.FirstOrDefault(p => p.ID == itemDaLieu.DaLieu_ID);
+                    }
+
+                    var checkDangerousTuanHoan = detail_TuanHoan.Any(p => p.TuanHoan.Dangerous == true);
+                    var checkDangerousHoHap = detail_HoHap.Any(p => p.HoHap.Dangerous == true);
+                    var checkDangerousTieuHoa = detail_TieuHoa.Any(p => p.TieuHoa.Dangerous == true);
+                    var checkDangerousThanTietNieu = detail_ThanTietNieu.Any(p => p.ThanTietNieu.Dangerous == true);
+                    var checkDangerousCoXuongKhop = detail_CoXuongKhop.Any(p => p.CoXuongKhop.Dangerous == true);
+                    var checkDangerousThanKinh = detail_ThanKinh.Any(p => p.ThanKinh.Dangerous == true);
+                    var checkDangerousTamThan = detail_TamThan.Any(p => p.TamThan.Dangerous == true);
+                    var checkDangerousNgoaiKhoa = detail_NgoaiKhoa.Any(p => p.NgoaiKhoa.Dangerous == true);
+                    var checkDangerousSanPhuKhoa = detail_SanPhuKhoa.Any(p => p.SanPhuKhoa.Dangerous == true);
+                    var checkDangerousMat = detail_Mat.Any(p => p.Mat.Dangerous == true);
+                    var checkDangerousTai = detail_Tai.Any(p => p.Tai.Dangerous == true);
+                    var checkDangerousMui = detail_Mui.Any(p => p.Mui.Dangerous == true);
+                    var checkDangerousHong = detail_Hong.Any(p => p.Hong.Dangerous == true);
+                    var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
+                    var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
+
+                    if (checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
+                        || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true
+                        || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousMui == true
+                        || checkDangerousHong == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
+                    {
+                        item.Patient = db.Patients.FirstOrDefault(p => p.ID == item.Patient_ID);
+                        Noti.Add(item.Patient.MaBN);
+                    }
+                }
                 var listPatient = patients.Select(s => new
                 {
                     ID = s.ID,
@@ -43,6 +154,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     Address = s.Address,
                     Gender = s.Gender.Gender1
                 }).ToList();
+                foreach(var noti in Noti)
+                {
+                    var getPatient = listPatient.FirstOrDefault(p => p.MaBN == noti);
+                    listPatient.Remove(getPatient);
+                    listPatient.Insert(0, getPatient);
+                }
+                var listNewPatient = listPatient.OrderBy(p => Noti.Contains(p.MaBN));
                 return Json(new { data = listPatient }, JsonRequestBehavior.AllowGet);
             }
             else
