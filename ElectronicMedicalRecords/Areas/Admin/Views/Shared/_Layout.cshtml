@@ -530,6 +530,7 @@
     <script type="text/javascript">
     function getPatient() {
         $('#tableLoadPatient').DataTable({
+        "order": [],
         "ajax": {
             "url": "@Url.Action("GetData", "Patients")",
             "type": "GET",
@@ -563,7 +564,7 @@
                     return button;
                 },
                 "targets": 0,
-                "orderable": false
+                "orderable": false,
             }
         ],
         "language": {
@@ -584,10 +585,8 @@
                 url: "@Url.Action("getPatientDangerous", "InformationExaminations")",
                 success: function (res) {
                     $.each(res.data, function (index, value) {
-                        if (value.checkResult == true) {
-                            var td = $(`td:contains('${value.MaBN}')`);
-                            console.log(td.attr("style","color:red;font-weight:600"))
-                        }
+                        var td = $(`td:contains('${value.MaBN}')`);
+                        console.log(td.attr("style","color:red;font-weight:600"))
                     })
                 }
             })

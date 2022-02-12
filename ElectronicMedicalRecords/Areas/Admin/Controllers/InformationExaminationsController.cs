@@ -163,10 +163,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     || checkDangerousHong == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
                 {
                     checkResult = true;
+                    item1.Patient = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
+                    var NotiResult = new { item1.Patient.MaBN, item1.ID, checkResult };
+                    Noti.Add(NotiResult);
                 }
-                item1.Patient = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
-                var NotiResult = new { item1.Patient.MaBN, item1.ID, checkResult };
-                Noti.Add(NotiResult);
             }
             return await Task.Run(() => Json(new { data = Noti }, JsonRequestBehavior.AllowGet));
         }
