@@ -60,8 +60,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestCreateOldPaitent()
         {
+            MultiplesModel multiplesModel = new MultiplesModel();
             var patient = db.Patients.FirstOrDefault();
-            var result = controller.CreateOldPatient(patient.ID) as PartialViewResult;
+            multiplesModel.Patient = patient;
+            var result = controller.CreateOldPatient(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
 
         }

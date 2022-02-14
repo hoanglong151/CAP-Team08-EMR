@@ -44,9 +44,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/SinhHoaMaus/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.SinhHoaMau = db.SinhHoaMaus.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

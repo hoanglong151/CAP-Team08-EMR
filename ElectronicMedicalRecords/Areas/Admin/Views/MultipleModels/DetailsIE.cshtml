@@ -1,6 +1,6 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 @{
-    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
 }
 <style>
     .name-Medication .choices {
@@ -2153,70 +2153,70 @@
     </script>
 
     @*<script>
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            // Denotes total number of rows
-            var rowIdx = 0;
+                // Denotes total number of rows
+                var rowIdx = 0;
 
-            // jQuery button click event to add a row
-            $('#addBtn').on('click', function () {
-                var NameMedication = $('#NameMedication').text();
-                var UnitMedication = $('#UnitMedication').val();
-                var NoteMedication = $('#NoteMedication').val();
-                var IdMedication = $('#IDMedication').val();
-                // Adding a row inside the tbody.
-                $('#tbody').append(`<tr id="R${++rowIdx}">
-                 <td class="row-index text-center">
-                    <input type='number' name='Prescription_Details[${rowIdx}].Medication_ID' value='${IdMedication}' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='${NameMedication}' readonly/>
-                 </td>
-                 <td class="row-index text-center">
-                    <input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>
-                 </td>
-                <td class="row-index text-center">
-                <input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>
-                </td>
-                  <td class="text-center">
-
-                    <button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>
-
-                    <button class="btn btn-danger remove"
-                      type="button">Remove</button>
+                // jQuery button click event to add a row
+                $('#addBtn').on('click', function () {
+                    var NameMedication = $('#NameMedication').text();
+                    var UnitMedication = $('#UnitMedication').val();
+                    var NoteMedication = $('#NoteMedication').val();
+                    var IdMedication = $('#IDMedication').val();
+                    // Adding a row inside the tbody.
+                    $('#tbody').append(`<tr id="R${++rowIdx}">
+                     <td class="row-index text-center">
+                        <input type='number' name='Prescription_Details[${rowIdx}].Medication_ID' value='${IdMedication}' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='${NameMedication}' readonly/>
+                     </td>
+                     <td class="row-index text-center">
+                        <input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>
+                     </td>
+                    <td class="row-index text-center">
+                    <input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>
                     </td>
-                  </tr>`);
-            });
+                      <td class="text-center">
 
-            // jQuery button click event to remove a row.
-            $('#tbody').on('click', '.remove', function () {
+                        <button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>
 
-                // Getting all the rows next to the row
-                // containing the clicked button
-                var child = $(this).closest('tr').nextAll();
-
-                // Iterating across all the rows
-                // obtained to change the index
-                child.each(function () {
-
-                    // Getting <tr> id.
-                    var id = $(this).attr('id');
-
-                    // Getting the <p> inside the .row-index class.
-                    var idx = $(this).children('.row-index').children('#medicationID');
-                    // Gets the row number from <tr> id.
-                    var dig = parseInt(id.substring(1));
-
-                    // Modifying row index.
-                    idx.attr('name', `Prescription_Details[${dig - 1}].Medication_ID`);
-
-                    // Modifying row id.
-                    $(this).attr('id', `R${dig - 1}`);
+                        <button class="btn btn-danger remove"
+                          type="button">Remove</button>
+                        </td>
+                      </tr>`);
                 });
 
-                // Removing the current row.
-                $(this).closest('tr').remove();
+                // jQuery button click event to remove a row.
+                $('#tbody').on('click', '.remove', function () {
 
-                // Decreasing total number of rows by 1.
-                rowIdx--;
+                    // Getting all the rows next to the row
+                    // containing the clicked button
+                    var child = $(this).closest('tr').nextAll();
+
+                    // Iterating across all the rows
+                    // obtained to change the index
+                    child.each(function () {
+
+                        // Getting <tr> id.
+                        var id = $(this).attr('id');
+
+                        // Getting the <p> inside the .row-index class.
+                        var idx = $(this).children('.row-index').children('#medicationID');
+                        // Gets the row number from <tr> id.
+                        var dig = parseInt(id.substring(1));
+
+                        // Modifying row index.
+                        idx.attr('name', `Prescription_Details[${dig - 1}].Medication_ID`);
+
+                        // Modifying row id.
+                        $(this).attr('id', `R${dig - 1}`);
+                    });
+
+                    // Removing the current row.
+                    $(this).closest('tr').remove();
+
+                    // Decreasing total number of rows by 1.
+                    rowIdx--;
+                });
             });
-        });
-    </script>*@
+        </script>*@
 }

@@ -75,9 +75,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/NgoaiKhoas/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.NgoaiKhoa = db.NgoaiKhoas.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

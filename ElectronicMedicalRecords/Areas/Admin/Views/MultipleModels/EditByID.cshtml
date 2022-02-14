@@ -1,6 +1,6 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
 @{
-    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
 }
 <style>
     .name-Medication .choices {
@@ -118,9 +118,11 @@
         font-size: 15px;
         padding: 0;
     }
+
     .choices[data-type*=select-one].is-open:after {
         margin-top: -10px;
     }
+
     label.invalidForm {
         color: red;
         font-size: 13px

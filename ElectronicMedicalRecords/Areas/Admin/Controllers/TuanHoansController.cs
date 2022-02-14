@@ -75,9 +75,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/CTMaus/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.TuanHoan = db.TuanHoans.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

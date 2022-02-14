@@ -43,7 +43,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void CreateOldPatientG()
         {
-            var result = controller.CreateOldPatient() as PartialViewResult;
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var result = controller.CreateOldPatient(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_CreateOldPatient", result.ViewName);
         }

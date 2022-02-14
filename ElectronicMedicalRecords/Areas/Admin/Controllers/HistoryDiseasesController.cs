@@ -49,15 +49,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return text;
         }
 
-        public ActionResult CreateOldPatient(int id)
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             var listHistoryDiseases1 = db.HistoryDiseases.AsNoTracking().ToList();
             var listHistoryDiseases2 = db.HistoryDiseases.AsNoTracking().ToList();
             var listHistoryDiseases3 = db.HistoryDiseases.AsNoTracking().ToList();
-            var detail_HistoryDiseases1 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id && p.LevelFamily == "Ông/Bà");
-            var detail_HistoryDiseases2 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id && p.LevelFamily == "Cha/Mẹ");
-            var detail_HistoryDiseases3 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id && p.LevelFamily == "Anh/Chị em");
+            var detail_HistoryDiseases1 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == multiplesModel.Patient.ID && p.LevelFamily == "Ông/Bà");
+            var detail_HistoryDiseases2 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == multiplesModel.Patient.ID && p.LevelFamily == "Cha/Mẹ");
+            var detail_HistoryDiseases3 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == multiplesModel.Patient.ID && p.LevelFamily == "Anh/Chị em");
             foreach (var item1 in listHistoryDiseases1)
             {
                 var historyDisease1 = detail_HistoryDiseases1.FirstOrDefault(p => p.HistoryDisease_ID == item1.ID);

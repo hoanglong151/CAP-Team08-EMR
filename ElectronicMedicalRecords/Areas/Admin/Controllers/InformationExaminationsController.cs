@@ -426,19 +426,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExamination);
         }
 
-        // GET: Admin/InformationExaminations/CreateOldPatient/5
+        // GET: Admin/InformationExaminations/BillCheck/5
         public ActionResult BillCheck(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
             InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            //var UserID = User.Identity.GetUserId();
-            //var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
-            //ViewBag.UserByID = userID.ID;
-            //ViewBag.UserName = userID.Name;
-            //if (informationExamination == null)
-            //{
-            //    return HttpNotFound();
-            //}
             var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
             multiplesModel.InformationExamination = informationExamination;
@@ -446,27 +438,27 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/InformationExaminations/CreateOldPatient/5
-        public ActionResult CreateOldPatient(int id)
+        [HttpGet]
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
+            //InformationExamination informationExamination = db.InformationExaminations.Find(multiplesModel.InformationExamination.ID);
             var UserID = User.Identity.GetUserId();
             var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
-            if (informationExamination == null)
-            {
-                return HttpNotFound();
-            }
-            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
-            multiplesModel.InformationExamination = informationExamination;
+            //if (informationExamination == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
+            //multiplesModel.InformationExamination = informationExamination;
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("CreateOldPatient")]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        public ActionResult CreateOldPatientPost(MultiplesModel multiplesModel)
         {
             InformationExamination informationExamination = new InformationExamination();
             if (ModelState.IsValid)

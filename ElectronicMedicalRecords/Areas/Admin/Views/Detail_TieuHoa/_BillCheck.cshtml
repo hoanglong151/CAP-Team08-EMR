@@ -6,6 +6,7 @@
 
 <div class="collapse" id="collapseTieuHoa">
     <div class="card-body">
+        <h6>Ký tự: <span style="color:red">*</span> nguy hiểm tới tính mạng</h6>
         <table class="table table-striped tableLoadClinical" id="tableTieuHoas" style="width:100%">
             <thead>
                 <tr>
@@ -31,7 +32,14 @@
                             <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
                         </td>
                         <td>
-                            <label class="form-check-label">@Model.Detail_TieuHoas[i].TieuHoa.Name</label>
+                            @if (Model.Detail_TieuHoas[i].TieuHoa.Dangerous == true)
+                            {
+                                <label class="form-check-label">@Model.Detail_TieuHoas[i].TieuHoa.Name<span style="color:red"> *</span></label>
+                            }
+                            else
+                            {
+                                <label class="form-check-label">@Model.Detail_TieuHoas[i].TieuHoa.Name</label>
+                            }
                         </td>
                     </tr>
                 }

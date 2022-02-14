@@ -44,9 +44,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Urines/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.Urine = db.Urines.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

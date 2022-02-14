@@ -75,9 +75,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/CoXuongKhop/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.CoXuongKhop = db.CoXuongKhops.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

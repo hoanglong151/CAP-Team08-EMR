@@ -1,5 +1,7 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
-
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
+}
 <style>
     .name-Medication .choices {
         width: 100%
@@ -68,12 +70,15 @@
     .navbar-nav {
         display: none
     }
-    .choices[data-type*=select-one].is-open:after{
+
+    .choices[data-type*=select-one].is-open:after {
         margin-top: -10px;
     }
-    a{
-        cursor:pointer
+
+    a {
+        cursor: pointer
     }
+
     label.invalidForm {
         color: red;
         font-size: 13px
@@ -84,7 +89,7 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("CreateTest", "MultipleModels", FormMethod.Post, new { id = "createTest"}))
+@using (Html.BeginForm("CreateTest", "MultipleModels", FormMethod.Post, new { id = "createTest" }))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -167,8 +172,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("CreateTest", "Patients", new { id = Model.Patient.ID });
-                                                Html.RenderAction("CreateOldPatient", "InformationExaminations", new { id = Model.InformationExamination.ID });
+                                                Html.RenderAction("CreateTest", "Patients", new { multiplesModel = Model });
+                                                Html.RenderAction("CreateOldPatient", "InformationExaminations", new { multiplesModel = Model });
                                                 Html.RenderAction("CreateOldPatient", "Prescription_Detail");
                                             }
                                         </div>
@@ -185,8 +190,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("CreateOldPatient", "HistoryDiseases", new { id = Model.Patient.ID });
-                                                Html.RenderAction("CreateOldPatient", "MedicalHistories", new { id = Model.Patient.ID });
+                                                Html.RenderAction("CreateOldPatient", "HistoryDiseases", new { multiplesModel = Model });
+                                                Html.RenderAction("CreateOldPatient", "MedicalHistories", new { multiplesModel = Model });
                                             }
                                         </div>
                                     </div>
@@ -239,19 +244,19 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "TuanHoans");
+                                                                    Html.RenderAction("CreateOldPatient", "TuanHoans", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "HoHaps");
+                                                                    Html.RenderAction("CreateOldPatient", "HoHaps", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "TieuHoas");
+                                                                    Html.RenderAction("CreateOldPatient", "TieuHoas", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "ThanTietNieux");
+                                                                    Html.RenderAction("CreateOldPatient", "ThanTietNieux", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "CoXuongKhops");
+                                                                    Html.RenderAction("CreateOldPatient", "CoXuongKhops", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "ThanKinhs");
+                                                                    Html.RenderAction("CreateOldPatient", "ThanKinhs", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "TamThans");
+                                                                    Html.RenderAction("CreateOldPatient", "TamThans", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -268,7 +273,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "NgoaiKhoas");
+                                                                    Html.RenderAction("CreateOldPatient", "NgoaiKhoas", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -285,7 +290,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "SanPhuKhoas");
+                                                                    Html.RenderAction("CreateOldPatient", "SanPhuKhoas", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -302,7 +307,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "Mats");
+                                                                    Html.RenderAction("CreateOldPatient", "Mats", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -319,11 +324,11 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "Tais");
+                                                                    Html.RenderAction("CreateOldPatient", "Tais", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "Muis");
+                                                                    Html.RenderAction("CreateOldPatient", "Muis", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("CreateOldPatient", "Hongs");
+                                                                    Html.RenderAction("CreateOldPatient", "Hongs", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -340,7 +345,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "RangHamMats");
+                                                                    Html.RenderAction("CreateOldPatient", "RangHamMats", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -357,7 +362,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("CreateOldPatient", "DaLieux");
+                                                                    Html.RenderAction("CreateOldPatient", "DaLieux", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -376,7 +381,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "CTMaus");
+                                        Html.RenderAction("CreateOldPatient", "CTMaus", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -388,7 +393,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "SinhHoaMaus");
+                                        Html.RenderAction("CreateOldPatient", "SinhHoaMaus", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -400,7 +405,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "DongMaus");
+                                        Html.RenderAction("CreateOldPatient", "DongMaus", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -412,7 +417,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "NhomMaus");
+                                        Html.RenderAction("CreateOldPatient", "NhomMaus", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -424,7 +429,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "Urines");
+                                        Html.RenderAction("CreateOldPatient", "Urines", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -436,7 +441,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "Immunes");
+                                        Html.RenderAction("CreateOldPatient", "Immunes", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -448,7 +453,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "Amniocentes");
+                                        Html.RenderAction("CreateOldPatient", "Amniocentes", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -460,7 +465,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("CreateOldPatient", "ViSinhs");
+                                        Html.RenderAction("CreateOldPatient", "ViSinhs", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -1806,12 +1811,16 @@
                                 title: 'Đây là bệnh nguy hiểm. Xác nhận chọn',
                                 showCancelButton: true,
                                 confirmButtonText: 'Xác Nhận',
+                                cancelButtonText: 'Hủy'
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if (result.isConfirmed) {
                                     var id = value.getAttribute("data-id");
                                     updateCountClinicals(id, e, value, index)
                                     value.checked = true;
+                                }
+                                else if (result.dismiss === Swal.DismissReason.cancel) {
+                                    value.checked = false;
                                 }
                             })
                         } else {

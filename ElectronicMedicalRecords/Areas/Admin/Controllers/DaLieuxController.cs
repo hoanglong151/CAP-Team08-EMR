@@ -75,9 +75,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/DaLieux/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.DaLieu = db.DaLieux.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

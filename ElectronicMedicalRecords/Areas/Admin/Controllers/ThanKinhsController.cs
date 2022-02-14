@@ -75,9 +75,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/ThanKinh/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.ThanKinh = db.ThanKinhs.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

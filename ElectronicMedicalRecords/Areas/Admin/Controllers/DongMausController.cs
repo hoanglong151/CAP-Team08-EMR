@@ -44,9 +44,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/DongMaus/Create
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.DongMau = db.DongMaus.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }
