@@ -28,10 +28,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = viSinhs }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Admin/CTMaus/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        // GET: Admin/ViSinhs/CreateOldPatient
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.ViSinh = db.ViSinhs.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

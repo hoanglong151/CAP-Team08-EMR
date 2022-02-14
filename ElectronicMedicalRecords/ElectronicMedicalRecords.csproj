@@ -2770,8 +2770,6 @@
     <Content Include="Areas\Admin\Views\PatientStatus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MedicationCategories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\HomePage.cshtml" />
-    <Content Include="Areas\Admin\Views\Patients\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Patients\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Patients\Index.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\Create.cshtml" />
     <Content Include="Areas\Admin\Views\InformationExaminations\Delete.cshtml" />
@@ -3020,6 +3018,7 @@
     <Content Include="Areas\Admin\Views\Mats\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhuKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\NgoaiKhoas\_EditSelect.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutMultipleModel.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

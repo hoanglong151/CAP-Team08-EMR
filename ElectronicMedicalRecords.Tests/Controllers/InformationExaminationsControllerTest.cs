@@ -185,11 +185,13 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             };
             controller.ControllerContext = controllerContext;
             var info = db.InformationExaminations.First();
-            var result = controller.CreateOldPatient(info.ID) as PartialViewResult;
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.InformationExamination = info;
+            var result = controller.CreateOldPatient(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_CreateOldPatient", result.ViewName);
 
-            var resultError = controller.CreateOldPatient(0) as HttpNotFoundResult;
+            var resultError = controller.CreateOldPatient(multiplesModel) as HttpNotFoundResult;
             Assert.IsNotNull(resultError);
         }
 

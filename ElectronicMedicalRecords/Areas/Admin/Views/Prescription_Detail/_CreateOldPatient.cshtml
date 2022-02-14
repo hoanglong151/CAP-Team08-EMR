@@ -13,10 +13,10 @@
                     <label for="email-id-column">Chẩn Đoán</label>
                     <select id="NameDiagnostic" name="DiagnosticsCategory.Name" class="choices form-select">
                         <option value="">Vui Lòng Chọn Tên Chẩn Đoán</option>
-                        @foreach (var diagnostic in ViewBag.NameDiagnostics)
-                        {
-                            <option value="@diagnostic.ID">@diagnostic.Name</option>
-                        }
+                            @foreach (var diagnostic in ViewBag.NameDiagnostics)
+                            {
+                                <option value="@diagnostic.ID">@diagnostic.Name</option>
+                            }
                     </select>
                     @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
                 </div>

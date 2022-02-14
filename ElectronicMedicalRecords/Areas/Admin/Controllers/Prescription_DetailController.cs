@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -121,8 +122,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult CreateOldPatient()
         {
-            ViewBag.NameDiagnostics = db.DiagnosticsCategories.ToList();
-            ViewBag.NameMedication = db.Medications.ToList();
+            ViewBag.NameDiagnostics = db.DiagnosticsCategories.AsNoTracking().ToList();
+            ViewBag.NameMedication = db.Medications.AsNoTracking().ToList();
             return PartialView("_CreateOldPatient");
         }
 

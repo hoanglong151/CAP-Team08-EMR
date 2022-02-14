@@ -1,5 +1,7 @@
 ﻿@model ElectronicMedicalRecords.Models.MultiplesModel
-
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
+}
 <style>
     .name-Medication .choices {
         width: 100%
@@ -76,8 +78,9 @@
     a {
         cursor: pointer
     }
-    td input{
-        width:100%
+
+    td input {
+        width: 100%
     }
 </style>
 <header class="mb-3">
@@ -148,14 +151,14 @@
                             @if (Model.InformationExamination.User_ID != null)
                             {
                                 if (Model.InformationExamination.PriceTest == null)
-                                    {
-                                        <a class="dropdown-item" id="PrintBillTestSubclinical">
-                                            In Hóa Đơn Xét Nghiệm
-                                        </a>
-                                    }
-                                    <a class="dropdown-item" id="PrintBillPrescription">In Hóa Đơn Toa Thuốc </a>
-                             }
-                            </div>
+                                {
+                                    <a class="dropdown-item" id="PrintBillTestSubclinical">
+                                        In Hóa Đơn Xét Nghiệm
+                                    </a>
+                                }
+                                <a class="dropdown-item" id="PrintBillPrescription">In Hóa Đơn Toa Thuốc </a>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="tab-content" id="myTabContent">
@@ -470,7 +473,7 @@
             </div>
         </div>
     </div>
- }
+}
 
 @section scripts{
     <script>
@@ -1000,5 +1003,5 @@
         if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
             $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");
         }
-    </script>    
+    </script>
 }

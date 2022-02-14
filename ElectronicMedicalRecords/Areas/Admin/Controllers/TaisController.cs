@@ -78,11 +78,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Tais/CreateOldPatient
-        public ActionResult CreateOldPatient()
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            Clinical clinical = new Clinical();
-            multiplesModel.Clinical = clinical;
             multiplesModel.Tai = db.Tais.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }

@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/choices.js/choices.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/bootstrap.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/iconly/bold.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/toastify/toastify.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/bootstrap-icons/bootstrap-icons.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/app.css")">
+    <link href="@Url.Content("~/Areas/Admin/assets/css/bootstrap-tagsinput.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
+    <link href="@Url.Content("~/Areas/Admin/assets/css/loading-page.css")" rel="stylesheet" />
+</head>
+<body>
+    <style type="text/css">
+        .dropdown-toggle:after {
+            display: none
+        }
+
+        .logo {
+            width: 100%
+        }
+
+        .sidebar-wrapper .sidebar-header img {
+            width: 100%;
+            height: 6.5rem;
+        }
+    </style>
+
+    <div id="loader-wrapper">
+        <div class="pulse"></div>
+    </div>
+
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active nav-bg">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="@Url.Action("HomePage", "Users")"><img src="@Url.Content("~/Areas/Admin/assets/images/logo/logoVL.png")" alt="Logo" srcset=""></a>
+                        </div>
+
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    Html.RenderAction("RenderUser", "Users");
+                }
+                <hr />
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title text-white">
+                            <a href="@Url.Action("HomePage", "Users")" class='text-white'></a>
+                            Trang Chủ
+                        </li>
+                        @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-chart-line"></i>
+                                    <span>DashBoard</span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc") || User.IsInRole("Thu Ngân"))
+                        {
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-file-invoice-dollar"></i>
+                                    <span>Hóa Đơn</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("BillExam", "Statistics")">Khám</a>
+                                    </li>
+
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("BillPre", "Statistics")">Thuốc</a>
+                                    </li>
+
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("BillTest", "Statistics")">Xét Nghiệm</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link underline'>
+                                    <i class="text-white far fa-chart-bar"></i>
+                                    <span>Thống Kê</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ</a>
+                                    </li>
+
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByCondition", "Statistics")">Theo Tình Trạng</a>
+                                    </li>
+
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByDiagnostic", "Statistics")">Theo Nhóm Bệnh</a>
+                                    </li>
+
+                                    <li class="submenu-item ">
+                                        <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "Users")" class='sidebar-link underline'>
+                                <i class="text-white bi bi-person-badge-fill"></i>
+                                <span>Tài Khoản</span>
+                            </a>
+                        </li>
+                        @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Index", "AspNetRoles")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-user-tag"></i>
+                                    <span>Quyền</span>
+                                </a>
+                            </li>
+                        }
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "Medications")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-capsules"></i>
+                                <span>Thuốc</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "DiagnosticsCategories")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-diagnoses"></i>
+                                <span>Danh Mục Chẩn Đoán</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "Patients")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-user-injured"></i>
+                                <span>Bệnh Nhân</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("ListPrescriptionBill", "Prescription_Detail")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-pills"></i>
+                                <span>Toa Thuốc</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("ListExamination", "Prescription_Detail")" class='sidebar-link underline'>
+                                <i class="text-white fas fa-book-medical"></i>
+                                <span>Lịch Sử Khám Bệnh</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link underline'>
+                                <i class="text-white bi bi-stack"></i>
+                                <span>Danh Mục</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "PatientStatus")">Tình Trạng Bệnh Nhân</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "MedicationCategories")">Danh Mục Thuốc</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "HistoryDiseases")">Bệnh Tiền Sử</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "MedicalHistories")">Bệnh Sử</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link underline'>
+                                <i class="text-white fas fa-list-alt"></i>
+                                <span>DN Xét Nghiệm</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Amniocentes")">Dịch Chọc Dò</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "DongMaus")">Đông Máu</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Immunes")">Miễn Dich</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "NhomMaus")">Nhóm Máu</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "SinhHoaMaus")">Sinh Hóa Máu</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Urines")">Nước Tiểu</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "ViSinhs")">Vi Sinh</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link underline'>
+                                <i class="text-white fas fa-hospital-symbol"></i>
+                                <span>Lâm Sàng</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "TuanHoans")">Tuần Hoàn</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "HoHaps")">Hô Hấp</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "TieuHoas")">Tiêu Hóa</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "ThanTietNieux")">Thận-Tiết Niệu</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "CoXuongKhops")">Cơ-Xương-Khớp</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "ThanKinhs")">Thần Kinh</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "TamThans")">Tâm Thần</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "NgoaiKhoas")">Ngoại Khoa</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "SanPhuKhoas")">Sản Phụ Khoa</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Mats")">Mắt</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Tais")">Tai</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Muis")">Mũi</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Hongs")">Họng</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "RangHamMats")">Răng-Hàm-Mặt</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "DaLieux")">Da Liễu</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link underline'>
+                                <i class="text-white fas fa-bars"></i>
+                                <span>Khác</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Nations")">Quốc Gia</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Nation1")">Dân Tộc</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Wards")">Phường/Xã</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "Districts")">Quận/Huyện</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a class="text-white" href="@Url.Action("Index", "HomeTowns")">Tỉnh/Thành</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <nav class="navbar navbar-expand navbar-light " style="padding:0;height:0">
+                <div class="container-fluid">
+                    <a href="#" class="burger-btn d-block">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+                </div>
+            </nav>
+            @RenderBody()
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Khoa Y Dược ĐH Văn Lang</p>
+                    </div>
+                    <div class="float-end">
+                        <p>
+                            Create By Team<span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">Stay-Cool</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/dayjs/dayjs.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/choices.js/choices.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/sweetalert2.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.all.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/toastify/toastify.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/toastify.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap-tagsinput.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/ckeditor/ckeditor.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');
+            $('.submenu-item.active').closest('.sidebar-item').addClass('active');
+            $('.submenu-item.active').closest('.submenu').addClass('active');
+        });
+        var NumberInput = document.querySelectorAll('.numberInput');
+        NumberInput.forEach((item, index) => {
+            item.addEventListener("keypress", function (evt) {
+                if (evt.which != 8 && evt.which != 0 && evt.which < 46 || evt.which == 47 || evt.which > 57) {
+                    evt.preventDefault();
+                }
+            })
+        })
+    </script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        $(window).on("load", function () {
+            $("#loader-wrapper").fadeOut("slow");
+        });
+    </script>
+</body>
+</html>

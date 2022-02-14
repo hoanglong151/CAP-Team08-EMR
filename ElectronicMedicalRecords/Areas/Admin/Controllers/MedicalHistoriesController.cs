@@ -80,12 +80,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { success = false, responseText = text });
         }
 
-        public ActionResult CreateOldPatient(int id)
+        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var medicalHistories = db.MedicalHistories.ToList();
+            var medicalHistories = db.MedicalHistories.AsNoTracking().ToList();
             multiplesModel.MedicalHistories = medicalHistories;
-            var details_medicalHistories1 = db.Detail_MedicalHistory.Where(p => p.Patient_ID == id);
+            var details_medicalHistories1 = db.Detail_MedicalHistory.Where(p => p.Patient_ID == multiplesModel.Patient.ID);
             foreach(var item in details_medicalHistories1)
             {
                 var medicalHistory = multiplesModel.MedicalHistories.FirstOrDefault(p => p.ID == item.MedicalHistory_ID);

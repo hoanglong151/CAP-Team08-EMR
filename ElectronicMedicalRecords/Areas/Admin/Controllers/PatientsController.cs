@@ -24,7 +24,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Error"];
-            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).ToList();
+            var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).AsNoTracking().ToList();
             return View(patients);
         }
 
@@ -34,7 +34,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<Patient> patientlist = (List<Patient>)TempData["Patient"];
             if (patientlist == null)
             {
-                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).OrderByDescending(p => p.ID).ToList();
+                var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).OrderByDescending(p => p.ID).AsNoTracking().ToList();
                 NotificationComponentBS NC = new NotificationComponentBS();
                 var list = NC.ReturnResultTest();
                 NotificationComponentKTV NCNoti = new NotificationComponentKTV();
@@ -43,21 +43,21 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 List<string> Noti = new List<string>();
                 foreach (var item in newList)
                 {
-                    var detail_TuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_HoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_TieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_ThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_CoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_ThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_TamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_Tai = db.Detail_Tai.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_Mui = db.Detail_Mui.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_Hong = db.Detail_Hong.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                    var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                    var detail_TuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_HoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_TieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_ThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_CoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_ThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_TamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_Tai = db.Detail_Tai.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_Mui = db.Detail_Mui.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_Hong = db.Detail_Hong.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
+                    var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item.ID).AsNoTracking().ToList();
 
                     foreach (var itemTuanHoan in detail_TuanHoan)
                     {
@@ -639,20 +639,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Patients/CreateOldPatient/5
-        public ActionResult CreateTest(int id)
+        public ActionResult CreateTest(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            Patient patient = db.Patients.Find(id);
-            var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
-            var lastInfo = listInfo.LastOrDefault();
-            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
-            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
-            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
-            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
-            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
-            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
-            multiplesModel.Patient = patient;
-            multiplesModel.InformationExamination = lastInfo;
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", multiplesModel.Patient.Gender_ID);
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", multiplesModel.Patient.HomeTown_ID);
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", multiplesModel.Patient.Nation_ID);
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", multiplesModel.Patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", multiplesModel.Patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", multiplesModel.Patient.Ward_ID);
             return PartialView("_CreateTest", multiplesModel);
         }
 
