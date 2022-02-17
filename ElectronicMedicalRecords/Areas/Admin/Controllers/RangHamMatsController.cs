@@ -20,19 +20,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.RangHamMats.ToList());
         }
 
-        public ActionResult EditSelect(int id)
+        public ActionResult EditSelect(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var listDetailRangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == id).ToList();
-            var listRangHamMat = db.RangHamMats.ToList();
+            var listDetailRangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
+            var listRangHamMat = db.RangHamMats.AsNoTracking().ToList();
             foreach (var item in listDetailRangHamMat)
             {
                 var changeSelect = listRangHamMat.FirstOrDefault(p => p.ID == item.RangHamMat_ID);
                 changeSelect.ChiDinh = true;
             }
-            Clinical clinical = new Clinical();
-            clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
-            multiplesModel.Clinical = clinical;
             multiplesModel.RangHamMat = listRangHamMat;
             return PartialView("_EditSelect", multiplesModel);
         }

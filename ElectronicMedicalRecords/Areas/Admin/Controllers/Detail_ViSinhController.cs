@@ -37,45 +37,33 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("Create", "MultipleModels");
         }
 
-        public ActionResult DetailIE(int id)
+        public ActionResult DetailIE(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            informationExamination.ID = id;
-            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == id).ToList();
-            multiplesModel.InformationExamination = informationExamination;
+            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_DetailIE", multiplesModel);
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            informationExamination.ID = id;
-            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == id).ToList();
-            multiplesModel.InformationExamination = informationExamination;
+            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_BillCheck", multiplesModel);
         }
 
         // GET: Admin/Detail_ViSinh/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            informationExamination.ID = id;
-            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == id).ToList();
+            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             List<ViSinh> ViSinhs = new List<ViSinh>();
             for (int i = 0; i < detail_ViSinhs.Count; i++)
             {
                 var ViSinh_ID = detail_ViSinhs[i].ViSinh_ID;
                 var ViSinhCD = db.ViSinhs.FirstOrDefault(p => p.ID == ViSinh_ID);
                 ViSinhCD.ChiDinh = detail_ViSinhs[i].ChiDinh;
-                detail_ViSinhs[i].InformationExamination_ID = id;
+                detail_ViSinhs[i].InformationExamination_ID = multiplesModel.InformationExamination.ID;
                 ViSinhs.Add(ViSinhCD);
             }
-            multiplesModel.InformationExamination = informationExamination;
             multiplesModel.ViSinh = ViSinhs;
             multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_Edit", multiplesModel);
@@ -85,8 +73,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(MultiplesModel multiplesModel)
+        [ValidateAntiForgeryToken, ActionName("Edit")]
+        public async Task<ActionResult> EditPost(MultiplesModel multiplesModel)
         {
             if (multiplesModel.Detail_ViSinhs != null)
             {

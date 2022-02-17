@@ -40,6 +40,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_HoHap.Add(detail_HoHap);
                     db.SaveChanges();
                 }
+                if (checkExistDetail1.HoHap.Dangerous == true)
+                {
+                    multiplesModel.InformationExamination.PatientStatus_ID = 44;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
             foreach (var item1 in listHoHap)
             {
@@ -53,13 +59,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("CreateTest", "MultipleModels");
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            informationExamination.ID = id;
-            List<Detail_HoHap> detail_HoHaps = db.Detail_HoHap.Where(p => p.InformationExamination_ID == id).ToList();
-            multiplesModel.InformationExamination = informationExamination;
+            List<Detail_HoHap> detail_HoHaps = db.Detail_HoHap.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             multiplesModel.Detail_HoHaps = detail_HoHaps;
             return PartialView("_BillCheck", multiplesModel);
         }

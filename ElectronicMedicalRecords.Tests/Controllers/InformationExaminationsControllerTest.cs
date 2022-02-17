@@ -80,12 +80,12 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void DetailIE()
         {
-            var info = db.InformationExaminations.First();
-            var result = controller.DetailIE(info.ID) as PartialViewResult;
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var result = controller.DetailIE(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_DetailsIE", result.ViewName);
 
-            var resultError = controller.DetailIE(0) as HttpNotFoundResult;
+            var resultError = controller.DetailIE(multiplesModel) as HttpNotFoundResult;
             Assert.IsNotNull(resultError);
         }
 
@@ -158,13 +158,13 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 HttpContext = fakeHttpContext,
             };
             controller.ControllerContext = controllerContext;
-            var info = db.InformationExaminations.First();
-            var result = controller.BillCheck(info.ID) as PartialViewResult;
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var result = controller.BillCheck(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_BillCheck", result.ViewName);
 
-            var resultError = controller.BillCheck(0) as HttpNotFoundResult;
-            Assert.IsNotNull(resultError);
+            //var resultError = controller.BillCheck(0) as HttpNotFoundResult;
+            //Assert.IsNotNull(resultError);
         }
 
         [TestMethod]
@@ -255,16 +255,16 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 HttpContext = fakeHttpContext,
             };
             controller.ControllerContext = controllerContext;
-            var info = db.InformationExaminations.AsNoTracking().First();
+            MultiplesModel multiplesModel = new MultiplesModel();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(info.ID) as PartialViewResult;
+                var result = controller.Edit(multiplesModel) as PartialViewResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("_Edit", result.ViewName);
             }
             using (var scope = new TransactionScope())
             {
-                var resultError = controller.Edit(0) as HttpNotFoundResult;
+                var resultError = controller.Edit(multiplesModel) as HttpNotFoundResult;
                 Assert.IsNotNull(resultError);
             }
         }

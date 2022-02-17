@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/bootstrap-icons/bootstrap-icons.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.css")">
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/app.css")">
     <link href="@Url.Content("~/Areas/Admin/assets/css/bootstrap-tagsinput.css")" rel="stylesheet" />
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/css/customize.css")" />
@@ -494,9 +493,6 @@
     </div>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/jquery/jquery.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/dayjs/dayjs.min.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/js/pages/ui-apexchart.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/js/pages/dashboard.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/bootstrap.bundle.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js")"></script>
@@ -525,88 +521,6 @@
                 }
             })
         })
-    </script>
-
-    <script type="text/javascript">
-    function getPatient() {
-        $('#tableLoadPatient').DataTable({
-        "order": [],
-        "ajax": {
-            "url": "@Url.Action("GetData", "Patients")",
-            "type": "GET",
-            "datatype": "json",
-        },
-        "columns": [
-            {
-                "data": "MaBN",
-            },
-            {
-                "data": "Name",
-            },
-            {
-                "data": "BirthDate",
-            },
-            {
-                "data": "Address",
-            },
-            {
-                "data": "Gender",
-            },
-            {
-                "className": "w85",
-                "data": null,
-                "render": function (data, type, row) {
-                    var hrefCreateOldPatient = '@Url.Action("CreateOldPatient", "MultipleModels")/' + data.ID;
-                    var hrefEditPatient = '@Url.Action("Edit","MultipleModels")/' + data.ID;
-                    var hrefDetailPatient = '@Url.Action("Details","InformationExaminations")/' + data.ID;
-                    var hrefConfirmBill = '@Url.Action("BillExamination", "MultipleModels")/' + data.ID;
-                    var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
-                    return button;
-                },
-                "targets": 0,
-                "orderable": false,
-            }
-        ],
-        "language": {
-            "emptyTable": "No data available",
-            "oPaginate": {
-                sNext: '<i class="fa fa-chevron-right"></i>',
-                sPrevious: '<i class="fa fa-chevron-left"></i>',
-            },
-            "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-            "lengthMenu": "Hiển thị _MENU_ người",
-            "search": "Tìm kiếm:",
-        },
-        searching: false,
-        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
-            if (iDisplayIndex == 0) {
-            $.ajax({
-                type: "GET",
-                url: "@Url.Action("getPatientDangerous", "InformationExaminations")",
-                success: function (res) {
-                    $.each(res.data, function (index, value) {
-                        var td = $(`td:contains('${value.MaBN}')`);
-                        console.log(td.attr("style","color:red;font-weight:600"))
-                    })
-                }
-            })
-        }
-        }
-    })
-}
-    var notificationHubYTa = $.connection.notificationHubYTa;
-
-    notificationHubYTa.client.notifyPatient = function (message) {
-        if (message && message.toLowerCase() == "added") {
-            $('#tableLoadPatient').DataTable().ajax.reload();
-        }
-    }
-    $.connection.hub.start().done(function () {
-        getPatient();
-        /*console.log("Notification hub started Y Tá");*/
-    }).fail((e) => {
-        alert(e)
-    });
     </script>
 
     <script type="text/javascript">
@@ -766,41 +680,6 @@
     }
     </script>
 
-    <script type="text/javascript">
-        function updateUser() {
-            $.ajax({
-                type: "GET",
-                url: "@Url.Action("Status", "Users")",
-                success: function (res) {
-                    if (res.success) {
-                        $('.checkUserOnline').each((index, user) => {
-                            if (res.data.indexOf(user.innerText) != -1) {
-                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
-                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
-                            } else {
-                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
-                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
-                            }
-                        })
-                    }
-                    else {
-                        alert(res.responText)
-                    }
-                }
-            })
-        }
-
-        var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
-        $.connection.hub.start().done(function () {
-            updateUser();
-            /*console.log("Notification hub started User");*/
-            setInterval(() => {
-                updateUser();
-            }, 30000)
-        }).fail((e) => {
-            alert(e)
-        });
-    </script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)
 

@@ -248,4 +248,39 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        function updateUser() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("Status", "Users")",
+                success: function (res) {
+                    if (res.success) {
+                        $('.checkUserOnline').each((index, user) => {
+                            if (res.data.indexOf(user.innerText) != -1) {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
+                            } else {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
+                            }
+                        })
+                    }
+                    else {
+                        alert(res.responText)
+                    }
+                }
+            })
+        }
+
+        var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
+        $.connection.hub.start().done(function () {
+            updateUser();
+            /*console.log("Notification hub started User");*/
+            setInterval(() => {
+                updateUser();
+            }, 30000)
+        }).fail((e) => {
+            alert(e)
+        });
+    </script>
 }

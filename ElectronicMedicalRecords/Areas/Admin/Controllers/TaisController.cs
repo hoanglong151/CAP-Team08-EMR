@@ -20,19 +20,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.Tais.ToList());
         }
 
-        public ActionResult EditSelect(int id)
+        public ActionResult EditSelect(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var listDetailTai = db.Detail_Tai.Where(p => p.InformationExamination_ID == id).ToList();
-            var listTai = db.Tais.ToList();
+            var listDetailTai = db.Detail_Tai.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
+            var listTai = db.Tais.AsNoTracking().ToList();
             foreach (var item in listDetailTai)
             {
                 var changeSelect = listTai.FirstOrDefault(p => p.ID == item.Tai_ID);
                 changeSelect.ChiDinh = true;
             }
-            Clinical clinical = new Clinical();
-            clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
-            multiplesModel.Clinical = clinical;
             multiplesModel.Tai = listTai;
             return PartialView("_EditSelect", multiplesModel);
         }

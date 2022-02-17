@@ -40,6 +40,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_SanPhuKhoa.Add(detail_SanPhuKhoa);
                     db.SaveChanges();
                 }
+                if (checkExistDetail1.SanPhuKhoa.Dangerous == true)
+                {
+                    multiplesModel.InformationExamination.PatientStatus_ID = 44;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
             foreach (var item1 in listSanPhuKhoa)
             {
@@ -53,13 +59,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("CreateTest", "MultipleModels");
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            informationExamination.ID = id;
-            List<Detail_SanPhuKhoa> detail_SanPhuKhoas = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == id).ToList();
-            multiplesModel.InformationExamination = informationExamination;
+            List<Detail_SanPhuKhoa> detail_SanPhuKhoas = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             multiplesModel.Detail_SanPhuKhoas = detail_SanPhuKhoas;
             return PartialView("_BillCheck", multiplesModel);
         }

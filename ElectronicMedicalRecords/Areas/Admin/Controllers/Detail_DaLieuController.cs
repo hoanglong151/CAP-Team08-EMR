@@ -40,6 +40,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_DaLieu.Add(detail_DaLieu);
                     db.SaveChanges();
                 }
+                if (checkExistDetail1.DaLieu.Dangerous == true)
+                {
+                    multiplesModel.InformationExamination.PatientStatus_ID = 44;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
             foreach (var item1 in listDaLieu)
             {
@@ -53,13 +59,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("CreateTest", "MultipleModels");
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            informationExamination.ID = id;
-            List<Detail_DaLieu> detail_DaLieus = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == id).ToList();
-            multiplesModel.InformationExamination = informationExamination;
+            List<Detail_DaLieu> detail_DaLieus = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             multiplesModel.Detail_DaLieus = detail_DaLieus;
             return PartialView("_BillCheck", multiplesModel);
         }

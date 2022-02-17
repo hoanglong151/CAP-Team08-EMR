@@ -40,6 +40,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_RangHamMat.Add(detail_RangHamMat);
                     db.SaveChanges();
                 }
+                if (checkExistDetail1.RangHamMat.Dangerous == true)
+                {
+                    multiplesModel.InformationExamination.PatientStatus_ID = 44;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
             foreach (var item1 in listRangHamMat)
             {
@@ -53,16 +59,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("CreateTest", "MultipleModels");
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            Clinical clinical = new Clinical();
-            informationExamination.ID = id;
-            List<Detail_RangHamMat> detail_RangHamMats = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == id).ToList();
-            clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
-            multiplesModel.InformationExamination = informationExamination;
-            multiplesModel.Clinical = clinical;
+            List<Detail_RangHamMat> detail_RangHamMats = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             multiplesModel.Detail_RangHamMats = detail_RangHamMats;
             return PartialView("_BillCheck", multiplesModel);
         }

@@ -31,12 +31,12 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestDetailIE()
         {
-            var result = controller.DetailIE(0) as HttpNotFoundResult;
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var result = controller.DetailIE(multiplesModel) as HttpNotFoundResult;
             Assert.IsNotNull(result);
 
-            var patient = db.Patients.FirstOrDefault();
-            var resultPatient = controller.DetailIE(patient.ID) as PartialViewResult;
-            Assert.IsNotNull(patient);
+            var resultPatient = controller.DetailIE(multiplesModel) as PartialViewResult;
+            Assert.IsNotNull(multiplesModel);
             Assert.AreEqual("_DetailIE", resultPatient.ViewName);
         }
 
@@ -140,8 +140,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestEditG()
         {
-            var patient = db.Patients.First();
-            var resultPatient = controller.Edit(patient.ID) as PartialViewResult;
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var resultPatient = controller.Edit(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(resultPatient);
             Assert.AreEqual("_Edit", resultPatient.ViewName);
         }

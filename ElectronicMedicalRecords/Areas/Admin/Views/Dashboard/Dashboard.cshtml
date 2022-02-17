@@ -4,6 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
 }
+<link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.css")">
 <style>
     .statusUser {
         width: 4rem;
@@ -20,23 +21,22 @@
         right: 5px;
     }
 
-    .LoggedInUserBox.online {
-        background-color: green;
-    }
+        .LoggedInUserBox.online {
+            background-color: green;
+        }
 
-    .LoggedInUserBox.offline {
-        background-color: red;
-    }
+        .LoggedInUserBox.offline {
+            background-color: red;
+        }
 
     .card {
         box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     }
 
-    .text-d{
+    .text-d {
         font-size: 30px;
         font-weight: 600;
     }
-
 </style>
 <header class="mb-3">
     <a href="#" class="burger-btn d-block d-xl-none">
@@ -240,82 +240,121 @@
         </div>
     </section>
 </div>
-<script>
-    var barOptions = {
-        series: [
-            {
-                name: "Khám",
-                data: [],
+@section scripts{
+    <script>
+        var barOptions = {
+            series: [
+                {
+                    name: "Khám",
+                    data: [],
+                },
+                {
+                    name: "Thuốc",
+                    data: [],
+                },
+                {
+                    name: "Xét Nghiệm",
+                    data: [],
+                },
+            ],
+            chart: {
+                type: "bar",
+                height: 350,
             },
-            {
-                name: "Thuốc",
-                data: [],
-            },
-            {
-                name: "Xét Nghiệm",
-                data: [],
-            },
-        ],
-        chart: {
-            type: "bar",
-            height: 350,
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: "55%",
-                endingShape: "rounded",
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ["transparent"],
-        },
-        xaxis: {
-            categories: [],
-        },
-        yaxis: {
-            title: {
-                text: "$ (VND)",
-            },
-        },
-        fill: {
-            opacity: 1,
-        },
-        tooltip: {
-            y: {
-                formatter: function (val) {
-                    return "$ " + val + " VND";
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: "55%",
+                    endingShape: "rounded",
                 },
             },
-        },
-    };
-</script>
-
-<script>
-    var areaOptions = {
-        series: [
-            {
-                name: "Khám",
-                data: [],
+            dataLabels: {
+                enabled: false,
             },
-        ],
-        chart: {
-            height: 350,
-            type: "area",
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            curve: "smooth",
-        },
-        xaxis: {
-            categories: [],
-        },
-    };
-</script>
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ["transparent"],
+            },
+            xaxis: {
+                categories: [],
+            },
+            yaxis: {
+                title: {
+                    text: "$ (VND)",
+                },
+            },
+            fill: {
+                opacity: 1,
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return "$ " + val + " VND";
+                    },
+                },
+            },
+        };
+    </script>
+
+    <script>
+        var areaOptions = {
+            series: [
+                {
+                    name: "Khám",
+                    data: [],
+                },
+            ],
+            chart: {
+                height: 350,
+                type: "area",
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: "smooth",
+            },
+            xaxis: {
+                categories: [],
+            },
+        };
+    </script>
+    <script type="text/javascript">
+        function updateUser() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("Status", "Users")",
+                success: function (res) {
+                    if (res.success) {
+                        $('.checkUserOnline').each((index, user) => {
+                            if (res.data.indexOf(user.innerText) != -1) {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
+                            } else {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
+                            }
+                        })
+                    }
+                    else {
+                        alert(res.responText)
+                    }
+                }
+            })
+        }
+
+        var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
+        $.connection.hub.start().done(function () {
+            updateUser();
+            /*console.log("Notification hub started User");*/
+            setInterval(() => {
+                updateUser();
+            }, 30000)
+        }).fail((e) => {
+            alert(e)
+        });
+    </script>
+    <script src="@Url.Content("~/Areas/Admin/assets/vendors/apexcharts/apexcharts.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/assets/js/pages/ui-apexchart.js")"></script>
+}
