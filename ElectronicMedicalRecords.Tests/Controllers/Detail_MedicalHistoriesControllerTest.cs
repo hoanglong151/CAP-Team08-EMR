@@ -50,10 +50,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void BillCheck()
         {
-            var info = db.Detail_MedicalHistory.AsNoTracking().First();
+            MultiplesModel multiplesModel = new MultiplesModel();
             using (var scope = new TransactionScope())
             {
-                var result = controller.BillCheck(info.ID) as PartialViewResult;
+                var result = controller.BillCheck(multiplesModel) as PartialViewResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("_BillCheck", result.ViewName);
             }

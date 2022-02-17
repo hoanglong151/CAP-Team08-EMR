@@ -38,8 +38,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         {
             using (var scope = new TransactionScope())
             {
-                var info = db.InformationExaminations.First();
-                var result = controller.DetailIE(info.ID) as PartialViewResult;
+                MultiplesModel multiplesModel = new MultiplesModel();
+                var result = controller.DetailIE(multiplesModel) as PartialViewResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("_DetailIE", result.ViewName);
             }
@@ -48,10 +48,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void BillCheck()
         {
-            var info = db.InformationExaminations.AsNoTracking().First();
+            MultiplesModel multiplesModel = new MultiplesModel();
             using (var scope = new TransactionScope())
             {
-                var result = controller.BillCheck(info.ID) as PartialViewResult;
+                var result = controller.BillCheck(multiplesModel) as PartialViewResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("_BillCheck", result.ViewName);
             }
@@ -60,10 +60,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void EditG()
         {
-            var info = db.InformationExaminations.AsNoTracking().First();
+            MultiplesModel multiplesModel = new MultiplesModel();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(info.ID) as PartialViewResult;
+                var result = controller.Edit(multiplesModel) as PartialViewResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("_Edit", result.ViewName);
             }
@@ -93,7 +93,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             multiplesModel.Detail_CTMaus = CTMauList;
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(multiplesModel) as Task<ActionResult>;
+                var result = controller.EditPost(multiplesModel) as Task<ActionResult>;
                 Assert.IsNotNull(result);
             }
         }

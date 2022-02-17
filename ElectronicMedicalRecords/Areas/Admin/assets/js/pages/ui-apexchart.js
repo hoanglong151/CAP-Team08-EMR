@@ -2,7 +2,7 @@ var bar = new ApexCharts(document.querySelector("#bar"), barOptions);
 var area = new ApexCharts(document.querySelector("#area"), areaOptions);
 var url = 'http://cntttest.vanlanguni.edu.vn:18080/CP24Team08/Admin/Dashboard/GetData';
 var urlLocal = 'https://localhost:44328/Admin/Dashboard/GetData';
-$.getJSON(url, function (res) {
+$.getJSON(urlLocal, function (res) {
 	bar.updateOptions({
 		series: [{
 			data: res.priceExaminationInfo
@@ -19,7 +19,7 @@ $.getJSON(url, function (res) {
 	});
 })
 
-$.getJSON(url, function (res) {
+$.getJSON(urlLocal, function (res) {
 	area.updateOptions({
 		series: [{
 			data: res.numUser

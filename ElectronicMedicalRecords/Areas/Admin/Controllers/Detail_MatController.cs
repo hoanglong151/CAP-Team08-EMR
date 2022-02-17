@@ -40,6 +40,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_Mat.Add(detail_Mat);
                     db.SaveChanges();
                 }
+                if (checkExistDetail1.Mat.Dangerous == true)
+                {
+                    multiplesModel.InformationExamination.PatientStatus_ID = 44;
+                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
             foreach (var item1 in listMat)
             {
@@ -53,15 +59,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return RedirectToAction("CreateTest", "MultipleModels");
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = new InformationExamination();
-            Clinical clinical = new Clinical();
-            informationExamination.ID = id;
-            List<Detail_Mat> detail_Mats = db.Detail_Mat.Where(p => p.InformationExamination_ID == id).ToList();
-            clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
-            multiplesModel.InformationExamination = informationExamination;
+            List<Detail_Mat> detail_Mats = db.Detail_Mat.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
+            Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
             multiplesModel.Clinical = clinical;
             multiplesModel.Detail_Mats = detail_Mats;
             return PartialView("_BillCheck", multiplesModel);

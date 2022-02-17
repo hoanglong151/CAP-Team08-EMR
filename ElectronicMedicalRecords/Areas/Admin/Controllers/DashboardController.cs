@@ -1,4 +1,5 @@
 ﻿using ElectronicMedicalRecords.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Dashboard
         public ActionResult Dashboard()
         {
+            var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+            List<string> listUser = new List<string>();
+            if (User.Identity.IsAuthenticated && usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
+            {
+                usersOnline.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
+                if (User.Identity.IsAuthenticated)
+                {
+                    listUser.Add(User.Identity.GetUserId());
+                }
+            }
             var patients = db.Patients.ToList();
             var allUsers = db.AspNetUsers.ToList();
             var userList = db.Users.Where(p => p.ActiveAccount == true).ToList();
@@ -35,7 +46,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             dashboardModel.patients = patients;
             dashboardModel.users = userOnline;
             dashboardModel.userList = userList;
-            dashboardModel.listUsersOnline = (List<string>)Session["ListUsersOnline"];
+            if((List<string>)Session["ListUsersOnline"] != null)
+            {
+                dashboardModel.listUsersOnline = (List<string>)Session["ListUsersOnline"];
+            }
+            else
+            {
+                dashboardModel.listUsersOnline = listUser;
+            }
             return View(dashboardModel);
         }
 

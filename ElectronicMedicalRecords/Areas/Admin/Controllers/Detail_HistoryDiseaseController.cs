@@ -46,14 +46,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIE", multiplesModel);
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            Patient patient = new Patient();
-            patient.ID = id;
-            List<Detail_HistoryDisease> detail_HistoryDiseases1 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id && p.LevelFamily == "Ông/Bà").ToList();
-            List<Detail_HistoryDisease> detail_HistoryDiseases2 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id && p.LevelFamily == "Cha/Mẹ").ToList();
-            List<Detail_HistoryDisease> detail_HistoryDiseases3 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id && p.LevelFamily == "Anh/Chị em").ToList();
+            List<Detail_HistoryDisease> detail_HistoryDiseases1 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == multiplesModel.Patient.ID && p.LevelFamily == "Ông/Bà").AsNoTracking().ToList();
+            List<Detail_HistoryDisease> detail_HistoryDiseases2 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == multiplesModel.Patient.ID && p.LevelFamily == "Cha/Mẹ").AsNoTracking().ToList();
+            List<Detail_HistoryDisease> detail_HistoryDiseases3 = db.Detail_HistoryDisease.Where(p => p.Patient_ID == multiplesModel.Patient.ID && p.LevelFamily == "Anh/Chị em").AsNoTracking().ToList();
             multiplesModel.Detail_HistoryDiseases1 = detail_HistoryDiseases1;
             multiplesModel.Detail_HistoryDiseases2 = detail_HistoryDiseases2;
             multiplesModel.Detail_HistoryDiseases3 = detail_HistoryDiseases3;

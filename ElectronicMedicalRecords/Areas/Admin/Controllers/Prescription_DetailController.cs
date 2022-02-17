@@ -83,24 +83,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExaminations);
         }
 
-        public ActionResult DetailIE(int id)
+        public ActionResult DetailIE(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var info = db.InformationExaminations.Find(id);
-            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
-            multiplesModel.InformationExamination = info;
+            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
             multiplesModel.Detail_DiagnosticsCategory = detail_dignosticCategory;
             return PartialView("_DetailIE", multiplesModel);
         }
 
-        public ActionResult DetailIERead(int id)
+        public ActionResult DetailIERead(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var info = db.InformationExaminations.Find(id);
-            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
-            var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
+            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+            var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
             multiplesModel.Clinical = clinical;
-            multiplesModel.InformationExamination = info;
             multiplesModel.Detail_DiagnosticsCategory = detail_dignosticCategory;
             return PartialView("_DetailIERead", multiplesModel);
         }
@@ -185,16 +179,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/Prescription_Detail/Edit/5
-        public ActionResult EditNoButton(int? id)
+        public ActionResult EditNoButton(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             var listDiagnostic = db.DiagnosticsCategories.ToList();
             ViewBag.NameDiagnostic = listDiagnostic;
             ViewBag.NameMedication = db.Medications.ToList();
-            if (id != null)
+            if (multiplesModel.InformationExamination.ID != 0)
             {
-                var info = db.InformationExaminations.Find(id);
-                var diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+                var info = db.InformationExaminations.Find(multiplesModel.InformationExamination.ID);
+                var diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
                 if (diagnostic != null)
                 {
                     multiplesModel.Detail_DiagnosticsCategory = diagnostic;

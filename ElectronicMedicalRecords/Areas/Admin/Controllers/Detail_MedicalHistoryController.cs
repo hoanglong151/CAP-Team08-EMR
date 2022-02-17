@@ -46,12 +46,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIE", multiplesModel);
         }
 
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            Patient patient = new Patient();
-            patient.ID = id;
-            List<Detail_MedicalHistory> detail_MedicalHistories = db.Detail_MedicalHistory.Where(p => p.Patient_ID == id).ToList();
+            List<Detail_MedicalHistory> detail_MedicalHistories = db.Detail_MedicalHistory.Where(p => p.Patient_ID == multiplesModel.Patient.ID).AsNoTracking().ToList();
             multiplesModel.Detail_MedicalHistories = detail_MedicalHistories;
             return PartialView("_BillCheck", multiplesModel);
         }

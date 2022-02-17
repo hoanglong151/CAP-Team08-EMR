@@ -116,58 +116,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public async Task<ActionResult> getPatientDangerous()
         {
-            NotificationComponentBS NC = new NotificationComponentBS();
-            var list = NC.ReturnResultTest();
-            NotificationComponentKTV NCNoti = new NotificationComponentKTV();
-            var listNotify = NCNoti.GetInformationExamination();
-            var newList = list.Union(listNotify).ToList();
-            List<object> Noti = new List<object>();
-            foreach (var item1 in newList)
-            {
-                var detail_TuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_HoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_TieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_ThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_CoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_ThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_TamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Tai = db.Detail_Tai.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Mui = db.Detail_Mui.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Hong = db.Detail_Hong.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-
-                var checkDangerousTuanHoan = detail_TuanHoan.Any(p => p.TuanHoan.Dangerous == true);
-                var checkDangerousHoHap = detail_HoHap.Any(p => p.HoHap.Dangerous == true);
-                var checkDangerousTieuHoa = detail_TieuHoa.Any(p => p.TieuHoa.Dangerous == true);
-                var checkDangerousThanTietNieu = detail_ThanTietNieu.Any(p => p.ThanTietNieu.Dangerous == true);
-                var checkDangerousCoXuongKhop = detail_CoXuongKhop.Any(p => p.CoXuongKhop.Dangerous == true);
-                var checkDangerousThanKinh = detail_ThanKinh.Any(p => p.ThanKinh.Dangerous == true);
-                var checkDangerousTamThan = detail_TamThan.Any(p => p.TamThan.Dangerous == true);
-                var checkDangerousNgoaiKhoa = detail_NgoaiKhoa.Any(p => p.NgoaiKhoa.Dangerous == true);
-                var checkDangerousSanPhuKhoa = detail_SanPhuKhoa.Any(p => p.SanPhuKhoa.Dangerous == true);
-                var checkDangerousMat = detail_Mat.Any(p => p.Mat.Dangerous == true);
-                var checkDangerousTai = detail_Tai.Any(p => p.Tai.Dangerous == true);
-                var checkDangerousMui = detail_Mui.Any(p => p.Mui.Dangerous == true);
-                var checkDangerousHong = detail_Hong.Any(p => p.Hong.Dangerous == true);
-                var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
-                var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
-
-                var checkResult = false;
-                if (checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
-                    || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true
-                    || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousMui == true
-                    || checkDangerousHong == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
-                {
-                    checkResult = true;
-                    item1.Patient = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
-                    var NotiResult = new { item1.Patient.MaBN, item1.ID, checkResult };
-                    Noti.Add(NotiResult);
-                }
-            }
+            var Noti = Session["Noti"];
             return await Task.Run(() => Json(new { data = Noti }, JsonRequestBehavior.AllowGet));
         }
 
@@ -309,23 +258,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View("Details", checkID);
         }
 
-        // GET: Admin/InformationExaminations/Edit/5
-        public ActionResult DetailIE(int id)
+        // GET: Admin/InformationExaminations/DetailIE/5
+        public ActionResult DetailIE(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            if (informationExamination == null)
-            {
-                return HttpNotFound();
-            }
-
-            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            var UserName = db.Users.FirstOrDefault(p => p.ID == multiplesModel.InformationExamination.User_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
             if(UserName != null)
             {
                 ViewBag.UserName = UserName.Name;
             }
-            multiplesModel.InformationExamination = informationExamination;
             return PartialView("_DetailsIE", multiplesModel);
         }
 
@@ -427,13 +368,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/InformationExaminations/BillCheck/5
-        public ActionResult BillCheck(int id)
+        public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
-            multiplesModel.InformationExamination = informationExamination;
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
             return PartialView("_BillCheck", multiplesModel);
         }
 
@@ -502,22 +439,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/InformationExaminations/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
-            if (informationExamination == null)
-            {
-                return HttpNotFound();
-            }
+            Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
             var UserID = User.Identity.GetUserId();
             var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
             multiplesModel.Clinical = clinical;
-            multiplesModel.InformationExamination = informationExamination;
             return PartialView("_Edit",multiplesModel);
         }
 

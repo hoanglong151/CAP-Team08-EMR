@@ -20,11 +20,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(db.NgoaiKhoas.ToList());
         }
 
-        public ActionResult EditSelect(int id)
+        public ActionResult EditSelect(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var listDetailNgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == id).ToList();
-            var listNgoaiKhoa = db.NgoaiKhoas.ToList();
+            var listDetailNgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
+            var listNgoaiKhoa = db.NgoaiKhoas.AsNoTracking().ToList();
             foreach (var item in listDetailNgoaiKhoa)
             {
                 var changeSelect = listNgoaiKhoa.FirstOrDefault(p => p.ID == item.NgoaiKhoa_ID);
