@@ -14,10 +14,10 @@ using System.Collections;
 namespace ElectronicMedicalRecords.Tests.Controllers
 {
     [TestClass]
-    public class HistoryDiseaseControllerTest
+    public class MuisControllerTest
     {
         CP24Team08Entities db = new CP24Team08Entities();
-        HistoryDiseasesController controller = new HistoryDiseasesController();
+        MuisController controller = new MuisController();
 
         [TestMethod]
         public void TestIndex()
@@ -25,6 +25,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var list = controller.Index() as ViewResult;
             Assert.IsNotNull(list);
 
+            var model = list.Model as List<Mui>;
+            Assert.IsNotNull(model);
+
+            Assert.AreEqual(db.Muis.Count(), model.Count);
         }
 
         [TestMethod]
@@ -33,33 +37,14 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var getData = controller.GetData() as JsonResult;
             Assert.IsNotNull(getData);
             dynamic check = getData.Data;
-            Assert.AreEqual(db.HistoryDiseases.Count(), check.data.Count);
+            Assert.AreEqual(db.Muis.Count(), check.data.Count);
         }
 
         [TestMethod]
-        public void TestCreateOldPaitent()
-        {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            var patient = db.Patients.FirstOrDefault();
-            multiplesModel.Patient = patient;
-            var result = controller.CreateOldPatient(multiplesModel) as PartialViewResult;
-            Assert.IsNotNull(result);
-
-        }
-
-        [TestMethod]
-        public void TestCreateGet()
-        {
-            var result = controller.Create() as PartialViewResult;
-            Assert.IsNotNull(result);
-            Assert.AreEqual("_Create", result.ViewName);
-
-        }
-        [TestMethod]
-        public void TestCreatePost()
+        public void TestCreateP()
         {
             var rand = new Random();
-            var history = new HistoryDisease
+            var mui = new Mui
             {
                 ChiDinh = false,
                 Name = rand.ToString(),
@@ -68,63 +53,64 @@ namespace ElectronicMedicalRecords.Tests.Controllers
 
             using (var scope = new TransactionScope())
             {
-                var result = controller.Create(history) as JsonResult;
+                var result = controller.Create(mui) as JsonResult;
                 Assert.IsNotNull(result);
             }
 
-            history.Name = "Béo Phì";
+            mui.Name = "Viêm mũi";
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
-                var result1 = controller.Create(history) as JsonResult;
+                var result1 = controller.Create(mui) as JsonResult;
                 Assert.IsNotNull(result1);
 
                 dynamic noti = result1.Data;
                 Assert.AreEqual(false, noti.success);
-                Assert.AreEqual("Bệnh Tiền Sử đã có trong danh sách", noti.responseText);
+                Assert.AreEqual("Mũi đã có trong danh sách", noti.responseText);
             }
 
-            history.Name = null;
+            mui.Name = null;
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
                 controller.ModelState.AddModelError("", "Error Message");
-                var result2 = controller.Create(history) as ViewResult;
+                var result2 = controller.Create(mui) as ViewResult;
                 Assert.IsNotNull(result2);
             }
         }
+
         [TestMethod]
-        public void TestEditGet()
+        public void TestEditG()
         {
             var result = controller.Edit(0) as HttpNotFoundResult;
             Assert.IsNotNull(result);
 
-            var history = db.HistoryDiseases.First();
-            var result1 = controller.Edit(history.ID) as JsonResult;
+            var mui = db.Muis.First();
+            var result1 = controller.Edit(mui.ID) as JsonResult;
             Assert.IsNotNull(result1);
             dynamic data = result1.Data;
             Assert.IsNotNull(data.data);
         }
 
         [TestMethod]
-        public void TestEditPost()
+        public void TestEditP()
         {
             var rand = new Random();
-            var history = db.HistoryDiseases.FirstOrDefault();
-            history.Name = "Thiếu Máu";
+            var mui = db.Muis.FirstOrDefault();
+            mui.Name = "Viêm xoang";
             using (var scope = new TransactionScope())
             {
-                var result1 = controller.Edit(history) as JsonResult;
+                var result1 = controller.Edit(mui) as JsonResult;
                 Assert.IsNotNull(result1);
                 dynamic data = result1.Data;
                 Assert.AreEqual(false, data.success);
-                Assert.AreEqual("Bệnh Tiền Sử đã có trong danh sách", data.responseText);
+                Assert.AreEqual("Mũi đã có trong danh sách", data.responseText);
             }
-            history.Name = rand.ToString();
+            mui.Name = rand.ToString();
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(history) as JsonResult;
+                var result = controller.Edit(mui) as JsonResult;
                 Assert.IsNotNull(result);
                 dynamic data = result.Data;
                 Assert.AreEqual(true, data.success);
@@ -133,7 +119,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             using (var scope = new TransactionScope())
             {
                 controller.ModelState.AddModelError("", "Error Message");
-                var result2 = controller.Edit(history) as ViewResult;
+                var result2 = controller.Edit(mui) as ViewResult;
                 Assert.IsNotNull(result2);
             }
         }
@@ -143,23 +129,36 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.Delete(0) as HttpNotFoundResult;
             Assert.IsNotNull(result);
 
-            var history = db.HistoryDiseases.First();
-            var result1 = controller.Delete(history.ID) as JsonResult;
+            var mui = db.Muis.First();
+            var result1 = controller.Delete(mui.ID) as JsonResult;
             Assert.IsNotNull(result1);
 
             dynamic noti = result1.Data;
             Assert.IsNotNull(noti.data);
         }
-        // [TestMethod]
-        //public void TestDeletePost()
-        //{
-        //    var history = db.HistoryDiseases.AsNoTracking().First();
-        //    using (var scope = new TransactionScope())
-        //    {
-        //        var result = controller.DeleteConfirmed(history.ID) as RedirectToRouteResult;
-        //        Assert.IsNotNull(result);
-        //        Assert.AreEqual("Index", result.RouteValues["action"]);
-        //    }
-        //}
+
+        [TestMethod]
+        public void TestCreateOldPaitent()
+        {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var result = controller.CreateOldPatient(multiplesModel) as PartialViewResult;
+            Assert.IsNotNull(result);
+
+        }
+        [TestMethod]
+        public void TestDeleteP()
+        {
+            var mui = db.Muis.First();
+            mui.ID = 1;
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.DeleteConfirmed(mui.ID) as JsonResult;
+                Assert.IsNotNull(result);
+
+                dynamic noti = result.Data;
+                Assert.AreEqual(true, noti.success);
+              //  Assert.AreEqual("Mũi này đã được sử dụng. Bạn không thể xóa nó!", noti.responseText);
+            }
+        }
     }
 }
