@@ -187,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DashboardControllerTest.cs" />
+    <Compile Include="Controllers\HoHapsControllerTest.cs" />
     <Compile Include="Controllers\TaisControllerTest.cs" />
     <Compile Include="Controllers\MuisControllerTest.cs" />
     <Compile Include="Controllers\MatsControllerTest.cs" />
@@ -195,6 +196,9 @@
     <Compile Include="Controllers\HistoryDiseaseControllerTest.cs" />
     <Compile Include="Controllers\MedicalHistoriesControllerTest.cs" />
     <Compile Include="Controllers\Detail_MedicalHistoriesControllerTest.cs" />
+    <Compile Include="Controllers\ThanTietNieuxControllerTest.cs" />
+    <Compile Include="Controllers\TieuHoasControllerTest.cs" />
+    <Compile Include="Controllers\TuanHoansControllerTest.cs" />
     <Compile Include="Controllers\WardsControllerTest.cs" />
     <Compile Include="Controllers\Prescription_DetailControllerTest.cs" />
     <Compile Include="Controllers\MultipleModelsControllerTest.cs" />
