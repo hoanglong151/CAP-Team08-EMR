@@ -186,7 +186,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CoXuongKhopsControllerTest.cs" />
     <Compile Include="Controllers\DashboardControllerTest.cs" />
+    <Compile Include="Controllers\NgoaiKhoasControllerTest.cs" />
     <Compile Include="Controllers\TaisControllerTest.cs" />
     <Compile Include="Controllers\MuisControllerTest.cs" />
     <Compile Include="Controllers\MatsControllerTest.cs" />
@@ -195,6 +197,8 @@
     <Compile Include="Controllers\HistoryDiseaseControllerTest.cs" />
     <Compile Include="Controllers\MedicalHistoriesControllerTest.cs" />
     <Compile Include="Controllers\Detail_MedicalHistoriesControllerTest.cs" />
+    <Compile Include="Controllers\TamThansControllerTest.cs" />
+    <Compile Include="Controllers\ThanKinhsControllerTest.cs" />
     <Compile Include="Controllers\WardsControllerTest.cs" />
     <Compile Include="Controllers\Prescription_DetailControllerTest.cs" />
     <Compile Include="Controllers\MultipleModelsControllerTest.cs" />

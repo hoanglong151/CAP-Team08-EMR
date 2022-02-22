@@ -54,7 +54,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public string ValidateForm(TamThan tamThan)
         {
             string text = "";
-            var checkExist = db.TieuHoas.FirstOrDefault(e => e.Name == tamThan.Name);
+            var checkExist = db.TamThans.FirstOrDefault(e => e.Name == tamThan.Name);
             if (checkExist != null && tamThan.Name != null)
             {
                 text = "Tâm Thần đã có trong danh sách";
