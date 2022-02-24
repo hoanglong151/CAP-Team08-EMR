@@ -250,12 +250,13 @@
             "search": "Tìm kiếm:",
         },
         searching: false,
-        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
             if (iDisplayIndex == 0) {
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("getPatientDangerous", "InformationExaminations")",
                 success: function (res) {
+                console.log("OK", res)
                     $.each(res.data, function (index, value) {
                         var td = $(`td:contains('${value}')`);
                         td.attr("style","color:red;font-weight:600")

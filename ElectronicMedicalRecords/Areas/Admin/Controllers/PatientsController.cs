@@ -66,9 +66,37 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 List<Patient> patientlist1 = (List<Patient>)TempData["Patient"];
                 List<string> Noti = new List<string>();
+                List<InformationExamination> listInfo = new List<InformationExamination>();
                 foreach (var item in patientlist)
                 {
                     item.Gender = db.Genders.First(p => p.ID == item.Gender_ID);
+                    var getDangerPatient = db.InformationExaminations.FirstOrDefault(p => p.PatientStatus_ID == 44 && p.Patient_ID == item.ID);
+                    if(getDangerPatient != null)
+                    {
+                        listInfo.Add(getDangerPatient);
+                    }
+                }
+                if(listInfo != null) {
+                    foreach (var info in listInfo)
+                    {
+                        info.Patient = db.Patients.FirstOrDefault(p => p.ID == info.Patient_ID);
+                        if (!Noti.Contains(info.Patient.MaBN))
+                        {
+                            Noti.Add(info.Patient.MaBN);
+                        }
+                    }
+                }
+                else
+                {
+                    listInfo = db.InformationExaminations.Where(p => p.PatientStatus_ID == 44).AsNoTracking().ToList();
+                    foreach (var info in listInfo)
+                    {
+                        info.Patient = db.Patients.FirstOrDefault(p => p.ID == info.Patient_ID);
+                        if (!Noti.Contains(info.Patient.MaBN))
+                        {
+                            Noti.Add(info.Patient.MaBN);
+                        }
+                    }
                 }
                 var listPatient1 = patientlist1.Select(s => new
                 {
@@ -105,7 +133,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var gender = db.Genders.Find(multiplesModel.Patient.Gender_ID);
             var doctor = db.Users.Find(multiplesModel.InformationExamination.User_ID);
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
-            multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID);
+            if(multiplesModel.Detail_DiagnosticsCategory != null)
+            {
+                multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory = db.DiagnosticsCategories.FirstOrDefault(p => p.ID == multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID);
+            }
             multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
             multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.Gender = gender.Gender1;
@@ -262,21 +293,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIE", multiplesModel);
         }
 
-        public ActionResult DetailIERead(int id)
+        public ActionResult DetailIERead(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
-            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
-            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
-            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
-            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
-            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
-            multiplesModel.Patient = patient;
+            ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", multiplesModel.Patient.Gender_ID);
+            ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", multiplesModel.Patient.HomeTown_ID);
+            ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", multiplesModel.Patient.Nation_ID);
+            ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", multiplesModel.Patient.Nation1_ID);
+            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", multiplesModel.Patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", multiplesModel.Patient.Ward_ID);
             return PartialView("_DetailIERead", multiplesModel);
         }
 

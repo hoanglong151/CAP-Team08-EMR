@@ -1153,7 +1153,6 @@
     <Content Include="Areas\Admin\assets\js\bootstrap.bundle.min.js" />
     <Content Include="Areas\Admin\assets\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\assets\js\extensions\rater-js.js" />
-    <Content Include="Areas\Admin\assets\js\extensions\sweetalert2.js" />
     <Content Include="Areas\Admin\assets\js\extensions\toastify.js" />
     <Content Include="Areas\Admin\assets\js\main.js" />
     <Content Include="Areas\Admin\assets\js\pages\dashboard.js" />

@@ -40,7 +40,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_RangHamMat.Add(detail_RangHamMat);
                     db.SaveChanges();
                 }
-                if (checkExistDetail1.RangHamMat.Dangerous == true)
+                if (item.Dangerous == true)
                 {
                     multiplesModel.InformationExamination.PatientStatus_ID = 44;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;

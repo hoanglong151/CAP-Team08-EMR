@@ -1751,7 +1751,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
                 Detail_HistoryDisease detail_HistoryDisease = new Detail_HistoryDisease();
                 patientsController.CreateOldPatient(multiplesModel.Patient);
-                informationExaminationsController.CreateOldPatient(multiplesModel);
+                informationExaminationsController.CreateOldPatientPost(multiplesModel);
                 detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
                 detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
@@ -1916,6 +1916,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             var InformationExamination = db.InformationExaminations.Find(id);
             var patient = db.Patients.FirstOrDefault(p => p.ID == InformationExamination.Patient_ID);
+            var details_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+            multiplesModel.Detail_DiagnosticsCategory = details_diagnostic;
             multiplesModel.InformationExamination = InformationExamination;
             multiplesModel.Patient = patient;
             return View(multiplesModel);
@@ -1998,14 +2000,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
                 }
-                var CongThucMauEdit = Task.Run(() => detail_CTMauController.Edit(multiplesModel));
-                var SinhHoaMauEdit = Task.Run(() => detail_SinhHoaMauController.Edit(multiplesModel));
-                var DongMauEdit = Task.Run(() => detail_DongMauController.Edit(multiplesModel));
-                var NhomMauEdit = Task.Run(() => detail_NhomMauController.Edit(multiplesModel));
-                var UrineEdit = Task.Run(() => detail_UrineController.Edit(multiplesModel));
-                var ImmuneEdit = Task.Run(() => detail_ImmuneController.Edit(multiplesModel));
-                var AmniocenteEdit = Task.Run(() => detail_AmniocenteController.Edit(multiplesModel));
-                var ViSinhEdit = Task.Run(() => detail_ViSinhController.Edit(multiplesModel));
+                var CongThucMauEdit = Task.Run(() => detail_CTMauController.EditPost(multiplesModel));
+                var SinhHoaMauEdit = Task.Run(() => detail_SinhHoaMauController.EditPost(multiplesModel));
+                var DongMauEdit = Task.Run(() => detail_DongMauController.EditPost(multiplesModel));
+                var NhomMauEdit = Task.Run(() => detail_NhomMauController.EditPost(multiplesModel));
+                var UrineEdit = Task.Run(() => detail_UrineController.EditPost(multiplesModel));
+                var ImmuneEdit = Task.Run(() => detail_ImmuneController.EditPost(multiplesModel));
+                var AmniocenteEdit = Task.Run(() => detail_AmniocenteController.EditPost(multiplesModel));
+                var ViSinhEdit = Task.Run(() => detail_ViSinhController.EditPost(multiplesModel));
                 var ResultEdit = await Task.WhenAll(CongThucMauEdit, SinhHoaMauEdit, DongMauEdit, NhomMauEdit, UrineEdit, ImmuneEdit, AmniocenteEdit, ViSinhEdit);
                 clinicalsController.Edit(multiplesModel);
                 prescription_DetailController.Edit(multiplesModel);

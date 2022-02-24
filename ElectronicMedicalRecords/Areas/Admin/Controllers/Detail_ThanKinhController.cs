@@ -40,7 +40,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_ThanKinh.Add(detail_ThanKinh);
                     db.SaveChanges();
                 }
-                if (checkExistDetail1.ThanKinh.Dangerous == true)
+                if (item.Dangerous == true)
                 {
                     multiplesModel.InformationExamination.PatientStatus_ID = 44;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;

@@ -11,32 +11,16 @@
             <div class="col-md-12 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Chẩn Đoán</label>
-                    <select id="NameDiagnostic" name="InformationExamination.DiagnosticCategory_ID" class="choices form-select">
+                    <select id="NameDiagnostic" name="InformationExamination.DiagnosticCategory_ID" data-type="select-one" class="form-select">
                         @if (Model.Detail_DiagnosticsCategory == null)
                         {
                             <option value="">Vui Lòng Chọn Chẩn Đoán</option>
                         }
-                        @foreach (var diagnostic in ViewBag.NameDiagnostic)
+                        else
                         {
-                            if (Model.Detail_DiagnosticsCategory != null)
-                            {
-                                if (Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID == diagnostic.ID)
-                                {
-                                    <option selected value="@Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID">@Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</option>
-                                }
-                                else
-                                {
-                                    <option value="@diagnostic.ID">@diagnostic.Name</option>
-                                }
-                            }
-                            else
-                            {
-                                <option value="@diagnostic.ID">@diagnostic.Name</option>
-                            }
+                            <option selected value="@Model.Detail_DiagnosticsCategory.DiagnosticsCategory_ID">@Model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name</option>
                         }
                     </select>
-                    @*@Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.DiagnosticsCategory.Name, "", new { @class = "text-danger" })*@
-                    @*@Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })*@
                 </div>
                 @if (Model.Detail_DiagnosticsCategory != null)
                 {
@@ -53,7 +37,7 @@
                 }
                 else
                 {
-                    <input id="IDDiagnostic" name="Detail_DiagnosticsCategory.DiagnosticsCategory_ID" value="" type="number" hidden />
+                    <input id="Detail_DiagnosticsCategory_DiagnosticsCategory_ID" name="Detail_DiagnosticsCategory.DiagnosticsCategory_ID" value="" type="number" hidden />
                     <div class="col-md-12 col-12">
                         <div class="form-group">
                             <label for="AdviceDiagnostic">Lời Khuyên</label>
@@ -66,12 +50,8 @@
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>
-                    <select id="NameMedication" name="Medication.Name" class="choices form-select">
+                    <select id="NameMedication" name="Medication.Name" data-type="select-one" class="form-select">
                         <option value="">Vui Lòng Chọn Tên Thuốc</option>
-                        @foreach (var medication in ViewBag.NameMedication)
-                        {
-                            <option value="@medication.ID">@medication.Name</option>
-                        }
                     </select>
                     @Html.ValidationMessageFor(model => model.Medication.Name, "", new { @class = "text-danger" })
                 </div>

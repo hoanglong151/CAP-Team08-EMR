@@ -40,7 +40,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_HoHap.Add(detail_HoHap);
                     db.SaveChanges();
                 }
-                if (checkExistDetail1.HoHap.Dangerous == true)
+                if (item.Dangerous == true)
                 {
                     multiplesModel.InformationExamination.PatientStatus_ID = 44;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;

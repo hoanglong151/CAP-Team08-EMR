@@ -214,9 +214,9 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("DetailIERead", "Patients", new { id = Model.Patient.ID });
-                                                Html.RenderAction("DetailIERead", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                Html.RenderAction("DetailIERead", "Prescription_Detail");
+                                                Html.RenderAction("DetailIERead", "Patients", new { multiplesModel = Model });
+                                                Html.RenderAction("DetailIERead", "InformationExaminations", new { multiplesModel = Model });
+                                                Html.RenderAction("DetailIERead", "Prescription_Detail", new { multiplesModel = Model });
                                             }
                                         </div>
                                     </div>
@@ -232,8 +232,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("BillCheck", "Detail_HistoryDisease", new { id = Model.Patient.ID });
-                                                Html.RenderAction("BillCheck", "Detail_MedicalHistory", new { id = Model.Patient.ID });
+                                                Html.RenderAction("BillCheck", "Detail_HistoryDisease", new { multiplesModel = Model });
+                                                Html.RenderAction("BillCheck", "Detail_MedicalHistory", new { multiplesModel = Model });
                                             }
                                         </div>
                                     </div>
@@ -286,19 +286,19 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_TuanHoan", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_TuanHoan", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_HoHap", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_HoHap", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_TieuHoa", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_TieuHoa", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_ThanTietNieu", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_ThanTietNieu", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_CoXuongKhop", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_CoXuongKhop", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_ThanKinh", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_ThanKinh", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_TamThan", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_TamThan", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -315,7 +315,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -332,7 +332,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -349,7 +349,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_Mat", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -366,11 +366,11 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_Tai", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_Tai", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_Mui", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_Mui", new { multiplesModel = Model });
                                                                     <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_Hong", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_Hong", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -387,7 +387,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_RangHamMat", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -404,7 +404,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_DaLieu", new { id = Model.InformationExamination.ID });
+                                                                    Html.RenderAction("BillCheck", "Detail_DaLieu", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -423,7 +423,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_CTMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_CTMau", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -435,7 +435,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -447,7 +447,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_DongMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_DongMau", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -459,7 +459,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_NhomMau", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -471,7 +471,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_Urine", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_Urine", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -483,7 +483,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_Immune", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_Immune", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -495,7 +495,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_Amniocente", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
@@ -507,7 +507,7 @@
                             <section class="section">
                                 <div class="card">
                                     @{
-                                        Html.RenderAction("DetailIE", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
+                                        Html.RenderAction("DetailIE", "Detail_ViSinh", new { multiplesModel = Model });
                                     }
                                 </div>
                             </section>
