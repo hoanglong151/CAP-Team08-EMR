@@ -149,87 +149,552 @@
                     <div class="row body-pay">
                         <p class="lead marginbottom">Khám Tổng Quát</p>
                         <h5>1. Nội Khoa</h5>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex justify-content-start">
-                                <p class="col-xs-4 w-100">Tuần Hoàn: @Model.Clinical.Circles</p>
-                                <p class="col-xs-4 w-100">Hô Hấp: @Model.Clinical.Respiration</p>
-                                <p class="col-xs-4 w-100">Tiêu Hóa: @Model.Clinical.Digestion</p>
+                        @{
+                            var listTuanHoan = Model.TuanHoan.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listTuanHoan != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Tuần Hoàn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.TuanHoan.Count; i++)
+                                    {
+                                        if (Model.TuanHoan[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.TuanHoan[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.TuanHoan[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.TuanHoan[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+
+                        @{
+                            var listHoHap = Model.HoHap.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listHoHap != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Hô Hấp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.HoHap.Count; i++)
+                                    {
+                                        if (Model.HoHap[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.HoHap[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.HoHap[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.HoHap[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listTieuHoa = Model.TieuHoa.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listTieuHoa != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Tiêu Hóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.TieuHoa.Count; i++)
+                                    {
+                                        if (Model.TieuHoa[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.TieuHoa[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.TieuHoa[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.TieuHoa[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listThanTietNieu = Model.ThanTietNieu.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listThanTietNieu != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Thận Tiết Niệu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.ThanTietNieu.Count; i++)
+                                    {
+                                        if (Model.ThanTietNieu[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.ThanTietNieu[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.ThanTietNieu[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.ThanTietNieu[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listCoXuongKhop = Model.CoXuongKhop.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listCoXuongKhop != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Cơ Xương Khớp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.CoXuongKhop.Count; i++)
+                                    {
+                                        if (Model.CoXuongKhop[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.CoXuongKhop[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.CoXuongKhop[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.CoXuongKhop[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listThanKinh = Model.ThanKinh.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listThanKinh != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Thần Kinh</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.ThanKinh.Count; i++)
+                                    {
+                                        if (Model.ThanKinh[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.ThanKinh[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.ThanKinh[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.ThanKinh[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listTamThan = Model.TamThan.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listTamThan != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Tâm Thần</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.TamThan.Count; i++)
+                                    {
+                                        if (Model.TamThan[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.TamThan[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.TamThan[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.TamThan[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listNgoaiKhoa = Model.NgoaiKhoa.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listNgoaiKhoa != 0)
+                        {
+                            <h5>2. Ngoại Khoa</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Ngoại Khoa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.NgoaiKhoa.Count; i++)
+                                    {
+                                        if (Model.NgoaiKhoa[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.NgoaiKhoa[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.NgoaiKhoa[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.NgoaiKhoa[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listSanPhuKhoa = Model.SanPhuKhoa.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listSanPhuKhoa != 0)
+                        {
+                            <h5>3. Sản Phụ Khoa</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Sản Phụ Khoa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.SanPhuKhoa.Count; i++)
+                                    {
+                                        if (Model.SanPhuKhoa[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.SanPhuKhoa[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.SanPhuKhoa[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.SanPhuKhoa[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @if (Model.Clinical.RightEyesNoGlasses != null || Model.Clinical.LeftEyesNoGlasses != null
+                            || Model.Clinical.RightEyesGlasses != null || Model.Clinical.LeftEyesGlasses != null)
+                        {
+                            <h5>4. Mắt</h5>
+                            <p>- Kết quả khám thị lực:</p>
+                            <div class="col-xs-12 from">
+                                <div class="d-flex">
+                                    <p class="col-xs-4 w-100">Không kính:</p>
+                                    <p class="col-xs-4 w-100">Mắt phải: @Model.Clinical.RightEyesNoGlasses/10</p>
+                                    <p class="col-xs-4 w-100">Mắt trái: @Model.Clinical.LeftEyesNoGlasses/10</p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="col-xs-4 w-100">Có kính:</p>
+                                    <p class="col-xs-4 w-100">Mắt phải: @Model.Clinical.RightEyesGlasses/10</p>
+                                    <p class="col-xs-4 w-100">Mắt trái: @Model.Clinical.LeftEyesGlasses/10</p>
+                                </div>
                             </div>
-                            <div class="d-flex">
-                                <p class="col-xs-4 w-100">Thận-Tiết niệu: @Model.Clinical.KidneyUrology</p>
-                                <p class="col-xs-4 w-100">Cơ-Xương-Khớp: @Model.Clinical.MuscleBoneJoint</p>
-                                <p class="col-xs-4 w-100">Thần Kinh: @Model.Clinical.Nerve</p>
+                        }
+
+                        @{
+                            var listMat = Model.Mat.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listMat != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Mắt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Mat.Count; i++)
+                                    {
+                                        if (Model.Mat[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.Mat[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.Mat[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.Mat[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @if (Model.Clinical.LeftEarSay != null || Model.Clinical.LeftEarWhisper != null
+                            || Model.Clinical.RightEarSay != null || Model.Clinical.RightEarWhisper != null)
+                        {
+                            <h5>5. Tai-Mũi-Họng</h5>
+                            <p>- Kết quả khám thính lực:</p>
+                            <div class="col-xs-12 from">
+                                <div class="d-flex">
+                                    <p class="col-xs-4 w-100">Tai trái:</p>
+                                    <p class="col-xs-4 w-100">Nói thường: @Model.Clinical.LeftEarSay m</p>
+                                    <p class="col-xs-4 w-100">Nói thầm: @Model.Clinical.LeftEarWhisper m</p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="col-xs-4 w-100">Tai phải:</p>
+                                    <p class="col-xs-4 w-100">Nói thường: @Model.Clinical.RightEarSay m</p>
+                                    <p class="col-xs-4 w-100">Nói thầm: @Model.Clinical.RightEarWhisper m</p>
+                                </div>
                             </div>
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">Tâm Thần: @Model.Clinical.Mental</p>
+                        }
+                        @{
+                            var listTai = Model.Tai.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listTai != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Tai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Tai.Count; i++)
+                                    {
+                                        if (Model.Tai[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.Tai[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.Tai[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.Tai[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listMui = Model.Mui.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listMui != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Mũi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Mui.Count; i++)
+                                    {
+                                        if (Model.Mui[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.Mui[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.Mui[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.Mui[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listHong = Model.Hong.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listHong != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Họng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Hong.Count; i++)
+                                    {
+                                        if (Model.Hong[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.Hong[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.Hong[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.Hong[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @if (Model.Clinical.UpperJaw != null || Model.Clinical.LowerJaw != null)
+                        {
+                            <h5>6. Răng-Hàm-Mặt</h5>
+                            <p>- Kết quả khám:</p>
+                            <div class="col-xs-12 from">
+                                <div class="d-flex">
+                                    <p class="col-xs-6 w-100">Hàm trên: @Model.Clinical.UpperJaw</p>
+                                    <p class="col-xs-6 w-100">Hàm dưới: @Model.Clinical.LowerJaw</p>
+                                </div>
                             </div>
-                        </div>
-                        <h5>2. Ngoại Khoa</h5>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">Ngoại Khoa: @Model.Clinical.Surgery</p>
-                            </div>
-                        </div>
-                        <h5>3. Sản Phụ Khoa</h5>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">Ngoại Khoa: @Model.Clinical.ObstetricsAndGynecology</p>
-                            </div>
-                        </div>
-                        <h5>4. Mắt</h5>
-                        <p>- Kết quả khám thị lực:</p>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex">
-                                <p class="col-xs-4 w-100">Không kính:</p>
-                                <p class="col-xs-4 w-100">Mắt phải: @Model.Clinical.RightEyesNoGlasses/10</p>
-                                <p class="col-xs-4 w-100">Mắt trái: @Model.Clinical.LeftEyesNoGlasses/10</p>
-                            </div>
-                            <div class="d-flex">
-                                <p class="col-xs-4 w-100">Có kính:</p>
-                                <p class="col-xs-4 w-100">Mắt phải: @Model.Clinical.RightEyesGlasses/10</p>
-                                <p class="col-xs-4 w-100">Mắt trái: @Model.Clinical.LeftEyesGlasses/10</p>
-                            </div>
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">Các bệnh về mắt: @Model.Clinical.EyesExamination</p>
-                            </div>
-                        </div>
-                        <h5>5. Tai-Mũi-Họng</h5>
-                        <p>- Kết quả khám thính lực:</p>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex">
-                                <p class="col-xs-4 w-100">Tai trái:</p>
-                                <p class="col-xs-4 w-100">Nói thường: @Model.Clinical.LeftEarSay m</p>
-                                <p class="col-xs-4 w-100">Nói thầm: @Model.Clinical.LeftEarWhisper m</p>
-                            </div>
-                            <div class="d-flex">
-                                <p class="col-xs-4 w-100">Tai phải:</p>
-                                <p class="col-xs-4 w-100">Nói thường: @Model.Clinical.RightEarSay m</p>
-                                <p class="col-xs-4 w-100">Nói thầm: @Model.Clinical.RightEarWhisper m</p>
-                            </div>
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">Các bệnh về tai mũi họng: @Model.Clinical.EarNoseThroatExamination</p>
-                            </div>
-                        </div>
-                        <h5>6. Răng-Hàm-Mặt</h5>
-                        <p>- Kết quả khám:</p>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex">
-                                <p class="col-xs-6 w-100">Hàm trên: @Model.Clinical.UpperJaw</p>
-                                <p class="col-xs-6 w-100">Hàm dưới: @Model.Clinical.LowerJaw</p>
-                            </div>
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">Các bệnh về Răng-Hàm-Mặt: @Model.Clinical.TeethJawFaceExamination</p>
-                            </div>
-                        </div>
-                        <h5>7. Da Liễu</h5>
-                        <div class="col-xs-12 from">
-                            <div class="d-flex">
-                                <p class="col-xs-12 w-100">
-                                    Da liễu:
-                                    <span>@Model.Clinical.Dermatology</span>
-                                </p>
-                            </div>
-                        </div>
+                        }
+                        @{
+                            var listRangHamMat = Model.RangHamMat.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listRangHamMat != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Răng-Hàm-Mặt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.RangHamMat.Count; i++)
+                                    {
+                                        if (Model.RangHamMat[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.RangHamMat[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.RangHamMat[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.RangHamMat[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        @{
+                            var listDaLieu = Model.DaLieu.Where(p => p.ChiDinh == true).Count();
+                        }
+                        @if (listDaLieu != 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">#</th>
+                                        <th style="width:95%">Các bệnh về Da Liễu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.DaLieu.Count; i++)
+                                    {
+                                        if (Model.DaLieu[i].ChiDinh == true)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                @if (Model.DaLieu[i].Dangerous == false)
+                                                {
+                                                    <td>@Model.DaLieu[i].Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Model.DaLieu[i].Name<span style="color:red"> *</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        }
                     </div>
 
                     <div class="row body-pay">

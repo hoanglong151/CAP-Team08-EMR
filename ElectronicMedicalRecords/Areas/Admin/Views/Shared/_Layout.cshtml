@@ -4,8 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.css")" />
@@ -497,7 +495,6 @@
     <script src="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/choices.js/choices.min.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/sweetalert2.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/sweetalert2/sweetalert2.all.min.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/vendors/toastify/toastify.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/assets/js/extensions/toastify.js")"></script>
@@ -655,8 +652,12 @@
                 }
                 $.each(res.data, function (index, value) {
                     $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
-                    var href = "@Url.Action("CreateTest", "MultipleModels")" +"/" + value.ID;
-                    $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                    var href = "@Url.Action("CreateTest", "MultipleModels")" + "/" + value.ID;
+                    if (value.dangerPatient == true) {
+                        $('#notiContentBS1').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                    } else {
+                        $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                    }
                 })
                 $('span.countBS1').html(res.data.length);
             }

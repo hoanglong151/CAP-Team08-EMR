@@ -210,11 +210,11 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("Edit", "Patients", new { id = Model.Patient.ID });
+                                                Html.RenderAction("Edit", "Patients", new { multiplesModel = Model });
                                                 if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                                                 {
-                                                    Html.RenderAction("Edit", "InformationExaminations", new { id = Model.InformationExamination.ID });
-                                                    Html.RenderAction("EditNoButton", "Prescription_Detail", new { id = Model.InformationExamination.ID });
+                                                    Html.RenderAction("Edit", "InformationExaminations", new { multiplesModel = Model });
+                                                    Html.RenderAction("EditNoButton", "Prescription_Detail", new { multiplesModel = Model });
                                                 }
                                             }
                                         </div>
@@ -287,19 +287,19 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "TuanHoans", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "TuanHoans", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "HoHaps", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "HoHaps", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "TieuHoas", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "TieuHoas", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "ThanTietNieux", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "ThanTietNieux", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "CoXuongKhops", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "CoXuongKhops", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "ThanKinhs", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "ThanKinhs", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "TamThans", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "TamThans", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -316,7 +316,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "NgoaiKhoas", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "NgoaiKhoas", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -333,7 +333,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "SanPhuKhoas", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "SanPhuKhoas", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -350,7 +350,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "Mats", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "Mats", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -367,11 +367,11 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "Tais", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "Tais", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "Muis", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "Muis", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "Hongs", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "Hongs", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -388,7 +388,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "RangHamMats", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "RangHamMats", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -405,7 +405,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "DaLieux", new { id = Model.InformationExamination.ID });
+                                                                        Html.RenderAction("EditSelect", "DaLieux", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -427,7 +427,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_CTMau", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_CTMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -439,7 +439,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_SinhHoaMau", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_SinhHoaMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -451,7 +451,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_DongMau", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_DongMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -463,7 +463,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_NhomMau", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_NhomMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -475,7 +475,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_Urine", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_Urine", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -487,7 +487,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_Immune", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_Immune", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -499,7 +499,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_Amniocente", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_Amniocente", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -511,7 +511,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_ViSinh", new { id = Model.InformationExamination.ID });
+                                            Html.RenderAction("Edit", "Detail_ViSinh", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -1759,7 +1759,6 @@
         })
 
         function updateCountClinicals(id, e, value, indextable) {
-            console.log(arrTuanHoan, id)
             if (e.target.checked == true) {
                 value.setAttribute("value", true);
                 value.setAttribute("checked", true);

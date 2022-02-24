@@ -40,7 +40,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_SanPhuKhoa.Add(detail_SanPhuKhoa);
                     db.SaveChanges();
                 }
-                if (checkExistDetail1.SanPhuKhoa.Dangerous == true)
+                if (item.Dangerous == true)
                 {
                     multiplesModel.InformationExamination.PatientStatus_ID = 44;
                     db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;

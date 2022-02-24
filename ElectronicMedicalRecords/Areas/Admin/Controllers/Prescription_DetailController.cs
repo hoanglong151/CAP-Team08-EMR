@@ -92,10 +92,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult DetailIERead(MultiplesModel multiplesModel)
         {
-            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-            var clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-            multiplesModel.Clinical = clinical;
-            multiplesModel.Detail_DiagnosticsCategory = detail_dignosticCategory;
             return PartialView("_DetailIERead", multiplesModel);
         }
 
@@ -116,9 +112,43 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult CreateOldPatient()
         {
-            ViewBag.NameDiagnostics = db.DiagnosticsCategories.AsNoTracking().ToList();
-            ViewBag.NameMedication = db.Medications.AsNoTracking().ToList();
+            //ViewBag.NameDiagnostics = db.DiagnosticsCategories.AsNoTracking().ToList();
+            //ViewBag.NameMedication = db.Medications.AsNoTracking().ToList();
+            //ViewBag.NameDiagnostics = db.DiagnosticsCategories.Select(s => new
+            //{
+            //    ID = s.ID,
+            //    Name = s.Name,
+            //    Advice = s.Advice,
+            //}).AsNoTracking().ToList();
+            //var diagnosticsCategories = db.DiagnosticsCategories.Select(s => new
+            //{
+            //    ID = s.ID,
+            //    Name = s.Name,
+            //    Advice = s.Advice,
+            //}).AsNoTracking().ToList();
+            //var medications = db.Medications.Select(m => new
+            //{
+            //    ID = m.ID,
+            //    Name = m.Name,
+            //    Unit = m.Unit
+            //}).AsNoTracking().ToList();
             return PartialView("_CreateOldPatient");
+        }
+
+        public JsonResult getData()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var diagnosticsCategories = db.DiagnosticsCategories.Select(s => new
+            {
+                value = s.ID,
+                label = s.Name,
+            }).AsNoTracking().ToList();
+            var medications = db.Medications.Select(m => new
+            {
+                value = m.ID,
+                label = m.Name,
+            }).AsNoTracking().ToList();
+            return Json(new { diagnosticCategories = diagnosticsCategories, medications = medications }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

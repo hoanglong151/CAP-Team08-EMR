@@ -76,7 +76,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View("Status");
         }
 
-        [ChildActionOnly]
+        [ChildActionOnly, OutputCache(Duration=3600)]
         public ActionResult RenderUser()
         {
             var UserID = User.Identity.GetUserId();

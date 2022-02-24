@@ -3,24 +3,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
 }
 <style>
-    .name-Medication .choices {
-        width: 100%
-    }
-
-        .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -6px;
-        }
-
-    .name-Medication .choices__input--cloned {
-        min-width: 100% !important;
-    }
-
-    .name-Medication .choices__inner {
-        border: unset;
-        padding: 0;
-        width: 100%;
-    }
-
     .card-header hr {
         color: #009688;
     }
@@ -42,11 +24,11 @@
         box-shadow: unset
     }
 
-        .patient-taginpust .bootstrap-tagsinput .label-info {
-            background-color: #435ebe;
-            border-radius: 4px;
-            padding: 4px
-        }
+    .patient-taginpust .bootstrap-tagsinput .label-info {
+        background-color: #435ebe;
+        border-radius: 4px;
+        padding: 4px
+    }
 
     .table-bordered tr:first-child {
         background-color: #435ebe;
@@ -488,6 +470,27 @@
         var arrImmune = [];
         var arrAmniocente = [];
         var arrViSinh = [];
+        $(function () {
+            $.ajax({
+                url: "@Url.Action("getData", "Prescription_Detail")",
+                type: "GET",
+                success: (res) => {
+                    const element1 = document.querySelector('#NameDiagnostic');
+                    const choices1 = new Choices(element1, {
+                        choices: res.diagnosticCategories,
+                        searchPlaceholderValue: 'Vui Lòng Chọn Tên Chẩn Đoán',
+                        searchFields: ['label'],
+                    });
+
+                    const element2 = document.querySelector('#NameMedication');
+                    const choices2 = new Choices(element2, {
+                        choices: res.medications,
+                        searchPlaceholderValue: 'Vui Lòng Chọn Tên Thuốc',
+                        searchFields: ['label'],
+                    });
+                }
+            })
+        })
 
 
         /*Clinical*/
@@ -1703,8 +1706,8 @@
                 url: "@Url.Action("FindDiagnostic", "DiagnosticsCategories")",
                 data: { id: id},
                 success: (res) => {
-                    document.querySelector('#IDDiagnostic').setAttribute("value", res.data.ID);
-                    document.querySelector('#AdviceDiagnostic').setAttribute("value", res.data.Advice);
+                    document.querySelector('#IDDiagnostic').value = res.data.ID;
+                    document.querySelector('#AdviceDiagnostic').value = res.data.Advice;
                 }
             })
         })

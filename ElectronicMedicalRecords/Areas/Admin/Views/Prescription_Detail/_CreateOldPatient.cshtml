@@ -9,14 +9,14 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-12 col-12">
-                <div class="form-group name-Medication has-icon-left">
+                <div class="form-group name-Diagnostic has-icon-left">
                     <label for="email-id-column">Chẩn Đoán</label>
-                    <select id="NameDiagnostic" name="DiagnosticsCategory.Name" class="choices form-select">
+                    <select id="NameDiagnostic" name="DiagnosticsCategory.Name" data-type="select-one" class="form-select">
                         <option value="">Vui Lòng Chọn Tên Chẩn Đoán</option>
-                            @foreach (var diagnostic in ViewBag.NameDiagnostics)
+                            @*@foreach (var diagnostic in ViewBag.NameMedication)
                             {
                                 <option value="@diagnostic.ID">@diagnostic.Name</option>
-                            }
+                            }*@
                     </select>
                     @Html.ValidationMessageFor(model => model.DiagnosticsCategory.Name, "", new { @class = "text-danger" })
                 </div>
@@ -24,7 +24,7 @@
             <div class="col-md-12 col-12">
                 <div class="form-group">
                     <label for="AdviceDiagnostic">Lời Khuyên</label>
-                    <input id="AdviceDiagnostic" name="Detail_DiagnosticsCategory.Advice" class="form-control" type="text" />
+                    <input id="AdviceDiagnostic" name="Detail_DiagnosticsCategory.Advice" class="form-control" type="text" value="" />
                     @Html.ValidationMessageFor(model => model.Detail_DiagnosticsCategory.Advice, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -33,12 +33,12 @@
             <div class="col-md-8 col-12">
                 <div class="form-group name-Medication has-icon-left">
                     <label for="email-id-column">Tên Thuốc</label>
-                    <select id="NameMedication" name="Medication.Name" class="choices form-select">
+                    <select id="NameMedication" name="Medication.Name" data-type="select-one" class="form-select">
                         <option value="">Vui Lòng Chọn Tên Thuốc</option>
-                        @foreach (var medication in ViewBag.NameMedication)
+                        @*@foreach (var medication in ViewBag.NameMedication)
                         {
                             <option value="@medication.ID">@medication.Name</option>
-                        }
+                        }*@
                     </select>
                     @Html.ValidationMessageFor(model => model.Medication.Name, "", new { @class = "text-danger" })
                 </div>

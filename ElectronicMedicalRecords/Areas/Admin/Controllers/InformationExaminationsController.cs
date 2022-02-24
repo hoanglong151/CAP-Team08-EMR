@@ -74,6 +74,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     checkResult = true;
                 }
 
+                if (item.PatientStatus_ID == 44)
+                {
+                    checkResult = true;
+                }
+
                 var patientUserFalse = db.Patients.FirstOrDefault(p => p.ID == item.Patient_ID);
                 if (item.ResultCTMau == false)
                 {
@@ -169,6 +174,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     checkResult = true;
                 }
 
+                if (item1.PatientStatus_ID == 44)
+                {
+                    checkResult = true;
+                }
+
                 var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
                 if (item1.ResultCTMau == true)
                 {
@@ -216,9 +226,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             List<object> NotiBS = new List<object>();
             foreach (var item1 in list)
             {
+                var dangerPatient = false;
                 var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
                 var date = item1.DateExamine.Value.ToString("dd/MM/yyyy hh:mm:ss");
-                var NotiResult = new { patientUser.Name, date, item1.ID };
+                if(item1.PatientStatus_ID == 44)
+                {
+                    dangerPatient = true;
+                }
+                var NotiResult = new { patientUser.Name, date, item1.ID, dangerPatient };
                 NotiBS.Add(NotiResult);
             }
             return await Task.Run(() => Json(new { data = NotiBS }, JsonRequestBehavior.AllowGet));
@@ -270,22 +285,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailsIE", multiplesModel);
         }
 
-        public ActionResult DetailIERead(int id)
+        public ActionResult DetailIERead(MultiplesModel multiplesModel)
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
-            InformationExamination informationExamination = db.InformationExaminations.Find(id);
-            if (informationExamination == null)
-            {
-                return HttpNotFound();
-            }
-
-            var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
-            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", informationExamination.PatientStatus_ID);
+            var UserName = db.Users.FirstOrDefault(p => p.ID == multiplesModel.InformationExamination.User_ID);
+            ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
             if (UserName != null)
             {
                 ViewBag.UserName = UserName.Name;
             }
-            multiplesModel.InformationExamination = informationExamination;
             return PartialView("_DetailIERead", multiplesModel);
         }
 
@@ -400,11 +407,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             if (ModelState.IsValid)
             {
-                informationExamination.Patient_ID = multiplesModel.Patient.ID;
-                informationExamination.DateExamine = DateTime.Now;
-                informationExamination.DateEnd = DateTime.Now;
-                informationExamination.PatientStatus_ID = multiplesModel.InformationExamination.PatientStatus_ID;
-                db.InformationExaminations.Add(informationExamination);
+                multiplesModel.InformationExamination.Patient_ID = multiplesModel.Patient.ID;
+                multiplesModel.InformationExamination.DateExamine = DateTime.Now;
+                multiplesModel.InformationExamination.DateEnd = DateTime.Now;
+                db.InformationExaminations.Add(multiplesModel.InformationExamination);
                 db.SaveChanges();
                 return RedirectToAction("CreateOldPatient", "MultipleModels");
             }
