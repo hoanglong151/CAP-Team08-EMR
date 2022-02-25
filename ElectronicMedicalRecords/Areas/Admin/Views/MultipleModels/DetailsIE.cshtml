@@ -631,8 +631,9 @@
 
         $(function () {
             $.ajax({
-                url: "@Url.Action("getData", "Prescription_Detail")",
+                url: "@Url.Action("getData1", "Prescription_Detail")",
                 type: "GET",
+                data: { id: @Model.InformationExamination.ID},
                 success: (res) => {
                     const element1 = document.querySelector('#NameDiagnostic');
                     const choices1 = new Choices(element1, {

@@ -26,6 +26,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var users = db.Users.Include(u => u.HomeTown).Include(u => u.Nation).Include(u => u.Religion).Include(g => g.Gender).ToList();
             return View(users);
         }
+
+        public FileResult GetReport(string link)
+        {
+            byte[] FileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/pdfUserGuide/" + link));
+            return File(FileBytes, "application/pdf");
+        }
+
         [AllowAnonymous]
         public ActionResult Status()
         {

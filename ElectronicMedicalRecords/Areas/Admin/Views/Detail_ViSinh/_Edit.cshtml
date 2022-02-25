@@ -86,17 +86,4 @@
             })
         }
     })
-
-    $(document).ready(function () {
-        const editors = document.querySelectorAll('.editor');
-        editors.forEach(item => {
-            ClassicEditor
-                .create(item, {
-                    toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList']
-                })
-                .catch(error => {
-                    console.error("Toang" + error);
-                });
-        })
-    })
 </script>
