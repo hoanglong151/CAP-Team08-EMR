@@ -3,24 +3,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
 }
 <style>
-    .name-Medication .choices {
-        width: 100%
-    }
-
-        .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -6px;
-        }
-
-    .name-Medication .choices__input--cloned {
-        min-width: 100% !important;
-    }
-
-    .name-Medication .choices__inner {
-        border: unset;
-        padding: 0;
-        width: 100%;
-    }
-
     .card-header hr {
         color: #009688;
     }
@@ -1941,20 +1923,6 @@
             })
         })
 
-        var selectDiagnostic = document.querySelector('#NameDiagnostic');
-        selectDiagnostic.addEventListener('change', (e) => {
-            console.log(e.target.value)
-            var id = parseInt(e.target.value);
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("FindDiagnostic", "DiagnosticsCategories")",
-                data: { id: id},
-                success: (res) => {
-                    document.querySelector('#IDDiagnostic').setAttribute("value", res.data.ID);
-                }
-            })
-        })
-
         /*Validate Form*/
         $('form').each((i, obj) => {
             $.validator.addMethod('checkPhoneNumber', function (value, element) {
@@ -2094,8 +2062,31 @@
                 url: "@Url.Action("FindDiagnostic", "DiagnosticsCategories")",
                 data: { id: id},
                 success: (res) => {
-                    document.querySelector('#IDDiagnostic').setAttribute("value", res.data.ID);
-                    document.querySelector('#AdviceDiagnostic').setAttribute("value", res.data.Advice);
+                    document.querySelector('#Detail_DiagnosticsCategory_DiagnosticsCategory_ID').value = res.data.ID;
+                    document.querySelector('#AdviceDiagnostic').value = res.data.Advice;
+                }
+            })
+        })
+
+        $(function () {
+            $.ajax({
+                url: "@Url.Action("getData1", "Prescription_Detail")",
+                type: "GET",
+                data: { id: @Model.InformationExamination.ID},
+                success: (res) => {
+                    const element1 = document.querySelector('#NameDiagnostic');
+                    const choices1 = new Choices(element1, {
+                        choices: res.diagnosticCategories,
+                        searchPlaceholderValue: 'Vui Lòng Chọn Tên Chẩn Đoán',
+                        searchFields: ['label']
+                    });
+                    console.log(choices1)
+                    const element2 = document.querySelector('#NameMedication');
+                    const choices2 = new Choices(element2, {
+                        choices: res.medications,
+                        searchPlaceholderValue: 'Vui Lòng Chọn Tên Thuốc',
+                        searchFields: ['label'],
+                    });
                 }
             })
         })

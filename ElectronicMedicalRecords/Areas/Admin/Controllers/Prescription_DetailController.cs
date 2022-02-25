@@ -151,6 +151,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { diagnosticCategories = diagnosticsCategories, medications = medications }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult getData1(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var diagnosticsCategories = db.DiagnosticsCategories.Select(s => new
+            {
+                value = s.ID,
+                label = s.Name,
+            }).AsNoTracking().ToList();
+            var getDetail_Diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == id);
+            if(getDetail_Diagnostic != null)
+            {
+                var getDiagnostic = diagnosticsCategories.FirstOrDefault(p => p.value == getDetail_Diagnostic.DiagnosticsCategory_ID);
+                diagnosticsCategories.Remove(getDiagnostic);
+            }
+            var medications = db.Medications.Select(m => new
+            {
+                value = m.ID,
+                label = m.Name,
+            }).AsNoTracking().ToList();
+            return Json(new { diagnosticCategories = diagnosticsCategories, medications = medications }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)

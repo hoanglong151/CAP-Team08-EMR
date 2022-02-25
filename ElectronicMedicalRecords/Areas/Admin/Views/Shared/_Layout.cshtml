@@ -123,6 +123,14 @@
             display: block;
             color: black
         }
+
+        #userGuides:focus {
+            box-shadow: none
+        }
+
+        #userGuides:before {
+            display: none
+        }
     </style>
 
     <div id="loader-wrapper">
@@ -406,7 +414,41 @@
                     <a href="#" class="burger-btn d-block">
                         <i class="bi bi-justify fs-3"></i>
                     </a>
-                     <div class="d-flex">
+                    <div class="d-flex">
+
+                        <!-- Example single danger button -->
+                        <div class="btn-group dropstart">
+                            <button id="userGuides" type="button" class="btn btn-success dropdown-toggle nav-link" style="background: transparent; border: none; color: #0cca0c" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i style="font-size:25px;width:25px;height:25px" class="fas fa-user"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                @if (User.IsInRole("QTV"))
+                                {
+                                    <li><a class="dropdown-item">Quản Trị Viên</a></li>
+                                }
+                                @if (User.IsInRole("Giám Đốc"))
+                                {
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Director.pdf')">Giám Đốc</a></li>
+                                }
+                                @if (User.IsInRole("Bác Sĩ"))
+                                {
+                                    <li><a class="dropdown-item" href="#">Bác Sĩ</a></li>
+                                }
+                                @if (User.IsInRole("Kỹ Thuật Viên"))
+                                {
+                                    <li><a class="dropdown-item" href="#">Kỹ Thuật Viên</a></li>
+                                }
+                                @if (User.IsInRole("Thu Ngân"))
+                                {
+                                    <li><a class="dropdown-item" href="#">Thu Ngân</a></li>
+                                }
+                                @if (User.IsInRole("Y tá/Điều dưỡng"))
+                                {
+                                    <li><a class="dropdown-item" href="#">Y tá/Điều dưỡng</a></li>
+                                }
+                            </ul>
+                        </div>
+
                         @if (User.IsInRole("Kỹ Thuật Viên"))
                         {
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -505,6 +547,9 @@
     <script src="@Url.Content("~/Scripts/jquery.signalR-2.4.2.min.js")"></script>
     <script src="@Url.Content("~/signalr/hubs")"></script>
     <script>
+        function GetClientReport(linkGuide) {
+            window.open(`@Url.Action("GetReport", "Users")?link=${linkGuide}`, "_blank");
+        };
         $(document).ready(function () {
             $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');
             $('.submenu-item.active').closest('.sidebar-item').addClass('active');
@@ -519,7 +564,87 @@
             })
         })
     </script>
+    <script type="text/javascript">
+    function getPatient() {
+        $('#tableLoadPatient').DataTable({
+        "order": [],
+        "ajax": {
+            "url": "@Url.Action("GetData", "Patients")",
+            "type": "GET",
+            "datatype": "json",
+        },
+        "columns": [
+            {
+                "data": "MaBN",
+            },
+            {
+                "data": "Name",
+            },
+            {
+                "data": "BirthDate",
+            },
+            {
+                "data": "Address",
+            },
+            {
+                "data": "Gender",
+            },
+            {
+                "className": "w85",
+                "data": null,
+                "render": function (data, type, row) {
+                    var hrefCreateOldPatient = '@Url.Action("CreateOldPatient", "MultipleModels")/' + data.ID;
+                    var hrefEditPatient = '@Url.Action("Edit","MultipleModels")/' + data.ID;
+                    var hrefDetailPatient = '@Url.Action("Details","InformationExaminations")/' + data.ID;
+                    var hrefConfirmBill = '@Url.Action("BillExamination", "MultipleModels")/' + data.ID;
+                    var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                    return button;
+                },
+                "targets": 0,
+                "orderable": false,
+            }
+        ],
+        "language": {
+            "emptyTable": "No data available",
+            "oPaginate": {
+                sNext: '<i class="fa fa-chevron-right"></i>',
+                sPrevious: '<i class="fa fa-chevron-left"></i>',
+            },
+            "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
+            "lengthMenu": "Hiển thị _MENU_ người",
+            "search": "Tìm kiếm:",
+        },
+        searching: false,
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            if (iDisplayIndex == 0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("getPatientDangerous", "InformationExaminations")",
+                success: function (res) {
+                    $.each(res.data, function (index, value) {
+                        var td = $(`td:contains('${value}')`);
+                        td.attr("style","color:red;font-weight:600")
+                    })
+                }
+            })
+        }
+        }
+    })
+}
+    var notificationHubYTa = $.connection.notificationHubYTa;
 
+    notificationHubYTa.client.notifyPatient = function (message) {
+        if (message && message.toLowerCase() == "added") {
+            $('#tableLoadPatient').DataTable().ajax.reload();
+        }
+    }
+    $.connection.hub.start().done(function () {
+        getPatient();
+        /*console.log("Notification hub started Y Tá");*/
+    }).fail((e) => {
+        alert(e)
+    });
+    </script>
     <script type="text/javascript">
     var RoleCheckBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
     if (RoleCheckBS) {
@@ -685,7 +810,7 @@
     @RenderSection("scripts", required: false)
 
 
-<script>
+    <script>
         $(window).on("load", function () {
             $("#loader-wrapper").fadeOut("slow");
         });
@@ -696,6 +821,6 @@
                 url: "@Url.Action("updateUser", "Users")",
             })
         });
-</script>
+    </script>
 </body>
 </html>

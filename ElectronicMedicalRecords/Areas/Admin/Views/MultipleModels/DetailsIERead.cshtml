@@ -3,24 +3,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
 }
 <style>
-    .name-Medication .choices {
-        width: 100%
-    }
-
-        .name-Medication .choices[data-type*=select-one]:after {
-            margin-top: -6px;
-        }
-
-    .name-Medication .choices__input--cloned {
-        min-width: 100% !important;
-    }
-
-    .name-Medication .choices__inner {
-        border: unset;
-        padding: 0;
-        width: 100%;
-    }
-
     .card-header hr {
         color: #009688;
     }
@@ -537,17 +519,6 @@
                     },
                 });
             })
-            const editors = document.querySelectorAll('.editor');
-            editors.forEach(item => {
-                ClassicEditor
-                    .create(item, {
-                        toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList', 'bulletedList'],
-                    })
-                    .then(item => item.isReadOnly = true)
-                    .catch(error => {
-                        console.error("Toang" + error);
-                    });
-            })
         })
     </script>
     <script>
@@ -575,13 +546,6 @@
                 }
             })
         }
-
-        function deleteRow(btn) {
-            var index = $("#Medication-" + btn);
-            index.parent().parent().remove();
-            k--;
-        }
-
         var listTableClinical = $('*.tableLoadClinical');
         listTableClinical.each((index, table) => {
             $('#' + table.id).DataTable({

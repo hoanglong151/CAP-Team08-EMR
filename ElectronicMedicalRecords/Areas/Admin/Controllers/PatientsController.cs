@@ -30,11 +30,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             List<Patient> patientlist = (List<Patient>)TempData["Patient"];
+            List<string> Noti = new List<string>();
             if (patientlist == null)
             {
                 var patients = db.Patients.Include(p => p.Gender).Include(p => p.HomeTown).Include(p => p.Nation).Include(p => p.Nation1).Include(p => p.Ward).Include(p => p.District).Include(p => p.InformationExaminations).OrderByDescending(p => p.ID).AsNoTracking().ToList();
-                List<string> Noti = new List<string>();
-
                 var listInfo = db.InformationExaminations.Where(p => p.PatientStatus_ID == 44).AsNoTracking().ToList();
                 foreach(var info in listInfo)
                 {
@@ -64,8 +63,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             else
             {
-                List<Patient> patientlist1 = (List<Patient>)TempData["Patient"];
-                List<string> Noti = new List<string>();
                 List<InformationExamination> listInfo = new List<InformationExamination>();
                 foreach (var item in patientlist)
                 {
@@ -98,7 +95,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         }
                     }
                 }
-                var listPatient1 = patientlist1.Select(s => new
+                var listPatient1 = patientlist.Select(s => new
                 {
                     ID = s.ID,
                     MaBN = s.MaBN,

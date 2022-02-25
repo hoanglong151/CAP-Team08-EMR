@@ -3018,6 +3018,7 @@
     <Content Include="Areas\Admin\Views\SanPhuKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\NgoaiKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutMultipleModel.cshtml" />
+    <Content Include="pdfUserGuide\Director.pdf" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
