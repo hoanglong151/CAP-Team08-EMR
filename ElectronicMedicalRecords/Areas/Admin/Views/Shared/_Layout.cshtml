@@ -424,7 +424,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 @if (User.IsInRole("QTV"))
                                 {
-                                    <li><a class="dropdown-item">Quản Trị Viên</a></li>
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Director.pdf')">Quản Trị Viên</a></li>
                                 }
                                 @if (User.IsInRole("Giám Đốc"))
                                 {
