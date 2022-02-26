@@ -419,12 +419,12 @@
                         <!-- Example single danger button -->
                         <div class="btn-group dropstart">
                             <button id="userGuides" type="button" class="btn btn-success dropdown-toggle nav-link" style="background: transparent; border: none; color: #0cca0c" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i style="font-size:25px;width:25px;height:25px" class="fas fa-user"></i>
+                                <i style="font-size:25px;width:25px;height:25px" class="fa-solid fa-book"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 @if (User.IsInRole("QTV"))
                                 {
-                                    <li><a class="dropdown-item">Quản Trị Viên</a></li>
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Director.pdf')">Quản Trị Viên</a></li>
                                 }
                                 @if (User.IsInRole("Giám Đốc"))
                                 {

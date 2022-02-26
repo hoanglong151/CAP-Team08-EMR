@@ -498,9 +498,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             InformationExamination checkInfoExam = db.InformationExaminations.Find(id);
-            if (checkInfoExam.HeartBeat != null || checkInfoExam.Breathing != null
-                    || checkInfoExam.BloodPressure != null || checkInfoExam.Weight != null
-                    || checkInfoExam.Height != null || checkInfoExam.ResultCTMau != null
+            if (checkInfoExam.ResultCTMau != null
                     || checkInfoExam.ResultSHM != null || checkInfoExam.ResultDMau != null
                     || checkInfoExam.ResultNhomMau != null || checkInfoExam.ResultNuocTieu != null
                     || checkInfoExam.ResultMienDich != null || checkInfoExam.ResultDichChocDo != null
