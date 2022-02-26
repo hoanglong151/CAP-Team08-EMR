@@ -1889,7 +1889,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_DaLieuController.CreateOldPatient(multiplesModel);
 
                 //cayMausController.CreateOldPatient(multiplesModel);
-                prescription_DetailController.CreateOldPatient(multiplesModel);
+                prescription_DetailController.CreateOldPatientPost(multiplesModel);
                 return RedirectToAction("Index", "Patients");
             }
             catch (Exception ex1)
@@ -1905,6 +1905,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             var inforamtionExaminationList = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
             var inforamtionExamination = inforamtionExaminationList.LastOrDefault();
+            var details_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == inforamtionExamination.ID);
+            if(details_diagnostic != null)
+            {
+                multiplesModel.Detail_DiagnosticsCategory = details_diagnostic;
+            }
             var patient = db.Patients.Find(id);
             multiplesModel.InformationExamination = inforamtionExamination;
             multiplesModel.Patient = patient;
@@ -2081,6 +2086,27 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
             }
             catch(Exception ED)
+            {
+                var errorEdit = ED;
+                return await Task.Run(() => RedirectToAction("Index", "Patients"));
+            }
+        }
+
+        // POST: Admin/MultipleModels/Edit1/5
+        [HttpPost, ValidateInput(false)]
+        public async Task<RedirectToRouteResult> Edit1(MultiplesModel multiplesModel)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                PatientsController patientsController = new PatientsController();
+                InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
+                
+                patientsController.Edit(multiplesModel.Patient);
+                informationExaminationsController.Edit(multiplesModel.InformationExamination, multiplesModel.Detail_DiagnosticsCategory);
+                return await Task.Run(() => RedirectToAction("Index", "Patients"));
+            }
+            catch (Exception ED)
             {
                 var errorEdit = ED;
                 return await Task.Run(() => RedirectToAction("Index", "Patients"));
