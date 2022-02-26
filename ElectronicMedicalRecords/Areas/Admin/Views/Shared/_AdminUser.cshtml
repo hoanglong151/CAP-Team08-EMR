@@ -10,9 +10,9 @@
 <div class="sidebar-menu">
     <ul class="menu p-0 m-0">
         <li class="sidebar-item has-sub" style="margin-top:0">
-            <audio controls="controls" loop id="mp3">
-                <source src="~/Areas/Admin/assets/relax.mp3" type="audio/mpeg" />
-            </audio>
+            @{
+                Html.RenderAction("Music", "Users");
+            }
             <a href="#" class='sidebar-link t-43'>
                 <div class="avatar-lg">
                     <img class="avatar" style="width:3rem;height:3rem" src="@Model.Image" alt="Face 1">

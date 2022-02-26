@@ -90,6 +90,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var userID = db.Users.FirstOrDefault(id => id.UserID == UserID);
             return PartialView("_AdminUser", userID);
         }
+
+        [ChildActionOnly, OutputCache(Duration = 3600)]
+        public ActionResult Music()
+        {
+            return PartialView("_Music");
+        }
         [Authorize]
         public ActionResult HomePage()
         {
