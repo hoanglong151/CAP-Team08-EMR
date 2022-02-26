@@ -198,8 +198,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             detail_RangHamMatController.CreateOldPatient(multiplesModel);
             detail_DaLieuController.CreateOldPatient(multiplesModel);
 
-            db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-            db.SaveChanges();
+            //db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+            //db.SaveChanges();
             return RedirectToAction("Index", "Patients");
         }
 
@@ -505,6 +505,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintExaminationInfoPost(MultiplesModel multiplesModel)
         {
             db.Configuration.LazyLoadingEnabled = false;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             Session["MultipleModels"] = multiplesModel;
             return Json(new { success = true, data = multiplesModel });
         }
@@ -2118,24 +2120,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var InfoExamination = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
-            if(InfoExamination.Count == 1)
+            var getPatient = db.Patients.FirstOrDefault(p => p.ID == id);
+            if(getPatient != null)
             {
-                var checkInfoExam = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == id);
-                var checkBill = db.Bills.FirstOrDefault(p => p.Patient_ID == id);
-                if (checkInfoExam.HeartBeat != null || checkInfoExam.Breathing != null
-                    || checkInfoExam.BloodPressure != null || checkInfoExam.Weight != null
-                    || checkInfoExam.Height != null || checkInfoExam.ResultCTMau != null
-                    || checkInfoExam.ResultSHM != null || checkInfoExam.ResultDMau != null
-                    || checkInfoExam.ResultNhomMau != null || checkInfoExam.ResultNuocTieu != null
-                    || checkInfoExam.ResultMienDich != null || checkInfoExam.ResultDichChocDo != null
-                    || checkInfoExam.ResultViSinh != null || checkBill != null)
+                var checkBill = db.Bills.Any(p => p.Patient_ID == id);
+                if (checkBill == true)
                 {
                     return Json(new { success = false });
                 }
                 else
                 {
-                    var patient = db.Patients.Find(id);
                     var historyDiseases = db.Detail_HistoryDisease.Where(p => p.Patient_ID == id).ToList();
                     if(historyDiseases.Count != 0)
                     {
@@ -2154,8 +2148,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                             db.SaveChanges();
                         }
                     }
-                    db.InformationExaminations.Remove(checkInfoExam);
-                    db.Patients.Remove(patient);
+                    var checkInfoExam = db.InformationExaminations.FirstOrDefault(p => p.Patient_ID == id);
+                    if(checkInfoExam != null)
+                    {
+                        db.InformationExaminations.Remove(checkInfoExam);
+                    }
+                    db.Patients.Remove(getPatient);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }

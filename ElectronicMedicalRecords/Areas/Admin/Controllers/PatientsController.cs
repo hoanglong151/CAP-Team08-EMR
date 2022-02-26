@@ -119,6 +119,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintBillExaminationPost(MultiplesModel multiplesModel)
         {
             db.Configuration.LazyLoadingEnabled = false;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             Session["MultipleModelsPatient"] = multiplesModel;
             return Json(new { success = true, data = multiplesModel });
         }
