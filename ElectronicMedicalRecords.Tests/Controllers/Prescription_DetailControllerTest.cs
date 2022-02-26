@@ -99,7 +99,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var multiple = MockPrescription();
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(multiple) as RedirectToRouteResult;
+                var result = controller.CreateOldPatientPost(multiple) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("CreateTest", result.RouteValues["action"]);
             }

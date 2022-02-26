@@ -115,7 +115,7 @@
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
-@using (Html.BeginForm("Edit", "MultipleModels", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormEdit" }))
+@using (Html.BeginForm("Edit1", "MultipleModels", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormEdit" }))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-12">
@@ -196,7 +196,7 @@
                                                 if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                                                 {
                                                     Html.RenderAction("Edit", "InformationExaminations", new { multiplesModel = Model });
-                                                    Html.RenderAction("EditNoButton", "Prescription_Detail", new { multiplesModel = Model });
+                                                    Html.RenderAction("DetailIERead", "Prescription_Detail", new { multiplesModel = Model });
                                                 }
                                             }
                                         </div>
@@ -213,8 +213,8 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("CreateOldPatient", "HistoryDiseases", new { multiplesModel = Model });
-                                                Html.RenderAction("CreateOldPatient", "MedicalHistories", new { multiplesModel = Model });
+                                                Html.RenderAction("BillCheck", "Detail_HistoryDisease", new { multiplesModel = Model });
+                                                Html.RenderAction("BillCheck", "Detail_MedicalHistory", new { multiplesModel = Model });
                                             }
                                         </div>
                                     </div>
@@ -269,19 +269,19 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "TuanHoans", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_TuanHoan", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "HoHaps", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_HoHap", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "TieuHoas", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_TieuHoa", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "ThanTietNieux", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_ThanTietNieu", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "CoXuongKhops", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_CoXuongKhop", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "ThanKinhs", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_ThanKinh", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "TamThans", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_TamThan", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -298,7 +298,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "NgoaiKhoas", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -315,7 +315,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "SanPhuKhoas", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -332,7 +332,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "Mats", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -349,11 +349,11 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "Tais", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_Tai", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "Muis", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_Mui", new { multiplesModel = Model });
                                                                         <br />
-                                                                        Html.RenderAction("EditSelect", "Hongs", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_Hong", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -370,7 +370,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "RangHamMats", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -387,7 +387,7 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("EditSelect", "DaLieux", new { multiplesModel = Model });
+                                                                        Html.RenderAction("BillCheck", "Detail_DaLieu", new { multiplesModel = Model });
                                                                     }
                                                                 </div>
                                                             </div>
@@ -409,7 +409,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_CTMau", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_CTMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -421,7 +421,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_SinhHoaMau", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -433,7 +433,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_DongMau", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_DongMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -445,7 +445,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_NhomMau", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_NhomMau", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -457,7 +457,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_Urine", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_Urine", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -469,7 +469,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_Immune", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_Immune", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -481,7 +481,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_Amniocente", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_Amniocente", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -493,7 +493,7 @@
                                 <section class="section">
                                     <div class="card">
                                         @{
-                                            Html.RenderAction("Edit", "Detail_ViSinh", new { multiplesModel = Model });
+                                            Html.RenderAction("DetailIE", "Detail_ViSinh", new { multiplesModel = Model });
                                         }
                                     </div>
                                 </section>
@@ -514,18 +514,6 @@
             value.style.paddingLeft = '12px';
         })
         var select = document.querySelector('#NameMedication');
-        select.addEventListener('change', (e) => {
-            var id = parseInt(e.target.value);
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("FindMedication", "Medications")",
-                data: { id: id},
-                success: (res) => {
-                    document.querySelector('#DVT').innerHTML = res.data.Unit;
-                    document.querySelector('#IDMedication').setAttribute("value", res.data.ID);
-                }
-            })
-        })
 
         function insRowMedication() {
             var NameMedication = $('#NameMedication').text();
@@ -537,14 +525,11 @@
             var cell0 = row.insertCell(0);
             var cell1 = row.insertCell(1);
             var cell2 = row.insertCell(2);
-            var cell3 = row.insertCell(3);
-            cell0.innerHTML = "<input type='number' id='medicationID' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + NameMedication + "' readonly/>";
-            cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' id='numMedication' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
-            cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' id='noteMedication' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
-            cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
+            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
             k++;
-            }
-
+        }
         loadMedication();
         function loadMedication() {
             var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
@@ -559,41 +544,13 @@
                         var cell0 = row.insertCell(0);
                         var cell1 = row.insertCell(1);
                         var cell2 = row.insertCell(2);
-                        var cell3 = row.insertCell(3);
-                        cell0.innerHTML = "<input type='number' id='infomartionID' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input id='medicationID' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none' type='text' value='" + medicationByID.Name + "' readonly/>";
-                        cell1.innerHTML = "<input id='numMedication' style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
-                        cell2.innerHTML = "<input id='noteMedication' style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
-                        cell3.innerHTML = "<button class='btn btn-primary' id='Medication-" + k + "' type='button' onClick='deleteRow(" + k + ")'>Delete</button>";
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
                         k++;
                     })
                 }
             })
-        }
-
-        function deleteRow(btn) {
-            var index = $("#Medication-" + btn);
-            index.parent().parent().remove();
-            k--;
-            updateRow();
-        }
-
-        function updateRow() {
-            k = 1;
-            var listTr = $('#tablePre tr');
-            for (let i = 1; i < listTr.length; i++) {
-                var InputNote = $(listTr[i]).children('td').children('input[id]');
-                if (InputNote.length == 4) {
-                    InputNote[0].setAttribute('name', `Prescription_Details[${k - 1}].InformationExamination_ID`);
-                    InputNote[1].setAttribute('name', `Prescription_Details[${k - 1}].Medication_ID`);
-                    InputNote[2].setAttribute('name', `Prescription_Details[${k - 1}].NumMedication`);
-                    InputNote[3].setAttribute('name', `Prescription_Details[${k - 1}].Note`);
-                } else {
-                    InputNote[0].setAttribute('name', `Prescription_Details[${k - 1}].Medication_ID`);
-                    InputNote[1].setAttribute('name', `Prescription_Details[${k - 1}].NumMedication`);
-                    InputNote[2].setAttribute('name', `Prescription_Details[${k - 1}].Note`);
-                }
-                k++;
-            }
         }
 
         var listTable = $('*.tableLoad');
@@ -1904,7 +1861,7 @@
                 });
         })
 
-        $('#updateMedication').click((e) => {
+        @*$('#updateMedication').click((e) => {
             var dataMedication = $('#FormEdit').serialize();
             $.ajax({
                 url: "@Url.Action("EditMedication", "Prescription_Detail")",
@@ -1921,7 +1878,7 @@
                     }
                 }
             })
-        })
+        })*@
 
         /*Validate Form*/
         $('form').each((i, obj) => {

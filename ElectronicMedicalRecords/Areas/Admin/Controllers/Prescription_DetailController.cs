@@ -112,26 +112,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult CreateOldPatient()
         {
-            //ViewBag.NameDiagnostics = db.DiagnosticsCategories.AsNoTracking().ToList();
-            //ViewBag.NameMedication = db.Medications.AsNoTracking().ToList();
-            //ViewBag.NameDiagnostics = db.DiagnosticsCategories.Select(s => new
-            //{
-            //    ID = s.ID,
-            //    Name = s.Name,
-            //    Advice = s.Advice,
-            //}).AsNoTracking().ToList();
-            //var diagnosticsCategories = db.DiagnosticsCategories.Select(s => new
-            //{
-            //    ID = s.ID,
-            //    Name = s.Name,
-            //    Advice = s.Advice,
-            //}).AsNoTracking().ToList();
-            //var medications = db.Medications.Select(m => new
-            //{
-            //    ID = m.ID,
-            //    Name = m.Name,
-            //    Unit = m.Unit
-            //}).AsNoTracking().ToList();
             return PartialView("_CreateOldPatient");
         }
 
@@ -174,10 +154,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
+        [ValidateAntiForgeryToken, ActionName("CreateOldPatient")]
+        public ActionResult CreateOldPatientPost(MultiplesModel multiplesModel)
         {
-            if(multiplesModel.Prescription_Details != null)
+            if (multiplesModel.Prescription_Details != null)
             {
                 foreach (var prescription_Detail in multiplesModel.Prescription_Details)
                 {
