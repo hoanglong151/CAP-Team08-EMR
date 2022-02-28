@@ -135,6 +135,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Edit(HttpPostedFileBase Image1, User user)
         {
             var check = db.Users.Find(user.ID);
+            var getUser = User.Identity.GetUserId();
+            var userEdit = db.Users.FirstOrDefault(p => p.UserID == getUser);
             if (ModelState.IsValid)
             {
                 if (Image1 != null)
@@ -163,7 +165,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var existData = db.Users.Find(user.ID);
                 db.Entry(existData).CurrentValues.SetValues(user);
                 db.SaveChanges();
-                if(check.Privacy == true && check.ActiveAccount == true)
+                if(check.Privacy == true && userEdit.ActiveAccount == true)
                 {
                     return RedirectToAction("Index");
                 }
