@@ -17,8 +17,38 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form">
-                <h4>Đăng nhập với tài khoản Văn Lang</h4>
-                <h3>Chào mừng bạn đã quay trở lại với công việc!</h3>           
+                <h4 style="margin-bottom:30px">Đăng nhập với tài khoản Văn Lang</h4>
+                <h3 style="margin-bottom: 0px">Chào mừng bạn đã quay trở lại với công việc!</h3>
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", style="margin:10px 0" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <span style="color:#fff">Email</span>
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span style="color:#fff">Mật Khẩu</span>
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12">
+                                <input type="submit" value="Đăng nhập" style="height:35px;margin-top:15px" class="btn-hover color-11" />
+                            </div>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Đăng ký tài khoản", "Register")
+                        </p>
+
+                    }
+
+
                 <div class="d-grid gap-2">
                     @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                 </div>

@@ -67,7 +67,7 @@ namespace ElectronicMedicalRecords.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, User user)
         {
             if (!ModelState.IsValid)
             {
@@ -80,14 +80,64 @@ namespace ElectronicMedicalRecords.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    CP24Team08Entities db = new CP24Team08Entities();
+                    var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                    var check = db.Users.FirstOrDefault(c => c.UserID == userId);
+                    if (ModelState.IsValid && check == null)
+                    {
+                        user.UserID = userId;
+                        user.IsShow = false;
+                        user.Privacy = false;
+                        user.ActiveAccount = false;
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
+                    }
+                    else if (check != null && check.Address == null || check.BirthDate == null || check.Degree == null || check.HomeTown_ID == null || check.Image == null || check.Name == null || check.Nation_ID == null || check.Phone == null || check.Privacy == false || check.Religion_ID == null)
+                    {
+                        return RedirectToAction("Edit", "Users", new { id = check.ID, Area = "Admin" });
+                    }
+                    else
+                    {
+                        if (check.ActiveAccount == true)
+                        {
+                            {
+                                //if the list exists, add this user to it
+                                if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                                {
+                                    //get the list of logged in users from the cache
+                                    var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+
+                                    if (!loggedInUsers.ContainsKey(userId))
+                                    {
+                                        //add this user to the list
+                                        loggedInUsers.Add(userId, DateTime.Now);
+                                        //add the list back into the cache
+                                        HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                                    }
+                                }
+                                //the list does not exist so create it
+                                else
+                                {
+                                    //create a new list
+                                    var loggedInUsers = new Dictionary<string, DateTime>();
+                                    //add this user to the list
+                                    loggedInUsers.Add(userId, DateTime.Now);
+                                    //add the list into the cache
+                                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                                }
+                            }
+                            return RedirectToAction("HomePage", "Users", new { Area = "Admin" });
+                        }
+                        return RedirectToAction("DenyAccount", "Users", new { Area = "Admin" });
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Sai Email hoặc Mật khẩu");
                     return View(model);
             }
         }

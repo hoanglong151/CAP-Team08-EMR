@@ -326,6 +326,7 @@
     <Compile Include="Areas\Admin\Controllers\ViSinhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WardsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3042,7 +3043,8 @@
     <Content Include="Users\js\glightbox.js" />
     <Content Include="Users\animation.css" />
     <Content Include="Views\Shared\data.js" />
-    <Content Include="Views\Shared\template.html" />
+    <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Views\Error\Page500.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3078,6 +3080,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
+    <Content Include="Views\Error\Page403.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

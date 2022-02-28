@@ -220,7 +220,7 @@
                 </div>
                 @foreach (var user in Model.users)
                 {
-                    if (Model.listUsersOnline.Contains(user.UserID))
+                    if (Model.listUsersOnline.Contains(user.UserID) && user.ActiveAccount == true)
                     {
                         <div class="card-content pb-3">
                             <div class="recent-message d-flex px-3 py-3">
