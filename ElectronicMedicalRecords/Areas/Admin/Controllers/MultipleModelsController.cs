@@ -161,9 +161,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_NgoaiKhoaController detail_NgoaiKhoaController = new Detail_NgoaiKhoaController();
             Detail_SanPhuKhoaController detail_SanPhuKhoaController = new Detail_SanPhuKhoaController();
             Detail_MatController detail_MatController = new Detail_MatController();
-            Detail_TaiController detail_TaiController = new Detail_TaiController();
-            Detail_MuiController detail_MuiController = new Detail_MuiController();
-            Detail_HongController detail_HongController = new Detail_HongController();
+            Detail_TaiMuiHongController detail_TaiMuiHongController = new Detail_TaiMuiHongController();
             Detail_RangHamMatController detail_RangHamMatController = new Detail_RangHamMatController();
             Detail_DaLieuController detail_DaLieuController = new Detail_DaLieuController();
 
@@ -178,9 +176,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             multiplesModel.NgoaiKhoa = multiplesModel.NgoaiKhoa.Where(p => p.ChiDinh == true).ToList();
             multiplesModel.SanPhuKhoa = multiplesModel.SanPhuKhoa.Where(p => p.ChiDinh == true).ToList();
             multiplesModel.Mat = multiplesModel.Mat.Where(p => p.ChiDinh == true).ToList();
-            multiplesModel.Tai = multiplesModel.Tai.Where(p => p.ChiDinh == true).ToList();
-            multiplesModel.Mui = multiplesModel.Mui.Where(p => p.ChiDinh == true).ToList();
-            multiplesModel.Hong = multiplesModel.Hong.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.TaiMuiHong = multiplesModel.TaiMuiHong.Where(p => p.ChiDinh == true).ToList();
             multiplesModel.RangHamMat = multiplesModel.RangHamMat.Where(p => p.ChiDinh == true).ToList();
             multiplesModel.DaLieu = multiplesModel.DaLieu.Where(p => p.ChiDinh == true).ToList();
 
@@ -195,9 +191,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             detail_NgoaiKhoaController.CreateOldPatient(multiplesModel);
             detail_SanPhuKhoaController.CreateOldPatient(multiplesModel);
             detail_MatController.CreateOldPatient(multiplesModel);
-            detail_TaiController.CreateOldPatient(multiplesModel);
-            detail_MuiController.CreateOldPatient(multiplesModel);
-            detail_HongController.CreateOldPatient(multiplesModel);
+            detail_TaiMuiHongController.CreateOldPatient(multiplesModel);
             detail_RangHamMatController.CreateOldPatient(multiplesModel);
             detail_DaLieuController.CreateOldPatient(multiplesModel);
             return RedirectToAction("Index", "Patients");
@@ -1187,38 +1181,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
                 multiplesModel.Mat = listMat;
             }
-            if (multiplesModel.Tai == null)
+            if (multiplesModel.TaiMuiHong == null)
             {
-                var listTai = db.Tais.ToList();
-                var listDetailTai = db.Detail_Tai.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
+                var listTaiMuiHong = db.TaiMuiHongs.ToList();
+                var listDetailTai = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
                 foreach (var itemTai in listDetailTai)
                 {
-                    var getTai = listTai.FirstOrDefault(p => p.ID == itemTai.Tai_ID);
+                    var getTai = listTaiMuiHong.FirstOrDefault(p => p.ID == itemTai.TaiMuiHong_ID);
                     getTai.ChiDinh = true;
                 }
-                multiplesModel.Tai = listTai;
-            }
-            if (multiplesModel.Mui == null)
-            {
-                var listMui = db.Muis.ToList();
-                var listDetailMui = db.Detail_Mui.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
-                foreach (var itemMui in listDetailMui)
-                {
-                    var getMui = listMui.FirstOrDefault(p => p.ID == itemMui.Mui_ID);
-                    getMui.ChiDinh = true;
-                }
-                multiplesModel.Mui = listMui;
-            }
-            if (multiplesModel.Hong == null)
-            {
-                var listHong = db.Hongs.ToList();
-                var listDetailHong = db.Detail_Hong.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
-                foreach (var itemHong in listDetailHong)
-                {
-                    var getHong = listHong.FirstOrDefault(p => p.ID == itemHong.Hong_ID);
-                    getHong.ChiDinh = true;
-                }
-                multiplesModel.Hong = listHong;
+                multiplesModel.TaiMuiHong = listTaiMuiHong;
             }
             if (multiplesModel.RangHamMat == null)
             {
@@ -1575,56 +1547,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult loadDetailTais(int[] arr)
+        public ActionResult loadDetailTaiMuiHongs(int[] arr)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            List<Tai> tais = new List<Tai>();
+            List<TaiMuiHong> taimuihongs = new List<TaiMuiHong>();
             if (arr != null)
             {
                 for (int i = 0; i < arr.Length; i++)
                 {
                     var id = arr[i];
-                    var tai = db.Tais.FirstOrDefault(p => p.ID == id);
-                    tai.ChiDinh = true;
-                    tais.Add(tai);
+                    var taimuihong = db.TaiMuiHongs.FirstOrDefault(p => p.ID == id);
+                    taimuihong.ChiDinh = true;
+                    taimuihongs.Add(taimuihong);
                 }
-                return Json(new { data = tais }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult loadDetailMuis(int[] arr)
-        {
-            db.Configuration.LazyLoadingEnabled = false;
-            List<Mui> muis = new List<Mui>();
-            if (arr != null)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    var id = arr[i];
-                    var mui = db.Muis.FirstOrDefault(p => p.ID == id);
-                    mui.ChiDinh = true;
-                    muis.Add(mui);
-                }
-                return Json(new { data = muis }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult loadDetailHongs(int[] arr)
-        {
-            db.Configuration.LazyLoadingEnabled = false;
-            List<Hong> hongs = new List<Hong>();
-            if (arr != null)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    var id = arr[i];
-                    var hong = db.Hongs.FirstOrDefault(p => p.ID == id);
-                    hong.ChiDinh = true;
-                    hongs.Add(hong);
-                }
-                return Json(new { data = hongs }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = taimuihongs }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
@@ -1765,7 +1701,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/MultipleModels/CreateOldPatient/5
+        // GET: Admin/MultipleModels/CreateTest/5
         public ActionResult CreateTest(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
@@ -1810,9 +1746,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 Detail_NgoaiKhoaController detail_NgoaiKhoaController = new Detail_NgoaiKhoaController();
                 Detail_SanPhuKhoaController detail_SanPhuKhoaController = new Detail_SanPhuKhoaController();
                 Detail_MatController detail_MatController = new Detail_MatController();
-                Detail_TaiController detail_TaiController = new Detail_TaiController();
-                Detail_MuiController detail_MuiController = new Detail_MuiController();
-                Detail_HongController detail_HongController = new Detail_HongController();
+                Detail_TaiMuiHongController detail_TaiMuiHongController = new Detail_TaiMuiHongController();
                 Detail_RangHamMatController detail_RangHamMatController = new Detail_RangHamMatController();
                 Detail_DaLieuController detail_DaLieuController = new Detail_DaLieuController();
 
@@ -1847,9 +1781,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.NgoaiKhoa = multiplesModel.NgoaiKhoa.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.SanPhuKhoa = multiplesModel.SanPhuKhoa.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.Mat = multiplesModel.Mat.Where(p => p.ChiDinh == true).ToList();
-                multiplesModel.Tai = multiplesModel.Tai.Where(p => p.ChiDinh == true).ToList();
-                multiplesModel.Mui = multiplesModel.Mui.Where(p => p.ChiDinh == true).ToList();
-                multiplesModel.Hong = multiplesModel.Hong.Where(p => p.ChiDinh == true).ToList();
+                multiplesModel.TaiMuiHong = multiplesModel.TaiMuiHong.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.RangHamMat = multiplesModel.RangHamMat.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.DaLieu = multiplesModel.DaLieu.Where(p => p.ChiDinh == true).ToList();
 
@@ -1884,9 +1816,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 detail_NgoaiKhoaController.CreateOldPatient(multiplesModel);
                 detail_SanPhuKhoaController.CreateOldPatient(multiplesModel);
                 detail_MatController.CreateOldPatient(multiplesModel);
-                detail_TaiController.CreateOldPatient(multiplesModel);
-                detail_MuiController.CreateOldPatient(multiplesModel);
-                detail_HongController.CreateOldPatient(multiplesModel);
+                detail_TaiMuiHongController.CreateOldPatient(multiplesModel);
                 detail_RangHamMatController.CreateOldPatient(multiplesModel);
                 detail_DaLieuController.CreateOldPatient(multiplesModel);
 
@@ -1902,6 +1832,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/MultipleModels/Edit/5
+        [Route("Edit/{id}")]
         public ActionResult Edit(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();

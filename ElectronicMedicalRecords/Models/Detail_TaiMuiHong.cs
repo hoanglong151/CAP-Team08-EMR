@@ -12,20 +12,13 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tai
+    public partial class Detail_TaiMuiHong
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tai()
-        {
-            this.Detail_Tai = new HashSet<Detail_Tai>();
-        }
-    
         public int ID { get; set; }
-        public bool ChiDinh { get; set; }
-        public string Name { get; set; }
-        public bool Dangerous { get; set; }
+        public Nullable<int> InformationExamination_ID { get; set; }
+        public Nullable<int> TaiMuiHong_ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_Tai> Detail_Tai { get; set; }
+        public virtual InformationExamination InformationExamination { get; set; }
+        public virtual TaiMuiHong TaiMuiHong { get; set; }
     }
 }

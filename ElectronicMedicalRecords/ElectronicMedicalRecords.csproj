@@ -271,17 +271,15 @@
     <Compile Include="Areas\Admin\Controllers\Detail_DongMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_HistoryDiseaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_HoHapController.cs" />
-    <Compile Include="Areas\Admin\Controllers\Detail_HongController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_ImmuneController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_MatController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_MedicalHistoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\Detail_MuiController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_NgoaiKhoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_NhomMauController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_RangHamMatController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_SanPhuKhoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_SinhHoaMauController.cs" />
-    <Compile Include="Areas\Admin\Controllers\Detail_TaiController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Detail_TaiMuiHongController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_TamThanController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_ThanKinhController.cs" />
     <Compile Include="Areas\Admin\Controllers\Detail_ThanTietNieuController.cs" />
@@ -295,14 +293,12 @@
     <Compile Include="Areas\Admin\Controllers\HistoryDiseasesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HoHapsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeTownsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImmunesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationExaminationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MatsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicalHistoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicationsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MuisController.cs" />
     <Compile Include="Areas\Admin\Controllers\MultipleModelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Nation1Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\NationsController.cs" />
@@ -315,7 +311,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhuKhoasController.cs" />
     <Compile Include="Areas\Admin\Controllers\SinhHoaMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TaisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiMuiHongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TamThansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThanKinhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThanTietNieuxController.cs" />
@@ -385,16 +381,10 @@
     <Compile Include="Models\Detail_HoHap.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Detail_Hong.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Detail_Mat.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_MedicalHistory.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Detail_Mui.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_NgoaiKhoa.cs">
@@ -406,7 +396,7 @@
     <Compile Include="Models\Detail_SanPhuKhoa.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Detail_Tai.cs">
+    <Compile Include="Models\Detail_TaiMuiHong.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail_TamThan.cs">
@@ -433,16 +423,10 @@
     <Compile Include="Models\HoHap.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Hong.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Mat.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicalHistory.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Mui.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NgoaiKhoa.cs">
@@ -549,7 +533,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tai.cs">
+    <Compile Include="Models\TaiMuiHong.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TamThan.cs">
@@ -2928,7 +2912,6 @@
     <Content Include="Areas\Admin\Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\_EditNoButton.cshtml" />
     <Content Include="Areas\Admin\Views\Prescription_Detail\ListPrescriptionBill.cshtml" />
-    <Content Include="Areas\Admin\Views\Statistics\StatisByDoctorAndCondition.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\StatisByCondition.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\StatisByDiagnostic.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\StatisByMoney.cshtml" />
@@ -2975,13 +2958,9 @@
     <Content Include="Areas\Admin\Views\NgoaiKhoas\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhuKhoas\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\Mats\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Tais\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Muis\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Hongs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiMuiHongs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Mats\_CreateOldPatient.cshtml" />
-    <Content Include="Areas\Admin\Views\Tais\_CreateOldPatient.cshtml" />
-    <Content Include="Areas\Admin\Views\Muis\_CreateOldPatient.cshtml" />
-    <Content Include="Areas\Admin\Views\Hongs\_CreateOldPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiMuiHongs\_CreateOldPatient.cshtml" />
     <Content Include="Areas\Admin\Views\RangHamMats\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DaLieux\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RangHamMats\_CreateOldPatient.cshtml" />
@@ -2998,9 +2977,7 @@
     <Content Include="Areas\Admin\Views\Detail_NgoaiKhoa\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_SanPhuKhoa\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_Mat\_BillCheck.cshtml" />
-    <Content Include="Areas\Admin\Views\Detail_Tai\_BillCheck.cshtml" />
-    <Content Include="Areas\Admin\Views\Detail_Mui\_BillCheck.cshtml" />
-    <Content Include="Areas\Admin\Views\Detail_Hong\_BillCheck.cshtml" />
+    <Content Include="Areas\Admin\Views\Detail_TaiMuiHong\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_RangHamMat\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\Detail_DaLieu\_BillCheck.cshtml" />
     <Content Include="Areas\Admin\Views\TuanHoans\_EditSelect.cshtml" />
@@ -3012,15 +2989,14 @@
     <Content Include="Areas\Admin\Views\ThanTietNieux\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\DaLieux\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\RangHamMats\_EditSelect.cshtml" />
-    <Content Include="Areas\Admin\Views\Hongs\_EditSelect.cshtml" />
-    <Content Include="Areas\Admin\Views\Muis\_EditSelect.cshtml" />
-    <Content Include="Areas\Admin\Views\Tais\_EditSelect.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiMuiHongs\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\Mats\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhuKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\NgoaiKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutMultipleModel.cshtml" />
     <Content Include="pdfUserGuide\Director.pdf" />
     <Content Include="Areas\Admin\Views\Users\_Music.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\StatisByDoctorAndCondition.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

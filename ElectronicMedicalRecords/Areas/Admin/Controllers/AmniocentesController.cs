@@ -38,7 +38,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Amniocentes/Create
         public ActionResult Create()
         {
-
             MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.Amniocente = db.Amniocentes.ToList();
             return PartialView("_Create", multiplesModel);

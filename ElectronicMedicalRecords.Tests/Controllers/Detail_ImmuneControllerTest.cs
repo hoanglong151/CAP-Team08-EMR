@@ -79,7 +79,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Detail_Immune detail_Immune = new Detail_Immune();
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(detail_Immune, immunes, info.ID, multiplesModel) as Task<ActionResult>;
+                var result = controller.CreateOldPatient(detail_Immune, immunes, info.ID, multiplesModel) as ActionResult;
                 Assert.IsNotNull(result);
             }
         }

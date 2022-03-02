@@ -79,7 +79,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Detail_Amniocente detail_Amniocente = new Detail_Amniocente();
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(detail_Amniocente, amniocenteList, info.ID, multiplesModel) as Task<ActionResult>;
+                var result = controller.CreateOldPatient(detail_Amniocente, amniocenteList, info.ID, multiplesModel) as ActionResult;
                 Assert.IsNotNull(result);
             }
         }

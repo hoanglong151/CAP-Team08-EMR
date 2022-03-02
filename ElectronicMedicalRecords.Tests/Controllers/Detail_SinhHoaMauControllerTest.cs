@@ -79,7 +79,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Detail_SinhHoaMau detail_SinhHoaMau = new Detail_SinhHoaMau();
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(detail_SinhHoaMau, sinhHoaMaus, info.ID, multiplesModel) as Task<ActionResult>;
+                var result = controller.CreateOldPatient(detail_SinhHoaMau, sinhHoaMaus, info.ID, multiplesModel) as ActionResult;
                 Assert.IsNotNull(result);
             }
         }

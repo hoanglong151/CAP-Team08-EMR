@@ -43,9 +43,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
                 var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item.ID).ToList();
                 var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                var detail_Tai = db.Detail_Tai.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                var detail_Mui = db.Detail_Mui.Where(p => p.InformationExamination_ID == item.ID).ToList();
-                var detail_Hong = db.Detail_Hong.Where(p => p.InformationExamination_ID == item.ID).ToList();
+                var detail_TaiMuiHong = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == item.ID).ToList();
                 var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item.ID).ToList();
                 var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item.ID).ToList();
 
@@ -59,17 +57,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var checkDangerousNgoaiKhoa = detail_NgoaiKhoa.Any(p => p.NgoaiKhoa.Dangerous == true);
                 var checkDangerousSanPhuKhoa = detail_SanPhuKhoa.Any(p => p.SanPhuKhoa.Dangerous == true);
                 var checkDangerousMat = detail_Mat.Any(p => p.Mat.Dangerous == true);
-                var checkDangerousTai = detail_Tai.Any(p => p.Tai.Dangerous == true);
-                var checkDangerousMui = detail_Mui.Any(p => p.Mui.Dangerous == true);
-                var checkDangerousHong = detail_Hong.Any(p => p.Hong.Dangerous == true);
+                var checkDangerousTai = detail_TaiMuiHong.Any(p => p.TaiMuiHong.Dangerous == true);
                 var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
                 var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
 
                 var checkResult = false;
                 if(checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
                     || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true
-                    || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousMui == true 
-                    || checkDangerousHong == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
+                    || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
                 {
                     checkResult = true;
                 }
@@ -143,9 +138,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
                 var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
                 var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Tai = db.Detail_Tai.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Mui = db.Detail_Mui.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Hong = db.Detail_Hong.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                var detail_TaiMuiHong = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == item1.ID).ToList();
                 var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
                 var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
 
@@ -159,17 +152,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var checkDangerousNgoaiKhoa = detail_NgoaiKhoa.Any(p => p.NgoaiKhoa.Dangerous == true);
                 var checkDangerousSanPhuKhoa = detail_SanPhuKhoa.Any(p => p.SanPhuKhoa.Dangerous == true);
                 var checkDangerousMat = detail_Mat.Any(p => p.Mat.Dangerous == true);
-                var checkDangerousTai = detail_Tai.Any(p => p.Tai.Dangerous == true);
-                var checkDangerousMui = detail_Mui.Any(p => p.Mui.Dangerous == true);
-                var checkDangerousHong = detail_Hong.Any(p => p.Hong.Dangerous == true);
+                var checkDangerousTai = detail_TaiMuiHong.Any(p => p.TaiMuiHong.Dangerous == true);
                 var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
                 var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
 
                 var checkResult = false;
                 if (checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
                     || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true
-                    || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousMui == true
-                    || checkDangerousHong == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
+                    || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
                 {
                     checkResult = true;
                 }

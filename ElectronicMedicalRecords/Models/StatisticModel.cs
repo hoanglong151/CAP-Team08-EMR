@@ -14,6 +14,6 @@ namespace ElectronicMedicalRecords.Models
         public PatientStatu patientStatu { get; set; }
         public Patient patient { get; set; }
         public int countPatient { get; set; }
-        public InformationExamination informationExamination {get; set;}
+        public InformationExamination informationExamination { get; set; }
     }
 }

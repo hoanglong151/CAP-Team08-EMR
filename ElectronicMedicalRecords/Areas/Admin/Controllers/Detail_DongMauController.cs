@@ -88,7 +88,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateOldPatient(Detail_DongMau detail_DongMau, List<DongMau> dongMaus, int informationID, MultiplesModel multiplesModel)
+        public ActionResult CreateOldPatient(Detail_DongMau detail_DongMau, List<DongMau> dongMaus, int informationID, MultiplesModel multiplesModel)
         {
             foreach (var item in dongMaus)
             {
@@ -99,7 +99,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     detail_DongMau.InformationExamination_ID = informationID;
                     detail_DongMau.ChiDinh = item.ChiDinh;
                     db.Detail_DongMau.Add(detail_DongMau);
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
             }
             ViewBag.DongMau_ID = new SelectList(db.DongMaus, "ID", "NameTest", detail_DongMau.DongMau_ID);

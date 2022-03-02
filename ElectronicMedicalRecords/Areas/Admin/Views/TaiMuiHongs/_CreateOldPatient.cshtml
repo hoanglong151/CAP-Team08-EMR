@@ -63,7 +63,7 @@
 </div>
 
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTai" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Các bệnh về Tai
+    Các bệnh về Tai-Mũi-Họng
 </a>
 
 <div class="collapse" id="collapseTai">
@@ -76,7 +76,7 @@
             <h6>Ký tự: <span style="color:red">*</span> nguy hiểm tới tính mạng</h6>
         </div>
         <!-- button trigger for  Vertically Centered modal -->
-        <button style="display:none;margin-left:10px" onclick="loadDetailTais()" id="DetailClinicalCount" type="button" class="btn btn-outline-primary block"
+        <button style="display:none;margin-left:10px" onclick="loadDetailTaiMuiHongs()" id="DetailClinicalCount" type="button" class="btn btn-outline-primary block"
                 data-bs-toggle="modal" data-bs-target="#ModalTai">
             Chi Tiết
         </button>
@@ -100,7 +100,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Bệnh về Tai</th>
+                                    <th>Bệnh về Tai-Mũi-Họng</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -123,24 +123,24 @@
                 <tr>
                     <th class="unset-tb" hidden></th>
                     <th class="unset-tb">#</th>
-                    <th class="unset-tb">Bệnh về Tai</th>
+                    <th class="unset-tb">Bệnh về Tai-Mũi-Họng</th>
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Tai.Count(); i++)
+                @for (int i = 0; i < Model.TaiMuiHong.Count(); i++)
                 {
                     <tr>
                         <td hidden>
-                            <input value="@Model.Tai[i].ID" type="text" name="Tai[@i].ID" hidden />
+                            <input value="@Model.TaiMuiHong[i].ID" type="text" name="TaiMuiHong[@i].ID" hidden />
                         </td>
                         <td>
-                            <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountClinicals" data-id="@Model.Tai[i].ID" name="Tai[@i].ChiDinh" id="Tai-@Model.Tai[i].ID">
+                            <input type="checkbox" value="false" class="form-check-input form-check-primary updateCountClinicals" data-id="@Model.TaiMuiHong[i].ID" name="TaiMuiHong[@i].ChiDinh" id="TaiMuiHong-@Model.TaiMuiHong[i].ID">
                         </td>
                         <td>
-                            <input value="@Model.Tai[i].Name" type="text" name="Tai[@i].Name" hidden />
-                            @Html.HiddenFor(model => model.Tai[i].Dangerous)
-                            <label class="form-check-label" for="Tai-@Model.Tai[i].ID">@Model.Tai[i].Name</label>
-                            @if (Model.Tai[i].Dangerous == true)
+                            <input value="@Model.TaiMuiHong[i].Name" type="text" name="TaiMuiHong[@i].Name" hidden />
+                            @Html.HiddenFor(model => model.TaiMuiHong[i].Dangerous)
+                            <label class="form-check-label" for="TaiMuiHong-@Model.TaiMuiHong[i].ID">@Model.TaiMuiHong[i].Name</label>
+                            @if (Model.TaiMuiHong[i].Dangerous == true)
                             {
                                 <span style="color:red">*</span>
                             }
