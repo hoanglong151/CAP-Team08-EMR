@@ -25,16 +25,13 @@ namespace ElectronicMedicalRecords.Models
             this.Detail_DaLieu = new HashSet<Detail_DaLieu>();
             this.Detail_DiagnosticsCategory = new HashSet<Detail_DiagnosticsCategory>();
             this.Detail_DongMau = new HashSet<Detail_DongMau>();
-            this.Detail_Hong = new HashSet<Detail_Hong>();
             this.Detail_Immune = new HashSet<Detail_Immune>();
             this.Detail_Mat = new HashSet<Detail_Mat>();
-            this.Detail_Mui = new HashSet<Detail_Mui>();
             this.Detail_NgoaiKhoa = new HashSet<Detail_NgoaiKhoa>();
             this.Detail_NhomMau = new HashSet<Detail_NhomMau>();
             this.Detail_RangHamMat = new HashSet<Detail_RangHamMat>();
             this.Detail_SanPhuKhoa = new HashSet<Detail_SanPhuKhoa>();
             this.Detail_SinhHoaMau = new HashSet<Detail_SinhHoaMau>();
-            this.Detail_Tai = new HashSet<Detail_Tai>();
             this.Detail_TamThan = new HashSet<Detail_TamThan>();
             this.Detail_ThanKinh = new HashSet<Detail_ThanKinh>();
             this.Detail_ThanTietNieu = new HashSet<Detail_ThanTietNieu>();
@@ -45,6 +42,7 @@ namespace ElectronicMedicalRecords.Models
             this.Prescription_Detail = new HashSet<Prescription_Detail>();
             this.Detail_HoHap = new HashSet<Detail_HoHap>();
             this.Clinicals = new HashSet<Clinical>();
+            this.Detail_TaiMuiHong = new HashSet<Detail_TaiMuiHong>();
         }
     
         public int ID { get; set; }
@@ -89,13 +87,9 @@ namespace ElectronicMedicalRecords.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_DongMau> Detail_DongMau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_Hong> Detail_Hong { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Immune> Detail_Immune { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_Mat> Detail_Mat { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_Mui> Detail_Mui { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_NgoaiKhoa> Detail_NgoaiKhoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -106,8 +100,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_SanPhuKhoa> Detail_SanPhuKhoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_SinhHoaMau> Detail_SinhHoaMau { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_Tai> Detail_Tai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_TamThan> Detail_TamThan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -131,5 +123,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_HoHap> Detail_HoHap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clinical> Clinicals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detail_TaiMuiHong> Detail_TaiMuiHong { get; set; }
     }
 }

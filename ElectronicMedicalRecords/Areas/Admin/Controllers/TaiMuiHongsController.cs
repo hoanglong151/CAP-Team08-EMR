@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,36 +10,36 @@ using ElectronicMedicalRecords.Models;
 
 namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 {
-    public class MuisController : Controller
+    public class TaiMuiHongsController : Controller
     {
         private CP24Team08Entities db = new CP24Team08Entities();
 
-        // GET: Admin/Muis
+        // GET: Admin/Tais
         public ActionResult Index()
         {
-            return View(db.Muis.ToList());
+            return View(db.TaiMuiHongs.ToList());
         }
 
         public ActionResult EditSelect(MultiplesModel multiplesModel)
         {
-            var listDetailMui = db.Detail_Mui.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            var listMui = db.Muis.AsNoTracking().ToList();
-            foreach (var item in listDetailMui)
+            var listDetailTai = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
+            var listTaiMuiHong = db.TaiMuiHongs.AsNoTracking().ToList();
+            foreach (var item in listDetailTai)
             {
-                var changeSelect = listMui.FirstOrDefault(p => p.ID == item.Mui_ID);
+                var changeSelect = listTaiMuiHong.FirstOrDefault(p => p.ID == item.TaiMuiHong_ID);
                 changeSelect.ChiDinh = true;
             }
-            multiplesModel.Mui = listMui;
+            multiplesModel.TaiMuiHong = listTaiMuiHong;
             return PartialView("_EditSelect", multiplesModel);
         }
 
-        public JsonResult GetArrMui(int id)
+        public JsonResult GetArrTaiMuiHong(int id)
         {
-            var listDetailMui = db.Detail_Mui.Where(p => p.InformationExamination_ID == id).ToList();
+            var listDetailTaiMuiHong = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == id).ToList();
             var listOfStrings = new List<string>();
-            foreach (var item in listDetailMui)
+            foreach (var item in listDetailTaiMuiHong)
             {
-                listOfStrings.Add("" + item.Mui_ID);
+                listOfStrings.Add("" + item.TaiMuiHong_ID);
             }
             return Json(new { success = true, res = listOfStrings.ToArray() });
         }
@@ -47,125 +47,125 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var muis = db.Muis.ToList();
-            return Json(new { data = muis }, JsonRequestBehavior.AllowGet);
+            var taimuihongs = db.TaiMuiHongs.ToList();
+            return Json(new { data = taimuihongs }, JsonRequestBehavior.AllowGet);
         }
 
-        public string ValidateForm(Mui mui)
+        public string ValidateForm(TaiMuiHong taiMuiHong)
         {
             string text = "";
-            var checkExist = db.Muis.FirstOrDefault(e => e.Name == mui.Name);
-            if (checkExist != null && mui.Name != null)
+            var checkExist = db.TaiMuiHongs.FirstOrDefault(e => e.Name == taiMuiHong.Name);
+            if (checkExist != null && taiMuiHong.Name != null)
             {
-                text = "Mũi đã có trong danh sách";
+                text = "Tai Mũi Họng đã có trong danh sách";
             }
             return text;
         }
 
-        public string ValidateFormUpdate(Mui mui)
+        public string ValidateFormUpdate(TaiMuiHong taimuihong)
         {
             string text = "";
-            var checkExist = db.Muis.FirstOrDefault(e => e.Name == mui.Name);
-            if (checkExist != null && checkExist.ID != mui.ID && mui.Name != null)
+            var checkExist = db.TaiMuiHongs.FirstOrDefault(e => e.Name == taimuihong.Name);
+            if (checkExist != null && checkExist.ID != taimuihong.ID && taimuihong.Name != null)
             {
-                text = "Mũi đã có trong danh sách";
+                text = "Tai Mũi Họng đã có trong danh sách";
             }
             return text;
         }
 
-        // GET: Admin/Muis/CreateOldPatient
+        // GET: Admin/Tais/CreateOldPatient
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            multiplesModel.Mui = db.Muis.ToList();
+            multiplesModel.TaiMuiHong = db.TaiMuiHongs.ToList();
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
-        // POST: Admin/Muis/Create
+        // POST: Admin/Tais/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Mui mui)
+        public ActionResult Create(TaiMuiHong taimuihong)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateForm(mui);
+            var text = ValidateForm(taimuihong);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    mui.ChiDinh = false;
-                    db.Muis.Add(mui);
+                    taimuihong.ChiDinh = false;
+                    db.TaiMuiHongs.Add(taimuihong);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(mui);
+                return View(taimuihong);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/Muis/Edit/5
+        // GET: Admin/Tais/Edit/5
         public ActionResult Edit(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            Mui mui = db.Muis.Find(id);
-            if (mui == null)
+            TaiMuiHong taimuihong = db.TaiMuiHongs.Find(id);
+            if (taimuihong == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = mui }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = taimuihong }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/Muis/Edit/5
+        // POST: Admin/Tais/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Mui mui)
+        public ActionResult Edit(TaiMuiHong taimuihong)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var text = ValidateFormUpdate(mui);
+            var text = ValidateFormUpdate(taimuihong);
             if (text == "")
             {
                 if (ModelState.IsValid)
                 {
-                    var existData = db.Muis.Find(mui.ID);
-                    db.Entry(existData).CurrentValues.SetValues(mui);
+                    var existData = db.TaiMuiHongs.Find(taimuihong.ID);
+                    db.Entry(existData).CurrentValues.SetValues(taimuihong);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
-                return View(mui);
+                return View(taimuihong);
             }
             return Json(new { success = false, responseText = text });
         }
 
-        // GET: Admin/Muis/Delete/5
+        // GET: Admin/Tais/Delete/5
         public ActionResult Delete(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            Mui mui = db.Muis.Find(id);
-            if (mui == null)
+            TaiMuiHong taimuihong = db.TaiMuiHongs.Find(id);
+            if (taimuihong == null)
             {
                 return HttpNotFound();
             }
-            return Json(new { data = mui }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = taimuihong }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Admin/Muis/Delete/5
+        // POST: Admin/Tais/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            Mui mui = db.Muis.Find(id);
+            TaiMuiHong taimuihong = db.TaiMuiHongs.Find(id);
             try
             {
-                db.Muis.Remove(mui);
+                db.TaiMuiHongs.Remove(taimuihong);
                 db.SaveChanges();
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, responseText = "Mũi này đã được sử dụng. Bạn không thể xóa nó!" });
+                return Json(new { success = false, responseText = "Tai Mũi Họng này đã được sử dụng. Bạn không thể xóa nó!" });
             }
         }
 

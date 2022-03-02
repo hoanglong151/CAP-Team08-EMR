@@ -79,7 +79,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Detail_Urine detail_Urine = new Detail_Urine();
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(detail_Urine, urines, info.ID, multiplesModel) as Task<ActionResult>;
+                var result = controller.CreateOldPatient(detail_Urine, urines, info.ID, multiplesModel) as ActionResult;
                 Assert.IsNotNull(result);
             }
         }

@@ -16,10 +16,10 @@ using System.Web;
 namespace ElectronicMedicalRecords.Tests.Controllers
 {
     [TestClass]
-    public class TaissControllerTest
+    public class TaisControllerTest
     {
         CP24Team08Entities db = new CP24Team08Entities();
-        TaisController controller = new TaisController();
+        TaiMuiHongsController controller = new TaiMuiHongsController();
 
         [TestMethod]
         public void TestIndex()
@@ -27,10 +27,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var list = controller.Index() as ViewResult;
             Assert.IsNotNull(list);
 
-            var model = list.Model as List<Tai>;
+            var model = list.Model as List<TaiMuiHong>;
             Assert.IsNotNull(model);
 
-            Assert.AreEqual(db.Tais.Count(), model.Count);
+            Assert.AreEqual(db.TaiMuiHongs.Count(), model.Count);
         }
 
         [TestMethod]
@@ -39,14 +39,14 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var getData = controller.GetData() as JsonResult;
             Assert.IsNotNull(getData);
             dynamic check = getData.Data;
-            Assert.AreEqual(db.Tais.Count(), check.data.Count);
+            Assert.AreEqual(db.TaiMuiHongs.Count(), check.data.Count);
         }
 
         [TestMethod]
         public void TestCreateP()
         {
             var rand = new Random();
-            var tai = new Tai
+            var tai = new TaiMuiHong
             {
                 ChiDinh = false,
                 Name = rand.ToString(),
@@ -68,7 +68,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
 
                 dynamic noti = result1.Data;
                 Assert.AreEqual(false, noti.success);
-                Assert.AreEqual("Tai đã có trong danh sách", noti.responseText);
+                Assert.AreEqual("Tai-Mũi-Họng đã có trong danh sách", noti.responseText);
             }
 
             tai.Name = null;
@@ -87,7 +87,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.Edit(0) as HttpNotFoundResult;
             Assert.IsNotNull(result);
 
-            var tai = db.Tais.First();
+            var tai = db.TaiMuiHongs.First();
             var result1 = controller.Edit(tai.ID) as JsonResult;
             Assert.IsNotNull(result1);
             dynamic data = result1.Data;
@@ -98,7 +98,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void TestEditP()
         {
             var rand = new Random();
-            var tai = db.Tais.FirstOrDefault();
+            var tai = db.TaiMuiHongs.FirstOrDefault();
             tai.Name = "Viêm ống tai ngoài";
             using (var scope = new TransactionScope())
             {
@@ -106,7 +106,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.IsNotNull(result1);
                 dynamic data = result1.Data;
                 Assert.AreEqual(false, data.success);
-                Assert.AreEqual("Tai đã có trong danh sách", data.responseText);
+                Assert.AreEqual("Tai-Mũi-Họng đã có trong danh sách", data.responseText);
             }
             tai.Name = rand.ToString();
             controller.ModelState.Clear();
@@ -131,7 +131,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.Delete(0) as HttpNotFoundResult;
             Assert.IsNotNull(result);
 
-            var tai = db.Tais.First();
+            var tai = db.TaiMuiHongs.First();
             var result1 = controller.Delete(tai.ID) as JsonResult;
             Assert.IsNotNull(result1);
 
@@ -150,7 +150,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestDeleteP()
         {
-            var tai = db.Tais.First();
+            var tai = db.TaiMuiHongs.First();
             using (var scope = new TransactionScope())
             {
                 var result = controller.DeleteConfirmed(2) as JsonResult;
@@ -212,7 +212,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             {
                 var result = controller.EditSelect(multiple) as PartialViewResult;
                 Assert.IsNotNull(result);
-                var tai = db.Tais.First();
+                var tai = db.TaiMuiHongs.First();
             }
         }
         [TestMethod]
@@ -221,7 +221,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var tai = db.InformationExaminations.FirstOrDefault(p => p.ID == 678);
             using (var scope = new TransactionScope())
             {
-                var result1 = controller.GetArrTai(tai.ID) as JsonResult;
+                var result1 = controller.GetArrTaiMuiHong(tai.ID) as JsonResult;
                 Assert.IsNotNull(result1);
             }
         }

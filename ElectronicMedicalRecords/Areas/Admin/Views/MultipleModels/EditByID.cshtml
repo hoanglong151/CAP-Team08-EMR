@@ -237,7 +237,7 @@
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
-                                               role="tab" aria-controls="home" aria-selected="true">Tai Mũi Họng</a>
+                                               role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
@@ -338,11 +338,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("BillCheck", "Detail_Tai", new { multiplesModel = Model });
-                                                                    <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_Mui", new { multiplesModel = Model });
-                                                                    <br />
-                                                                    Html.RenderAction("BillCheck", "Detail_Hong", new { multiplesModel = Model });
+                                                                    Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>

@@ -64,7 +64,7 @@
 </div>
 
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTai" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Tai
+    Tai-Mũi-Họng
 </a>
 
 <div class="collapse" id="collapseTai">
@@ -76,32 +76,32 @@
                     <th hidden></th>
                     <th hidden></th>
                     <th>Chỉ Định</th>
-                    <th>Bệnh về Tai</th>
+                    <th>Bệnh về Tai-Mũi-Họng</th>
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Detail_Tais.Count(); i++)
+                @for (int i = 0; i < Model.Detail_TaiMuiHongs.Count(); i++)
                 {
                     <tr>
                         <td hidden>
-                            <input value="@Model.Detail_Tais[i].InformationExamination_ID" type="text" name="Detail_Tais[@i].InformationExamination_ID" hidden />
-                            <input value="@Model.Detail_Tais[i].Tai_ID" type="text" name="Detail_Tais[@i].Tai_ID" hidden />
+                            <input value="@Model.Detail_TaiMuiHongs[i].InformationExamination_ID" type="text" name="Detail_TaiMuiHongs[@i].InformationExamination_ID" hidden />
+                            <input value="@Model.Detail_TaiMuiHongs[i].TaiMuiHong_ID" type="text" name="Detail_TaiMuiHongs[@i].TaiMuiHong_ID" hidden />
                         </td>
                         <td hidden>
-                            <input value="@Model.Detail_Tais[i].ID" type="text" name="Detail_Tais[@i].ID" hidden />
+                            <input value="@Model.Detail_TaiMuiHongs[i].ID" type="text" name="Detail_TaiMuiHongs[@i].ID" hidden />
                         </td>
                         <td>
-                            <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_Tais[i].Tai_ID" name="Detail_Tais[@i].Tai_ID">
+                            <input hidden checked type="checkbox" value="true" class="form-check-input form-check-primary" data-id="@Model.Detail_TaiMuiHongs[i].TaiMuiHong_ID" name="Detail_TaiMuiHongs[@i].TaiMuiHong_ID">
                             <input disabled checked type="checkbox" value="true" class="form-check-input form-check-primary">
                         </td>
                         <td>
-                            @if (Model.Detail_Tais[i].Tai.Dangerous == true)
+                            @if (Model.Detail_TaiMuiHongs[i].TaiMuiHong.Dangerous == true)
                             {
-                                <label class="form-check-label">@Model.Detail_Tais[i].Tai.Name<span style="color:red"> *</span></label>
+                                <label class="form-check-label">@Model.Detail_TaiMuiHongs[i].TaiMuiHong.Name<span style="color:red"> *</span></label>
                             }
                             else
                             {
-                                <label class="form-check-label">@Model.Detail_Tais[i].Tai.Name</label>
+                                <label class="form-check-label">@Model.Detail_TaiMuiHongs[i].TaiMuiHong.Name</label>
                             }
                         </td>
                     </tr>

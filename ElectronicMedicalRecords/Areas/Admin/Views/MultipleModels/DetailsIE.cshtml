@@ -239,7 +239,7 @@
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
-                                               role="tab" aria-controls="home" aria-selected="true">Tai Mũi Họng</a>
+                                               role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
@@ -340,11 +340,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    Html.RenderAction("EditSelect", "Tais", new { multiplesModel = Model });
-                                                                    <br />
-                                                                    Html.RenderAction("EditSelect", "Muis", new { multiplesModel = Model });
-                                                                    <br />
-                                                                    Html.RenderAction("EditSelect", "Hongs", new { multiplesModel = Model });
+                                                                    Html.RenderAction("EditSelect", "TaiMuiHongs", new { multiplesModel = Model });
                                                                 }
                                                             </div>
                                                         </div>
@@ -693,7 +689,7 @@
         /*Clinical*/
         var CountClinicals = $('*.countClinicals');
         var DetailClinicals = $('*#DetailClinicalCount');
-        var countEachClinical = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var countEachClinical = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var arrTuanHoan = [];
         var arrHoHap = [];
         var arrTieuHoa = [];
@@ -704,9 +700,7 @@
         var arrNgoaiKhoa = [];
         var arrSanPhuKhoa = [];
         var arrMat = [];
-        var arrTai = [];
-        var arrMui = [];
-        var arrHong = [];
+        var arrTaiMuiHong = [];
         var arrRangHamMat = [];
         var arrDaLieu = [];
 
@@ -1360,14 +1354,14 @@
             })
         }
 
-        getArrTai();
-        function getArrTai() {
+        getArrTaiMuiHong();
+        function getArrTaiMuiHong() {
             $.ajax({
-                url: "@Url.Action("GetArrTai", "Tais")",
+                url: "@Url.Action("GetArrTaiMuiHong", "TaiMuiHongs")",
                 type: "POST",
                 data: { id: @Model.InformationExamination.ID },
                 success: (res) => {
-                    arrTai = res.res;
+                    arrTaiMuiHong = res.res;
                     countEachClinical[10] = res.res.length;
                     if (countEachClinical[10] > 0) {
                         DetailClinicals[10].style.display = "block";
@@ -1379,15 +1373,15 @@
             })
         }
 
-        /*Load Detail Test Tai*/
-        function loadDetailTais() {
+        /*Load Detail Test Tai Mui Hong*/
+        function loadDetailTaiMuiHongs() {
             $('#tableNewTais').DataTable().destroy();
             $('#tableNewTais').DataTable({
                 "ajax": {
-                    "url": "@Url.Action("loadDetailTais", "MultipleModels")",
+                    "url": "@Url.Action("loadDetailTaiMuiHongs", "MultipleModels")",
                     "type": "POST",
                     "data": function (d) {
-                        d.arr = arrTai
+                        d.arr = arrTaiMuiHong
                     }
                 },
                 "columns": [
@@ -1395,7 +1389,7 @@
                         "data": "ChiDinh",
                         "name": "#",
                         "render": (data, type, row) => {
-                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Tai.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 10 + ',' + '"Tai-"' +")'>"
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='TaiMuiHong.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 10 + ',' + '"TaiMuiHong-"' +")'>"
                             return checkbox;
                         },
                     },
@@ -1425,136 +1419,6 @@
             })
         }
 
-        getArrMui();
-        function getArrMui() {
-            $.ajax({
-                url: "@Url.Action("GetArrMui", "Muis")",
-                type: "POST",
-                data: { id: @Model.InformationExamination.ID },
-                success: (res) => {
-                    arrMui = res.res;
-                    countEachClinical[11] = res.res.length;
-                    if (countEachClinical[11] > 0) {
-                        DetailClinicals[11].style.display = "block";
-                    } else {
-                        DetailClinicals[11].style.display = "none"
-                    }
-                    CountClinicals[11].innerHTML = countEachClinical[11];
-                }
-            })
-        }
-
-         /*Load Detail Test Mũi*/
-        function loadDetailMuis() {
-            $('#tableNewMuis').DataTable().destroy();
-            $('#tableNewMuis').DataTable({
-                "ajax": {
-                    "url": "@Url.Action("loadDetailMuis", "MultipleModels")",
-                    "type": "POST",
-                    "data": function (d) {
-                        d.arr = arrMui
-                    }
-                },
-                "columns": [
-                    {
-                        "data": "ChiDinh",
-                        "name": "#",
-                        "render": (data, type, row) => {
-                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Mui.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 11 + ',' + '"Mui-"' +")'>"
-                            return checkbox;
-                        },
-                    },
-                    {
-                        "data": "Name",
-                        "name": "Bệnh Mũi",
-                        "render": (data, type, row) => {
-                            if (row.Dangerous == false) {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
-                            } else {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
-                            }
-                            return label;
-                        }
-                    }
-                ],
-                "language": {
-                    "emptyTable": "No data available",
-                    "oPaginate": {
-                        sNext: '<i class="fa fa-chevron-right"></i>',
-                        sPrevious: '<i class="fa fa-chevron-left"></i>',
-                    },
-                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                    "lengthMenu": "Hiển thị _MENU_ danh mục mũi",
-                    "search": "Tìm kiếm:",
-                },
-            })
-        }
-
-        getArrHong();
-        function getArrHong() {
-            $.ajax({
-                url: "@Url.Action("GetArrHong", "Hongs")",
-                type: "POST",
-                data: { id: @Model.InformationExamination.ID },
-                success: (res) => {
-                    arrHong = res.res;
-                    countEachClinical[12] = res.res.length;
-                    if (countEachClinical[12] > 0) {
-                        DetailClinicals[12].style.display = "block";
-                    } else {
-                        DetailClinicals[12].style.display = "none"
-                    }
-                    CountClinicals[12].innerHTML = countEachClinical[12];
-                }
-            })
-        }
-
-        /*Load Detail Test Họng*/
-        function loadDetailHongs() {
-            $('#tableNewHongs').DataTable().destroy();
-            $('#tableNewHongs').DataTable({
-                "ajax": {
-                    "url": "@Url.Action("loadDetailHongs", "MultipleModels")",
-                    "type": "POST",
-                    "data": function (d) {
-                        d.arr = arrHong
-                    }
-                },
-                "columns": [
-                    {
-                        "data": "ChiDinh",
-                        "name": "#",
-                        "render": (data, type, row) => {
-                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='Hong.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 12 + ',' + '"Hong-"' +")'>"
-                            return checkbox;
-                        },
-                    },
-                    {
-                        "data": "Name",
-                        "name": "Bệnh Họng",
-                        "render": (data, type, row) => {
-                            if (row.Dangerous == false) {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label>"
-                            } else {
-                                var label = "<label class='form-check-label' for='customColorCheckNew-" + row.ID + "'>" + row.Name + "</label><span style='color: red'> *</span>"
-                            }
-                            return label;
-                        }
-                    }
-                ],
-                "language": {
-                    "emptyTable": "No data available",
-                    "oPaginate": {
-                        sNext: '<i class="fa fa-chevron-right"></i>',
-                        sPrevious: '<i class="fa fa-chevron-left"></i>',
-                    },
-                    "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                    "lengthMenu": "Hiển thị _MENU_ danh mục họng",
-                    "search": "Tìm kiếm:",
-                },
-            })
-        }
-
         getArrRangHamMat();
         function getArrRangHamMat() {
             $.ajax({
@@ -1563,13 +1427,13 @@
                 data: { id: @Model.InformationExamination.ID },
                 success: (res) => {
                     arrRangHamMat = res.res;
-                    countEachClinical[13] = res.res.length;
-                    if (countEachClinical[13] > 0) {
-                        DetailClinicals[13].style.display = "block";
+                    countEachClinical[11] = res.res.length;
+                    if (countEachClinical[11] > 0) {
+                        DetailClinicals[11].style.display = "block";
                     } else {
-                        DetailClinicals[13].style.display = "none"
+                        DetailClinicals[11].style.display = "none"
                     }
-                    CountClinicals[13].innerHTML = countEachClinical[13];
+                    CountClinicals[11].innerHTML = countEachClinical[11];
                 }
             })
         }
@@ -1590,7 +1454,7 @@
                         "data": "ChiDinh",
                         "name": "#",
                         "render": (data, type, row) => {
-                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='RangHamMat.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 13 + ',' + '"RangHamMat-"' +")'>"
+                            var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='RangHamMat.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 11 + ',' + '"RangHamMat-"' +")'>"
                             return checkbox;
                         },
                     },
@@ -1624,13 +1488,13 @@
                 data: { id: @Model.InformationExamination.ID },
                 success: (res) => {
                     arrDaLieu = res.res;
-                    countEachClinical[14] = res.res.length;
-                    if (countEachClinical[14] > 0) {
-                        DetailClinicals[14].style.display = "block";
+                    countEachClinical[12] = res.res.length;
+                    if (countEachClinical[12] > 0) {
+                        DetailClinicals[12].style.display = "block";
                     } else {
-                        DetailClinicals[14].style.display = "none"
+                        DetailClinicals[12].style.display = "none"
                     }
-                    CountClinicals[14].innerHTML = countEachClinical[14];
+                    CountClinicals[12].innerHTML = countEachClinical[12];
                 }
             })
         }
@@ -1651,7 +1515,7 @@
                             "data": "ChiDinh",
                             "name": "#",
                             "render": (data, type, row) => {
-                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='DaLieu.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 14 + ',' + '"DaLieu-"' +")'>"
+                                var checkbox = "<input type='checkbox' checked class='form-check-input form-check-primary' name='DaLieu.ChiDinh' onchange='updateNewCountClinicals(" + row.ID + ',' + 12 + ',' + '"DaLieu-"' +")'>"
                                 return checkbox;
                             },
                         },
@@ -1730,22 +1594,14 @@
                     arrMat.splice(existMats, 1);
                     break;
                 case 10:
-                    var existTais = arrTai.indexOf("" + id);
-                    arrTai.splice(existTais, 1);
+                    var existTaiMuiHongs = arrTaiMuiHong.indexOf("" + id);
+                    arrTaiMuiHong.splice(existTaiMuiHongs, 1);
                     break;
                 case 11:
-                    var existMuis = arrMui.indexOf("" + id);
-                    arrMui.splice(existMuis, 1);
-                    break;
-                case 12:
-                    var existHongs = arrHong.indexOf("" + id);
-                    arrHong.splice(existHongs, 1);
-                    break;
-                case 13:
                     var existRangHamMats = arrRangHamMat.indexOf("" + id);
                     arrRangHamMat.splice(existRangHamMats, 1);
                     break;
-                case 14:
+                case 12:
                     var existDaLieus = arrDaLieu.indexOf("" + id);
                     arrDaLieu.splice(existDaLieus, 1);
                     break;
@@ -1846,18 +1702,12 @@
                         arrMat.push(id);
                         break;
                     case 10:
-                        arrTai.push(id);
+                        arrTaiMuiHong.push(id);
                         break;
                     case 11:
-                        arrMui.push(id);
-                        break;
-                    case 12:
-                        arrHong.push(id);
-                        break;
-                    case 13:
                         arrRangHamMat.push(id);
                         break;
-                    case 14:
+                    case 12:
                         arrDaLieu.push(id);
                         break;
                 }
@@ -1907,22 +1757,14 @@
                         arrMat.splice(indexArrMats, 1);
                         break;
                     case 10:
-                        const indexArrTais = arrTai.indexOf("" + id);
-                        arrTai.splice(indexArrTais, 1);
+                        const indexArrTaiMuiHongs = arrTaiMuiHong.indexOf("" + id);
+                        arrTaiMuiHong.splice(indexArrTaiMuiHongs, 1);
                         break;
                     case 11:
-                        const indexArrMuis = arrMui.indexOf("" + id);
-                        arrMui.splice(indexArrMuis, 1);
-                        break;
-                    case 12:
-                        const indexArrHongs = arrHong.indexOf("" + id);
-                        arrHong.splice(indexArrHongs, 1);
-                        break;
-                    case 13:
                         const indexArrRangHamMats = arrRangHamMat.indexOf("" + id);
                         arrRangHamMat.splice(indexArrRangHamMats, 1);
                         break;
-                    case 14:
+                    case 12:
                         const indexArrDaLieus = arrDaLieu.indexOf("" + id);
                         arrDaLieu.splice(indexArrDaLieus, 1);
                         break;

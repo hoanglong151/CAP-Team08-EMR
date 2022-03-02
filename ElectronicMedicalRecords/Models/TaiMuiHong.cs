@@ -12,12 +12,12 @@ namespace ElectronicMedicalRecords.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Mui
+    public partial class TaiMuiHong
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Mui()
+        public TaiMuiHong()
         {
-            this.Detail_Mui = new HashSet<Detail_Mui>();
+            this.Detail_TaiMuiHong = new HashSet<Detail_TaiMuiHong>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace ElectronicMedicalRecords.Models
         public bool Dangerous { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detail_Mui> Detail_Mui { get; set; }
+        public virtual ICollection<Detail_TaiMuiHong> Detail_TaiMuiHong { get; set; }
     }
 }

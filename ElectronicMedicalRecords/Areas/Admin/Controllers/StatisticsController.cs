@@ -40,7 +40,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     statisticModels.patientStatu = status;
                     statisticModels1.Add(statisticModels);
                 }
-                Session["DoctorAndCondition"] = statisticModels1;
+                //Session["DoctorAndCondition"] = statisticModels1;
             }
             return View(statisticModels1);
         }

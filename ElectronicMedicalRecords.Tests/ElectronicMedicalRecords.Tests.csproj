@@ -191,10 +191,8 @@
     <Compile Include="Controllers\DashboardControllerTest.cs" />
     <Compile Include="Controllers\NgoaiKhoasControllerTest.cs" />
     <Compile Include="Controllers\HoHapsControllerTest.cs" />
-    <Compile Include="Controllers\HongsControllerTest.cs" />
     <Compile Include="Controllers\RangHamMatsControllerTest.cs" />
     <Compile Include="Controllers\TaisControllerTest.cs" />
-    <Compile Include="Controllers\MuisControllerTest.cs" />
     <Compile Include="Controllers\MatsControllerTest.cs" />
     <Compile Include="Controllers\SanPhuKhoaControllerTest.cs" />
     <Compile Include="Controllers\DistrictsControllerTest.cs" />

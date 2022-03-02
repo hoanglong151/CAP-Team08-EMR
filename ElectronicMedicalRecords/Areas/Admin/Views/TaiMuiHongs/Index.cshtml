@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ElectronicMedicalRecords.Models.Hong>
+﻿@model IEnumerable<ElectronicMedicalRecords.Models.TaiMuiHong>
 
 @{
     ViewBag.Title = "Index";
@@ -18,14 +18,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last pdlLeft">
-                <h3>Quản lý danh mục Họng</h3>
-                <p class="text-subtitle text-muted">Danh sách danh mục Họng</p>
+                <h3>Quản lý danh mục Tai-Mũi-Họng</h3>
+                <p class="text-subtitle text-muted">Danh sách danh mục Tai-Mũi-Họng</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Hongs")">Danh Sách</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Danh Mục Họng</li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "TaiMuiHongs")">Danh Sách</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Danh Mục Tai-Mũi-Họng</li>
                     </ol>
                 </nav>
             </div>
@@ -34,22 +34,22 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Danh sách danh mục Họng
+                Danh sách danh mục Tai-Mũi-Họng
                 @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                 {
                     <br />
                     <button style="margin-top: 10px" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                            data-bs-target="#createHongsModal">
+                            data-bs-target="#createTaisModal">
                         <i class="m-icon bi bi-plus-circle"></i>
-                        Thêm Họng
+                        Thêm Tai-Mũi-Họng
                     </button>
                 }
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="tableHongs" style="width:100%">
+                <table class="table table-striped" id="tableTais" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Danh Mục Họng</th>
+                            <th>Danh Mục Tai-Mũi-Họng</th>
                             <th>Nguy Hiểm</th>
                             @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                             {
@@ -65,29 +65,29 @@
 </div>
 
 <!-- Create Basic Modal -->
-<div class="modal fade text-left" id="createHongsModal" data-backdrop="true" tabindex="-1" role="dialog"
+<div class="modal fade text-left" id="createTaisModal" data-backdrop="true" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel1">Thêm Danh Mục Họng</h5>
+                <h5 class="modal-title" id="myModalLabel1">Thêm Danh Mục Tai-Mũi-Họng</h5>
                 <button type="button" class="close rounded-pill"
                         data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-createHongs" class="form form-horizontal needs-validation" novalidate>
+                <form id="form-createTais" class="form form-horizontal needs-validation" novalidate>
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Tên Họng</label>
+                                <label>Tên Tai-Mũi-Họng</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control pd-form"
-                                               placeholder="Tên Họng" id="first-name-icon HongsNameCreate" required>
+                                               placeholder="Tên Tai-Mũi-Họng" id="first-name-icon TaisNameCreate" required>
                                         <div class="form-control-icon icon-MedicationCategory">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -111,7 +111,7 @@
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Hủy</span>
                         </button>
-                        <button type="submit" id="createHongs" class="btn btn-primary ml-1">
+                        <button type="submit" id="createTais" class="btn btn-primary ml-1">
                             <i class="bx bx-check d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Tạo</span>
                         </button>
@@ -123,30 +123,30 @@
 </div>
 
 <!-- Update Basic Modal -->
-<div class="modal fade text-left" id="UpdateHongs" tabindex="-1" role="dialog"
+<div class="modal fade text-left" id="UpdateTais" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Cập nhật Họng</h5>
+                <h5 class="modal-title" id="myModalLabel">Cập nhật Tai-Mũi-Họng</h5>
                 <button type="button" class="close rounded-pill"
                         data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-updateHongs" class="form form-horizontal">
+                <form id="form-updateTais" class="form form-horizontal">
                     <div class="form-body">
                         <div class="row">
-                            <input type="text" id="UpdateHongsID" name="ID" hidden />
+                            <input type="text" id="UpdateTaisID" name="ID" hidden />
                             <div class="col-md-4">
-                                <label for="UpdateHongsName">Tên Họng</label>
+                                <label for="UpdateTaisName">Tên Tai-Mũi-Họng</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Name" type="text" class="form-control"
-                                               placeholder="Tên Họng" id="UpdateHongsName" required>
+                                               placeholder="Tên Tai-Mũi-Họng" id="UpdateTaisName" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -159,7 +159,7 @@
                             <div class="col-md-8">
                                 <div class="form-check">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="form-check-input form-check-danger" id="UpdateHongsDangerous" name="Dangerous">
+                                        <input type="checkbox" class="form-check-input form-check-danger" id="UpdateTaisDangerous" name="Dangerous">
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                 <i class="bx bx-x d-block d-sm-none"></i>
                                 <span class="d-none d-sm-block">Hủy</span>
                             </button>
-                            <button type="submit" id="updateHongs" class="btn btn-primary ml-1">
+                            <button type="submit" id="updateTais" class="btn btn-primary ml-1">
                                 <i class="bx bx-check d-block d-sm-none"></i>
                                 <span class="d-none d-sm-block">Cập nhật</span>
                             </button>
@@ -186,9 +186,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var RoleCheck = @(User.IsInRole("Giám Đốc") || User.IsInRole("QTV") ? "true" : "false");
-            $('#tableHongs').DataTable({
+            $('#tableTais').DataTable({
                 "ajax": {
-                    "url": "@Url.Action("GetData", "Hongs")",
+                    "url": "@Url.Action("GetData", "TaiMuiHongs")",
                     "type": "GET",
                     "datatype": "json"
                 },
@@ -209,8 +209,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            var button = "<button class='btn btn-primary btnHover edit' onclick='getHongsByID(" + data.ID + ")' data-id='"
-                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteHongs(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                            var button = "<button class='btn btn-primary btnHover edit' onclick='getTaisByID(" + data.ID + ")' data-id='"
+                                + data.ID + "'><i class='fas fa-user-edit'></i></button> <button id='text' class='btn btn-primary btnHover trash' onclick='deleteTais(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                             return button;
                         },
                         "targets": 0,
@@ -218,13 +218,13 @@
                     }
                 ],
                 "language": {
-                    "emptyTable": "No data available, please click on <b>Tạo Họng</b> button",
+                    "emptyTable": "No data available, please click on <b>Tạo Tai</b> button",
                     "oPaginate": {
                         sNext: '<i class="fa fa-chevron-right"></i>',
                         sPrevious: '<i class="fa fa-chevron-left"></i>',
                     },
                     "info": "Hiển thị _START_/_END_ trên tổng _TOTAL_",
-                    "lengthMenu": "Hiển thị _MENU_ Họng",
+                    "lengthMenu": "Hiển thị _MENU_ Tai-Mũi-Họng",
                     "search": "Tìm kiếm:",
                 },
                 "columnDefs": [
@@ -235,30 +235,30 @@
                 ]
             })
         })
-        createHongs()
-        updateHongs()
-        /*Create Họng*/
-        function createHongs() {
-            $('#form-createHongs').submit(function (e) {
-                var dataHong = $('#form-createHongs').serialize();
+        createTais()
+        updateTais()
+        /*Create Tai*/
+        function createTais() {
+            $('#form-createTais').submit(function (e) {
+                var dataTai = $('#form-createTais').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
                 if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                    dataHong = dataHong.replace("&Dangerous=on", "&Dangerous=true");
+                    dataTai = dataTai.replace("&Dangerous=on", "&Dangerous=true");
                 }
                 var model = {
-                    validata: dataHong,
+                    validata: dataTai,
                 }
-                var isvalidCreate = $("#form-createHongs").valid();
+                var isvalidCreate = $("#form-createTais").valid();
                 if (isvalidCreate) {
                     $.ajax({
-                    url: "@Url.Action("Create", "Hongs")",
+                    url: "@Url.Action("Create", "TaiMuiHongs")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
                     success: (res) => {
                         if (res.success) {
                             resetInputCreate();
-                            $('#createHongsModal').modal('hide');
+                            $('#createTaisModal').modal('hide');
                             $(document.body).removeClass('modal-open').attr("style", "none");
                             $('.modal-backdrop').toggle();
                             Swal.fire({
@@ -268,7 +268,7 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             })
-                            $('#tableHongs').DataTable().ajax.reload();
+                            $('#tableTais').DataTable().ajax.reload();
                         } else {
                             Toastify({
                                 text: res.responseText,
@@ -287,43 +287,43 @@
         }
 
         /*get ID Update*/
-        function getHongsByID(id) {
+        function getTaisByID(id) {
             $.ajax({
-                url: '@Url.Action("Edit", "Hongs")',
+                url: '@Url.Action("Edit", "TaiMuiHongs")',
                 type: 'GET',
                 data: { id: id },
                 success: function (res) {
                     if (res.data != null) {
-                        $('#UpdateHongsName').val(res.data.Name);
-                        $('#UpdateHongsDangerous').prop('checked', res.data.Dangerous);
-                        $('#UpdateHongsID').val(res.data.ID);
+                        $('#UpdateTaisName').val(res.data.Name);
+                        $('#UpdateTaisDangerous').prop('checked', res.data.Dangerous);
+                        $('#UpdateTaisID').val(res.data.ID);
                     }
                 }
             })
-            $('#UpdateHongs').modal('show')
+            $('#UpdateTais').modal('show')
         }
 
         /*update*/
-        function updateHongs() {
-            $('#form-updateHongs').submit(function (e) {
-                var dataHong = $('#form-updateHongs').serialize();
+        function updateTais() {
+            $('#form-updateTais').submit(function (e) {
+                var dataTai = $('#form-updateTais').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
                 if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                    dataHong = dataHong.replace("&Dangerous=on", "&Dangerous=true");
+                    dataTai = dataTai.replace("&Dangerous=on", "&Dangerous=true");
                 }
                 var model = {
-                    validata: dataHong,
+                    validata: dataTai,
                 }
-                var isvalidUpdate = $("#form-updateHongs").valid();
+                var isvalidUpdate = $("#form-updateTais").valid();
                 if (isvalidUpdate) {
                     $.ajax({
-                    url: "@Url.Action("Edit", "Hongs")",
+                    url: "@Url.Action("Edit", "TaiMuiHongs")",
                     type: "POST",
                     data: model.validata + "&__RequestVerificationToken=" + token,
                     success: (res) => {
                         if (res.success) {
-                            $('#UpdateHongs').modal('hide');
+                            $('#UpdateTais').modal('hide');
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
@@ -331,7 +331,7 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             })
-                            $('#tableHongs').DataTable().ajax.reload();
+                            $('#tableTais').DataTable().ajax.reload();
                         } else {
                             Toastify({
                                 text: res.responseText,
@@ -349,18 +349,18 @@
             })
         }
 
-        /*Get & Post Delete Họng*/
-        function deleteHongs(id) {
+        /*Get & Post Delete Tai*/
+        function deleteTais(id) {
             $.ajax({
-                url: '@Url.Action("Delete", "Hongs")',
+                url: '@Url.Action("Delete", "TaiMuiHongs")',
                 type: 'GET',
                 data: { id: id },
                 success: function (res) {
                     if (res.data != null) {
                         Swal.fire({
-                            title: 'Bạn muốn xóa Họng này?',
+                            title: 'Bạn muốn xóa Tai này?',
                             html:
-                                '<b>Họng:</b> <span>' + res.data.Name +'</span>',
+                                '<b>Tai:</b> <span>' + res.data.Name +'</span>',
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#d33',
@@ -372,7 +372,7 @@
                                 var form = $('#__AjaxAntiForgeryForm');
                                 var token = $('input[name="__RequestVerificationToken"]', form).val();
                                 $.ajax({
-                                    url: '@Url.Action("Delete", "Hongs")',
+                                    url: '@Url.Action("Delete", "TaiMuiHongs")',
                                     type: 'POST',
                                     data: "ID=" + res.data.ID + "&__RequestVerificationToken=" + token,
                                     success: function (res) {
@@ -384,7 +384,7 @@
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
-                                            $("#tableHongs").DataTable().ajax.reload();
+                                            $("#tableTais").DataTable().ajax.reload();
                                         }
                                         else {
                                             Swal.fire({
@@ -404,7 +404,7 @@
 
         /*Reset Input Create Form*/
         function resetInputCreate() {
-            $('#form-createHongs').get(0).reset();
+            $('#form-createTais').get(0).reset();
         }
 
         /*Validate Form*/

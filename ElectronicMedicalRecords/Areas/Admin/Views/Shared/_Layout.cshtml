@@ -163,12 +163,12 @@
                         </li>
                         @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc"))
                         {
-                            <li class="sidebar-item">
-                                <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
-                                    <i class="text-white fas fa-chart-line"></i>
-                                    <span>DashBoard</span>
-                                </a>
-                            </li>
+                    <li class="sidebar-item">
+                        <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
+                            <i class="text-white fas fa-chart-line"></i>
+                            <span>DashBoard</span>
+                        </a>
+                    </li>
                         }
                         @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc") || User.IsInRole("Thu Ngân"))
                         {
@@ -179,15 +179,15 @@
                                 </a>
                                 <ul class="submenu ">
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("BillExam", "Statistics")">Khám</a>
+                                        <a class="text-white" href="@Url.Action("BillExam","Statistics")">Khám</a>
                                     </li>
 
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("BillPre", "Statistics")">Thuốc</a>
+                                        <a class="text-white" href="@Url.Action("BillPre","Statistics")">Thuốc</a>
                                     </li>
 
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("BillTest", "Statistics")">Xét Nghiệm</a>
+                                        <a class="text-white" href="@Url.Action("BillTest","Statistics")">Xét Nghiệm</a>
                                     </li>
                                 </ul>
                             </li>
@@ -199,19 +199,19 @@
                                 </a>
                                 <ul class="submenu ">
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition", "Statistics")">Theo Bác Sĩ</a>
+                                        <a class="text-white" href="@Url.Action("StatisByDoctorAndCondition","Statistics")">Theo Bác Sĩ</a>
                                     </li>
 
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("StatisByCondition", "Statistics")">Theo Tình Trạng</a>
+                                        <a class="text-white" href="@Url.Action("StatisByCondition","Statistics")">Theo Tình Trạng</a>
                                     </li>
 
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("StatisByDiagnostic", "Statistics")">Theo Nhóm Bệnh</a>
+                                        <a class="text-white" href="@Url.Action("StatisByDiagnostic","Statistics")">Theo Nhóm Bệnh</a>
                                     </li>
 
                                     <li class="submenu-item ">
-                                        <a class="text-white" href="@Url.Action("StatisByMoney", "Statistics")">Doanh Thu</a>
+                                        <a class="text-white" href="@Url.Action("StatisByMoney","Statistics")">Doanh Thu</a>
                                     </li>
                                 </ul>
                             </li>
@@ -363,13 +363,7 @@
                                     <a class="text-white" href="@Url.Action("Index", "Mats")">Mắt</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("Index", "Tais")">Tai</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("Index", "Muis")">Mũi</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("Index", "Hongs")">Họng</a>
+                                    <a class="text-white" href="@Url.Action("Index", "TaiMuiHongs")">Tai-Mũi-Họng</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a class="text-white" href="@Url.Action("Index", "RangHamMats")">Răng-Hàm-Mặt</a>
@@ -565,7 +559,7 @@
         })
     </script>
     <script type="text/javascript">
-    function getPatient() {
+        function getPatient() {
         $('#tableLoadPatient').DataTable({
         "order": [],
         "ajax": {
@@ -622,9 +616,12 @@
                 url: "@Url.Action("getPatientDangerous", "InformationExaminations")",
                 success: function (res) {
                     $.each(res.data, function (index, value) {
-                        var td = $(`td:contains('${value}')`);
-                        td.attr("style","color:red;font-weight:600")
+                        var td = $(`td:contains('${value}')`).filter(function () {
+                            return $(this).text() === value;
+                        });
+                        td.attr("style", "color:red;font-weight:600")
                     })
+
                 }
             })
         }
@@ -777,7 +774,8 @@
                 }
                 $.each(res.data, function (index, value) {
                     $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
-                    var href = "@Url.Action("CreateTest", "MultipleModels")" + "/" + value.ID;
+                    var href = `@Url.Action("CreateTest", "MultipleModels")/` + value.ID;
+                    console.log(href)
                     if (value.dangerPatient == true) {
                         $('#notiContentBS1').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
                     } else {

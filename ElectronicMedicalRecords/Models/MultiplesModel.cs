@@ -63,12 +63,8 @@ namespace ElectronicMedicalRecords.Models
         public List<Detail_NgoaiKhoa> Detail_NgoaiKhoas { get; set; }
         public List<Mat> Mat { get; set; }
         public List<Detail_Mat> Detail_Mats { get; set; }
-        public List<Tai> Tai { get; set; }
-        public List<Detail_Tai> Detail_Tais { get; set; }
-        public List<Mui> Mui { get; set; }
-        public List<Detail_Mui> Detail_Muis { get; set; }
-        public List<Hong> Hong { get; set; }
-        public List<Detail_Hong> Detail_Hongs { get; set; }
+        public List<TaiMuiHong> TaiMuiHong { get; set; }
+        public List<Detail_TaiMuiHong> Detail_TaiMuiHongs { get; set; }
         public List<RangHamMat> RangHamMat { get; set; }
         public List<Detail_RangHamMat> Detail_RangHamMats { get; set; }
         public List<DaLieu> DaLieu { get; set; }

@@ -15,22 +15,22 @@
                 <div class="panel-body">
                     <div class="invoice-ribbon"><div class="ribbon-inner">PAID</div></div>
                     <div class="row bg-row">
-
                         <div class="col-sm-6 top-left">
                             <img class="logo" src="~/asset/vl-logo.png" />
                         </div>
-
                         <div class="col-sm-6 top-right">
                             <h3 class="marginright txt-white">@Model.Patient.MaBN</h3>
                             <span class="marginright txt-white">@DateTime.Now</span>
                         </div>
-
+                    </div>
+                    <div style="margin-top:10px">
+                        <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
+                    </div>
+                    <div class="p-header">
+                        <h1>Thông Tin Khám Bệnh</h1>
                     </div>
                     <hr>
                     <div class="row">
-                        <div style="margin-bottom:12px">
-                            <a href="javascript:window.print()" class="btn btn-success d-inline-block" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</a>
-                        </div>
                         <p class="lead marginbottom">Thông Tin Bệnh Nhân</p>
                         <div class="d-flex">
                             <div class="col-xs-6 from w-100">
