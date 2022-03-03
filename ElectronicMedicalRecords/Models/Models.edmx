@@ -703,6 +703,7 @@
           <Property Name="Religion_ID" Type="int" />
           <Property Name="Gender_ID" Type="int" />
           <Property Name="ActiveAccount" Type="bit" Nullable="false" />
+          <Property Name="ExternalLogin" Type="bit" />
         </EntityType>
         <EntityType Name="ViSinh">
           <Key>
@@ -2055,7 +2056,6 @@
           <EntitySet Name="TieuHoas" EntityType="CP24Team08Model.TieuHoa" />
           <EntitySet Name="TuanHoans" EntityType="CP24Team08Model.TuanHoan" />
           <EntitySet Name="Urines" EntityType="CP24Team08Model.Urine" />
-          <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
           <EntitySet Name="ViSinhs" EntityType="CP24Team08Model.ViSinh" />
           <EntitySet Name="Wards" EntityType="CP24Team08Model.Ward" />
           <AssociationSet Name="FK_Detail_Amniocente_Amniocente" Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente">
@@ -2069,10 +2069,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Bill_InformationExamination" Association="CP24Team08Model.FK_Bill_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
@@ -2266,17 +2262,9 @@
             <End Role="Gender" EntitySet="Genders" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
-            <End Role="Gender" EntitySet="Genders" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK_Patient_HomeTown" Association="CP24Team08Model.FK_Patient_HomeTown">
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_HomeTown" Association="CP24Team08Model.FK_User_HomeTown">
-            <End Role="HomeTown" EntitySet="HomeTowns" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_InformationExamination_Patient" Association="CP24Team08Model.FK_InformationExamination_Patient">
             <End Role="Patient" EntitySet="Patients" />
@@ -2284,10 +2272,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_InformationExamination_PatientStatus" Association="CP24Team08Model.FK_InformationExamination_PatientStatus">
             <End Role="PatientStatu" EntitySet="PatientStatus" />
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InformationExamination_User" Association="CP24Team08Model.FK_InformationExamination_User">
-            <End Role="User" EntitySet="Users" />
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
           </AssociationSet>
           <AssociationSet Name="FK_Prescription_Detail_InformationExamination" Association="CP24Team08Model.FK_Prescription_Detail_InformationExamination">
@@ -2306,10 +2290,6 @@
             <End Role="Nation" EntitySet="Nations" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Nation" Association="CP24Team08Model.FK_User_Nation">
-            <End Role="Nation" EntitySet="Nations" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK_Patient_Nation1" Association="CP24Team08Model.FK_Patient_Nation1">
             <End Role="Nation1" EntitySet="Nation1" />
             <End Role="Patient" EntitySet="Patients" />
@@ -2317,10 +2297,6 @@
           <AssociationSet Name="FK_Patient_Ward" Association="CP24Team08Model.FK_Patient_Ward">
             <End Role="Ward" EntitySet="Wards" />
             <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Religion" Association="CP24Team08Model.FK_User_Religion">
-            <End Role="Religion" EntitySet="Religions" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
@@ -2340,10 +2316,6 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Clinical" EntitySet="Clinicals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
           <EntitySet Name="Detail_TaiMuiHong" EntityType="CP24Team08Model.Detail_TaiMuiHong" />
           <EntitySet Name="TaiMuiHongs" EntityType="CP24Team08Model.TaiMuiHong" />
           <AssociationSet Name="FK_Detail_Tai_InformationExamination" Association="CP24Team08Model.FK_Detail_Tai_InformationExamination">
@@ -2354,7 +2326,36 @@
             <End Role="TaiMuiHong" EntitySet="TaiMuiHongs" />
             <End Role="Detail_TaiMuiHong" EntitySet="Detail_TaiMuiHong" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
+          <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_HomeTown" Association="CP24Team08Model.FK_User_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationExamination_User" Association="CP24Team08Model.FK_InformationExamination_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Nation" Association="CP24Team08Model.FK_User_Nation">
+            <End Role="Nation" EntitySet="Nations" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Religion" Association="CP24Team08Model.FK_User_Religion">
+            <End Role="Religion" EntitySet="Religions" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -2424,8 +2425,8 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
           <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
         </EntityType>
         <EntityType Name="Bill">
           <Key>
@@ -2864,11 +2865,11 @@
           <NavigationProperty Name="Detail_ViSinh" Relationship="CP24Team08Model.FK_Detail_ViSinh_InformationExamination" FromRole="InformationExamination" ToRole="Detail_ViSinh" />
           <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_InformationExamination_Patient" FromRole="InformationExamination" ToRole="Patient" />
           <NavigationProperty Name="PatientStatu" Relationship="CP24Team08Model.FK_InformationExamination_PatientStatus" FromRole="InformationExamination" ToRole="PatientStatu" />
-          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="InformationExamination" ToRole="User" />
           <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_InformationExamination" FromRole="InformationExamination" ToRole="Prescription_Detail" />
           <NavigationProperty Name="Detail_HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="InformationExamination" ToRole="Detail_HoHap" />
           <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
           <NavigationProperty Name="Detail_TaiMuiHong" Relationship="CP24Team08Model.FK_Detail_Tai_InformationExamination" FromRole="InformationExamination" ToRole="Detail_TaiMuiHong" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="InformationExamination" ToRole="User" />
         </EntityType>
         <EntityType Name="Mat">
           <Key>
@@ -3109,37 +3110,6 @@
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Detail_Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Urine" ToRole="Detail_Urine" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsShow" Type="Boolean" Nullable="false" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="Nation_ID" Type="Int32" />
-          <Property Name="HomeTown_ID" Type="Int32" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="Int32" />
-          <Property Name="Privacy" Type="Boolean" Nullable="false" />
-          <Property Name="Religion_ID" Type="Int32" />
-          <Property Name="Gender_ID" Type="Int32" />
-          <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
-          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
-          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
-          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
-          <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
-          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
-        </EntityType>
         <EntityType Name="ViSinh">
           <Key>
             <PropertyRef Name="ID" />
@@ -3195,18 +3165,6 @@
             </Principal>
             <Dependent Role="AspNetUserLogin">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_AspNetUsers">
-          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3786,18 +3744,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Gender">
-          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Gender_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Patient_HomeTown">
           <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
@@ -3806,18 +3752,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Patient">
-              <PropertyRef Name="HomeTown_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_HomeTown">
-          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HomeTown">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
               <PropertyRef Name="HomeTown_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3843,18 +3777,6 @@
             </Principal>
             <Dependent Role="InformationExamination">
               <PropertyRef Name="PatientStatus_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InformationExamination_User">
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="InformationExamination">
-              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3906,18 +3828,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Nation">
-          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Nation_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Patient_Nation1">
           <End Type="CP24Team08Model.Nation1" Role="Nation1" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
@@ -3939,18 +3849,6 @@
             </Principal>
             <Dependent Role="Patient">
               <PropertyRef Name="Ward_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Religion">
-          <End Type="CP24Team08Model.Religion" Role="Religion" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Religion">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Religion_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4024,18 +3922,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Clinical_User">
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Detail_TaiMuiHong">
           <Key>
             <PropertyRef Name="ID" />
@@ -4077,6 +3963,122 @@
             </Principal>
             <Dependent Role="Detail_TaiMuiHong">
               <PropertyRef Name="TaiMuiHong_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Nation_ID" Type="Int32" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="Privacy" Type="Boolean" Nullable="false" />
+          <Property Name="Religion_ID" Type="Int32" />
+          <Property Name="Gender_ID" Type="Int32" />
+          <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
+          <Property Name="ExternalLogin" Type="Boolean" />
+          <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
+          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
+          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
+          <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
+        </EntityType>
+        <Association Name="FK_User_AspNetUsers">
+          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Gender">
+          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Gender_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationExamination_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationExamination">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Nation">
+          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Nation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Religion">
+          <End Type="CP24Team08Model.Religion" Role="Religion" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Religion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Religion_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4771,31 +4773,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="CP24Team08Model.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ActiveAccount" ColumnName="ActiveAccount" />
-                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
-                <ScalarProperty Name="Religion_ID" ColumnName="Religion_ID" />
-                <ScalarProperty Name="Privacy" ColumnName="Privacy" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
-                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SpecializedTreatment" ColumnName="SpecializedTreatment" />
-                <ScalarProperty Name="WorkingProcess" ColumnName="WorkingProcess" />
-                <ScalarProperty Name="TrainingProcess" ColumnName="TrainingProcess" />
-                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
-                <ScalarProperty Name="Degree" ColumnName="Degree" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ViSinhs">
             <EntityTypeMapping TypeName="CP24Team08Model.ViSinh">
               <MappingFragment StoreEntitySet="ViSinh">
@@ -4865,6 +4842,32 @@
                 <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CP24Team08Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ExternalLogin" ColumnName="ExternalLogin" />
+                <ScalarProperty Name="ActiveAccount" ColumnName="ActiveAccount" />
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
+                <ScalarProperty Name="Religion_ID" ColumnName="Religion_ID" />
+                <ScalarProperty Name="Privacy" ColumnName="Privacy" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
+                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SpecializedTreatment" ColumnName="SpecializedTreatment" />
+                <ScalarProperty Name="WorkingProcess" ColumnName="WorkingProcess" />
+                <ScalarProperty Name="TrainingProcess" ColumnName="TrainingProcess" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -17,264 +17,269 @@
         background-image: linear-gradient(90deg, #000000a1 0%, #0e0e0f52 100%), url('http://cntttest.vanlanguni.edu.vn:18080/CP24Team08/asset/bg-up.png');
         background-size: cover
     }
-    .navbar.navbar-expand.navbar-light{
-        display:none
+
+    .navbar.navbar-expand.navbar-light {
+        display: none
     }
+
     .card {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
-    .float-start p,.float-end p{
-        color:#fff
+
+    .float-start p, .float-end p {
+        color: #fff
     }
-    .float-end p a{
-        color:red
-    }
+
+        .float-end p a {
+            color: red
+        }
 </style>
-    @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormEdit" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-        @Html.HiddenFor(model => model.UserID)
-        @Html.HiddenFor(model => model.ActiveAccount)
-        <div class="col-md-7 col-12 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title" style="text-align:center">Cập nhật thông tin cá nhân</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <form class="form form-horizontal">
-                            <div class="form-body">
+@using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormEdit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.UserID)
+    @Html.HiddenFor(model => model.ActiveAccount)
+    @Html.HiddenFor(model => model.TypeLogin)
+    <div class="col-md-7 col-12 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" style="text-align:center">Cập nhật thông tin cá nhân</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <form class="form form-horizontal">
+                        <div class="form-body">
+                            <div class="row">
                                 <div class="row">
-                                    <div class="row">
-                                        <div class="col-md-8" style="flex-grow:1;">
-                                            <div class="row">
-                                                <div class="ctLabel col-md-3">
-                                                    <label for="name">Họ và tên</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative ml-5px">
-                                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { id = "name", @class = "form-control", placeholder = "Họ và tên", @required = "required" } })
-                                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-person"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ctLabel col-md-3">
-                                                    <label for="degree">Bằng cấp</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative ml-5px">
-                                                            @Html.EditorFor(model => model.Degree, new { htmlAttributes = new { id = "degree", @class = "form-control", placeholder = "Bằng cấp", @data_val = "true", @required = "required" } })
-                                                            @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-award-fill"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ctLabel col-md-3">
-                                                    <label for="birthdate">Ngày Sinh</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative ml-5px">
-                                                            <input class="form-control" type="date" name="BirthDate" id="birthdate" value="@BirthDate" required />
-                                                            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-phone"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ctLabel col-md-3">
-                                                    <label for="nation">Quốc Gia</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative ml-5px">
-                                                            @Html.DropDownList("Nation_ID", null, htmlAttributes: new { id = "nation", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
-                                                            @Html.ValidationMessageFor(model => model.Nation_ID, "", new { @class = "text-danger" })
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-file-earmark-person"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ctLabel col-md-3">
-                                                    <label for="hometown">Quê Quán</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative ml-5px">
-                                                            @Html.DropDownList("HomeTown_ID", null, "--Vui lòng chọn Quê Quán--", htmlAttributes: new { id = "hometown", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
-                                                            @Html.ValidationMessageFor(model => model.HomeTown_ID, "", new { @class = "text-danger" })
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-cursor"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ctLabel col-md-3">
-                                                    <label for="religion">Tôn Giáo</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <div class="form-group has-icon-left">
-                                                        <div class="position-relative ml-5px">
-                                                            @Html.DropDownList("Religion_ID", null, "--Vui lòng chọn Tôn Giáo--", htmlAttributes: new { id = "religion", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
-                                                            @Html.ValidationMessageFor(model => model.Religion_ID, "", new { @class = "text-danger" })
-                                                            <div class="form-control-icon">
-                                                                <i class="fas fa-church"></i>
-                                                            </div>
+                                    <div class="col-md-8" style="flex-grow:1;">
+                                        <div class="row">
+                                            <div class="ctLabel col-md-3">
+                                                <label for="name">Họ và tên</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative ml-5px">
+                                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { id = "name", @class = "form-control", placeholder = "Họ và tên", @required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-person"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 d-flex align-items-end">
-                                            <div class="position-relative">
-                                                <div class="input-group form-group" style="margin-bottom:0">
-                                                    <label style="position:absolute;top:-20px;color:red;font-size:12px">Lưu ý: Nên chọn nền trắng</label>
-                                                    <div class="imgUp">
-                                                        <div class="imagePreview" style="background-image:url(@Model.Image);background-position:top"></div>
-                                                        <label class="btn btn-primary">
-                                                            Upload<input type="file" class="uploadFile img" name="Image1" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                                                            <input type="text" value="@Model.Image" name="Image" hidden />
-                                                        </label>
+                                            <div class="ctLabel col-md-3">
+                                                <label for="degree">Bằng cấp</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative ml-5px">
+                                                        @Html.EditorFor(model => model.Degree, new { htmlAttributes = new { id = "degree", @class = "form-control", placeholder = "Bằng cấp", @data_val = "true", @required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-award-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ctLabel col-md-3">
+                                                <label for="birthdate">Ngày Sinh</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative ml-5px">
+                                                        <input class="form-control" type="date" name="BirthDate" id="birthdate" value="@BirthDate" required />
+                                                        @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-phone"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ctLabel col-md-3">
+                                                <label for="nation">Quốc Gia</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative ml-5px">
+                                                        @Html.DropDownList("Nation_ID", null, htmlAttributes: new { id = "nation", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
+                                                        @Html.ValidationMessageFor(model => model.Nation_ID, "", new { @class = "text-danger" })
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-file-earmark-person"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ctLabel col-md-3">
+                                                <label for="hometown">Quê Quán</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative ml-5px">
+                                                        @Html.DropDownList("HomeTown_ID", null, "--Vui lòng chọn Quê Quán--", htmlAttributes: new { id = "hometown", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
+                                                        @Html.ValidationMessageFor(model => model.HomeTown_ID, "", new { @class = "text-danger" })
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-cursor"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ctLabel col-md-3">
+                                                <label for="religion">Tôn Giáo</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative ml-5px">
+                                                        @Html.DropDownList("Religion_ID", null, "--Vui lòng chọn Tôn Giáo--", htmlAttributes: new { id = "religion", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
+                                                        @Html.ValidationMessageFor(model => model.Religion_ID, "", new { @class = "text-danger" })
+                                                        <div class="form-control-icon">
+                                                            <i class="fas fa-church"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ctLabel col-md-2">
-                                        <label for="nation">Giới Tính</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="form-group has-icon-left">
-                                            <div class="position-relative">
-                                                @Html.DropDownList("Gender_ID", null, "--Vui lòng chọn Giới Tính--", htmlAttributes: new { id = "gender", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
-                                                @Html.ValidationMessageFor(model => model.Gender_ID, "", new { @class = "text-danger" })
-                                                <div class="form-control-icon">
-                                                    <i class="fas fa-transgender-alt"></i>
+                                    <div class="col-md-4 d-flex align-items-end">
+                                        <div class="position-relative">
+                                            <div class="input-group form-group" style="margin-bottom:0">
+                                                <label style="position:absolute;top:-20px;color:red;font-size:12px">Lưu ý: Nên chọn nền trắng</label>
+                                                <div class="imgUp">
+                                                    <div class="imagePreview" style="background-image:url(@Model.Image);background-position:top"></div>
+                                                    <label class="btn btn-primary">
+                                                        Upload<input type="file" class="uploadFile img" name="Image1" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                                                        <input type="text" value="@Model.Image" name="Image" hidden />
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="ctLabel col-md-2">
-                                        <label for="phone">Số Điện Thoại</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="form-group has-icon-left">
-                                            <div class="position-relative">
-                                                @if (Model.Phone == null)
-                                                {
-                                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required" } })
-                                                }
-                                                else
-                                                {
-                                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @Value = "0" + Model.Phone } })
-                                                }
-                                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                                                <div class="form-control-icon">
-                                                    <i class="bi bi-telephone"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ctLabel col-md-2">
-                                        <label for="address">Địa Chỉ</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="form-group has-icon-left">
-                                            <div class="position-relative">
-                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { id = "address", @class = "form-control", placeholder = "Địa Chỉ", @data_val = "true", @required = "required" } })
-                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                                                <div class="form-control-icon">
-                                                    <i class="bi bi-house-door"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
-                                    {
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="Introduction">Giới Thiệu</label>
-                                                <div class="position-relative">
-                                                    <textarea name="Introduction" id="Introduction" class="editor">@Model.Introduction</textarea>
-                                                    @Html.ValidationMessageFor(model => model.Introduction, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="TrainingProcess">Quá Trình Đào Tạo</label>
-                                                <div class="position-relative">
-                                                    <textarea name="TrainingProcess" id="TrainingProcess" class="editor">@Model.TrainingProcess</textarea>
-                                                    @Html.ValidationMessageFor(model => model.TrainingProcess, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="WorkingProcess">Quá Trình Công Tác</label>
-                                                <div class="position-relative">
-                                                    <textarea name="WorkingProcess" id="WorkingProcess" class="editor">@Model.WorkingProcess</textarea>
-                                                    @Html.ValidationMessageFor(model => model.WorkingProcess, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="SpecializedTreatment">Chuyên Điều Trị</label>
-                                                <div class="position-relative">
-                                                    <textarea name="SpecializedTreatment" id="SpecializedTreatment" class="editor">@Model.SpecializedTreatment</textarea>
-                                                    @Html.ValidationMessageFor(model => model.SpecializedTreatment, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox">
-                                                    @Html.EditorFor(model => model.IsShow, new { htmlAttributes = new { @class = "form-check-input form-check-primary form-check-glow", id = "password-id-icon" } })
-                                                    <label for="password-id-icon">Hiển Thị</label>
-                                                    @Html.ValidationMessageFor(model => model.IsShow, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    <div class="col-md-12">
-                                        <div class='form-check form-group'>
-                                            <div class="checkbox position-relative">
-                                                @Html.EditorFor(model => model.Privacy, new { htmlAttributes = new { @class = "form-group form-check-input form-check-primary form-check-glow", id = "password-id-icon", @data_val = "true", @required = "required" } })
-                                                <label for="password-id-icon">Bạn phải chịu trách nhiệm với những gì bạn khai báo và đảm báo nó chính xác</label>
-                                                @Html.ValidationMessageFor(model => model.Privacy, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit"
-                                                class="btn btn-primary me-1 mb-1">
-                                            Cập nhật
-                                        </button>
-                                        <button type="reset"
-                                                class="btn btn-light-secondary me-1 mb-1">
-                                            Reset
-                                        </button>
                                     </div>
                                 </div>
+                                <div class="ctLabel col-md-2">
+                                    <label for="nation">Giới Tính</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            @Html.DropDownList("Gender_ID", null, "--Vui lòng chọn Giới Tính--", htmlAttributes: new { id = "gender", @class = "form-select pdl-25", @data_val = "true", @required = "required" })
+                                            @Html.ValidationMessageFor(model => model.Gender_ID, "", new { @class = "text-danger" })
+                                            <div class="form-control-icon">
+                                                <i class="fas fa-transgender-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ctLabel col-md-2">
+                                    <label for="phone">Số Điện Thoại</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            @if (Model.Phone == null)
+                                            {
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required" } })
+                                            }
+                                            else
+                                            {
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @Value = "0" + Model.Phone } })
+                                            }
+                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-telephone"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ctLabel col-md-2">
+                                    <label for="address">Địa Chỉ</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { id = "address", @class = "form-control", placeholder = "Địa Chỉ", @data_val = "true", @required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-house-door"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                                {
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="Introduction">Giới Thiệu</label>
+                                            <div class="position-relative">
+                                                <textarea name="Introduction" id="Introduction" class="editor">@Model.Introduction</textarea>
+                                                @Html.ValidationMessageFor(model => model.Introduction, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="TrainingProcess">Quá Trình Đào Tạo</label>
+                                            <div class="position-relative">
+                                                <textarea name="TrainingProcess" id="TrainingProcess" class="editor">@Model.TrainingProcess</textarea>
+                                                @Html.ValidationMessageFor(model => model.TrainingProcess, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="WorkingProcess">Quá Trình Công Tác</label>
+                                            <div class="position-relative">
+                                                <textarea name="WorkingProcess" id="WorkingProcess" class="editor">@Model.WorkingProcess</textarea>
+                                                @Html.ValidationMessageFor(model => model.WorkingProcess, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="SpecializedTreatment">Chuyên Điều Trị</label>
+                                            <div class="position-relative">
+                                                <textarea name="SpecializedTreatment" id="SpecializedTreatment" class="editor">@Model.SpecializedTreatment</textarea>
+                                                @Html.ValidationMessageFor(model => model.SpecializedTreatment, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class='form-check'>
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.IsShow, new { htmlAttributes = new { @class = "form-check-input form-check-primary form-check-glow", id = "password-id-icon" } })
+                                                <label for="password-id-icon">Hiển Thị</label>
+                                                @Html.ValidationMessageFor(model => model.IsShow, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="col-md-12">
+                                    <div class='form-check form-group'>
+                                        <div class="checkbox position-relative">
+                                            @Html.EditorFor(model => model.Privacy, new { htmlAttributes = new { @class = "form-group form-check-input form-check-primary form-check-glow", id = "password-id-icon", @data_val = "true", @required = "required" } })
+                                            <label for="password-id-icon">Bạn phải chịu trách nhiệm với những gì bạn khai báo và đảm báo nó chính xác</label>
+                                            @Html.ValidationMessageFor(model => model.Privacy, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="submit"
+                                            class="btn btn-primary me-1 mb-1">
+                                        Cập nhật
+                                    </button>
+                                    <button type="reset"
+                                            class="btn btn-light-secondary me-1 mb-1">
+                                        Reset
+                                    </button>
+                                </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
 @section scripts {
     <script>
         $(document).ready(function () {

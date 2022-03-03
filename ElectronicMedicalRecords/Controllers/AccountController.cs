@@ -89,6 +89,7 @@ namespace ElectronicMedicalRecords.Controllers
                         user.IsShow = false;
                         user.Privacy = false;
                         user.ActiveAccount = false;
+                        user.ExternalLogin = false;
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
@@ -393,6 +394,7 @@ namespace ElectronicMedicalRecords.Controllers
                         user.IsShow = false;
                         user.Privacy = false;
                         user.ActiveAccount = false;
+                        user.ExternalLogin = true;
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });

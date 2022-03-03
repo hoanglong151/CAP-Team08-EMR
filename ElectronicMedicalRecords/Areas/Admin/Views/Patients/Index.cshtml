@@ -257,7 +257,8 @@
                             confirmButtonText: 'Xác Nhận',
                         })
                     } else {
-                        window.location.href = '@Url.Action("CreateOldPatient", "MultipleModels")/' + id;
+                        window.location.href = `${window.location.origin}/Admin/${id}-Tao-Ho-So-Benh-Nhan-Cu`;
+
                     }
                 }
             })

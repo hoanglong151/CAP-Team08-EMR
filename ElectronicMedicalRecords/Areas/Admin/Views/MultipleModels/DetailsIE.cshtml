@@ -637,7 +637,6 @@
                         searchPlaceholderValue: 'Vui Lòng Chọn Tên Chẩn Đoán',
                         searchFields: ['label']
                     });
-                    console.log(choices1)
                     const element2 = document.querySelector('#NameMedication');
                     const choices2 = new Choices(element2, {
                         choices: res.medications,
@@ -1665,7 +1664,6 @@
         })
 
         function updateCountClinicals(id, e, value, indextable) {
-            console.log(arrTuanHoan, id)
             if (e.target.checked == true) {
                 value.setAttribute("value", true);
                 value.setAttribute("checked", true);
@@ -1787,7 +1785,7 @@
                 data: JSON.stringify({ multiplesModel: dataAllExam }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintAllExaminationInfo", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-Ho-So-KQ-Xet-Nghiem`, "_blank");
                     }
                 }
             })
@@ -1802,7 +1800,7 @@
                 data: JSON.stringify({ multiplesModel: dataMedication }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintPrescriptions", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-Toa-Thuoc`, "_blank");
                     }
                 }
             })
@@ -1817,7 +1815,7 @@
                 data: JSON.stringify({ multiplesModel: dataResultCTMau }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultCTMau", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Cong-Thuc-Mau`, "_blank");
                     }
                 }
             })
@@ -1832,7 +1830,7 @@
                 data: JSON.stringify({ multiplesModel: dataSHMau }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultSHMau", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Sinh-Hoa-Mau`, "_blank");
                     }
                 }
             })
@@ -1847,7 +1845,7 @@
                 data: JSON.stringify({ multiplesModel: dataDongMau }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultDongMau", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Dong-Mau`, "_blank");
                     }
                 }
             })
@@ -1862,7 +1860,7 @@
                 data: JSON.stringify({ multiplesModel: dataNhomMau }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultNhomMau", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Nhom-Mau`, "_blank");
                     }
                 }
             })
@@ -1877,7 +1875,7 @@
                 data: JSON.stringify({ multiplesModel: dataNuocTieu }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultNuocTieu", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Nuoc-Tieu`, "_blank");
                     }
                 }
             })
@@ -1892,7 +1890,7 @@
                 data: JSON.stringify({ multiplesModel: dataMienDich }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultMienDich", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Mien-Dich`, "_blank");
                     }
                 }
             })
@@ -1907,27 +1905,26 @@
                 data: JSON.stringify({ multiplesModel: dataDichChocDo }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultDichChocDo", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Dich-Choc-Do`, "_blank");
                     }
                 }
             })
         })
 
         /*Print Result Vi Sinh*/
-            $('#PrintResultViSinh').click(function (e) {
-                var dataViSinh = $('#DetailForm').serialize();
-                console.log(dataViSinh)
+        $('#PrintResultViSinh').click(function (e) {
+            var dataViSinh = $('#DetailForm').serialize();
             $.ajax({
                 url: "@Url.Action("PrintAllExaminationInfoPost", "MultipleModels")",
                 type: "POST",
                 data: JSON.stringify({ multiplesModel: dataViSinh }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintResultViSinh", "MultipleModels")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-KQXN-Vi-Sinh`, "_blank");
                     }
                 }
             })
-            })
+        })
 
 
         /*Ông/Bà*/

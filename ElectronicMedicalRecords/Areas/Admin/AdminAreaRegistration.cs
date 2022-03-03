@@ -28,6 +28,229 @@ namespace ElectronicMedicalRecords.Areas.Admin
             );
 
             context.MapRoute(
+                "EditByID",
+                "Admin/{id}-Cap-Nhat-Ket-Qua-Xet-Nghiem",
+                new { controller = "MultipleModels", action = "EditByID", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "DetailsIE",
+                "Admin/{id}-Ket-Qua-Xet-Nghiem",
+                new { controller = "MultipleModels", action = "DetailsIE", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "BillExamination",
+                "Admin/{id}-Hoa-Don",
+                new { controller = "MultipleModels", action = "BillExamination", id = UrlParameter.Optional }
+            );
+
+
+            context.MapRoute(
+                "CreateOldPatient",
+                "Admin/{id}-Tao-Ho-So-Benh-Nhan-Cu",
+                new { controller = "MultipleModels", action = "CreateOldPatient", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "EditPatient",
+                "Admin/{id}-Cap-Nhat-Benh-Nhan",
+                new { controller = "MultipleModels", action = "Edit", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "HistoryInfomationOfPatient",
+                "Admin/{id}-Lich-Su-Kham-Benh",
+                new { controller = "InformationExaminations", action = "Details", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "DetailsIEReadInfomationOfPatient",
+                "Admin/{id}-Chi-Tiet-Lich-Su",
+                new { controller = "MultipleModels", action = "DetailsIERead", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "PrintTestCTMaus",
+                "Admin/In-CDXN-Cong-Thuc-Mau",
+                new { controller = "MultipleModels", action = "PrintTestCTMaus" }
+            );
+
+            context.MapRoute(
+                "PrintTestSinhHoaMaus",
+                "Admin/In-CDXN-Sinh-Hoa-Mau",
+                new { controller = "MultipleModels", action = "PrintTestSinhHoaMaus" }
+            );
+
+            context.MapRoute(
+                "PrintTestDongMaus",
+                "Admin/In-CDXN-Dong-Mau",
+                new { controller = "MultipleModels", action = "PrintTestDongMaus" }
+            );
+
+            context.MapRoute(
+                "PrintTestNhomMaus",
+                "Admin/In-CDXN-Nhom-Mau",
+                new { controller = "MultipleModels", action = "PrintTestNhomMaus" }
+            );
+
+            context.MapRoute(
+                "PrintTestNuocTieus",
+                "Admin/In-CDXN-Nuoc-Tieu",
+                new { controller = "MultipleModels", action = "PrintTestNuocTieus" }
+            );
+
+            context.MapRoute(
+                "PrintTestMienDichs",
+                "Admin/In-CDXN-Mien-Dich",
+                new { controller = "MultipleModels", action = "PrintTestMienDichs" }
+            );
+
+            context.MapRoute(
+                "PrintTestDichChocDos",
+                "Admin/In-CDXN-Dich-Choc-Do",
+                new { controller = "MultipleModels", action = "PrintTestDichChocDos" }
+            );
+
+            context.MapRoute(
+                "PrintTestViSinhs",
+                "Admin/In-CDXN-Vi-Sinh",
+                new { controller = "MultipleModels", action = "PrintTestViSinhs" }
+            );
+
+            context.MapRoute(
+                "PrintPrescriptions",
+                "Admin/In-Toa-Thuoc",
+                new { controller = "MultipleModels", action = "PrintPrescriptions" }
+            );
+
+            context.MapRoute(
+                "PrintExaminationInfo",
+                "Admin/In-Thong-Tin-Kham-Benh",
+                new { controller = "MultipleModels", action = "PrintExaminationInfo" }
+            );
+
+            context.MapRoute(
+                "PrintAllTestInfo",
+                "Admin/In-Chi-Dinh-Xet-Nghiem",
+                new { controller = "MultipleModels", action = "PrintAllTestInfo" }
+            );
+
+            context.MapRoute(
+                "PrintAllExaminationInfo",
+                "Admin/In-Ho-So-KQ-Xet-Nghiem",
+                new { controller = "MultipleModels", action = "PrintAllExaminationInfo" }
+            );
+
+            context.MapRoute(
+                "PrintResultCTMau",
+                "Admin/In-KQXN-Cong-Thuc-Mau",
+                new { controller = "MultipleModels", action = "PrintResultCTMau" }
+            );
+
+            context.MapRoute(
+                "PrintResultSHMau",
+                "Admin/In-KQXN-Sinh-Hoa-Mau",
+                new { controller = "MultipleModels", action = "PrintResultSHMau" }
+            );
+
+            context.MapRoute(
+                "PrintResultDongMau",
+                "Admin/In-KQXN-Dong-Mau",
+                new { controller = "MultipleModels", action = "PrintResultDongMau" }
+            );
+
+            context.MapRoute(
+                "PrintResultNhomMau",
+                "Admin/In-KQXN-Nhom-Mau",
+                new { controller = "MultipleModels", action = "PrintResultNhomMau" }
+            );
+
+            context.MapRoute(
+                "PrintResultNuocTieu",
+                "Admin/In-KQXN-Nuoc-Tieu",
+                new { controller = "MultipleModels", action = "PrintResultNuocTieu" }
+            );
+
+            context.MapRoute(
+                "PrintResultMienDich",
+                "Admin/In-KQXN-Mien-Dich",
+                new { controller = "MultipleModels", action = "PrintResultMienDich" }
+            );
+
+            context.MapRoute(
+                "PrintResultDichChocDo",
+                "Admin/In-KQXN-Dich-Choc-Do",
+                new { controller = "MultipleModels", action = "PrintResultDichChocDo" }
+            );
+
+            context.MapRoute(
+                "PrintResultViSinh",
+                "Admin/In-KQXN-Vi-Sinh",
+                new { controller = "MultipleModels", action = "PrintResultViSinh" }
+            );
+
+            context.MapRoute(
+                "SearchPatient",
+                "Admin/Tim-Kiem-Benh-Nhan",
+                new { controller = "Patients", action = "SearchPatient" }
+            );
+
+            context.MapRoute(
+                "SearchPatientNoBook",
+                "Admin/Tim-Kiem-Benh-Nhan-Khong-So",
+                new { controller = "Patients", action = "SearchPatientNoInfo" }
+            );
+
+            context.MapRoute(
+                "SearchPatientDetail",
+                "Admin/Tim-Kiem-Lich-Su-Kham-Benh",
+                new { controller = "InformationExaminations", action = "SearchPatientDetail" }
+            );
+
+            context.MapRoute(
+                "PrintBillExamination",
+                "Admin/In-Hoa-Don-Kham-Benh",
+                new { controller = "Patients", action = "PrintBillExamination" }
+            );
+
+            context.MapRoute(
+                "PrintBillTestSubclinical",
+                "Admin/In-Hoa-Don-Xet-Nghiem",
+                new { controller = "Patients", action = "PrintBillTestSubclinical" }
+            );
+
+            context.MapRoute(
+                "PrintBillPrescription",
+                "Admin/In-Hoa-Don-Thuoc",
+                new { controller = "Patients", action = "PrintBillPrescription" }
+            );
+
+            context.MapRoute(
+                "PrintStatisByDocandCon",
+                "Admin/Thong-Ke-BS-Tinh-Trang-Benh-Nhan",
+                new { controller = "Statistics", action = "PrintStatisByDocandCon" }
+            );
+
+            context.MapRoute(
+                "PrintStatisticByCondition",
+                "Admin/Thong-Ke-Tinh-Trang-Benh-Nhan",
+                new { controller = "Statistics", action = "PrintStatisticByCondition" }
+            );
+
+            context.MapRoute(
+                "PrintStatisticDiagnostic",
+                "Admin/Thong-Ke-Nhom-Benh",
+                new { controller = "Statistics", action = "PrintStatisticDiagnostic" }
+            );
+
+            context.MapRoute(
+                "PrintStatisticMoney",
+                "Admin/Thong-Ke-Doanh-Thu",
+                new { controller = "Statistics", action = "PrintStatisticMoney" }
+            );
+
+            context.MapRoute(
                 "HomePage",
                 "Admin/Trang-Chu",
                 new { controller = "Users", action = "HomePage" }
@@ -59,25 +282,25 @@ namespace ElectronicMedicalRecords.Areas.Admin
 
             context.MapRoute(
                 "StatisByDoctorAndCondition",
-                "Admin/Thong-Ke-Theo-Bac-Si",
+                "Admin/Bac-Si",
                 new { controller = "Statistics", action = "StatisByDoctorAndCondition" }
             );
 
             context.MapRoute(
                 "StatisByCondition",
-                "Admin/Thong-Ke-Theo-Tinh-Trang-Benh-Nhan",
+                "Admin/Tinh-Trang-Benh-Nhan",
                 new { controller = "Statistics", action = "StatisByCondition" }
             );
 
             context.MapRoute(
                 "StatisByDiagnostic",
-                "Admin/Thong-Ke-Theo-Nhom-Benh",
+                "Admin/Nhom-Benh",
                 new { controller = "Statistics", action = "StatisByDiagnostic" }
             );
 
             context.MapRoute(
                 "StatisByMoney",
-                "Admin/Thong-Ke-Doanh-Thu",
+                "Admin/Doanh-Thu",
                 new { controller = "Statistics", action = "StatisByMoney" }
             );
 
@@ -101,14 +324,14 @@ namespace ElectronicMedicalRecords.Areas.Admin
 
             context.MapRoute(
                 "MedicationIndex",
-                "Admin/Thuốc",
+                "Admin/Thuoc",
                 new { controller = "Medications", action = "Index" }
             );
 
             context.MapRoute(
                 "DiagnosticCategoryIndex",
                 "Admin/Danh-Muc-Chuan-Doan",
-                new { controller = "DiagnosticCategories", action = "Index" }
+                new { controller = "DiagnosticsCategories", action = "Index" }
             );
 
             context.MapRoute(
