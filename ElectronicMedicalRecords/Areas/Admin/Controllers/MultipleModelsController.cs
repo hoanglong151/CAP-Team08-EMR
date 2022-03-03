@@ -134,22 +134,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.SaveChanges();
                 }
             }
-            var checkExistDiagnostic = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
-            if(checkExistDiagnostic == null)
+            if(multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID != null)
             {
-                Detail_DiagnosticsCategory detail_DiagnosticsCategory = new Detail_DiagnosticsCategory();
-                detail_DiagnosticsCategory.DiagnosticsCategory_ID = multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID;
-                detail_DiagnosticsCategory.Advice = multiplesModel.Detail_DiagnosticsCategory.Advice;
-                detail_DiagnosticsCategory.InformationExamination_ID = multiplesModel.InformationExamination.ID;
-                db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
-                db.SaveChanges();
+                var checkExistDiagnostic = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID);
+                if (checkExistDiagnostic == null)
+                {
+                    Detail_DiagnosticsCategory detail_DiagnosticsCategory = new Detail_DiagnosticsCategory();
+                    detail_DiagnosticsCategory.DiagnosticsCategory_ID = multiplesModel.Detail_DiagnosticsCategory.DiagnosticsCategory_ID;
+                    detail_DiagnosticsCategory.Advice = multiplesModel.Detail_DiagnosticsCategory.Advice;
+                    detail_DiagnosticsCategory.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                    db.Detail_DiagnosticsCategory.Add(detail_DiagnosticsCategory);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Entry(multiplesModel.Detail_DiagnosticsCategory).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
-            else
-            {
-                db.Entry(multiplesModel.Detail_DiagnosticsCategory).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-
             //Clinical
             Detail_TuanHoanController detail_TuanHoanController = new Detail_TuanHoanController();
             Detail_HoHapController detail_HoHapController = new Detail_HoHapController();

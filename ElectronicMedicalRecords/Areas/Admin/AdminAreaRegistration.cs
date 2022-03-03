@@ -209,6 +209,30 @@ namespace ElectronicMedicalRecords.Areas.Admin
             );
 
             context.MapRoute(
+                "SearchBSAndTT",
+                "Admin/Thong-Ke-BS-Theo-Ngay",
+                new { controller = "Statistics", action = "SearchBSAndTT" }
+            );
+
+            context.MapRoute(
+                "SearchTT",
+                "Admin/Thong-Ke-TT-Theo-Ngay",
+                new { controller = "Statistics", action = "SearchTT" }
+            );
+
+            context.MapRoute(
+                "SearchDiagnostic",
+                "Admin/Thong-Ke-Nhom-Benh-Theo-Ngay",
+                new { controller = "Statistics", action = "SearchDiagnostic" }
+            );
+
+            context.MapRoute(
+                "SearchMoney",
+                "Admin/Thong-Ke-Doanh-Thu-Theo-Ngay",
+                new { controller = "Statistics", action = "SearchMoney" }
+            );
+
+            context.MapRoute(
                 "PrintBillExamination",
                 "Admin/In-Hoa-Don-Kham-Benh",
                 new { controller = "Patients", action = "PrintBillExamination" }
