@@ -116,7 +116,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual PatientStatu PatientStatu { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription_Detail> Prescription_Detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -125,5 +124,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<Clinical> Clinicals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detail_TaiMuiHong> Detail_TaiMuiHong { get; set; }
+        public virtual User User { get; set; }
     }
 }

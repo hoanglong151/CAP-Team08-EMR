@@ -488,7 +488,7 @@
                 data: JSON.stringify({ multiplesModel: dataExam }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintBillExamination", "Patients")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-Hoa-Don-Kham-Benh`, "_blank");
                     }
                 }
             })
@@ -503,7 +503,7 @@
                 data: JSON.stringify({ multiplesModel: dataTestSubclinical }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintBillTestSubclinical", "Patients")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-Hoa-Don-Xet-Nghiem`, "_blank");
                     }
                 }
             })
@@ -518,7 +518,7 @@
                 data: JSON.stringify({ multiplesModel: dataPrescription }).replaceAll('"}', ''),
                 success: function (res) {
                     if (res.success) {
-                        window.open("@Url.Action("PrintBillPrescription", "Patients")", "_blank");
+                        window.open(`${window.location.origin}/Admin/In-Hoa-Don-Thuoc`, "_blank");
                     }
                 }
             })

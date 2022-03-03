@@ -529,97 +529,31 @@
                             </div>
                         }
                         @{
-                            var listTai = Model.Tai.Where(p => p.ChiDinh == true).Count();
+                            var listTaiMuiHong = Model.TaiMuiHong.Where(p => p.ChiDinh == true).Count();
                         }
-                        @if (listTai != 0)
+                        @if (listTaiMuiHong != 0)
                         {
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width:5%">#</th>
-                                        <th style="width:95%">Các bệnh về Tai</th>
+                                        <th style="width:95%">Các bệnh về Tai-Mũi-Họng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (int i = 0; i < Model.Tai.Count; i++)
+                                    @for (int i = 0; i < Model.TaiMuiHong.Count; i++)
                                     {
-                                        if (Model.Tai[i].ChiDinh == true)
+                                        if (Model.TaiMuiHong[i].ChiDinh == true)
                                         {
                                             <tr>
                                                 <td class="text-center">@(i + 1)</td>
-                                                @if (Model.Tai[i].Dangerous == false)
+                                                @if (Model.TaiMuiHong[i].Dangerous == false)
                                                 {
-                                                    <td>@Model.Tai[i].Name</td>
+                                                    <td>@Model.TaiMuiHong[i].Name</td>
                                                 }
                                                 else
                                                 {
-                                                    <td>@Model.Tai[i].Name<span style="color:red"> *</span></td>
-                                                }
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        }
-                        @{
-                            var listMui = Model.Mui.Where(p => p.ChiDinh == true).Count();
-                        }
-                        @if (listMui != 0)
-                        {
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width:5%">#</th>
-                                        <th style="width:95%">Các bệnh về Mũi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < Model.Mui.Count; i++)
-                                    {
-                                        if (Model.Mui[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                @if (Model.Mui[i].Dangerous == false)
-                                                {
-                                                    <td>@Model.Mui[i].Name</td>
-                                                }
-                                                else
-                                                {
-                                                    <td>@Model.Mui[i].Name<span style="color:red"> *</span></td>
-                                                }
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        }
-                        @{
-                            var listHong = Model.Hong.Where(p => p.ChiDinh == true).Count();
-                        }
-                        @if (listHong != 0)
-                        {
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width:5%">#</th>
-                                        <th style="width:95%">Các bệnh về Họng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < Model.Hong.Count; i++)
-                                    {
-                                        if (Model.Hong[i].ChiDinh == true)
-                                        {
-                                            <tr>
-                                                <td class="text-center">@(i + 1)</td>
-                                                @if (Model.Hong[i].Dangerous == false)
-                                                {
-                                                    <td>@Model.Hong[i].Name</td>
-                                                }
-                                                else
-                                                {
-                                                    <td>@Model.Hong[i].Name<span style="color:red"> *</span></td>
+                                                    <td>@Model.TaiMuiHong[i].Name<span style="color:red"> *</span></td>
                                                 }
                                             </tr>
                                         }

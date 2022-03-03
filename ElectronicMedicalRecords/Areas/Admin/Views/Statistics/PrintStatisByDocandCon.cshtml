@@ -57,12 +57,12 @@
                     </div>
 
                     <div class="row body-pay">
-                        <p class="lead marginbottom">Bác Sỹ & Tình Trạng Bệnh Nhân</p>
+                        <p class="lead marginbottom">Bác Sĩ & Tình Trạng Bệnh Nhân</p>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center" style="width:15%">Mã Bác Sỹ</th>
-                                    <th style="width: 28.33%;">Bác Sỹ</th>
+                                    <th class="text-center" style="width:15%">Mã Bác Sĩ</th>
+                                    <th style="width: 28.33%;">Bác Sĩ</th>
                                     <th style="width: 28.33%">Tình Trạng</th>
                                     <th style="width: 28.33%">Số Lượng Bệnh Nhân</th>
                                 </tr>
@@ -70,10 +70,11 @@
                             <tbody>
                                 @foreach (var user in Model)
                                 {
-                                    var charName = user.usersStatis.AspNetUser.Email.IndexOf(".", 0);
-                                    var charName1 = user.usersStatis.AspNetUser.Email.IndexOf("@", 0);
+                                    //var charName = user.usersStatis.AspNetUser.Email.IndexOf(".", 0);
+                                    //var charName1 = user.usersStatis.AspNetUser.Email.IndexOf("@", 0);
                                     <tr>
-                                        <td>@user.usersStatis.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1)</td>
+                                        @*<td>@user.usersStatis.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1)</td>*@
+                                        <td>@user.usersStatis.AspNetUser.Email</td>
                                         <td>@user.usersStatis.Name</td>
                                         <td>@user.patientStatu.Name</td>
                                         <td>@user.usersStatis.InformationExaminations.Count</td>
