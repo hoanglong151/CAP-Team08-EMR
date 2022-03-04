@@ -163,12 +163,12 @@
                         </li>
                         @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc"))
                         {
-                    <li class="sidebar-item">
-                        <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
-                            <i class="text-white fas fa-chart-line"></i>
-                            <span>DashBoard</span>
-                        </a>
-                    </li>
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Dashboard", "Dashboard")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-chart-line"></i>
+                                    <span>DashBoard</span>
+                                </a>
+                            </li>
                         }
                         @if (User.IsInRole("QTV") || User.IsInRole("Giám Đốc") || User.IsInRole("Thu Ngân"))
                         {
@@ -540,24 +540,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="@Url.Content("~/Scripts/jquery.signalR-2.4.2.min.js")"></script>
     <script src="@Url.Content("~/signalr/hubs")"></script>
-    <script>
-        function GetClientReport(linkGuide) {
-            window.open(`@Url.Action("GetReport", "Users")?link=${linkGuide}`, "_blank");
-        };
-        $(document).ready(function () {
-            $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');
-            $('.submenu-item.active').closest('.sidebar-item').addClass('active');
-            $('.submenu-item.active').closest('.submenu').addClass('active');
-        });
-        var NumberInput = document.querySelectorAll('.numberInput');
-        NumberInput.forEach((item, index) => {
-            item.addEventListener("keypress", function (evt) {
-                if (evt.which != 8 && evt.which != 0 && evt.which < 46 || evt.which == 47 || evt.which > 57) {
-                    evt.preventDefault();
-                }
-            })
-        })
-    </script>
     <script type="text/javascript">
         function getPatient() {
         $('#tableLoadPatient').DataTable({
@@ -587,12 +569,12 @@
                 "className": "w85",
                 "data": null,
                 "render": function (data, type, row) {
-                    var hrefEditPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
-                    var hrefDetailPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Lich-Su-Kham-Benh`;
-                    var hrefConfirmBill = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Hoa-Don`;
-                    //var hrefEditPatient = `${window.location.origin}/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
-                    //var hrefDetailPatient = `${window.location.origin}/Admin/${data.ID}-Lich-Su-Kham-Benh`;
-                    //var hrefConfirmBill = `${window.location.origin}/Admin/${data.ID}-Hoa-Don`;
+                    //var hrefEditPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
+                    //var hrefDetailPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Lich-Su-Kham-Benh`;
+                    //var hrefConfirmBill = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Hoa-Don`;
+                    var hrefEditPatient = `${window.location.origin}/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
+                    var hrefDetailPatient = `${window.location.origin}/Admin/${data.ID}-Lich-Su-Kham-Benh`;
+                    var hrefConfirmBill = `${window.location.origin}/Admin/${data.ID}-Hoa-Don`;
                     var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                     return button;
                 },
@@ -672,8 +654,8 @@
                     res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                     $.each(res.data, function (index, value) {
                         $('span.countBS').parent().children('i').addClass('bell');
-                        var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
-                       /* var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
+                    /*    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
+                        var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
                         if (value.checkResult == true) {
                             $('#notiContentBS').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                         } else {
@@ -723,8 +705,8 @@
                 res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                 $.each(res.data, function (index, value) {
                     $('span.count').parent().children('i').addClass('bell');
-                    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;
-                /*    var href = `${window.location.origin}/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;*/
+                    /*var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;*/
+                    var href = `${window.location.origin}/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;
                     if (value.checkResult == true) {
                         $('#notiContent').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
                     } else {
@@ -778,8 +760,8 @@
                 }
                 $.each(res.data, function (index, value) {
                     $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
-                    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;
-                    /*var href = `${window.location.origin}/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;*/
+                    /*var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;*/
+                    var href = `${window.location.origin}/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;
                     if (value.dangerPatient == true) {
                         $('#notiContentBS1').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
                     } else {
@@ -806,6 +788,61 @@
             alert(e)
         });
     }
+    </script>
+
+    <script type="text/javascript">
+        function updateUser() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("Status", "Users")",
+                success: function (res) {
+                    if (res.success) {
+                        $('.checkUserOnline').each((index, user) => {
+                            if (res.data.indexOf(user.innerText) != -1) {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('online');
+                            } else {
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.add('offline');
+                                user.closest('tr').querySelector('.LoggedInUserBox').classList.remove('online');
+                            }
+                        })
+                    }
+                    else {
+                        alert(res.responText)
+                    }
+                }
+            })
+        }
+
+        var notificationHubOnlineUser = $.connection.notificationHubOnlineUser;
+        $.connection.hub.start().done(function () {
+            updateUser();
+            /*console.log("Notification hub started User");*/
+            setInterval(() => {
+                updateUser();
+            }, 30000)
+        }).fail((e) => {
+            alert(e)
+        });
+    </script>
+
+    <script>
+        function GetClientReport(linkGuide) {
+            window.open(`@Url.Action("GetReport", "Users")?link=${linkGuide}`, "_blank");
+        };
+        $(document).ready(function () {
+            $('.sidebar-item').find('[href="' + window.location.pathname + '"]').parent().addClass('active');
+            $('.submenu-item.active').closest('.sidebar-item').addClass('active');
+            $('.submenu-item.active').closest('.submenu').addClass('active');
+        });
+        var NumberInput = document.querySelectorAll('.numberInput');
+        NumberInput.forEach((item, index) => {
+            item.addEventListener("keypress", function (evt) {
+                if (evt.which != 8 && evt.which != 0 && evt.which < 46 || evt.which == 47 || evt.which > 57) {
+                    evt.preventDefault();
+                }
+            })
+        })
     </script>
 
     <script src="@Url.Content("~/Areas/Admin/assets/js/main.js")"></script>

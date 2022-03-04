@@ -50,6 +50,7 @@
                     <thead>
                         <tr>
                             <th>Danh Mục Phường/Xã</th>
+                            <th>Quận/Huyện</th>
                             @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                             {
                                 <th>Chức Năng</th>
@@ -80,13 +81,31 @@
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Tên Phường/Xã</label>
+                                <label style="display: flex; height: 85%; align-items: center">Tên Phường/Xã</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="Ward1" type="text" class="form-control pd-form"
                                                placeholder="Tên Phường/Xã" id="first-name-icon WardsNameCreate" required>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="display: flex; height: 85%; align-items: center">Tên Quận/Huyện</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="District_ID" class="form-select pd-form">
+                                            @foreach (var item in ViewBag.Districts)
+                                            {
+                                                <option value="@item.ID">@item.District1</option>
+                                            }
+                                        </select>
                                         <div class="form-control-icon icon-MedicationCategory">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -142,6 +161,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <label style="display: flex; height: 85%; align-items: center">Tên Quận/Huyện</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="District_ID" id="UpdateDistrictsName" class="form-select pd-form">
+                                            @foreach (var item in ViewBag.Districts)
+                                            {
+                                                <option value="@item.ID">@item.District1</option>
+                                            }
+                                        </select>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn" data-bs-dismiss="modal">
@@ -174,6 +211,9 @@
                 "columns": [
                     {
                         "data": "Ward1",
+                    },
+                    {
+                        "data": "District_ID"
                     },
                     {
                         "data": null,
@@ -262,6 +302,7 @@
                     if (res.data != null) {
                         $('#UpdateWardsName').val(res.data.Ward1);
                         $('#UpdateWardsID').val(res.data.ID);
+                        $(`#UpdateDistrictsName option[value="${res.data.District_ID}"]`).attr("selected", true);
                     }
                 }
             })

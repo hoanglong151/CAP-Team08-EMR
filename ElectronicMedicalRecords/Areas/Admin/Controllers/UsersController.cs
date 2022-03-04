@@ -38,25 +38,26 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.LazyLoadingEnabled = false;
             List<string> listUser = new List<string>();
-            var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+            var usersOnline = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
             if (usersOnline != null)
             {
                 HttpRuntime.Cache["LoggedInUsers"] = usersOnline;
-                if (User.Identity.IsAuthenticated && usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
-                {
-                    usersOnline.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
-                }
                 foreach (var user in usersOnline)
                 {
                     if (User.Identity.IsAuthenticated)
                     {
                         listUser.Add(user.Key);
                     }
-                    var time = user.Value.AddMinutes(10);
+                    var time = user.Value.AddMinutes(1);
                     if (time <= DateTime.Now)
                     {
                         listUser.Remove(user.Key);
+                        usersOnline.Remove(user.Key);
                     }
+                }
+                if (User.Identity.IsAuthenticated && usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
+                {
+                    usersOnline.Add(User.Identity.GetUserId(), DateTime.Now);
                 }
                 foreach (var item in usersOnline.ToList())
                 {
@@ -65,6 +66,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                         usersOnline.Remove(item.Key);
                     }
                 }
+
                 Session["ListUsersOnline"] = listUser;
                 return Json(new { success = true, data = listUser }, JsonRequestBehavior.AllowGet);
             }

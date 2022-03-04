@@ -59,7 +59,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Detail_Urine> Detail_Urine { get; set; }
         public virtual DbSet<Detail_ViSinh> Detail_ViSinh { get; set; }
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
-        public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<DongMau> DongMaus { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HistoryDisease> HistoryDiseases { get; set; }
@@ -90,11 +89,12 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<TuanHoan> TuanHoans { get; set; }
         public virtual DbSet<Urine> Urines { get; set; }
         public virtual DbSet<ViSinh> ViSinhs { get; set; }
-        public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<Detail_HoHap> Detail_HoHap { get; set; }
         public virtual DbSet<Clinical> Clinicals { get; set; }
         public virtual DbSet<Detail_TaiMuiHong> Detail_TaiMuiHong { get; set; }
         public virtual DbSet<TaiMuiHong> TaiMuiHongs { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Ward> Wards { get; set; }
     }
 }

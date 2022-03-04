@@ -2331,6 +2331,42 @@
             });
         });
 
+        var selectHomeTown = document.querySelector("#Patient_HomeTown_ID");
+        selectHomeTown.addEventListener('change', (e) => {
+            var optionDistrict = document.querySelectorAll("#Patient_District_ID option");
+            optionDistrict.forEach((value, index) => {
+                value.remove();
+            })
+            $.ajax({
+                url: "@Url.Action("filterDistricts", "Districts")",
+                type: "POST",
+                data: { id: e.target.value },
+                success: (res) => {
+                    res.data.forEach((v, i) => {
+                        $("#Patient_District_ID").append(`<option value="${v.ID}">${v.District1}</option>`);
+                    })
+                }
+            })
+        })
+
+        var selectDistrict = document.querySelector("#Patient_District_ID");
+        selectDistrict.addEventListener('change', (e) => {
+            var optionWard = document.querySelectorAll("#Patient_Ward_ID option");
+            optionWard.forEach((value, index) => {
+                value.remove();
+            })
+            $.ajax({
+                url: "@Url.Action("filterWards", "Wards")",
+                type: "POST",
+                data: { id: e.target.value },
+                success: (res) => {
+                    res.data.forEach((v, i) => {
+                        $("#Patient_Ward_ID").append(`<option value="${v.ID}">${v.Ward1}</option>`);
+                    })
+                }
+            })
+        })
+
         if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
             $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");
         }

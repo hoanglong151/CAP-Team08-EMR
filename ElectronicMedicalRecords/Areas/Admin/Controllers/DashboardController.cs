@@ -18,13 +18,13 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             var usersOnline = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
             List<string> listUser = new List<string>();
-            if (User.Identity.IsAuthenticated && usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
+            if (User.Identity.IsAuthenticated)
+            {
+                listUser.Add(User.Identity.GetUserId());
+            }
+            if(usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
             {
                 usersOnline.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
-                if (User.Identity.IsAuthenticated)
-                {
-                    listUser.Add(User.Identity.GetUserId());
-                }
             }
             var patients = db.Patients.ToList();
             var allUsers = db.AspNetUsers.ToList();
@@ -46,9 +46,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             dashboardModel.patients = patients;
             dashboardModel.users = userOnline;
             dashboardModel.userList = userList;
-            if((List<string>)Session["ListUsersOnline"] != null)
+            var ListUsersOnline = (List<string>)Session["ListUsersOnline"];
+            if (ListUsersOnline.Count != 0)
             {
-                dashboardModel.listUsersOnline = (List<string>)Session["ListUsersOnline"];
+                dashboardModel.listUsersOnline = ListUsersOnline;
             }
             else
             {
