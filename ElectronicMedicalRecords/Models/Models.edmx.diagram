@@ -39,7 +39,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.Detail_Urine" Width="1.5" PointX="25.5" PointY="58.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_ViSinh" Width="1.5" PointX="22.5" PointY="48.5" />
         <EntityTypeShape EntityType="CP24Team08Model.DiagnosticsCategory" Width="1.5" PointX="23.25" PointY="38.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.District" Width="1.5" PointX="3.75" PointY="48.25" />
         <EntityTypeShape EntityType="CP24Team08Model.DongMau" Width="1.5" PointX="17.25" PointY="64.75" />
         <EntityTypeShape EntityType="CP24Team08Model.Gender" Width="1.5" PointX="3.75" PointY="60.25" />
         <EntityTypeShape EntityType="CP24Team08Model.HistoryDisease" Width="1.5" PointX="6" PointY="48" />
@@ -70,7 +69,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.TuanHoan" Width="1.5" PointX="14.25" PointY="73" />
         <EntityTypeShape EntityType="CP24Team08Model.Urine" Width="1.5" PointX="23.25" PointY="69.75" />
         <EntityTypeShape EntityType="CP24Team08Model.ViSinh" Width="1.5" PointX="20.25" PointY="38" />
-        <EntityTypeShape EntityType="CP24Team08Model.Ward" Width="1.5" PointX="3.75" PointY="58" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
@@ -120,7 +118,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_Urine" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_ViSinh" />
-        <AssociationConnector Association="CP24Team08Model.FK_Patient_District" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
@@ -130,7 +127,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation1" />
-        <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_HoHap" Width="1.5" PointX="25.5" PointY="40.375" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_HoHap" />
@@ -149,6 +145,12 @@
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
+        <EntityTypeShape EntityType="CP24Team08Model.District" Width="1.5" PointX="6" PointY="63.75" />
+        <EntityTypeShape EntityType="CP24Team08Model.Ward" Width="1.5" PointX="8.25" PointY="63.875" />
+        <AssociationConnector Association="CP24Team08Model.FK_District_HomeTown" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_District" />
+        <AssociationConnector Association="CP24Team08Model.FK_Ward_District" />
+        <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

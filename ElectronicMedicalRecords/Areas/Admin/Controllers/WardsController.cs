@@ -17,16 +17,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Wards
         public ActionResult Index()
         {
+            ViewBag.Districts = db.Districts.ToList();
             return View(db.Wards.ToList());
+        }
+
+        [HttpPost]
+        public JsonResult filterWards(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var listWards = db.Wards.Where(p => p.District_ID == id).ToList();
+            return Json(new { data = listWards });
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var wards = db.Wards.ToList();
-            return Json(new { data = wards }, JsonRequestBehavior.AllowGet);
+            var wards = db.Wards.Include(d => d.District).ToList();
+            var listWards = wards.Select(s => new
+            {
+                ID = s.ID,
+                Ward1 = s.Ward1,
+                District_ID = s.District.District1,
+            }).ToList();
+            return Json(new { data = listWards }, JsonRequestBehavior.AllowGet);
         }
-
 
         public string ValidateForm(Ward ward)
         {
@@ -77,11 +91,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             Ward ward = db.Wards.Find(id);
-            if (ward == null)
+            ward.District = db.Districts.FirstOrDefault(p => p.ID == ward.District_ID);
+            var getDistrict = new
             {
-                return HttpNotFound();
-            }
-            return Json(new { data = ward }, JsonRequestBehavior.AllowGet);
+                ID = ward.ID,
+                Ward1 = ward.Ward1,
+                District = ward.District.District1,
+                District_ID = ward.District_ID
+            };
+            return Json(new { data = getDistrict }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Wards/Edit/5

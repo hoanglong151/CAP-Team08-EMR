@@ -51,6 +51,7 @@
                     <thead>
                         <tr>
                             <th>Danh Mục Quận/Huyện</th>
+                            <th>Thành Phố</th>
                             @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                             {
                                 <th>Chức Năng</th>
@@ -81,13 +82,31 @@
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Tên Quận/Huyện</label>
+                                <label style="display:flex;height:85%;align-items:center">Tên Quận/Huyện</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input name="District1" type="text" class="form-control pd-form"
                                                placeholder="Tên Quận/Huyện" id="first-name-icon DistrictsNameCreate" required>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="display: flex; height: 85%; align-items: center">Tên Thành Phố</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="HomeTown_ID" class="form-select pd-form">
+                                            @foreach (var item in ViewBag.Hometown)
+                                            {
+                                                <option value="@item.ID">@item.HomeTown1</option>
+                                            }
+                                        </select>
                                         <div class="form-control-icon icon-MedicationCategory">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -130,7 +149,7 @@
                         <div class="row">
                             <input type="text" id="UpdateDistrictsID" name="ID" hidden />
                             <div class="col-md-4">
-                                <label for="UpdateDistrictsName">Tên Quận/Huyện</label>
+                                <label style="display: flex; height: 85%; align-items: center" for="UpdateDistrictsName">Tên Quận/Huyện</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
@@ -139,6 +158,24 @@
                                                placeholder="Tên Quận/Huyện" id="UpdateDistrictsName" required>
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="display: flex; height: 85%; align-items: center">Tên Thành Phố</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="HomeTown_ID" id="UpdateHomeTownName" class="form-select pd-form">
+                                            @foreach (var item in ViewBag.Hometown)
+                                            {
+                                                <option value="@item.ID">@item.HomeTown1</option>
+                                            }
+                                        </select>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="bi bi-person"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -175,6 +212,9 @@
                 "columns": [
                     {
                         "data": "District1",
+                    },
+                    {
+                        "data": "HomeTown_ID",
                     },
                     {
                         "data": null,
@@ -263,6 +303,7 @@
                     if (res.data != null) {
                         $('#UpdateDistrictsName').val(res.data.District1);
                         $('#UpdateDistrictsID').val(res.data.ID);
+                        $(`#UpdateHomeTownName option[value="${res.data.HomeTown_ID}"]`).attr("selected", true);
                     }
                 }
             })

@@ -18,12 +18,17 @@ namespace ElectronicMedicalRecords.Models
         public District()
         {
             this.Patients = new HashSet<Patient>();
+            this.Wards = new HashSet<Ward>();
         }
     
         public int ID { get; set; }
         public string District1 { get; set; }
+        public int HomeTown_ID { get; set; }
     
+        public virtual HomeTown HomeTown { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Patient> Patients { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ward> Wards { get; set; }
     }
 }

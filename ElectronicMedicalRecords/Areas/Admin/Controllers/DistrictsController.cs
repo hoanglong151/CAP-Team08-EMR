@@ -17,14 +17,30 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Districts
         public ActionResult Index()
         {
+            ViewBag.Hometown = db.HomeTowns.ToList();
             return View(db.Districts.ToList());
+        }
+
+        [HttpPost]
+        public JsonResult filterDistricts(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var listDistrics = db.Districts.Where(p => p.HomeTown_ID == id).ToList();
+            return Json(new { data = listDistrics });
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var districts = db.Districts.ToList();
-            return Json(new { data = districts }, JsonRequestBehavior.AllowGet);
+            var homeTown = db.HomeTowns.FirstOrDefault();
+            var districts = db.Districts.Include(h => h.HomeTown).ToList();
+            var listDistricts = districts.Select(s => new
+            {
+                ID = s.ID,
+                District1 = s.District1,
+                HomeTown_ID = s.HomeTown.HomeTown1,
+            }).ToList();
+            return Json(new { data = listDistricts }, JsonRequestBehavior.AllowGet);
         }
 
         public string ValidateForm(District district)
@@ -76,11 +92,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             District district = db.Districts.Find(id);
-            if (district == null)
+            district.HomeTown = db.HomeTowns.FirstOrDefault(p => p.ID == district.HomeTown_ID);
+            var getDistrict = new
             {
-                return HttpNotFound();
-            }
-            return Json(new { data = district }, JsonRequestBehavior.AllowGet);
+                ID = district.ID,
+                District1 = district.District1,
+                HomeTown = district.HomeTown.HomeTown1,
+                HomeTown_ID = district.HomeTown_ID
+            };
+            return Json(new { data = getDistrict }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Districts/Edit/5
