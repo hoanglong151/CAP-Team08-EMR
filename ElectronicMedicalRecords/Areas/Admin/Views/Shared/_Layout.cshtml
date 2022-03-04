@@ -569,12 +569,12 @@
                 "className": "w85",
                 "data": null,
                 "render": function (data, type, row) {
-                    //var hrefEditPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
-                    //var hrefDetailPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Lich-Su-Kham-Benh`;
-                    //var hrefConfirmBill = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Hoa-Don`;
-                    var hrefEditPatient = `${window.location.origin}/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
-                    var hrefDetailPatient = `${window.location.origin}/Admin/${data.ID}-Lich-Su-Kham-Benh`;
-                    var hrefConfirmBill = `${window.location.origin}/Admin/${data.ID}-Hoa-Don`;
+                    var hrefEditPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
+                    var hrefDetailPatient = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Lich-Su-Kham-Benh`;
+                    var hrefConfirmBill = `${window.location.origin}/CP24Team08/Admin/${data.ID}-Hoa-Don`;
+                    //var hrefEditPatient = `${window.location.origin}/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
+                    //var hrefDetailPatient = `${window.location.origin}/Admin/${data.ID}-Lich-Su-Kham-Benh`;
+                    //var hrefConfirmBill = `${window.location.origin}/Admin/${data.ID}-Hoa-Don`;
                     var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                     return button;
                 },
@@ -654,8 +654,8 @@
                     res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                     $.each(res.data, function (index, value) {
                         $('span.countBS').parent().children('i').addClass('bell');
-                    /*    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
-                        var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
+                        var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
+                        /*var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
                         if (value.checkResult == true) {
                             $('#notiContentBS').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                         } else {
@@ -705,8 +705,8 @@
                 res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                 $.each(res.data, function (index, value) {
                     $('span.count').parent().children('i').addClass('bell');
-                    /*var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;*/
-                    var href = `${window.location.origin}/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;
+                    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;
+                    /*var href = `${window.location.origin}/Admin/${value.ID}-Cap-Nhat-Ket-Qua-Xet-Nghiem`;*/
                     if (value.checkResult == true) {
                         $('#notiContent').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.countresult + '</p></a></li>'));
                     } else {
@@ -760,8 +760,8 @@
                 }
                 $.each(res.data, function (index, value) {
                     $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
-                    /*var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;*/
-                    var href = `${window.location.origin}/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;
+                    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;
+                    /*var href = `${window.location.origin}/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;*/
                     if (value.dangerPatient == true) {
                         $('#notiContentBS1').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
                     } else {
