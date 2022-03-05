@@ -146,10 +146,11 @@
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <EntityTypeShape EntityType="CP24Team08Model.District" Width="1.5" PointX="6" PointY="63.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.Ward" Width="1.5" PointX="8.25" PointY="63.875" />
         <AssociationConnector Association="CP24Team08Model.FK_District_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_District" />
+        <EntityTypeShape EntityType="CP24Team08Model.Ward" Width="1.5" PointX="8.25" PointY="63.25" />
         <AssociationConnector Association="CP24Team08Model.FK_Ward_District" />
+        <AssociationConnector Association="CP24Team08Model.FK_Ward_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
         </Diagram>
     </edmx:Diagrams>

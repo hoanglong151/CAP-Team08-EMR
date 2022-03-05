@@ -26,18 +26,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.Index() as ViewResult;
             Assert.IsNotNull(result);
         }
-        [TestMethod]
-        public void TestDetail()
-        {
-            var info = db.Detail_MedicalHistory.AsNoTracking().First();
-            var list = controller.Details(info.ID) as ViewResult;
-            Assert.IsNotNull(list);
 
-
-            var infoError = controller.Details(0) as HttpNotFoundResult;
-            Assert.IsNotNull(infoError);
-
-        }
         [TestMethod]
         public void TestDetailIE()
         {

@@ -27,21 +27,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(cayMaus.ToList());
         }
 
-        // GET: Admin/CayMaus/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CayMau cayMau = db.CayMaus.Find(id);
-            if (cayMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cayMau);
-        }
-
         public ActionResult DetailIE(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();

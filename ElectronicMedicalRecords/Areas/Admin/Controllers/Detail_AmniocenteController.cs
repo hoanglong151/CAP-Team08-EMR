@@ -42,23 +42,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         
         public ActionResult DetailIE(MultiplesModel multiplesModel)
         {
-            List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_DetailIE", multiplesModel);
         }
 
         public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_BillCheck", multiplesModel);
         }
 
         // GET: Admin/Detail_Amniocente/Edit/5
         public ActionResult Edit(MultiplesModel multiplesModel)
         {
-            List<Detail_Amniocente> detail_Amniocentes = db.Detail_Amniocente.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_Amniocentes = detail_Amniocentes;
             return PartialView("_Edit", multiplesModel);
         }
 

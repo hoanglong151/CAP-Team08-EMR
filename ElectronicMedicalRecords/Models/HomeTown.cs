@@ -20,6 +20,7 @@ namespace ElectronicMedicalRecords.Models
             this.Patients = new HashSet<Patient>();
             this.Users = new HashSet<User>();
             this.Districts = new HashSet<District>();
+            this.Wards = new HashSet<Ward>();
         }
     
         public int ID { get; set; }
@@ -31,5 +32,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual ICollection<User> Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<District> Districts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ward> Wards { get; set; }
     }
 }

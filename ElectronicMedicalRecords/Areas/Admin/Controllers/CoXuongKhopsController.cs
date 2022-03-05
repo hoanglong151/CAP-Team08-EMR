@@ -19,7 +19,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             return View(db.CoXuongKhops.ToList());
         }
-
         public ActionResult EditSelect(MultiplesModel multiplesModel)
         {
             var listDetailCoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
@@ -32,7 +31,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             multiplesModel.CoXuongKhop = listCoXuongKhop;
             return PartialView("_EditSelect", multiplesModel);
         }
-
         public JsonResult GetArrCoXuongKhop(int id)
         {
             var listDetailCoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == id).ToList();

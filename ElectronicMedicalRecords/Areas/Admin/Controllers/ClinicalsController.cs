@@ -22,10 +22,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             InformationExamination informationExamination = new InformationExamination();
             informationExamination.ID = id;
             Clinical clinical = db.Clinicals.FirstOrDefault(p => p.InformationExamination_ID == id);
-            //if (clinical == null)
-            //{
-            //    return HttpNotFound();
-            //}
             multiplesModel.InformationExamination = informationExamination;
             multiplesModel.Clinical = clinical;
             return PartialView("_DetailIE", multiplesModel);

@@ -21,21 +21,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(detail_MedicalHistory.ToList());
         }
 
-        // GET: Admin/Detail_MedicalHistory/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_MedicalHistory detail_MedicalHistory = db.Detail_MedicalHistory.Find(id);
-            if (detail_MedicalHistory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_MedicalHistory);
-        }
-
         public ActionResult DetailIE(int id)
         {
             MultiplesModel multiplesModel = new MultiplesModel();
@@ -48,8 +33,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            List<Detail_MedicalHistory> detail_MedicalHistories = db.Detail_MedicalHistory.Where(p => p.Patient_ID == multiplesModel.Patient.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_MedicalHistories = detail_MedicalHistories;
             return PartialView("_BillCheck", multiplesModel);
         }
 
@@ -90,17 +73,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     }
                 }
             }
-            //ViewBag.Immune_ID = new SelectList(db.Immunes, "ID", "NameTest", detail_Immune.Immue_ID);
-            //ViewBag.InformationExamination_ID = new SelectList(db.InformationExaminations, "ID", "ID", detail_Immune.InformationExamination_ID);
             return RedirectToAction("Create", "MultipleModels");
-        }
-
-        // GET: Admin/Detail_MedicalHistory/Create
-        public ActionResult Create()
-        {
-            ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name");
-            ViewBag.MedicalHistory_ID = new SelectList(db.MedicalHistories, "ID", "Name");
-            return View();
         }
 
         // POST: Admin/Detail_MedicalHistory/Create
@@ -123,28 +96,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.SaveChanges();
                 }
             }
-            //ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", detail_MedicalHistory.Patient_ID);
-            //ViewBag.MedicalHistory_ID = new SelectList(db.MedicalHistories, "ID", "Name", detail_MedicalHistory.MedicalHistory_ID);
             return RedirectToAction("Create", "MultipleModels");
         }
-
-        // GET: Admin/Detail_MedicalHistory/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_MedicalHistory detail_MedicalHistory = db.Detail_MedicalHistory.Find(id);
-            if (detail_MedicalHistory == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", detail_MedicalHistory.Patient_ID);
-            ViewBag.MedicalHistory_ID = new SelectList(db.MedicalHistories, "ID", "Name", detail_MedicalHistory.MedicalHistory_ID);
-            return View(detail_MedicalHistory);
-        }
-
         // POST: Admin/Detail_MedicalHistory/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -161,32 +114,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Patient_ID = new SelectList(db.Patients, "ID", "Name", detail_MedicalHistory.Patient_ID);
             ViewBag.MedicalHistory_ID = new SelectList(db.MedicalHistories, "ID", "Name", detail_MedicalHistory.MedicalHistory_ID);
             return View(detail_MedicalHistory);
-        }
-
-        // GET: Admin/Detail_MedicalHistory/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_MedicalHistory detail_MedicalHistory = db.Detail_MedicalHistory.Find(id);
-            if (detail_MedicalHistory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_MedicalHistory);
-        }
-
-        // POST: Admin/Detail_MedicalHistory/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Detail_MedicalHistory detail_MedicalHistory = db.Detail_MedicalHistory.Find(id);
-            db.Detail_MedicalHistory.Remove(detail_MedicalHistory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

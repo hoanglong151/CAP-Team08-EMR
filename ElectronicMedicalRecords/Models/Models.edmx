@@ -722,6 +722,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ward" Type="nvarchar(max)" Nullable="false" />
           <Property Name="District_ID" Type="int" Nullable="false" />
+          <Property Name="HomeTown_ID" Type="int" />
         </EntityType>
         <Association Name="FK_Bill_InformationExamination">
           <End Role="InformationExamination" Type="Self.InformationExamination" Multiplicity="0..1" />
@@ -1643,6 +1644,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Ward_HomeTown">
+          <End Role="HomeTown" Type="Self.HomeTown" Multiplicity="0..1" />
+          <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ward">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CP24Team08ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Amniocente" EntityType="Self.Amniocente" Schema="dbo" store:Type="Tables" />
@@ -2020,6 +2033,10 @@
             <End Role="District" EntitySet="District" />
             <End Role="Ward" EntitySet="Ward" />
           </AssociationSet>
+          <AssociationSet Name="FK_Ward_HomeTown" Association="Self.FK_Ward_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTown" />
+            <End Role="Ward" EntitySet="Ward" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -2380,7 +2397,6 @@
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="Districts" EntityType="CP24Team08Model.District" />
-          <EntitySet Name="Wards" EntityType="CP24Team08Model.Ward" />
           <AssociationSet Name="FK_District_HomeTown" Association="CP24Team08Model.FK_District_HomeTown">
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="District" EntitySet="Districts" />
@@ -2389,8 +2405,13 @@
             <End Role="District" EntitySet="Districts" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
+          <EntitySet Name="Wards" EntityType="CP24Team08Model.Ward" />
           <AssociationSet Name="FK_Ward_District" Association="CP24Team08Model.FK_Ward_District">
             <End Role="District" EntitySet="Districts" />
+            <End Role="Ward" EntitySet="Wards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ward_HomeTown" Association="CP24Team08Model.FK_Ward_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="Ward" EntitySet="Wards" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Ward" Association="CP24Team08Model.FK_Patient_Ward">
@@ -2835,6 +2856,7 @@
           <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="HomeTown" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
           <NavigationProperty Name="Districts" Relationship="CP24Team08Model.FK_District_HomeTown" FromRole="HomeTown" ToRole="District" />
+          <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="HomeTown" ToRole="Ward" />
         </EntityType>
         <EntityType Name="Immune">
           <Key>
@@ -4096,16 +4118,6 @@
           <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_District" FromRole="District" ToRole="Patient" />
           <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_District" FromRole="District" ToRole="Ward" />
         </EntityType>
-        <EntityType Name="Ward">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ward1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="District_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="District" Relationship="CP24Team08Model.FK_Ward_District" FromRole="Ward" ToRole="District" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Ward" ToRole="Patient" />
-        </EntityType>
         <Association Name="FK_District_HomeTown">
           <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="1" />
           <End Type="CP24Team08Model.District" Role="District" Multiplicity="*" />
@@ -4130,6 +4142,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Ward">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ward1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="District_ID" Type="Int32" Nullable="false" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <NavigationProperty Name="District" Relationship="CP24Team08Model.FK_Ward_District" FromRole="Ward" ToRole="District" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="Ward" ToRole="HomeTown" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Ward" ToRole="Patient" />
+        </EntityType>
         <Association Name="FK_Ward_District">
           <End Type="CP24Team08Model.District" Role="District" Multiplicity="1" />
           <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="*" />
@@ -4139,6 +4163,18 @@
             </Principal>
             <Dependent Role="Ward">
               <PropertyRef Name="District_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ward_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ward">
+              <PropertyRef Name="HomeTown_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4940,6 +4976,7 @@
           <EntitySetMapping Name="Wards">
             <EntityTypeMapping TypeName="CP24Team08Model.Ward">
               <MappingFragment StoreEntitySet="Ward">
+                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
                 <ScalarProperty Name="District_ID" ColumnName="District_ID" />
                 <ScalarProperty Name="Ward1" ColumnName="Ward" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

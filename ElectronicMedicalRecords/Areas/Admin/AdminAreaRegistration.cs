@@ -378,7 +378,7 @@ namespace ElectronicMedicalRecords.Areas.Admin
 
             context.MapRoute(
                 "PatientStatusIndex",
-                "Admin/Tinh-Trang-Benh-Nhan",
+                "Admin/Danh-Sach-Tinh-Trang-Benh-Nhan",
                 new { controller = "PatientStatus", action = "Index" }
             );
 

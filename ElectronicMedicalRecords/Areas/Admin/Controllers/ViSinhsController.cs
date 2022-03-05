@@ -35,44 +35,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 
-        // GET: Admin/ViSinhs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ViSinh viSinh = db.ViSinhs.Find(id);
-            if (viSinh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(viSinh);
-        }
-
-        // GET: Admin/ViSinhs/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/ViSinhs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NameTest,ChiDinh,Result,ResultNC,ResultDD,NongDo")] ViSinh viSinh)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ViSinhs.Add(viSinh);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(viSinh);
-        }
-
         // GET: Admin/ViSinhs/Edit/5
         public ActionResult Edit(int id)
         {
@@ -99,21 +61,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false, responseText = "Không thể cập nhật giá" });
-        }
-
-        // GET: Admin/ViSinhs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ViSinh viSinh = db.ViSinhs.Find(id);
-            if (viSinh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(viSinh);
         }
 
         // POST: Admin/ViSinhs/Delete/5

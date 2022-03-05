@@ -119,8 +119,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintBillExaminationPost(MultiplesModel multiplesModel)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
-            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             Session["MultipleModelsPatient"] = multiplesModel;
             return Json(new { success = true, data = multiplesModel });
         }
@@ -447,12 +445,16 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Patients/Create
         public ActionResult Create()
         {
+            var hometownFirst = db.HomeTowns.FirstOrDefault();
+            var listDistricts = db.Districts.Where(p => p.HomeTown_ID == hometownFirst.ID);
+            var districtFirst = listDistricts.FirstOrDefault();
+            var listWards = db.Wards.Where(p => p.District_ID == districtFirst.ID);
             ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1");
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1");
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name");
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name");
-            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1");
-            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1");
+            ViewData["Patient.District_ID"] = new SelectList(listDistricts, "ID", "District1");
+            ViewData["Patient.Ward_ID"] = new SelectList(listWards, "ID", "Ward1");
             return PartialView("_Create");
         }
 
@@ -532,12 +534,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Patient patient = db.Patients.Find(id);
             var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
             var lastInfo = listInfo.LastOrDefault();
+            var listDistricts = db.Districts.Where(p => p.HomeTown_ID == patient.HomeTown_ID);
+            var listWards = db.Wards.Where(p => p.District_ID == patient.District_ID);
             ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", patient.Gender_ID);
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", patient.Nation_ID);
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
-            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
-            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
+            ViewData["Patient.District_ID"] = new SelectList(listDistricts, "ID", "District1", patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(listWards, "ID", "Ward1", patient.Ward_ID);
             multiplesModel.Patient = patient;
             multiplesModel.InformationExamination = lastInfo;
             return PartialView("_CreateOldPatient", multiplesModel);
@@ -546,12 +550,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Patients/BillExamination/5
         public ActionResult BillExamination(MultiplesModel multiplesModel)
         {
+            var districts = db.Districts.Where(p => p.HomeTown_ID == multiplesModel.Patient.HomeTown_ID).ToList();
+            var wards = db.Wards.Where(p => p.District_ID == multiplesModel.Patient.District_ID).ToList();
             ViewData["Patient.Gender_ID"] = new SelectList(db.Genders, "ID", "Gender1", multiplesModel.Patient.Gender_ID);
             ViewData["Patient.HomeTown_ID"] = new SelectList(db.HomeTowns, "ID", "HomeTown1", multiplesModel.Patient.HomeTown_ID);
             ViewData["Patient.Nation_ID"] = new SelectList(db.Nations, "ID", "Name", multiplesModel.Patient.Nation_ID);
             ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", multiplesModel.Patient.Nation1_ID);
-            ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", multiplesModel.Patient.District_ID);
-            ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", multiplesModel.Patient.Ward_ID);
+            ViewData["Patient.District_ID"] = new SelectList(districts, "ID", "District1", multiplesModel.Patient.District_ID);
+            ViewData["Patient.Ward_ID"] = new SelectList(wards, "ID", "Ward1", multiplesModel.Patient.Ward_ID);
             return PartialView("_BillExamination", multiplesModel);
         }
 
@@ -617,21 +623,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             ViewBag.Nation1_ID = new SelectList(db.Nation1, "ID", "Name", patient.Nation1_ID);
             ViewBag.District_ID = new SelectList(db.Districts, "ID", "District1", patient.District_ID);
             ViewBag.Ward_ID = new SelectList(db.Wards, "ID", "Ward1", patient.Ward_ID);
-            return View(patient);
-        }
-
-        // GET: Admin/Patients/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
             return View(patient);
         }
 

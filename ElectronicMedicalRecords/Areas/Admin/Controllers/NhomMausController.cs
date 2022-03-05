@@ -28,21 +28,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = nhomMaus }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Admin/NhomMaus/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NhomMau nhomMau = db.NhomMaus.Find(id);
-            if (nhomMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nhomMau);
-        }
-
         // GET: Admin/NhomMaus/CreateOldPatient
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
@@ -57,24 +42,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             multiplesModel.NhomMau = db.NhomMaus.ToList();
             return PartialView("_Create", multiplesModel);
         }
-
-        // POST: Admin/NhomMaus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NameTest,Result")] NhomMau nhomMau)
-        {
-            if (ModelState.IsValid)
-            {
-                db.NhomMaus.Add(nhomMau);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(nhomMau);
-        }
-
         // GET: Admin/NhomMaus/Edit/5
         public ActionResult Edit(int id)
         {
@@ -102,33 +69,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
-
-        // GET: Admin/NhomMaus/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NhomMau nhomMau = db.NhomMaus.Find(id);
-            if (nhomMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nhomMau);
-        }
-
-        // POST: Admin/NhomMaus/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            NhomMau nhomMau = db.NhomMaus.Find(id);
-            db.NhomMaus.Remove(nhomMau);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -28,21 +28,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = urines }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Admin/Urines/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Urine urine = db.Urines.Find(id);
-            if (urine == null)
-            {
-                return HttpNotFound();
-            }
-            return View(urine);
-        }
-
         // GET: Admin/Urines/CreateOldPatient
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
@@ -56,23 +41,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.Urine = db.Urines.ToList();
             return PartialView("_Create", multiplesModel);
-        }
-
-        // POST: Admin/Urines/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ChiDinh,Name,Result,CSBT,Unit")] Urine urine)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Urines.Add(urine);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(urine);
         }
 
         // GET: Admin/Urines/Edit/5
@@ -101,21 +69,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false, responseText = "Không thể cập nhật giá" });
-        }
-
-        // GET: Admin/Urines/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Urine urine = db.Urines.Find(id);
-            if (urine == null)
-            {
-                return HttpNotFound();
-            }
-            return View(urine);
         }
 
         // POST: Admin/Urines/Delete/5
