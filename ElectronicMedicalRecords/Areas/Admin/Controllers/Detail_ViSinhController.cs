@@ -39,33 +39,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult DetailIE(MultiplesModel multiplesModel)
         {
-            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_DetailIE", multiplesModel);
         }
 
         public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_BillCheck", multiplesModel);
         }
 
         // GET: Admin/Detail_ViSinh/Edit/5
         public ActionResult Edit(MultiplesModel multiplesModel)
         {
-            List<Detail_ViSinh> detail_ViSinhs = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            List<ViSinh> ViSinhs = new List<ViSinh>();
-            for (int i = 0; i < detail_ViSinhs.Count; i++)
-            {
-                var ViSinh_ID = detail_ViSinhs[i].ViSinh_ID;
-                var ViSinhCD = db.ViSinhs.FirstOrDefault(p => p.ID == ViSinh_ID);
-                ViSinhCD.ChiDinh = detail_ViSinhs[i].ChiDinh;
-                detail_ViSinhs[i].InformationExamination_ID = multiplesModel.InformationExamination.ID;
-                ViSinhs.Add(ViSinhCD);
-            }
-            multiplesModel.ViSinh = ViSinhs;
-            multiplesModel.Detail_ViSinhs = detail_ViSinhs;
             return PartialView("_Edit", multiplesModel);
         }
 

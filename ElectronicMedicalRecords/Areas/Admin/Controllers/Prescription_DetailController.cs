@@ -95,21 +95,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return PartialView("_DetailIERead", multiplesModel);
         }
 
-        // GET: Admin/Prescription_Detail/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Prescription_Detail prescription_Detail = db.Prescription_Detail.Find(id);
-            if (prescription_Detail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(prescription_Detail);
-        }
-
         public ActionResult CreateOldPatient()
         {
             return PartialView("_CreateOldPatient");
@@ -171,24 +156,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", multiplesModel.Prescription_Detail.Medication_ID);
             return RedirectToAction("CreateTest", "MultipleModels");
-        }
-
-        // POST: Admin/Prescription_Detail/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NumMedication,Note,Medication_ID,Precription__ID")] Prescription_Detail prescription_Detail)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Prescription_Detail.Add(prescription_Detail);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Medication_ID = new SelectList(db.Medications, "ID", "Name", prescription_Detail.Medication_ID);
-            return View(prescription_Detail);
         }
 
         // GET: Admin/Prescription_Detail/Edit/5
@@ -304,21 +271,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 }
             }
             return Json(new { success = true });
-        }
-
-        // GET: Admin/Prescription_Detail/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Prescription_Detail prescription_Detail = db.Prescription_Detail.Find(id);
-            if (prescription_Detail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(prescription_Detail);
         }
 
         // POST: Admin/Prescription_Detail/Delete/5

@@ -23,8 +23,10 @@ namespace ElectronicMedicalRecords.Models
         public int ID { get; set; }
         public string Ward1 { get; set; }
         public int District_ID { get; set; }
+        public Nullable<int> HomeTown_ID { get; set; }
     
         public virtual District District { get; set; }
+        public virtual HomeTown HomeTown { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Patient> Patients { get; set; }
     }

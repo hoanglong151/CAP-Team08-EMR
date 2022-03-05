@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Electronic Medical Record</title>
+    <link rel="icon" href="https://icons.iconarchive.com/icons/medicalwp/medical/256/Health-Sign-red-icon.png"
+          type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
     <link rel="stylesheet" href="@Url.Content("~/Areas/Admin/assets/DataTables/datatables.min.css")" />
@@ -289,13 +291,13 @@
                                     <a class="text-white" href="@Url.Action("Index", "Nation1")">Dân Tộc</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("Index", "Wards")">Phường/Xã</a>
+                                    <a class="text-white" href="@Url.Action("Index", "HomeTowns")">Tỉnh/Thành</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a class="text-white" href="@Url.Action("Index", "Districts")">Quận/Huyện</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a class="text-white" href="@Url.Action("Index", "HomeTowns")">Tỉnh/Thành</a>
+                                    <a class="text-white" href="@Url.Action("Index", "Wards")">Phường/Xã</a>
                                 </li>
                             </ul>
                         </li>

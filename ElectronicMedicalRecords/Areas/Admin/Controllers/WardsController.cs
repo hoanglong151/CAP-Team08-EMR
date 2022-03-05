@@ -18,26 +18,28 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.Districts = db.Districts.ToList();
+            ViewBag.HomeTown = db.HomeTowns.ToList();
             return View(db.Wards.ToList());
         }
 
         [HttpPost]
-        public JsonResult filterWards(int id)
+        public JsonResult filterWards(int id, int homeTown)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var listWards = db.Wards.Where(p => p.District_ID == id).ToList();
+            var listWards = db.Wards.Where(p => p.District_ID == id && p.HomeTown_ID == homeTown).ToList();
             return Json(new { data = listWards });
         }
 
         public ActionResult GetData()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var wards = db.Wards.Include(d => d.District).ToList();
+            var wards = db.Wards.Include(d => d.District).Include(h => h.HomeTown).ToList();
             var listWards = wards.Select(s => new
             {
                 ID = s.ID,
                 Ward1 = s.Ward1,
                 District_ID = s.District.District1,
+                HomeTown_ID = s.HomeTown.HomeTown1,
             }).ToList();
             return Json(new { data = listWards }, JsonRequestBehavior.AllowGet);
         }
@@ -45,7 +47,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public string ValidateForm(Ward ward)
         {
             string text = "";
-            var checkExist = db.Wards.FirstOrDefault(e => e.Ward1 == ward.Ward1);
+            var checkExist = db.Wards.FirstOrDefault(e => e.Ward1 == ward.Ward1 && e.District_ID == ward.District_ID && e.HomeTown_ID == ward.HomeTown_ID);
             if (checkExist != null && ward.Ward1 != null)
             {
                 text = "Phường/Xã đã có trong danh sách";
@@ -56,7 +58,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public string ValidateFormUpdate(Ward ward)
         {
             string text = "";
-            var checkExist = db.Wards.FirstOrDefault(e => e.Ward1 == ward.Ward1);
+            var checkExist = db.Wards.FirstOrDefault(e => e.Ward1 == ward.Ward1 && e.District_ID == ward.District_ID && e.HomeTown_ID == ward.HomeTown_ID);
             if (checkExist != null && checkExist.ID != ward.ID && ward.Ward1 != null)
             {
                 text = "Phường/Xã đã có trong danh sách";
@@ -92,12 +94,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             Ward ward = db.Wards.Find(id);
             ward.District = db.Districts.FirstOrDefault(p => p.ID == ward.District_ID);
+            ward.HomeTown = db.HomeTowns.FirstOrDefault(p => p.ID == ward.HomeTown_ID);
             var getDistrict = new
             {
                 ID = ward.ID,
                 Ward1 = ward.Ward1,
                 District = ward.District.District1,
-                District_ID = ward.District_ID
+                District_ID = ward.District_ID,
+                HomeTown_ID = ward.HomeTown.HomeTown1,
+                HomeTown = ward.HomeTown_ID
             };
             return Json(new { data = getDistrict }, JsonRequestBehavior.AllowGet);
         }
@@ -130,11 +135,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             Ward ward = db.Wards.Find(id);
-            if (ward == null)
+            ward.District = db.Districts.FirstOrDefault(p => p.ID == ward.District_ID);
+            ward.HomeTown = db.HomeTowns.FirstOrDefault(p => p.ID == ward.HomeTown_ID);
+            var getWard = new
             {
-                return HttpNotFound();
-            }
-            return Json(new { data = ward }, JsonRequestBehavior.AllowGet);
+                ID = ward.ID,
+                Ward1 = ward.Ward1,
+                District = ward.District.District1,
+                District_ID = ward.District_ID,
+                HomeTown_ID = ward.HomeTown.HomeTown1,
+                HomeTown = ward.HomeTown_ID
+            };
+            return Json(new { data = getWard }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Admin/Wards/Delete/5

@@ -1,27 +1,33 @@
 ﻿@{
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMultipleModel.cshtml";
 }
 
 <style>
-    html, body{
+    html, body {
         height: 100%;
     }
+
     body {
         margin: 0;
         overflow: hidden;
     }
-    footer{
-        display:none
+
+    footer {
+        display: none
     }
+
     .navbar-nav {
         display: none
     }
+
     .navbar-expand {
         display: none
     }
-    #main{
+
+    #main {
         padding: 0rem;
     }
+
     video {
         position: absolute;
         top: 0;
@@ -33,32 +39,31 @@
     }
 
     .video-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    /*mix-blend-mode: overlay;*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
     }
 
     .content {
-       position: fixed;
-       background: rgba(0, 0, 0, 0.5);
-       color: #f1f1f1;
-       top: 0;
-       bottom: 0;
-       left: 0;
-       right: 0;
-       padding-left:300px;
-    }
-    .content h1{
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
         color: #f1f1f1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-left: 300px;
     }
 
-    .content div{
-        padding: 100px;
-    }
+        .content h1 {
+            color: #f1f1f1;
+        }
 
+        .content div {
+            padding: 100px;
+        }
 </style>
 <video autoplay muted loop>
     <source src="@Url.Content("~/Areas/Admin/assets/videos/vbg_Trim.mp4")" type="video/mp4" />
@@ -67,9 +72,9 @@
 </div>
 <div class="content">
     <div class="d-flex flex-column justify-content-center align-items-center h-100">
-    <h1>Xin Chào Bác Sĩ</h1>
-    <p style="text-align:center; padding:0 6rem">
-        @ViewBag.StatusAccess 
-    </p>
+        <h1>Xin Chào Bác Sĩ</h1>
+        <p style="text-align:center; padding:0 6rem">
+            @ViewBag.StatusAccess
+        </p>
     </div>
 </div>

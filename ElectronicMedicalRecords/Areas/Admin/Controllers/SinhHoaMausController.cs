@@ -27,22 +27,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var sinhHoaMaus = db.SinhHoaMaus.ToList();
             return Json(new { data = sinhHoaMaus }, JsonRequestBehavior.AllowGet);
         }
-
-        // GET: Admin/SinhHoaMaus/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SinhHoaMau sinhHoaMau = db.SinhHoaMaus.Find(id);
-            if (sinhHoaMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sinhHoaMau);
-        }
-
         // GET: Admin/SinhHoaMaus/CreateOldPatient
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
@@ -56,23 +40,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.SinhHoaMau = db.SinhHoaMaus.ToList();
             return PartialView("_Create", multiplesModel);
-        }
-
-        // POST: Admin/SinhHoaMaus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ChiDinh,NameTest,CSBT,Result")] SinhHoaMau sinhHoaMau)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SinhHoaMaus.Add(sinhHoaMau);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(sinhHoaMau);
         }
 
         // GET: Admin/SinhHoaMaus/Edit/5
@@ -101,32 +68,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false, responseText = "Không thể cập nhật giá" });
-        }
-
-        // GET: Admin/SinhHoaMaus/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SinhHoaMau sinhHoaMau = db.SinhHoaMaus.Find(id);
-            if (sinhHoaMau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sinhHoaMau);
-        }
-
-        // POST: Admin/SinhHoaMaus/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            SinhHoaMau sinhHoaMau = db.SinhHoaMaus.Find(id);
-            db.SinhHoaMaus.Remove(sinhHoaMau);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -61,35 +61,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult BillCheck(MultiplesModel multiplesModel)
         {
-            List<Detail_TaiMuiHong> detail_TaiMuiHongs = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
-            multiplesModel.Detail_TaiMuiHongs = detail_TaiMuiHongs;
             return PartialView("_BillCheck", multiplesModel);
-        }
-
-        // GET: Admin/Detail_Tai/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Detail_TaiMuiHong detail_TaiMuiHong = db.Detail_TaiMuiHong.Find(id);
-            if (detail_TaiMuiHong == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail_TaiMuiHong);
-        }
-
-        // POST: Admin/Detail_Tai/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Detail_TaiMuiHong detail_Tai = db.Detail_TaiMuiHong.Find(id);
-            db.Detail_TaiMuiHong.Remove(detail_Tai);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

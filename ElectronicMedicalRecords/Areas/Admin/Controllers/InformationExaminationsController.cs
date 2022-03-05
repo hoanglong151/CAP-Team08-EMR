@@ -375,18 +375,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
-            //InformationExamination informationExamination = db.InformationExaminations.Find(multiplesModel.InformationExamination.ID);
             var UserID = User.Identity.GetUserId();
             var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
-            //if (informationExamination == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //var UserName = db.Users.FirstOrDefault(p => p.ID == informationExamination.User_ID);
             ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
-            //multiplesModel.InformationExamination = informationExamination;
             return PartialView("_CreateOldPatient", multiplesModel);
         }
 

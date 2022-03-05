@@ -28,21 +28,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return Json(new { data = immunes }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Admin/Immunes/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Immune immune = db.Immunes.Find(id);
-            if (immune == null)
-            {
-                return HttpNotFound();
-            }
-            return View(immune);
-        }
-
         // GET: Admin/Immunes/CreateOldPatient
         public ActionResult CreateOldPatient(MultiplesModel multiplesModel)
         {
@@ -56,23 +41,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.Immune = db.Immunes.ToList();
             return PartialView("_Create", multiplesModel);
-        }
-
-        // POST: Admin/Immunes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ChiDinh,NameTest,Result,CSBT,Unit")] Immune immune)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Immunes.Add(immune);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(immune);
         }
 
         // GET: Admin/Immunes/Edit/5
@@ -102,33 +70,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             return Json(new { success = false, responseText = "Không thể cập nhật giá" });
         }
-
-        // GET: Admin/Immunes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Immune immune = db.Immunes.Find(id);
-            if (immune == null)
-            {
-                return HttpNotFound();
-            }
-            return View(immune);
-        }
-
-        // POST: Admin/Immunes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Immune immune = db.Immunes.Find(id);
-            db.Immunes.Remove(immune);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

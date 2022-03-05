@@ -126,51 +126,84 @@
                         <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
                            role="tab" aria-controls="home" aria-selected="true">Hồ Sơ</a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history"
-                           role="tab" aria-controls="history" aria-selected="true">Tiền Sử, Bệnh Sử</a>
-                    </li>
-                    @if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Kỹ Thuật Viên"))
+                    @if (Model.Detail_HistoryDiseases1.Count != 0 || Model.Detail_HistoryDiseases2.Count != 0 || Model.Detail_HistoryDiseases3.Count != 0
+                        || Model.Detail_MedicalHistories.Count != 0)
                     {
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
-                               role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
+                            <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history"
+                               role="tab" aria-controls="history" aria-selected="true">Tiền Sử, Bệnh Sử</a>
                         </li>
+                    }
+                    @if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Kỹ Thuật Viên"))
+                    {
+                        if (Model.Detail_TuanHoans.Count != 0 || Model.Detail_HoHaps.Count != 0 || Model.Detail_TieuHoas.Count != 0 || Model.Detail_ThanTietNieus.Count != 0
+                        || Model.Detail_CoXuongKhops.Count != 0 || Model.Detail_ThanKinhs.Count != 0 || Model.Detail_TamThans.Count != 0 || Model.Detail_NgoaiKhoas.Count != 0
+                        || Model.Detail_SanPhuKhoas.Count != 0 || Model.Detail_Mats.Count != 0 || Model.Detail_TaiMuiHongs.Count != 0 || Model.Detail_RangHamMats.Count != 0 || Model.Detail_DaLieus.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#LamSang"
+                                   role="tab" aria-controls="home" aria-selected="true">Lâm Sàng</a>
+                            </li>
+                        }
                     }
                     @if (User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                     {
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
-                               role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
-                               role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
-                               role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
-                               role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
-                               role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
-                               role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
-                               role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#visinh"
-                               role="tab" aria-controls="profile" aria-selected="false">Vi Sinh</a>
-                        </li>
+                        if (Model.Detail_CTMaus.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
+                                   role="tab" aria-controls="profile" aria-selected="false">Công Thức Máu</a>
+                            </li>
+                        }
+                        if (Model.Detail_SinhHoaMaus.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#SinhHoaMau"
+                                   role="tab" aria-controls="profile" aria-selected="false">Sinh Hóa Máu</a>
+                            </li>
+                        }
+                        if (Model.Detail_DongMaus.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#DongMau"
+                                   role="tab" aria-controls="profile" aria-selected="false">Đông Máu</a>
+                            </li>
+                        }
+                        if (Model.Detail_NhomMaus.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#NhomMau"
+                                   role="tab" aria-controls="profile" aria-selected="false">Nhóm Máu</a>
+                            </li>
+                        }
+                        if (Model.Detail_Urines.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#urine"
+                                   role="tab" aria-controls="profile" aria-selected="false">Nước Tiểu</a>
+                            </li>
+                        }
+                        if (Model.Detail_Immunes.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#immune"
+                                   role="tab" aria-controls="profile" aria-selected="false">Miễn Dịch</a>
+                            </li>
+                        }
+                        if (Model.Detail_Amniocentes.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#amniocente"
+                                   role="tab" aria-controls="profile" aria-selected="false">Dịch Chọc Dò</a>
+                            </li>
+                        }
+                        if (Model.Detail_ViSinhs.Count != 0)
+                        {
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#visinh"
+                                   role="tab" aria-controls="contact" aria-selected="false">Vi Sinh</a>
+                            </li>
+                        }
                     }
                 </ul>
                 <div class="ms-4 col-12 d-flex justify-content-start pt-4">
@@ -213,8 +246,14 @@
                                     <div class="col-12">
                                         <div class="card">
                                             @{
-                                                Html.RenderAction("BillCheck", "Detail_HistoryDisease", new { multiplesModel = Model });
-                                                Html.RenderAction("BillCheck", "Detail_MedicalHistory", new { multiplesModel = Model });
+                                                if (Model.Detail_HistoryDiseases1.Count != 0 || Model.Detail_HistoryDiseases2.Count != 0 || Model.Detail_HistoryDiseases3.Count != 0)
+                                                {
+                                                    Html.RenderAction("BillCheck", "Detail_HistoryDisease", new { multiplesModel = Model });
+                                                }
+                                                if (Model.Detail_MedicalHistories.Count != 0)
+                                                {
+                                                    Html.RenderAction("BillCheck", "Detail_MedicalHistory", new { multiplesModel = Model });
+                                                }
                                             }
                                         </div>
                                     </div>
@@ -230,66 +269,112 @@
                                 <section class="section">
                                     <div class="card">
                                         <ul class="nav nav-tabs" id="mySubTab" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link active" id="NoiKhoa-tab" data-bs-toggle="tab" href="#NoiKhoa"
-                                                   role="tab" aria-controls="home" aria-selected="true">Nội Khoa</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="NgoaiKhoa-tab" data-bs-toggle="tab" href="#NgoaiKhoa"
-                                                   role="tab" aria-controls="history" aria-selected="true">Ngoại Khoa</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="SanPhuKhoa-tab" data-bs-toggle="tab" href="#SanPhuKhoa"
-                                                   role="tab" aria-controls="home" aria-selected="true">Sản Phụ Khoa</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="Mat-tab" data-bs-toggle="tab" href="#Mat"
-                                                   role="tab" aria-controls="home" aria-selected="true">Mắt</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
-                                                   role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
-                                                   role="tab" aria-controls="home" aria-selected="true">Răng-Hàm-Mặt</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="DaLieu-tab" data-bs-toggle="tab" href="#DaLieu"
-                                                   role="tab" aria-controls="home" aria-selected="true">Da Liễu</a>
-                                            </li>
-                                        </ul>
+                                            @if (Model.Detail_TuanHoans.Count != 0 || Model.Detail_HoHaps.Count != 0 || Model.Detail_TieuHoas.Count != 0 || Model.Detail_ThanTietNieus.Count != 0
+                                                    || Model.Detail_CoXuongKhops.Count != 0 || Model.Detail_ThanKinhs.Count != 0 || Model.Detail_TamThans.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link active" id="NoiKhoa-tab" data-bs-toggle="tab" href="#NoiKhoa"
+                                                       role="tab" aria-controls="home" aria-selected="true">Nội Khoa</a>
+                                                </li>
+                                            }
+                                            @if (Model.Detail_NgoaiKhoas.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="NgoaiKhoa-tab" data-bs-toggle="tab" href="#NgoaiKhoa"
+                                                       role="tab" aria-controls="history" aria-selected="true">Ngoại Khoa</a>
+                                                </li>
+                                            }
+                                            @if (Model.Detail_SanPhuKhoas.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="SanPhuKhoa-tab" data-bs-toggle="tab" href="#SanPhuKhoa"
+                                                       role="tab" aria-controls="home" aria-selected="true">Sản Phụ Khoa</a>
+                                                </li>
+                                            }
+                                            @if (Model.Detail_Mats.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="Mat-tab" data-bs-toggle="tab" href="#Mat"
+                                                       role="tab" aria-controls="home" aria-selected="true">Mắt</a>
+                                                </li>
+                                            }
+                                            @if (Model.Detail_TaiMuiHongs.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
+                                                       role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
+                                                </li>
+                                            }
+                                            @if (Model.Detail_RangHamMats.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
+                                                       role="tab" aria-controls="home" aria-selected="true">Răng-Hàm-Mặt</a>
+                                                </li>
+                                            }
+                                            @if (Model.Detail_DaLieus.Count != 0)
+                                            {
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="DaLieu-tab" data-bs-toggle="tab" href="#DaLieu"
+                                                       role="tab" aria-controls="home" aria-selected="true">Da Liễu</a>
+                                                </li>
+                                            }
 
+                                        </ul>
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="NoiKhoa" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        Html.RenderAction("BillCheck", "Detail_TuanHoan", new { multiplesModel = Model });
-                                                                        <br />
-                                                                        Html.RenderAction("BillCheck", "Detail_HoHap", new { multiplesModel = Model });
-                                                                        <br />
-                                                                        Html.RenderAction("BillCheck", "Detail_TieuHoa", new { multiplesModel = Model });
-                                                                        <br />
-                                                                        Html.RenderAction("BillCheck", "Detail_ThanTietNieu", new { multiplesModel = Model });
-                                                                        <br />
-                                                                        Html.RenderAction("BillCheck", "Detail_CoXuongKhop", new { multiplesModel = Model });
-                                                                        <br />
-                                                                        Html.RenderAction("BillCheck", "Detail_ThanKinh", new { multiplesModel = Model });
-                                                                        <br />
-                                                                        Html.RenderAction("BillCheck", "Detail_TamThan", new { multiplesModel = Model });
-                                                                    }
+                                            @if (Model.Detail_TuanHoans.Count != 0 || Model.Detail_HoHaps.Count != 0 || Model.Detail_TieuHoas.Count != 0 || Model.Detail_ThanTietNieus.Count != 0
+                                                        || Model.Detail_CoXuongKhops.Count != 0 || Model.Detail_ThanKinhs.Count != 0 || Model.Detail_TamThans.Count != 0)
+                                            {
+                                                <div class="tab-pane fade show active" id="NoiKhoa" role="tabpanel"
+                                                     aria-labelledby="home-tab">
+                                                    <p class='my-2'>
+                                                        <section id="multiple-column-form">
+                                                            <div class="row match-height">
+                                                                <div class="col-12">
+                                                                    <div class="card">
+                                                                        @{
+                                                                            if (Model.Detail_TuanHoans.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_TuanHoan", new { multiplesModel = Model });
+                                                                                <br />
+                                                                            }
+                                                                            if (Model.Detail_HoHaps.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_HoHap", new { multiplesModel = Model });
+                                                                                <br />
+                                                                            }
+                                                                            if (Model.Detail_TieuHoas.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_TieuHoa", new { multiplesModel = Model });
+                                                                                <br />
+                                                                            }
+                                                                            if (Model.Detail_ThanTietNieus.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_ThanTietNieu", new { multiplesModel = Model });
+                                                                                <br />
+                                                                            }
+                                                                            if (Model.Detail_CoXuongKhops.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_CoXuongKhop", new { multiplesModel = Model });
+                                                                                <br />
+                                                                            }
+                                                                            if (Model.Detail_ThanKinhs.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_ThanKinh", new { multiplesModel = Model });
+                                                                                <br />
+                                                                            }
+                                                                            if (Model.Detail_TamThans.Count != 0)
+                                                                            {
+                                                                                Html.RenderAction("BillCheck", "Detail_TamThan", new { multiplesModel = Model });
+                                                                            }
+                                                                        }
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </section>
-                                                </p>
-                                            </div>
-
+                                                        </section>
+                                                    </p>
+                                                </div>
+                                            }
                                             <div class="tab-pane fade" id="NgoaiKhoa" role="tabpanel"
                                                  aria-labelledby="home-tab">
                                                 <p class='my-2'>
@@ -298,7 +383,10 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { multiplesModel = Model });
+                                                                        if (Model.Detail_NgoaiKhoas.Count != 0)
+                                                                        {
+                                                                            Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { multiplesModel = Model });
+                                                                        }
                                                                     }
                                                                 </div>
                                                             </div>
@@ -315,7 +403,10 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { multiplesModel = Model });
+                                                                        if (Model.Detail_SanPhuKhoas.Count != 0)
+                                                                        {
+                                                                            Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { multiplesModel = Model });
+                                                                        }
                                                                     }
                                                                 </div>
                                                             </div>
@@ -332,7 +423,10 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
+                                                                        if (Model.Detail_Mats.Count != 0)
+                                                                        {
+                                                                            Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
+                                                                        }
                                                                     }
                                                                 </div>
                                                             </div>
@@ -349,7 +443,10 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
+                                                                        if (Model.Detail_TaiMuiHongs.Count != 0)
+                                                                        {
+                                                                            Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
+                                                                        }
                                                                     }
                                                                 </div>
                                                             </div>
@@ -366,7 +463,10 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
+                                                                        if (Model.Detail_RangHamMats.Count != 0)
+                                                                        {
+                                                                            Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
+                                                                        }
                                                                     }
                                                                 </div>
                                                             </div>
@@ -383,7 +483,10 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     @{
-                                                                        Html.RenderAction("BillCheck", "Detail_DaLieu", new { multiplesModel = Model });
+                                                                        if (Model.Detail_DaLieus.Count != 0)
+                                                                        {
+                                                                            Html.RenderAction("BillCheck", "Detail_DaLieu", new { multiplesModel = Model });
+                                                                        }
                                                                     }
                                                                 </div>
                                                             </div>
@@ -399,102 +502,126 @@
                     }
                     @if (User.IsInRole("Giám Đốc") || User.IsInRole("Kỹ Thuật Viên") || User.IsInRole("QTV"))
                     {
-                        <div class="tab-pane fade" id="profile" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_CTMau", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        if (Model.Detail_CTMaus.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="profile" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_CTMau", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_SinhHoaMaus.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="SinhHoaMau" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_SinhHoaMau", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="DongMau" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_DongMau", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_DongMaus.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="DongMau" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_DongMau", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="NhomMau" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_NhomMau", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_NhomMaus.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="NhomMau" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_NhomMau", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="urine" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_Urine", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_Urines.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="urine" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_Urine", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="immune" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_Immune", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_Immunes.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="immune" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_Immune", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="amniocente" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_Amniocente", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_Amniocentes.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="amniocente" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_Amniocente", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="visinh" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <div class="page-heading">
-                                <section class="section">
-                                    <div class="card">
-                                        @{
-                                            Html.RenderAction("DetailIE", "Detail_ViSinh", new { multiplesModel = Model });
-                                        }
-                                    </div>
-                                </section>
+                        }
+                        if (Model.Detail_ViSinhs.Count != 0)
+                        {
+                            <div class="tab-pane fade" id="visinh" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="page-heading">
+                                    <section class="section">
+                                        <div class="card">
+                                            @{
+                                                Html.RenderAction("DetailIE", "Detail_ViSinh", new { multiplesModel = Model });
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
             </div>
@@ -524,13 +651,14 @@
         var selectDistrict = document.querySelector("#Patient_District_ID");
         selectDistrict.addEventListener('change', (e) => {
             var optionWard = document.querySelectorAll("#Patient_Ward_ID option");
+            var homeTownSelect = document.querySelector('#Patient_HomeTown_ID').value;
             optionWard.forEach((value, index) => {
                 value.remove();
             })
             $.ajax({
                 url: "@Url.Action("filterWards", "Wards")",
                 type: "POST",
-                data: { id: e.target.value },
+                data: { id: e.target.value, homeTown: parseInt(homeTownSelect) },
                 success: (res) => {
                     res.data.forEach((v, i) => {
                         $("#Patient_Ward_ID").append(`<option value="${v.ID}">${v.Ward1}</option>`);

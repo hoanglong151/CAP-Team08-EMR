@@ -24,7 +24,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         {
             var listDetailTuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).AsNoTracking().ToList();
             var listTuanHoan = db.TuanHoans.AsNoTracking().ToList();
-            foreach(var item in listDetailTuanHoan)
+            foreach (var item in listDetailTuanHoan)
             {
                 var changeSelect = listTuanHoan.FirstOrDefault(p => p.ID == item.TuanHoan_ID);
                 changeSelect.ChiDinh = true;

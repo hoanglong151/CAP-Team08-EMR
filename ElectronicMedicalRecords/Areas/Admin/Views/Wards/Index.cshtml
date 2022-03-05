@@ -51,6 +51,7 @@
                         <tr>
                             <th>Danh Mục Phường/Xã</th>
                             <th>Quận/Huyện</th>
+                            <th>Tỉnh/Thành</th>
                             @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                             {
                                 <th>Chức Năng</th>
@@ -89,7 +90,7 @@
                                         <input name="Ward1" type="text" class="form-control pd-form"
                                                placeholder="Tên Phường/Xã" id="first-name-icon WardsNameCreate" required>
                                         <div class="form-control-icon icon-MedicationCategory">
-                                            <i class="bi bi-person"></i>
+                                            <i class="fa-solid fa-location-arrow"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +108,25 @@
                                             }
                                         </select>
                                         <div class="form-control-icon icon-MedicationCategory">
-                                            <i class="bi bi-person"></i>
+                                            <i class="fa-solid fa-map-pin"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="display: flex; height: 85%; align-items: center">Tên Tỉnh/Thành</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="HomeTown_ID" class="form-select pd-form">
+                                            @foreach (var item1 in ViewBag.HomeTown)
+                                            {
+                                                <option value="@item1.ID">@item1.HomeTown1</option>
+                                            }
+                                        </select>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +175,7 @@
                                         <input name="Ward1" type="text" class="form-control"
                                                placeholder="Tên Phường/Xã" id="UpdateWardsName" required>
                                         <div class="form-control-icon">
-                                            <i class="bi bi-envelope"></i>
+                                            <i class="fa-solid fa-location-arrow"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -174,7 +193,25 @@
                                             }
                                         </select>
                                         <div class="form-control-icon icon-MedicationCategory">
-                                            <i class="bi bi-person"></i>
+                                            <i class="fa-solid fa-map-pin"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label style="display: flex; height: 85%; align-items: center">Tên Tỉnh/Thành</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="HomeTown_ID" id="UpdateHomeTownsName" class="form-select pd-form">
+                                            @foreach (var item1 in ViewBag.HomeTown)
+                                            {
+                                                <option value="@item1.ID">@item1.HomeTown1</option>
+                                            }
+                                        </select>
+                                        <div class="form-control-icon icon-MedicationCategory">
+                                            <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -214,6 +251,9 @@
                     },
                     {
                         "data": "District_ID"
+                    },
+                    {
+                        "data": "HomeTown_ID"
                     },
                     {
                         "data": null,
@@ -303,6 +343,7 @@
                         $('#UpdateWardsName').val(res.data.Ward1);
                         $('#UpdateWardsID').val(res.data.ID);
                         $(`#UpdateDistrictsName option[value="${res.data.District_ID}"]`).attr("selected", true);
+                        $(`#UpdateHomeTownsName option[value="${res.data.HomeTown_ID}"]`).attr("selected", true);
                     }
                 }
             })
@@ -363,7 +404,9 @@
                         Swal.fire({
                             title: 'Bạn muốn xóa phường này?',
                             html:
-                                '<b>Phường:</b> <span>' + res.data.Ward1 +'</span>',
+                                '<b>Phường/Xã:</b> <span>' + res.data.Ward1 + '</span>' +
+                                '<br/><b>Quận/Huyện:</b> <span>' + res.data.District + '</span>' +
+                                '<br/><b>Tỉnh/Thành:</b> <span>' + res.data.HomeTown + '</span>',
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#d33',
