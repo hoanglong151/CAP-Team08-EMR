@@ -734,10 +734,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 var item = statisticModels[i];
                 totalCount += item.usersStatis.InformationExaminations.Count;
-                var charName = item.usersStatis.AspNetUser.Email.IndexOf(".", 0);
+                //var charName = item.usersStatis.AspNetUser.Email.IndexOf(".", 0);
                 var charName1 = item.usersStatis.AspNetUser.Email.IndexOf("@", 0);
                 workSheet.Cells[10 + i, 1].Value = i + 1;
-                workSheet.Cells[10 + i, 2].Value = item.usersStatis.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1);
+                workSheet.Cells[10 + i, 2].Value = item.usersStatis.AspNetUser.Email.Substring(0, charName1);
+                //workSheet.Cells[10 + i, 2].Value = item.usersStatis.AspNetUser.Email;
                 workSheet.Cells[10 + i, 3].Value = item.usersStatis.Name;
                 workSheet.Cells[10 + i, 4].Value = item.patientStatu.Name;
                 workSheet.Cells[10 + i, 5].Value = item.usersStatis.InformationExaminations.Count;

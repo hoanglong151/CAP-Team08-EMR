@@ -501,8 +501,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintExaminationInfoPost(MultiplesModel multiplesModel)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
-            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             Session["MultipleModels"] = multiplesModel;
             return Json(new { success = true, data = multiplesModel });
         }
@@ -740,8 +738,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult PrintAllExaminationInfoPost(MultiplesModel multiplesModel)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
-            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             Session["MultipleModelsAll"] = multiplesModel;
             return Json(new { success = true, data = multiplesModel });
         }
@@ -755,6 +751,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_CTMaus != null)
@@ -776,6 +774,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_SinhHoaMaus != null)
@@ -797,6 +797,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_DongMaus != null)
@@ -818,6 +820,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_NhomMaus != null)
@@ -839,6 +843,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_Urines != null)
@@ -860,6 +866,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_Immunes != null)
@@ -881,6 +889,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             if (multiplesModel.Detail_Amniocentes != null)
@@ -902,6 +912,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             List<object> VSDuongAm = new List<object>();
@@ -975,6 +987,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var statusPatient = db.PatientStatus.Find(multiplesModel.InformationExamination.PatientStatus_ID);
             ViewBag.Gender = gender.Gender1;
             ViewBag.Doctor = doctor.Name;
+            multiplesModel.Patient.Ward = db.Wards.FirstOrDefault(p => p.ID == multiplesModel.Patient.Ward_ID);
+            multiplesModel.Patient.District = db.Districts.FirstOrDefault(p => p.ID == multiplesModel.Patient.District_ID);
             ViewBag.PatientStatus = statusPatient.Name;
             ConvertQRCode(multiplesModel);
             List<object> VSDuongAm = new List<object>();
