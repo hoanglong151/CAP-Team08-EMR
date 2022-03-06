@@ -71,10 +71,10 @@
                                 @foreach (var user in Model)
                                 {
                                     //var charName = user.usersStatis.AspNetUser.Email.IndexOf(".", 0);
-                                    //var charName1 = user.usersStatis.AspNetUser.Email.IndexOf("@", 0);
+                                    var charName1 = user.usersStatis.AspNetUser.Email.IndexOf("@", 0);
                                     <tr>
-                                        @*<td>@user.usersStatis.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1)</td>*@
-                                        <td>@user.usersStatis.AspNetUser.Email</td>
+                                        <td>@user.usersStatis.AspNetUser.Email.Substring(0, charName1)</td>
+                                        @*<td>@user.usersStatis.AspNetUser.Email</td>*@
                                         <td>@user.usersStatis.Name</td>
                                         <td>@user.patientStatu.Name</td>
                                         <td>@user.usersStatis.InformationExaminations.Count</td>
