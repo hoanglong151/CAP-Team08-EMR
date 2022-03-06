@@ -669,52 +669,6 @@
         })
     </script>
     <script>
-        var k = 1;
-        var formatCss = document.querySelectorAll('.choices__list--single');
-        formatCss.forEach((value, index) => {
-            value.classList.add('form-control');
-            value.style.paddingLeft = '12px';
-        })
-        var select = document.querySelector('#NameMedication');
-
-        function insRowMedication() {
-            var NameMedication = $('#NameMedication').text();
-            var UnitMedication = $('#UnitMedication').val();
-            var NoteMedication = $('#NoteMedication').val();
-            var IdMedication = $('#IDMedication').val();
-            var medication = document.getElementById('TableMedication');
-            var row = medication.insertRow(k);
-            var cell0 = row.insertCell(0);
-            var cell1 = row.insertCell(1);
-            var cell2 = row.insertCell(2);
-            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none' type='text' value='" + NameMedication + "' readonly/>";
-            cell1.innerHTML = "<input style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
-            cell2.innerHTML = "<input style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
-            k++;
-        }
-        loadMedication();
-        function loadMedication() {
-            var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
-            var medication = document.getElementById('TableMedication');
-            $.ajax({
-                type: "POST",
-                data: { id: InfoID },
-                url: "@Url.Action("LoadPrescription", "Prescription_Detail")",
-                success: (res) => {
-                    $.each(res.data, function (index, medicationByID) {
-                        var row = medication.insertRow(k);
-                        var cell0 = row.insertCell(0);
-                        var cell1 = row.insertCell(1);
-                        var cell2 = row.insertCell(2);
-                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + medicationByID.Name + "' readonly/>";
-                        cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
-                        cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
-                        k++;
-                    })
-                }
-            })
-        }
-
         var listTable = $('*.tableLoad');
         listTable.each((index, table) => {
             $('#' + table.id).DataTable({
@@ -2018,6 +1972,52 @@
                 },
             });
         });
+
+                var k = 1;
+        var formatCss = document.querySelectorAll('.choices__list--single');
+        formatCss.forEach((value, index) => {
+            value.classList.add('form-control');
+            value.style.paddingLeft = '12px';
+        })
+        var select = document.querySelector('#NameMedication');
+
+        function insRowMedication() {
+            var NameMedication = $('#NameMedication').text();
+            var UnitMedication = $('#UnitMedication').val();
+            var NoteMedication = $('#NoteMedication').val();
+            var IdMedication = $('#IDMedication').val();
+            var medication = document.getElementById('TableMedication');
+            var row = medication.insertRow(k);
+            var cell0 = row.insertCell(0);
+            var cell1 = row.insertCell(1);
+            var cell2 = row.insertCell(2);
+            cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + IdMedication + "' hidden /> <input style='width:100%;border:none' type='text' value='" + NameMedication + "' readonly/>";
+            cell1.innerHTML = "<input style='width:100%;border:none' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + UnitMedication + "' readonly/>";
+            cell2.innerHTML = "<input style='width:100%;border:none' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + NoteMedication + "' readonly/>";
+            k++;
+        }
+        loadMedication();
+        function loadMedication() {
+            var InfoID = document.querySelector('#InformationExamination_ID').getAttribute('value');
+            var medication = document.getElementById('TableMedication');
+            $.ajax({
+                type: "POST",
+                data: { id: InfoID },
+                url: "@Url.Action("LoadPrescription", "Prescription_Detail")",
+                success: (res) => {
+                    $.each(res.data, function (index, medicationByID) {
+                        var row = medication.insertRow(k);
+                        var cell0 = row.insertCell(0);
+                        var cell1 = row.insertCell(1);
+                        var cell2 = row.insertCell(2);
+                        cell0.innerHTML = "<input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".InformationExamination_ID' value='" + medicationByID.InformationExamination_ID + "' hidden/> <input type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Medication_ID' value='" + medicationByID.Medication_ID + "' hidden /> <input style='width:100%;border:none;pointer-events: none;' type='text' value='" + medicationByID.Name + "' readonly/>";
+                        cell1.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='number' name='Prescription_Details" + '[' + (k - 1) + ']' + ".NumMedication' value='" + medicationByID.NumMedication + "' readonly/>";
+                        cell2.innerHTML = "<input style='width:100%;border:none;pointer-events: none;' type='text' name='Prescription_Details" + '[' + (k - 1) + ']' + ".Note' value='" + medicationByID.Note + "' readonly/>";
+                        k++;
+                    })
+                }
+            })
+        }
 
         var selectDiagnostic = document.querySelector('#NameDiagnostic');
         selectDiagnostic.addEventListener('change', (e) => {
