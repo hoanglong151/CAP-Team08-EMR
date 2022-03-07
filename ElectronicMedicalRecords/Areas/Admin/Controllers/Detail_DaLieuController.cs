@@ -40,11 +40,15 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     db.Detail_DaLieu.Add(detail_DaLieu);
                     db.SaveChanges();
                 }
-                if (item.Dangerous == true)
+                if (item.Dangerous == true && checkExistDetail1 == null)
                 {
                     multiplesModel.InformationExamination.PatientStatus_ID = 44;
-                    db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-                    db.SaveChanges();
+                    var checkInfo = db.InformationExaminations.AsNoTracking().FirstOrDefault(p => p.ID == multiplesModel.InformationExamination.ID);
+                    if (checkInfo.PatientStatus_ID != 44)
+                    {
+                        db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
             }
             foreach (var item1 in listDaLieu)

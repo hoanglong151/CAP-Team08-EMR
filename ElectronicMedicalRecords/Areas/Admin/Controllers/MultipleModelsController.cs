@@ -109,8 +109,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.InformationExamination.ResultViSinh = null;
             }
 
-            db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
-            db.SaveChanges();
             var listPrescription = db.Prescription_Detail.Where(p => p.InformationExamination_ID == multiplesModel.InformationExamination.ID).ToList();
             if (multiplesModel.Prescription_Details != null)
             {
@@ -196,6 +194,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             detail_TaiMuiHongController.CreateOldPatient(multiplesModel);
             detail_RangHamMatController.CreateOldPatient(multiplesModel);
             detail_DaLieuController.CreateOldPatient(multiplesModel);
+
+            db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index", "Patients");
         }
 
