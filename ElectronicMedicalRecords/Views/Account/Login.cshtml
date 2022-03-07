@@ -42,13 +42,10 @@
                                 <input type="submit" value="Đăng nhập" style="height:35px;margin-top:15px" class="btn-hover color-11" />
                             </div>
                         </div>
-                        <p>
+                        @*<p>
                             @Html.ActionLink("Đăng ký tài khoản", "Register")
-                        </p>
-
+                        </p>*@
                     }
-
-
                 <div class="d-grid gap-2">
                     @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                 </div>

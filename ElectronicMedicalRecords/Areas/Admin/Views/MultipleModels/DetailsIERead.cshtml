@@ -290,21 +290,23 @@
                                                    role="tab" aria-controls="home" aria-selected="true">Sản Phụ Khoa</a>
                                             </li>
                                         }
-                                        @if (Model.Detail_Mats.Count != 0)
+                                        @if (Model.Detail_Mats.Count != 0 || Model.Clinical.LeftEyesGlasses != null || Model.Clinical.LeftEyesNoGlasses != null
+                                            || Model.Clinical.RightEyesGlasses != null || Model.Clinical.RightEyesNoGlasses != null)
                                         {
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="Mat-tab" data-bs-toggle="tab" href="#Mat"
                                                    role="tab" aria-controls="home" aria-selected="true">Mắt</a>
                                             </li>
                                         }
-                                        @if (Model.Detail_TaiMuiHongs.Count != 0)
+                                        @if (Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical.LeftEarSay != null || Model.Clinical.LeftEarWhisper != null
+                                            || Model.Clinical.RightEarSay != null || Model.Clinical.RightEarWhisper != null)
                                         {
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
                                                    role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
                                             </li>
                                         }
-                                        @if (Model.Detail_RangHamMats.Count != 0)
+                                        @if (Model.Detail_RangHamMats.Count != 0 || Model.Clinical.LowerJaw != null || Model.Clinical.UpperJaw != null)
                                         {
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
@@ -422,7 +424,8 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    if (Model.Detail_Mats.Count != 0)
+                                                                    if (Model.Detail_Mats.Count != 0 || Model.Clinical.LeftEyesGlasses != null || Model.Clinical.LeftEyesNoGlasses != null
+                                                                        || Model.Clinical.RightEyesGlasses != null || Model.Clinical.RightEyesNoGlasses != null)
                                                                     {
                                                                         Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
                                                                     }
@@ -442,7 +445,8 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    if (Model.Detail_TaiMuiHongs.Count != 0)
+                                                                    if (Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical.LeftEarSay != null || Model.Clinical.LeftEarWhisper != null
+                                                                        || Model.Clinical.RightEarSay != null || Model.Clinical.RightEarWhisper != null)
                                                                     {
                                                                         Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
                                                                     }
@@ -462,7 +466,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    if (Model.Detail_RangHamMats.Count != 0)
+                                                                    if (Model.Detail_RangHamMats.Count != 0 || Model.Clinical.LowerJaw != null || Model.Clinical.UpperJaw != null)
                                                                     {
                                                                         Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
                                                                     }
