@@ -594,8 +594,26 @@
                 type: "POST",
                 data: { id: e.target.value },
                 success: (res) => {
+                    var district = 0;
                     res.data.forEach((v, i) => {
+                        if (i === 0) {
+                            district = v.ID;
+                        }
                         $("#Patient_District_ID").append(`<option value="${v.ID}">${v.District1}</option>`);
+                    })
+                    var optionWard = document.querySelectorAll("#Patient_Ward_ID option");
+                    optionWard.forEach((value, index) => {
+                        value.remove();
+                    })
+                    $.ajax({
+                        url: "@Url.Action("filterWards", "Wards")",
+                        type: "POST",
+                        data: { id: district, homeTown: e.target.value },
+                        success: (res) => {
+                            res.data.forEach((v1, i1) => {
+                                $("#Patient_Ward_ID").append(`<option value="${v1.ID}">${v1.Ward1}</option>`);
+                            })
+                        }
                     })
                 }
             })

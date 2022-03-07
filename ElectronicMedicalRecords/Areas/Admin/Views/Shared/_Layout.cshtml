@@ -653,7 +653,7 @@
                     $.each(res.data, function (index, value) {
                         $('span.countBS').parent().children('i').addClass('bell');
                         var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
-                        /*var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
+                     /*   var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
                         if (value.checkResult == true) {
                             $('#notiContentBS').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                         } else {
