@@ -155,20 +155,22 @@
                                 <span>Bệnh Nhân</span>
                             </a>
                         </li>
+                        @if (User.IsInRole("Bác Sĩ") || User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("ListPrescriptionBill", "Prescription_Detail")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-pills"></i>
+                                    <span>Toa Thuốc</span>
+                                </a>
+                            </li>
 
-                        <li class="sidebar-item">
-                            <a href="@Url.Action("ListPrescriptionBill", "Prescription_Detail")" class='sidebar-link underline'>
-                                <i class="text-white fas fa-pills"></i>
-                                <span>Toa Thuốc</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="@Url.Action("ListExamination", "Prescription_Detail")" class='sidebar-link underline'>
-                                <i class="text-white fas fa-book-medical"></i>
-                                <span>Lịch Sử Khám Bệnh</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("ListExamination", "Prescription_Detail")" class='sidebar-link underline'>
+                                    <i class="text-white fas fa-book-medical"></i>
+                                    <span>Lịch Sử Khám Bệnh</span>
+                                </a>
+                            </li>
+                        }
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link underline'>
