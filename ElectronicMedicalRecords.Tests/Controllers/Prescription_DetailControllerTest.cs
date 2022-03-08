@@ -70,7 +70,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void DetailIE()
         {
+            var detail_diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault();
+            var info = db.InformationExaminations.FirstOrDefault(p => p.ID == detail_diagnostic.InformationExamination_ID);
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.InformationExamination = info;
             var result = controller.DetailIE(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_DetailIE", result.ViewName);
@@ -108,10 +111,13 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void EditG()
         {
-            var multiple = MockPrescription();
-            var result = controller.Edit(multiple) as PartialViewResult;
+            var prescription_detail = db.Prescription_Detail.FirstOrDefault();
+            var info = db.InformationExaminations.FirstOrDefault(p => p.ID == prescription_detail.InformationExamination_ID);
+            MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.InformationExamination = info;
+            var result = controller.Edit(multiplesModel) as RedirectToRouteResult;
             Assert.IsNotNull(result);
-            Assert.AreEqual("_Edit", result.ViewName);
+            Assert.AreEqual("Edit", result.RouteValues["action"]);
         }
 
         [TestMethod]

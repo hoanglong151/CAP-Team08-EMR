@@ -80,13 +80,12 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void DetailIE()
         {
+            var info = db.InformationExaminations.First();
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.InformationExamination = info;
             var result = controller.DetailIE(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_DetailsIE", result.ViewName);
-
-            var resultError = controller.DetailIE(multiplesModel) as HttpNotFoundResult;
-            Assert.IsNotNull(resultError);
         }
 
         public class MockHttpContextBase : HttpContextBase
@@ -144,27 +143,26 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void BillCheck()
         {
-            var user = db.AspNetUsers.First();
-            List<Claim> claims = new List<Claim>{
-                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
-                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
-            };
-            var genericIdentity = new GenericIdentity("");
-            genericIdentity.AddClaims(claims);
-            var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
-            var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
-            var controllerContext = new ControllerContext
-            {
-                HttpContext = fakeHttpContext,
-            };
-            controller.ControllerContext = controllerContext;
+            //var user = db.AspNetUsers.First();
+            //List<Claim> claims = new List<Claim>{
+            //    new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
+            //    new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
+            //};
+            //var genericIdentity = new GenericIdentity("");
+            //genericIdentity.AddClaims(claims);
+            //var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
+            //var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
+            //var controllerContext = new ControllerContext
+            //{
+            //    HttpContext = fakeHttpContext,
+            //};
+            //controller.ControllerContext = controllerContext;
+            var info = db.InformationExaminations.FirstOrDefault();
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.InformationExamination = info;
             var result = controller.BillCheck(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_BillCheck", result.ViewName);
-
-            //var resultError = controller.BillCheck(0) as HttpNotFoundResult;
-            //Assert.IsNotNull(resultError);
         }
 
         [TestMethod]
@@ -190,9 +188,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var result = controller.CreateOldPatient(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("_CreateOldPatient", result.ViewName);
-
-            var resultError = controller.CreateOldPatient(multiplesModel) as HttpNotFoundResult;
-            Assert.IsNotNull(resultError);
         }
 
         [TestMethod]
@@ -207,14 +202,14 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             multiplesModel.Patient = patient;
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(multiplesModel) as RedirectToRouteResult;
+                var result = controller.CreateOldPatientPost(multiplesModel) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("CreateOldPatient", result.RouteValues["action"]);
             }
             using (var scope = new TransactionScope())
             {
                 controller.ModelState.AddModelError("", "Error Message");
-                var resultError = controller.CreateOldPatient(multiplesModel) as ViewResult;
+                var resultError = controller.CreateOldPatientPost(multiplesModel) as ViewResult;
                 Assert.IsNotNull(resultError);
             }
         }
@@ -224,6 +219,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         {
             var info = db.InformationExaminations.AsNoTracking().First();
             var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == info.ID);
+            if(detail_dignosticCategory == null)
+            {
+                detail_dignosticCategory = new Detail_DiagnosticsCategory();
+            }
             using (var scope = new TransactionScope())
             {
                 var result = controller.CreateTest(info, detail_dignosticCategory) as RedirectToRouteResult;
@@ -255,17 +254,14 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 HttpContext = fakeHttpContext,
             };
             controller.ControllerContext = controllerContext;
+            var info = db.InformationExaminations.AsNoTracking().First();
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.InformationExamination = info;
             using (var scope = new TransactionScope())
             {
                 var result = controller.Edit(multiplesModel) as PartialViewResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("_Edit", result.ViewName);
-            }
-            using (var scope = new TransactionScope())
-            {
-                var resultError = controller.Edit(multiplesModel) as HttpNotFoundResult;
-                Assert.IsNotNull(resultError);
             }
         }
 

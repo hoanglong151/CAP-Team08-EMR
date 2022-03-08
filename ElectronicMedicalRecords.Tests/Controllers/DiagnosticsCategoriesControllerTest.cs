@@ -37,11 +37,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
 
             var list = controller.GetData() as JsonResult;
             Assert.IsNotNull(list);
-
-            IDictionary<string, object> model = new System.Web.Routing.RouteValueDictionary(list.Data);
-            Assert.IsNotNull(model);
-            var test = (List<DiagnosticsCategory>)model.Values.First();
-            Assert.AreEqual(db.DiagnosticsCategories.Count(), test.Count);
         }
 
         [TestMethod]
@@ -53,7 +48,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Code = rand.ToString().Substring(0, 9),
                 MDC = rand.ToString().Substring(0, 2),
                 Name = rand.ToString(),
-                NameEnglish = rand.ToString()
+                NameEnglish = rand.ToString(),
             };
 
             using (var scope = new TransactionScope())
@@ -62,7 +57,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.IsNotNull(result);
             }
 
-            diagnostic.Code = "M1199";
+            diagnostic.Code = "A000";
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
@@ -117,7 +112,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.AreEqual(true, model.Values.First());
             }
 
-            diagnostic.Code = "M120";
+            diagnostic.Code = "A021";
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {

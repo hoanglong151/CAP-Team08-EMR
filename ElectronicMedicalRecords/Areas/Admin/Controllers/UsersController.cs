@@ -48,7 +48,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     {
                         listUser.Add(user.Key);
                     }
-                    var time = user.Value.AddMinutes(1);
+                    var time = user.Value.AddMinutes(10);
                     if (time <= DateTime.Now)
                     {
                         listUser.Remove(user.Key);
@@ -58,6 +58,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 if (User.Identity.IsAuthenticated && usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
                 {
                     usersOnline.Add(User.Identity.GetUserId(), DateTime.Now);
+                    listUser.Add(User.Identity.GetUserId());
                 }
                 foreach (var item in usersOnline.ToList())
                 {

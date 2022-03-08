@@ -98,21 +98,21 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void TestEditP()
         {
             var rand = new Random();
-            var tai = db.TaiMuiHongs.FirstOrDefault();
-            tai.Name = "Viêm ống tai ngoài";
+            var taiMuiHong = db.TaiMuiHongs.FirstOrDefault();
+            taiMuiHong.Name = "Viêm amidan";
             using (var scope = new TransactionScope())
             {
-                var result1 = controller.Edit(tai) as JsonResult;
+                var result1 = controller.Edit(taiMuiHong) as JsonResult;
                 Assert.IsNotNull(result1);
                 dynamic data = result1.Data;
                 Assert.AreEqual(false, data.success);
                 Assert.AreEqual("Tai-Mũi-Họng đã có trong danh sách", data.responseText);
             }
-            tai.Name = rand.ToString();
+            taiMuiHong.Name = rand.ToString();
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(tai) as JsonResult;
+                var result = controller.Edit(taiMuiHong) as JsonResult;
                 Assert.IsNotNull(result);
                 dynamic data = result.Data;
                 Assert.AreEqual(true, data.success);
@@ -121,7 +121,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             using (var scope = new TransactionScope())
             {
                 controller.ModelState.AddModelError("", "Error Message");
-                var result2 = controller.Edit(tai) as ViewResult;
+                var result2 = controller.Edit(taiMuiHong) as ViewResult;
                 Assert.IsNotNull(result2);
             }
         }
@@ -164,7 +164,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
 
                 dynamic noti2 = result2.Data;
                 Assert.AreEqual(false, noti2.success);
-                Assert.AreEqual("Tai này đã được sử dụng. Bạn không thể xóa nó!", noti2.responseText);
+                Assert.AreEqual("Tai-Mui-Họng này đã được sử dụng. Bạn không thể xóa nó!", noti2.responseText);
             }
         }
 
@@ -218,10 +218,11 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void GetArrTaiTest()
         {
-            var tai = db.InformationExaminations.FirstOrDefault(p => p.ID == 678);
+            var detail_TaiMuiHong = db.Detail_TaiMuiHong.FirstOrDefault();
+            var info = db.InformationExaminations.FirstOrDefault(p => p.ID == detail_TaiMuiHong.InformationExamination_ID);
             using (var scope = new TransactionScope())
             {
-                var result1 = controller.GetArrTaiMuiHong(tai.ID) as JsonResult;
+                var result1 = controller.GetArrTaiMuiHong(info.ID) as JsonResult;
                 Assert.IsNotNull(result1);
             }
         }
