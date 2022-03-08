@@ -16,7 +16,12 @@
             <div id="socialLoginList">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn-hover color-11"  style="height:45px" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@*@p.AuthenticationType*@Đăng Nhập với tài khoản Văn Lang</button>
+                    <button type="submit" class="btn-hover color-11" style="height:45px;margin-top:10px" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                        @*@p.AuthenticationType*@
+
+                        <img style="width:25px;height:25px;margin-right:4px;object-fit:contain" src="@Url.Content("~/asset/logoVLU.png")" />
+                        Đăng Nhập với tài khoản Văn Lang
+                    </button>
                     }
                 </p>
             </div>

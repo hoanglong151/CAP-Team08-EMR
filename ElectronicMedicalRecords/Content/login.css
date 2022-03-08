@@ -135,7 +135,7 @@ section .color:nth-child(3) {
     position: relative;
     width: 400px;
     /*min-height: 400px;*/
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -154,12 +154,12 @@ section .color:nth-child(3) {
     padding: 25px;
 }
 
-.form h4 {
-        position: relative;
-        color: #fff;
-        font-size: 24px;
-        letter-spacing: 1px;
-        margin-bottom: 40px;
+.form .sectionLG {
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
 }
 .form h3 {
     position: relative;
@@ -169,15 +169,16 @@ section .color:nth-child(3) {
     margin-bottom: 40px;
 }
 
-.form h4::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 80px;
-    height: 4px;
-    background: #fff;
-}
+    .form .sectionLG::before {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 3px;
+        background: #fff;
+    }
 
 .form .inputBox {
     width: 100%;
@@ -228,7 +229,7 @@ section .color:nth-child(3) {
     text-align: center;
     border: none;
     background-size: 300% 100%;
-    border-radius: 50px;
+    border-radius: 8px;
     transition: all .4s ease-in-out;
 }
 
@@ -237,6 +238,22 @@ section .color:nth-child(3) {
     transition: all .4s ease-in-out;
 }
 .btn-hover.color-11 {
-    background-image: linear-gradient(to right, #e79599, #f70300, #f33144, #e2373f);
+    background-image: linear-gradient(to right, #e79599, #f70300, #8181f2, #3535f4);
     box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+.Or{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.Or-before, .Or-after {
+    width: 100%;
+    height: 2px;
+    background: #3535f4
+}
+
+.Or-after{
+    background: red
 }
