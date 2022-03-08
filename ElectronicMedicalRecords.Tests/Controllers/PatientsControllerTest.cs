@@ -21,20 +21,14 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         {
             var list = controller.Index() as ViewResult;
             Assert.IsNotNull(list);
-
-            var model = list.Model as List<Patient>;
-            Assert.IsNotNull(model);
-
-            Assert.AreEqual(db.Patients.Count(), model.Count);
         }
 
         [TestMethod]
         public void TestDetailIE()
         {
+            var patient = db.Patients.FirstOrDefault();
             MultiplesModel multiplesModel = new MultiplesModel();
-            var result = controller.DetailIE(multiplesModel) as HttpNotFoundResult;
-            Assert.IsNotNull(result);
-
+            multiplesModel.Patient = patient;
             var resultPatient = controller.DetailIE(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(multiplesModel);
             Assert.AreEqual("_DetailIE", resultPatient.ViewName);
@@ -140,7 +134,9 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestEditG()
         {
+            var patient = db.Patients.FirstOrDefault();
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.Patient = patient;
             var resultPatient = controller.Edit(multiplesModel) as PartialViewResult;
             Assert.IsNotNull(resultPatient);
             Assert.AreEqual("_Edit", resultPatient.ViewName);
@@ -182,6 +178,22 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void GetData()
         {
+            List<string> Noti = new List<string>();
+            var listInfo = db.InformationExaminations.Where(p => p.PatientStatus_ID == 44).ToList();
+            foreach (var info in listInfo)
+            {
+                info.Patient = db.Patients.FirstOrDefault(p => p.ID == info.Patient_ID);
+                if (!Noti.Contains(info.Patient.MaBN))
+                {
+                    Noti.Add(info.Patient.MaBN);
+                }
+            }
+            var mockControllerContext = new Mock<ControllerContext>();
+            var mockSession = new Mock<HttpSessionStateBase>();
+            mockSession.SetupGet(s => s["Noti"]).Returns(Noti); //somevalue
+            mockControllerContext.Setup(p => p.HttpContext.Session).Returns(mockSession.Object);
+            controller.ControllerContext = mockControllerContext.Object;
+
             var result = controller.GetData() as JsonResult;
             Assert.IsNotNull(result);
             dynamic check = result.Data;

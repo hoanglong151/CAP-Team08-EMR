@@ -44,9 +44,13 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void TestCreateP()
         {
             var rand = new Random();
+            var HomeTown_ID = db.HomeTowns.FirstOrDefault();
+            var District_ID = db.Districts.FirstOrDefault();
             var ward = new Ward
             {
-                Ward1 = rand.ToString()
+                Ward1 = rand.ToString(),
+                HomeTown_ID = HomeTown_ID.ID,
+                District_ID = District_ID.ID
             };
 
             using (var scope = new TransactionScope())
@@ -55,7 +59,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.IsNotNull(result);
             }
 
-            ward.Ward1 = "Phường 10";
+            ward.Ward1 = "Phường 1";
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
@@ -80,9 +84,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestEditG()
         {
-            var result = controller.Edit(0) as HttpNotFoundResult;
-            Assert.IsNotNull(result);
-
             var ward = db.Wards.First();
             var result1 = controller.Edit(ward.ID) as JsonResult;
             Assert.IsNotNull(result1);
@@ -104,7 +105,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.AreEqual(true, data.success);
             }
 
-            ward.Ward1 = "Phường 10";
+            ward.District_ID = 7;
+            ward.Ward1 = "Phường 1";
             controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
@@ -128,9 +130,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestDeleteG()
         {
-            var result = controller.Delete(0) as HttpNotFoundResult;
-            Assert.IsNotNull(result);
-
             var ward = db.Wards.First();
             var result1 = controller.Delete(ward.ID) as JsonResult;
             Assert.IsNotNull(result1);

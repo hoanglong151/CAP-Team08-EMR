@@ -41,14 +41,15 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var medicalHistories = new MedicalHistory
             {
                 Name = rand.ToString(),
-                ChiDinh = true,
+                ChiDinh = false,
                 Dangerous = false,
             };
             using (var scope = new TransactionScope())
             {
-                var result = controller.Create(medicalHistories) as RedirectToRouteResult;
+                var result = controller.Create(medicalHistories) as JsonResult;
                 Assert.IsNotNull(result);
-                Assert.AreEqual("Index", result.RouteValues["action"]);
+                dynamic data = result.Data;
+                Assert.AreEqual(true, data.success);
             }
             using (var scope = new TransactionScope())
             {
@@ -74,7 +75,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Assert.IsNotNull(result);
 
             var info = db.MedicalHistories.AsNoTracking().First();
-            var result1 = controller.Edit(info.ID) as ViewResult;
+            var result1 = controller.Edit(info.ID) as JsonResult;
             Assert.IsNotNull(result1);
         }
         [TestMethod]
@@ -83,9 +84,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var medicalHistories = db.MedicalHistories.AsNoTracking().First();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(medicalHistories) as RedirectToRouteResult;
+                var result = controller.Edit(medicalHistories) as JsonResult;
                 Assert.IsNotNull(result);
-                Assert.AreEqual("Index", result.RouteValues["action"]);
+                dynamic data = result.Data;
+                Assert.AreEqual(true, data.success);
             }
 
             controller.ModelState.Clear();
@@ -103,7 +105,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             Assert.IsNotNull(result);
 
             var medicalHistories = db.MedicalHistories.First();
-            var result1 = controller.Delete(medicalHistories.ID) as ViewResult;
+            var result1 = controller.Delete(medicalHistories.ID) as JsonResult;
             Assert.IsNotNull(result1);
         }
         

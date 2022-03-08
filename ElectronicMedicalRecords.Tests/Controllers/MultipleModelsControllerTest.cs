@@ -115,9 +115,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.AsNoTracking().First();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Payment(info.ID, 25000) as RedirectToRouteResult;
+                var result = controller.Payment(info.ID, 25000) as JsonResult;
                 Assert.IsNotNull(result);
-                Assert.AreEqual("PrintBillExamination", result.RouteValues["action"]);
             }
         }
 
@@ -127,9 +126,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.First();
             using (var scope = new TransactionScope())
             {
-                var result = controller.PaymentPrescription(info.ID) as RedirectToRouteResult;
+                var result = controller.PaymentPrescription(info.ID) as JsonResult;
                 Assert.IsNotNull(result);
-                Assert.AreEqual("PrintBillExamination", result.RouteValues["action"]);
             }
         }
 
@@ -139,7 +137,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.First();
             using (var scope = new TransactionScope())
             {
-                var result = controller.PaymentTestSubclinical(info.ID, (int)info.PriceCTMaus) as Task<ActionResult>;
+                var result = controller.PaymentTestSubclinical(info.ID, info.PriceCTMaus) as Task<ActionResult>;
                 Assert.IsNotNull(result);
             }
         }
@@ -147,6 +145,18 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public MultiplesModel MockSession()
         {
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.HistoryDiseases1 = db.HistoryDiseases.ToList();
+            multiplesModel.HistoryDiseases2 = db.HistoryDiseases.ToList();
+            multiplesModel.HistoryDiseases3 = db.HistoryDiseases.ToList();
+            multiplesModel.MedicalHistories = db.MedicalHistories.ToList();
+            multiplesModel.CTMau = db.CTMaus.ToList();
+            multiplesModel.SinhHoaMau = db.SinhHoaMaus.ToList();
+            multiplesModel.DongMau = db.DongMaus.ToList();
+            multiplesModel.NhomMau = db.NhomMaus.ToList();
+            multiplesModel.Urine = db.Urines.ToList();
+            multiplesModel.Immune = db.Immunes.ToList();
+            multiplesModel.Amniocente = db.Amniocentes.ToList();
+            multiplesModel.ViSinh = db.ViSinhs.ToList();
             var info = db.InformationExaminations.First();
             var patient = db.Patients.First(p => p.ID == info.Patient_ID);
             var clinical = db.Clinicals.First(p => p.InformationExamination_ID == info.ID);
@@ -159,6 +169,10 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var detail_SHM = db.Detail_SinhHoaMau.Where(p => p.InformationExamination_ID == info.ID).ToList();
             var detail_Urine = db.Detail_Urine.Where(p => p.InfomationExamination_ID == info.ID).ToList();
             var detail_VS = db.Detail_ViSinh.Where(p => p.InformationExamination_ID == info.ID).ToList();
+            multiplesModel.HistoryDiseases1 = multiplesModel.HistoryDiseases1.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.HistoryDiseases2 = multiplesModel.HistoryDiseases2.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.ChiDinh == true).ToList();
+            multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.ChiDinh == true).ToList();
 
             multiplesModel.Detail_SinhHoaMaus = detail_SHM;
             multiplesModel.Detail_Urines = detail_Urine;
@@ -172,7 +186,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             multiplesModel.Patient = patient;
             multiplesModel.Prescription_Details = prescription;
             multiplesModel.InformationExamination = info;
-
             var mockControllerContext = new Mock<ControllerContext>();
             var mockSession = new Mock<HttpSessionStateBase>();
             mockSession.SetupGet(s => s["MultipleModels"]).Returns(multiplesModel); //somevalue
@@ -666,8 +679,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void BillExamination()
         {
-            var info = db.InformationExaminations.First();
-            var result = controller.BillExamination(info.ID) as ViewResult;
+            var patient = db.Patients.First();
+            var result = controller.BillExamination(patient.ID) as ViewResult;
             Assert.IsNotNull(result);
         }
 
@@ -704,8 +717,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void EditG()
         {
-            var info = db.InformationExaminations.First();
-            var result = controller.Edit(info.ID) as ViewResult;
+            var patient = db.Patients.First();
+            var result = controller.Edit(patient.ID) as ViewResult;
             Assert.IsNotNull(result);
         }
 

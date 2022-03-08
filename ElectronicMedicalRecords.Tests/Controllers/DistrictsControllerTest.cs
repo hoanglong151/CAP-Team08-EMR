@@ -44,9 +44,11 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void TestCreateP()
         {
             var rand = new Random();
+            var homeTown = db.HomeTowns.FirstOrDefault();
             var district = new District
             {
-                District1 = rand.ToString()
+                District1 = rand.ToString(),
+                HomeTown_ID = homeTown.ID
             };
 
             using (var scope = new TransactionScope())
@@ -80,9 +82,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestEditG()
         {
-            var result = controller.Edit(0) as HttpNotFoundResult;
-            Assert.IsNotNull(result);
-
             var district = db.Districts.First();
             var result1 = controller.Edit(district.ID) as JsonResult;
             Assert.IsNotNull(result1);

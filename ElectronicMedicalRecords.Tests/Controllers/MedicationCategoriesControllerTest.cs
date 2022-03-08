@@ -142,7 +142,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void TestDeleteP()
         {
-            var medicationCategory = db.MedicationCategories.AsNoTracking().First();
+            var medication = db.Medications.FirstOrDefault();
+            var medicationCategory = db.MedicationCategories.FirstOrDefault(p => p.ID == medication.MedicationCategory_ID); ;
             using (var scope = new TransactionScope())
             {
                 var result = controller.DeleteConfirmed(medicationCategory.ID) as JsonResult;

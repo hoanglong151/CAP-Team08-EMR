@@ -147,7 +147,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             [TestMethod]
             public void TestDeleteP()
             {
-                var ngoaikhoa = db.NgoaiKhoas.First();
+                var ngoaikhoa = db.NgoaiKhoas.FirstOrDefault(p => p.Detail_NgoaiKhoa.Count == 0);
                 using (var scope = new TransactionScope())
                 {
                     var result = controller.DeleteConfirmed(ngoaikhoa.ID) as JsonResult;

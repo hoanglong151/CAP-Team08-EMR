@@ -22,9 +22,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             {
                 listUser.Add(User.Identity.GetUserId());
             }
-            if(usersOnline.ContainsKey(System.Web.HttpContext.Current.User.Identity.GetUserId()) == false)
+            if(usersOnline.ContainsKey(User.Identity.GetUserId()) == false)
             {
-                usersOnline.Add(System.Web.HttpContext.Current.User.Identity.GetUserId(), DateTime.Now);
+                usersOnline.Add(User.Identity.GetUserId(), DateTime.Now);
             }
             var patients = db.Patients.ToList();
             var allUsers = db.AspNetUsers.ToList();

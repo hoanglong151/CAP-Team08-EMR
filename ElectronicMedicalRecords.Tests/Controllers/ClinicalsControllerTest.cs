@@ -26,10 +26,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var list = controller.DetailIE(info.ID) as PartialViewResult;
             Assert.IsNotNull(list);
             Assert.AreEqual("_DetailIE", list.ViewName);
-
-
-            var infoError = controller.DetailIE(0) as HttpNotFoundResult;
-            Assert.IsNotNull(infoError);
         }
 
         [TestMethod]

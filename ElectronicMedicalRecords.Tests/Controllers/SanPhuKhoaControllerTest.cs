@@ -217,7 +217,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void GetArrSanPhuKhoaTest()
         {
-            var infor = db.InformationExaminations.FirstOrDefault(p => p.ID == 678);
+            var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.FirstOrDefault();
+            var infor = db.InformationExaminations.FirstOrDefault(p => p.ID == detail_SanPhuKhoa.InformationExamination_ID);
             using (var scope = new TransactionScope())
             {
                 var result1 = controller.GetArrSanPhuKhoa(infor.ID) as JsonResult;

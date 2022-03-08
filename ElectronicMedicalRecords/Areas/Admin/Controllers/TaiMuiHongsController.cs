@@ -57,7 +57,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var checkExist = db.TaiMuiHongs.FirstOrDefault(e => e.Name == taiMuiHong.Name);
             if (checkExist != null && taiMuiHong.Name != null)
             {
-                text = "Tai Mũi Họng đã có trong danh sách";
+                text = "Tai-Mũi-Họng đã có trong danh sách";
             }
             return text;
         }
@@ -68,7 +68,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var checkExist = db.TaiMuiHongs.FirstOrDefault(e => e.Name == taimuihong.Name);
             if (checkExist != null && checkExist.ID != taimuihong.ID && taimuihong.Name != null)
             {
-                text = "Tai Mũi Họng đã có trong danh sách";
+                text = "Tai-Mũi-Họng đã có trong danh sách";
             }
             return text;
         }
@@ -165,7 +165,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, responseText = "Tai Mũi Họng này đã được sử dụng. Bạn không thể xóa nó!" });
+                return Json(new { success = false, responseText = "Tai-Mui-Họng này đã được sử dụng. Bạn không thể xóa nó!" });
             }
         }
 
