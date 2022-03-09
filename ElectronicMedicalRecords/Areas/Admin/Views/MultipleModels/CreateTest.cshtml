@@ -1772,7 +1772,8 @@
                                 title: 'Đây là bệnh nguy hiểm. Xác nhận chọn',
                                 showCancelButton: true,
                                 confirmButtonText: 'Xác Nhận',
-                                cancelButtonText: 'Hủy'
+                                cancelButtonText: 'Hủy',
+                                allowOutsideClick: false
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if (result.isConfirmed) {
@@ -2098,6 +2099,7 @@
                     console.error("Toang" + error);
                 });
         })
+
         /*Validate Form*/
         $('form').each((i, obj) => {
             $.validator.addMethod('checkPhoneNumber', function (value, element) {
