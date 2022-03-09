@@ -1763,12 +1763,17 @@
                                 title: 'Đây là bệnh nguy hiểm. Xác nhận chọn',
                                 showCancelButton: true,
                                 confirmButtonText: 'Xác Nhận',
+                                cancelButtonText: 'Hủy',
+                                allowOutsideClick: false
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if (result.isConfirmed) {
                                     var id = value.getAttribute("data-id");
                                     updateCountClinicals(id, e, value, index)
                                     value.checked = true;
+                                }
+                                else if (result.dismiss === Swal.DismissReason.cancel) {
+                                    value.checked = false;
                                 }
                             })
                         } else {
