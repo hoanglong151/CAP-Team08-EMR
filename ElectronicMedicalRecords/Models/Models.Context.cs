@@ -31,7 +31,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<CayMau> CayMaus { get; set; }
         public virtual DbSet<CoXuongKhop> CoXuongKhops { get; set; }
         public virtual DbSet<CTMau> CTMaus { get; set; }
@@ -65,7 +64,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<HoHap> HoHaps { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
         public virtual DbSet<Immune> Immunes { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<Mat> Mats { get; set; }
         public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
@@ -96,5 +94,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
     }
 }

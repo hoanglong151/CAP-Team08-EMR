@@ -164,6 +164,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_TaiMuiHongController detail_TaiMuiHongController = new Detail_TaiMuiHongController();
             Detail_RangHamMatController detail_RangHamMatController = new Detail_RangHamMatController();
             Detail_DaLieuController detail_DaLieuController = new Detail_DaLieuController();
+            ClinicalsController clinicalsController = new ClinicalsController();
 
             // Set Up Clinical
             multiplesModel.TuanHoan = multiplesModel.TuanHoan.Where(p => p.ChiDinh == true).ToList();
@@ -195,6 +196,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             detail_RangHamMatController.CreateOldPatient(multiplesModel);
             detail_DaLieuController.CreateOldPatient(multiplesModel);
 
+            if(multiplesModel.Clinical.ID != 0)
+            {
+                clinicalsController.Edit(multiplesModel);
+            }
+            else
+            {
+                clinicalsController.CreateOldPatient(multiplesModel);
+            }
             db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", "Patients");
@@ -223,6 +232,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Payment(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
+            var UserID = User.Identity.GetUserId();
+            var userPayment = db.Users.AsNoTracking().FirstOrDefault(p => p.UserID == UserID);
             if(examinationBill.New == null && examinationBill.PriceExamination == null)
             {
                 examinationBill.New = false;
@@ -234,7 +245,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 bill.Patient_ID = examinationBill.Patient_ID;
                 bill.Date = DateTime.Now;
                 bill.TypePayment = "Khám";
-                bill.UserPayment_ID = User.Identity.GetUserId();
+                bill.UserPayment_ID = userPayment.ID;
                 db.Bills.Add(bill);
                 db.SaveChanges();
                 return Json(new { success = true });
@@ -271,6 +282,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             else
             {
                 var info = db.InformationExaminations.Find(id);
+                var UserID = User.Identity.GetUserId();
+                var userPayment = db.Users.AsNoTracking().FirstOrDefault(p => p.UserID == UserID);
                 var checkid = db.Bills.FirstOrDefault(p => p.InformationExamination_ID == info.ID && p.TypePayment == "Thuốc");
                 if(checkid == null)
                 {
@@ -280,14 +293,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     billPre.Patient_ID = patient.ID;
                     billPre.Date = DateTime.Now;
                     billPre.TypePayment = "Thuốc";
-                    billPre.UserPayment_ID = User.Identity.GetUserId();
+                    billPre.UserPayment_ID = userPayment.ID;
                     db.Bills.Add(billPre);
                     db.SaveChanges();
                 }
                 else
                 {
                     checkid.Date = DateTime.Now;
-                    checkid.UserPayment_ID = User.Identity.GetUserId();
+                    checkid.UserPayment_ID = userPayment.ID;
                     db.Entry(checkid).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -486,12 +499,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 examinationBill.PriceTest = priceTotalTest;
                 db.Entry(examinationBill).State = EntityState.Modified;
                 db.SaveChanges();
+                var UserID = User.Identity.GetUserId();
+                var userPayment = db.Users.AsNoTracking().FirstOrDefault(p => p.UserID == UserID);
                 var bill = new Bill();
                 bill.Date = DateTime.Now;
                 bill.InformationExamination_ID = examinationBill.ID;
                 bill.Patient_ID = examinationBill.Patient_ID;
                 bill.TypePayment = "Xét Nghiệm";
-                bill.UserPayment_ID = User.Identity.GetUserId();
+                bill.UserPayment_ID = userPayment.ID;
                 db.Bills.Add(bill);
                 db.SaveChanges();
                 return Json(new { success = true });
@@ -2276,6 +2291,12 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     {
                         multiplesModel.InformationExamination.ResultViSinh = true;
                     }
+                }
+                if (User.IsInRole("Kỹ Thuật Viên"))
+                {
+                    var userID = User.Identity.GetUserId();
+                    var userByID = db.Users.AsNoTracking().FirstOrDefault(p => p.UserID == userID);
+                    multiplesModel.InformationExamination.UserTest_ID = userByID.ID;
                 }
                 db.Entry(multiplesModel.InformationExamination).State = EntityState.Modified;
                 db.SaveChanges();

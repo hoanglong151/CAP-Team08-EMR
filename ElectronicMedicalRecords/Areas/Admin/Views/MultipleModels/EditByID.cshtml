@@ -281,29 +281,31 @@
                                                    role="tab" aria-controls="home" aria-selected="true">Sản Phụ Khoa</a>
                                             </li>
                                         }
-                                        @if (Model.Detail_Mats.Count != 0 || Model.Clinical.LeftEyesGlasses != null || Model.Clinical.LeftEyesNoGlasses != null
-                                            || Model.Clinical.RightEyesGlasses != null || Model.Clinical.RightEyesNoGlasses != null)
+                                       
+                                        @if (Model.Detail_Mats.Count != 0 || Model.Clinical?.LeftEyesGlasses != null || Model.Clinical?.LeftEyesNoGlasses != null
+                                            || Model.Clinical?.RightEyesGlasses != null || Model.Clinical?.RightEyesNoGlasses != null)
                                         {
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="Mat-tab" data-bs-toggle="tab" href="#Mat"
-                                                   role="tab" aria-controls="home" aria-selected="true">Mắt</a>
+                                                    role="tab" aria-controls="home" aria-selected="true">Mắt</a>
                                             </li>
                                         }
-                                        @if (Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical.LeftEarSay != null || Model.Clinical.LeftEarWhisper != null
-                                            || Model.Clinical.RightEarSay != null || Model.Clinical.RightEarWhisper != null)
+                                        @if (Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical?.LeftEarSay != null || Model.Clinical?.LeftEarWhisper != null
+                                            || Model.Clinical?.RightEarSay != null || Model.Clinical?.RightEarWhisper != null)
                                         {
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="TaiMuiHong-tab" data-bs-toggle="tab" href="#TaiMuiHong"
-                                                   role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
+                                                    role="tab" aria-controls="home" aria-selected="true">Tai-Mũi-Họng</a>
                                             </li>
                                         }
-                                        @if (Model.Detail_RangHamMats.Count != 0 || Model.Clinical.LowerJaw != null || Model.Clinical.UpperJaw != null)
+                                        @if (Model.Detail_RangHamMats.Count != 0 || Model.Clinical?.LowerJaw != null || Model.Clinical?.UpperJaw != null)
                                         {
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="RangHamMat-tab" data-bs-toggle="tab" href="#RangHamMat"
-                                                   role="tab" aria-controls="home" aria-selected="true">Răng-Hàm-Mặt</a>
+                                                    role="tab" aria-controls="home" aria-selected="true">Răng-Hàm-Mặt</a>
                                             </li>
                                         }
+                                        
                                         @if (Model.Detail_DaLieus.Count != 0)
                                         {
                                             <li class="nav-item" role="presentation">
@@ -313,10 +315,10 @@
                                         }
 
                                     </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                            @if (Model.Detail_TuanHoans.Count != 0 || Model.Detail_HoHaps.Count != 0 || Model.Detail_TieuHoas.Count != 0 || Model.Detail_ThanTietNieus.Count != 0
-                                                        || Model.Detail_CoXuongKhops.Count != 0 || Model.Detail_ThanKinhs.Count != 0 || Model.Detail_TamThans.Count != 0)
-                                            {
+                                    <div class="tab-content" id="myTabContent">
+                                        @if (Model.Detail_TuanHoans.Count != 0 || Model.Detail_HoHaps.Count != 0 || Model.Detail_TieuHoas.Count != 0 || Model.Detail_ThanTietNieus.Count != 0
+                                                    || Model.Detail_CoXuongKhops.Count != 0 || Model.Detail_ThanKinhs.Count != 0 || Model.Detail_TamThans.Count != 0)
+                                        {
                                             <div class="tab-pane fade show active" id="NoiKhoa" role="tabpanel"
                                                  aria-labelledby="home-tab">
                                                 <p class='my-2'>
@@ -355,7 +357,7 @@
                                                                             Html.RenderAction("BillCheck", "Detail_ThanKinh", new { multiplesModel = Model });
                                                                             <br />
                                                                         }
-                                                                        if(Model.Detail_TamThans.Count != 0)
+                                                                        if (Model.Detail_TamThans.Count != 0)
                                                                         {
                                                                             Html.RenderAction("BillCheck", "Detail_TamThan", new { multiplesModel = Model });
                                                                         }
@@ -366,129 +368,129 @@
                                                     </section>
                                                 </p>
                                             </div>
-                                            }
-                                            <div class="tab-pane fade" id="NgoaiKhoa" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        if(Model.Detail_NgoaiKhoas.Count != 0)
-                                                                        {
-                                                                            Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { multiplesModel = Model });
-                                                                        }
+                                        }
+                                        <div class="tab-pane fade" id="NgoaiKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    if (Model.Detail_NgoaiKhoas.Count != 0)
+                                                                    {
+                                                                        Html.RenderAction("BillCheck", "Detail_NgoaiKhoa", new { multiplesModel = Model });
                                                                     }
-                                                                </div>
+                                                                }
                                                             </div>
                                                         </div>
-                                                    </section>
-                                                </p>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="SanPhuKhoa" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        if(Model.Detail_SanPhuKhoas.Count != 0)
-                                                                        {
-                                                                            Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { multiplesModel = Model });
-                                                                        }
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </p>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="Mat" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        if(Model.Detail_Mats.Count != 0 || Model.Clinical.LeftEyesGlasses != null || Model.Clinical.LeftEyesNoGlasses != null
-                                                                        || Model.Clinical.RightEyesGlasses != null || Model.Clinical.RightEyesNoGlasses != null)
-                                                                        {
-                                                                            Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
-                                                                        }
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </p>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="TaiMuiHong" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        if(Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical.LeftEarSay != null || Model.Clinical.LeftEarWhisper != null
-                                                                        || Model.Clinical.RightEarSay != null || Model.Clinical.RightEarWhisper != null)
-                                                                        {
-                                                                            Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
-                                                                        }
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </p>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="RangHamMat" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        if(Model.Detail_RangHamMats.Count != 0 || Model.Clinical.LowerJaw != null || Model.Clinical.UpperJaw != null)
-                                                                        {
-                                                                            Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
-                                                                        }
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </p>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="DaLieu" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-                                                <p class='my-2'>
-                                                    <section id="multiple-column-form">
-                                                        <div class="row match-height">
-                                                            <div class="col-12">
-                                                                <div class="card">
-                                                                    @{
-                                                                        if(Model.Detail_DaLieus.Count != 0)
-                                                                        {
-                                                                            Html.RenderAction("BillCheck", "Detail_DaLieu", new { multiplesModel = Model });
-                                                                        }
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </p>
-                                            </div>
+                                                    </div>
+                                                </section>
+                                            </p>
                                         </div>
+
+                                        <div class="tab-pane fade" id="SanPhuKhoa" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    if (Model.Detail_SanPhuKhoas.Count != 0)
+                                                                    {
+                                                                        Html.RenderAction("BillCheck", "Detail_SanPhuKhoa", new { multiplesModel = Model });
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="Mat" role="tabpanel"
+                                                aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    if (Model.Detail_Mats.Count != 0 || Model.Clinical?.LeftEyesGlasses != null || Model.Clinical?.LeftEyesNoGlasses != null
+                                                                    || Model.Clinical?.RightEyesGlasses != null || Model.Clinical?.RightEyesNoGlasses != null)
+                                                                    {
+                                                                        Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="TaiMuiHong" role="tabpanel"
+                                                aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    if (Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical?.LeftEarSay != null || Model.Clinical?.LeftEarWhisper != null
+                                                                    || Model.Clinical?.RightEarSay != null || Model.Clinical?.RightEarWhisper != null)
+                                                                    {
+                                                                        Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="RangHamMat" role="tabpanel"
+                                                aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    if (Model.Detail_RangHamMats.Count != 0 || Model.Clinical?.LowerJaw != null || Model.Clinical?.UpperJaw != null)
+                                                                    {
+                                                                        Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+                                        
+
+                                        <div class="tab-pane fade" id="DaLieu" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <p class='my-2'>
+                                                <section id="multiple-column-form">
+                                                    <div class="row match-height">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                @{
+                                                                    if (Model.Detail_DaLieus.Count != 0)
+                                                                    {
+                                                                        Html.RenderAction("BillCheck", "Detail_DaLieu", new { multiplesModel = Model });
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </p>
+                                        </div>
+                                    </div>
                                     </div>
                             </section>
                         </div>
