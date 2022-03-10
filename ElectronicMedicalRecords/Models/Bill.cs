@@ -19,9 +19,10 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> InformationExamination_ID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string TypePayment { get; set; }
-        public string UserPayment_ID { get; set; }
+        public Nullable<int> UserPayment_ID { get; set; }
     
         public virtual InformationExamination InformationExamination { get; set; }
         public virtual Patient Patient { get; set; }
+        public virtual User User { get; set; }
     }
 }

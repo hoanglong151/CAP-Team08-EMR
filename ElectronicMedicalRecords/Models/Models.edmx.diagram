@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserClaim" Width="1.5" PointX="3" PointY="68.375" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUserLogin" Width="1.5" PointX="3" PointY="65.875" />
         <EntityTypeShape EntityType="CP24Team08Model.AspNetUser" Width="1.5" PointX="0.75" PointY="56.125" />
-        <EntityTypeShape EntityType="CP24Team08Model.Bill" Width="1.5" PointX="11.25" PointY="52.625" />
         <EntityTypeShape EntityType="CP24Team08Model.CayMau" Width="1.5" PointX="16.5" PointY="130.125" />
         <EntityTypeShape EntityType="CP24Team08Model.CoXuongKhop" Width="1.5" PointX="20.25" PointY="68" />
         <EntityTypeShape EntityType="CP24Team08Model.CTMau" Width="1.5" PointX="14.25" PointY="63.75" />
@@ -45,7 +44,6 @@
         <EntityTypeShape EntityType="CP24Team08Model.HoHap" Width="1.5" PointX="17.25" PointY="35" />
         <EntityTypeShape EntityType="CP24Team08Model.HomeTown" Width="1.5" PointX="3.75" PointY="62.875" />
         <EntityTypeShape EntityType="CP24Team08Model.Immune" Width="1.5" PointX="23.25" PointY="63.75" />
-        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="14.25" PointY="48.125" />
         <EntityTypeShape EntityType="CP24Team08Model.Mat" Width="1.5" PointX="17.25" PointY="74" />
         <EntityTypeShape EntityType="CP24Team08Model.MedicalHistory" Width="1.5" PointX="6" PointY="58" />
         <EntityTypeShape EntityType="CP24Team08Model.Medication" Width="1.5" PointX="17.25" PointY="37.75" />
@@ -72,57 +70,31 @@
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="CP24Team08Model.FK_Bill_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Bill_Patient" />
-        <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CoXuongKhop_CoXuongKhop" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_CTMau" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DaLieu_DaLieu" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_CoXuongKhop_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_DaLieu_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DiagnosticsCategory_DiagnosticsCategory" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_DiagnosticsCategory_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_DongMau_DongMau" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_DongMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HistoryDisease_Patient" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Immune_Immune" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_Immune_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_Mat_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Mat_Mat" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_MedicalHistory_Patient" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_NgoaiKhoa_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_NhomMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_NhomMau_NhomMau" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_RangHamMat_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_SanPhuKhoa_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_TamThan_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_TamThan_TamThan" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanKinh_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanTietNieu_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_TieuHoa_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_TuanHoan_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_Urine" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_ViSinh" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_HomeTown" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
-        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Medication_MedicationCategory" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_Medication" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Nation" />
@@ -130,19 +102,15 @@
         <AssociationConnector Association="CP24Team08Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_HoHap" Width="1.5" PointX="25.5" PointY="40.375" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_HoHap" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination" />
         <EntityTypeShape EntityType="CP24Team08Model.Clinical" Width="1.5" PointX="22.5" PointY="56" />
-        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
         <EntityTypeShape EntityType="CP24Team08Model.Detail_TaiMuiHong" Width="1.5" PointX="16.5" PointY="49.75" />
         <EntityTypeShape EntityType="CP24Team08Model.TaiMuiHong" Width="1.5" PointX="14.25" PointY="60.75" />
-        <AssociationConnector Association="CP24Team08Model.FK_Detail_Tai_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Tai_Tai" />
         <EntityTypeShape EntityType="CP24Team08Model.User" Width="1.5" PointX="9" PointY="56.125" />
         <AssociationConnector Association="CP24Team08Model.FK_User_AspNetUsers" />
         <AssociationConnector Association="CP24Team08Model.FK_Clinical_User" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Gender" />
         <AssociationConnector Association="CP24Team08Model.FK_User_HomeTown" />
-        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Nation" />
         <AssociationConnector Association="CP24Team08Model.FK_User_Religion" />
         <EntityTypeShape EntityType="CP24Team08Model.District" Width="1.5" PointX="6" PointY="63.75" />
@@ -152,6 +120,39 @@
         <AssociationConnector Association="CP24Team08Model.FK_Ward_District" />
         <AssociationConnector Association="CP24Team08Model.FK_Ward_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
+        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="14.25" PointY="48.25" />
+        <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_CoXuongKhop_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_CTMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_DaLieu_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_DiagnosticsCategory_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_DongMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Immune_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Mat_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_NgoaiKhoa_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_NhomMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_RangHamMat_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_SanPhuKhoa_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Tai_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TamThan_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanKinh_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ThanTietNieu_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TieuHoa_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_TuanHoan_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_Urine_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Detail_ViSinh_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_Patient" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
+        <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
+        <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_InformationExamination" />
+        <EntityTypeShape EntityType="CP24Team08Model.Bill" Width="1.5" PointX="25.5" PointY="65" />
+        <AssociationConnector Association="CP24Team08Model.FK_Bill_InformationExamination" />
+        <AssociationConnector Association="CP24Team08Model.FK_Bill_Patient" />
+        <AssociationConnector Association="CP24Team08Model.FK_Bill_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

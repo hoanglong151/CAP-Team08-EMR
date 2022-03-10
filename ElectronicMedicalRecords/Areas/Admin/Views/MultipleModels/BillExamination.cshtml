@@ -379,7 +379,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    if (Model.Detail_Mats.Count != 0)
+                                                                    if (Model.Detail_Mats.Count != 0 || Model.Clinical?.LeftEyesGlasses != null || Model.Clinical?.LeftEyesNoGlasses != null || Model.Clinical?.RightEyesGlasses != null || Model.Clinical?.RightEyesNoGlasses != null)
                                                                     {
                                                                         Html.RenderAction("BillCheck", "Detail_Mat", new { multiplesModel = Model });
                                                                     }
@@ -399,7 +399,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    if (Model.Detail_TaiMuiHongs.Count != 0)
+                                                                    if (Model.Detail_TaiMuiHongs.Count != 0 || Model.Clinical?.LeftEarSay != null || Model.Clinical?.LeftEarWhisper != null || Model.Clinical?.RightEarSay != null || Model.Clinical?.RightEarWhisper != null)
                                                                     {
                                                                         Html.RenderAction("BillCheck", "Detail_TaiMuiHong", new { multiplesModel = Model });
                                                                     }
@@ -419,7 +419,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 @{
-                                                                    if (Model.Detail_RangHamMats.Count != 0)
+                                                                    if (Model.Detail_RangHamMats.Count != 0 || Model.Clinical?.UpperJaw != null || Model.Clinical?.LowerJaw != null)
                                                                     {
                                                                         Html.RenderAction("BillCheck", "Detail_RangHamMat", new { multiplesModel = Model });
                                                                     }

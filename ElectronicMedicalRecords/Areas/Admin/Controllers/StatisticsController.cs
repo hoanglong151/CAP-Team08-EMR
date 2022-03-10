@@ -1,4 +1,4 @@
-﻿using ElectronicMedicalRecords.Models;
+﻿ using ElectronicMedicalRecords.Models;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using OfficeOpenXml;
@@ -838,25 +838,31 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         public ActionResult BillExam()
         {
-            var userID = User.Identity.GetUserId();
-            var user = db.Users.FirstOrDefault(p => p.UserID == userID);
-            var listInfoByUser = db.Bills.Where(p => p.UserPayment_ID == userID && p.TypePayment == "Khám").ToList();
+            List<Bill> listInfoByUser = new List<Bill>();
+            if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Thu Ngân"))
+            {
+                listInfoByUser = db.Bills.Where(p => p.TypePayment == "Khám").ToList();
+            }
             return View(listInfoByUser);
         }
 
         public ActionResult BillPre()
         {
-            var userID = User.Identity.GetUserId();
-            var user = db.Users.FirstOrDefault(p => p.UserID == userID);
-            var listInfoByUser = db.Bills.Where(p => p.UserPayment_ID == userID && p.TypePayment == "Thuốc").ToList();
+            List<Bill> listInfoByUser = new List<Bill>();
+            if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Thu Ngân"))
+            {
+                listInfoByUser = db.Bills.Where(p => p.TypePayment == "Thuốc").ToList();
+            }
             return View(listInfoByUser);
         }
 
         public ActionResult BillTest()
         {
-            var userID = User.Identity.GetUserId();
-            var user = db.Users.FirstOrDefault(p => p.UserID == userID);
-            var listInfoByUser = db.Bills.Where(p => p.UserPayment_ID == userID && p.TypePayment == "Xét Nghiệm").ToList();
+            List<Bill> listInfoByUser = new List<Bill>();
+            if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Thu Ngân"))
+            {
+                listInfoByUser = db.Bills.Where(p => p.TypePayment == "Xét Nghiệm").ToList();
+            }
             return View(listInfoByUser);
         }
     }
