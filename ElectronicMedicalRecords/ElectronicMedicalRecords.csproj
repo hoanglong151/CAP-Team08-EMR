@@ -2941,9 +2941,13 @@
     <Content Include="Areas\Admin\Views\SanPhuKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\NgoaiKhoas\_EditSelect.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutMultipleModel.cshtml" />
-    <Content Include="pdfUserGuide\Director.pdf" />
     <Content Include="Areas\Admin\Views\Users\_Music.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\StatisByDoctorAndCondition.cshtml" />
+    <Content Include="pdfUserGuide\Cashier.pdf" />
+    <Content Include="pdfUserGuide\Director.pdf" />
+    <Content Include="pdfUserGuide\Doctor.pdf" />
+    <Content Include="pdfUserGuide\Nurse.pdf" />
+    <Content Include="pdfUserGuide\Technicians.pdf" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
