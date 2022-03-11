@@ -179,11 +179,11 @@
                                         <div class="position-relative">
                                             @if (Model.Phone == null)
                                             {
-                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required" } })
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @min = "0" } })
                                             }
                                             else
                                             {
-                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @Value = "0" + Model.Phone } })
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { id = "phone", @class = "form-control", placeholder = "Số Điện Thoại", @data_val = "true", @required = "required", @Value = "0" + Model.Phone, @min = "0" } })
                                             }
                                             @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                                             <div class="form-control-icon">

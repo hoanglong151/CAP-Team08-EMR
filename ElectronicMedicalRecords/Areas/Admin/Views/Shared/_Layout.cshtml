@@ -427,19 +427,19 @@
                                 }
                                 @if (User.IsInRole("Bác Sĩ"))
                                 {
-                                    <li><a class="dropdown-item" href="#">Bác Sĩ</a></li>
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Doctor.pdf')">Bác Sĩ</a></li>
                                 }
                                 @if (User.IsInRole("Kỹ Thuật Viên"))
                                 {
-                                    <li><a class="dropdown-item" href="#">Kỹ Thuật Viên</a></li>
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Technicians.pdf')">Kỹ Thuật Viên</a></li>
                                 }
                                 @if (User.IsInRole("Thu Ngân"))
                                 {
-                                    <li><a class="dropdown-item" href="#">Thu Ngân</a></li>
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Cashier.pdf')">Thu Ngân</a></li>
                                 }
                                 @if (User.IsInRole("Y tá/Điều dưỡng"))
                                 {
-                                    <li><a class="dropdown-item" href="#">Y tá/Điều dưỡng</a></li>
+                                    <li><a class="dropdown-item" onclick="GetClientReport('Nurse.pdf')">Y tá/Điều dưỡng</a></li>
                                 }
                             </ul>
                         </div>

@@ -90,14 +90,14 @@
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Điện Thoại</label>
-                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control", @Value = "0" + Model.Patient.Phone } })
+                    @Html.EditorFor(model => model.Patient.Phone, new { htmlAttributes = new { @class = "form-control", @Value = "0" + Model.Patient.Phone, @min = "0" } })
                     @Html.ValidationMessageFor(model => model.Patient.Phone, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-3 col-12">
                 <div class="form-group">
                     <label for="email-id-column">Điện Thoại Zalo</label>
-                    @Html.EditorFor(model => model.Patient.PhoneZalo, new { htmlAttributes = new { @class = "form-control", @Value = "0" + Model.Patient.PhoneZalo } })
+                    @Html.EditorFor(model => model.Patient.PhoneZalo, new { htmlAttributes = new { @class = "form-control", @Value = "0" + Model.Patient.PhoneZalo, @min = "0" } })
                     @Html.ValidationMessageFor(model => model.Patient.PhoneZalo, "", new { @class = "text-danger" })
                 </div>
             </div>
