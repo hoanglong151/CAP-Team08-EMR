@@ -61,6 +61,14 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
                 var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
 
+                //var checkCTMau = db.Detail_CTMau.Any(p => p.InformationExamination_ID == item.ID);
+                //var checkSHM = db.Detail_SinhHoaMau.Any(p => p.InformationExamination_ID == item.ID);
+                //var checkDM = db.Detail_DongMau.Any(p => p.InformationExamination_ID == item.ID);
+                //var checkNM = db.Detail_NhomMau.Any(p => p.InformationExamination_ID == item.ID);
+                //var checkNT = db.Detail_Urine.Any(p => p.InfomationExamination_ID == item.ID);
+                //var checkMD = db.Detail_Immune.Any(p => p.InformationExamination_ID == item.ID);
+                //var checkDCD = db.Detail_Amniocente.Any(p => p.InformationExamination_ID == item.ID);
+                //var checkVS = db.Detail_ViSinh.Any(p => p.InformationExamination_ID == item.ID);
                 var checkResult = false;
                 if(checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
                     || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true

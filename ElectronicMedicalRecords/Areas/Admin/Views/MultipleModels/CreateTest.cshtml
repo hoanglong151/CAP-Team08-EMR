@@ -1573,7 +1573,7 @@
             }
             countEach[numTable]--;
             CountTests[numTable].innerHTML = countEach[numTable];
-            var GetTable = tableNewCD[numTable].getAttribute("id");
+            var GetTable = tableNewCD[numTable + 13].getAttribute("id");
             $("#" + row + id).prop("value", false);
             $("#" + row + id).prop("checked", false);
             $('#' + GetTable).DataTable().ajax.reload();
