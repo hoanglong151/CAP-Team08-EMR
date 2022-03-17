@@ -347,6 +347,7 @@
     <Compile Include="Models\Bill.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\URLModel.cs" />
     <Compile Include="Models\CayMau.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -2948,6 +2949,7 @@
     <Content Include="pdfUserGuide\Doctor.pdf" />
     <Content Include="pdfUserGuide\Nurse.pdf" />
     <Content Include="pdfUserGuide\Technicians.pdf" />
+    <Content Include="Areas\Admin\Views\InformationExaminations\_ReExam.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -3008,6 +3010,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
     <Content Include="Views\Error\Page403.cshtml" />
+    <Content Include="Views\Home\FindPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

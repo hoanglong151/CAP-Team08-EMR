@@ -41,10 +41,6 @@
             flex-grow: 1;
         }
 
-            ul#notiContent li {
-                padding: 6px;
-            }
-
         .noti-top-arrow {
             border-style: solid;
             border-width: 12px;
@@ -101,7 +97,7 @@
             height: 6.5rem;
         }
 
-        .Notify {
+        .Notify a{
             padding: 5px 10px;
             overflow: hidden;
         }
@@ -496,7 +492,7 @@
                                             <i class="fas fa-address-card" style="font-size: 25px; color: #5316a0"></i>
                                             <span style="left:2.5rem" class="countBS1">&nbsp;</span>
                                         </a>
-                                        <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
+                                        <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS1" aria-labelledby="dropdownMenuButton" style="min-width: 25rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
                                             <li>
                                                 <h6 class="dropdown-header">Notifications</h6>
                                             </li>
@@ -574,7 +570,25 @@
                     //var hrefEditPatient = `${window.location.origin}/Admin/${data.ID}-Cap-Nhat-Benh-Nhan`;
                     //var hrefDetailPatient = `${window.location.origin}/Admin/${data.ID}-Lich-Su-Kham-Benh`;
                     //var hrefConfirmBill = `${window.location.origin}/Admin/${data.ID}-Hoa-Don`;
-                    var button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                    var RoleOfBS = @(User.IsInRole("Bác Sĩ") ? "true" : "false");
+                    var RoleOfKTV = @(User.IsInRole("Kỹ Thuật Viên") ? "true" : "false");
+                    var RoleOfYTa = @(User.IsInRole("Y tá/Điều dưỡng") ? "true" : "false");
+                    var RoleOfTN = @(User.IsInRole("Thu Ngân") ? "true" : "false");
+                    var RoleOfGD = @(User.IsInRole("Giám Đốc") ? "true" : "false");
+                    var RoleOfQTV = @(User.IsInRole("QTV") ? "true" : "false");
+                    var button = "<a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a>"
+                    if (RoleOfBS || RoleOfKTV) {
+                        button = button;
+                    }
+                    if (RoleOfYTa) {
+                        button = "<button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button>" + button;
+                    }
+                    if (RoleOfTN) {
+                        button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a>" + button + "<button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                    }
+                    if (RoleOfGD || RoleOfQTV) {
+                        button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                    }
                     return button;
                 },
                 "targets": 0,
@@ -653,12 +667,12 @@
                     res.data = (res.data.sort((a, b) => b.checkResult - a.checkResult));
                     $.each(res.data, function (index, value) {
                         $('span.countBS').parent().children('i').addClass('bell');
-                        var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
-                        /*var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
+                     /*   var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;*/
+                        var href = `${window.location.origin}/Admin/${value.ID}-Ket-Qua-Xet-Nghiem`;
                         if (value.checkResult == true) {
-                            $('#notiContentBS').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                            $('#notiContentBS').append($('<li class="Notify" onclick="patientIsResult(' + value.ID + ')"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                         } else {
-                            $('#notiContentBS').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
+                            $('#notiContentBS').append($('<li class="Notify" onclick="patientIsResult(' + value.ID + ')"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Số lượng xét nghiệm: ' + value.count + '</p></a></li>'));
                         }
                     })
                     $('span.countBS').html(res.data.length);
@@ -670,10 +684,18 @@
             updateNotificationBS();
             /*console.log("Notification hub started Bác Sĩ");*/
         });
+
         notificationHubBS.client.notifyResult = function (message) {
             if (message && message.toLowerCase() == "added") {
                 updateNotificationBS();
             }
+        }
+        function patientIsResult(id) {
+            $.ajax({
+                url: "@Url.Action("removeNotiResult", "InformationExaminations")",
+                type: "POST",
+                data: { id: id },
+            })
         }
     }
     </script>
@@ -759,25 +781,41 @@
                 }
                 $.each(res.data, function (index, value) {
                     $('span.countBS1').parent().children('i').addClass('zoom-in-zoom-out');
-                    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;
-                    /*var href = `${window.location.origin}/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;*/
+                /*    var href = `${window.location.origin}/CP24Team08/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;*/
+                    var href = `${window.location.origin}/Admin/${value.ID}-Tao-Ho-So-Kham-Benh`;
                     if (value.dangerPatient == true) {
-                        $('#notiContentBS1').append($('<li class="Notify"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        if (value.Specialist != null) {
+                            $('#notiContentBS1').append($('<li class="Notify" onclick="patientIsExamination(' + value.ID + ')"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:4px 0">Chuyên Khoa: ' + value.Specialist + '</p><p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        } else {
+                            $('#notiContentBS1').append($('<li class="Notify" onclick="patientIsExamination(' + value.ID + ')"><a style="color:red;font-weight:600" class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        }
                     } else {
-                        $('#notiContentBS1').append($('<li class="Notify"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        if (value.Specialist != null) {
+                            $('#notiContentBS1').append($('<li class="Notify" onclick="patientIsExamination(' + value.ID + ')"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:4px 0">Chuyên Khoa: ' + value.Specialist + '</p><p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        }
+                        else {
+                            $('#notiContentBS1').append($('<li class="Notify" onclick="patientIsExamination(' + value.ID + ')"><a class="href-noti" href= ' + href + '>' + 'Bệnh nhân: ' + value.Name + '<p style="margin:0">Ngày Khám: ' + value.date + '</p></a></li>'));
+                        }
                     }
                 })
                 $('span.countBS1').html(res.data.length);
             }
         })
         }
-
         var notificationHubBS1 = $.connection.notificationHubBS1;
 
         notificationHubBS1.client.notifyResultBS1 = function (message) {
             if (message && message.toLowerCase() == "added") {
                 updateNotificationBS1();
             }
+        }
+
+        function patientIsExamination(id) {
+            $.ajax({
+                url: "@Url.Action("removeNoti", "InformationExaminations")",
+                type: "POST",
+                data: { id: id },
+            })
         }
 
         $.connection.hub.start().done(function () {
@@ -824,7 +862,6 @@
             alert(e)
         });
     </script>
-
     <script>
         function GetClientReport(linkGuide) {
             window.open(`@Url.Action("GetReport", "Users")?link=${linkGuide}`, "_blank");

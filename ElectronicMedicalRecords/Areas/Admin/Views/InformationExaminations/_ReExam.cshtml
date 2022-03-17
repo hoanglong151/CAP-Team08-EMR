@@ -1,0 +1,11 @@
+﻿@model ElectronicMedicalRecords.Models.MultiplesModel
+@{ 
+    var ReExam = Model.InformationExamination.DateReExamination != null ? Model.InformationExamination.DateReExamination.Value.ToString("yyyy-MM-dd") : "";
+}
+<div class="col-md-3 col-12">
+    <div class="form-group">
+        <label for="email-id-column">Ngày Tái Khám</label>
+        <input class="form-control" type="date" name="InformationExamination.DateReExamination" value="@ReExam" />
+        @Html.ValidationMessageFor(model => model.InformationExamination.DateReExamination, "", new { @class = "text-danger" })
+    </div>
+</div>

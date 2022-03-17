@@ -14,7 +14,7 @@ namespace ElectronicMedicalRecords
         public void RegisterNotificationBS()
         {
             string conStr = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
-            string sqlCommand = @"SELECT [ResultCTMau],[ResultSHM],[ResultDMau],[ResultNhomMau],[ResultNuocTieu],[ResultMienDich],[ResultDichChocDo],[ResultViSinh] from [dbo].[InformationExamination]";
+            string sqlCommand = @"SELECT [ResultCTMau],[ResultSHM],[ResultDMau],[ResultNhomMau],[ResultNuocTieu],[ResultMienDich],[ResultDichChocDo],[ResultViSinh],[Resulting] from [dbo].[InformationExamination]";
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 if (con.State != System.Data.ConnectionState.Open)
@@ -52,7 +52,7 @@ namespace ElectronicMedicalRecords
             using (CP24Team08Entities db = new CP24Team08Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.InformationExaminations.Where(a => a.ResultCTMau == true || a.ResultSHM == true || a.ResultDMau == true || a.ResultNhomMau == true || a.ResultNuocTieu == true || a.ResultMienDich == true || a.ResultDichChocDo == true || a.ResultViSinh == true).OrderByDescending(a => a.DateEnd).ToList();
+                return db.InformationExaminations.Where(a => a.Resulting != true && a.ResultCTMau == true || a.ResultSHM == true || a.ResultDMau == true || a.ResultNhomMau == true || a.ResultNuocTieu == true || a.ResultMienDich == true || a.ResultDichChocDo == true || a.ResultViSinh == true).OrderByDescending(a => a.DateEnd).ToList();
             }
         }
     }

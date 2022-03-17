@@ -19,8 +19,8 @@ namespace ElectronicMedicalRecords.Models
         {
             this.Detail_HistoryDisease = new HashSet<Detail_HistoryDisease>();
             this.Detail_MedicalHistory = new HashSet<Detail_MedicalHistory>();
-            this.InformationExaminations = new HashSet<InformationExamination>();
             this.Bills = new HashSet<Bill>();
+            this.InformationExaminations = new HashSet<InformationExamination>();
         }
     
         public int ID { get; set; }
@@ -50,8 +50,8 @@ namespace ElectronicMedicalRecords.Models
         public virtual District District { get; set; }
         public virtual Ward Ward { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
     }
 }

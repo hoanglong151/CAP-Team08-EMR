@@ -46,13 +46,12 @@
                         {
                             if (item.User.AspNetUser.Email != null)
                             {
-                                var charName = item.User.AspNetUser.Email.IndexOf(".", 0);
                                 var charName1 = item.User.AspNetUser.Email.IndexOf("@", 0);
                                 <tr>
                                     <td>@item.Patient.MaBN</td>
                                     <td>@item.Patient.Name</td>
                                     <td>@item.User.Name</td>
-                                    <td>@item.User.AspNetUser.Email.Substring(charName + 1, charName1 - charName - 1)</td>
+                                    <td>@item.User.AspNetUser.Email.Substring(0, charName1)</td>
                                     <td>@item.DateExamine</td>
                                     <td>
                                         <a class="btn btnHover info" style="margin:0 2px;" href="@Url.Action("DetailsIERead", "MultipleModels", new { id = item.ID })"><i class="fas fa-info"></i></a>

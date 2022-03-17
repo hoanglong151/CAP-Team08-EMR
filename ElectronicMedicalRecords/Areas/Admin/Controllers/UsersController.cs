@@ -167,9 +167,9 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 var existData = db.Users.Find(user.ID);
                 db.Entry(existData).CurrentValues.SetValues(user);
                 db.SaveChanges();
-                if(check.Privacy == true && userEdit.ActiveAccount == true)
+                if(user.Privacy == true && userEdit.ActiveAccount == true)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("HomePage", "Users");
                 }
                 return RedirectToAction("DenyAccount");
             }

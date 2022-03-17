@@ -94,7 +94,7 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
     }
 }

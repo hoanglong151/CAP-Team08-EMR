@@ -25,6 +25,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View(informationExaminations.ToList());
         }
 
+        public ActionResult ReExam(MultiplesModel multiplesModel)
+        {
+            return PartialView("_ReExam", multiplesModel);
+        }
+
         public async Task<ActionResult> GetNotification()
         {
             NotificationComponentKTV NCNoti = new NotificationComponentKTV();
@@ -120,6 +125,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return await Task.Run(() => Json(new { data = Noti }, JsonRequestBehavior.AllowGet));
         }
 
+        public JsonResult removeNotiResult(int id, string remove)
+        {
+            InformationExamination info = new InformationExamination();
+            if (remove == null)
+            {
+                info = db.InformationExaminations.FirstOrDefault(p => p.ID == id);
+                info.Resulting = true;
+            }
+            else
+            {
+                info = db.InformationExaminations.FirstOrDefault(p => p.ID == id);
+                info.Resulting = null;
+            }
+            db.Entry(info).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(new { success = true });
+        }
+
         public async Task<ActionResult> GetNotificationBS()
         {
             NotificationComponentBS NC = new NotificationComponentBS();
@@ -128,85 +151,106 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             var count = 0;
             foreach (var item1 in list)
             {
-                var detail_TuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_HoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_TieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_ThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_CoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_ThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_TamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_TaiMuiHong = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
-                var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                if(item1.Resulting != true)
+                {
+                    var detail_TuanHoan = db.Detail_TuanHoan.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_HoHap = db.Detail_HoHap.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_TieuHoa = db.Detail_TieuHoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_ThanTietNieu = db.Detail_ThanTietNieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_CoXuongKhop = db.Detail_CoXuongKhop.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_ThanKinh = db.Detail_ThanKinh.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_TamThan = db.Detail_TamThan.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_NgoaiKhoa = db.Detail_NgoaiKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_SanPhuKhoa = db.Detail_SanPhuKhoa.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_Mat = db.Detail_Mat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_TaiMuiHong = db.Detail_TaiMuiHong.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_RangHamMat = db.Detail_RangHamMat.Where(p => p.InformationExamination_ID == item1.ID).ToList();
+                    var detail_DaLieu = db.Detail_DaLieu.Where(p => p.InformationExamination_ID == item1.ID).ToList();
 
-                var checkDangerousTuanHoan = detail_TuanHoan.Any(p => p.TuanHoan.Dangerous == true);
-                var checkDangerousHoHap = detail_HoHap.Any(p => p.HoHap.Dangerous == true);
-                var checkDangerousTieuHoa = detail_TieuHoa.Any(p => p.TieuHoa.Dangerous == true);
-                var checkDangerousThanTietNieu = detail_ThanTietNieu.Any(p => p.ThanTietNieu.Dangerous == true);
-                var checkDangerousCoXuongKhop = detail_CoXuongKhop.Any(p => p.CoXuongKhop.Dangerous == true);
-                var checkDangerousThanKinh = detail_ThanKinh.Any(p => p.ThanKinh.Dangerous == true);
-                var checkDangerousTamThan = detail_TamThan.Any(p => p.TamThan.Dangerous == true);
-                var checkDangerousNgoaiKhoa = detail_NgoaiKhoa.Any(p => p.NgoaiKhoa.Dangerous == true);
-                var checkDangerousSanPhuKhoa = detail_SanPhuKhoa.Any(p => p.SanPhuKhoa.Dangerous == true);
-                var checkDangerousMat = detail_Mat.Any(p => p.Mat.Dangerous == true);
-                var checkDangerousTai = detail_TaiMuiHong.Any(p => p.TaiMuiHong.Dangerous == true);
-                var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
-                var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
+                    var checkDangerousTuanHoan = detail_TuanHoan.Any(p => p.TuanHoan.Dangerous == true);
+                    var checkDangerousHoHap = detail_HoHap.Any(p => p.HoHap.Dangerous == true);
+                    var checkDangerousTieuHoa = detail_TieuHoa.Any(p => p.TieuHoa.Dangerous == true);
+                    var checkDangerousThanTietNieu = detail_ThanTietNieu.Any(p => p.ThanTietNieu.Dangerous == true);
+                    var checkDangerousCoXuongKhop = detail_CoXuongKhop.Any(p => p.CoXuongKhop.Dangerous == true);
+                    var checkDangerousThanKinh = detail_ThanKinh.Any(p => p.ThanKinh.Dangerous == true);
+                    var checkDangerousTamThan = detail_TamThan.Any(p => p.TamThan.Dangerous == true);
+                    var checkDangerousNgoaiKhoa = detail_NgoaiKhoa.Any(p => p.NgoaiKhoa.Dangerous == true);
+                    var checkDangerousSanPhuKhoa = detail_SanPhuKhoa.Any(p => p.SanPhuKhoa.Dangerous == true);
+                    var checkDangerousMat = detail_Mat.Any(p => p.Mat.Dangerous == true);
+                    var checkDangerousTai = detail_TaiMuiHong.Any(p => p.TaiMuiHong.Dangerous == true);
+                    var checkDangerousRangHamMat = detail_RangHamMat.Any(p => p.RangHamMat.Dangerous == true);
+                    var checkDangerousDaLieu = detail_DaLieu.Any(p => p.DaLieu.Dangerous == true);
 
-                var checkResult = false;
-                if (checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
-                    || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true
-                    || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
-                {
-                    checkResult = true;
-                }
+                    var checkResult = false;
+                    if (checkDangerousTuanHoan == true || checkDangerousHoHap == true || checkDangerousTieuHoa == true || checkDangerousThanTietNieu == true
+                        || checkDangerousCoXuongKhop == true || checkDangerousThanKinh == true || checkDangerousTamThan == true || checkDangerousNgoaiKhoa == true
+                        || checkDangerousSanPhuKhoa == true || checkDangerousMat == true || checkDangerousTai == true || checkDangerousRangHamMat == true || checkDangerousDaLieu == true)
+                    {
+                        checkResult = true;
+                    }
 
-                if (item1.PatientStatus_ID == 44)
-                {
-                    checkResult = true;
-                }
+                    if (item1.PatientStatus_ID == 44)
+                    {
+                        checkResult = true;
+                    }
 
-                var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
-                if (item1.ResultCTMau == true)
-                {
-                    count += 1;
+                    var patientUser = db.Patients.FirstOrDefault(p => p.ID == item1.Patient_ID);
+                    if (item1.ResultCTMau == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultSHM == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultDMau == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultNhomMau == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultNuocTieu == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultMienDich == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultDichChocDo == true)
+                    {
+                        count += 1;
+                    }
+                    if (item1.ResultViSinh == true)
+                    {
+                        count += 1;
+                    }
+                    var NotiResult = new { patientUser.Name, count, item1.ID, checkResult };
+                    Noti.Add(NotiResult);
+                    count = 0;
                 }
-                if (item1.ResultSHM == true)
-                {
-                    count += 1;
-                }
-                if (item1.ResultDMau == true)
-                {
-                    count += 1;
-                }
-                if (item1.ResultNhomMau == true)
-                {
-                    count += 1;
-                }
-                if (item1.ResultNuocTieu == true)
-                {
-                    count += 1;
-                }
-                if (item1.ResultMienDich == true)
-                {
-                    count += 1;
-                }
-                if (item1.ResultDichChocDo == true)
-                {
-                    count += 1;
-                }
-                if (item1.ResultViSinh == true)
-                {
-                    count += 1;
-                }
-                var NotiResult = new { patientUser.Name, count, item1.ID, checkResult };
-                Noti.Add(NotiResult);
-                count = 0;
             }
             return await Task.Run(() => Json(new { data = Noti }, JsonRequestBehavior.AllowGet));
+        }
+
+        public JsonResult removeNoti(int id, string remove)
+        {
+            InformationExamination info = new InformationExamination();
+            if (remove == null)
+            {
+                info = db.InformationExaminations.FirstOrDefault(p => p.ID == id);
+                info.Examining = true;
+            }
+            else
+            {
+                info = db.InformationExaminations.FirstOrDefault(p => p.ID == id);
+                info.Examining = null;
+            }
+            db.Entry(info).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(new { success = true });
         }
 
         public async Task<ActionResult> GetNotificationBS1()
@@ -223,7 +267,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 {
                     dangerPatient = true;
                 }
-                var NotiResult = new { patientUser.Name, date, item1.ID, dangerPatient };
+                var NotiResult = new { patientUser.Name, date, item1.ID, dangerPatient, item1.Specialist };
                 NotiBS.Add(NotiResult);
             }
             return await Task.Run(() => Json(new { data = NotiBS }, JsonRequestBehavior.AllowGet));
@@ -289,7 +333,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/InformationExaminations/Create1
         public ActionResult Create1()
         {
-            MultiplesModel multiplesModel = new MultiplesModel();
             var UserID = User.Identity.GetUserId();
             var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
             ViewBag.UserByID = userID.ID;
@@ -353,6 +396,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 informationExamination.HeartBeat = multiplesModel.InformationExamination.HeartBeat;
                 informationExamination.Weight = multiplesModel.InformationExamination.Weight;
                 informationExamination.Height = multiplesModel.InformationExamination.Height;
+                informationExamination.Specialist = multiplesModel.InformationExamination.Specialist;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");

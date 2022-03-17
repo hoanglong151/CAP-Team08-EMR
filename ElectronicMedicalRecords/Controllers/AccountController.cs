@@ -382,25 +382,35 @@ namespace ElectronicMedicalRecords.Controllers
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
-            switch (result)
+            var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+            UserManager.AddToRole(userId, "Giám Đốc");
+            UserManager.AddToRole(userId, "QTV");
+            UserManager.AddToRole(userId, "Bác Sĩ");
+            UserManager.AddToRole(userId, "Kỹ Thuật Viên");
+            UserManager.AddToRole(userId, "Thu Ngân");
+            UserManager.AddToRole(userId, "Y tá/Điều dưỡng");
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var result1 = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
+            switch (result1)
             {
                 case SignInStatus.Success:
                     CP24Team08Entities db = new CP24Team08Entities();
-                    var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     var check = db.Users.FirstOrDefault(c => c.UserID == userId);
-                     if (ModelState.IsValid && check == null)
+                    if (ModelState.IsValid && check == null)
                     {
                         user.UserID = userId;
                         user.IsShow = false;
                         user.Privacy = false;
                         user.ActiveAccount = false;
                         user.ExternalLogin = true;
+                        user.ActiveAccount = true;
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
                     }
                     else if (check != null && check.Address == null || check.BirthDate == null || check.Degree == null || check.HomeTown_ID == null || check.Image == null || check.Name == null || check.Nation_ID == null || check.Phone == null || check.Privacy == false || check.Religion_ID == null)
                     {
+                        user.ActiveAccount = true;
                         return RedirectToAction("Edit", "Users", new { id = check.ID, Area = "Admin" });
                     }
                     else
