@@ -101,6 +101,9 @@
                     @Html.ValidationMessageFor(model => model.Patient.InsuranceCode, "", new { @class = "text-danger" })
                 </div>
             </div>
+            @{
+                Html.RenderAction("ReExam", "InformationExaminations", new { multiplesModel = Model });
+            }
         </div>
     </div>
 </div>

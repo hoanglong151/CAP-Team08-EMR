@@ -9,12 +9,8 @@
                 <th hidden></th>
                 <th>Chỉ Định</th>
                 <th>Tên Xét Nghiệm</th>
-                @if (User.IsInRole("Bác Sĩ"))
-                {
-                    <th>Kết Quả</th>
-                    <th>Chỉ Số Cân Bằng</th>
-                    <th>Đơn Vị</th>
-                }
+                <th>Kết Quả</th>
+                <th>Chỉ Số Cân Bằng</th>
             </tr>
         </thead>
         <tbody>
@@ -37,19 +33,16 @@
                     <td>
                         <label class="form-check-label">@Model.Detail_Amniocentes[i].Amniocente.NameTest</label>
                     </td>
-                    @if (User.IsInRole("Bác Sĩ"))
-                    {
-                        <td>
-                            @Model.Detail_Amniocentes[i].Result
-                            <input name="Detail_Amniocentes[@i].Result" value="@Model.Detail_Amniocentes[i].Result" type="number" hidden />
-                        </td>
-                        <td>
-                            @Html.Raw(Model.Detail_Amniocentes[i].Amniocente.CSBT)
-                        </td>
-                        <td>
-                            @Model.Detail_Amniocentes[i].Amniocente.Unit
-                        </td>
-                    }
+                    <td>
+                        @Model.Detail_Amniocentes[i].Result
+                        <input name="Detail_Amniocentes[@i].Result" value="@Model.Detail_Amniocentes[i].Result" type="number" hidden />
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Detail_Amniocentes[i].Amniocente.CSBT)
+                    </td>
+                    <td>
+                        @Model.Detail_Amniocentes[i].Amniocente.Unit
+                    </td>
                 </tr>
             }
         </tbody>

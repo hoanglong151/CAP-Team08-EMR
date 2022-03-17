@@ -18,8 +18,8 @@ namespace ElectronicMedicalRecords.Models
         public User()
         {
             this.Clinicals = new HashSet<Clinical>();
-            this.InformationExaminations = new HashSet<InformationExamination>();
             this.Bills = new HashSet<Bill>();
+            this.InformationExaminations = new HashSet<InformationExamination>();
         }
     
         public int ID { get; set; }
@@ -51,8 +51,8 @@ namespace ElectronicMedicalRecords.Models
         public virtual Nation Nation { get; set; }
         public virtual Religion Religion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InformationExamination> InformationExaminations { get; set; }
     }
 }

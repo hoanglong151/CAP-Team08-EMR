@@ -1,3 +1,4 @@
+using ElectronicMedicalRecords.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,6 @@ namespace ElectronicMedicalRecords
             NCbs.RegisterNotificationBS();
             NCyta.RegisterNotificationBS1();
             notificationComponentYTa.RegisterNotificationYTa();
-
         }
         protected void Application_End()
         {

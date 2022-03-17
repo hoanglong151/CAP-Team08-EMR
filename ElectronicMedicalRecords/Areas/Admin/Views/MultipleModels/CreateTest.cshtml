@@ -24,11 +24,11 @@
         box-shadow: unset
     }
 
-    .patient-taginpust .bootstrap-tagsinput .label-info {
-        background-color: #435ebe;
-        border-radius: 4px;
-        padding: 4px
-    }
+        .patient-taginpust .bootstrap-tagsinput .label-info {
+            background-color: #435ebe;
+            border-radius: 4px;
+            padding: 4px
+        }
 
     .table-bordered tr:first-child {
         background-color: #435ebe;
@@ -2396,6 +2396,14 @@
                 },
             });
         });
+
+        window.addEventListener('beforeunload', (e) => {
+            $.ajax({
+                url: "@Url.Action("removeNoti", "InformationExaminations")",
+                type: "POST",
+                data: { id: @Model.InformationExamination.ID, remove: "remove"},
+            })
+        })
 
         if (window.location.href.indexOf("Admin/MultipleModels") > -1) {
             $('a[href="/CP24Team08/Admin/Patients"]').parent().addClass("active");

@@ -120,7 +120,11 @@
         <AssociationConnector Association="CP24Team08Model.FK_Ward_District" />
         <AssociationConnector Association="CP24Team08Model.FK_Ward_HomeTown" />
         <AssociationConnector Association="CP24Team08Model.FK_Patient_Ward" />
-        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="14.25" PointY="48.25" />
+        <EntityTypeShape EntityType="CP24Team08Model.Bill" Width="1.5" PointX="25.5" PointY="65" />
+        <AssociationConnector Association="CP24Team08Model.FK_Bill_Patient" />
+        <AssociationConnector Association="CP24Team08Model.FK_Bill_User" />
+        <EntityTypeShape EntityType="CP24Team08Model.InformationExamination" Width="1.5" PointX="14.25" PointY="46.875" />
+        <AssociationConnector Association="CP24Team08Model.FK_Bill_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_CayMau_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Clinical_InformationExamination" />
         <AssociationConnector Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination" />
@@ -149,10 +153,6 @@
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_PatientStatus" />
         <AssociationConnector Association="CP24Team08Model.FK_InformationExamination_User" />
         <AssociationConnector Association="CP24Team08Model.FK_Prescription_Detail_InformationExamination" />
-        <EntityTypeShape EntityType="CP24Team08Model.Bill" Width="1.5" PointX="25.5" PointY="65" />
-        <AssociationConnector Association="CP24Team08Model.FK_Bill_InformationExamination" />
-        <AssociationConnector Association="CP24Team08Model.FK_Bill_Patient" />
-        <AssociationConnector Association="CP24Team08Model.FK_Bill_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
