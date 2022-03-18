@@ -63,7 +63,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             {
                 ChiDinh = false,
                 Name = rand.ToString(),
-                Dangerous = false
             };
 
             using (var scope = new TransactionScope())
