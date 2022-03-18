@@ -70,7 +70,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="ctLabel col-md-3">
+                                            @*<div class="ctLabel col-md-3">
                                                 <label for="degree">Bằng cấp <span style="color:red">*</span></label>
                                             </div>
                                             <div class="col-md-9">
@@ -139,7 +139,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                     <div class="col-md-4 d-flex align-items-end">
@@ -172,7 +172,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ctLabel col-md-2">
+                                @*<div class="ctLabel col-md-2">
                                     <label for="phone">Số Điện Thoại <span style="color:red">*</span></label>
                                 </div>
                                 <div class="col-md-10">
@@ -206,7 +206,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                                 @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                                 {
                                     <div class="col-12">
@@ -245,7 +245,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-12">
+                                    @*<div class="form-group col-md-12">
                                         <div class='form-check'>
                                             <div class="checkbox">
                                                 @Html.EditorFor(model => model.IsShow, new { htmlAttributes = new { @class = "form-check-input form-check-primary form-check-glow", id = "password-id-icon" } })
@@ -253,9 +253,9 @@
                                                 @Html.ValidationMessageFor(model => model.IsShow, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 }
-                                <div class="col-md-12">
+                                @*<div class="col-md-12">
                                     <div class='form-check form-group'>
                                         <div class="checkbox position-relative">
                                             @Html.EditorFor(model => model.Privacy, new { htmlAttributes = new { @class = "form-group form-check-input form-check-primary form-check-glow", id = "password-id-icon1", @data_val = "true", @required = "required" } })
@@ -263,7 +263,7 @@
                                             @Html.ValidationMessageFor(model => model.Privacy, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="col-12 d-flex justify-content-end">
                                     <button type="submit"
                                             class="btn btn-primary me-1 mb-1">
