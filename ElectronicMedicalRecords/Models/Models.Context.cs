@@ -60,12 +60,10 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<DiagnosticsCategory> DiagnosticsCategories { get; set; }
         public virtual DbSet<DongMau> DongMaus { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
-        public virtual DbSet<HistoryDisease> HistoryDiseases { get; set; }
         public virtual DbSet<HoHap> HoHaps { get; set; }
         public virtual DbSet<HomeTown> HomeTowns { get; set; }
         public virtual DbSet<Immune> Immunes { get; set; }
         public virtual DbSet<Mat> Mats { get; set; }
-        public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
         public virtual DbSet<MedicationCategory> MedicationCategories { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
@@ -94,7 +92,9 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
+        public virtual DbSet<HistoryDisease> HistoryDiseases { get; set; }
+        public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
     }
 }

@@ -663,7 +663,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var multiple = MockSession();
             using (var scope = new TransactionScope())
             {
-                var result = controller.Create(multiple) as Task<RedirectToRouteResult>;
+                string[] chuyenkhoa = new string[2];
+                var result = controller.Create(multiple, chuyenkhoa) as Task<RedirectToRouteResult>;
                 Assert.IsNotNull(result);
             }
         }

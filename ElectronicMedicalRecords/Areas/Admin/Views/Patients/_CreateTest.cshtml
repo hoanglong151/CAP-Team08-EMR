@@ -110,6 +110,7 @@
             </div>
             @{
                 Html.RenderAction("Create", "InformationExaminations", new { id = Model.Patient.ID });
+                Html.RenderAction("ReExam", "InformationExaminations", new { multiplesModel = Model });
             }
         </div>
     </div>

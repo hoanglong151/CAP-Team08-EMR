@@ -42,7 +42,6 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             {
                 Name = rand.ToString(),
                 ChiDinh = false,
-                Dangerous = false,
             };
             using (var scope = new TransactionScope())
             {

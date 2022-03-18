@@ -1655,7 +1655,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         // POST: Admin/MultipleModels/Create
         [HttpPost, ValidateInput(false)]
-        public async Task<RedirectToRouteResult> Create(MultiplesModel multiplesModel)
+        public async Task<RedirectToRouteResult> Create(MultiplesModel multiplesModel, string[] chuyenKhoa)
          {
             PatientsController patientsController = new PatientsController();
             InformationExaminationsController informationExaminationsController = new InformationExaminationsController();
@@ -1663,6 +1663,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             Detail_MedicalHistoryController detail_MedicalHistoryController = new Detail_MedicalHistoryController();
             try
             {
+                if(chuyenKhoa != null)
+                {
+                    foreach (var item in chuyenKhoa)
+                    {
+                        if (multiplesModel.InformationExamination.Specialist == null)
+                        {
+                            multiplesModel.InformationExamination.Specialist = item;
+                        }
+                        else
+                        {
+                            multiplesModel.InformationExamination.Specialist = multiplesModel.InformationExamination.Specialist + ", " + item;
+                        }
+                    }
+                }
                 // TODO: Add insert logic here
                 patientsController.Create(multiplesModel.Patient);
                 var PatientID = multiplesModel.Patient.ID;

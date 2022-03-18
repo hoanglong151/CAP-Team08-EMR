@@ -50,7 +50,6 @@
                     <thead>
                         <tr>
                             <th>Danh Mục Bệnh Tiền Sử</th>
-                            <th>Nguy Hiểm</th>
                             @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV"))
                             {
                                 <th>Chức Năng</th>
@@ -91,16 +90,6 @@
                                         <div class="form-control-icon icon-MedicationCategory">
                                             <i class="bi bi-person"></i>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Nguy Hiểm</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="form-check-input form-check-danger" name="Dangerous" id="customColorCheck4">
                                     </div>
                                 </div>
                             </div>
@@ -153,16 +142,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>Nguy Hiểm</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="form-check-input form-check-danger" id="UpdateBenhTienSusDangerous" name="Dangerous">
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn" data-bs-dismiss="modal">
@@ -195,16 +174,6 @@
                 "columns": [
                     {
                         "data": "Name",
-                    },
-                    {
-                        "data": "Dangerous",
-                        "render": function (data, type, row) {
-                            var button = "<div class='form-check'><div class='custom-control custom-checkbox'><input type='checkbox' checked class='form-check-input form-check-danger' name='Dangerous' id='customColorCheck4' disabled></div></div>";
-                            if (data == false) {
-                                button = "<div class='form-check'><div class='custom-control custom-checkbox'><input type='checkbox' class='form-check-input form-check-danger' name='Dangerous' id='customColorCheck4' disabled></div></div>";
-                            }
-                            return button;
-                        },
                     },
                     {
                         "data": null,
@@ -243,9 +212,9 @@
                 var dataBenhTienSu = $('#form-createBenhTienSus').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
-                if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                    dataBenhTienSu = dataBenhTienSu.replace("&Dangerous=on", "&Dangerous=true");
-                }
+                //if (jQuery('input[name="Dangerous"]').val() == 'on') {
+                //    dataBenhTienSu = dataBenhTienSu.replace("&Dangerous=on", "&Dangerous=true");
+                //}
                 var model = {
                     validata: dataBenhTienSu,
                 }
@@ -295,7 +264,7 @@
                 success: function (res) {
                     if (res.data != null) {
                         $('#UpdateBenhTienSusName').val(res.data.Name);
-                        $('#UpdateBenhTienSusDangerous').prop('checked', res.data.Dangerous);
+                      /*  $('#UpdateBenhTienSusDangerous').prop('checked', res.data.Dangerous);*/
                         $('#UpdateBenhTienSusID').val(res.data.ID);
                     }
                 }
@@ -309,9 +278,9 @@
                 var dataBenhTienSu = $('#form-updateBenhTienSus').serialize();
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
-                if (jQuery('input[name="Dangerous"]').val() == 'on') {
-                    dataBenhTienSu = dataBenhTienSu.replace("&Dangerous=on", "&Dangerous=true");
-                }
+                //if (jQuery('input[name="Dangerous"]').val() == 'on') {
+                //    dataBenhTienSu = dataBenhTienSu.replace("&Dangerous=on", "&Dangerous=true");
+                //}
                 var model = {
                     validata: dataBenhTienSu,
                 }

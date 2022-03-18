@@ -14,7 +14,7 @@ namespace ElectronicMedicalRecords
         public void RegisterNotificationBS1()
         {
             string conStr = ConfigurationManager.ConnectionStrings["sqlConString"].ConnectionString;
-            string sqlCommand = @"SELECT [New] from [dbo].[InformationExamination]";
+            string sqlCommand = @"SELECT [New],[Examining] from [dbo].[InformationExamination]";
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 if (con.State != System.Data.ConnectionState.Open)
@@ -52,7 +52,7 @@ namespace ElectronicMedicalRecords
             using (CP24Team08Entities db = new CP24Team08Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.InformationExaminations.Where(a => a.New == false).OrderByDescending(a => a.DateExamine).ToList();
+                return db.InformationExaminations.Where(a => a.New == false && a.Examining != true).OrderByDescending(a => a.DateExamine).ToList();
             }
         }
     }

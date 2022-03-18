@@ -31,10 +31,13 @@
                 Danh Sách Bệnh Nhân
             </div>
             <div class="card-body">
-                <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">
-                    <i class="m-icon bi bi-plus-circle"></i>
-                    Tạo Hồ Sơ
-                </a>
+                @if (User.IsInRole("Giám Đốc") || User.IsInRole("QTV") || User.IsInRole("Y tá/Điều dưỡng"))
+                {
+                    <a href="@Url.Action("Create", "MultipleModels")" class="btn btn-outline-primary">
+                        <i class="m-icon bi bi-plus-circle"></i>
+                        Tạo Hồ Sơ
+                    </a>
+                }
                 @if (ViewBag.Error != null)
                 {
                     <div class="alert alert-danger alert-dismissible show fade">
