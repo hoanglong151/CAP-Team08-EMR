@@ -399,9 +399,8 @@ namespace ElectronicMedicalRecords.Controllers
                     if (ModelState.IsValid && check == null)
                     {
                         user.UserID = userId;
-                        user.IsShow = false;
-                        user.Privacy = false;
-                        user.ActiveAccount = false;
+                        user.IsShow = true;
+                        user.Privacy = true;
                         user.ExternalLogin = true;
                         user.ActiveAccount = true;
                         db.Users.Add(user);
