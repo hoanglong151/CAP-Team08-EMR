@@ -2057,3 +2057,70 @@ body.admin-bar .sh-side-demos-container {
 #sh-header-builder-9CcOom8qTf .sh-header-builder-main ul.sh-nav > li > a.current-page {
     color: #ff0404 !important;
 }
+
+#back-to-top {
+    bottom: 30px;
+    right: 30px;
+    position: fixed;
+    z-index: 999;
+}
+
+#back-to-top > * {
+        position: relative;
+        background-color: #3ce2ad;
+}
+/*#back-to-top i:hover {
+        color: red;
+}
+*/
+#back-to-top i {
+        color: white;
+        transform: translateY(-50%) translateX(-50%);
+        top: 50%;
+        position: absolute;
+        left: 50%;
+    }
+
+.sh-back-to-top.w-50 {
+    width: 50px !important;
+    margin: auto;
+}
+
+.sh-back-to-top.h-50 {
+    height: 50px !important;
+}
+
+
+.sh-back-to-top.w-80 {
+    width: 80px !important;
+}
+
+.sh-back-to-top.h-80 {
+    height: 80px !important;
+}
+
+.fs-50 {
+    font-size: 50px !important;
+}
+.fs-40 {
+    font-size: 40px !important;
+}
+
+.bigger-animation {
+    animation-name: bigger;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bigger {
+    from {
+        background-color: red;
+        width: 80px;
+        height: 80px;
+    }
+    to {
+        background-color: yellow;
+        width: 100px;
+        height: 100px;
+    }
+}

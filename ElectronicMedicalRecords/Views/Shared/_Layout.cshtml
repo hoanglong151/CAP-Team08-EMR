@@ -375,13 +375,16 @@
                                                                         <a class="departments" href="@Url.Action("Index", "Home")#departments">DỊCH VỤ</a>
                                                                     </li>
                                                                     <li id="menu-item-32" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-32">
-                                                                        <a class="doctor" href="@Url.Action("Doctors", "Home")">ĐỘI NGŨ BÁC SĨ</a>
+                                                                        <a class="doctor" href="@Url.Action("Doctors", "Home")">BÁC SĨ</a>
                                                                     </li>
                                                                     <li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-33">
                                                                         <a class="news" href="@Url.Action("Index", "Home")#news">TIN TỨC</a>
                                                                     </li>
                                                                     <li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-34">
                                                                         <a class="contacts" href="@Url.Action("Index", "Home")#contacts">LIÊN HỆ</a>
+                                                                    </li>
+                                                                    <li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-35">
+                                                                        <a class="contacts" href="@Url.Action("Index", "Home")#contacts">E-PROFILE</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -464,10 +467,30 @@
         </div>
         @RenderBody()
 
-        <div class="sh-back-to-top sh-back-to-top3">
+        @*<div class="sh-back-to-top sh-back-to-top3">
             <i class="icon-arrow-up"></i>
         </div>
+        <div class="sh-back-to-top sh-back-to-top3">
+            <i class="fa-brands fa-facebook-messenger"></i>
+        </div>
+        <div class="sh-back-to-top sh-back-to-top3">
+            <i class="fa-solid fa-phone-flip"></i>>
+        </div>*@
+        <div id="back-to-top">
+            <div class="sh-back-to-top sh-back-to-top3 w-50 h-50 mb-2">
+                <i class="icon-arrow-up"></i>
+            </div>
+            <div class="sh-back-to-top sh-back-to-top3 w-80 h-80 mb-2 bigger-animation">
+                <i class="fa-brands fa-facebook-messenger fs-50"></i>
+            </div>
+            <div class="sh-back-to-top sh-back-to-top3 w-80 h-80">
+                <i class="fa-solid fa-phone-flip fs-40"></i>
+            </div>
+        </div>
     </div>
+
+    
+
     <div class="sh-notifications"></div>
     <div class="sh-notification-item-example">
         <a href="https://jevelin.shufflehound.com/medical">
