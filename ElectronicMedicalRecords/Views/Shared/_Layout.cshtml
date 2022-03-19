@@ -334,6 +334,12 @@
 
 </head>
 <body class="home page-template-default page page-id-4 theme-jevelin woocommerce-no-js wpb-js-composer js-comp-ver-6.7.0 vc_responsive sh-header-mobile-spacing-compact sh-body-header-sticky sh-blog-style2 carousel-dot-style1 carousel-dot-spacing-5px carousel-dot-size-standard">
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
     <div id="page-container" class="">
         <div class="sh-header-template" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
             <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding vc_row_1139288528">
@@ -467,41 +473,19 @@
         </div>
         @RenderBody()
 
-        @*<div class="sh-back-to-top sh-back-to-top3">
-            <i class="icon-arrow-up"></i>
-        </div>
-        <div class="sh-back-to-top sh-back-to-top3">
-            <i class="fa-brands fa-facebook-messenger"></i>
-        </div>
-        <div class="sh-back-to-top sh-back-to-top3">
-            <i class="fa-solid fa-phone-flip"></i>>
-        </div>*@
         <div id="back-to-top">
-            <div class="sh-back-to-top sh-back-to-top3 w-50 h-50 mb-2">
+            <div class="arrow-top sh-back-to-top sh-back-to-top3 w-50 h-50 mb-2">
                 <i class="icon-arrow-up"></i>
             </div>
-            <div class="sh-back-to-top sh-back-to-top3 w-80 h-80 mb-2 bigger-animation">
-                <i class="fa-brands fa-facebook-messenger fs-50"></i>
-            </div>
-            <div class="sh-back-to-top sh-back-to-top3 w-80 h-80">
-                <i class="fa-solid fa-phone-flip fs-40"></i>
+        </div>
+        <div class="btn-call sh-back-to-top3 bigger-animation">
+            <a href="tel:0123456789">
+                <i class="fa-solid fa-phone-flip fs-30"></i>
+            </a>
+            <div class="text-quotes">
+                <a href="tel:0123456789">0123456789</a>
             </div>
         </div>
-    </div>
-
-    
-
-    <div class="sh-notifications"></div>
-    <div class="sh-notification-item-example">
-        <a href="https://jevelin.shufflehound.com/medical">
-            <strong class="sh-notification-item-name"></strong> has been added to the cart.
-            <strong>
-                View Cart
-            </strong>
-        </a>
-        <span class="sh-notification-item-close">
-            <i class="ti-close"></i>
-        </span>
     </div>
 
     <footer class="sh-footer-template" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
@@ -649,18 +633,17 @@
             </div><div class="vc_row-full-width vc_clearfix"></div>
         </div>
     </footer>
-    <script type="text/javascript">
+    <script>
 
         jQuery(document).ready(function ($) {
             "use strict";
 
-            $(".sh-page-loader").fadeOut(500);
+        $(".sh-page-loader").fadeOut(500);
             $("body").css('overflow-y', 'visible').css('overflow-x', 'hidden');
 
             $(window).bind('beforeunload', function (e) {
-                $('.sh-page-loader').fadeIn();
+                $('.sh-page-loader').remove();
             });
-
         });
     </script>
     <style>
@@ -700,6 +683,31 @@
     <script>
         AOS.init();
     </script>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "104605205526075");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v13.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <script>
         var links = document.querySelectorAll('.sh-nav > li > a');
         var sec = document.querySelectorAll('section');

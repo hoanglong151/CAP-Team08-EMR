@@ -2059,8 +2059,8 @@ body.admin-bar .sh-side-demos-container {
 }
 
 #back-to-top {
-    bottom: 30px;
-    right: 30px;
+    bottom: 135px;
+    right: 0;
     position: fixed;
     z-index: 999;
 }
@@ -2069,10 +2069,6 @@ body.admin-bar .sh-side-demos-container {
         position: relative;
         background-color: #3ce2ad;
 }
-/*#back-to-top i:hover {
-        color: red;
-}
-*/
 #back-to-top i {
         color: white;
         transform: translateY(-50%) translateX(-50%);
@@ -2080,30 +2076,27 @@ body.admin-bar .sh-side-demos-container {
         position: absolute;
         left: 50%;
     }
-
+.sh-back-to-top1.w-50,
 .sh-back-to-top.w-50 {
     width: 50px !important;
     margin: auto;
 }
-
+.sh-back-to-top1.h-50,
 .sh-back-to-top.h-50 {
     height: 50px !important;
 }
 
 
-.sh-back-to-top.w-80 {
-    width: 80px !important;
+.sh-back-to-top.w-60 {
+    width: 60px !important;
 }
 
-.sh-back-to-top.h-80 {
-    height: 80px !important;
+.sh-back-to-top.h-60 {
+    height: 60px !important;
 }
 
-.fs-50 {
-    font-size: 50px !important;
-}
-.fs-40 {
-    font-size: 40px !important;
+.fs-30 {
+    font-size: 30px !important;
 }
 
 .bigger-animation {
@@ -2113,14 +2106,94 @@ body.admin-bar .sh-side-demos-container {
 }
 
 @keyframes bigger {
-    from {
-        background-color: red;
-        width: 80px;
-        height: 80px;
+
+    0% {
+        transform: scale(1);
     }
-    to {
-        background-color: yellow;
-        width: 100px;
-        height: 100px;
+
+    15% {
+        box-shadow: 0 0 0 2px rgba(60, 226, 173, 0.4);
     }
+
+    25% {
+        box-shadow: 0 0 0 4px rgba(60, 226, 173, 0.4), 0 0 0 12px rgba(60, 226, 173, 0.2);
+    }
+
+    25% {
+        box-shadow: 0 0 0 6px rgba(60, 226, 173, 0.4), 0 0 0 14px rgba(60, 226, 173, 0.2);
+    }
+}
+
+.btn-call {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 100px;
+    right: 25px;
+    border-radius: 100px;
+    background-color: #3ce2ad;
+    transition: all 0.15s linear;
+    z-index: 99;
+}
+
+.btn-call a{
+    background-color: transparent;
+    color: #fff;
+}
+
+.btn-call .text-quotes {
+    display: none;
+    width: 0px;
+    height: 55px;
+    transition: all .15s;
+    overflow: hidden;
+    text-align: center;
+}
+
+.btn-call:hover {
+    width: 200px;
+    border-radius: 40px;
+    overflow: hidden;
+    background: #fff;
+    animation: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .btn-call:hover .text-quotes {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+        flex-grow: 1;
+    }
+
+        .btn-call:hover .text-quotes a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            width: 100%;
+            height: 100%;
+        }
+
+    .btn-call:hover > a {
+        display: flex;
+        height: 100%;
+        width: 60px;
+        justify-content: center;
+        align-items: center;
+        background-color: #3ce2ad;
+    }
+
+.btn-call > a:hover{
+    color: #fff;
+}
+
+.arrow-top:hover {
+    background-color: #17d99c !important;
 }
