@@ -284,6 +284,30 @@
                 ]
             })
         })
+
+        var selectHomeTown = document.querySelector("[name='HomeTown_ID']");
+        selectHomeTown.addEventListener('change', (e) => {
+            var optionDistrict = document.querySelectorAll("[name='District_ID'] option");
+            console.log(e.target.value)
+            optionDistrict.forEach((value, index) => {
+                value.remove();
+            })
+            $.ajax({
+                url: "@Url.Action("filterDistricts", "Districts")",
+                type: "POST",
+                data: { id: e.target.value },
+                success: (res) => {
+                    var district = 0;
+                    res.data.forEach((v, i) => {
+                        if (i === 0) {
+                            district = v.ID;
+                        }
+                        $("[name='District_ID']").append(`<option value="${v.ID}">${v.District1}</option>`);
+                    })
+                }
+            })
+        })
+
         createWards()
         updateWards()
         /*Create Medication Categories*/
