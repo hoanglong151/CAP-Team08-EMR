@@ -407,7 +407,7 @@ namespace ElectronicMedicalRecords.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
                     }
-                    else if (check != null && check.Address == null || check.BirthDate == null || check.Degree == null || check.HomeTown_ID == null || check.Image == null || check.Name == null || check.Nation_ID == null || check.Phone == null || check.Privacy == false || check.Religion_ID == null)
+                    else if (check != null && check.Image == null || check.Name == null || check.Privacy == false)
                     {
                         user.ActiveAccount = true;
                         return RedirectToAction("Edit", "Users", new { id = check.ID, Area = "Admin" });
