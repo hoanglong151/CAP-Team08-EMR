@@ -74,6 +74,7 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<bool> Examining { get; set; }
         public Nullable<bool> Resulting { get; set; }
         public Nullable<System.DateTime> DateReExamination { get; set; }
+        public Nullable<bool> ExaminationType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }

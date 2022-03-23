@@ -115,17 +115,19 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 MaBN = patient.MaBN,
                 ID = patient.ID
             };
+            MultiplesModel multiplesModel = new MultiplesModel();
             using (var scope = new TransactionScope())
             {
-                var result = controller.CreateOldPatient(newPatient) as RedirectToRouteResult;
+                var result = controller.CreateOldPatient(newPatient, multiplesModel) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("CreateOldPatient", result.RouteValues["action"]);
             }
 
             using (var scope = new TransactionScope())
             {
+
                 controller.ModelState.AddModelError("", "Error Message");
-                var result1 = controller.CreateOldPatient(newPatient) as RedirectToRouteResult;
+                var result1 = controller.CreateOldPatient(newPatient, multiplesModel) as RedirectToRouteResult;
                 Assert.IsNotNull(result1);
                 Assert.AreEqual("CreateOldPatient", result1.RouteValues["action"]);
             }

@@ -20,7 +20,7 @@ namespace ElectronicMedicalRecords.Models
         public string LevelFamily { get; set; }
         public bool Selected { get; set; }
     
-        public virtual Patient Patient { get; set; }
         public virtual HistoryDisease HistoryDisease { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

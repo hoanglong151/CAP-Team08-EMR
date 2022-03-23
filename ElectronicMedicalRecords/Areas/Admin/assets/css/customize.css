@@ -672,3 +672,24 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
     top: 90px;
     right: 20px;
 }
+
+#listNote{
+    display: none;
+    position: absolute;
+    top: 62px;
+    padding: 0;
+    height: 250px;
+    overflow-y: scroll;
+}
+
+.NoteItem {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 0;
+    cursor: pointer
+}
+
+.NoteItem:hover {
+    background-color: #ccc;
+}
+

@@ -232,10 +232,24 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult Payment(int id, int price)
         {
             var examinationBill = db.InformationExaminations.Find(id);
+            var patient = db.Patients.AsNoTracking().FirstOrDefault(p => p.ID == examinationBill.Patient_ID);
             var UserID = User.Identity.GetUserId();
             var userPayment = db.Users.AsNoTracking().FirstOrDefault(p => p.UserID == UserID);
             if(examinationBill.New == null && examinationBill.PriceExamination == null)
             {
+                if(examinationBill.ExaminationType == true)
+                {
+                    if (patient.MoneyBackup >= 250000)
+                    {
+                        patient.MoneyBackup = patient.MoneyBackup - price;
+                        db.Entry(patient).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return Json(new { success = false, responeText = "Không Đủ Tiền Thanh Toán" });
+                    }
+                }
                 examinationBill.New = false;
                 examinationBill.PriceExamination = price;
                 db.Entry(examinationBill).State = EntityState.Modified;
@@ -1653,6 +1667,22 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             return View();
         }
 
+        public JsonResult updateMoneyBackup(int id, int money)
+        {
+            try
+            {
+                var patient = db.Patients.AsNoTracking().FirstOrDefault(p => p.ID == id);
+                patient.MoneyBackup = money;
+                db.Entry(patient).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false });
+            }
+        }
+
         // POST: Admin/MultipleModels/Create
         [HttpPost, ValidateInput(false)]
         public async Task<RedirectToRouteResult> Create(MultiplesModel multiplesModel, string[] chuyenKhoa)
@@ -1787,7 +1817,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.ChiDinh == true).ToList();
                 Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
                 Detail_HistoryDisease detail_HistoryDisease = new Detail_HistoryDisease();
-                patientsController.CreateOldPatient(multiplesModel.Patient);
+                patientsController.CreateOldPatient(multiplesModel.Patient, multiplesModel);
                 informationExaminationsController.CreateOldPatientPost(multiplesModel);
                 detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
                 detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
@@ -1890,7 +1920,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.HistoryDiseases3 = multiplesModel.HistoryDiseases3.Where(p => p.ChiDinh == true).ToList();
                 multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.ChiDinh == true).ToList();
 
-                patientsController.CreateOldPatient(multiplesModel.Patient);
+                patientsController.CreateOldPatient(multiplesModel.Patient, multiplesModel);
                 informationExaminationsController.CreateTest(multiplesModel.InformationExamination, multiplesModel.Detail_DiagnosticsCategory);
                 detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
                 detail_MedicalHistoryController.CreateOldPatient(multiplesModel);
