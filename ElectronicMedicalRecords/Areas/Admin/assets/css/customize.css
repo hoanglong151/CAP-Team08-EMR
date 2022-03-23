@@ -672,7 +672,13 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
     top: 90px;
     right: 20px;
 }
+.LMax{
+    padding:10px
+}
 
+.LMin{
+    padding-top:50px
+}
 #listNote{
     display: none;
     position: absolute;
