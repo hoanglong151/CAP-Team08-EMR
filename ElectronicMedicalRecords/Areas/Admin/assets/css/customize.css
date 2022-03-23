@@ -667,6 +667,12 @@ table.dataTable > thead .sorting:after, table.dataTable > thead .sorting_desc:af
     width: unset !important;
 }
 
+.abs-t-r{
+    position:absolute;
+    top: 90px;
+    right: 20px;
+}
+
 #listNote{
     display: none;
     position: absolute;
