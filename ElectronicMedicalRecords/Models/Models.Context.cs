@@ -70,7 +70,6 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<Nation1> Nation1 { get; set; }
         public virtual DbSet<NgoaiKhoa> NgoaiKhoas { get; set; }
         public virtual DbSet<NhomMau> NhomMaus { get; set; }
-        public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<PatientStatu> PatientStatus { get; set; }
         public virtual DbSet<Prescription_Detail> Prescription_Detail { get; set; }
         public virtual DbSet<RangHamMat> RangHamMats { get; set; }
@@ -93,8 +92,9 @@ namespace ElectronicMedicalRecords.Models
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
-        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
         public virtual DbSet<HistoryDisease> HistoryDiseases { get; set; }
         public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
+        public virtual DbSet<InformationExamination> InformationExaminations { get; set; }
+        public virtual DbSet<Patient> Patients { get; set; }
     }
 }

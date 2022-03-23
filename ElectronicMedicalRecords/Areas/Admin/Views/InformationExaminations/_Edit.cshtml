@@ -24,6 +24,7 @@
             @Html.HiddenFor(model => model.InformationExamination.PriceTest)
             @Html.HiddenFor(model => model.InformationExamination.DateReExamination)
             @Html.HiddenFor(model => model.InformationExamination.Specialist)
+            @Html.HiddenFor(model => model.InformationExamination.ExaminationType)
             @if (Model.Clinical != null)
             {
                 @Html.HiddenFor(model => model.Clinical.InformationExamination_ID)

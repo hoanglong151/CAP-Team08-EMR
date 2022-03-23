@@ -150,6 +150,20 @@
 }
 @section scripts{
     <script>
+        var examinationType = document.querySelector('#flexRadioDefault2');
+        examinationType.addEventListener('click', () => {
+            var moneyBackUp = document.querySelector('#Patient_MoneyBackup').value;
+            if (moneyBackUp < 250000) {
+                document.querySelector('.NotiMoney').style.display = 'block';
+            }
+        })
+
+        var examitionType1 = document.querySelector('#flexRadioDefault1');
+        examitionType1.addEventListener('click', () => {
+            document.querySelector('.NotiMoney').style.display = 'none';
+        })
+    </script>
+    <script>
         var k = 1;
         var count = [0, 0, 0, 0, 0, 0, 0];
         var arrTests = [];

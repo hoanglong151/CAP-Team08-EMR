@@ -722,6 +722,28 @@
             })
         }
 
+        var note = document.querySelector('#NoteMedication');
+        var parentNote = document.querySelector('#listNote');
+        note.addEventListener('input', (e) => {
+            var listNote = document.querySelectorAll('#listNote p');
+            listNote.forEach((value, index) => {
+                value.style.display = 'none';
+                if (value.innerText.toLowerCase().includes(e.target.value.toLowerCase())) {
+                    parentNote.style.display = 'block';
+                    value.style.display = 'block';
+
+                    value.addEventListener("mousedown", (e1) => {
+                        note.value = value.innerText;
+                        parentNote.style.display = 'none';
+                    })
+                };
+            })
+        });
+
+        note.addEventListener('blur', () => {
+            parentNote.style.display = 'none';
+        })
+
         function deleteRow(btn) {
             var index = $("#Medication-" + btn);
             index.parent().parent().remove();
