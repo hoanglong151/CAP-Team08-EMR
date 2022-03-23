@@ -160,6 +160,15 @@
                     <hr />
                     <div class="row body-pay">
                         <p class="lead marginbottom">Hóa Đơn Thanh Toán</p>
+                        @if (Model.InformationExamination.ExaminationType == false)
+                        {
+                            <p class="col-xs-6 w-100">Loại Khám: Bảo Hiểm</p>
+                        }
+                        else
+                        {
+                            <p class="col-xs-6 w-100">Loại Khám: Dịch Vụ</p>
+                        }
+                        <p class="col-xs-6 w-100">Tiền Quỷ: @(Model.Patient.MoneyBackup - Model.InformationExamination.PriceExamination) VNĐ</p>
                         <table class="table table-striped">
                             <thead>
                                 <tr>

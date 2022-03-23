@@ -339,14 +339,17 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         }
 
         // GET: Admin/InformationExaminations/Create1
-        public ActionResult Create1()
+        public ActionResult Create1(int? id)
         {
+            MultiplesModel multiplesModel = new MultiplesModel();
+            var patient = db.Patients.FirstOrDefault(p => p.ID == id);
+            multiplesModel.Patient = patient;
             var UserID = User.Identity.GetUserId();
             var userID = db.Users.FirstOrDefault(ids => ids.UserID == UserID);
             ViewBag.UserByID = userID.ID;
             ViewBag.UserName = userID.Name;
             ViewBag.DateExamination = DateTime.Now;
-            return PartialView("_Create1");
+            return PartialView("_Create1", multiplesModel);
         }
 
         // GET: Admin/InformationExaminations/BillExamination
@@ -405,6 +408,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 informationExamination.Weight = multiplesModel.InformationExamination.Weight;
                 informationExamination.Height = multiplesModel.InformationExamination.Height;
                 informationExamination.Specialist = multiplesModel.InformationExamination.Specialist;
+                informationExamination.ExaminationType = multiplesModel.InformationExamination.ExaminationType;
                 db.InformationExaminations.Add(informationExamination);
                 db.SaveChanges();
                 return RedirectToAction("Create", "MultipleModels");

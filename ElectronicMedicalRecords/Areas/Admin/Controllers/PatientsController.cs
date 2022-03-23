@@ -530,6 +530,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Patients/CreateOldPatient/5
         public ActionResult CreateOldPatient(int id)
         {
+            if(Session["DontEnoughMoney"] != null)
+            {
+                ViewBag.DontEnoughMoney = Session["DontEnoughMoney"];
+            }
             MultiplesModel multiplesModel = new MultiplesModel();
             Patient patient = db.Patients.Find(id);
             var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
@@ -575,10 +579,35 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOldPatient(Patient patient)
+        public ActionResult CreateOldPatient(Patient patient, MultiplesModel multiplesModel)
         {
             if (ModelState.IsValid)
             {
+                if(multiplesModel.Patient.MoneyBackup != null && multiplesModel.InformationExamination.PriceExamination == null)
+                {
+                    if (multiplesModel.InformationExamination.ExaminationType == true)
+                    {
+                        if(multiplesModel.Patient.MoneyBackup >= 250000)
+                        {
+                            patient.MoneyBackup = patient.MoneyBackup - 250000;
+                            multiplesModel.InformationExamination.New = false;
+                            multiplesModel.InformationExamination.PriceExamination = 250000;
+                            multiplesModel.InformationExamination.DateExamine = DateTime.Now;
+                            multiplesModel.InformationExamination.Patient_ID = patient.ID;
+                            db.InformationExaminations.Add(multiplesModel.InformationExamination);
+                            var userID = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                            var userPayment = db.Users.FirstOrDefault(p => p.UserID == userID);
+                            var bill = new Bill();
+                            bill.InformationExamination_ID = multiplesModel.InformationExamination.ID;
+                            bill.Patient_ID = multiplesModel.InformationExamination.Patient_ID;
+                            bill.Date = DateTime.Now;
+                            bill.TypePayment = "Khám";
+                            bill.UserPayment_ID = userPayment.ID;
+                            db.Bills.Add(bill);
+                            db.SaveChanges();
+                        }
+                    }
+                }
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("CreateOldPatient", "MultipleModels");
