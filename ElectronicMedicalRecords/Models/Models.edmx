@@ -469,6 +469,7 @@
           <Property Name="Examining" Type="bit" />
           <Property Name="Resulting" Type="bit" />
           <Property Name="DateReExamination" Type="date" />
+          <Property Name="ExaminationType" Type="bit" />
         </EntityType>
         <EntityType Name="Mat">
           <Key>
@@ -555,6 +556,7 @@
           <Property Name="InsuranceCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Nation1_ID" Type="int" />
           <Property Name="MaBN" Type="varchar" MaxLength="50" />
+          <Property Name="MoneyBackup" Type="int" />
         </EntityType>
         <EntityType Name="PatientStatus">
           <Key>
@@ -2107,7 +2109,6 @@
           <EntitySet Name="Nation1" EntityType="CP24Team08Model.Nation1" />
           <EntitySet Name="NgoaiKhoas" EntityType="CP24Team08Model.NgoaiKhoa" />
           <EntitySet Name="NhomMaus" EntityType="CP24Team08Model.NhomMau" />
-          <EntitySet Name="Patients" EntityType="CP24Team08Model.Patient" />
           <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
           <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
           <EntitySet Name="RangHamMats" EntityType="CP24Team08Model.RangHamMat" />
@@ -2154,10 +2155,6 @@
             <End Role="DongMau" EntitySet="DongMaus" />
             <End Role="Detail_DongMau" EntitySet="Detail_DongMau" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detail_HistoryDisease_Patient" Association="CP24Team08Model.FK_Detail_HistoryDisease_Patient">
-            <End Role="Patient" EntitySet="Patients" />
-            <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
-          </AssociationSet>
           <AssociationSet Name="FK_Detail_Immune_Immune" Association="CP24Team08Model.FK_Detail_Immune_Immune">
             <End Role="Immune" EntitySet="Immunes" />
             <End Role="Detail_Immune" EntitySet="Detail_Immune" />
@@ -2165,10 +2162,6 @@
           <AssociationSet Name="FK_Detail_Mat_Mat" Association="CP24Team08Model.FK_Detail_Mat_Mat">
             <End Role="Mat" EntitySet="Mats" />
             <End Role="Detail_Mat" EntitySet="Detail_Mat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_MedicalHistory_Patient" Association="CP24Team08Model.FK_Detail_MedicalHistory_Patient">
-            <End Role="Patient" EntitySet="Patients" />
-            <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_NgoaiKhoa_NgoaiKhoa" Association="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa">
             <End Role="NgoaiKhoa" EntitySet="NgoaiKhoas" />
@@ -2218,14 +2211,6 @@
             <End Role="ViSinh" EntitySet="ViSinhs" />
             <End Role="Detail_ViSinh" EntitySet="Detail_ViSinh" />
           </AssociationSet>
-          <AssociationSet Name="FK_Patient_Gender" Association="CP24Team08Model.FK_Patient_Gender">
-            <End Role="Gender" EntitySet="Genders" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Patient_HomeTown" Association="CP24Team08Model.FK_Patient_HomeTown">
-            <End Role="HomeTown" EntitySet="HomeTowns" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
           <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
             <End Role="MedicationCategory" EntitySet="MedicationCategories" />
             <End Role="Medication" EntitySet="Medications" />
@@ -2233,14 +2218,6 @@
           <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
             <End Role="Medication" EntitySet="Medications" />
             <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Patient_Nation" Association="CP24Team08Model.FK_Patient_Nation">
-            <End Role="Nation" EntitySet="Nations" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Patient_Nation1" Association="CP24Team08Model.FK_Patient_Nation1">
-            <End Role="Nation1" EntitySet="Nation1" />
-            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
@@ -2288,10 +2265,6 @@
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="District" EntitySet="Districts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Patient_District" Association="CP24Team08Model.FK_Patient_District">
-            <End Role="District" EntitySet="Districts" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
           <EntitySet Name="Wards" EntityType="CP24Team08Model.Ward" />
           <AssociationSet Name="FK_Ward_District" Association="CP24Team08Model.FK_Ward_District">
             <End Role="District" EntitySet="Districts" />
@@ -2301,22 +2274,29 @@
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="Ward" EntitySet="Wards" />
           </AssociationSet>
-          <AssociationSet Name="FK_Patient_Ward" Association="CP24Team08Model.FK_Patient_Ward">
-            <End Role="Ward" EntitySet="Wards" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
           <EntitySet Name="Bills" EntityType="CP24Team08Model.Bill" />
-          <AssociationSet Name="FK_Bill_Patient" Association="CP24Team08Model.FK_Bill_Patient">
-            <End Role="Patient" EntitySet="Patients" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
           <AssociationSet Name="FK_Bill_User" Association="CP24Team08Model.FK_Bill_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
+          <EntitySet Name="HistoryDiseases" EntityType="CP24Team08Model.HistoryDisease" />
+          <EntitySet Name="MedicalHistories" EntityType="CP24Team08Model.MedicalHistory" />
+          <AssociationSet Name="FK_Detail_HistoryDisease_HistoryDisease" Association="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease">
+            <End Role="HistoryDisease" EntitySet="HistoryDiseases" />
+            <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_MedicalHistory_MedicalHistory" Association="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory">
+            <End Role="MedicalHistory" EntitySet="MedicalHistories" />
+            <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
+          </AssociationSet>
           <EntitySet Name="InformationExaminations" EntityType="CP24Team08Model.InformationExamination" />
+          <EntitySet Name="Patients" EntityType="CP24Team08Model.Patient" />
           <AssociationSet Name="FK_Bill_InformationExamination" Association="CP24Team08Model.FK_Bill_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Patient" Association="CP24Team08Model.FK_Bill_Patient">
+            <End Role="Patient" EntitySet="Patients" />
             <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
           <AssociationSet Name="FK_CayMau_InformationExamination" Association="CP24Team08Model.FK_CayMau_InformationExamination">
@@ -2351,6 +2331,10 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_DongMau" EntitySet="Detail_DongMau" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_HistoryDisease_Patient" Association="CP24Team08Model.FK_Detail_HistoryDisease_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_HoHap_InformationExamination" Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
@@ -2362,6 +2346,10 @@
           <AssociationSet Name="FK_Detail_Mat_InformationExamination" Association="CP24Team08Model.FK_Detail_Mat_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_Mat" EntitySet="Detail_Mat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_MedicalHistory_Patient" Association="CP24Team08Model.FK_Detail_MedicalHistory_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_NgoaiKhoa_InformationExamination" Association="CP24Team08Model.FK_Detail_NgoaiKhoa_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
@@ -2415,6 +2403,18 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_ViSinh" EntitySet="Detail_ViSinh" />
           </AssociationSet>
+          <AssociationSet Name="FK_Patient_District" Association="CP24Team08Model.FK_Patient_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Gender" Association="CP24Team08Model.FK_Patient_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_HomeTown" Association="CP24Team08Model.FK_Patient_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
           <AssociationSet Name="FK_InformationExamination_Patient" Association="CP24Team08Model.FK_InformationExamination_Patient">
             <End Role="Patient" EntitySet="Patients" />
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
@@ -2431,15 +2431,17 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
           </AssociationSet>
-          <EntitySet Name="HistoryDiseases" EntityType="CP24Team08Model.HistoryDisease" />
-          <EntitySet Name="MedicalHistories" EntityType="CP24Team08Model.MedicalHistory" />
-          <AssociationSet Name="FK_Detail_HistoryDisease_HistoryDisease" Association="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease">
-            <End Role="HistoryDisease" EntitySet="HistoryDiseases" />
-            <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
+          <AssociationSet Name="FK_Patient_Nation" Association="CP24Team08Model.FK_Patient_Nation">
+            <End Role="Nation" EntitySet="Nations" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detail_MedicalHistory_MedicalHistory" Association="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory">
-            <End Role="MedicalHistory" EntitySet="MedicalHistories" />
-            <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
+          <AssociationSet Name="FK_Patient_Nation1" Association="CP24Team08Model.FK_Patient_Nation1">
+            <End Role="Nation1" EntitySet="Nation1" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Ward" Association="CP24Team08Model.FK_Patient_Ward">
+            <End Role="Ward" EntitySet="Wards" />
+            <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -2636,8 +2638,8 @@
           <Property Name="Patient_ID" Type="Int32" />
           <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Selected" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Detail_HistoryDisease" ToRole="Patient" />
           <NavigationProperty Name="HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="Detail_HistoryDisease" ToRole="HistoryDisease" />
+          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Detail_HistoryDisease" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Detail_Immune">
           <Key>
@@ -2670,8 +2672,8 @@
           <Property Name="Patient_ID" Type="Int32" />
           <Property Name="LevelFamily" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Selected" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_Patient" FromRole="Detail_MedicalHistory" ToRole="Patient" />
           <NavigationProperty Name="MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="Detail_MedicalHistory" ToRole="MedicalHistory" />
+          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_Patient" FromRole="Detail_MedicalHistory" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Detail_NgoaiKhoa">
           <Key>
@@ -2834,8 +2836,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
         </EntityType>
         <EntityType Name="HoHap">
           <Key>
@@ -2853,10 +2855,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HomeTown1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="HomeTown" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
           <NavigationProperty Name="Districts" Relationship="CP24Team08Model.FK_District_HomeTown" FromRole="HomeTown" ToRole="District" />
           <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="HomeTown" ToRole="Ward" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="HomeTown" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Immune">
           <Key>
@@ -2906,8 +2908,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Nation" ToRole="Patient" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Nation" FromRole="Nation" ToRole="User" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Nation" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Nation1">
           <Key>
@@ -2936,36 +2938,6 @@
           <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Detail_NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_NhomMau" FromRole="NhomMau" ToRole="Detail_NhomMau" />
-        </EntityType>
-        <EntityType Name="Patient">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender_ID" Type="Int32" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="NumHome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Ward_ID" Type="Int32" />
-          <Property Name="District_ID" Type="Int32" />
-          <Property Name="HomeTown_ID" Type="Int32" />
-          <Property Name="Nation_ID" Type="Int32" />
-          <Property Name="Phone" Type="Int32" />
-          <Property Name="PhoneZalo" Type="Int32" />
-          <Property Name="InsuranceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nation1_ID" Type="Int32" />
-          <Property Name="MaBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Patient" ToRole="Detail_HistoryDisease" />
-          <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_Patient" FromRole="Patient" ToRole="Detail_MedicalHistory" />
-          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
-          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="Patient" ToRole="HomeTown" />
-          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Patient" ToRole="Nation" />
-          <NavigationProperty Name="Nation1" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Patient" ToRole="Nation1" />
-          <NavigationProperty Name="District" Relationship="CP24Team08Model.FK_Patient_District" FromRole="Patient" ToRole="District" />
-          <NavigationProperty Name="Ward" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Patient" ToRole="Ward" />
-          <NavigationProperty Name="Bills" Relationship="CP24Team08Model.FK_Bill_Patient" FromRole="Patient" ToRole="Bill" />
-          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_Patient" FromRole="Patient" ToRole="InformationExamination" />
         </EntityType>
         <EntityType Name="PatientStatu">
           <Key>
@@ -3209,18 +3181,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detail_HistoryDisease_Patient">
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_HistoryDisease">
-              <PropertyRef Name="Patient_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Detail_Immune_Immune">
           <End Type="CP24Team08Model.Immune" Role="Immune" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_Immune" Role="Detail_Immune" Multiplicity="*" />
@@ -3242,18 +3202,6 @@
             </Principal>
             <Dependent Role="Detail_Mat">
               <PropertyRef Name="Mat_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_MedicalHistory_Patient">
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_MedicalHistory">
-              <PropertyRef Name="Patient_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3401,30 +3349,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Patient_Gender">
-          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="Gender_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Patient_HomeTown">
-          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HomeTown">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="HomeTown_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Medication_MedicationCategory">
           <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
           <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
@@ -3446,30 +3370,6 @@
             </Principal>
             <Dependent Role="Prescription_Detail">
               <PropertyRef Name="Medication_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Patient_Nation">
-          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="Nation_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Patient_Nation1">
-          <End Type="CP24Team08Model.Nation1" Role="Nation1" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nation1">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="Nation1_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3664,8 +3564,8 @@
           <Property Name="District1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HomeTown_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_District_HomeTown" FromRole="District" ToRole="HomeTown" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_District" FromRole="District" ToRole="Patient" />
           <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_District" FromRole="District" ToRole="Ward" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_District" FromRole="District" ToRole="Patient" />
         </EntityType>
         <Association Name="FK_District_HomeTown">
           <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="1" />
@@ -3676,18 +3576,6 @@
             </Principal>
             <Dependent Role="District">
               <PropertyRef Name="HomeTown_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Patient_District">
-          <End Type="CP24Team08Model.District" Role="District" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="District">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="District_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3727,18 +3615,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Patient_Ward">
-          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ward">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="Ward_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Bill">
           <Key>
             <PropertyRef Name="ID" />
@@ -3749,22 +3625,10 @@
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="TypePayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserPayment_ID" Type="Int32" />
-          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Bill_Patient" FromRole="Bill" ToRole="Patient" />
           <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Bill_User" FromRole="Bill" ToRole="User" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Bill_InformationExamination" FromRole="Bill" ToRole="InformationExamination" />
+          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Bill_Patient" FromRole="Bill" ToRole="Patient" />
         </EntityType>
-        <Association Name="FK_Bill_Patient">
-          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Bill">
-              <PropertyRef Name="Patient_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Bill_User">
           <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
@@ -3774,6 +3638,48 @@
             </Principal>
             <Dependent Role="Bill">
               <PropertyRef Name="UserPayment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HistoryDisease">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="HistoryDisease" ToRole="Detail_HistoryDisease" />
+        </EntityType>
+        <EntityType Name="MedicalHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="MedicalHistory" ToRole="Detail_MedicalHistory" />
+        </EntityType>
+        <Association Name="FK_Detail_HistoryDisease_HistoryDisease">
+          <End Type="CP24Team08Model.HistoryDisease" Role="HistoryDisease" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoryDisease">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_HistoryDisease">
+              <PropertyRef Name="HistoryDisease_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_MedicalHistory_MedicalHistory">
+          <End Type="CP24Team08Model.MedicalHistory" Role="MedicalHistory" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalHistory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_MedicalHistory">
+              <PropertyRef Name="MedicalHistory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3810,6 +3716,7 @@
           <Property Name="Examining" Type="Boolean" />
           <Property Name="Resulting" Type="Boolean" />
           <Property Name="DateReExamination" Type="DateTime" Precision="0" />
+          <Property Name="ExaminationType" Type="Boolean" />
           <NavigationProperty Name="Bills" Relationship="CP24Team08Model.FK_Bill_InformationExamination" FromRole="InformationExamination" ToRole="Bill" />
           <NavigationProperty Name="CayMaus" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="InformationExamination" ToRole="CayMau" />
           <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="InformationExamination" ToRole="Clinical" />
@@ -3840,6 +3747,37 @@
           <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="InformationExamination" ToRole="User" />
           <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_InformationExamination" FromRole="InformationExamination" ToRole="Prescription_Detail" />
         </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender_ID" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="NumHome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ward_ID" Type="Int32" />
+          <Property Name="District_ID" Type="Int32" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <Property Name="Nation_ID" Type="Int32" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="PhoneZalo" Type="Int32" />
+          <Property Name="InsuranceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nation1_ID" Type="Int32" />
+          <Property Name="MaBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MoneyBackup" Type="Int32" />
+          <NavigationProperty Name="Bills" Relationship="CP24Team08Model.FK_Bill_Patient" FromRole="Patient" ToRole="Bill" />
+          <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Patient" ToRole="Detail_HistoryDisease" />
+          <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_Patient" FromRole="Patient" ToRole="Detail_MedicalHistory" />
+          <NavigationProperty Name="District" Relationship="CP24Team08Model.FK_Patient_District" FromRole="Patient" ToRole="District" />
+          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="Patient" ToRole="HomeTown" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_Patient" FromRole="Patient" ToRole="InformationExamination" />
+          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Patient" ToRole="Nation" />
+          <NavigationProperty Name="Nation1" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Patient" ToRole="Nation1" />
+          <NavigationProperty Name="Ward" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Patient" ToRole="Ward" />
+        </EntityType>
         <Association Name="FK_Bill_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
@@ -3849,6 +3787,18 @@
             </Principal>
             <Dependent Role="Bill">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Patient">
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="Patient_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3948,6 +3898,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_HistoryDisease_Patient">
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_HistoryDisease">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_HoHap_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
@@ -3981,6 +3943,18 @@
             </Principal>
             <Dependent Role="Detail_Mat">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_MedicalHistory_Patient">
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_MedicalHistory">
+              <PropertyRef Name="Patient_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4140,6 +4114,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Patient_District">
+          <End Type="CP24Team08Model.District" Role="District" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="District_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Gender">
+          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Gender_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InformationExamination_Patient">
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="*" />
@@ -4188,45 +4198,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="HistoryDisease">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="HistoryDisease" ToRole="Detail_HistoryDisease" />
-        </EntityType>
-        <EntityType Name="MedicalHistory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="MedicalHistory" ToRole="Detail_MedicalHistory" />
-        </EntityType>
-        <Association Name="FK_Detail_HistoryDisease_HistoryDisease">
-          <End Type="CP24Team08Model.HistoryDisease" Role="HistoryDisease" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
+        <Association Name="FK_Patient_Nation">
+          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="HistoryDisease">
+            <Principal Role="Nation">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Detail_HistoryDisease">
-              <PropertyRef Name="HistoryDisease_ID" />
+            <Dependent Role="Patient">
+              <PropertyRef Name="Nation_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detail_MedicalHistory_MedicalHistory">
-          <End Type="CP24Team08Model.MedicalHistory" Role="MedicalHistory" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
+        <Association Name="FK_Patient_Nation1">
+          <End Type="CP24Team08Model.Nation1" Role="Nation1" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MedicalHistory">
+            <Principal Role="Nation1">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Detail_MedicalHistory">
-              <PropertyRef Name="MedicalHistory_ID" />
+            <Dependent Role="Patient">
+              <PropertyRef Name="Nation1_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Ward">
+          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Ward_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4698,27 +4702,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Patients">
-            <EntityTypeMapping TypeName="CP24Team08Model.Patient">
-              <MappingFragment StoreEntitySet="Patient">
-                <ScalarProperty Name="MaBN" ColumnName="MaBN" />
-                <ScalarProperty Name="Nation1_ID" ColumnName="Nation1_ID" />
-                <ScalarProperty Name="InsuranceCode" ColumnName="InsuranceCode" />
-                <ScalarProperty Name="PhoneZalo" ColumnName="PhoneZalo" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
-                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
-                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
-                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="NumHome" ColumnName="NumHome" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PatientStatus">
             <EntityTypeMapping TypeName="CP24Team08Model.PatientStatu">
               <MappingFragment StoreEntitySet="PatientStatus">
@@ -4973,9 +4956,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HistoryDiseases">
+            <EntityTypeMapping TypeName="CP24Team08Model.HistoryDisease">
+              <MappingFragment StoreEntitySet="HistoryDisease">
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalHistories">
+            <EntityTypeMapping TypeName="CP24Team08Model.MedicalHistory">
+              <MappingFragment StoreEntitySet="MedicalHistory">
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="InformationExaminations">
             <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
               <MappingFragment StoreEntitySet="InformationExamination">
+                <ScalarProperty Name="ExaminationType" ColumnName="ExaminationType" />
                 <ScalarProperty Name="DateReExamination" ColumnName="DateReExamination" />
                 <ScalarProperty Name="Resulting" ColumnName="Resulting" />
                 <ScalarProperty Name="Examining" ColumnName="Examining" />
@@ -5008,19 +5010,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HistoryDiseases">
-            <EntityTypeMapping TypeName="CP24Team08Model.HistoryDisease">
-              <MappingFragment StoreEntitySet="HistoryDisease">
-                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MedicalHistories">
-            <EntityTypeMapping TypeName="CP24Team08Model.MedicalHistory">
-              <MappingFragment StoreEntitySet="MedicalHistory">
-                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="CP24Team08Model.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="MoneyBackup" ColumnName="MoneyBackup" />
+                <ScalarProperty Name="MaBN" ColumnName="MaBN" />
+                <ScalarProperty Name="Nation1_ID" ColumnName="Nation1_ID" />
+                <ScalarProperty Name="InsuranceCode" ColumnName="InsuranceCode" />
+                <ScalarProperty Name="PhoneZalo" ColumnName="PhoneZalo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NumHome" ColumnName="NumHome" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

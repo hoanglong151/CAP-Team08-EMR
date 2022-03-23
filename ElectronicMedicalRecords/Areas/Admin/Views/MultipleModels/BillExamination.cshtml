@@ -640,6 +640,26 @@
             })
         })
 
+        var button = document.querySelector('.updateMoneyBackup');
+        button.addEventListener('click', () => {
+            var patientID = document.querySelector('#Patient_ID').value;
+            var money = document.querySelector('#Patient_MoneyBackup').value;
+            $.ajax({
+                url: "@Url.Action("updateMoneyBackup", "MultipleModels")",
+                type:"POST",
+                data: { id: patientID, money: money },
+                success: (res) => {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: 'Cập nhật thành công',
+                            confirmButtonText: 'Xác Nhận'
+                        })
+                    }
+                }
+            })
+        })
     </script>
     <script>
         var k = 1;

@@ -68,9 +68,39 @@
                 </div>
             </div>
             <div class="col-md-8 col-12">
-                <div class="form-group">
+                <div class="form-group" style="position:relative">
                     <label for="email-id-column">Ghi Chú</label>
                     <input id="NoteMedication" type="text" name="Prescription_Detail.Note" class="form-control">
+                    <div id="listNote" class="form-control">
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Viên, UỐNG SAU ĂN SÁNG</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Viên, UỐNG SAU ĂN TRƯA</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Viên, TỐI</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Viên, trước ăn sáng 30 phút</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Viên, UỐNG SAU ĂN SÁNG - TRƯA</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Viên, UỐNG SAU ĂN SÁNG - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Viên, UỐNG SAU ĂN TRƯA - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 3 lần, Mỗi lần 1 Viên, UỐNG SAU ĂN SÁNG - TRƯA - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Ống, UỐNG SAU ĂN SÁNG</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Ống, UỐNG SAU ĂN TRƯA</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Ống, TỐI</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Ống, trước ăn sáng 30 phút</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Ống, UỐNG SAU ĂN SÁNG - TRƯA</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Ống, UỐNG SAU ĂN SÁNG - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Ống, UỐNG SAU ĂN TRƯA - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 3 lần, Mỗi lần 1 Ống, UỐNG SAU ĂN SÁNG - TRƯA - CHIỀU</p>
+                        <p class="NoteItem">Ngày Thoa 1 lần/Ngày</p>
+                        <p class="NoteItem">Ngày Thoa 2 lần/Ngày</p>
+                        <p class="NoteItem">Ngày Thoa 3 lần/Ngày</p>
+                        <p class="NoteItem">Sáng 5ml, Trưa 5ml, Chiều 5ml, UỐNG SAU ĂN SÁNG - TRƯA - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Gói, UỐNG SAU ĂN SÁNG</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Gói, UỐNG SAU ĂN TRƯA</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Gói, TỐI</p>
+                        <p class="NoteItem">Ngày Uống 1 lần, Mỗi lần 1 Gói, trước ăn sáng 30 phút</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Gói, UỐNG SAU ĂN SÁNG - TRƯA</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Gói, UỐNG SAU ĂN SÁNG - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 2 lần, Mỗi lần 1 Gói, UỐNG SAU ĂN TRƯA - CHIỀU</p>
+                        <p class="NoteItem">Ngày Uống 3 lần, Mỗi lần 1 Gói, UỐNG SAU ĂN SÁNG - TRƯA - CHIỀU</p>
+                    </div>
                     @Html.ValidationMessageFor(model => model.Prescription_Detail.Note, "", new { @class = "text-danger" })
                 </div>
             </div>
