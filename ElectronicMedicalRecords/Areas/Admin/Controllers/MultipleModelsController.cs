@@ -1802,7 +1802,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
 
         // POST: Admin/MultipleModels/CreateOldPatient/5
         [HttpPost, ValidateInput(false)]
-        public async Task<RedirectToRouteResult> CreateOldPatient(MultiplesModel multiplesModel)
+        public async Task<RedirectToRouteResult> CreateOldPatient(MultiplesModel multiplesModel, string[] chuyenKhoa)
         {
             try
             {
@@ -1817,6 +1817,20 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                 multiplesModel.MedicalHistories = multiplesModel.MedicalHistories.Where(p => p.ChiDinh == true).ToList();
                 Detail_MedicalHistory detail_MedicalHistory = new Detail_MedicalHistory();
                 Detail_HistoryDisease detail_HistoryDisease = new Detail_HistoryDisease();
+                if (chuyenKhoa != null)
+                {
+                    foreach (var item in chuyenKhoa)
+                    {
+                        if (multiplesModel.InformationExamination.Specialist == null)
+                        {
+                            multiplesModel.InformationExamination.Specialist = item;
+                        }
+                        else
+                        {
+                            multiplesModel.InformationExamination.Specialist = multiplesModel.InformationExamination.Specialist + ", " + item;
+                        }
+                    }
+                }
                 patientsController.CreateOldPatient(multiplesModel.Patient, multiplesModel);
                 informationExaminationsController.CreateOldPatientPost(multiplesModel);
                 detail_HistoryDiseaseController.CreateOldPatient(multiplesModel);
