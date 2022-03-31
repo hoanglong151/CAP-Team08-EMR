@@ -402,14 +402,12 @@ namespace ElectronicMedicalRecords.Controllers
                         user.IsShow = true;
                         user.Privacy = true;
                         user.ExternalLogin = true;
-                        user.ActiveAccount = true;
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
                     }
                     else if (check != null && check.Image == null || check.Name == null || check.Privacy == false)
                     {
-                        user.ActiveAccount = true;
                         return RedirectToAction("Edit", "Users", new { id = check.ID, Area = "Admin" });
                     }
                     else

@@ -103,11 +103,11 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         public ActionResult HomePage()
         {
             Random randomNum = new Random();
-            string[] random = {"Khó khăn không trường tồn, chỉ có con người cứng rắn trường tồn.",
-                "Khó khăn nào rồi cũng qua. Cũng giống như sau cơn mưa, trời lại sáng.",
-                "Không bao giờ cúi đầu, không bao giờ bỏ cuộc hay chỉ ngồi than thở. Hãy tìm một cách khác. Và đừng cầu nguyện khi trời mưa nếu bạn không cầu nguyện khi trời nắng",
-                "Sẽ không bao giờ có bế tắc thật sự khi trong bạn còn niềm tin. Chỉ cần có niềm tin, bạn sẽ có hi vọng, sẽ tìm thấy con đường để bước tiếp.",
-                "Nếu bạn không thích điều gì đó, hãy thay đổi nó. Nếu bạn không thể thay đổi nó, hãy thay đổi cách suy nghĩ của bạn về nó." };
+            string[] random = {"Chúc Bác Sĩ buổi sáng thật tốt lành, hãy nhớ ăn sáng trước khi đi làm. Và hãy luôn vui vẻ và hạnh phúc nhé.",
+                "Chúc các Bác Sĩ nhiều sức khỏe, hạnh phúc và nhiệt huyết để cống hiến cho sự nghiệp chữa bệnh cứu người.",
+                "Bạn là vị cứu tinh của nhiều người. Cảm ơn bạn đã chọn nghề Bác sĩ và cứu sống nhiều người.",
+                "Bạn đang làm một công việc vô cùng tuyệt vời, mang đến sức khỏe và niềm vui đến cho mọi người. Chúc bạn thành công, luôn vui vẻ.",
+                "Xin trân trọng gửi đến các Bác Sĩ lời chúc sức khỏe. Mong các Bác Sĩ luôn khỏe mạnh để cống hiến được nhiều tâm huyết và sức lực cứu chữa người bệnh." };
             var indexRandom = randomNum.Next(0, 4);
             var status = random[indexRandom];
             ViewBag.StatusAccess = status;
@@ -164,6 +164,10 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     };
                     var uploadResult = _cloudinary.Upload(uploadParams);
                     user.Image = uploadResult.SecureUri.AbsoluteUri;
+                }
+                if(user.Name != null && user.Image != null)
+                {
+                    user.ActiveAccount = true;
                 }
                 var existData = db.Users.Find(user.ID);
                 db.Entry(existData).CurrentValues.SetValues(user);

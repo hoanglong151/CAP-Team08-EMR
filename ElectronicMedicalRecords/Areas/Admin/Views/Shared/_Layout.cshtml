@@ -448,8 +448,7 @@
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li class="nav-item dropdown me-3">
                                         <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                            @*<i class="fas fa-bell" style="font-size: 25px; color: #f80909"></i>*@
-                                            <i class="fa-solid fa-gear" style="font-size: 25px; color: #f80909"></i>
+                                            <i class="fas fa-vial" style="font-size: 25px; color: #f80909"></i>
                                             <span class="count">&nbsp;</span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContent" aria-labelledby="dropdownMenuButton">
@@ -471,8 +470,7 @@
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li class="nav-item dropdown me-3">
                                         <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                            @*<i class="fas fa-bell" style="font-size: 25px; color: #f8a209"></i>*@
-                                            <i class="fa-solid fa-square-poll-vertical" style="font-size: 25px; color: #f8a209"></i>
+                                            <i class="fa-solid fa-clipboard-list" style="font-size: 25px; color: #f8a209"></i>
                                             <span class="countBS">&nbsp;</span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-end ul-noti" id="notiContentBS" aria-labelledby="dropdownMenuButton" style="min-width: 20rem; right: 0 !important; box-shadow:rgb(0 0 0 / 24%) 0px 3px 8px; padding:0">
@@ -586,10 +584,10 @@
                         button = "<button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button>" + button;
                     }
                     if (RoleOfTN) {
-                        button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a>" + button + "<button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                        button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fa-solid fa-money-bill-1-wave'></i></a>" + button + "<button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                     }
                     if (RoleOfGD || RoleOfQTV) {
-                        button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fas fa-print'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
+                        button = "<a class='btn btnHover print' style='margin:0 2px;' href='" + hrefConfirmBill + "'><i class='fa-solid fa-money-bill-1-wave'></i></a><button class='btn btnHover plus' style='margin:0 2px;' onclick='createOldPatient(" + data.ID + ")'><i class='fas fa-plus'></i></button><a class='btn btnHover edit' style='margin:0 2px;' href='" + hrefEditPatient + "'><i class='fas fa-user-edit'></i></a><a class='btn btnHover info' style='margin:0 2px;' href='" + hrefDetailPatient + "'><i class='fas fa-info'></i></a><button class='btn btnHover trash' style='margin:0 2px;' onclick='deletePatient(" + data.ID + ")'><i class='fas fa-trash'></i></button>";
                     }
                     return button;
                 },
