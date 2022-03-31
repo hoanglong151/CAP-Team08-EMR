@@ -218,7 +218,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void CreateTest()
         {
             var info = db.InformationExaminations.AsNoTracking().First();
-            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == info.ID);
+            var detail_dignosticCategory = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == info.ID);
             if(detail_dignosticCategory == null)
             {
                 detail_dignosticCategory = new Detail_DiagnosticsCategory();
@@ -269,7 +269,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         public void EditP()
         {
             var info = db.InformationExaminations.AsNoTracking().First();
-            var diagnostic = db.Detail_DiagnosticsCategory.FirstOrDefault(p => p.InformationExamination_ID == info.ID);
+            var diagnostic = db.Detail_DiagnosticsCategory.AsNoTracking().FirstOrDefault(p => p.InformationExamination_ID == info.ID);
             using (var scope = new TransactionScope())
             {
                 var result = controller.Edit(info, diagnostic) as RedirectToRouteResult;

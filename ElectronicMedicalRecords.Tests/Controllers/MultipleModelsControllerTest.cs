@@ -13,6 +13,9 @@ using System.Collections;
 using Moq;
 using System.Web;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using System.Security.Principal;
+using static ElectronicMedicalRecords.Tests.Controllers.InformationExaminationsControllerTest;
 
 namespace ElectronicMedicalRecords.Tests.Controllers
 {
@@ -115,6 +118,20 @@ namespace ElectronicMedicalRecords.Tests.Controllers
             var info = db.InformationExaminations.AsNoTracking().First();
             using (var scope = new TransactionScope())
             {
+                var user = db.AspNetUsers.First();
+                List<Claim> claims = new List<Claim>{
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", user.Email),
+                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", user.Id)
+            };
+                var genericIdentity = new GenericIdentity("");
+                genericIdentity.AddClaims(claims);
+                var genericPrincipal = new GenericPrincipal(genericIdentity, new string[] { "Giám Đốc" });
+                var fakeHttpContext = new MockHttpContextBase { User = genericPrincipal };
+                var controllerContext = new ControllerContext
+                {
+                    HttpContext = fakeHttpContext,
+                };
+                controller.ControllerContext = controllerContext;
                 var result = controller.Payment(info.ID, 25000) as JsonResult;
                 Assert.IsNotNull(result);
             }

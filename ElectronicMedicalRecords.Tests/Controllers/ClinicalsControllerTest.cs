@@ -64,12 +64,12 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Create", result.RouteValues["action"]);
             }
-            using (var scope = new TransactionScope())
-            {
-                controller.ModelState.AddModelError("", "Error Message");
-                var result1 = controller.CreateOldPatient(multiplesModel) as ViewResult;
-                Assert.IsNotNull(result1);
-            }
+            //using (var scope = new TransactionScope())
+            //{
+            //    controller.ModelState.AddModelError("", "Error Message");
+            //    var result1 = controller.CreateOldPatient(multiplesModel) as ViewResult;
+            //    Assert.IsNotNull(result1);
+            //}
         }
 
         [TestMethod]
