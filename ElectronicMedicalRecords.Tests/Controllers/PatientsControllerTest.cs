@@ -116,6 +116,7 @@ namespace ElectronicMedicalRecords.Tests.Controllers
                 ID = patient.ID
             };
             MultiplesModel multiplesModel = new MultiplesModel();
+            multiplesModel.Patient = patient;
             using (var scope = new TransactionScope())
             {
                 var result = controller.CreateOldPatient(newPatient, multiplesModel) as RedirectToRouteResult;

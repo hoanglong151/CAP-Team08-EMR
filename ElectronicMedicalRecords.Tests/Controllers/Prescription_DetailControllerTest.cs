@@ -111,8 +111,8 @@ namespace ElectronicMedicalRecords.Tests.Controllers
         [TestMethod]
         public void EditG()
         {
-            var prescription_detail = db.Prescription_Detail.FirstOrDefault();
-            var info = db.InformationExaminations.FirstOrDefault(p => p.ID == prescription_detail.InformationExamination_ID);
+            var prescription_detail = db.Prescription_Detail.AsNoTracking().FirstOrDefault();
+            var info = db.InformationExaminations.AsNoTracking().FirstOrDefault(p => p.ID == prescription_detail.InformationExamination_ID);
             MultiplesModel multiplesModel = new MultiplesModel();
             multiplesModel.InformationExamination = info;
             var result = controller.Edit(multiplesModel) as RedirectToRouteResult;

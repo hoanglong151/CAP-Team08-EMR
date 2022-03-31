@@ -530,10 +530,6 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/Patients/CreateOldPatient/5
         public ActionResult CreateOldPatient(int id)
         {
-            if(Session["DontEnoughMoney"] != null)
-            {
-                ViewBag.DontEnoughMoney = Session["DontEnoughMoney"];
-            }
             MultiplesModel multiplesModel = new MultiplesModel();
             Patient patient = db.Patients.Find(id);
             var listInfo = db.InformationExaminations.Where(p => p.Patient_ID == id).ToList();
