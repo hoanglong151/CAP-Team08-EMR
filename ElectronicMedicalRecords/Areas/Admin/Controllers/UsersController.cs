@@ -165,15 +165,18 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
                     var uploadResult = _cloudinary.Upload(uploadParams);
                     user.Image = uploadResult.SecureUri.AbsoluteUri;
                 }
-                if(user.Name != null && user.Image != null)
-                {
-                    user.ActiveAccount = true;
-                }
-                var existData = db.Users.Find(user.ID);
-                db.Entry(existData).CurrentValues.SetValues(user);
-                db.SaveChanges();
+                //if(user.Name != null && user.Image != null)
+                //{
+                //    user.ActiveAccount = true;
+                //}
+                //var existData = db.Users.Find(user.ID);
+                //db.Entry(existData).CurrentValues.SetValues(user);
+                //db.SaveChanges();
                 if(user.Privacy == true && userEdit.ActiveAccount == true)
                 {
+                    var existData = db.Users.Find(user.ID);
+                    db.Entry(existData).CurrentValues.SetValues(user);
+                    db.SaveChanges();
                     return RedirectToAction("HomePage", "Users");
                 }
                 return RedirectToAction("DenyAccount");
