@@ -19,11 +19,18 @@ namespace ElectronicMedicalRecords.Controllers
         {
             var listPatient = db.Patients.Count();
             var role = db.AspNetRoles.FirstOrDefault(x => x.Name == "Giám Đốc");
-            var director = role.AspNetUsers.FirstOrDefault();
+            var listDirector = role.AspNetUsers.ToList();
+            foreach(var item in listDirector)
+            {
+                var user = item.Users.FirstOrDefault(p => p.Name != null && p.Image != null && p.Introduction != null && p.WorkingProcess != null);
+                if(user != null)
+                {
+                    ViewBag.Director = user;
+                }
+            }
             var listDoctor = db.Users.Count();
             ViewBag.ListPatient = listPatient;
             ViewBag.ListDoctor = listDoctor;
-            ViewBag.Director = director.Users.FirstOrDefault();
             return View();
         }
 
@@ -169,10 +176,10 @@ namespace ElectronicMedicalRecords.Controllers
 
         public ActionResult Doctors()
         {
-            var listDoctor = db.Users.Where(p => p.IsShow == true).ToList();
+            var listDoctor = db.Users.Where(p => p.IsShow == true && p.Image != null && p.Name != null && p.Introduction != null && p.TrainingProcess != null && p.WorkingProcess != null && p.SpecializedTreatment != null).ToList();
             return View(listDoctor);
-
-        } public ActionResult News()
+        } 
+        public ActionResult News()
         {
             return View();
         }

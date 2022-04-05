@@ -383,13 +383,13 @@ namespace ElectronicMedicalRecords.Controllers
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
             var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-            UserManager.AddToRole(userId, "Giám Đốc");
-            UserManager.AddToRole(userId, "QTV");
-            UserManager.AddToRole(userId, "Bác Sĩ");
-            UserManager.AddToRole(userId, "Kỹ Thuật Viên");
-            UserManager.AddToRole(userId, "Thu Ngân");
-            UserManager.AddToRole(userId, "Y tá/Điều dưỡng");
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //UserManager.AddToRole(userId, "Giám Đốc");
+            //UserManager.AddToRole(userId, "QTV");
+            //UserManager.AddToRole(userId, "Bác Sĩ");
+            //UserManager.AddToRole(userId, "Kỹ Thuật Viên");
+            //UserManager.AddToRole(userId, "Thu Ngân");
+            //UserManager.AddToRole(userId, "Y tá/Điều dưỡng");
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var result1 = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
             switch (result1)
             {
@@ -398,15 +398,20 @@ namespace ElectronicMedicalRecords.Controllers
                     var check = db.Users.FirstOrDefault(c => c.UserID == userId);
                     if (ModelState.IsValid && check == null)
                     {
+                        //user.UserID = userId;
+                        //user.IsShow = true;
+                        //user.Privacy = true;
+                        //user.ExternalLogin = true;
                         user.UserID = userId;
-                        user.IsShow = true;
-                        user.Privacy = true;
+                        user.IsShow = false;
+                        user.Privacy = false;
+                        user.ActiveAccount = false;
                         user.ExternalLogin = true;
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Edit", "Users", new { id = user.ID, Area = "Admin" });
                     }
-                    else if (check != null && check.Image == null || check.Name == null || check.Privacy == false)
+                    else if (check != null && check.Address == null || check.BirthDate == null || check.Degree == null || check.HomeTown_ID == null || check.Image == null || check.Name == null || check.Nation_ID == null || check.Phone == null || check.Privacy == false || check.Religion_ID == null)
                     {
                         return RedirectToAction("Edit", "Users", new { id = check.ID, Area = "Admin" });
                     }
