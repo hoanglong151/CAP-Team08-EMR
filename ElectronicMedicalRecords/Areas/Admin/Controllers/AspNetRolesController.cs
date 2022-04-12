@@ -20,7 +20,8 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
         // GET: Admin/AspNetRoles
         public ActionResult Index()
         {
-            ViewBag.User = db.Users.ToList();
+            var getUser = db.Users.Where(p => p.Image != null && p.Name != null).ToList();
+            ViewBag.User = getUser;
             ViewBag.CountUserExist = TempData["CountUserExist"];
             var roles = db.AspNetRoles.ToList();
             return View(roles);
