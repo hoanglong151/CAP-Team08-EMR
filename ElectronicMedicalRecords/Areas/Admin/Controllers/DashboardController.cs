@@ -47,7 +47,7 @@ namespace ElectronicMedicalRecords.Areas.Admin.Controllers
             dashboardModel.users = userOnline;
             dashboardModel.userList = userList;
             var ListUsersOnline = (List<string>)Session["ListUsersOnline"];
-            if (ListUsersOnline.Count != 0)
+            if (ListUsersOnline != null)
             {
                 dashboardModel.listUsersOnline = ListUsersOnline;
             }

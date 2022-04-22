@@ -142,12 +142,7 @@ namespace ElectronicMedicalRecords.Controllers
                 ViewData["Patient.Nation1_ID"] = new SelectList(db.Nation1, "ID", "Name", multiplesModel.Patient.Nation1_ID);
                 ViewData["Patient.District_ID"] = new SelectList(db.Districts, "ID", "District1", multiplesModel.Patient.District_ID);
                 ViewData["Patient.Ward_ID"] = new SelectList(db.Wards, "ID", "Ward1", multiplesModel.Patient.Ward_ID);
-                var UserName = db.Users.FirstOrDefault(p => p.ID == multiplesModel.InformationExamination.User_ID);
                 ViewData["InformationExamination.PatientStatus_ID"] = new SelectList(db.PatientStatus, "ID", "Name", multiplesModel.InformationExamination.PatientStatus_ID);
-                if (UserName != null)
-                {
-                    ViewBag.UserName = UserName.Name;
-                }
                 multiplesModels.Add(multiplesModel);
             }
             TempData["multiplesModels"] = multiplesModels;

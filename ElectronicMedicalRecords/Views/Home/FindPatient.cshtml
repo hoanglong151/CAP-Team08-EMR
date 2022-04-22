@@ -344,9 +344,9 @@
                                                                                                                 <div class="form-group">
                                                                                                                     <label for="email-id-column">Bác Sĩ</label>
                                                                                                                     <input value="@info.InformationExamination.User_ID" name="InformationExamination.User_ID" hidden />
-                                                                                                                    @if (ViewBag.UserName != null)
+                                                                                                                    @if (info.InformationExamination.User != null)
                                                                                                                     {
-                                                                                                                        <input value="@ViewBag.UserName" class="form-control" readonly />
+                                                                                                                        <input value="@info.InformationExamination.User.Name" class="form-control" readonly />
                                                                                                                     }
                                                                                                                     else
                                                                                                                     {
