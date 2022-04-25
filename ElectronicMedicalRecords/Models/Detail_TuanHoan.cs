@@ -18,7 +18,7 @@ namespace ElectronicMedicalRecords.Models
         public Nullable<int> InformationExamination_ID { get; set; }
         public Nullable<int> TuanHoan_ID { get; set; }
     
-        public virtual TuanHoan TuanHoan { get; set; }
         public virtual InformationExamination InformationExamination { get; set; }
+        public virtual TuanHoan TuanHoan { get; set; }
     }
 }

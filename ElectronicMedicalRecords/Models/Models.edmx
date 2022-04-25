@@ -2070,7 +2070,9 @@
           <EntitySet Name="AspNetUserClaims" EntityType="CP24Team08Model.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="CP24Team08Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="CP24Team08Model.AspNetUser" />
+          <EntitySet Name="Bills" EntityType="CP24Team08Model.Bill" />
           <EntitySet Name="CayMaus" EntityType="CP24Team08Model.CayMau" />
+          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
           <EntitySet Name="CoXuongKhops" EntityType="CP24Team08Model.CoXuongKhop" />
           <EntitySet Name="CTMaus" EntityType="CP24Team08Model.CTMau" />
           <EntitySet Name="DaLieux" EntityType="CP24Team08Model.DaLieu" />
@@ -2081,6 +2083,7 @@
           <EntitySet Name="Detail_DiagnosticsCategory" EntityType="CP24Team08Model.Detail_DiagnosticsCategory" />
           <EntitySet Name="Detail_DongMau" EntityType="CP24Team08Model.Detail_DongMau" />
           <EntitySet Name="Detail_HistoryDisease" EntityType="CP24Team08Model.Detail_HistoryDisease" />
+          <EntitySet Name="Detail_HoHap" EntityType="CP24Team08Model.Detail_HoHap" />
           <EntitySet Name="Detail_Immune" EntityType="CP24Team08Model.Detail_Immune" />
           <EntitySet Name="Detail_Mat" EntityType="CP24Team08Model.Detail_Mat" />
           <EntitySet Name="Detail_MedicalHistory" EntityType="CP24Team08Model.Detail_MedicalHistory" />
@@ -2089,6 +2092,7 @@
           <EntitySet Name="Detail_RangHamMat" EntityType="CP24Team08Model.Detail_RangHamMat" />
           <EntitySet Name="Detail_SanPhuKhoa" EntityType="CP24Team08Model.Detail_SanPhuKhoa" />
           <EntitySet Name="Detail_SinhHoaMau" EntityType="CP24Team08Model.Detail_SinhHoaMau" />
+          <EntitySet Name="Detail_TaiMuiHong" EntityType="CP24Team08Model.Detail_TaiMuiHong" />
           <EntitySet Name="Detail_TamThan" EntityType="CP24Team08Model.Detail_TamThan" />
           <EntitySet Name="Detail_ThanKinh" EntityType="CP24Team08Model.Detail_ThanKinh" />
           <EntitySet Name="Detail_ThanTietNieu" EntityType="CP24Team08Model.Detail_ThanTietNieu" />
@@ -2097,18 +2101,23 @@
           <EntitySet Name="Detail_Urine" EntityType="CP24Team08Model.Detail_Urine" />
           <EntitySet Name="Detail_ViSinh" EntityType="CP24Team08Model.Detail_ViSinh" />
           <EntitySet Name="DiagnosticsCategories" EntityType="CP24Team08Model.DiagnosticsCategory" />
+          <EntitySet Name="Districts" EntityType="CP24Team08Model.District" />
           <EntitySet Name="DongMaus" EntityType="CP24Team08Model.DongMau" />
           <EntitySet Name="Genders" EntityType="CP24Team08Model.Gender" />
+          <EntitySet Name="HistoryDiseases" EntityType="CP24Team08Model.HistoryDisease" />
           <EntitySet Name="HoHaps" EntityType="CP24Team08Model.HoHap" />
           <EntitySet Name="HomeTowns" EntityType="CP24Team08Model.HomeTown" />
           <EntitySet Name="Immunes" EntityType="CP24Team08Model.Immune" />
+          <EntitySet Name="InformationExaminations" EntityType="CP24Team08Model.InformationExamination" />
           <EntitySet Name="Mats" EntityType="CP24Team08Model.Mat" />
+          <EntitySet Name="MedicalHistories" EntityType="CP24Team08Model.MedicalHistory" />
           <EntitySet Name="Medications" EntityType="CP24Team08Model.Medication" />
           <EntitySet Name="MedicationCategories" EntityType="CP24Team08Model.MedicationCategory" />
           <EntitySet Name="Nations" EntityType="CP24Team08Model.Nation" />
           <EntitySet Name="Nation1" EntityType="CP24Team08Model.Nation1" />
           <EntitySet Name="NgoaiKhoas" EntityType="CP24Team08Model.NgoaiKhoa" />
           <EntitySet Name="NhomMaus" EntityType="CP24Team08Model.NhomMau" />
+          <EntitySet Name="Patients" EntityType="CP24Team08Model.Patient" />
           <EntitySet Name="PatientStatus" EntityType="CP24Team08Model.PatientStatu" />
           <EntitySet Name="Prescription_Detail" EntityType="CP24Team08Model.Prescription_Detail" />
           <EntitySet Name="RangHamMats" EntityType="CP24Team08Model.RangHamMat" />
@@ -2116,13 +2125,16 @@
           <EntitySet Name="SanPhuKhoas" EntityType="CP24Team08Model.SanPhuKhoa" />
           <EntitySet Name="SinhHoaMaus" EntityType="CP24Team08Model.SinhHoaMau" />
           <EntitySet Name="sysdiagrams" EntityType="CP24Team08Model.sysdiagram" />
+          <EntitySet Name="TaiMuiHongs" EntityType="CP24Team08Model.TaiMuiHong" />
           <EntitySet Name="TamThans" EntityType="CP24Team08Model.TamThan" />
           <EntitySet Name="ThanKinhs" EntityType="CP24Team08Model.ThanKinh" />
           <EntitySet Name="ThanTietNieux" EntityType="CP24Team08Model.ThanTietNieu" />
           <EntitySet Name="TieuHoas" EntityType="CP24Team08Model.TieuHoa" />
           <EntitySet Name="TuanHoans" EntityType="CP24Team08Model.TuanHoan" />
           <EntitySet Name="Urines" EntityType="CP24Team08Model.Urine" />
+          <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
           <EntitySet Name="ViSinhs" EntityType="CP24Team08Model.ViSinh" />
+          <EntitySet Name="Wards" EntityType="CP24Team08Model.Ward" />
           <AssociationSet Name="FK_Detail_Amniocente_Amniocente" Association="CP24Team08Model.FK_Detail_Amniocente_Amniocente">
             <End Role="Amniocente" EntitySet="Amniocentes" />
             <End Role="Detail_Amniocente" EntitySet="Detail_Amniocente" />
@@ -2135,6 +2147,34 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_InformationExamination" Association="CP24Team08Model.FK_Bill_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Patient" Association="CP24Team08Model.FK_Bill_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_User" Association="CP24Team08Model.FK_Bill_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CayMau_InformationExamination" Association="CP24Team08Model.FK_CayMau_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="CayMau" EntitySet="CayMaus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
+            <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Clinical" EntitySet="Clinicals" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_CoXuongKhop_CoXuongKhop" Association="CP24Team08Model.FK_Detail_CoXuongKhop_CoXuongKhop">
             <End Role="CoXuongKhop" EntitySet="CoXuongKhops" />
             <End Role="Detail_CoXuongKhop" EntitySet="Detail_CoXuongKhop" />
@@ -2146,166 +2186,6 @@
           <AssociationSet Name="FK_Detail_DaLieu_DaLieu" Association="CP24Team08Model.FK_Detail_DaLieu_DaLieu">
             <End Role="DaLieu" EntitySet="DaLieux" />
             <End Role="Detail_DaLieu" EntitySet="Detail_DaLieu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_DiagnosticsCategory_DiagnosticsCategory" Association="CP24Team08Model.FK_Detail_DiagnosticsCategory_DiagnosticsCategory">
-            <End Role="DiagnosticsCategory" EntitySet="DiagnosticsCategories" />
-            <End Role="Detail_DiagnosticsCategory" EntitySet="Detail_DiagnosticsCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_DongMau_DongMau" Association="CP24Team08Model.FK_Detail_DongMau_DongMau">
-            <End Role="DongMau" EntitySet="DongMaus" />
-            <End Role="Detail_DongMau" EntitySet="Detail_DongMau" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_Immune_Immune" Association="CP24Team08Model.FK_Detail_Immune_Immune">
-            <End Role="Immune" EntitySet="Immunes" />
-            <End Role="Detail_Immune" EntitySet="Detail_Immune" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_Mat_Mat" Association="CP24Team08Model.FK_Detail_Mat_Mat">
-            <End Role="Mat" EntitySet="Mats" />
-            <End Role="Detail_Mat" EntitySet="Detail_Mat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_NgoaiKhoa_NgoaiKhoa" Association="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa">
-            <End Role="NgoaiKhoa" EntitySet="NgoaiKhoas" />
-            <End Role="Detail_NgoaiKhoa" EntitySet="Detail_NgoaiKhoa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_NhomMau_NhomMau" Association="CP24Team08Model.FK_Detail_NhomMau_NhomMau">
-            <End Role="NhomMau" EntitySet="NhomMaus" />
-            <End Role="Detail_NhomMau" EntitySet="Detail_NhomMau" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_RangHamMat_RangHamMat" Association="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat">
-            <End Role="RangHamMat" EntitySet="RangHamMats" />
-            <End Role="Detail_RangHamMat" EntitySet="Detail_RangHamMat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_SanPhuKhoa_SanPhuKhoa" Association="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa">
-            <End Role="SanPhuKhoa" EntitySet="SanPhuKhoas" />
-            <End Role="Detail_SanPhuKhoa" EntitySet="Detail_SanPhuKhoa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_SinhHoaMau_SinhHoaMau" Association="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau">
-            <End Role="SinhHoaMau" EntitySet="SinhHoaMaus" />
-            <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_TamThan_TamThan" Association="CP24Team08Model.FK_Detail_TamThan_TamThan">
-            <End Role="TamThan" EntitySet="TamThans" />
-            <End Role="Detail_TamThan" EntitySet="Detail_TamThan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_ThanKinh_ThanKinh" Association="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh">
-            <End Role="ThanKinh" EntitySet="ThanKinhs" />
-            <End Role="Detail_ThanKinh" EntitySet="Detail_ThanKinh" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_ThanTietNieu_ThanTietNieu" Association="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu">
-            <End Role="ThanTietNieu" EntitySet="ThanTietNieux" />
-            <End Role="Detail_ThanTietNieu" EntitySet="Detail_ThanTietNieu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_TieuHoa_TieuHoa" Association="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa">
-            <End Role="TieuHoa" EntitySet="TieuHoas" />
-            <End Role="Detail_TieuHoa" EntitySet="Detail_TieuHoa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_TuanHoan_TuanHoan" Association="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan">
-            <End Role="TuanHoan" EntitySet="TuanHoans" />
-            <End Role="Detail_TuanHoan" EntitySet="Detail_TuanHoan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_Urine_Urine" Association="CP24Team08Model.FK_Detail_Urine_Urine">
-            <End Role="Urine" EntitySet="Urines" />
-            <End Role="Detail_Urine" EntitySet="Detail_Urine" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_ViSinh_ViSinh" Association="CP24Team08Model.FK_Detail_ViSinh_ViSinh">
-            <End Role="ViSinh" EntitySet="ViSinhs" />
-            <End Role="Detail_ViSinh" EntitySet="Detail_ViSinh" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
-            <End Role="MedicationCategory" EntitySet="MedicationCategories" />
-            <End Role="Medication" EntitySet="Medications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
-            <End Role="Medication" EntitySet="Medications" />
-            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="Detail_HoHap" EntityType="CP24Team08Model.Detail_HoHap" />
-          <AssociationSet Name="FK_Detail_HoHap_HoHap" Association="CP24Team08Model.FK_Detail_HoHap_HoHap">
-            <End Role="HoHap" EntitySet="HoHaps" />
-            <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
-          </AssociationSet>
-          <EntitySet Name="Clinicals" EntityType="CP24Team08Model.Clinical" />
-          <EntitySet Name="Detail_TaiMuiHong" EntityType="CP24Team08Model.Detail_TaiMuiHong" />
-          <EntitySet Name="TaiMuiHongs" EntityType="CP24Team08Model.TaiMuiHong" />
-          <AssociationSet Name="FK_Detail_Tai_Tai" Association="CP24Team08Model.FK_Detail_Tai_Tai">
-            <End Role="TaiMuiHong" EntitySet="TaiMuiHongs" />
-            <End Role="Detail_TaiMuiHong" EntitySet="Detail_TaiMuiHong" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="CP24Team08Model.User" />
-          <AssociationSet Name="FK_User_AspNetUsers" Association="CP24Team08Model.FK_User_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_User" Association="CP24Team08Model.FK_Clinical_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Clinical" EntitySet="Clinicals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
-            <End Role="Gender" EntitySet="Genders" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_HomeTown" Association="CP24Team08Model.FK_User_HomeTown">
-            <End Role="HomeTown" EntitySet="HomeTowns" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Nation" Association="CP24Team08Model.FK_User_Nation">
-            <End Role="Nation" EntitySet="Nations" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Religion" Association="CP24Team08Model.FK_User_Religion">
-            <End Role="Religion" EntitySet="Religions" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="Districts" EntityType="CP24Team08Model.District" />
-          <AssociationSet Name="FK_District_HomeTown" Association="CP24Team08Model.FK_District_HomeTown">
-            <End Role="HomeTown" EntitySet="HomeTowns" />
-            <End Role="District" EntitySet="Districts" />
-          </AssociationSet>
-          <EntitySet Name="Wards" EntityType="CP24Team08Model.Ward" />
-          <AssociationSet Name="FK_Ward_District" Association="CP24Team08Model.FK_Ward_District">
-            <End Role="District" EntitySet="Districts" />
-            <End Role="Ward" EntitySet="Wards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ward_HomeTown" Association="CP24Team08Model.FK_Ward_HomeTown">
-            <End Role="HomeTown" EntitySet="HomeTowns" />
-            <End Role="Ward" EntitySet="Wards" />
-          </AssociationSet>
-          <EntitySet Name="Bills" EntityType="CP24Team08Model.Bill" />
-          <AssociationSet Name="FK_Bill_User" Association="CP24Team08Model.FK_Bill_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
-          <EntitySet Name="HistoryDiseases" EntityType="CP24Team08Model.HistoryDisease" />
-          <EntitySet Name="MedicalHistories" EntityType="CP24Team08Model.MedicalHistory" />
-          <AssociationSet Name="FK_Detail_HistoryDisease_HistoryDisease" Association="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease">
-            <End Role="HistoryDisease" EntitySet="HistoryDiseases" />
-            <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_MedicalHistory_MedicalHistory" Association="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory">
-            <End Role="MedicalHistory" EntitySet="MedicalHistories" />
-            <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
-          </AssociationSet>
-          <EntitySet Name="InformationExaminations" EntityType="CP24Team08Model.InformationExamination" />
-          <EntitySet Name="Patients" EntityType="CP24Team08Model.Patient" />
-          <AssociationSet Name="FK_Bill_InformationExamination" Association="CP24Team08Model.FK_Bill_InformationExamination">
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Bill_Patient" Association="CP24Team08Model.FK_Bill_Patient">
-            <End Role="Patient" EntitySet="Patients" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CayMau_InformationExamination" Association="CP24Team08Model.FK_CayMau_InformationExamination">
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-            <End Role="CayMau" EntitySet="CayMaus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinical_InformationExamination" Association="CP24Team08Model.FK_Clinical_InformationExamination">
-            <End Role="InformationExamination" EntitySet="InformationExaminations" />
-            <End Role="Clinical" EntitySet="Clinicals" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_Amniocente_InformationExamination" Association="CP24Team08Model.FK_Detail_Amniocente_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
@@ -2323,21 +2203,41 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_DaLieu" EntitySet="Detail_DaLieu" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_DiagnosticsCategory_DiagnosticsCategory" Association="CP24Team08Model.FK_Detail_DiagnosticsCategory_DiagnosticsCategory">
+            <End Role="DiagnosticsCategory" EntitySet="DiagnosticsCategories" />
+            <End Role="Detail_DiagnosticsCategory" EntitySet="Detail_DiagnosticsCategory" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_DiagnosticsCategory_InformationExamination" Association="CP24Team08Model.FK_Detail_DiagnosticsCategory_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_DiagnosticsCategory" EntitySet="Detail_DiagnosticsCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_DongMau_DongMau" Association="CP24Team08Model.FK_Detail_DongMau_DongMau">
+            <End Role="DongMau" EntitySet="DongMaus" />
+            <End Role="Detail_DongMau" EntitySet="Detail_DongMau" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_DongMau_InformationExamination" Association="CP24Team08Model.FK_Detail_DongMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_DongMau" EntitySet="Detail_DongMau" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_HistoryDisease_HistoryDisease" Association="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease">
+            <End Role="HistoryDisease" EntitySet="HistoryDiseases" />
+            <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_HistoryDisease_Patient" Association="CP24Team08Model.FK_Detail_HistoryDisease_Patient">
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Detail_HistoryDisease" EntitySet="Detail_HistoryDisease" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_HoHap_HoHap" Association="CP24Team08Model.FK_Detail_HoHap_HoHap">
+            <End Role="HoHap" EntitySet="HoHaps" />
+            <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_HoHap_InformationExamination" Association="CP24Team08Model.FK_Detail_HoHap_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_HoHap" EntitySet="Detail_HoHap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Immune_Immune" Association="CP24Team08Model.FK_Detail_Immune_Immune">
+            <End Role="Immune" EntitySet="Immunes" />
+            <End Role="Detail_Immune" EntitySet="Detail_Immune" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_Immune_InformationExamination" Association="CP24Team08Model.FK_Detail_Immune_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
@@ -2347,6 +2247,14 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_Mat" EntitySet="Detail_Mat" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_Mat_Mat" Association="CP24Team08Model.FK_Detail_Mat_Mat">
+            <End Role="Mat" EntitySet="Mats" />
+            <End Role="Detail_Mat" EntitySet="Detail_Mat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_MedicalHistory_MedicalHistory" Association="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory">
+            <End Role="MedicalHistory" EntitySet="MedicalHistories" />
+            <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_MedicalHistory_Patient" Association="CP24Team08Model.FK_Detail_MedicalHistory_Patient">
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Detail_MedicalHistory" EntitySet="Detail_MedicalHistory" />
@@ -2355,65 +2263,137 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_NgoaiKhoa" EntitySet="Detail_NgoaiKhoa" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_NgoaiKhoa_NgoaiKhoa" Association="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa">
+            <End Role="NgoaiKhoa" EntitySet="NgoaiKhoas" />
+            <End Role="Detail_NgoaiKhoa" EntitySet="Detail_NgoaiKhoa" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_NhomMau_InformationExamination" Association="CP24Team08Model.FK_Detail_NhomMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_NhomMau" EntitySet="Detail_NhomMau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_NhomMau_NhomMau" Association="CP24Team08Model.FK_Detail_NhomMau_NhomMau">
+            <End Role="NhomMau" EntitySet="NhomMaus" />
             <End Role="Detail_NhomMau" EntitySet="Detail_NhomMau" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_RangHamMat_InformationExamination" Association="CP24Team08Model.FK_Detail_RangHamMat_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_RangHamMat" EntitySet="Detail_RangHamMat" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_RangHamMat_RangHamMat" Association="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat">
+            <End Role="RangHamMat" EntitySet="RangHamMats" />
+            <End Role="Detail_RangHamMat" EntitySet="Detail_RangHamMat" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_SanPhuKhoa_InformationExamination" Association="CP24Team08Model.FK_Detail_SanPhuKhoa_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_SanPhuKhoa" EntitySet="Detail_SanPhuKhoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_SanPhuKhoa_SanPhuKhoa" Association="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa">
+            <End Role="SanPhuKhoa" EntitySet="SanPhuKhoas" />
             <End Role="Detail_SanPhuKhoa" EntitySet="Detail_SanPhuKhoa" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_SinhHoaMau_InformationExamination" Association="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_SinhHoaMau_SinhHoaMau" Association="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau">
+            <End Role="SinhHoaMau" EntitySet="SinhHoaMaus" />
+            <End Role="Detail_SinhHoaMau" EntitySet="Detail_SinhHoaMau" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_Tai_InformationExamination" Association="CP24Team08Model.FK_Detail_Tai_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_TaiMuiHong" EntitySet="Detail_TaiMuiHong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Tai_Tai" Association="CP24Team08Model.FK_Detail_Tai_Tai">
+            <End Role="TaiMuiHong" EntitySet="TaiMuiHongs" />
             <End Role="Detail_TaiMuiHong" EntitySet="Detail_TaiMuiHong" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_TamThan_InformationExamination" Association="CP24Team08Model.FK_Detail_TamThan_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_TamThan" EntitySet="Detail_TamThan" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_TamThan_TamThan" Association="CP24Team08Model.FK_Detail_TamThan_TamThan">
+            <End Role="TamThan" EntitySet="TamThans" />
+            <End Role="Detail_TamThan" EntitySet="Detail_TamThan" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_ThanKinh_InformationExamination" Association="CP24Team08Model.FK_Detail_ThanKinh_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_ThanKinh" EntitySet="Detail_ThanKinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_ThanKinh_ThanKinh" Association="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh">
+            <End Role="ThanKinh" EntitySet="ThanKinhs" />
             <End Role="Detail_ThanKinh" EntitySet="Detail_ThanKinh" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_ThanTietNieu_InformationExamination" Association="CP24Team08Model.FK_Detail_ThanTietNieu_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_ThanTietNieu" EntitySet="Detail_ThanTietNieu" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_ThanTietNieu_ThanTietNieu" Association="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu">
+            <End Role="ThanTietNieu" EntitySet="ThanTietNieux" />
+            <End Role="Detail_ThanTietNieu" EntitySet="Detail_ThanTietNieu" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_TieuHoa_InformationExamination" Association="CP24Team08Model.FK_Detail_TieuHoa_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_TieuHoa" EntitySet="Detail_TieuHoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_TieuHoa_TieuHoa" Association="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa">
+            <End Role="TieuHoa" EntitySet="TieuHoas" />
             <End Role="Detail_TieuHoa" EntitySet="Detail_TieuHoa" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_TuanHoan_InformationExamination" Association="CP24Team08Model.FK_Detail_TuanHoan_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_TuanHoan" EntitySet="Detail_TuanHoan" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_TuanHoan_TuanHoan" Association="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan">
+            <End Role="TuanHoan" EntitySet="TuanHoans" />
+            <End Role="Detail_TuanHoan" EntitySet="Detail_TuanHoan" />
+          </AssociationSet>
           <AssociationSet Name="FK_Detail_Urine_InformationExamination" Association="CP24Team08Model.FK_Detail_Urine_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
+            <End Role="Detail_Urine" EntitySet="Detail_Urine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Urine_Urine" Association="CP24Team08Model.FK_Detail_Urine_Urine">
+            <End Role="Urine" EntitySet="Urines" />
             <End Role="Detail_Urine" EntitySet="Detail_Urine" />
           </AssociationSet>
           <AssociationSet Name="FK_Detail_ViSinh_InformationExamination" Association="CP24Team08Model.FK_Detail_ViSinh_InformationExamination">
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Detail_ViSinh" EntitySet="Detail_ViSinh" />
           </AssociationSet>
+          <AssociationSet Name="FK_Detail_ViSinh_ViSinh" Association="CP24Team08Model.FK_Detail_ViSinh_ViSinh">
+            <End Role="ViSinh" EntitySet="ViSinhs" />
+            <End Role="Detail_ViSinh" EntitySet="Detail_ViSinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_HomeTown" Association="CP24Team08Model.FK_District_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
           <AssociationSet Name="FK_Patient_District" Association="CP24Team08Model.FK_Patient_District">
             <End Role="District" EntitySet="Districts" />
             <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ward_District" Association="CP24Team08Model.FK_Ward_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Ward" EntitySet="Wards" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Gender" Association="CP24Team08Model.FK_Patient_Gender">
             <End Role="Gender" EntitySet="Genders" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="CP24Team08Model.FK_User_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="FK_Patient_HomeTown" Association="CP24Team08Model.FK_Patient_HomeTown">
             <End Role="HomeTown" EntitySet="HomeTowns" />
             <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_HomeTown" Association="CP24Team08Model.FK_User_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ward_HomeTown" Association="CP24Team08Model.FK_Ward_HomeTown">
+            <End Role="HomeTown" EntitySet="HomeTowns" />
+            <End Role="Ward" EntitySet="Wards" />
           </AssociationSet>
           <AssociationSet Name="FK_InformationExamination_Patient" Association="CP24Team08Model.FK_InformationExamination_Patient">
             <End Role="Patient" EntitySet="Patients" />
@@ -2431,9 +2411,21 @@
             <End Role="InformationExamination" EntitySet="InformationExaminations" />
             <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Medication_MedicationCategory" Association="CP24Team08Model.FK_Medication_MedicationCategory">
+            <End Role="MedicationCategory" EntitySet="MedicationCategories" />
+            <End Role="Medication" EntitySet="Medications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Detail_Medication" Association="CP24Team08Model.FK_Prescription_Detail_Medication">
+            <End Role="Medication" EntitySet="Medications" />
+            <End Role="Prescription_Detail" EntitySet="Prescription_Detail" />
+          </AssociationSet>
           <AssociationSet Name="FK_Patient_Nation" Association="CP24Team08Model.FK_Patient_Nation">
             <End Role="Nation" EntitySet="Nations" />
             <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Nation" Association="CP24Team08Model.FK_User_Nation">
+            <End Role="Nation" EntitySet="Nations" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Nation1" Association="CP24Team08Model.FK_Patient_Nation1">
             <End Role="Nation1" EntitySet="Nation1" />
@@ -2443,7 +2435,15 @@
             <End Role="Ward" EntitySet="Wards" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
-          </EntityContainer>
+          <AssociationSet Name="FK_User_Religion" Association="CP24Team08Model.FK_User_Religion">
+            <End Role="Religion" EntitySet="Religions" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CP24Team08Model.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -2513,8 +2513,22 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="CP24Team08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="CP24Team08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CP24Team08Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Patient_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="TypePayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPayment_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Bill_InformationExamination" FromRole="Bill" ToRole="InformationExamination" />
+          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Bill_Patient" FromRole="Bill" ToRole="Patient" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Bill_User" FromRole="Bill" ToRole="User" />
         </EntityType>
         <EntityType Name="CayMau">
           <Key>
@@ -2529,6 +2543,26 @@
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_CayMau_InformationExamination" FromRole="CayMau" ToRole="InformationExamination" />
+        </EntityType>
+        <EntityType Name="Clinical">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RightEyesNoGlasses" Type="Double" />
+          <Property Name="LeftEyesNoGlasses" Type="Double" />
+          <Property Name="RightEyesGlasses" Type="Double" />
+          <Property Name="LeftEyesGlasses" Type="Double" />
+          <Property Name="LeftEarSay" Type="Double" />
+          <Property Name="LeftEarWhisper" Type="Double" />
+          <Property Name="RightEarSay" Type="Double" />
+          <Property Name="RightEarWhisper" Type="Double" />
+          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
+          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
         </EntityType>
         <EntityType Name="CoXuongKhop">
           <Key>
@@ -2641,6 +2675,16 @@
           <NavigationProperty Name="HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="Detail_HistoryDisease" ToRole="HistoryDisease" />
           <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_Patient" FromRole="Detail_HistoryDisease" ToRole="Patient" />
         </EntityType>
+        <EntityType Name="Detail_HoHap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="HoHap_ID" Type="Int32" />
+          <NavigationProperty Name="HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_HoHap" FromRole="Detail_HoHap" ToRole="HoHap" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="Detail_HoHap" ToRole="InformationExamination" />
+        </EntityType>
         <EntityType Name="Detail_Immune">
           <Key>
             <PropertyRef Name="ID" />
@@ -2660,8 +2704,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="Mat_ID" Type="Int32" />
-          <NavigationProperty Name="Mat" Relationship="CP24Team08Model.FK_Detail_Mat_Mat" FromRole="Detail_Mat" ToRole="Mat" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Mat_InformationExamination" FromRole="Detail_Mat" ToRole="InformationExamination" />
+          <NavigationProperty Name="Mat" Relationship="CP24Team08Model.FK_Detail_Mat_Mat" FromRole="Detail_Mat" ToRole="Mat" />
         </EntityType>
         <EntityType Name="Detail_MedicalHistory">
           <Key>
@@ -2682,8 +2726,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="NgoaiKhoa_ID" Type="Int32" />
-          <NavigationProperty Name="NgoaiKhoa" Relationship="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa" FromRole="Detail_NgoaiKhoa" ToRole="NgoaiKhoa" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_NgoaiKhoa_InformationExamination" FromRole="Detail_NgoaiKhoa" ToRole="InformationExamination" />
+          <NavigationProperty Name="NgoaiKhoa" Relationship="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa" FromRole="Detail_NgoaiKhoa" ToRole="NgoaiKhoa" />
         </EntityType>
         <EntityType Name="Detail_NhomMau">
           <Key>
@@ -2694,8 +2738,8 @@
           <Property Name="NhomMau_ID" Type="Int32" />
           <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
           <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_NhomMau" FromRole="Detail_NhomMau" ToRole="NhomMau" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_NhomMau_InformationExamination" FromRole="Detail_NhomMau" ToRole="InformationExamination" />
+          <NavigationProperty Name="NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_NhomMau" FromRole="Detail_NhomMau" ToRole="NhomMau" />
         </EntityType>
         <EntityType Name="Detail_RangHamMat">
           <Key>
@@ -2704,8 +2748,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="RangHamMat_ID" Type="Int32" />
-          <NavigationProperty Name="RangHamMat" Relationship="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat" FromRole="Detail_RangHamMat" ToRole="RangHamMat" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_RangHamMat_InformationExamination" FromRole="Detail_RangHamMat" ToRole="InformationExamination" />
+          <NavigationProperty Name="RangHamMat" Relationship="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat" FromRole="Detail_RangHamMat" ToRole="RangHamMat" />
         </EntityType>
         <EntityType Name="Detail_SanPhuKhoa">
           <Key>
@@ -2714,8 +2758,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="SanPhuKhoa_ID" Type="Int32" />
-          <NavigationProperty Name="SanPhuKhoa" Relationship="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa" FromRole="Detail_SanPhuKhoa" ToRole="SanPhuKhoa" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_SanPhuKhoa_InformationExamination" FromRole="Detail_SanPhuKhoa" ToRole="InformationExamination" />
+          <NavigationProperty Name="SanPhuKhoa" Relationship="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa" FromRole="Detail_SanPhuKhoa" ToRole="SanPhuKhoa" />
         </EntityType>
         <EntityType Name="Detail_SinhHoaMau">
           <Key>
@@ -2726,8 +2770,18 @@
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
           <Property Name="Result" Type="Double" />
-          <NavigationProperty Name="SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" FromRole="Detail_SinhHoaMau" ToRole="SinhHoaMau" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_InformationExamination" FromRole="Detail_SinhHoaMau" ToRole="InformationExamination" />
+          <NavigationProperty Name="SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" FromRole="Detail_SinhHoaMau" ToRole="SinhHoaMau" />
+        </EntityType>
+        <EntityType Name="Detail_TaiMuiHong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="TaiMuiHong_ID" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Tai_InformationExamination" FromRole="Detail_TaiMuiHong" ToRole="InformationExamination" />
+          <NavigationProperty Name="TaiMuiHong" Relationship="CP24Team08Model.FK_Detail_Tai_Tai" FromRole="Detail_TaiMuiHong" ToRole="TaiMuiHong" />
         </EntityType>
         <EntityType Name="Detail_TamThan">
           <Key>
@@ -2736,8 +2790,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="TamThan_ID" Type="Int32" />
-          <NavigationProperty Name="TamThan" Relationship="CP24Team08Model.FK_Detail_TamThan_TamThan" FromRole="Detail_TamThan" ToRole="TamThan" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_TamThan_InformationExamination" FromRole="Detail_TamThan" ToRole="InformationExamination" />
+          <NavigationProperty Name="TamThan" Relationship="CP24Team08Model.FK_Detail_TamThan_TamThan" FromRole="Detail_TamThan" ToRole="TamThan" />
         </EntityType>
         <EntityType Name="Detail_ThanKinh">
           <Key>
@@ -2746,8 +2800,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="ThanKinh_ID" Type="Int32" />
-          <NavigationProperty Name="ThanKinh" Relationship="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh" FromRole="Detail_ThanKinh" ToRole="ThanKinh" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_ThanKinh_InformationExamination" FromRole="Detail_ThanKinh" ToRole="InformationExamination" />
+          <NavigationProperty Name="ThanKinh" Relationship="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh" FromRole="Detail_ThanKinh" ToRole="ThanKinh" />
         </EntityType>
         <EntityType Name="Detail_ThanTietNieu">
           <Key>
@@ -2756,8 +2810,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="ThanTietNieu_ID" Type="Int32" />
-          <NavigationProperty Name="ThanTietNieu" Relationship="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu" FromRole="Detail_ThanTietNieu" ToRole="ThanTietNieu" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_ThanTietNieu_InformationExamination" FromRole="Detail_ThanTietNieu" ToRole="InformationExamination" />
+          <NavigationProperty Name="ThanTietNieu" Relationship="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu" FromRole="Detail_ThanTietNieu" ToRole="ThanTietNieu" />
         </EntityType>
         <EntityType Name="Detail_TieuHoa">
           <Key>
@@ -2766,8 +2820,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="TieuHoa_ID" Type="Int32" />
-          <NavigationProperty Name="TieuHoa" Relationship="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa" FromRole="Detail_TieuHoa" ToRole="TieuHoa" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_TieuHoa_InformationExamination" FromRole="Detail_TieuHoa" ToRole="InformationExamination" />
+          <NavigationProperty Name="TieuHoa" Relationship="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa" FromRole="Detail_TieuHoa" ToRole="TieuHoa" />
         </EntityType>
         <EntityType Name="Detail_TuanHoan">
           <Key>
@@ -2776,8 +2830,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationExamination_ID" Type="Int32" />
           <Property Name="TuanHoan_ID" Type="Int32" />
-          <NavigationProperty Name="TuanHoan" Relationship="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan" FromRole="Detail_TuanHoan" ToRole="TuanHoan" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_TuanHoan_InformationExamination" FromRole="Detail_TuanHoan" ToRole="InformationExamination" />
+          <NavigationProperty Name="TuanHoan" Relationship="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan" FromRole="Detail_TuanHoan" ToRole="TuanHoan" />
         </EntityType>
         <EntityType Name="Detail_Urine">
           <Key>
@@ -2788,8 +2842,8 @@
           <Property Name="Urine_ID" Type="Int32" />
           <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
           <Property Name="Result" Type="Double" />
-          <NavigationProperty Name="Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Detail_Urine" ToRole="Urine" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Urine_InformationExamination" FromRole="Detail_Urine" ToRole="InformationExamination" />
+          <NavigationProperty Name="Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Detail_Urine" ToRole="Urine" />
         </EntityType>
         <EntityType Name="Detail_ViSinh">
           <Key>
@@ -2803,8 +2857,8 @@
           <Property Name="ResultDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MatDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="InformationExamination_ID" Type="Int32" />
-          <NavigationProperty Name="ViSinh" Relationship="CP24Team08Model.FK_Detail_ViSinh_ViSinh" FromRole="Detail_ViSinh" ToRole="ViSinh" />
           <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_ViSinh_InformationExamination" FromRole="Detail_ViSinh" ToRole="InformationExamination" />
+          <NavigationProperty Name="ViSinh" Relationship="CP24Team08Model.FK_Detail_ViSinh_ViSinh" FromRole="Detail_ViSinh" ToRole="ViSinh" />
         </EntityType>
         <EntityType Name="DiagnosticsCategory">
           <Key>
@@ -2817,6 +2871,17 @@
           <Property Name="MDC" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Advice" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Detail_DiagnosticsCategory" Relationship="CP24Team08Model.FK_Detail_DiagnosticsCategory_DiagnosticsCategory" FromRole="DiagnosticsCategory" ToRole="Detail_DiagnosticsCategory" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="District1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTown_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_District_HomeTown" FromRole="District" ToRole="HomeTown" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_District" FromRole="District" ToRole="Patient" />
+          <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_District" FromRole="District" ToRole="Ward" />
         </EntityType>
         <EntityType Name="DongMau">
           <Key>
@@ -2836,8 +2901,17 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
           <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
+          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Gender" FromRole="Gender" ToRole="User" />
+        </EntityType>
+        <EntityType Name="HistoryDisease">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="HistoryDisease" ToRole="Detail_HistoryDisease" />
         </EntityType>
         <EntityType Name="HoHap">
           <Key>
@@ -2855,10 +2929,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HomeTown1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
           <NavigationProperty Name="Districts" Relationship="CP24Team08Model.FK_District_HomeTown" FromRole="HomeTown" ToRole="District" />
-          <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="HomeTown" ToRole="Ward" />
           <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_HomeTown" FromRole="HomeTown" ToRole="Patient" />
+          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="HomeTown" ToRole="User" />
+          <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="HomeTown" ToRole="Ward" />
         </EntityType>
         <EntityType Name="Immune">
           <Key>
@@ -2872,817 +2946,6 @@
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Detail_Immune" Relationship="CP24Team08Model.FK_Detail_Immune_Immune" FromRole="Immune" ToRole="Detail_Immune" />
         </EntityType>
-        <EntityType Name="Mat">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_Mat" Relationship="CP24Team08Model.FK_Detail_Mat_Mat" FromRole="Mat" ToRole="Detail_Mat" />
-        </EntityType>
-        <EntityType Name="Medication">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Unit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="MedicationCategory_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MedicationCategory" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="Medication" ToRole="MedicationCategory" />
-          <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Medication" ToRole="Prescription_Detail" />
-        </EntityType>
-        <EntityType Name="MedicationCategory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Medications" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="MedicationCategory" ToRole="Medication" />
-        </EntityType>
-        <EntityType Name="Nation">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Nation" FromRole="Nation" ToRole="User" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Nation" ToRole="Patient" />
-        </EntityType>
-        <EntityType Name="Nation1">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Nation1" ToRole="Patient" />
-        </EntityType>
-        <EntityType Name="NgoaiKhoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_NgoaiKhoa" Relationship="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa" FromRole="NgoaiKhoa" ToRole="Detail_NgoaiKhoa" />
-        </EntityType>
-        <EntityType Name="NhomMau">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Detail_NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_NhomMau" FromRole="NhomMau" ToRole="Detail_NhomMau" />
-        </EntityType>
-        <EntityType Name="PatientStatu">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_PatientStatus" FromRole="PatientStatu" ToRole="InformationExamination" />
-        </EntityType>
-        <EntityType Name="Prescription_Detail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NumMedication" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Medication_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <Property Name="TotalPrice" Type="Int32" />
-          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Prescription_Detail_InformationExamination" FromRole="Prescription_Detail" ToRole="InformationExamination" />
-        </EntityType>
-        <EntityType Name="RangHamMat">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_RangHamMat" Relationship="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat" FromRole="RangHamMat" ToRole="Detail_RangHamMat" />
-        </EntityType>
-        <EntityType Name="Religion">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Religion" FromRole="Religion" ToRole="User" />
-        </EntityType>
-        <EntityType Name="SanPhuKhoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_SanPhuKhoa" Relationship="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa" FromRole="SanPhuKhoa" ToRole="Detail_SanPhuKhoa" />
-        </EntityType>
-        <EntityType Name="SinhHoaMau">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CSBT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Detail_SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" FromRole="SinhHoaMau" ToRole="Detail_SinhHoaMau" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="TamThan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_TamThan" Relationship="CP24Team08Model.FK_Detail_TamThan_TamThan" FromRole="TamThan" ToRole="Detail_TamThan" />
-        </EntityType>
-        <EntityType Name="ThanKinh">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_ThanKinh" Relationship="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh" FromRole="ThanKinh" ToRole="Detail_ThanKinh" />
-        </EntityType>
-        <EntityType Name="ThanTietNieu">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_ThanTietNieu" Relationship="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu" FromRole="ThanTietNieu" ToRole="Detail_ThanTietNieu" />
-        </EntityType>
-        <EntityType Name="TieuHoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_TieuHoa" Relationship="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa" FromRole="TieuHoa" ToRole="Detail_TieuHoa" />
-        </EntityType>
-        <EntityType Name="TuanHoan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_TuanHoan" Relationship="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan" FromRole="TuanHoan" ToRole="Detail_TuanHoan" />
-        </EntityType>
-        <EntityType Name="Urine">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CSBT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Detail_Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Urine" ToRole="Detail_Urine" />
-        </EntityType>
-        <EntityType Name="ViSinh">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameTest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Detail_ViSinh" Relationship="CP24Team08Model.FK_Detail_ViSinh_ViSinh" FromRole="ViSinh" ToRole="Detail_ViSinh" />
-        </EntityType>
-        <Association Name="FK_Detail_Amniocente_Amniocente">
-          <End Type="CP24Team08Model.Amniocente" Role="Amniocente" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_Amniocente" Role="Detail_Amniocente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Amniocente">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_Amniocente">
-              <PropertyRef Name="Amniocente_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="CP24Team08Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaim">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="CP24Team08Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogin">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_CoXuongKhop_CoXuongKhop">
-          <End Type="CP24Team08Model.CoXuongKhop" Role="CoXuongKhop" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_CoXuongKhop" Role="Detail_CoXuongKhop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CoXuongKhop">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_CoXuongKhop">
-              <PropertyRef Name="CoXuongKhop_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_CTMau_CTMau">
-          <End Type="CP24Team08Model.CTMau" Role="CTMau" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_CTMau" Role="Detail_CTMau" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CTMau">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_CTMau">
-              <PropertyRef Name="CTMau_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_DaLieu_DaLieu">
-          <End Type="CP24Team08Model.DaLieu" Role="DaLieu" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_DaLieu" Role="Detail_DaLieu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DaLieu">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_DaLieu">
-              <PropertyRef Name="DaLieu_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_DiagnosticsCategory_DiagnosticsCategory">
-          <End Type="CP24Team08Model.DiagnosticsCategory" Role="DiagnosticsCategory" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_DiagnosticsCategory" Role="Detail_DiagnosticsCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DiagnosticsCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_DiagnosticsCategory">
-              <PropertyRef Name="DiagnosticsCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_DongMau_DongMau">
-          <End Type="CP24Team08Model.DongMau" Role="DongMau" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_DongMau" Role="Detail_DongMau" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DongMau">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_DongMau">
-              <PropertyRef Name="DongMau_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_Immune_Immune">
-          <End Type="CP24Team08Model.Immune" Role="Immune" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_Immune" Role="Detail_Immune" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Immune">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_Immune">
-              <PropertyRef Name="Immue_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_Mat_Mat">
-          <End Type="CP24Team08Model.Mat" Role="Mat" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_Mat" Role="Detail_Mat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mat">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_Mat">
-              <PropertyRef Name="Mat_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_NgoaiKhoa_NgoaiKhoa">
-          <End Type="CP24Team08Model.NgoaiKhoa" Role="NgoaiKhoa" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_NgoaiKhoa" Role="Detail_NgoaiKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NgoaiKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_NgoaiKhoa">
-              <PropertyRef Name="NgoaiKhoa_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_NhomMau_NhomMau">
-          <End Type="CP24Team08Model.NhomMau" Role="NhomMau" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_NhomMau" Role="Detail_NhomMau" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhomMau">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_NhomMau">
-              <PropertyRef Name="NhomMau_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_RangHamMat_RangHamMat">
-          <End Type="CP24Team08Model.RangHamMat" Role="RangHamMat" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_RangHamMat" Role="Detail_RangHamMat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RangHamMat">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_RangHamMat">
-              <PropertyRef Name="RangHamMat_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_SanPhuKhoa_SanPhuKhoa">
-          <End Type="CP24Team08Model.SanPhuKhoa" Role="SanPhuKhoa" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_SanPhuKhoa" Role="Detail_SanPhuKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhuKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_SanPhuKhoa">
-              <PropertyRef Name="SanPhuKhoa_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_SinhHoaMau_SinhHoaMau">
-          <End Type="CP24Team08Model.SinhHoaMau" Role="SinhHoaMau" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_SinhHoaMau" Role="Detail_SinhHoaMau" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhHoaMau">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_SinhHoaMau">
-              <PropertyRef Name="SinhHoaMau_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_TamThan_TamThan">
-          <End Type="CP24Team08Model.TamThan" Role="TamThan" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_TamThan" Role="Detail_TamThan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TamThan">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_TamThan">
-              <PropertyRef Name="TamThan_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_ThanKinh_ThanKinh">
-          <End Type="CP24Team08Model.ThanKinh" Role="ThanKinh" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_ThanKinh" Role="Detail_ThanKinh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ThanKinh">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_ThanKinh">
-              <PropertyRef Name="ThanKinh_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_ThanTietNieu_ThanTietNieu">
-          <End Type="CP24Team08Model.ThanTietNieu" Role="ThanTietNieu" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_ThanTietNieu" Role="Detail_ThanTietNieu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ThanTietNieu">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_ThanTietNieu">
-              <PropertyRef Name="ThanTietNieu_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_TieuHoa_TieuHoa">
-          <End Type="CP24Team08Model.TieuHoa" Role="TieuHoa" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_TieuHoa" Role="Detail_TieuHoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TieuHoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_TieuHoa">
-              <PropertyRef Name="TieuHoa_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_TuanHoan_TuanHoan">
-          <End Type="CP24Team08Model.TuanHoan" Role="TuanHoan" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_TuanHoan" Role="Detail_TuanHoan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TuanHoan">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_TuanHoan">
-              <PropertyRef Name="TuanHoan_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_Urine_Urine">
-          <End Type="CP24Team08Model.Urine" Role="Urine" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_Urine" Role="Detail_Urine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Urine">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_Urine">
-              <PropertyRef Name="Urine_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_ViSinh_ViSinh">
-          <End Type="CP24Team08Model.ViSinh" Role="ViSinh" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_ViSinh" Role="Detail_ViSinh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ViSinh">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_ViSinh">
-              <PropertyRef Name="ViSinh_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Medication_MedicationCategory">
-          <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
-          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MedicationCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Medication">
-              <PropertyRef Name="MedicationCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prescription_Detail_Medication">
-          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medication">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Prescription_Detail">
-              <PropertyRef Name="Medication_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Detail_HoHap">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <Property Name="HoHap_ID" Type="Int32" />
-          <NavigationProperty Name="HoHap" Relationship="CP24Team08Model.FK_Detail_HoHap_HoHap" FromRole="Detail_HoHap" ToRole="HoHap" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_HoHap_InformationExamination" FromRole="Detail_HoHap" ToRole="InformationExamination" />
-        </EntityType>
-        <Association Name="FK_Detail_HoHap_HoHap">
-          <End Type="CP24Team08Model.HoHap" Role="HoHap" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HoHap">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_HoHap">
-              <PropertyRef Name="HoHap_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Clinical">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RightEyesNoGlasses" Type="Double" />
-          <Property Name="LeftEyesNoGlasses" Type="Double" />
-          <Property Name="RightEyesGlasses" Type="Double" />
-          <Property Name="LeftEyesGlasses" Type="Double" />
-          <Property Name="LeftEarSay" Type="Double" />
-          <Property Name="LeftEarWhisper" Type="Double" />
-          <Property Name="RightEarSay" Type="Double" />
-          <Property Name="RightEarWhisper" Type="Double" />
-          <Property Name="UpperJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LowerJaw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="User_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="Clinical" ToRole="User" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Clinical_InformationExamination" FromRole="Clinical" ToRole="InformationExamination" />
-        </EntityType>
-        <EntityType Name="Detail_TaiMuiHong">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <Property Name="TaiMuiHong_ID" Type="Int32" />
-          <NavigationProperty Name="TaiMuiHong" Relationship="CP24Team08Model.FK_Detail_Tai_Tai" FromRole="Detail_TaiMuiHong" ToRole="TaiMuiHong" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Detail_Tai_InformationExamination" FromRole="Detail_TaiMuiHong" ToRole="InformationExamination" />
-        </EntityType>
-        <EntityType Name="TaiMuiHong">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_TaiMuiHong" Relationship="CP24Team08Model.FK_Detail_Tai_Tai" FromRole="TaiMuiHong" ToRole="Detail_TaiMuiHong" />
-        </EntityType>
-        <Association Name="FK_Detail_Tai_Tai">
-          <End Type="CP24Team08Model.TaiMuiHong" Role="TaiMuiHong" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_TaiMuiHong" Role="Detail_TaiMuiHong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiMuiHong">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_TaiMuiHong">
-              <PropertyRef Name="TaiMuiHong_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsShow" Type="Boolean" Nullable="false" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="Nation_ID" Type="Int32" />
-          <Property Name="HomeTown_ID" Type="Int32" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="Int32" />
-          <Property Name="Privacy" Type="Boolean" Nullable="false" />
-          <Property Name="Religion_ID" Type="Int32" />
-          <Property Name="Gender_ID" Type="Int32" />
-          <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
-          <Property Name="ExternalLogin" Type="Boolean" />
-          <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
-          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
-          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
-          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
-          <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
-          <NavigationProperty Name="Bills" Relationship="CP24Team08Model.FK_Bill_User" FromRole="User" ToRole="Bill" />
-          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
-        </EntityType>
-        <Association Name="FK_User_AspNetUsers">
-          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinical_User">
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Clinical">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Gender">
-          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Gender_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_HomeTown">
-          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HomeTown">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="HomeTown_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Nation">
-          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Nation_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Religion">
-          <End Type="CP24Team08Model.Religion" Role="Religion" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Religion">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Religion_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="District">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="District1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HomeTown_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_District_HomeTown" FromRole="District" ToRole="HomeTown" />
-          <NavigationProperty Name="Wards" Relationship="CP24Team08Model.FK_Ward_District" FromRole="District" ToRole="Ward" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_District" FromRole="District" ToRole="Patient" />
-        </EntityType>
-        <Association Name="FK_District_HomeTown">
-          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="1" />
-          <End Type="CP24Team08Model.District" Role="District" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HomeTown">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="District">
-              <PropertyRef Name="HomeTown_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Ward">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ward1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="District_ID" Type="Int32" Nullable="false" />
-          <Property Name="HomeTown_ID" Type="Int32" />
-          <NavigationProperty Name="District" Relationship="CP24Team08Model.FK_Ward_District" FromRole="Ward" ToRole="District" />
-          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="Ward" ToRole="HomeTown" />
-          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Ward" ToRole="Patient" />
-        </EntityType>
-        <Association Name="FK_Ward_District">
-          <End Type="CP24Team08Model.District" Role="District" Multiplicity="1" />
-          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="District">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ward">
-              <PropertyRef Name="District_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ward_HomeTown">
-          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HomeTown">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ward">
-              <PropertyRef Name="HomeTown_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Bill">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Patient_ID" Type="Int32" />
-          <Property Name="InformationExamination_ID" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="TypePayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPayment_ID" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_Bill_User" FromRole="Bill" ToRole="User" />
-          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Bill_InformationExamination" FromRole="Bill" ToRole="InformationExamination" />
-          <NavigationProperty Name="Patient" Relationship="CP24Team08Model.FK_Bill_Patient" FromRole="Bill" ToRole="Patient" />
-        </EntityType>
-        <Association Name="FK_Bill_User">
-          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Bill">
-              <PropertyRef Name="UserPayment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="HistoryDisease">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_HistoryDisease" Relationship="CP24Team08Model.FK_Detail_HistoryDisease_HistoryDisease" FromRole="HistoryDisease" ToRole="Detail_HistoryDisease" />
-        </EntityType>
-        <EntityType Name="MedicalHistory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="MedicalHistory" ToRole="Detail_MedicalHistory" />
-        </EntityType>
-        <Association Name="FK_Detail_HistoryDisease_HistoryDisease">
-          <End Type="CP24Team08Model.HistoryDisease" Role="HistoryDisease" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HistoryDisease">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_HistoryDisease">
-              <PropertyRef Name="HistoryDisease_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_MedicalHistory_MedicalHistory">
-          <End Type="CP24Team08Model.MedicalHistory" Role="MedicalHistory" Multiplicity="0..1" />
-          <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MedicalHistory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Detail_MedicalHistory">
-              <PropertyRef Name="MedicalHistory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="InformationExamination">
           <Key>
             <PropertyRef Name="ID" />
@@ -3747,6 +3010,82 @@
           <NavigationProperty Name="User" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="InformationExamination" ToRole="User" />
           <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_InformationExamination" FromRole="InformationExamination" ToRole="Prescription_Detail" />
         </EntityType>
+        <EntityType Name="Mat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_Mat" Relationship="CP24Team08Model.FK_Detail_Mat_Mat" FromRole="Mat" ToRole="Detail_Mat" />
+        </EntityType>
+        <EntityType Name="MedicalHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_MedicalHistory" Relationship="CP24Team08Model.FK_Detail_MedicalHistory_MedicalHistory" FromRole="MedicalHistory" ToRole="Detail_MedicalHistory" />
+        </EntityType>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="MedicationCategory_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicationCategory" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="Medication" ToRole="MedicationCategory" />
+          <NavigationProperty Name="Prescription_Detail" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Medication" ToRole="Prescription_Detail" />
+        </EntityType>
+        <EntityType Name="MedicationCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Medications" Relationship="CP24Team08Model.FK_Medication_MedicationCategory" FromRole="MedicationCategory" ToRole="Medication" />
+        </EntityType>
+        <EntityType Name="Nation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation" FromRole="Nation" ToRole="Patient" />
+          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Nation" FromRole="Nation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Nation1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Nation1" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="NgoaiKhoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_NgoaiKhoa" Relationship="CP24Team08Model.FK_Detail_NgoaiKhoa_NgoaiKhoa" FromRole="NgoaiKhoa" ToRole="Detail_NgoaiKhoa" />
+        </EntityType>
+        <EntityType Name="NhomMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detail_NhomMau" Relationship="CP24Team08Model.FK_Detail_NhomMau_NhomMau" FromRole="NhomMau" ToRole="Detail_NhomMau" />
+        </EntityType>
         <EntityType Name="Patient">
           <Key>
             <PropertyRef Name="ID" />
@@ -3778,6 +3117,255 @@
           <NavigationProperty Name="Nation1" Relationship="CP24Team08Model.FK_Patient_Nation1" FromRole="Patient" ToRole="Nation1" />
           <NavigationProperty Name="Ward" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Patient" ToRole="Ward" />
         </EntityType>
+        <EntityType Name="PatientStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_PatientStatus" FromRole="PatientStatu" ToRole="InformationExamination" />
+        </EntityType>
+        <EntityType Name="Prescription_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumMedication" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Medication_ID" Type="Int32" />
+          <Property Name="InformationExamination_ID" Type="Int32" />
+          <Property Name="TotalPrice" Type="Int32" />
+          <NavigationProperty Name="InformationExamination" Relationship="CP24Team08Model.FK_Prescription_Detail_InformationExamination" FromRole="Prescription_Detail" ToRole="InformationExamination" />
+          <NavigationProperty Name="Medication" Relationship="CP24Team08Model.FK_Prescription_Detail_Medication" FromRole="Prescription_Detail" ToRole="Medication" />
+        </EntityType>
+        <EntityType Name="RangHamMat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_RangHamMat" Relationship="CP24Team08Model.FK_Detail_RangHamMat_RangHamMat" FromRole="RangHamMat" ToRole="Detail_RangHamMat" />
+        </EntityType>
+        <EntityType Name="Religion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="CP24Team08Model.FK_User_Religion" FromRole="Religion" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SanPhuKhoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_SanPhuKhoa" Relationship="CP24Team08Model.FK_Detail_SanPhuKhoa_SanPhuKhoa" FromRole="SanPhuKhoa" ToRole="Detail_SanPhuKhoa" />
+        </EntityType>
+        <EntityType Name="SinhHoaMau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CSBT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detail_SinhHoaMau" Relationship="CP24Team08Model.FK_Detail_SinhHoaMau_SinhHoaMau" FromRole="SinhHoaMau" ToRole="Detail_SinhHoaMau" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaiMuiHong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_TaiMuiHong" Relationship="CP24Team08Model.FK_Detail_Tai_Tai" FromRole="TaiMuiHong" ToRole="Detail_TaiMuiHong" />
+        </EntityType>
+        <EntityType Name="TamThan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_TamThan" Relationship="CP24Team08Model.FK_Detail_TamThan_TamThan" FromRole="TamThan" ToRole="Detail_TamThan" />
+        </EntityType>
+        <EntityType Name="ThanKinh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_ThanKinh" Relationship="CP24Team08Model.FK_Detail_ThanKinh_ThanKinh" FromRole="ThanKinh" ToRole="Detail_ThanKinh" />
+        </EntityType>
+        <EntityType Name="ThanTietNieu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_ThanTietNieu" Relationship="CP24Team08Model.FK_Detail_ThanTietNieu_ThanTietNieu" FromRole="ThanTietNieu" ToRole="Detail_ThanTietNieu" />
+        </EntityType>
+        <EntityType Name="TieuHoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_TieuHoa" Relationship="CP24Team08Model.FK_Detail_TieuHoa_TieuHoa" FromRole="TieuHoa" ToRole="Detail_TieuHoa" />
+        </EntityType>
+        <EntityType Name="TuanHoan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dangerous" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Detail_TuanHoan" Relationship="CP24Team08Model.FK_Detail_TuanHoan_TuanHoan" FromRole="TuanHoan" ToRole="Detail_TuanHoan" />
+        </EntityType>
+        <EntityType Name="Urine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CSBT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detail_Urine" Relationship="CP24Team08Model.FK_Detail_Urine_Urine" FromRole="Urine" ToRole="Detail_Urine" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingProcess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpecializedTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Nation_ID" Type="Int32" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="Privacy" Type="Boolean" Nullable="false" />
+          <Property Name="Religion_ID" Type="Int32" />
+          <Property Name="Gender_ID" Type="Int32" />
+          <Property Name="ActiveAccount" Type="Boolean" Nullable="false" />
+          <Property Name="ExternalLogin" Type="Boolean" />
+          <NavigationProperty Name="AspNetUser" Relationship="CP24Team08Model.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
+          <NavigationProperty Name="Bills" Relationship="CP24Team08Model.FK_Bill_User" FromRole="User" ToRole="Bill" />
+          <NavigationProperty Name="Clinicals" Relationship="CP24Team08Model.FK_Clinical_User" FromRole="User" ToRole="Clinical" />
+          <NavigationProperty Name="Gender" Relationship="CP24Team08Model.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_User_HomeTown" FromRole="User" ToRole="HomeTown" />
+          <NavigationProperty Name="InformationExaminations" Relationship="CP24Team08Model.FK_InformationExamination_User" FromRole="User" ToRole="InformationExamination" />
+          <NavigationProperty Name="Nation" Relationship="CP24Team08Model.FK_User_Nation" FromRole="User" ToRole="Nation" />
+          <NavigationProperty Name="Religion" Relationship="CP24Team08Model.FK_User_Religion" FromRole="User" ToRole="Religion" />
+        </EntityType>
+        <EntityType Name="ViSinh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiDinh" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detail_ViSinh" Relationship="CP24Team08Model.FK_Detail_ViSinh_ViSinh" FromRole="ViSinh" ToRole="Detail_ViSinh" />
+        </EntityType>
+        <EntityType Name="Ward">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ward1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="District_ID" Type="Int32" Nullable="false" />
+          <Property Name="HomeTown_ID" Type="Int32" />
+          <NavigationProperty Name="District" Relationship="CP24Team08Model.FK_Ward_District" FromRole="Ward" ToRole="District" />
+          <NavigationProperty Name="HomeTown" Relationship="CP24Team08Model.FK_Ward_HomeTown" FromRole="Ward" ToRole="HomeTown" />
+          <NavigationProperty Name="Patients" Relationship="CP24Team08Model.FK_Patient_Ward" FromRole="Ward" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_Detail_Amniocente_Amniocente">
+          <End Type="CP24Team08Model.Amniocente" Role="Amniocente" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Amniocente" Role="Detail_Amniocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amniocente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Amniocente">
+              <PropertyRef Name="Amniocente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CP24Team08Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CP24Team08Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_AspNetUsers">
+          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Bill_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
@@ -3802,6 +3390,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Bill_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="UserPayment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CayMau_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.CayMau" Role="CayMau" Multiplicity="*" />
@@ -3823,6 +3423,54 @@
             </Principal>
             <Dependent Role="Clinical">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clinical_User">
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Clinical" Role="Clinical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Clinical">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_CoXuongKhop_CoXuongKhop">
+          <End Type="CP24Team08Model.CoXuongKhop" Role="CoXuongKhop" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_CoXuongKhop" Role="Detail_CoXuongKhop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoXuongKhop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_CoXuongKhop">
+              <PropertyRef Name="CoXuongKhop_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_CTMau_CTMau">
+          <End Type="CP24Team08Model.CTMau" Role="CTMau" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_CTMau" Role="Detail_CTMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTMau">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_CTMau">
+              <PropertyRef Name="CTMau_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_DaLieu_DaLieu">
+          <End Type="CP24Team08Model.DaLieu" Role="DaLieu" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_DaLieu" Role="Detail_DaLieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaLieu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_DaLieu">
+              <PropertyRef Name="DaLieu_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3874,6 +3522,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_DiagnosticsCategory_DiagnosticsCategory">
+          <End Type="CP24Team08Model.DiagnosticsCategory" Role="DiagnosticsCategory" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_DiagnosticsCategory" Role="Detail_DiagnosticsCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiagnosticsCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_DiagnosticsCategory">
+              <PropertyRef Name="DiagnosticsCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_DiagnosticsCategory_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_DiagnosticsCategory" Role="Detail_DiagnosticsCategory" Multiplicity="*" />
@@ -3883,6 +3543,18 @@
             </Principal>
             <Dependent Role="Detail_DiagnosticsCategory">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_DongMau_DongMau">
+          <End Type="CP24Team08Model.DongMau" Role="DongMau" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_DongMau" Role="Detail_DongMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DongMau">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_DongMau">
+              <PropertyRef Name="DongMau_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3898,6 +3570,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_HistoryDisease_HistoryDisease">
+          <End Type="CP24Team08Model.HistoryDisease" Role="HistoryDisease" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoryDisease">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_HistoryDisease">
+              <PropertyRef Name="HistoryDisease_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_HistoryDisease_Patient">
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_HistoryDisease" Role="Detail_HistoryDisease" Multiplicity="*" />
@@ -3910,6 +3594,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_HoHap_HoHap">
+          <End Type="CP24Team08Model.HoHap" Role="HoHap" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoHap">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_HoHap">
+              <PropertyRef Name="HoHap_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_HoHap_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_HoHap" Role="Detail_HoHap" Multiplicity="*" />
@@ -3919,6 +3615,18 @@
             </Principal>
             <Dependent Role="Detail_HoHap">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Immune_Immune">
+          <End Type="CP24Team08Model.Immune" Role="Immune" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Immune" Role="Detail_Immune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Immune">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Immune">
+              <PropertyRef Name="Immue_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3946,6 +3654,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_Mat_Mat">
+          <End Type="CP24Team08Model.Mat" Role="Mat" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Mat" Role="Detail_Mat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mat">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Mat">
+              <PropertyRef Name="Mat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_MedicalHistory_MedicalHistory">
+          <End Type="CP24Team08Model.MedicalHistory" Role="MedicalHistory" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalHistory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_MedicalHistory">
+              <PropertyRef Name="MedicalHistory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_MedicalHistory_Patient">
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_MedicalHistory" Role="Detail_MedicalHistory" Multiplicity="*" />
@@ -3970,6 +3702,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_NgoaiKhoa_NgoaiKhoa">
+          <End Type="CP24Team08Model.NgoaiKhoa" Role="NgoaiKhoa" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_NgoaiKhoa" Role="Detail_NgoaiKhoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NgoaiKhoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_NgoaiKhoa">
+              <PropertyRef Name="NgoaiKhoa_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_NhomMau_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_NhomMau" Role="Detail_NhomMau" Multiplicity="*" />
@@ -3979,6 +3723,18 @@
             </Principal>
             <Dependent Role="Detail_NhomMau">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_NhomMau_NhomMau">
+          <End Type="CP24Team08Model.NhomMau" Role="NhomMau" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_NhomMau" Role="Detail_NhomMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomMau">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_NhomMau">
+              <PropertyRef Name="NhomMau_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3994,6 +3750,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_RangHamMat_RangHamMat">
+          <End Type="CP24Team08Model.RangHamMat" Role="RangHamMat" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_RangHamMat" Role="Detail_RangHamMat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RangHamMat">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_RangHamMat">
+              <PropertyRef Name="RangHamMat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_SanPhuKhoa_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_SanPhuKhoa" Role="Detail_SanPhuKhoa" Multiplicity="*" />
@@ -4003,6 +3771,18 @@
             </Principal>
             <Dependent Role="Detail_SanPhuKhoa">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_SanPhuKhoa_SanPhuKhoa">
+          <End Type="CP24Team08Model.SanPhuKhoa" Role="SanPhuKhoa" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_SanPhuKhoa" Role="Detail_SanPhuKhoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhuKhoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_SanPhuKhoa">
+              <PropertyRef Name="SanPhuKhoa_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4018,6 +3798,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_SinhHoaMau_SinhHoaMau">
+          <End Type="CP24Team08Model.SinhHoaMau" Role="SinhHoaMau" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_SinhHoaMau" Role="Detail_SinhHoaMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhHoaMau">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_SinhHoaMau">
+              <PropertyRef Name="SinhHoaMau_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_Tai_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_TaiMuiHong" Role="Detail_TaiMuiHong" Multiplicity="*" />
@@ -4027,6 +3819,18 @@
             </Principal>
             <Dependent Role="Detail_TaiMuiHong">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Tai_Tai">
+          <End Type="CP24Team08Model.TaiMuiHong" Role="TaiMuiHong" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_TaiMuiHong" Role="Detail_TaiMuiHong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiMuiHong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_TaiMuiHong">
+              <PropertyRef Name="TaiMuiHong_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4042,6 +3846,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_TamThan_TamThan">
+          <End Type="CP24Team08Model.TamThan" Role="TamThan" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_TamThan" Role="Detail_TamThan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TamThan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_TamThan">
+              <PropertyRef Name="TamThan_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_ThanKinh_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_ThanKinh" Role="Detail_ThanKinh" Multiplicity="*" />
@@ -4051,6 +3867,18 @@
             </Principal>
             <Dependent Role="Detail_ThanKinh">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_ThanKinh_ThanKinh">
+          <End Type="CP24Team08Model.ThanKinh" Role="ThanKinh" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_ThanKinh" Role="Detail_ThanKinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThanKinh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_ThanKinh">
+              <PropertyRef Name="ThanKinh_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4066,6 +3894,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_ThanTietNieu_ThanTietNieu">
+          <End Type="CP24Team08Model.ThanTietNieu" Role="ThanTietNieu" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_ThanTietNieu" Role="Detail_ThanTietNieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThanTietNieu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_ThanTietNieu">
+              <PropertyRef Name="ThanTietNieu_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_TieuHoa_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_TieuHoa" Role="Detail_TieuHoa" Multiplicity="*" />
@@ -4075,6 +3915,18 @@
             </Principal>
             <Dependent Role="Detail_TieuHoa">
               <PropertyRef Name="InformationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_TieuHoa_TieuHoa">
+          <End Type="CP24Team08Model.TieuHoa" Role="TieuHoa" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_TieuHoa" Role="Detail_TieuHoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TieuHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_TieuHoa">
+              <PropertyRef Name="TieuHoa_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4090,6 +3942,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_TuanHoan_TuanHoan">
+          <End Type="CP24Team08Model.TuanHoan" Role="TuanHoan" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_TuanHoan" Role="Detail_TuanHoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuanHoan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_TuanHoan">
+              <PropertyRef Name="TuanHoan_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Detail_Urine_InformationExamination">
           <End Type="CP24Team08Model.InformationExamination" Role="InformationExamination" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Detail_Urine" Role="Detail_Urine" Multiplicity="*" />
@@ -4099,6 +3963,18 @@
             </Principal>
             <Dependent Role="Detail_Urine">
               <PropertyRef Name="InfomationExamination_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Urine_Urine">
+          <End Type="CP24Team08Model.Urine" Role="Urine" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_Urine" Role="Detail_Urine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_Urine">
+              <PropertyRef Name="Urine_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4114,6 +3990,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Detail_ViSinh_ViSinh">
+          <End Type="CP24Team08Model.ViSinh" Role="ViSinh" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Detail_ViSinh" Role="Detail_ViSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViSinh">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Detail_ViSinh">
+              <PropertyRef Name="ViSinh_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="1" />
+          <End Type="CP24Team08Model.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Patient_District">
           <End Type="CP24Team08Model.District" Role="District" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
@@ -4122,6 +4022,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Patient">
+              <PropertyRef Name="District_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ward_District">
+          <End Type="CP24Team08Model.District" Role="District" Multiplicity="1" />
+          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ward">
               <PropertyRef Name="District_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4138,6 +4050,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Gender">
+          <End Type="CP24Team08Model.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Gender_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Patient_HomeTown">
           <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
@@ -4146,6 +4070,30 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Patient">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="HomeTown_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ward_HomeTown">
+          <End Type="CP24Team08Model.HomeTown" Role="HomeTown" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Ward" Role="Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeTown">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ward">
               <PropertyRef Name="HomeTown_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4198,6 +4146,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Medication_MedicationCategory">
+          <End Type="CP24Team08Model.MedicationCategory" Role="MedicationCategory" Multiplicity="1" />
+          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicationCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Medication">
+              <PropertyRef Name="MedicationCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Detail_Medication">
+          <End Type="CP24Team08Model.Medication" Role="Medication" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.Prescription_Detail" Role="Prescription_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prescription_Detail">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Patient_Nation">
           <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
           <End Type="CP24Team08Model.Patient" Role="Patient" Multiplicity="*" />
@@ -4206,6 +4178,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Patient">
+              <PropertyRef Name="Nation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Nation">
+          <End Type="CP24Team08Model.Nation" Role="Nation" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
               <PropertyRef Name="Nation_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4233,6 +4217,22 @@
               <PropertyRef Name="Ward_ID" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Religion">
+          <End Type="CP24Team08Model.Religion" Role="Religion" Multiplicity="0..1" />
+          <End Type="CP24Team08Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Religion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Religion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CP24Team08Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="CP24Team08Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -4307,6 +4307,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="CP24Team08Model.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="UserPayment_ID" ColumnName="UserPayment_ID" />
+                <ScalarProperty Name="TypePayment" ColumnName="TypePayment" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CayMaus">
             <EntityTypeMapping TypeName="CP24Team08Model.CayMau">
               <MappingFragment StoreEntitySet="CayMau">
@@ -4317,6 +4329,25 @@
                 <ScalarProperty Name="ResultDinhDanh" ColumnName="ResultDinhDanh" />
                 <ScalarProperty Name="ImageNuoiCay" ColumnName="ImageNuoiCay" />
                 <ScalarProperty Name="ResultNuoiCay" ColumnName="ResultNuoiCay" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clinicals">
+            <EntityTypeMapping TypeName="CP24Team08Model.Clinical">
+              <MappingFragment StoreEntitySet="Clinical">
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="LowerJaw" ColumnName="LowerJaw" />
+                <ScalarProperty Name="UpperJaw" ColumnName="UpperJaw" />
+                <ScalarProperty Name="RightEarWhisper" ColumnName="RightEarWhisper" />
+                <ScalarProperty Name="RightEarSay" ColumnName="RightEarSay" />
+                <ScalarProperty Name="LeftEarWhisper" ColumnName="LeftEarWhisper" />
+                <ScalarProperty Name="LeftEarSay" ColumnName="LeftEarSay" />
+                <ScalarProperty Name="LeftEyesGlasses" ColumnName="LeftEyesGlasses" />
+                <ScalarProperty Name="RightEyesGlasses" ColumnName="RightEyesGlasses" />
+                <ScalarProperty Name="LeftEyesNoGlasses" ColumnName="LeftEyesNoGlasses" />
+                <ScalarProperty Name="RightEyesNoGlasses" ColumnName="RightEyesNoGlasses" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4425,6 +4456,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Detail_HoHap">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_HoHap">
+              <MappingFragment StoreEntitySet="Detail_HoHap">
+                <ScalarProperty Name="HoHap_ID" ColumnName="HoHap_ID" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Detail_Immune">
             <EntityTypeMapping TypeName="CP24Team08Model.Detail_Immune">
               <MappingFragment StoreEntitySet="Detail_Immune">
@@ -4501,6 +4541,15 @@
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
                 <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
                 <ScalarProperty Name="SinhHoaMau_ID" ColumnName="SinhHoaMau_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_TaiMuiHong">
+            <EntityTypeMapping TypeName="CP24Team08Model.Detail_TaiMuiHong">
+              <MappingFragment StoreEntitySet="Detail_TaiMuiHong">
+                <ScalarProperty Name="TaiMuiHong_ID" ColumnName="TaiMuiHong_ID" />
+                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4587,6 +4636,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="CP24Team08Model.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
+                <ScalarProperty Name="District1" ColumnName="District" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DongMaus">
             <EntityTypeMapping TypeName="CP24Team08Model.DongMau">
               <MappingFragment StoreEntitySet="DongMau">
@@ -4603,6 +4661,15 @@
             <EntityTypeMapping TypeName="CP24Team08Model.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Gender1" ColumnName="Gender" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryDiseases">
+            <EntityTypeMapping TypeName="CP24Team08Model.HistoryDisease">
+              <MappingFragment StoreEntitySet="HistoryDisease">
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4637,12 +4704,57 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="InformationExaminations">
+            <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
+              <MappingFragment StoreEntitySet="InformationExamination">
+                <ScalarProperty Name="ExaminationType" ColumnName="ExaminationType" />
+                <ScalarProperty Name="DateReExamination" ColumnName="DateReExamination" />
+                <ScalarProperty Name="Resulting" ColumnName="Resulting" />
+                <ScalarProperty Name="Examining" ColumnName="Examining" />
+                <ScalarProperty Name="Specialist" ColumnName="Specialist" />
+                <ScalarProperty Name="PriceCTMaus" ColumnName="PriceCTMaus" />
+                <ScalarProperty Name="PricePrescription" ColumnName="PricePrescription" />
+                <ScalarProperty Name="PriceTest" ColumnName="PriceTest" />
+                <ScalarProperty Name="PriceExamination" ColumnName="PriceExamination" />
+                <ScalarProperty Name="New" ColumnName="New" />
+                <ScalarProperty Name="ResultViSinh" ColumnName="ResultViSinh" />
+                <ScalarProperty Name="ResultDichChocDo" ColumnName="ResultDichChocDo" />
+                <ScalarProperty Name="ResultMienDich" ColumnName="ResultMienDich" />
+                <ScalarProperty Name="ResultNuocTieu" ColumnName="ResultNuocTieu" />
+                <ScalarProperty Name="ResultNhomMau" ColumnName="ResultNhomMau" />
+                <ScalarProperty Name="ResultDMau" ColumnName="ResultDMau" />
+                <ScalarProperty Name="ResultSHM" ColumnName="ResultSHM" />
+                <ScalarProperty Name="ResultCTMau" ColumnName="ResultCTMau" />
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+                <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
+                <ScalarProperty Name="Breathing" ColumnName="Breathing" />
+                <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
+                <ScalarProperty Name="UserTest_ID" ColumnName="UserTest_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateExamine" ColumnName="DateExamine" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Mats">
             <EntityTypeMapping TypeName="CP24Team08Model.Mat">
               <MappingFragment StoreEntitySet="Mat">
                 <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalHistories">
+            <EntityTypeMapping TypeName="CP24Team08Model.MedicalHistory">
+              <MappingFragment StoreEntitySet="MedicalHistory">
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4698,6 +4810,28 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="NameTest" ColumnName="NameTest" />
                 <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="CP24Team08Model.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="MoneyBackup" ColumnName="MoneyBackup" />
+                <ScalarProperty Name="MaBN" ColumnName="MaBN" />
+                <ScalarProperty Name="Nation1_ID" ColumnName="Nation1_ID" />
+                <ScalarProperty Name="InsuranceCode" ColumnName="InsuranceCode" />
+                <ScalarProperty Name="PhoneZalo" ColumnName="PhoneZalo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NumHome" ColumnName="NumHome" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4772,6 +4906,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TaiMuiHongs">
+            <EntityTypeMapping TypeName="CP24Team08Model.TaiMuiHong">
+              <MappingFragment StoreEntitySet="TaiMuiHong">
+                <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TamThans">
             <EntityTypeMapping TypeName="CP24Team08Model.TamThan">
               <MappingFragment StoreEntitySet="TamThan">
@@ -4834,71 +4978,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ViSinhs">
-            <EntityTypeMapping TypeName="CP24Team08Model.ViSinh">
-              <MappingFragment StoreEntitySet="ViSinh">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
-                <ScalarProperty Name="NameTest" ColumnName="NameTest" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CP24Team08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Detail_HoHap">
-            <EntityTypeMapping TypeName="CP24Team08Model.Detail_HoHap">
-              <MappingFragment StoreEntitySet="Detail_HoHap">
-                <ScalarProperty Name="HoHap_ID" ColumnName="HoHap_ID" />
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clinicals">
-            <EntityTypeMapping TypeName="CP24Team08Model.Clinical">
-              <MappingFragment StoreEntitySet="Clinical">
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="LowerJaw" ColumnName="LowerJaw" />
-                <ScalarProperty Name="UpperJaw" ColumnName="UpperJaw" />
-                <ScalarProperty Name="RightEarWhisper" ColumnName="RightEarWhisper" />
-                <ScalarProperty Name="RightEarSay" ColumnName="RightEarSay" />
-                <ScalarProperty Name="LeftEarWhisper" ColumnName="LeftEarWhisper" />
-                <ScalarProperty Name="LeftEarSay" ColumnName="LeftEarSay" />
-                <ScalarProperty Name="LeftEyesGlasses" ColumnName="LeftEyesGlasses" />
-                <ScalarProperty Name="RightEyesGlasses" ColumnName="RightEyesGlasses" />
-                <ScalarProperty Name="LeftEyesNoGlasses" ColumnName="LeftEyesNoGlasses" />
-                <ScalarProperty Name="RightEyesNoGlasses" ColumnName="RightEyesNoGlasses" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Detail_TaiMuiHong">
-            <EntityTypeMapping TypeName="CP24Team08Model.Detail_TaiMuiHong">
-              <MappingFragment StoreEntitySet="Detail_TaiMuiHong">
-                <ScalarProperty Name="TaiMuiHong_ID" ColumnName="TaiMuiHong_ID" />
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TaiMuiHongs">
-            <EntityTypeMapping TypeName="CP24Team08Model.TaiMuiHong">
-              <MappingFragment StoreEntitySet="TaiMuiHong">
-                <ScalarProperty Name="Dangerous" ColumnName="Dangerous" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CP24Team08Model.User">
               <MappingFragment StoreEntitySet="User">
@@ -4925,11 +5004,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Districts">
-            <EntityTypeMapping TypeName="CP24Team08Model.District">
-              <MappingFragment StoreEntitySet="District">
-                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
-                <ScalarProperty Name="District1" ColumnName="District" />
+          <EntitySetMapping Name="ViSinhs">
+            <EntityTypeMapping TypeName="CP24Team08Model.ViSinh">
+              <MappingFragment StoreEntitySet="ViSinh">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
+                <ScalarProperty Name="NameTest" ColumnName="NameTest" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4944,94 +5024,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Bills">
-            <EntityTypeMapping TypeName="CP24Team08Model.Bill">
-              <MappingFragment StoreEntitySet="Bill">
-                <ScalarProperty Name="UserPayment_ID" ColumnName="UserPayment_ID" />
-                <ScalarProperty Name="TypePayment" ColumnName="TypePayment" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="InformationExamination_ID" ColumnName="InformationExamination_ID" />
-                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HistoryDiseases">
-            <EntityTypeMapping TypeName="CP24Team08Model.HistoryDisease">
-              <MappingFragment StoreEntitySet="HistoryDisease">
-                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MedicalHistories">
-            <EntityTypeMapping TypeName="CP24Team08Model.MedicalHistory">
-              <MappingFragment StoreEntitySet="MedicalHistory">
-                <ScalarProperty Name="ChiDinh" ColumnName="ChiDinh" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InformationExaminations">
-            <EntityTypeMapping TypeName="CP24Team08Model.InformationExamination">
-              <MappingFragment StoreEntitySet="InformationExamination">
-                <ScalarProperty Name="ExaminationType" ColumnName="ExaminationType" />
-                <ScalarProperty Name="DateReExamination" ColumnName="DateReExamination" />
-                <ScalarProperty Name="Resulting" ColumnName="Resulting" />
-                <ScalarProperty Name="Examining" ColumnName="Examining" />
-                <ScalarProperty Name="Specialist" ColumnName="Specialist" />
-                <ScalarProperty Name="PriceCTMaus" ColumnName="PriceCTMaus" />
-                <ScalarProperty Name="PricePrescription" ColumnName="PricePrescription" />
-                <ScalarProperty Name="PriceTest" ColumnName="PriceTest" />
-                <ScalarProperty Name="PriceExamination" ColumnName="PriceExamination" />
-                <ScalarProperty Name="New" ColumnName="New" />
-                <ScalarProperty Name="ResultViSinh" ColumnName="ResultViSinh" />
-                <ScalarProperty Name="ResultDichChocDo" ColumnName="ResultDichChocDo" />
-                <ScalarProperty Name="ResultMienDich" ColumnName="ResultMienDich" />
-                <ScalarProperty Name="ResultNuocTieu" ColumnName="ResultNuocTieu" />
-                <ScalarProperty Name="ResultNhomMau" ColumnName="ResultNhomMau" />
-                <ScalarProperty Name="ResultDMau" ColumnName="ResultDMau" />
-                <ScalarProperty Name="ResultSHM" ColumnName="ResultSHM" />
-                <ScalarProperty Name="ResultCTMau" ColumnName="ResultCTMau" />
-                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
-                <ScalarProperty Name="PatientStatus_ID" ColumnName="PatientStatus_ID" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
-                <ScalarProperty Name="Breathing" ColumnName="Breathing" />
-                <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
-                <ScalarProperty Name="UserTest_ID" ColumnName="UserTest_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="DateExamine" ColumnName="DateExamine" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Patients">
-            <EntityTypeMapping TypeName="CP24Team08Model.Patient">
-              <MappingFragment StoreEntitySet="Patient">
-                <ScalarProperty Name="MoneyBackup" ColumnName="MoneyBackup" />
-                <ScalarProperty Name="MaBN" ColumnName="MaBN" />
-                <ScalarProperty Name="Nation1_ID" ColumnName="Nation1_ID" />
-                <ScalarProperty Name="InsuranceCode" ColumnName="InsuranceCode" />
-                <ScalarProperty Name="PhoneZalo" ColumnName="PhoneZalo" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
-                <ScalarProperty Name="HomeTown_ID" ColumnName="HomeTown_ID" />
-                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
-                <ScalarProperty Name="Ward_ID" ColumnName="Ward_ID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="NumHome" ColumnName="NumHome" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CP24Team08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
