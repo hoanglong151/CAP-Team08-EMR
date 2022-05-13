@@ -1106,6 +1106,7 @@
     <Content Include="Areas\Admin\assets\images\logo\logoVL.png" />
     <Content Include="Areas\Admin\assets\images\logo\VLang.png" />
     <Content Include="Areas\Admin\assets\music.mp3" />
+    <Content Include="Areas\Admin\assets\relax.mp3" />
     <Content Include="Areas\Admin\assets\videos\vbg_Trim.mp4" />
     <Content Include="Areas\Admin\assets\videos\videoHomePageVL.mp4" />
     <Content Include="asset\440.jpg" />
