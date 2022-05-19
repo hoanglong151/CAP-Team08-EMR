@@ -58,11 +58,6 @@
     #sh-header-builder-9CcOom8qTf .sh-header-builder-main-navigation .menu-item-cart .total {
         border-bottom: !important;
     }
-    /* Header - Sticky */
-    #sh-header-builder-9CcOom8qTf .sh-header-builder-main-sticky-fixed .sh-header-builder-main-container,
-    #sh-header-builder-9CcOom8qTf .sh-header-builder-mobile-sticky-fixed {
-        background-color: #ffffff;
-    }
 
     #sh-header-builder-9CcOom8qTf .sh-header-builder-main-sticky-fixed .sh-header-builder-main-container {
         min-height: 50px;
@@ -84,6 +79,12 @@
     #sh-header-builder-9CcOom8qTf .sh-header-builder-mobile {
         border-bottom: 1px solid rgba(255,255,255,0.01);
         background-color: rgba(0,0,0,0)
+    }
+
+    /* Header - Sticky */
+    #sh-header-builder-9CcOom8qTf .sh-header-builder-main-sticky-fixed .sh-header-builder-main-container,
+    #sh-header-builder-9CcOom8qTf .sh-header-builder-mobile-sticky-fixed {
+        background-color: #ffffff;
     }
 }
 
@@ -2196,4 +2197,265 @@ body.admin-bar .sh-side-demos-container {
 
 .arrow-top:hover {
     background-color: #17d99c !important;
+}
+
+.platform-tab {
+    display: none
+}
+
+.actionPatientLoad{
+    width: 170px;
+}
+
+.vc_custom_1539866195448 {
+    padding-top: 120px;
+    padding-bottom: 150px;
+}
+
+.form-search {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+@media screen and (max-width: 1024px) {
+    .vc_custom_1539866195448 {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    #about{
+        display: flex
+    }
+    .vc_column_662971839:not(.vc_parallax):not(.jarallax) {
+        display: none;
+    }
+    #about > .vc_column_1400321454 {
+        display: none;
+    }
+
+    #about > .vc_column_1439000852 {
+        width: 100% !important
+    }
+
+    #departments .vc_column_41109743 .wpb_wrapper,
+    #departments .vc_column_868303297 .wpb_wrapper,
+    #departments .vc_column_1442378259 .wpb_wrapper {
+        max-width: 500px !important;
+    }
+
+    #doctor .vc_custom_1537542183399{
+        display: flex;
+        padding: 50px 30px;
+    }
+
+    #doctor .vc_column_155301469{
+        display: none;
+    }
+
+    #doctor .vc_column_1849584702{
+        flex: 1
+    }
+
+    #doctor .vc_column_314217261{
+        flex-basis: 300px
+    }
+
+    .vc_column_1849584702 > .vc_column-inner{
+        padding: 30px !important
+    }
+
+    .blog-entry .text .heading a,
+    .blog-entry .text p:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .blog-entry .text{
+        padding: 10px;
+    }
+
+    #news{
+        padding: 70px 0 20px;
+    }
+
+    #contacts .vc_custom_1539866408672 {
+        bottom: -10px;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 45px 30px 45px !important;
+    }
+    #contacts .vc_custom_1539866408672 .wpb_column{
+        width: 50%;
+    }
+
+    #page-container .pagePatient {
+        padding: 150px 2rem !important;
+    }
+
+    .tab-YearPatient,
+    .tab-PatientSex {
+        display: none;
+    }
+
+    .platform-pc{
+        display: none
+    }
+
+    .platform-tab {
+        display: block;
+        font-size: 1.5rem;
+        padding: 4px 15px;
+    }
+
+    .actionPatientLoad{
+        width: 0px;
+    }
+
+    #departments .vc_column_41109743 .sh-text-block,
+    #departments .vc_column_868303297 .sh-text-block,
+    #departments .vc_column_1442378259 .sh-text-block {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* number of lines to show */
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    #departments .vc_column_41109743 .sh-heading .sh-element-margin .sh-heading-content,
+    #departments .vc_column_868303297 .sh-heading .sh-element-margin .sh-heading-content,
+    #departments .vc_column_1442378259 .sh-heading .sh-element-margin .sh-heading-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        height: 45px;
+        -webkit-box-orient: vertical;
+    }
+
+    .vc_column_1439000852 .wpb_wrapper,
+    .vc_row_1051629836 {
+        max-width: 700px !important;
+    }
+    .ftco-section {
+        overflow-x: unset
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    #sh-header-builder-9CcOom8qTf .sh-header-builder-mobile-content-left {
+        width: 120px;
+    }
+
+    .vc_column_657524984 #heading-QhCiHOvUop .sh-heading-content span {
+        font-size: 38px !important
+    }
+
+    #departments .vc_row_1051629836 {
+        padding: 0px 20px 40px 20px !important;
+    }
+
+    #departments .vc_column_41109743 .sh-text-block,
+    #departments .vc_column_868303297 .sh-text-block,
+    #departments .vc_column_1442378259 .sh-text-block {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .vc_row-has-fill > .vc_column_container > .vc_column-inner {
+        padding-top: 0;
+    }
+
+    #doctor .vc_column_314217261 {
+        width: 100%;
+        flex-basis: unset;
+    }
+
+    .vc_column_1442378259 .sh-empty-space-TU4pPx3Fa1,
+    .vc_column_1442378259 .sh-empty-space-3deVtyvGlS,
+    .vc_column_868303297 .sh-empty-space-QSFCKwtsBP,
+    .vc_column_868303297 .sh-empty-space-EinbPAG3e1,
+    .vc_column_41109743 .sh-empty-space-z20DWFYihH,
+    .vc_column_41109743 .sh-empty-space-PwWy2hgp1J{
+        height: 20px !important;
+    }
+
+    #departments .vc_column_41109743 .sh-heading .sh-element-margin .sh-heading-content,
+    #departments .vc_column_868303297 .sh-heading .sh-element-margin .sh-heading-content,
+    #departments .vc_column_1442378259 .sh-heading .sh-element-margin .sh-heading-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        height: unset;
+        -webkit-box-orient: vertical;
+    }
+    .ftco-section{
+        overflow-x: unset
+    }
+    #contacts .vc_custom_1539866408672 {
+        display: block;
+        bottom: -45px;
+        padding: 15px 30px 45px !important;
+    }
+
+    #contacts .vc_custom_1539866408672 .wpb_column{
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    #back-to-top{
+        bottom: 145px;
+        right: 15px;
+    }
+
+    .hero-wrap .slider-text .bread{
+        font-size: 50px;
+    }
+
+    .mb-5{
+        margin-bottom: 7.5rem !important;
+    }
+    .detailDoctor{
+        display: block;
+    }
+    .detailDoctor-img{
+        width: 100%;
+        object-position: top;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    #page-container .pagePatient{
+        padding: 150px 1rem !important;
+    }
+    .form-search{
+        display: block;
+    }
+
+    .mobile-CodePatient,
+    .mobile-CodeInsurance,
+    .mobile-NamePatient,
+    .mobile-YearPatient,
+    .mobile-PatientSex {
+        display: none
+    }
+
+    .actionPatientLoad{
+        width: 110px;
+    }
 }

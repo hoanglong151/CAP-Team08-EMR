@@ -18,14 +18,8 @@
         border: none
     }
 
-        .btn-search:hover {
-            color: red
-        }
-
-    .form-search {
-        display: flex;
-        justify-content: center;
-        align-items: center
+    .btn-search:hover {
+        color: red
     }
 
     #TableMedication td {
@@ -33,7 +27,7 @@
     }
 </style>
 
-<section class="pagePatient">
+<section id="e-profile" class="pagePatient">
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -78,9 +72,9 @@
                 <table class="table table-striped" id="tableLoadPatient" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Mã Bệnh Nhân</th>
-                            <th>Mã BHYT</th>
-                            <th>Họ Tên</th>
+                            <th class="mobile-CodePatient">Mã Bệnh Nhân</th>
+                            <th class="mobile-CodeInsurance">Mã BHYT</th>
+                            <th class="mobile-NamePatient">Họ Tên</th>
                             <th>Ngày Tài Khám</th>
                         </tr>
                     </thead>
@@ -92,9 +86,9 @@
                                 if (DateTime.Today < info.InformationExamination.DateReExamination)
                                 {
                                     <tr>
-                                        <td>@info.Patient.MaBN</td>
-                                        <td>@info.Patient.InsuranceCode</td>
-                                        <td>@info.Patient.Name</td>
+                                        <td class="mobile-CodePatient">@info.Patient.MaBN</td>
+                                        <td class="mobile-CodeInsurance">@info.Patient.InsuranceCode</td>
+                                        <td class="mobile-NamePatient">@info.Patient.Name</td>
                                         <td>@info.InformationExamination.DateReExamination.Value.ToString("dd/MM/yyyy")</td>
                                     </tr>
                                 }
@@ -106,13 +100,13 @@
                 <table class="table table-striped" id="tableLoadPatient" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Mã Bệnh Nhân</th>
-                            <th>Mã BHYT</th>
-                            <th>Họ Tên</th>
-                            <th>Năm Sinh</th>
+                            <th class="mobile-CodePatient">Mã Bệnh Nhân</th>
+                            <th class="mobile-CodeInsurance">Mã BHYT</th>
+                            <th class="mobile-NamePatient">Họ Tên</th>
+                            <th class="tab-YearPatient mobile-YearPatient">Năm Sinh</th>
                             <th>Ngày Khám</th>
-                            <th>Giới Tính</th>
-                            <th style="width:170px">Chức Năng</th>
+                            <th class="tab-PatientSex mobile-PatientSex">Giới Tính</th>
+                            <th class="actionPatientLoad">Chức Năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,16 +115,20 @@
                             foreach (var info in Model)
                             {
                                 <tr>
-                                    <td>@info.Patient.MaBN</td>
-                                    <td>@info.Patient.InsuranceCode</td>
-                                    <td>@info.Patient.Name</td>
-                                    <td>@info.Patient.BirthDate.Value.ToString("yyyy")</td>
+                                    <td class="mobile-CodePatient">@info.Patient.MaBN</td>
+                                    <td class="mobile-CodeInsurance">@info.Patient.InsuranceCode</td>
+                                    <td class="mobile-NamePatient">@info.Patient.Name</td>
+                                    <td class="tab-YearPatient mobile-YearPatient">@info.Patient.BirthDate.Value.ToString("yyyy")</td>
                                     <td>@info.InformationExamination.DateExamine</td>
-                                    <td>@info.Patient.Gender.Gender1</td>
+                                    <td class="tab-PatientSex mobile-PatientSex">@info.Patient.Gender.Gender1</td>
                                     <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" style="padding: 2px 8px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-@info.InformationExamination.ID">
+                                        <button type="button" style="padding: 2px 8px;" class="btn btn-primary platform-pc" data-bs-toggle="modal" data-bs-target="#exampleModal-@info.InformationExamination.ID">
                                             Xem Chi Tiết
+                                        </button>
+
+                                        <button type="button" class="btn btn-primary platform-tab" data-bs-toggle="modal" data-bs-target="#exampleModal-@info.InformationExamination.ID">
+                                            <i class="fas fa-info"></i>
                                         </button>
 
                                         <!-- Modal -->
