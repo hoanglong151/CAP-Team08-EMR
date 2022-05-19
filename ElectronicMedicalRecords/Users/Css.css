@@ -2458,4 +2458,8 @@ body.admin-bar .sh-side-demos-container {
     .actionPatientLoad{
         width: 110px;
     }
+
+    .hero-wrap.hero-wrap-2 {
+        background-attachment: unset;
+    }
 }

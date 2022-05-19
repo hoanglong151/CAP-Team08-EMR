@@ -6248,8 +6248,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5,
     .hero-wrap.hero-wrap-2 {
         min-height: auto;
         height: 400px;
+        background: url(https://preview.colorlib.com/theme/toothcare/images/xbg_2.jpg.pagespeed.ic.tdZ9NoFhG4.webp);
+        background-repeat: no-repeat;
         background-position: center center;
         background-attachment: fixed;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
     }
 
         .hero-wrap.hero-wrap-2 .overlay {
